@@ -67,6 +67,7 @@
   <link rel="alternate" hreflang="en" href="https://www.trovapiatto.it/?lang=en">
   <link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/">
   
+  <link rel="preload" as="image" href="https://www.trovapiatto.it/logo/logo_ufficiale.png" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -276,24 +277,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    .logo {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e73a3a, #ff6b6b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .logo i {
-      font-size: 1.5rem;
     }
 
     nav {
@@ -509,49 +492,6 @@
       margin: 1.5rem 0 2.5rem;
       line-height: 1.7;
       animation: slideInUp 0.8s ease-out 0.4s both;
-    }
-
-    /* Stats Grid */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-      animation: slideInUp 0.8s ease-out 0.6s both;
-    }
-
-    .stat-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border-color);
-      padding: 2rem 1.5rem;
-      border-radius: 12px;
-      text-align: center;
-      transition: var(--transition);
-    }
-
-    .stat-card:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: var(--primary);
-      transform: translateY(-8px);
-    }
-
-    .stat-card i {
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-card .number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin: 0.5rem 0;
-    }
-
-    .stat-card .label {
-      font-size: 0.9rem;
-      color: var(--text-light);
     }
 
     /* CTA Buttons */
@@ -1524,11 +1464,6 @@
     }
 
     /* ==================== MAP MARKERS ==================== */
-    .marker-container {
-      background: transparent !important;
-      border: none !important;
-    }
-
     .custom-marker {
       width: 36px;
       height: 36px;
@@ -1816,10 +1751,6 @@
         font-size: 0.9rem;
       }
 
-      .stats {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
     }
   </style>
 
