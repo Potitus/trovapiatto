@@ -1325,6 +1325,7 @@
         }
         @keyframes skshimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
         .rest-item { animation: restIn 0.35s ease backwards; }
+        .restaurants-list.settled .rest-item { animation: none; }
         .rest-item:active { transform: scale(0.99); }
         @keyframes restIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
         .tab-bar { display: none; }
@@ -2154,6 +2155,7 @@
             </div>`;
         }).join('');
         document.getElementById('restaurants-list').innerHTML = html || '<div class="loading-state">Nessun ristorante trovato</div>';
+        var _rl = document.getElementById('restaurants-list'); if (_rl) _rl.classList.add('settled');
     }
 
     // ===== SELECT / MODAL =====
