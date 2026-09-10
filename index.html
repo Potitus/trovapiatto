@@ -589,11 +589,12 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 2rem 0;
+      min-height: 360px;
     }
 
     .swiper-slide {
       width: auto;
-      opacity: 0.5;
+      opacity: 1;
       transition: opacity 0.3s ease;
       height: 350px;
     }
@@ -1761,9 +1762,7 @@
       <img src="https://www.trovapiatto.it/logo/logo_ufficiale.png" alt="" width="710" height="187" decoding="async">
     </a>
     <nav>
-      <a href="/bari/" title="Cosa mangiare a Bari - Guida ristoranti">Bari</a>
       <a href="/community/" title="Esplora le categorie di piatti disponibili">Community</a>
-      <a href="/community/blog/" title="Blog: guida alla cucina pugliese">Magazine</a>
       <a href="aggiungi-menu.html" title="Aggiungi il tuo menu online - primo mese gratuito">Aggiungi Menu</a>
       <a href="https://www.trovapiatto.it/app/" class="btn btn-primary" style="margin-left: 1rem;" title="Accedi all'applicazione trovapiatto">
         <i class="fa-solid fa-map-location-dot"></i> Esplora</a>
@@ -1794,8 +1793,8 @@
   <div class="hero-content">
     <img src="https://www.trovapiatto.it/logo/logo_ufficiale.png" alt="trovapiatto.it" width="710" height="187" class="logo-hero" fetchpriority="high" decoding="async">
     <p class="eyebrow" style="justify-content:center;"><i class="fa-solid fa-location-dot"></i> Bari &middot; Puglia &mdash; Guida gastronomica</p>
-    <h1>Trova <span>il Tuo Piatto</span> Preferito</h1>
-    <p>Scopri oltre 8.000 piatti dai migliori ristoranti italiani. Localizzali sulla mappa e prenota il tuo ristorante preferito in pochi secondi.</p>
+    <h1>Il<span> TuoPiatto</span> Preferito</h1>
+    <p>Scopri oltre 8.000 piatti italiani. Localizzali sulla mappa e degusta il tuo piatto preferito in pochi secondi.</p>
 
     <!-- Hero Search Bar -->
     <div style="max-width:560px; margin:0 auto 2.5rem; animation: slideInUp 0.8s ease-out 0.3s both;">
@@ -1823,184 +1822,25 @@
       <a href="https://www.trovapiatto.it/app/" class="btn btn-primary" title="Scopri i migliori piatti e ristoranti nelle vicinanze">
         <i class="fa-solid fa-map-location-dot"></i> SCOPRI NELLE VICINANZE
       </a>
-      <a href="/bari/" class="btn btn-secondary" title="Guida alla cucina pugliese - cosa mangiare a Bari">
-        <i class="fa-solid fa-book-open"></i> GUIDA A BARI
-      </a>
     </div>
-  </div>
-</section>
-
-<!-- Categories Section -->
-<section class="categories" id="categories">
-  <div class="section-header">
-    <p class="eyebrow"><i class="fa-solid fa-utensils"></i> Categorie</p>
-    <h2>Esplora le Categorie di Piatti</h2>
-    <p>Scegli tra le tue categorie preferite e scopri i piatti che ami: senza glutine, vegani, sushi, etnico, pesce, carne e molto altro</p>
-  </div>
-
-  <div class="swiper" role="region" aria-label="Categorie di piatti">
-    <div class="swiper-wrapper" id="categories-swiper"></div>
-    <div class="swiper-pagination" style="margin-top:1rem;"></div>
   </div>
 </section>
 
 <!-- Piatti Popolari Section -->
-<section style="padding: 5rem 2rem; background: linear-gradient(180deg, #1a0f25 0%, #0f0a15 100%); position: relative;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <div class="section-header">
-      <h2 style="background: linear-gradient(135deg, #f59e0b, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"><i class="fa-solid fa-fire" style="-webkit-text-fill-color: #f59e0b;"></i> Piatti Popolari</h2>
-      <p>I piatti più cercati dagli utenti di trovapiatto a Bari</p>
-    </div>
-
-    <div id="popular-dishes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;"></div>
-
-    <div style="text-align:center; margin-top:3rem;">
-      <a href="https://www.trovapiatto.it/app/" class="btn btn-primary" style="font-size:1rem; padding:16px 40px;">
-        <i class="fa-solid fa-fire"></i> ESPLORA TUTTI I PIATTI
-      </a>
-    </div>
+<section class="categories" style="padding: 5rem 2rem;">
+  <div class="section-header">
+    <h2><i class="fa-solid fa-drumstick-bite" style="color: var(--primary);"></i> Piatti Popolari</h2>
+    <p>I piatti più cercati dagli utenti di trovapiatto a Bari</p>
   </div>
-</section>
 
-<!-- Ristoranti Top Section -->
-<section style="padding: 5rem 2rem; background: linear-gradient(180deg, #0f0a15 0%, #1a0f25 100%); position: relative; overflow: hidden;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <div class="section-header">
-      <h2><i class="fa-solid fa-star" style="color: #f59e0b;"></i> Ristoranti in Evidenza</h2>
-      <p>I migliori ristoranti selezionati dalla nostra community</p>
-    </div>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem;" id="top-restaurants-grid">
-      <!-- Restaurant cards loaded dynamically -->
-    </div>
-
-    <div style="text-align:center; margin-top:3rem;">
-      <a href="https://www.trovapiatto.it/app/" class="btn btn-secondary" style="font-size:1rem; padding:16px 40px;">
-        <i class="fa-solid fa-map-location-dot"></i> VEDI TUTTI SULLA MAPPA
-      </a>
-    </div>
+  <div class="swiper">
+    <div id="popular-dishes-grid" class="swiper-wrapper"></div>
   </div>
-</section>
 
-<!-- Map Section -->
-<section class="map-section" id="map-section">
-  <div class="map-container">
-    <div class="map-header">
-      <p class="eyebrow"><i class="fa-solid fa-map-location-dot"></i> Mappa live</p>
-      <h2><i class="fa-solid fa-map-location-dot"></i> Mappa Interattiva Ristoranti</h2>
-      <p>Esplora la mappa e scopri i ristoranti più vicini a te con menu digitali pronti da sfogliare</p>
-    </div>
-
-    <div class="map-content">
-      <div class="map-frame-wrapper">
-        <div class="map-overlay">
-          <div class="map-overlay-title">
-            <i class="fa-solid fa-utensils"></i>
-            <span>Ristoranti in tempo reale</span>
-          </div>
-          <div class="map-stats">
-            <div class="map-stat-item">
-              <span class="dot"></span>
-              <span id="map-count">0</span> locali
-            </div>
-            <div class="map-stat-item">
-              <i class="fa-solid fa-location-crosshairs" style="color: #4ade80; font-size: 0.9rem;"></i>
-              <span>Geolocalizzazione</span>
-            </div>
-          </div>
-        </div>
-        <div id="map" role="application" aria-label="Mappa interattiva dei ristoranti"></div>
-      </div>
-
-      <div class="map-sidebar">
-        <div class="sidebar-header">
-          <div class="sidebar-icon">
-            <i class="fa-solid fa-compass"></i>
-          </div>
-          <div>
-            <div class="sidebar-title">Come Funziona</div>
-            <div class="sidebar-subtitle">Trova il tuo ristorante in 4 semplici passi</div>
-          </div>
-        </div>
-
-        <div class="sidebar-steps">
-          <div class="step-item">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h4>Esplora la Mappa</h4>
-              <p>Naviga tra i ristoranti posizionati sulla mappa interattiva</p>
-            </div>
-          </div>
-
-          <div class="step-item">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h4>Seleziona un Ristorante</h4>
-              <p>Clicca sul marker per vedere nome, indirizzo e dettagli</p>
-            </div>
-          </div>
-
-          <div class="step-item">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h4>Sfoglia il Menu</h4>
-              <p>Apri il menu digitale e scopri tutti i piatti disponibili</p>
-            </div>
-          </div>
-
-          <div class="step-item">
-            <div class="step-number">4</div>
-            <div class="step-content">
-              <h4>Ordina o Prenota</h4>
-              <p>Chiama direttamente o vai al ristorante preferito</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="sidebar-cta">
-          <a href="https://www.trovapiatto.it/app/" title="Apri la mappa completa">
-            <i class="fa-solid fa-expand"></i> Apri Mappa Completa
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Editorial: Guida alla Cucina Pugliese -->
-<section class="editorial-section" id="guida-cucina-pugliese">
-  <div class="editorial-content">
-    <div class="section-header">
-      <h2><i class="fa-solid fa-leaf" style="color: #10b981;"></i> Scopri la Cucina Pugliese</h2>
-      <p>Una guida ai sapori autentici della Puglia</p>
-    </div>
-
-    <p>La <strong>cucina pugliese</strong> è uno dei tesori gastronomici più importanti d'Italia e fa parte della tradizione alimentare mediterranea riconosciuta dall'UNESCO come Patrimonio Culturale Immateriale dell'Umanità. Si tratta di una cucina semplice ma ricca di sapori, fondata sulla qualità eccezionale delle materie prime locali e sulla tradizione contadina che da secoli tramanda ricette genuine e senza tempo.</p>
-
-    <p>I pilastri della gastronomia pugliese sono pochi ma fondamentali: l'<strong>olio d'oliva extra vergine</strong>, considerato tra i migliori al mondo, prodotto dalle vaste distese di ulivi secolari che caratterizzano il paesaggio pugliese; i <strong>pomodori</strong>, maturati al sole del Sud e utilizzati freschi o conservati per tutto l'anno; il <strong>pesce fresco</strong> del Adriatico e del Mediterraneo, che arriva ogni giorno nelle pescherie di Bari, Polignano e Monopoli; e le <strong>legume</strong>, come le cicerchie del Subappennino Dauno e le fave di altamura, protagonisti di zuppe e primi piatti sostanziosi.</p>
-
-    <p>La filosofia della cucina pugliese si basa su un principio tanto semplice quanto potente: lasciare che gli ingredienti di qualità parlino da soli. Non servono ricette complesse quando si dispone di un olio appena spremuto, di pomodori colti il giorno stesso, di pesce che ha nuotato nel mare qualche ora prima. Questo approccio minimalista rende i piatti pugliesi tanto autentici quanto accessibili, perfetti per chi cerca sapori veri e genuini.</p>
-
-    <p>Dalle <strong>orecchiette con cime di rapa</strong> alla <strong>burrata cremosa</strong>, dalla <strong>focaccia barese</strong> ai <strong>frutti di mare crudi</strong>, ogni piatto racconta una storia di territorio e tradizione. Esplora la nostra guida completa alla cucina pugliese con itinerari gastronomici dedicati alle principali città costiere della regione:</p>
-
-    <div class="editorial-links">
-      <a href="/bari/"><i class="fa-solid fa-utensils"></i> Bari</a>
-      <a href="/giovinazzo/"><i class="fa-solid fa-utensils"></i> Giovinazzo</a>
-      <a href="/mola-di-bari/"><i class="fa-solid fa-utensils"></i> Mola di Bari</a>
-      <a href="/torre-a-mare/"><i class="fa-solid fa-utensils"></i> Torre a Mare</a>
-      <a href="/palese/"><i class="fa-solid fa-utensils"></i> Palese</a>
-      <a href="/orta-san-giulio/"><i class="fa-solid fa-utensils"></i> Orta San Giulio</a>
-      <a href="/roma/"><i class="fa-solid fa-utensils"></i> Roma</a>
-    </div>
-
-    <p>Leggi anche i nostri articoli approfonditi sui piatti e le tradizioni gastronomiche pugliesi:</p>
-
-    <div class="editorial-links">
-      <a href="/community/blog/burrata-puglia/"><i class="fa-solid fa-book-open"></i> La Burrata in Puglia</a>
-      <a href="/community/blog/orecchiette-cime-rapa/"><i class="fa-solid fa-book-open"></i> Orecchiette e Cime di Rapa</a>
-      <a href="/community/blog/mercato-bari/"><i class="fa-solid fa-book-open"></i> Il Mercato di Bari</a>
-      <a href="/community/blog/dolci-puglia/"><i class="fa-solid fa-book-open"></i> I Dolci della Puglia</a>
-    </div>
+  <div style="text-align:center; margin-top:3rem;">
+    <a href="https://www.trovapiatto.it/app/" class="btn btn-primary">
+      <i class="fa-solid fa-fire"></i> ESPLORA TUTTI I PIATTI
+    </a>
   </div>
 </section>
 
@@ -2008,7 +1848,7 @@
 <section class="guides-section" id="guide-città">
   <div class="section-header">
     <p class="eyebrow"><i class="fa-solid fa-book-open"></i> Guide citt&agrave;</p>
-    <h2><i class="fa-solid fa-map-location-dot" style="color: var(--primary);"></i> Le Nostre Guide</h2>
+    <h2><i class="" style="color: var(--primary);"></i> Le Nostre Guide</h2>
     <p>Scopri cosa mangiare nelle migliori città pugliesi: itinerari gastronomici, ristoranti consigliati e piatti imperdibili</p>
   </div>
 
@@ -2092,64 +1932,46 @@
   </div>
 </section>
 
-<!-- Articoli dal Magazine -->
-<section class="blog-section" id="articoli-magazine">
-  <div class="section-header">
-    <p class="eyebrow"><i class="fa-solid fa-newspaper"></i> Magazine</p>
-    <h2><i class="fa-solid fa-newspaper" style="color: #f59e0b;"></i> Articoli dal Magazine</h2>
-    <p>Approfondimenti, curiosità e guide dedicate alla gastronomia italiana e pugliese</p>
-  </div>
 
-  <div class="blog-grid">
-    <a href="/community/blog/burrata-puglia/" class="blog-card" title="La Burrata in Puglia: storia, tradizioni e dove trovarla">
-      <div class="blog-card-img">
-        <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=500&h=350&fit=crop" width="500" height="350" alt="La Burrata in Puglia" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/logo/placeholder-ristorante.svg'">
-      </div>
-      <div class="blog-card-body">
-        <span class="blog-tag"><i class="fa-solid fa-utensils"></i> Tradizione</span>
-        <h3>La Burrata in Puglia</h3>
-        <p>Storia, tradizioni e dove trovare la burrata più buona in Puglia. Una guida completa al formaggio simbolo della regione.</p>
-        <span class="blog-card-link">Leggi l'articolo <i class="fa-solid fa-arrow-right"></i></span>
-      </div>
-    </a>
+<!-- Editorial: Guida alla Cucina Pugliese -->
+<section class="editorial-section" id="guida-cucina-pugliese">
+  <div class="editorial-content">
+    <div class="section-header">
+      <h2><i class="" style="color: #10b981;"></i> Scopri la Cucina Pugliese</h2>
+      <p>Una guida ai sapori autentici della Puglia</p>
+    </div>
 
-    <a href="/community/blog/orecchiette-cime-rapa/" class="blog-card" title="Orecchiette e Cime di Rapa: il piatto simbolo della Puglia">
-      <div class="blog-card-img">
-        <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=500&h=350&fit=crop" width="500" height="350" alt="Orecchiette con Cime di Rapa" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/logo/placeholder-ristorante.svg'">
-      </div>
-      <div class="blog-card-body">
-        <span class="blog-tag"><i class="fa-solid fa-fire"></i> Iconico</span>
-        <h3>Orecchiette e Cime di Rapa</h3>
-        <p>Il piatto più famoso della cucina pugliese: origini, preparazione perfetta e i ristoranti dove assaggiarli a Bari.</p>
-        <span class="blog-card-link">Leggi l'articolo <i class="fa-solid fa-arrow-right"></i></span>
-      </div>
-    </a>
+    <p>La <strong>cucina pugliese</strong> è uno dei tesori gastronomici più importanti d'Italia e fa parte della tradizione alimentare mediterranea riconosciuta dall'UNESCO come Patrimonio Culturale Immateriale dell'Umanità. Si tratta di una cucina semplice ma ricca di sapori, fondata sulla qualità eccezionale delle materie prime locali e sulla tradizione contadina che da secoli tramanda ricette genuine e senza tempo.</p>
 
-    <a href="/community/blog/mercato-bari/" class="blog-card" title="Il Mercato di Bari: guida ai mercati rionali">
-      <div class="blog-card-img">
-        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=500&h=350&fit=crop" width="500" height="350" alt="Il Mercato di Bari" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/logo/placeholder-ristorante.svg'">
-      </div>
-      <div class="blog-card-body">
-        <span class="blog-tag"><i class="fa-solid fa-store"></i> Esplora</span>
-        <h3>Il Mercato di Bari</h3>
-        <p>Guida ai mercati rionali di Bari: sapori, colori e prodotti tipici del Sud Italia. Dove mangiare e cosa comprare.</p>
-        <span class="blog-card-link">Leggi l'articolo <i class="fa-solid fa-arrow-right"></i></span>
-      </div>
-    </a>
+    <p>I pilastri della gastronomia pugliese sono pochi ma fondamentali: l'<strong>olio d'oliva extra vergine</strong>, considerato tra i migliori al mondo, prodotto dalle vaste distese di ulivi secolari che caratterizzano il paesaggio pugliese; i <strong>pomodori</strong>, maturati al sole del Sud e utilizzati freschi o conservati per tutto l'anno; il <strong>pesce fresco</strong> del Adriatico e del Mediterraneo, che arriva ogni giorno nelle pescherie di Bari, Polignano e Monopoli; e le <strong>legume</strong>, come le cicerchie del Subappennino Dauno e le fave di altamura, protagonisti di zuppe e primi piatti sostanziosi.</p>
 
-    <a href="/community/blog/dolci-puglia/" class="blog-card" title="I Dolci della Puglia: mandorle, panzerotti e tradizioni dolciarie">
-      <div class="blog-card-img">
-        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500&h=350&fit=crop" width="500" height="350" alt="I Dolci della Puglia" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/logo/placeholder-ristorante.svg'">
-      </div>
-      <div class="blog-card-body">
-        <span class="blog-tag"><i class="fa-solid fa-cake-candles"></i> Dolci</span>
-        <h3>I Dolci della Puglia</h3>
-        <p>Dalle paste di mandorla ai cartellate: scopri i dolci tradizionali pugliesi che rendono speciale ogni pasto.</p>
-        <span class="blog-card-link">Leggi l'articolo <i class="fa-solid fa-arrow-right"></i></span>
-      </div>
-    </a>
+    <p>La filosofia della cucina pugliese si basa su un principio tanto semplice quanto potente: lasciare che gli ingredienti di qualità parlino da soli. Non servono ricette complesse quando si dispone di un olio appena spremuto, di pomodori colti il giorno stesso, di pesce che ha nuotato nel mare qualche ora prima. Questo approccio minimalista rende i piatti pugliesi tanto autentici quanto accessibili, perfetti per chi cerca sapori veri e genuini.</p>
+
+    <p>Dalle <strong>orecchiette con cime di rapa</strong> alla <strong>burrata cremosa</strong>, dalla <strong>focaccia barese</strong> ai <strong>frutti di mare crudi</strong>, ogni piatto racconta una storia di territorio e tradizione. Esplora la nostra guida completa alla cucina pugliese con itinerari gastronomici dedicati alle principali città costiere della regione:</p>
+
+    <div class="editorial-links">
+      <a href="/bari/"><i class="fa-solid fa-utensils"></i> Bari</a>
+      <a href="/giovinazzo/"><i class="fa-solid fa-utensils"></i> Giovinazzo</a>
+      <a href="/mola-di-bari/"><i class="fa-solid fa-utensils"></i> Mola di Bari</a>
+      <a href="/torre-a-mare/"><i class="fa-solid fa-utensils"></i> Torre a Mare</a>
+      <a href="/palese/"><i class="fa-solid fa-utensils"></i> Palese</a>
+      <a href="/orta-san-giulio/"><i class="fa-solid fa-utensils"></i> Orta San Giulio</a>
+      <a href="/roma/"><i class="fa-solid fa-utensils"></i> Roma</a>
+    </div>
+
+    <p>Leggi anche i nostri articoli approfonditi sui piatti e le tradizioni gastronomiche pugliesi:</p>
+
+    <div class="editorial-links">
+      <a href="/community/blog/burrata-puglia/"><i class="fa-solid fa-book-open"></i> La Burrata in Puglia</a>
+      <a href="/community/blog/orecchiette-cime-rapa/"><i class="fa-solid fa-book-open"></i> Orecchiette e Cime di Rapa</a>
+      <a href="/community/blog/mercato-bari/"><i class="fa-solid fa-book-open"></i> Il Mercato di Bari</a>
+      <a href="/community/blog/dolci-puglia/"><i class="fa-solid fa-book-open"></i> I Dolci della Puglia</a>
+    </div>
   </div>
 </section>
+
+
+
 
 <!-- SEO SECTION: Aggiungi Menu -->
 <section style="padding: 5rem 2rem; background: linear-gradient(180deg, rgba(70, 19, 86, 0.15) 0%, rgba(15, 10, 21, 1) 100%); border-top: 1px solid var(--border-color);">
@@ -2168,7 +1990,7 @@
         <i class="fa-solid fa-plus-circle"></i> Aggiungi Menu Gratis
       </a>
       <a href="aggiungi-menu.html#pricing" class="btn btn-secondary" title="Scopri i prezzi trovapiatto - menu digitale per ristoranti">
-        <i class="fa-solid fa-tag"></i> Vedi Prezzi
+        <i class="fa-solid fa-tag"></i> Info
       </a>
     </div>
     <div style="margin-top: 2rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; color: var(--text-light); font-size: 0.9rem;">
@@ -2316,7 +2138,6 @@
     spaceBetween: 24,
     pagination: { el: '.swiper-pagination', clickable: true },
     grabCursor: true,
-    loop: true,
     centeredSlides: true,
     keyboard: { enabled: true },
     mousewheel: { thresholdDelta: 70 },
@@ -2515,21 +2336,23 @@
       const grid = document.getElementById('popular-dishes-grid');
       if (grid) {
         grid.innerHTML = daily.map(d => `
-          <a href="/piatti/?q=${d.q}" style="text-decoration:none; color:inherit;">
-            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; overflow:hidden; transition:all 0.3s; cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='${d.color}44';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)';this.style.boxShadow='none'">
-              <div style="height:160px; overflow:hidden; position:relative;">
-                <img src="${d.img}" alt="${d.name}" width="500" height="300" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null;this.src='/logo/placeholder-ristorante.svg'">
-                <div style="position:absolute; top:10px; right:10px; background:${d.color}; color:white; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:700; backdrop-filter:blur(8px);"><i class="fa-solid ${d.icon}"></i> ${d.tag}</div>
-              </div>
-              <div style="padding:16px;">
-                <div style="font-weight:700; font-size:1rem; color:#fff; margin-bottom:4px;">${d.name}</div>
-                <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">${d.desc}</div>
-                <div style="display:flex; align-items:center; gap:6px; color:${d.color}; font-size:0.75rem; font-weight:600;">
-                  <i class="fa-solid fa-magnifying-glass"></i> Scopri i ristoranti
+          <div class="swiper-slide">
+            <a href="/piatti/?q=${d.q}" style="text-decoration:none; color:inherit;">
+              <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; overflow:hidden; transition:all 0.3s; cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='${d.color}44';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)';this.style.boxShadow='none'">
+                <div style="height:160px; overflow:hidden; position:relative;">
+                  <img src="${d.img}" alt="${d.name}" width="500" height="300" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null;this.src='/logo/placeholder-ristorante.svg'">
+                  <div style="position:absolute; top:10px; right:10px; background:${d.color}; color:white; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:700; backdrop-filter:blur(8px);"><i class="fa-solid ${d.icon}"></i> ${d.tag}</div>
+                </div>
+                <div style="padding:16px;">
+                  <div style="font-weight:700; font-size:1rem; color:#fff; margin-bottom:4px;">${d.name}</div>
+                  <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">${d.desc}</div>
+                  <div style="display:flex; align-items:center; gap:6px; color:${d.color}; font-size:0.75rem; font-weight:600;">
+                    <i class="fa-solid fa-magnifying-glass"></i> Scopri i ristoranti
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
         `).join('');
       }
     })();

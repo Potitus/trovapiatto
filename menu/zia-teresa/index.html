@@ -1024,7 +1024,7 @@
         <a href="javascript:void(0);" onclick="toggleCategoriesPanel();"><i class="fas fa-bars"></i><span id="lang-menu">Menu</span></a>
         <a id="footer-offerte" href="javascript:void(0);" onclick="closeOffersModal(); localStorage.removeItem('offersModalClosed'); showOffersModal();" style="display:none;"><i class="fas fa-gift"></i><span id="lang-offerte">Offerte</span></a>
         <a href="javascript:void(0);" onclick="toggleAllergenFilter()"><i class="fas fa-exclamation-triangle"></i><span id="lang-allergeni">Allergeni</span></a>
-        <a href="javascript:void(0);" onclick="showMenuReviews()"><i class="fas fa-star"></i><span>Recensioni</span></a>
+        <a href="javascript:void(0);" onclick="showMenuReviews()"><i class="fas fa-users"></i><span>Community</span></a>
         
     </div>
     
@@ -2226,7 +2226,7 @@ function sendOrderViaWhatsApp() {
     }
     
     // Costruisci messaggio
-    let message = '?? *Nuovo Ordine da trovapiatto.it*\n\n*Ristorante:* ' + restaurantData.name + '\n\n*Piatti:*\n';
+    let message = '\u{1F6D2} *Nuovo Ordine da trovapiatto.it*\n\n*Ristorante:* ' + restaurantData.name + '\n\n*Piatti:*\n';
     
     let total = 0;
     cart.items.forEach((item, idx) => {
@@ -2251,6 +2251,38 @@ function sendOrderViaWhatsApp() {
     console.log('WhatsApp URL:', whatsappUrl);
     window.open(whatsappUrl, '_blank');
 }
+
+function initMenuGame() {
+    const q = document.getElementById('game-question');
+    if (!q) return;
+    const dishes = (typeof allDishes !== 'undefined' && allDishes && allDishes.length >= 4) ? allDishes : null;
+    if (!dishes) { q.textContent = 'Carica il menu per giocare'; return; }
+    const pool = [...dishes].sort(() => Math.random() - 0.5).slice(0, 3);
+    const answer = pool[0];
+    document.getElementById('game-clue').textContent = '€ ' + (parseFloat(answer.price)||0).toFixed(2);
+    const opts = document.getElementById('game-options');
+    opts.innerHTML = '';
+    [...pool].sort(() => Math.random() - 0.5).forEach(d => {
+        const b = document.createElement('button');
+        b.textContent = d.name;
+        b.style.cssText = 'padding:8px 6px; font-size:.7em; font-weight:600; border:1px solid #ffffff22; background:#ffffff0a; color:#e0e0e0; border-radius:8px; cursor:pointer; transition:all .15s; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;';
+        b.onclick = function() {
+            const r = document.getElementById('game-result');
+            if (d.name === answer.name) {
+                b.style.background = '#10b981'; b.style.color = '#fff';
+                r.textContent = 'Esatto! È "' + answer.name + '" ✓';
+                r.style.color = '#10b981';
+                setTimeout(initMenuGame, 1400);
+            } else {
+                b.style.background = '#ef4444'; b.style.color = '#fff';
+                r.textContent = 'Riprova!';
+                r.style.color = '#f59e0b';
+            }
+        };
+        opts.appendChild(b);
+    });
+}
+
 // ==================== FINE SISTEMA CARRELLO ====================
 
 function shareToWhatsApp() {
@@ -2392,6 +2424,10 @@ function loadOfferImage() {
         if (img && container) {
             img.src = restaurantData.offer_image_url;
             container.style.display = 'block';
+            img.style.cursor = 'zoom-in';
+            img.onclick = function() {
+                window.open(img.src, '_blank');
+            };
         }
     }
 }
@@ -2428,7 +2464,7 @@ loadRestaurantData = async function() {
             <div style="width:48px; height:48px; background:rgba(255,255,255,.2); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
                 <i class="fas fa-star" style="font-size:1.4rem; color:white;"></i>
             </div>
-            <h2 style="color:white; margin:0; font-size:1.25em; font-weight:700;">Recensioni</h2>
+            <h2 style="color:white; margin:0; font-size:1.25em; font-weight:700;">Community</h2>
             <p id="review-rest-name" style="color:rgba(255,255,255,.85); margin:4px 0 0; font-size:.82em; font-weight:500;"></p>
         </div>
         <!-- Stats -->
@@ -2450,6 +2486,20 @@ loadRestaurantData = async function() {
         <!-- Reviews list -->
         <div style="padding:16px 20px 0; max-height:35vh; overflow-y:auto;" id="review-list-menu">
             <div style="text-align:center; padding:24px; color:#bbb; font-size:.85em;"><i class="fas fa-spinner fa-spin"></i> Caricamento...</div>
+        </div>
+
+        <!-- Giochino: il piatto misterioso -->
+        <div style="padding:12px 20px 8px;">
+            <div style="background:linear-gradient(135deg,#1a1225,#2d1b3d); border:1px solid #e73a3a44; border-radius:14px; padding:14px; text-align:center;">
+                <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:2px;">
+                    <i class="fas fa-gamepad" style="color:#8b5cf6; font-size:.85em;"></i>
+                    <span style="font-size:.72em; font-weight:700; color:#e0e0e0; letter-spacing:.5px; text-transform:uppercase;">In attesa dell'ordine</span>
+                </div>
+                <div style="font-size:.82em; font-weight:700; color:#fff; margin-bottom:10px;" id="game-question">Indovina il piatto dal prezzo</div>
+                <div style="font-size:1.5em; font-weight:800; color:#f59e0b; margin-bottom:10px;" id="game-clue">€?</div>
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px;" id="game-options"></div>
+                <div id="game-result" style="font-size:.78em; color:#10b981; margin-top:8px; min-height:1.1em; font-weight:600;"></div>
+            </div>
         </div>
         <!-- Divider -->
         <div style="padding:0 20px;"><div style="border-top:1px solid #f0f0f0; margin-top:8px;"></div></div>
@@ -2481,14 +2531,7 @@ loadRestaurantData = async function() {
 <div id="modal-offers" class="modal-overlay">
     <div class="modal-content" style="max-width: 480px; padding: 0; overflow: hidden;">
         <button class="modal-close" onclick="closeOffersModal()" style="z-index: 10;">&times;</button>
-        <div id="offer-image-container" style="width: 100%; height: 200px; overflow: hidden; display: none;">
-            <img id="offer-image" src="/images/restaurants/zia-teresa/ziateresaofferta.jpg" alt="Offerta Zia Teresa" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-        </div>
-        <div style="background: linear-gradient(135deg, #EF3D26, #DA4453); padding: 25px 20px 15px; text-align: center;">
-            <div style="font-size: 42px; margin-bottom: 8px;">🎁</div>
-            <h2 style="color: white; margin: 0 0 5px; font-size: 1.4em;" id="modal-title">Offerte Speciali!</h2>
-            <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 0.85em;" id="modal-description">Scopri le nostre promozioni esclusive</p>
-        </div>
+        <div id="offer-image-container" style="width: 100%; display: none; background: #fff; padding: 12px 12px 0;"><img id="offer-image" src="" alt="Offerta" decoding="async" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; border-radius: 12px;"></div>
         <div style="padding: 20px; background: white;">
             <div style="background: linear-gradient(135deg, rgba(239,61,38,0.08), rgba(218,68,83,0.05)); border: 2px dashed #EF3D26; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 15px;">
                 <div style="font-size: 0.75em; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Promozione del mese</div>
@@ -2573,6 +2616,7 @@ function showMenuReviews() {
     populateMenuReviewDishes();
     initStarHover();
     loadMenuReviewsList();
+    initMenuGame();
 }
 
 function closeMenuReviews() {
@@ -2584,7 +2628,7 @@ function closeMenuReviews() {
 async function loadMenuReviewsList() {
     const container = document.getElementById('review-list-menu');
     try {
-        const res = await fetch(API_URL + '?action=get-reviews&restaurant_id=' + restaurantData.id);
+        const res = await fetch(API_URL + '?action=get-recent-reviews&limit=30');
         const data = await res.json();
         const reviews = data.data || [];
         const stats = data.stats || {};
@@ -2623,13 +2667,14 @@ async function loadMenuReviewsList() {
             const initial = userName.charAt(0).toUpperCase();
             const hue = userName.split('').reduce((a,c)=>a+c.charCodeAt(0),0) % 360;
             const avatarUrl = r.user_avatar || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=random&color=fff&size=120&bold=true&format=png';
+            const rgname = (r.restaurant && r.restaurant.name) ? ' @ ' + r.restaurant.name : '';
             const dishTag = r.dish_name ? '<div style="font-size:.78em; color:#06b6d4; margin-bottom:6px; font-weight:600;"><i class="fas fa-utensils" style="margin-right:4px;"></i>' + r.dish_name + '</div>' : '';
             return '<div class="review-card-item" style="animation:reviewFadeIn .3s ease '+(idx*0.06)+'s both;">' +
                 '<div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">' +
                     '<div style="width:40px; height:40px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid #e73a3a; box-shadow:0 3px 10px rgba(231,58,58,0.3); animation:bubblePop .3s ease '+(idx*0.06)+'s both;"><img src="' + avatarUrl + '" alt="Avatar utente" style="width:100%; height:100%; object-fit:cover;" onerror="this.src=\'https://ui-avatars.com/api/?name='+encodeURIComponent(userName)+'&background=hsl('+hue+',55%25,92%25)&color=hsl('+hue+',55%25,40%25)&size=120&bold=true&format=png\'"></div>' +
                     '<div style="flex:1; min-width:0;">' +
                         '<div style="font-weight:600; font-size:.85em; color:#333; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">' + userName + '</div>' +
-                        '<div style="font-size:.7em; color:#aaa;">' + timeAgo(r.created_at) + '</div>' +
+                        '<div style="font-size:.7em; color:#aaa;">' + timeAgo(r.created_at) + '</div>' + '<div style="font-size:.68em; color:#06b6d4; font-weight:600;">' + rgname + '</div>' +
                     '</div>' +
                 '</div>' +
                 '<div style="display:flex; align-items:center; gap:4px; margin-bottom:6px; font-size:.9em;">' + starsHtml + ' <span style="color:#999; font-size:.75em; margin-left:2px;">' + r.rating + '/5</span></div>' +
