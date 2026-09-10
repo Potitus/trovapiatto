@@ -727,6 +727,104 @@
         <priority>0.8</priority>
     </url>
 
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/cibo-asporto-bari/</loc>
+        <lastmod>2026-07-09T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/cucina-pugliese-storia/</loc>
+        <lastmod>2026-07-09T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/fritti-pugliesi/</loc>
+        <lastmod>2026-07-09T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/giovinazzo-ristoranti/</loc>
+        <lastmod>2026-07-09T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/guida-ristoranti-bari/</loc>
+        <lastmod>2026-07-06T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/migliori-pizzeria-bari/</loc>
+        <lastmod>2026-07-09T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/piatti-cucina-pugliese/</loc>
+        <lastmod>2026-07-05T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/pizza-bari/</loc>
+        <lastmod>2026-07-09T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/ristoranti-celiaci-bari/</loc>
+        <lastmod>2026-07-09T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/ristoranti-economici-bari/</loc>
+        <lastmod>2026-07-09T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/ristoranti-famiglie-bari/</loc>
+        <lastmod>2026-07-09T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/ristoranti-mare-bari/</loc>
+        <lastmod>2026-07-07T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/ristoranti-michelin-bari/</loc>
+        <lastmod>2026-07-09T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/vini-puglia/</loc>
+        <lastmod>2026-08-12T10:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
     <!-- ============================================ -->
     <!-- PAGINE INFORMATIVE                          -->
     <!-- ============================================ -->
