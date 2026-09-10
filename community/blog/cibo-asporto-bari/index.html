@@ -384,7 +384,7 @@
       { name:'Paninoteca da Enzo', lat:41.1250, lng:16.8695, price:'€6', slug:'paninoteca-da-enzo', rating:'4.4' }
     ];
     const map = L.map('article-map').setView([41.1245, 16.8695], 15);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:19 }).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', { attribution:'&copy; OpenStreetMap contributors &copy; Esri', maxZoom:19 }).addTo(map);
     places.forEach(p => {
       const icon = L.divIcon({ html:`<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${p.name}</div>`, className:'', iconAnchor:[50,10] });
       L.marker([p.lat, p.lng], {icon}).addTo(map).bindPopup(`<div style="font-family:Poppins,sans-serif;padding:4px;"><strong>${p.name}</strong><br><span style="color:#f59e0b;">⭐ ${p.rating}</span> &middot; <strong>${p.price}</strong><br><a href="/menu/${p.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a></div>`);

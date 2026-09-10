@@ -374,7 +374,7 @@
       { name: "Pasticceria San Nicola", lat: 41.1255, lng: 16.8660, rating: "4.7", price: "\u20ac3,50", slug: "pasticceria-san-nicola" }
     ];
     const map = L.map('article-map').setView([41.1280, 16.8690], 15);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19 }).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', { attribution: '&copy; OpenStreetMap contributors &copy; Esri', maxZoom: 19 }).addTo(map);
     restaurants.forEach(r => {
       const icon = L.divIcon({ html: '<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">' + r.name + '</div>', className: '', iconAnchor: [50, 10] });
       L.marker([r.lat, r.lng], { icon }).addTo(map).bindPopup('<div style="font-family:Poppins,sans-serif;padding:4px;"><strong>' + r.name + '</strong><br><span style="color:#f59e0b;">&#11088; ' + r.rating + '</span> &middot; <strong>' + r.price + '</strong><br><a href="/menu/' + r.slug + '/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu &rarr;</a></div>');
