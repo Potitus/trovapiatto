@@ -832,6 +832,31 @@
         <priority>0.8</priority>
     </url>
 
+    <url>
+        <loc>https://www.trovapiatto.it/community/cosamangio.html</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/community/loyalty/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/community/loyalty/classifica.html</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/community/loyalty/profilo.html</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
     <!-- ============================================ -->
     <!-- PAGINE INFORMATIVE                          -->
     <!-- ============================================ -->
