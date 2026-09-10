@@ -1582,6 +1582,207 @@
       }
     }
 
+    /* ==================== DESIGN UPGRADE ==================== */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: rgba(231, 58, 58, 0.1);
+      border: 1px solid rgba(231, 58, 58, 0.3);
+      padding: 7px 18px;
+      border-radius: 50px;
+      margin-bottom: 1.1rem;
+    }
+
+    .eyebrow i { font-size: 0.7rem; }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 2.6rem 0 0;
+      animation: slideInUp 0.8s ease-out 0.55s both;
+    }
+
+    .hero-stat { text-align: center; min-width: 110px; }
+
+    .hero-stat .hero-stat-num {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+
+    .hero-stat .hero-stat-num em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .hero-stat .hero-stat-label {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      height: 38px;
+      width: auto;
+      filter: drop-shadow(0 4px 12px rgba(231, 58, 58, 0.3));
+    }
+
+    .brand span {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #e73a3a, #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @media (max-width: 768px) {
+      .brand img { height: 30px; }
+      .brand span { font-size: 1.05rem; }
+      .hero-stats { gap: 1.4rem; margin-top: 2rem; }
+      .hero-stat .hero-stat-num { font-size: 1.5rem; }
+    }
+
+    /* Scroll reveal (progressive enhancement: senza JS tutto resta visibile) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: var(--reveal-delay, 0s);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Focus visibile tastiera */
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    /* Back to top */
+    .to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 900;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(231, 58, 58, 0.4);
+      background: linear-gradient(135deg, var(--primary), #ff6b6b);
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 28px rgba(231, 58, 58, 0.4);
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .to-top.show {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .to-top:hover { transform: translateY(-3px); }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff !important;
+      font-size: 1rem;
+      padding: 0 !important;
+      transition: var(--transition);
+    }
+
+    .footer-social a:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      padding: 0 !important;
+    }
+
+    .cookie-reset {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      padding: 4px 0;
+      cursor: pointer;
+      font-family: inherit;
+      transition: var(--transition);
+      display: block;
+    }
+
+    .cookie-reset:hover { color: var(--primary); padding-left: 6px; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .swiper-pagination-bullet { background: rgba(255, 255, 255, 0.3); opacity: 1; }
+    .swiper-pagination-bullet-active { background: var(--primary); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 768px) {
       header {
@@ -1635,6 +1836,10 @@
 <!-- Header -->
 <header>
   <div class="header-content">
+    <a href="/" class="brand" title="trovapiatto - home" aria-label="trovapiatto - home">
+      <img src="https://www.trovapiatto.it/logo/logo_ufficiale.png" alt="" fetchpriority="high" decoding="async">
+      <span>trovapiatto</span>
+    </a>
     <nav>
       <a href="/bari/" title="Cosa mangiare a Bari - Guida ristoranti">Bari</a>
       <a href="/community/" title="Esplora le categorie di piatti disponibili">Community</a>
@@ -1668,15 +1873,17 @@
 <section class="hero">
   <div class="hero-content">
     <img src="https://www.trovapiatto.it/logo/logo_ufficiale.png" alt="trovapiatto.it" class="logo-hero" fetchpriority="high" decoding="async">
+    <p class="eyebrow" style="justify-content:center;"><i class="fa-solid fa-location-dot"></i> Bari &middot; Puglia &mdash; Guida gastronomica</p>
     <h1>Trova <span>il Tuo Piatto</span> Preferito</h1>
     <p>Scopri oltre 8.000 piatti dai migliori ristoranti italiani. Localizzali sulla mappa e prenota il tuo ristorante preferito in pochi secondi.</p>
 
     <!-- Hero Search Bar -->
     <div style="max-width:560px; margin:0 auto 2.5rem; animation: slideInUp 0.8s ease-out 0.3s both;">
-      <form onsubmit="event.preventDefault(); window.location.href='https://www.trovapiatto.it/piatti/?q='+encodeURIComponent(this.querySelector('input').value);" style="display:flex; gap:0; background:rgba(255,255,255,0.08); border:2px solid rgba(231,58,58,0.3); border-radius:60px; overflow:hidden; backdrop-filter:blur(12px); transition:all 0.3s; box-shadow:0 8px 32px rgba(0,0,0,0.3);" onmouseover="this.style.borderColor='rgba(231,58,58,0.6)';this.style.boxShadow='0 12px 40px rgba(231,58,58,0.15)'" onmouseout="this.style.borderColor='rgba(231,58,58,0.3)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.3)'">
+      <form role="search" onsubmit="event.preventDefault(); window.location.href='https://www.trovapiatto.it/piatti/?q='+encodeURIComponent(this.querySelector('input').value);" style="display:flex; gap:0; background:rgba(255,255,255,0.08); border:2px solid rgba(231,58,58,0.3); border-radius:60px; overflow:hidden; backdrop-filter:blur(12px); transition:all 0.3s; box-shadow:0 8px 32px rgba(0,0,0,0.3);" onmouseover="this.style.borderColor='rgba(231,58,58,0.6)';this.style.boxShadow='0 12px 40px rgba(231,58,58,0.15)'" onmouseout="this.style.borderColor='rgba(231,58,58,0.3)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.3)'">
         <div style="display:flex; align-items:center; padding:0 20px; gap:10px; flex:1;">
           <i class="fa-solid fa-magnifying-glass" style="color:var(--primary); font-size:1.1rem;"></i>
-          <input type="text" placeholder="Cerca un piatto... (es. Orecchiette, Branzino, Pizza)" style="flex:1; background:none; border:none; outline:none; color:#fff; font-size:1rem; padding:16px 0; font-family:'Inter',sans-serif;" autocomplete="off">
+          <label class="sr-only" for="hero-search">Cerca un piatto</label>
+          <input id="hero-search" type="text" placeholder="Cerca un piatto... (es. Orecchiette, Branzino, Pizza)" style="flex:1; background:none; border:none; outline:none; color:#fff; font-size:1rem; padding:16px 0; font-family:'Inter',sans-serif;" autocomplete="off">
         </div>
         <button type="submit" style="background:linear-gradient(135deg, var(--primary), #ff6b6b); border:none; color:white; padding:16px 28px; font-size:1rem; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; display:flex; align-items:center; gap:8px; transition:all 0.3s; white-space:nowrap;" onmouseover="this.style.background='linear-gradient(135deg, #c92a2a, #e73a3a)'" onmouseout="this.style.background='linear-gradient(135deg, var(--primary), #ff6b6b)'">
           <i class="fa-solid fa-location-arrow"></i> Cerca
@@ -1685,6 +1892,12 @@
       <div id="daily-categories" style="display:flex; gap:10px; justify-content:center; margin-top:12px; flex-wrap:wrap;"></div>
     </div>
 
+
+    <div class="hero-stats" role="list" aria-label="trovapiatto in numeri">
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num"><span data-countup="8000">8.000</span><em>+</em></div><div class="hero-stat-label">Piatti</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num"><span data-countup="79">79</span><em>+</em></div><div class="hero-stat-label">Ristoranti</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num"><span data-countup="7">7</span></div><div class="hero-stat-label">Citt&agrave;</div></div>
+    </div>
 
     <div class="cta-section">
       <a href="https://www.trovapiatto.it/app/" class="btn btn-primary" title="Scopri i migliori piatti e ristoranti nelle vicinanze">
@@ -1700,12 +1913,14 @@
 <!-- Categories Section -->
 <section class="categories" id="categories">
   <div class="section-header">
+    <p class="eyebrow"><i class="fa-solid fa-utensils"></i> Categorie</p>
     <h2>Esplora le Categorie di Piatti</h2>
     <p>Scegli tra le tue categorie preferite e scopri i piatti che ami: senza glutine, vegani, sushi, etnico, pesce, carne e molto altro</p>
   </div>
 
   <div class="swiper">
     <div class="swiper-wrapper" id="categories-swiper"></div>
+    <div class="swiper-pagination" style="margin-top:1rem;"></div>
   </div>
 </section>
 
@@ -1751,6 +1966,7 @@
 <section class="map-section" id="map-section">
   <div class="map-container">
     <div class="map-header">
+      <p class="eyebrow"><i class="fa-solid fa-map-location-dot"></i> Mappa live</p>
       <h2><i class="fa-solid fa-map-location-dot"></i> Mappa Interattiva Ristoranti</h2>
       <p>Esplora la mappa e scopri i ristoranti più vicini a te con menu digitali pronti da sfogliare</p>
     </div>
@@ -1871,6 +2087,7 @@
 <!-- Le Nostre Guide -->
 <section class="guides-section" id="guide-città">
   <div class="section-header">
+    <p class="eyebrow"><i class="fa-solid fa-book-open"></i> Guide citt&agrave;</p>
     <h2><i class="fa-solid fa-map-location-dot" style="color: var(--primary);"></i> Le Nostre Guide</h2>
     <p>Scopri cosa mangiare nelle migliori città pugliesi: itinerari gastronomici, ristoranti consigliati e piatti imperdibili</p>
   </div>
@@ -1958,6 +2175,7 @@
 <!-- Articoli dal Magazine -->
 <section class="blog-section" id="articoli-magazine">
   <div class="section-header">
+    <p class="eyebrow"><i class="fa-solid fa-newspaper"></i> Magazine</p>
     <h2><i class="fa-solid fa-newspaper" style="color: #f59e0b;"></i> Articoli dal Magazine</h2>
     <p>Approfondimenti, curiosità e guide dedicate alla gastronomia italiana e pugliese</p>
   </div>
@@ -2044,6 +2262,10 @@
 
 <!-- Footer -->
 <footer>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/trovapiatto" title="trovapiatto su Facebook" aria-label="trovapiatto su Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/trovapiatto" title="trovapiatto su Instagram" aria-label="trovapiatto su Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+  </div>
   <div class="footer-grid">
     <div class="footer-col">
       <h4><i class="fa-solid fa-utensils"></i> Guide Città</h4>
@@ -2077,6 +2299,7 @@
       <a href="terms-of-service.html">Termini di Servizio</a>
       <a href="contact.html">Contatti</a>
       <a href="about.html">Chi Siamo</a>
+      <button class="cookie-reset" onclick="resetCookieConsent()">Gestisci cookie</button>
     </div>
   </div>
   <p style="margin-top: 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem;">&copy; 2026 trovapiatto - Tutti i diritti riservati</p>
@@ -2167,9 +2390,11 @@
   })();
 
   // Initialize Swiper
+  if (typeof Swiper !== 'undefined') {
   new Swiper('.swiper', {
     slidesPerView: 'auto',
     spaceBetween: 24,
+    pagination: { el: '.swiper-pagination', clickable: true },
     grabCursor: true,
     loop: true,
     centeredSlides: true,
@@ -2182,6 +2407,7 @@
       1280: { slidesPerView: 'auto', spaceBetween: 24 }
     }
   });
+  }
 
   // Initialize Map
   document.addEventListener('DOMContentLoaded', function() {
@@ -2245,6 +2471,10 @@
       .catch(e => console.error('Error loading restaurants:', e));
 
     // Initialize Map
+    if (typeof L === 'undefined') {
+      document.getElementById('map-count').textContent = '79+';
+      document.getElementById('map').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;min-height:350px;text-align:center;padding:2rem;"><div><i class="fa-solid fa-map-location-dot" style="font-size:2rem;color:var(--primary);"></i><p style="margin:1rem 0;color:var(--text-light);">Mappa non disponibile offline.<br>Apri la versione completa:</p><a href="https://www.trovapiatto.it/app/" class="btn btn-primary">Apri Mappa</a></div></div>';
+    } else {
     const map = L.map('map', {
       zoomControl: false
     }).setView([41.1171, 16.8719], 13);
@@ -2434,6 +2664,7 @@
         });
       })
       .catch(e => console.error('Errore:', e));
+    }
   });
 </script>
 
@@ -2496,6 +2727,60 @@ function enableTracking() {
     });
   }
 }
+</script>
+
+<button class="to-top" id="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna in alto"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+  // Reveal on scroll (progressive enhancement)
+  (function() {
+    if (!('IntersectionObserver' in window)) return;
+    const els = document.querySelectorAll('.section-header, .guides-grid, .blog-grid, .map-content, .editorial-content, .footer-grid');
+    els.forEach(function(el, i) {
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-delay', Math.min(i % 4, 3) * 0.08 + 's');
+    });
+    const io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function(el) { io.observe(el); });
+  })();
+
+  // Count-up hero stats (rispetta reduced-motion)
+  (function() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('[data-countup]').forEach(function(el) {
+      const target = parseInt(el.getAttribute('data-countup'), 10);
+      if (!target || reduce) return;
+      const dur = 1400, t0 = performance.now();
+      function fmt(n) { return n.toLocaleString('it-IT'); }
+      function tick(now) {
+        const p = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(Math.round(target * eased));
+        if (p < 1) requestAnimationFrame(tick); else el.textContent = fmt(target);
+      }
+      requestAnimationFrame(tick);
+    });
+  })();
+
+  // Back to top
+  (function() {
+    const btn = document.getElementById('to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', function() {
+      btn.classList.toggle('show', window.scrollY > 700);
+    }, { passive: true });
+  })();
+
+  // Riapri banner cookie (revoca/scelta)
+  function resetCookieConsent() {
+    try { localStorage.removeItem('cookie-consent'); } catch (e) {}
+    const b = document.getElementById('cookie-consent');
+    if (b) { b.style.display = 'block'; window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }
+  }
 </script>
 
 <script>
