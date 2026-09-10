@@ -74,7 +74,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   
   <!-- Structured Data (JSON-LD) - LocalBusiness -->
   <script type="application/ld+json">
@@ -585,91 +584,61 @@
       color: var(--text-light);
     }
 
-    .swiper {
+
+    .dish-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 4px 2px 12px;
+      scrollbar-width: none;
+      scroll-snap-type: x mandatory;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem 0;
-      min-height: 360px;
     }
-
-    .swiper-slide {
-      width: auto;
-      opacity: 1;
-      transition: opacity 0.3s ease;
-      height: 350px;
-    }
-
-    .swiper-slide-active {
-      opacity: 1;
-    }
-
-    .category-card {
-      width: 280px;
-      height: 350px;
-      border-radius: 16px;
+    .dish-scroll::-webkit-scrollbar { display: none; }
+    .dish-card-mini {
+      flex: 0 0 180px;
+      scroll-snap-align: start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
       overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 2rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-      transition: var(--transition);
-    }
-
-    .category-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), transparent);
-      z-index: 1;
-    }
-
-    .category-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(231, 58, 58, 0.1);
-      opacity: 0;
-      transition: var(--transition);
-      z-index: 1;
-    }
-
-    .category-card:hover::after {
-      opacity: 1;
-    }
-
-    .category-name {
-      position: relative;
-      z-index: 2;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: white;
-    }
-
-    .category-link {
-      position: relative;
-      z-index: 2;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: white;
       text-decoration: none;
+      color: inherit;
+      transition: all 0.3s;
+    }
+    .dish-card-mini:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+    .dish-card-mini img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+    }
+    .dish-card-mini .dcm-body { padding: 12px; }
+    .dish-card-mini .dcm-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+    .dish-card-mini .dcm-name {
+      font-size: 0.82rem;
       font-weight: 600;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 10px 20px;
-      border-radius: 50px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: var(--transition);
-      width: fit-content;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+    .dish-card-mini .dcm-desc {
+      font-size: 0.7rem;
+      color: var(--text-light);
+      line-height: 1.4;
     }
 
-    .category-link:hover {
-      background: var(--primary);
       border-color: var(--primary);
       transform: translateX(5px);
     }
@@ -1696,9 +1665,6 @@
       border: 0;
     }
 
-    .swiper-pagination-bullet { background: rgba(255, 255, 255, 0.3); opacity: 1; }
-    .swiper-pagination-bullet-active { background: var(--primary); }
-
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -1826,6 +1792,24 @@
   </div>
 </section>
 
+<div class="section-head">
+    <i class="fas fa-fire" style="color:var(--accent-food)"></i>
+    <h2>Piatti Trending</h2>
+    <a href="/community/cosamangio.html" class="more">Vedi tutti <i class="fas fa-chevron-right"></i></a>
+  </div>
+  <div class="trending-scroll" id="trending-scroll">
+    <div class="loading"><div class="spin"></div><p>Caricamento...</p></div>
+  </div>
+
+  <div class="section-head">
+    <i class="fas fa-store" style="color:var(--green)"></i>
+    <h2>Top Ristoranti</h2>
+    <a href="/piatti/" class="more">Esplora tutti <i class="fas fa-chevron-right"></i></a>
+  </div>
+  <div class="rest-grid" id="rest-grid">
+    <div class="loading"><div class="spin"></div><p>Caricamento ristoranti...</p></div>
+  </div>
+
 <!-- Piatti Popolari Section -->
 <section class="categories" style="padding: 5rem 2rem;">
   <div class="section-header">
@@ -1833,9 +1817,7 @@
     <p>I piatti più cercati dagli utenti di trovapiatto a Bari</p>
   </div>
 
-  <div class="swiper">
-    <div id="popular-dishes-grid" class="swiper-wrapper"></div>
-  </div>
+  <div class="dish-scroll" id="popular-dishes-grid"></div>
 
   <div style="text-align:center; margin-top:3rem;">
     <a href="https://www.trovapiatto.it/app/" class="btn btn-primary">
@@ -2064,7 +2046,6 @@
 
 <!-- Scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
   // Mobile Menu Toggle
@@ -2108,47 +2089,6 @@
   document.getElementById('menuModal').addEventListener('click', e => {
     if (e.target.id === 'menuModal') closeMenuModal();
   });
-
-  // Categories - daily random order
-  (function(){
-    const cats = [
-      { q: 'senza+glutine', name: 'Senza Glutine', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=500&fit=crop', title: 'Scopri piatti senza glutine' },
-      { q: 'vegano', name: 'Vegano', img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=500&fit=crop', title: 'Scopri piatti vegani e vegetariani' },
-      { q: 'sushi', name: 'Sushi', img: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=400&h=500&fit=crop', title: 'Scopri ristoranti e piatti di sushi' },
-      { q: 'etnico', name: 'Etnico', img: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=500&fit=crop', title: 'Scopri cucina etnica e internazionale' },
-      { q: 'pesce', name: 'Specialità di Pesce', img: 'https://images.unsplash.com/photo-1534604973900-c43e1f2cbcbf?w=400&h=500&fit=crop', title: 'Scopri piatti a base di pesce' },
-      { q: 'carne', name: 'Specialità di Carne', img: 'https://images.unsplash.com/photo-1558030006-450675393462?w=400&h=500&fit=crop', title: 'Scopri piatti a base di carne' },
-      { q: 'pizza', name: 'Pizza', img: 'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=400&h=500&fit=crop', title: 'Scopri pizza napoletana e focacce' },
-      { q: 'branzino', name: 'Branzino', img: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&h=500&fit=crop', title: 'Il re del Mediterraneo' },
-      { q: 'frutta+di+mare', name: 'Frutta di Mare', img: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400&h=500&fit=crop', title: 'Gamberetti, cozze, vongole e altro' },
-      { q: 'focaccia', name: 'Focaccia', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=500&fit=crop', title: 'La focaccia più famosa d\'Italia' },
-      { q: 'dolci', name: 'Dolci', img: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=500&fit=crop', title: 'Tiramisù, pasticci e dolci italiani' }
-    ];
-    function daySeed(){const d=new Date();return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate()}
-    function seededShuffle(arr,seed){const a=[...arr];let s=seed;for(let i=a.length-1;i>0;i--){s=(s*16807+0)%2147483647;const j=s%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
-    const shuffled=seededShuffle(cats,daySeed());
-    const wrapper=document.getElementById('categories-swiper');
-    if(wrapper){wrapper.innerHTML=shuffled.map(c=>'<div class="swiper-slide"><div class="category-card" style="background-image: url(\''+c.img+'\');"><div class="category-name">'+c.name+'</div><a href="/piatti/?q='+c.q+'" class="category-link" title="'+c.title+'"><i class="fa-solid fa-location-dot"></i> Scopri</a></div></div>').join('')}
-  })();
-
-  // Initialize Swiper
-  if (typeof Swiper !== 'undefined') {
-  new Swiper('.swiper', {
-    slidesPerView: 'auto',
-    spaceBetween: 24,
-    pagination: { el: '.swiper-pagination', clickable: true },
-    grabCursor: true,
-    centeredSlides: true,
-    keyboard: { enabled: true },
-    mousewheel: { thresholdDelta: 70 },
-    breakpoints: {
-      640: { slidesPerView: 1, spaceBetween: 20 },
-      768: { slidesPerView: 2, spaceBetween: 20 },
-      1024: { slidesPerView: 3, spaceBetween: 24 },
-      1280: { slidesPerView: 'auto', spaceBetween: 24 }
-    }
-  });
-  }
 
   // Initialize Map
   document.addEventListener('DOMContentLoaded', function() {
@@ -2336,23 +2276,14 @@
       const grid = document.getElementById('popular-dishes-grid');
       if (grid) {
         grid.innerHTML = daily.map(d => `
-          <div class="swiper-slide">
-            <a href="/piatti/?q=${d.q}" style="text-decoration:none; color:inherit;">
-              <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; overflow:hidden; transition:all 0.3s; cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='${d.color}44';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)';this.style.boxShadow='none'">
-                <div style="height:160px; overflow:hidden; position:relative;">
-                  <img src="${d.img}" alt="${d.name}" width="500" height="300" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null;this.src='/logo/placeholder-ristorante.svg'">
-                  <div style="position:absolute; top:10px; right:10px; background:${d.color}; color:white; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:700; backdrop-filter:blur(8px);"><i class="fa-solid ${d.icon}"></i> ${d.tag}</div>
-                </div>
-                <div style="padding:16px;">
-                  <div style="font-weight:700; font-size:1rem; color:#fff; margin-bottom:4px;">${d.name}</div>
-                  <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">${d.desc}</div>
-                  <div style="display:flex; align-items:center; gap:6px; color:${d.color}; font-size:0.75rem; font-weight:600;">
-                    <i class="fa-solid fa-magnifying-glass"></i> Scopri i ristoranti
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
+          <a href="/piatti/?q=${d.q}" class="dish-card-mini">
+            <img src="${d.img}" alt="${d.name}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/logo/placeholder-ristorante.svg'">
+            <div class="dcm-body">
+              <span class="dcm-tag" style="background:${d.color}22;color:${d.color};">${d.tag}</span>
+              <div class="dcm-name">${d.name}</div>
+              <div class="dcm-desc">${d.desc}</div>
+            </div>
+          </a>
         `).join('');
       }
     })();
