@@ -1357,7 +1357,7 @@
 <div class="app-header">
     <div class="header-inner">
         <a href="https://www.trovapiatto.it/" class="header-logo">
-            <img src="https://www.trovapiatto.it/logo/logo_ufficiale.png" alt="trovapiatto">
+            <img src="https://www.trovapiatto.it/logo/logo_ufficiale.png" alt="trovapiatto" width="710" height="187" decoding="async">
         </a>
         <div class="header-nav">
             <a href="https://www.trovapiatto.it/">Home</a>
@@ -1412,7 +1412,7 @@
                 <!-- Piatto 1: Primo -->
                 <div id="banner-clickable-1" onclick="searchDishFromBanner(document.querySelector('#banner-dish-search-1').value)" class="banner-dish-card" style="border-left:4px solid var(--accent-food);" onmouseover="this.style.borderColor='var(--accent-food)'" onmouseout="this.style.borderColor='transparent'">
                     <div style="width:68px; height:68px; border-radius:14px; overflow:hidden; flex-shrink:0; border:2px solid var(--accent-food); box-shadow:0 4px 15px rgba(245,158,11,0.3);">
-                        <img id="banner-dish-img-1" src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=200&h=200&fit=crop" alt="Primo" style="width:100%; height:100%; object-fit:cover;">
+                        <img id="banner-dish-img-1" src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=200&h=200&fit=crop" alt="Primo" width="200" height="200" loading="lazy" decoding="async" onerror="this.src='/logo/placeholder-ristorante.svg'" style="width:100%; height:100%; object-fit:cover;">
                     </div>
                     <div style="flex:1; min-width:0;">
                         <div style="font-size:0.65rem; color:var(--accent-food); font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:3px;"><i class="fas fa-utensils" style="margin-right:3px;"></i>Primo</div>
@@ -1425,7 +1425,7 @@
                 <!-- Piatto 2: Secondo -->
                 <div id="banner-clickable-2" onclick="searchDishFromBanner(document.querySelector('#banner-dish-search-2').value)" class="banner-dish-card" style="border-left:4px solid #f97316;" onmouseover="this.style.borderColor='#f97316'" onmouseout="this.style.borderColor='transparent'">
                     <div style="width:68px; height:68px; border-radius:14px; overflow:hidden; flex-shrink:0; border:2px solid #f97316; box-shadow:0 4px 15px rgba(249,115,22,0.3);">
-                        <img id="banner-dish-img-2" src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=200&h=200&fit=crop" alt="Secondo" style="width:100%; height:100%; object-fit:cover;">
+                        <img id="banner-dish-img-2" src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=200&h=200&fit=crop" alt="Secondo" width="200" height="200" loading="lazy" decoding="async" onerror="this.src='/logo/placeholder-ristorante.svg'" style="width:100%; height:100%; object-fit:cover;">
                     </div>
                     <div style="flex:1; min-width:0;">
                         <div style="font-size:0.65rem; color:#f97316; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:3px;"><i class="fas fa-drumstick-bite" style="margin-right:3px;"></i>Secondo</div>
@@ -1562,7 +1562,7 @@
     <div class="modal-content">
         <span class="modal-close" onclick="closeRestaurantModal()">&times;</span>
         <div class="modal-header">
-            <img id="modal-logo" class="modal-logo" src="" alt="Logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22><rect fill=%22%230f0a15%22 width=%22400%22 height=%22250%22/><text x=%22200%22 y=%22125%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22%23e73a3a%22>🍽️</text></svg>'">
+            <img id="modal-logo" class="modal-logo" src="" alt="Logo" decoding="async" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22><rect fill=%22%230f0a15%22 width=%22400%22 height=%22250%22/><text x=%22200%22 y=%22125%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22%23e73a3a%22>🍽️</text></svg>'">
             <div class="modal-header-overlay"></div>
         </div>
         <div class="modal-body">
@@ -1626,7 +1626,7 @@
 <div id="quickModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:1000;align-items:flex-end;justify-content:center;">
     <div style="background:#1a1225;border-radius:20px 20px 0 0;width:100%;max-width:500px;padding:20px;animation:slideUp 0.3s ease;">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-            <img id="quick-modal-logo" style="width:50px;height:50px;border-radius:12px;object-fit:cover;" src="" alt="">
+            <img id="quick-modal-logo" style="width:50px;height:50px;border-radius:12px;object-fit:cover;" src="" alt="" decoding="async" onerror="this.style.display='none'">
             <div>
                 <h3 id="quick-modal-name" style="font-size:1rem;color:#fff;margin:0;"></h3>
                 <p id="quick-modal-distance" style="font-size:0.8rem;color:#4ade80;margin:0;"></p>
@@ -1665,7 +1665,7 @@
 
     function getLogoHtml(logoUrl, size = 44) {
         const src = logoUrl && logoUrl.trim() ? logoUrl : LOGO_FALLBACK;
-        return `<img src="${src}" alt="" style="width:${size}px;height:${size}px;object-fit:cover;border-radius:10px;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">`;
+        return `<img src="${src}" alt="" loading="lazy" decoding="async" style="width:${size}px;height:${size}px;object-fit:cover;border-radius:10px;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">`;
     }
 
     // ===== CITY DETECTION (Reverse Geocoding) =====
@@ -2097,7 +2097,7 @@
                 <div style="position:relative;cursor:pointer;transition:all 0.3s;">
                     <div style="width:42px;height:42px;background:linear-gradient(135deg,#e73a3a,#ff6b6b);border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 4px 15px rgba(231,58,58,0.4);display:flex;align-items:center;justify-content:center;">
                         <div style="transform:rotate(45deg);width:36px;height:36px;border-radius:50%;overflow:hidden;background:white;display:flex;align-items:center;justify-content:center;">
-                            <img src="${markerLogo}" alt="${r.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">
+                            <img src="${markerLogo}" alt="${r.name}" decoding="async" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">
                         </div>
                     </div>
                     <div style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);background:rgba(26,18,37,0.95);padding:2px 7px;border-radius:8px;font-size:9px;font-weight:600;color:#fff;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);max-width:90px;overflow:hidden;text-overflow:ellipsis;border:1px solid rgba(231,58,58,0.3);">
@@ -2113,7 +2113,7 @@
                 <div style="font-family:Inter,sans-serif;min-width:200px;padding:4px;">
                     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.1);">
                         <div style="width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,0.05);">
-                            <img src="${markerLogo}" alt="${r.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">
+                            <img src="${markerLogo}" alt="${r.name}" decoding="async" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">
                         </div>
                         <div><div style="font-weight:600;font-size:13px;color:#fff;">${r.name}</div><div style="font-size:10px;color:#999;">${r.cuisine || 'Ristorante'}</div></div>
                     </div>
@@ -2136,7 +2136,7 @@
     function displayList(list) {
         const html = list.map(r => {
             const logoSrc = r.logo_url && r.logo_url.trim() ? r.logo_url : LOGO_FALLBACK;
-            const logoContent = `<img src="${logoSrc}" alt="${r.name}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">`;
+            const logoContent = `<img src="${logoSrc}" alt="${r.name}" width="48" height="48" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">`;
             const dist = r.distance !== undefined && r.distance !== Infinity
                 ? `<span style="color:#4ade80;font-size:0.7rem;"><i class="fas fa-location-arrow"></i> ${formatDistance(r.distance)}</span>` : '';
             const fav = isFavorite(r.id);
@@ -2207,7 +2207,7 @@
 
     function displayRestaurantPanel(restaurant, dishes) {
         const panelLogoSrc = restaurant.logo_url && restaurant.logo_url.trim() ? restaurant.logo_url : LOGO_FALLBACK;
-        const logoContent = `<img src="${panelLogoSrc}" alt="${restaurant.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">`;
+        const logoContent = `<img src="${panelLogoSrc}" alt="${restaurant.name}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">`;
         let dishesHtml = '';
         if (dishes && dishes.length > 0) {
             dishesHtml = dishes.slice(0, 5).map(d => `
@@ -2656,7 +2656,7 @@
 
                 <div class="sr-detail-header">
                     <div class="sr-detail-logo">
-                        <img src="${logoSrc}" alt="${dish.restaurant_name}" onerror="this.src='${LOGO_FALLBACK_INLINE}'">
+                        <img src="${logoSrc}" alt="${dish.restaurant_name}" loading="lazy" decoding="async" onerror="this.src='${LOGO_FALLBACK_INLINE}'">
                     </div>
                     <div class="sr-detail-info">
                         <div class="sr-detail-name">${dish.restaurant_name}</div>
@@ -2914,7 +2914,7 @@
                     html += `
                         <div onclick="window.location.href='https://www.trovapiatto.it/menu/${r.restaurant_slug}/?highlight=${encodeURIComponent(r.name)}'" style="padding:12px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,0.04);transition:all 0.2s;" onmouseover="this.style.background='rgba(245,158,11,0.08)'" onmouseout="this.style.background='transparent'">
                             <div style="width:44px;height:44px;border-radius:10px;overflow:hidden;border:2px solid var(--accent-food);flex-shrink:0;">
-                                <img src="${logoSrc}" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">
+                                <img src="${logoSrc}" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">
                             </div>
                             <div style="flex:1;">
                                 <div style="font-weight:600;font-size:0.9rem;color:#fff;">${r.restaurant_name}</div>
