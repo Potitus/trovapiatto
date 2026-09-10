@@ -102,6 +102,22 @@ function tp_require_setup_access() {
     $key = tp_env('TP_SETUP_KEY', '');
     $given = isset($_GET['key']) ? (string)$_GET['key'] : '';
     if ($key !== '' && $given !== '' && hash_equals($key, $given)) return;
+    // Conta i tentativi respinti: oltre 20/10min = probabile probing -> mail con cooldown
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $dir = sys_get_temp_dir() . '/tp_throttle';
+    if (!is_dir($dir)) @mkdir($dir, 0700, true);
+    $f = $dir . '/setup_probe_' . preg_replace('/[^a-zA-Z0-9_.-]/', '_', $ip) . '.json';
+    $now = time();
+    $d = ['count' => 0, 'first' => $now];
+    if (is_file($f)) {
+        $tmp = json_decode(@file_get_contents($f), true);
+        if (is_array($tmp) && ($now - (int)($tmp['first'] ?? 0)) < 600) $d = $tmp;
+    }
+    $d['count'] = (int)($d['count'] ?? 0) + 1;
+    @file_put_contents($f, json_encode($d));
+    if ($d['count'] === 20) {
+        tp_send_attack_alert('setup-probing', ['count' => $d['count'], 'uri' => ($_SERVER['REQUEST_URI'] ?? '?')]);
+    }
     http_response_code(403);
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode(['error' => 'Accesso negato']);
@@ -110,7 +126,8 @@ function tp_require_setup_access() {
 
 // Throttle generico file-based: max $max tentativi per $window secondi (per IP).
 // Ritorna true se consentito, false se superato (e invia 429 JSON se $respond).
-function tp_throttle($prefix, $max = 10, $window = 300, $respond = true) {
+function tp_throttle($prefix, $max = 10, $window = 300, $respond = true, $alertKind = null) {
+    if ($alertKind) $GLOBALS['tp_throttle_alert'] = $alertKind;
     $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
     $dir = sys_get_temp_dir() . '/tp_throttle';
     if (!is_dir($dir)) @mkdir($dir, 0700, true);
@@ -124,6 +141,11 @@ function tp_throttle($prefix, $max = 10, $window = 300, $respond = true) {
     $data['count'] = (int)($data['count'] ?? 0) + 1;
     @file_put_contents($f, json_encode($data));
     if ($data['count'] > $max) {
+        // $alertKind valorizzato dai chiamanti sensibili (login): mail con cooldown
+        if (!empty($GLOBALS['tp_throttle_alert'])) {
+            tp_send_attack_alert($GLOBALS['tp_throttle_alert'], ['count' => $data['count'], 'ip' => $ip]);
+            $GLOBALS['tp_throttle_alert'] = null;
+        }
         if ($respond && php_sapi_name() !== 'cli') {
             http_response_code(429);
             header('Content-Type: application/json; charset=utf-8');
@@ -133,4 +155,33 @@ function tp_throttle($prefix, $max = 10, $window = 300, $respond = true) {
         return false;
     }
     return true;
+}
+
+// Email destinatario allarmi anti-abuso (default richiesto dal proprietario)
+function tp_alert_email() {
+    return tp_env('ALERT_EMAIL', 'datafap@gmail.com');
+}
+
+// Invia allarme possibile attacco, max 1 mail/ora per tipo (cooldown anti-spam)
+function tp_send_attack_alert($kind, $details = []) {
+    $to = tp_alert_email();
+    if (!$to || !filter_var($to, FILTER_VALIDATE_EMAIL)) return false;
+    $dir = sys_get_temp_dir() . '/tp_alerts';
+    if (!is_dir($dir)) @mkdir($dir, 0700, true);
+    $f = $dir . '/' . preg_replace('/[^a-zA-Z0-9_-]/', '_', (string)$kind) . '.json';
+    $now = time();
+    $cooldown = (int)tp_env('ALERT_COOLDOWN', 3600);
+    if (is_file($f)) {
+        $d = json_decode(@file_get_contents($f), true);
+        if (is_array($d) && ($now - (int)($d['last'] ?? 0)) < $cooldown) return false;
+    }
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $uri = ($_SERVER['REQUEST_METHOD'] ?? '?') . ' ' . ($_SERVER['REQUEST_URI'] ?? '?');
+    $ua = $_SERVER['HTTP_USER_AGENT'] ?? '-';
+    $subject = "[trovapiatto] possibile attacco: $kind";
+    $body = "Tipo: $kind\nIP: $ip\nRichiesta: $uri\nUser-Agent: $ua\nData: " . date('Y-m-d H:i:s') . "\nDettagli: " . json_encode($details) . "\n";
+    $headers = "From: trovapiatto <noreply@trovapiatto.it>\r\nContent-Type: text/plain; charset=UTF-8";
+    $sent = @mail($to, $subject, $body, $headers);
+    @file_put_contents($f, json_encode(['last' => $now, 'sent' => (bool)$sent]));
+    return (bool)$sent;
 }

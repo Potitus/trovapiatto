@@ -90,7 +90,7 @@ switch($action) {
 }
 
 function tp_login_throttle_check() {
-    tp_throttle('login', 10, 300, true);
+    tp_throttle('login', 10, 300, true, 'login-jwt-bruteforce');
 }
 
 // === LOGIN ===

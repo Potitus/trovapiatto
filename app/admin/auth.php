@@ -46,7 +46,7 @@ function isLoggedIn() {
 // Throttle tentativi (condiviso con login JWT)
 require_once __DIR__ . '/config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!tp_throttle('login', 10, 300, false)) {
+    if (!tp_throttle('login', 10, 300, false, 'login-session-bruteforce')) {
         http_response_code(429);
         $error = 'Troppi tentativi. Riprova tra qualche minuto.';
     }
