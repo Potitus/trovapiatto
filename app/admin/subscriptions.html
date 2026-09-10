@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abbonamento - Trovapiatto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f0a15;
+            --bg-card: #1a1125;
+            --bg-card-hover: #231833;
+            --text: #f1e8ff;
+            --text-dim: #9b8cb8;
+            --accent: #ff3b3b;
+            --accent2: #ff6b35;
+            --success: #34d399;
+            --warning: #fbbf24;
+            --info: #60a5fa;
+            --border: #2d2145;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, sans-serif; min-height: 100vh; }
+        .top-bar {
+            background: linear-gradient(135deg, #1a1125, #2d1845);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .top-bar .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .top-bar .logo img { height: 32px; border-radius: 8px; }
+        .top-bar .logo span { color: var(--text); font-size: 1.1em; font-weight: 700; }
+        .container { max-width: 900px; margin: 0 auto; padding: 24px; }
+
+        .current-plan {
+            background: linear-gradient(135deg, var(--bg-card), #2d1845);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        .current-plan h2 { font-size: 1.3em; margin-bottom: 8px; }
+        .current-plan .plan-badge {
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin: 12px 0;
+        }
+        .plan-badge.free { background: rgba(156,163,175,0.2); color: #9ca3af; }
+        .plan-badge.basic { background: rgba(96,165,250,0.2); color: var(--info); }
+        .plan-badge.pro { background: rgba(251,191,36,0.2); color: var(--warning); }
+        .plan-badge.enterprise { background: rgba(52,211,153,0.2); color: var(--success); }
+        .current-plan .stats { display: flex; justify-content: center; gap: 30px; margin-top: 16px; }
+        .current-plan .stat { text-align: center; }
+        .current-plan .stat .num { font-size: 1.5em; font-weight: 800; }
+        .current-plan .stat .label { color: var(--text-dim); font-size: 0.8em; }
+
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+        .plan-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .plan-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .plan-card.active { border-color: var(--accent); box-shadow: 0 0 20px rgba(255,59,59,0.2); }
+        .plan-card .plan-name { font-size: 1.2em; font-weight: 700; margin-bottom: 8px; }
+        .plan-card .plan-price { font-size: 2em; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
+        .plan-card .plan-period { color: var(--text-dim); font-size: 0.85em; margin-bottom: 16px; }
+        .plan-card .features { text-align: left; margin-bottom: 16px; }
+        .plan-card .features li {
+            list-style: none;
+            padding: 6px 0;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .plan-card .features li i { font-size: 0.8em; }
+        .plan-card .features li.yes i { color: var(--success); }
+        .plan-card .features li.no { color: var(--text-dim); }
+        .plan-card .features li.no i { color: #ef4444; }
+        .plan-card .select-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .plan-card .select-btn.primary { background: var(--accent); color: white; }
+        .plan-card .select-btn.primary:hover { background: #e63232; }
+        .plan-card .select-btn.secondary { background: var(--border); color: var(--text); }
+        .plan-card .select-btn.current { background: var(--success); color: white; }
+
+        .section-title { font-size: 1.2em; font-weight: 700; margin: 32px 0 16px; display: flex; align-items: center; gap: 10px; }
+        .section-title i { color: var(--accent); }
+
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9em; }
+        th { color: var(--text-dim); font-size: 0.8em; text-transform: uppercase; }
+        .status-badge { padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: 600; }
+        .status-badge.succeeded { background: rgba(52,211,153,0.15); color: var(--success); }
+        .status-badge.pending { background: rgba(251,191,36,0.15); color: var(--warning); }
+        .status-badge.failed { background: rgba(239,68,68,0.15); color: #ef4444; }
+
+        .empty-state { text-align: center; padding: 40px; color: var(--text-dim); }
+        .empty-state i { font-size: 2em; margin-bottom: 12px; opacity: 0.3; }
+
+        .restaurant-select {
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 1em;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+        .restaurant-select:focus { outline: none; border-color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="dashboard.html" class="logo">
+            <img src="/logo/logo_ufficiale.png" alt="logo">
+            <span>trovapiatto</span>
+        </a>
+        <a href="dashboard.html" style="color:var(--text-dim); text-decoration:none; font-size:0.9em;"><i class="fas fa-arrow-left"></i> Dashboard</a>
+    </div>
+
+    <div class="container">
+        <h1 style="font-size:1.8em; margin-bottom:8px;">Gestisci Abbonamento</h1>
+        <p style="color:var(--text-dim); margin-bottom:24px;">Scegli il piano più adatto al tuo ristorante</p>
+
+        <select class="restaurant-select" id="restaurantSelect" onchange="loadSubscription()">
+            <option value="">Caricamento ristoranti...</option>
+        </select>
+
+        <div class="current-plan" id="currentPlan">
+            <div class="empty-state"><i class="fas fa-spinner fa-spin"></i></div>
+        </div>
+
+        <h2 class="section-title"><i class="fas fa-gem"></i> Piani Disponibili</h2>
+        <div class="plans-grid" id="plansGrid"></div>
+
+        <h2 class="section-title"><i class="fas fa-receipt"></i> Cronologia Pagamenti</h2>
+        <div id="paymentsTable"><div class="empty-state"><i class="fas fa-receipt"></i><p>Nessun pagamento</p></div></div>
+    </div>
+
+    <script>
+        const API = '/app/admin/api-crud.php';
+        const token = localStorage.getItem('auth_token');
+        if (!token) window.location.href = 'login.html';
+
+        const PLANS = {
+            free:       { name: 'Free',       price: 0,    period: '', features: ['Menu base (max 10 piatti)', 'Nessuna analytics', 'Pagina menu online'] },
+            basic:      { name: 'Basic',      price: 9.90, period: '/mese', features: ['Menu completo (max 50 piatti)', 'Analytics base', 'Pagina menu online', 'Supporto email'] },
+            pro:        { name: 'Pro',        price: 29.90, period: '/mese', features: ['Piatti illimitati', 'Analytics avanzati', 'Promozioni', 'Pagina menu online', 'Supporto prioritario'] },
+            enterprise: { name: 'Enterprise', price: 49.90, period: '/mese', features: ['Tutto di Pro', 'Sistema ordini', 'Prenotazioni', 'Integrazione POS', 'Account manager dedicato'] }
+        };
+
+        let currentRestaurant = null;
+        let currentSub = null;
+
+        async function apiCall(action, params = {}, method = 'GET') {
+            const urlParams = { action, token };
+            for (const [k, v] of Object.entries(params)) { if (k !== 'body') urlParams[k] = v; }
+            const qs = new URLSearchParams(urlParams);
+            if (method === 'GET') {
+                const res = await fetch(`${API}?${qs}`);
+                return await res.json();
+            } else {
+                const res = await fetch(`${API}?${qs}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(params.body || {}) });
+                return await res.json();
+            }
+        }
+
+        async function init() {
+            const res = await apiCall('get-restaurants');
+            if (!res.success) return;
+            const sel = document.getElementById('restaurantSelect');
+            sel.innerHTML = res.data.map(r => `<option value="${r.id}">${r.name}</option>`).join('');
+            loadSubscription();
+        }
+
+        async function loadSubscription() {
+            const rid = document.getElementById('restaurantSelect').value;
+            if (!rid) return;
+            currentRestaurant = rid;
+
+            const res = await apiCall('get-subscription', { restaurant_id: rid });
+            if (!res.success) return;
+            currentSub = res.data;
+
+            renderCurrentPlan(res.data);
+            renderPlans(res.data.plan);
+            loadPayments(rid);
+        }
+
+        function renderCurrentPlan(sub) {
+            const plan = PLANS[sub.plan] || PLANS.free;
+            document.getElementById('currentPlan').innerHTML = `
+                <h2>Piano Attuale</h2>
+                <div class="plan-badge ${sub.plan}">${plan.name}</div>
+                <p style="color:var(--text-dim); margin:8px 0;">${plan.price > 0 ? '€' + plan.price + '/mese' : 'Gratuito'}</p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="num" style="color:var(--info);">${sub.current_dishes}</div>
+                        <div class="label">Piatti attuali</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" style="color:${sub.can_add_dish ? 'var(--success)' : 'var(--accent)'};">${sub.plan_details.max_dishes == -1 ? '∞' : sub.plan_details.max_dishes}</div>
+                        <div class="label">Max piatti</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" style="color:var(--success);">${sub.status === 'active' ? '✓' : '✗'}</div>
+                        <div class="label">${sub.status === 'active' ? 'Attivo' : 'Inattivo'}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPlans(currentPlan) {
+            const grid = document.getElementById('plansGrid');
+            grid.innerHTML = Object.entries(PLANS).map(([key, plan]) => {
+                const isCurrent = key === currentPlan;
+                const isDowngrade = Object.keys(PLANS).indexOf(key) < Object.keys(PLANS).indexOf(currentPlan);
+                return `
+                    <div class="plan-card ${isCurrent ? 'active' : ''}">
+                        <div class="plan-name">${plan.name}</div>
+                        <div class="plan-price">${plan.price > 0 ? '€' + plan.price : 'Gratis'}</div>
+                        <div class="plan-period">${plan.period}</div>
+                        <ul class="features">
+                            ${plan.features.map(f => `<li class="yes"><i class="fas fa-check"></i> ${f}</li>`).join('')}
+                        </ul>
+                        <button class="select-btn ${isCurrent ? 'current' : isDowngrade ? 'secondary' : 'primary'}"
+                            onclick="${isCurrent ? '' : `changePlan('${key}')`}"
+                            ${isCurrent ? 'disabled' : ''}>
+                            ${isCurrent ? 'Piano Attuale' : isDowngrade ? 'Downgrade' : 'Attiva'}
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function changePlan(plan) {
+            if (!confirm(`Attivare il piano ${PLANS[plan].name}?`)) return;
+            const res = await apiCall('subscribe', { body: { restaurant_id: currentRestaurant, plan } }, 'POST');
+            if (res.success) {
+                alert(res.message);
+                loadSubscription();
+            } else {
+                alert('Errore: ' + (res.error || 'Sconosciuto'));
+            }
+        }
+
+        async function loadPayments(rid) {
+            const res = await apiCall('get-payments', { restaurant_id: rid });
+            const el = document.getElementById('paymentsTable');
+            if (!res.success || !res.data || res.data.length === 0) {
+                el.innerHTML = '<div class="empty-state"><i class="fas fa-receipt"></i><p>Nessun pagamento registrato</p></div>';
+                return;
+            }
+            el.innerHTML = `<table><thead><tr><th>Data</th><th>Descrizione</th><th>Importo</th><th>Stato</th></tr></thead><tbody>` +
+                res.data.map(p => `<tr><td>${new Date(p.created_at).toLocaleDateString('it-IT')}</td><td>${p.description || '-'}</td><td>€${parseFloat(p.amount).toFixed(2)}</td><td><span class="status-badge ${p.status}">${p.status}</span></td></tr>`).join('') +
+                `</tbody></table>`;
+        }
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ristoranti sul Mare a Bari: Guida ai Migliori con Vista Mare | trovapiatto</title>
+  <meta name="description" content="Scopri i migliori ristoranti sul mare a Bari. Guida ai ristoranti con vista mare, pesce fresco e pregi speciali. Panorami mozzafiato e sapori del Mediterraneo.">
+  <meta name="keywords" content="ristoranti mare Bari, pesce fresco Bari, ristoranti vista mare Bari, pesce Bari, lungomare Bari, ristoranti marini, cena sul mare Bari">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/ristoranti-mare-bari/">
+  <meta property="og:title" content="Ristoranti sul Mare a Bari: Guida ai Migliori con Vista Mare">
+  <meta property="og:description" content="I migliori ristoranti sul mare a Bari con pesce fresco, panorama mozzafiato e pregi speciali. Guida completa con prezzi e consigli.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-07T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-07T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Ristoranti Mare">
+  <meta property="article:tag" content="Bari">
+  <meta property="article:tag" content="Pesce Fresco">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ristoranti sul Mare a Bari: Guida ai Migliori">
+  <meta name="twitter:description" content="I migliori ristoranti sul mare a Bari con pesce fresco e panorama mozzafiato.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/ristoranti-mare-bari/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --bg-card-hover: #221833;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .article-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .article-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .article-nav .logo img { height: 32px; }
+    
+    .article-nav .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+    
+    .article-nav .back-link:hover { color: var(--primary); }
+    
+    .article-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 350px;
+      overflow: hidden;
+    }
+    
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%);
+    }
+    
+    .article-hero .hero-content {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .article-hero .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .article-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    
+    @media (min-width: 768px) {
+      .article-hero h1 { font-size: 2.8rem; }
+    }
+    
+    .article-hero .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-hero .meta i { color: var(--primary); }
+    
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+    
+    .article-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: var(--text-white);
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text-white);
+    }
+    
+    .article-content p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .article-content strong { color: var(--text-white); }
+    
+    .article-content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .article-content a:hover { color: var(--primary-light); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      transition: all 0.3s;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    
+    .restaurant-card .rc-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245,158,11,0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-food);
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-cuisine {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-dish {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .restaurant-card .rc-dish-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    
+    .restaurant-card .rc-dish-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    
+    .restaurant-card .rc-dish-price {
+      font-weight: 700;
+      color: var(--accent-food);
+      font-size: 1rem;
+    }
+    
+    .restaurant-card .rc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    
+    .map-section {
+      margin: 40px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #article-map {
+      width: 100%;
+      height: 350px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .cta-box .cta-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+    }
+    
+    .ad-container {
+      margin: 30px 0;
+      text-align: center;
+      min-height: 90px;
+    }
+    
+    .article-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .article-footer .share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .article-footer .share span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-footer .share a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    
+    .article-footer .share a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="article-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <a href="/community/blog/" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Magazine
+    </a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1400&h=700&fit=crop" alt="Ristoranti sul mare a Bari">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-fish"></i> Pesce Fresco</span>
+      <h1>Ristoranti sul Mare a Bari: Guida ai Migliori</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 7 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 8 min dilettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+
+      <p>C'è qualcosa di magico nel mangiare <strong>pesce fresco</strong> guardando il mare. A <strong>Bari</strong>, questa esperienza è quotidiana. Il lungomare della citta e punteggiato di ristoranti che offrono panorami mozzafiato sul Adriatico, mentre in cucina il pesce del giorno viene trasformato in piatti semplici e saporiti che raccontano la tradizione marinara della Puglia.</p>
+
+      <p>In questa guida ti portiamo alla scoperta dei <strong>9 migliori ristoranti sul mare a Bari</strong>, dove il pesce è fresco, il panorama è spettacolare e l'atmosfera è quella perfetta per una cena indimenticabile. Preparati a sentire il profumo del sale e dell'olio d'oliva: stai per viaggiare attraverso i sapori del Mediterraneo.</p>
+
+      <h2>1. La Tana del Mare — Il Re del Lungomare</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">La Tana del Mare</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Lungomare Nazario Sauro, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Crapi e Fagiol</div>
+          <div class="rc-dish-desc">Zuppa di pesce con fagioli bianchi, pomodoro e peperoncino</div>
+          <div class="rc-dish-price">&euro;16</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Branzino al Sale</div>
+          <div class="rc-dish-desc">Branzino intero cucinato nel sale grosso, servito con verdure</div>
+          <div class="rc-dish-price">&euro;28</div>
+        </div>
+        <a href="/menu/la-tana-del-mare/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>La Tana del Mare</strong> è il punto di riferimento per il pesce sul lungomare di Bari. Il locale ha una terrazza panoramica che si affaccia direttamente sul mare, creando un'atmosfera unica. I <strong>crapi e fagiol</strong> sono un antipasto da provare assolutamente, mentre il branzino al sale è un secondo che lascia senza parole. Il pesce è sempre freschissimo, pescato nel Adriatico.</p>
+
+      <p><strong>Consiglio:</strong> Prenota un tavolo sulla terrazza per il tramonto. L'esperienza è indimenticabile.</p>
+
+      <h2>2. Osteria del Mare — Tradizione in Bari Vecchia</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Osteria del Mare</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari Vecchia — Vista Mare Parziale</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Polpo alla Pignatta</div>
+          <div class="rc-dish-desc">Polpo cotto lentamente con pomodoro, olive e patate</div>
+          <div class="rc-dish-price">&euro;18</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Frittura di Paranza</div>
+          <div class="rc-dish-desc">Misto di pesci piccoli fritti con limone</div>
+          <div class="rc-dish-price">&euro;14</div>
+        </div>
+        <a href="/menu/osteria-del-mare/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Osteria del Mare</strong> è un piccolo gioiello nascosto in Bari Vecchia. Il locale è piccolo e accogliente, con un'atmosfera da osteria di una volta. Il polpo alla pignatta è cotto lentamente in una pentola di coccio, creando un piatto saporito e profumato. La frittura di paranza è leggera e croccante, perfetta con un filo di limone.</p>
+
+      <p><strong>Consiglio:</strong> Chiedi il pesce del giorno. Il cuoco cambia spesso i piatti in base a quello che trova al mercato.</p>
+
+      <h2>3. Ristorante Il Paradiso — Panorama a 360 Gradi</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ristorante Il Paradiso</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Molfetta (a 30 min da Bari) — Vista Mare Panoramica</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Risotto ai Frutti di Mare</div>
+          <div class="rc-dish-desc">Risotto cremoso con gamberi, calamari, cozze e vino bianco</div>
+          <div class="rc-dish-price">&euro;22</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Grigliata Mista di Pesce</div>
+          <div class="rc-dish-desc">Misto di pesce fresco alla griglia con olio e limone</div>
+          <div class="rc-dish-price">&euro;28</div>
+        </div>
+        <a href="/menu/il-paradiso-molfetta/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Il Paradiso</strong> è a Molfetta, a soli 30 minuti da Bari, ma ne vale assolutamente la pena. Il ristorante è situato su una scogliera con vista panoramica a 360 gradi sul mare. Il risotto ai frutti di mare è un capolavoro di cremosita e sapori, la grigliata mista è abbondante e saporita. È il posto perfetto per una cena romantica o una occasione speciale.</p>
+
+      <p><strong>Consiglio:</strong> Prenota per il tramonto. Il panorama è tra i piu belli della Puglia.</p>
+
+      <!-- AdSense In-Article -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>4. Ai 2 Ghiottoni — Pesce e Tradizione</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ai 2 Ghiottoni</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette con Rapini</div>
+          <div class="rc-dish-desc">La ricetta tradizionale barese con rapini freschi</div>
+          <div class="rc-dish-price">&euro;12</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pesce Spada alla Griglia</div>
+          <div class="rc-dish-desc">Pesce spada fresco con contorno di verdure grigliate</div>
+          <div class="rc-dish-price">&euro;20</div>
+        </div>
+        <a href="/menu/ai-2-ghiottoni/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Ai 2 Ghiottoni</strong> è un ristorante che unisce tradizione pugliese e qualita di pesce. Il locale è famoso per le orecchiette con rapini, ma anche i piatti di pesce sono eccellenti. Il pesce spada alla griglia è semplice e perfetto, cotto alla perfezione e servito con verdure fresche. Il prezzo è molto accessibile per la qualita offerta.</p>
+
+      <p><strong>Consiglio:</strong> Inizia con le orecchiette come primo, poi il pesce spada come secondo. Un pasto perfetto.</p>
+
+      <h2>5. Trattoria della Nonna — Comfort Food sul Mare</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Trattoria della Nonna</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari Vecchia — Vista Mare</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Tiella di Riso, Patate e Cozze</div>
+          <div class="rc-dish-desc">Stratificato al forno con pomodoro e cipolla</div>
+          <div class="rc-dish-price">&euro;12</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Insalata di Mare</div>
+          <div class="rc-dish-desc">Misto di frutti di mare lessati con sedano e limone</div>
+          <div class="rc-dish-price">&euro;14</div>
+        </div>
+        <a href="/menu/trattoria-della-nonna/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Trattoria della Nonna</strong> è come mangiare a casa della nonna, ma con la vista sul mare. La tiella di riso, patate e cozze è un piatto unico sostanzioso e saporito, mentre l'insalata di mare è leggera e fresca. Il locale è piccolo e familiare, con un'atmosfera accogliente e prezzi molto accessibili.</p>
+
+      <p><strong>Consiglio:</strong> La tiella è un piatto da pranzo. Per la cena, prova l'insalata di mare con un buon vino bianco.</p>
+
+      <h2>6. Ristorante La Barca — Pesce del Giorno</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ristorante La Barca</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Lungomare, Bari — Pesce Fresco</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.5</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Zuppa di Pesce del Giorno</div>
+          <div class="rc-dish-desc">Pesce fresco del giorno in brodo con pomodoro e vino bianco</div>
+          <div class="rc-dish-price">&euro;18</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Calamari Ripieni</div>
+          <div class="rc-dish-desc">Calamari ripieni di pangrattato, olive e pinoli</div>
+          <div class="rc-dish-price">&euro;16</div>
+        </div>
+        <a href="/menu/la-barca/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>La Barca</strong> è un ristorante di pesce semplice e autentico sul lungomare. La zuppa di pesce del giorno è preparata con il pesce fresco che il cuoco trova al mercato la mattina, quindi cambia ogni giorno. I calamari ripieni sono un antipasto tipico pugliese, croccanti fuori e morbidi dentro. Il prezzo è molto accessibile.</p>
+
+      <p><strong>Consiglio:</strong> Chiedi sempre il pesce del giorno. Il cuoco sa raccontarti la storia di ogni pesce che cucina.</p>
+
+      <h2>7. Osteria delle Travi — Tradizione e Vista</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Osteria delle Travi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via delle Travi, Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette con Cime di Rapa</div>
+          <div class="rc-dish-desc">Orecchiette fresche, cime di rapa, acciughe e pangrattato</div>
+          <div class="rc-dish-price">&euro;10</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pesce alla Piastra</div>
+          <div class="rc-dish-desc">Pesce fresco del giorno alla piastra con patate e pomodorini</div>
+          <div class="rc-dish-price">&euro;18</div>
+        </div>
+        <a href="/menu/osteria-delle-travi/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Osteria delle Travi</strong> è famosa per le orecchiette, ma anche i piatti di pesce sono eccellenti. Il pesce alla piastra è semplice e perfetto, cotto alla perfezione e servito con contorni freschi. Il locale ha una posizione privilegiata a Bari Vecchia, con vista sul mare e un'atmosfera autentica.</p>
+
+      <p><strong>Consiglio:</strong> Inizia con le orecchiette come primo, poi il pesce alla piastra come secondo. Un pasto perfetto.</p>
+
+      <h2>8. Forno Fiore — Focaccia e Pesce</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Forno Fiore</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari — Focacceria</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Focaccia con Pomodorini</div>
+          <div class="rc-dish-desc">Focaccia croccante con pomodorini freschi e origano</div>
+          <div class="rc-dish-price">&euro;3</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Focaccia con Ripieno di Pesce</div>
+          <div class="rc-dish-desc">Focaccia ripiena di tonno, pomodoro e mozzarella</div>
+          <div class="rc-dish-price">&euro;5</div>
+        </div>
+        <a href="/menu/forno-fiore/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Forno Fiore</strong> non è un ristorante sul mare, ma la sua focaccia con ripieno di pesce è un'ottima alternativa per chi vuole mangiare pesce in modo veloce e economico. La focaccia è croccante e profumata, il ripieno di tonno e saporito. A soli 5 euro è un pasto completo e delizioso.</p>
+
+      <p><strong>Consiglio:</strong> Perfetto per un pranzo veloce o una merenda. La focaccia è sempre calda e fresca.</p>
+
+      <h2>9. Ai Monizzati — Street Food di Pesce</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ai Monizzati</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari — Street Food</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Panzerotto con Tonno</div>
+          <div class="rc-dish-desc">Panzerotto fritto ripieno di tonno, cipolla e mozzarella</div>
+          <div class="rc-dish-price">&euro;5</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza a Taglio con Acciughe</div>
+          <div class="rc-dish-desc">Fetta di pizza con acciughe, pomodorino e origano</div>
+          <div class="rc-dish-price">&euro;4</div>
+        </div>
+        <a href="/menu/ai-monizzati/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Ai Monizzati</strong> è il posto perfetto per chi vuole mangiare pesce in modo veloce e economico. Il panzerotto con tonno è croccante e saporito, la pizza a taglio con acciughe è un'ottima alternativa. A soli 4-5 euro è un pasto completo e saporito, perfetto per chi è in viaggio o ha poco tempo.</p>
+
+      <p><strong>Consiglio:</strong> Perfetto per un pranzo veloce o una cena informale. Il cibo è sempre fresco e preparato al momento.</p>
+
+      <!-- Mappa Interattiva -->
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Tutti i Ristoranti sulla Mappa</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Consigli per una Cena sul Mare a Bari</h2>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-clock"></i> <span><strong>Prenota:</strong> Per i ristoranti con vista mare, prenota almeno 2-3 giorni prima. Le terrazze si riempiono velocemente.</span></li>
+          <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Budget:</strong> I ristoranti sul mare costano di piu di quelli dell'entroterra. Budget medio: 25-40 euro a testa.</span></li>
+          <li><i class="fa-solid fa-sun"></i> <span><strong>Tramonto:</strong> Prenota per il tramonto. L'esperienza di mangiare guardando il sole che scende nel mare è indimenticabile.</span></li>
+          <li><i class="fa-solid fa-fish"></i> <span><strong>Pesce fresco:</strong> Chiedi sempre il pesce del giorno. I ristoranti sul mare hanno il pesce piu fresco della citta.</span></li>
+          <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Vino:</strong> Un Verdesca o unesiko bianco fresco sono perfetti con il pesce. Chiedi al cameriere il consiglio.</span></li>
+          <li><i class="fa-solid fa-map-pin"></i> <span><strong>Zona:</strong> Il lungomare di Bari è la zona migliore per i ristoranti sul mare. Passeggia e scegli quello che ti piace di piu.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <h3>Scopri Altri Ristoranti di Pesce a Bari</h3>
+        <p>Cerca ristoranti, menu e prezzi nella nostra mappa interattiva</p>
+        <a href="/piatti/?q=pesce" class="cta-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Cerca Ristoranti di Pesce
+        </a>
+      </div>
+
+      <!-- AdSense Bottom -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/ristoranti-mare-bari/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/ristoranti-mare-bari/&text=Ristoranti+sul+Mare+a+Bari:+Guida+ai+Migliori"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+i+migliori+ristoranti+sul+mare+a+Bari:+https://www.trovapiatto.it/community/blog/ristoranti-mare-bari/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'La Tana del Mare', lat: 41.1185, lng: 16.8680, price: '€28', slug: 'la-tana-del-mare', rating: '4.8' },
+      { name: 'Osteria del Mare', lat: 41.1285, lng: 16.8705, price: '€18', slug: 'osteria-del-mare', rating: '4.7' },
+      { name: 'Il Paradiso', lat: 41.1575, lng: 16.4710, price: '€28', slug: 'il-paradiso-molfetta', rating: '4.9' },
+      { name: 'Ai 2 Ghiottoni', lat: 41.1291, lng: 16.8702, price: '€20', slug: 'ai-2-ghiottoni', rating: '4.7' },
+      { name: 'Trattoria della Nonna', lat: 41.1280, lng: 16.8700, price: '€14', slug: 'trattoria-della-nonna', rating: '4.6' },
+      { name: 'La Barca', lat: 41.1190, lng: 16.8675, price: '€18', slug: 'la-barca', rating: '4.5' },
+      { name: 'Osteria delle Travi', lat: 41.1285, lng: 16.8705, price: '€18', slug: 'osteria-delle-travi', rating: '4.8' },
+      { name: 'Forno Fiore', lat: 41.1291, lng: 16.8702, price: '€5', slug: 'forno-fiore', rating: '4.8' },
+      { name: 'Ai Monizzati', lat: 41.1291, lng: 16.8702, price: '€5', slug: 'ai-monizzati', rating: '4.7' }
+    ];
+
+    const map = L.map('article-map').setView([41.1245, 16.8695], 14);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">⭐ ${r.rating}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Ristoranti sul Mare a Bari: Guida ai Migliori con Vista Mare",
+    "description": "Scopri i migliori ristoranti sul mare a Bari con pesce fresco, panorama mozzafiato e pregi speciali.",
+    "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-07-07T10:00:00+02:00",
+    "dateModified": "2026-07-07T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/ristoranti-mare-bari/" },
+    "articleSection": "Food Guide",
+    "keywords": "ristoranti mare Bari, pesce fresco Bari, ristoranti vista mare Bari, pesce Bari, lungomare Bari"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Magazine", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Ristoranti Mare Bari", "item": "https://www.trovapiatto.it/community/blog/ristoranti-mare-bari/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Dove mangiare pesce fresco a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I migliori posti per mangiare pesce fresco a Bari sono La Tana del Mare (4.8 stelle, €28), Osteria del Mare (4.7 stelle, €18) e Ai 2 Ghiottoni (4.7 stelle, €20). Consulta la nostra guida completa per tutti i dettagli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali ristoranti hanno vista mare a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I ristoranti con vista mare a Bari includono La Tana del Mare (terrazza panoramica), Osteria del Mare (vista parziale) e Il Paradiso a Molfetta (vista a 360 gradi). Consulta la nostra guida per tutti i dettagli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa un pasto di pesce a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un pasto di pesce a Bari costa in media da 25 a 40 euro a testa, incluso antipasto, primo e secondo. I ristoranti sul lungomare costano di piu, quelli dell'entroterra sono piu accessibili."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

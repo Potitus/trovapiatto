@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Non Trovata - trovapiatto</title>
+    <meta name="description" content="La pagina che cerchi non esiste. Torna alla homepage di trovapiatto per scoprire ristoranti e piatti a Bari.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#e73a3a">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Consent Mode v2: default negato; rispetta la scelta fatta sul sito (localStorage condiviso)
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0a15 0%, #1a0f25 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+        }
+        .logo {
+            margin-bottom: 30px;
+        }
+        .logo img {
+            height: 50px;
+            filter: drop-shadow(0 4px 15px rgba(231, 58, 58, 0.3));
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e73a3a, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 1rem;
+            color: #9ca3af;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #e73a3a, #ff6b6b);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(231, 58, 58, 0.3);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+        .links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+        .links a:hover {
+            color: #e73a3a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+        </div>
+        <div class="error-code">404</div>
+        <h1>Pagina Non Trovata</h1>
+        <p>La pagina che stai cercando non esiste o è stata spostata. Torna alla homepage per scoprire ristoranti e piatti a Bari.</p>
+        
+        <div class="buttons">
+            <a href="/" class="btn btn-primary">
+                <i class="fa-solid fa-home"></i> Homepage
+            </a>
+            <a href="/app/" class="btn btn-secondary">
+                <i class="fa-solid fa-map"></i> Mappa Ristoranti
+            </a>
+            <a href="/piatti/" class="btn btn-secondary">
+                <i class="fa-solid fa-utensils"></i> Cerca Piatti
+            </a>
+        </div>
+        
+        <div class="links">
+            <a href="/bari/migliori-ristoranti-bari/">Migliori Ristoranti</a>
+            <a href="/bari/">Cosa Mangiare</a>
+            <a href="/community/blog/">Magazine</a>
+            <a href="/about.html">Chi Siamo</a>
+        </div>
+    </div>
+</body>
+</html>

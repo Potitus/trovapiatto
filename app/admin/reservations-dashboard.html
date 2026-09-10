@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenotazioni - Trovapiatto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f0a15;
+            --bg-card: #1a1125;
+            --bg-card-hover: #231833;
+            --text: #f1e8ff;
+            --text-dim: #9b8cb8;
+            --accent: #ff3b3b;
+            --accent2: #ff6b35;
+            --success: #34d399;
+            --warning: #fbbf24;
+            --info: #60a5fa;
+            --border: #2d2145;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            min-height: 100vh;
+        }
+        .top-bar {
+            background: linear-gradient(135deg, #1a1125, #2d1845);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .top-bar .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .top-bar .logo img { height: 32px; border-radius: 8px; }
+        .top-bar .logo span { color: var(--text); font-size: 1.1em; font-weight: 700; }
+        .top-bar .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .top-bar .user-info .name { color: var(--text-dim); font-size: 0.9em; }
+        .top-bar .user-info .logout {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+        .top-bar .user-info .logout:hover { border-color: var(--accent); color: var(--accent); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+        .restaurant-selector {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .restaurant-selector select {
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 0.95em;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 4px;
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        .tab-btn:hover:not(.active) { background: var(--bg-card-hover); color: var(--text); }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 1.3em;
+        }
+        .stat-card .value { font-size: 1.8em; font-weight: 800; margin-bottom: 4px; }
+        .stat-card .label { color: var(--text-dim); font-size: 0.85em; }
+        .bg-blue { background: rgba(96, 165, 250, 0.15); color: var(--info); }
+        .bg-green { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+        .bg-orange { background: rgba(255, 107, 53, 0.15); color: var(--accent2); }
+        .bg-red { background: rgba(255, 59, 59, 0.15); color: var(--accent); }
+        .bg-yellow { background: rgba(251, 191, 36, 0.15); color: var(--warning); }
+
+        .table-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+        .table-card h3 {
+            margin-bottom: 16px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9em;
+        }
+        th { color: var(--text-dim); font-weight: 600; white-space: nowrap; }
+        tr:hover { background: var(--bg-card-hover); }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.78em;
+            font-weight: 600;
+        }
+        .badge-pending { background: rgba(251, 191, 36, 0.2); color: var(--warning); }
+        .badge-confirmed { background: rgba(96, 165, 250, 0.2); color: var(--info); }
+        .badge-canceled { background: rgba(255, 59, 59, 0.2); color: var(--accent); }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8em;
+            margin: 2px;
+            transition: all 0.2s;
+        }
+        .action-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .action-btn.confirm { border-color: var(--success); color: var(--success); }
+        .action-btn.confirm:hover { background: rgba(52, 211, 153, 0.15); }
+        .action-btn.cancel { border-color: var(--accent); color: var(--accent); }
+        .action-btn.cancel:hover { background: rgba(255, 59, 59, 0.15); }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-dim);
+        }
+        .empty-state i { font-size: 3em; margin-bottom: 16px; opacity: 0.5; }
+        .empty-state p { margin-top: 8px; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-bottom: 16px;
+        }
+        .back-link:hover { color: var(--accent); }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal-box h3 { margin-bottom: 16px; }
+        .modal-box label {
+            display: block;
+            color: var(--text-dim);
+            font-size: 0.85em;
+            margin-bottom: 4px;
+            margin-top: 12px;
+        }
+        .modal-box input, .modal-box select, .modal-box textarea {
+            width: 100%;
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 0.9em;
+        }
+        .modal-box textarea { resize: vertical; min-height: 60px; }
+        .modal-actions { margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end; }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { background: #d63018; }
+        .btn-secondary { background: var(--bg-card-hover); color: var(--text); border: 1px solid var(--border); }
+        .btn-secondary:hover { border-color: var(--text-dim); }
+
+        .loading { text-align: center; padding: 48px; color: var(--text-dim); }
+        .loading i { animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="dashboard.html" class="logo">
+            <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+            <span>Prenotazioni</span>
+        </a>
+        <div class="user-info">
+            <span class="name" id="userName">Admin</span>
+            <button class="logout" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="dashboard.html" class="back-link"><i class="fas fa-arrow-left"></i> Torna alla Dashboard</a>
+
+        <div class="restaurant-selector">
+            <select id="restaurantSelect" onchange="currentRestaurantId = this.value; loadReservations()">
+                <option value="">Seleziona ristorante...</option>
+            </select>
+        </div>
+
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab('reservations')">Prenotazioni</button>
+        </div>
+
+        <div id="reservationsTab">
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="icon bg-blue"><i class="fas fa-calendar-check"></i></div>
+                    <div class="value" id="totalRes">0</div>
+                    <div class="label">Prenotazioni totali</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon bg-yellow"><i class="fas fa-hourglass-half"></i></div>
+                    <div class="value" id="pendingRes">0</div>
+                    <div class="label">In attesa</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon bg-green"><i class="fas fa-check"></i></div>
+                    <div class="value" id="confirmedRes">0</div>
+                    <div class="label">Confermate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon bg-red"><i class="fas fa-user-friends"></i></div>
+                    <div class="value" id="todayGuests">0</div>
+                    <div class="label">Ospiti oggi</div>
+                </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+                <input type="date" id="resDateFilter" onchange="loadReservations()" style="background:var(--bg-card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:0.9em;">
+                <button class="btn btn-primary" onclick="openNewReservationModal()"><i class="fas fa-plus"></i> Nuova Prenotazione</button>
+            </div>
+
+            <div class="table-card">
+                <h3><i class="fas fa-calendar-alt"></i> Prenotazioni</h3>
+                <div id="reservationsList">
+                    <div class="loading"><i class="fas fa-spinner"></i> Caricamento...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="reservationModal">
+        <div class="modal-box">
+            <h3><i class="fas fa-calendar-plus"></i> Nuova Prenotazione</h3>
+            <label>Nome cliente *</label>
+            <input type="text" id="resName" placeholder="Nome e cognome">
+            <label>Telefono</label>
+            <input type="tel" id="resPhone" placeholder="+39 ...">
+            <label>Email</label>
+            <input type="email" id="resEmail" placeholder="email@esempio.it">
+            <label>Data *</label>
+            <input type="date" id="resDateInput">
+            <label>Ora *</label>
+            <input type="time" id="resTimeInput">
+            <label>Ospiti *</label>
+            <input type="number" id="resGuests" min="1" value="1">
+            <label>Note</label>
+            <textarea id="resNotes" placeholder="Allergie, richieste speciali..."></textarea>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal('reservationModal')">Annulla</button>
+                <button class="btn btn-primary" onclick="submitReservation()">Prenota</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API = './api-crud.php';
+        const token = localStorage.getItem('auth_token');
+        let currentRestaurantId = '';
+        let allReservations = [];
+
+        function logout() {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('adminToken');
+            window.location.href = 'login.html';
+        }
+
+        function authHeaders() { return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }; }
+        async function apiCall(action, params = {}) {
+            const url = new URL(API, window.location.origin + window.location.pathname);
+            url.searchParams.set('action', action);
+            for (const [k, v] of Object.entries(params)) { if (v) url.searchParams.set(k, v); }
+            url.searchParams.set('token', token);
+            const res = await fetch(url);
+            return res.json();
+        }
+
+        async function loadRestaurants() {
+            const data = await apiCall('get-restaurants');
+            const sel = document.getElementById('restaurantSelect');
+            const restaurants = data.restaurants || data.data || [];
+            sel.innerHTML = '<option value="">Seleziona ristorante...</option>';
+            restaurants.forEach(r => {
+                sel.innerHTML += `<option value="${r.id}">${r.name}</option>`;
+            });
+            if (restaurants.length === 1) {
+                sel.value = restaurants[0].id;
+                currentRestaurantId = restaurants[0].id;
+            }
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            loadReservations();
+        }
+
+        async function loadReservations() {
+            if (!currentRestaurantId) return;
+            const dateFilter = document.getElementById('resDateFilter').value;
+            const params = { restaurant_id: currentRestaurantId };
+            if (dateFilter) params.date = dateFilter;
+            const data = await apiCall('get-restaurant-reservations', params);
+            allReservations = data.reservations || [];
+            renderReservations();
+            updateResStats();
+        }
+
+        function renderReservations() {
+            const el = document.getElementById('reservationsList');
+            if (!allReservations.length) {
+                el.innerHTML = '<div class="empty-state"><i class="fas fa-calendar"></i><h3>Nessuna prenotazione</h3><p>Le prenotazioni appariranno qui</p></div>';
+                return;
+            }
+            let html = '<table><thead><tr><th>Data</th><th>Ora</th><th>Cliente</th><th>Telefono</th><th>Ospiti</th><th>Stato</th><th>Note</th><th>Azioni</th></tr></thead><tbody>';
+            allReservations.forEach(r => {
+                html += `<tr>
+                    <td>${r.res_date}</td>
+                    <td><strong>${r.res_time ? r.res_time.substring(0,5) : '-'}</strong></td>
+                    <td>${r.customer_name}</td>
+                    <td>${r.customer_phone || '-'}</td>
+                    <td>${r.guests}</td>
+                    <td><span class="badge badge-${r.status}">${r.status}</span></td>
+                    <td>${r.notes || ''}</td>
+                    <td>
+                        ${r.status === 'pending' ? `<button class="action-btn confirm" onclick="updateRes('${r.id}','confirmed')">Conferma</button>` : ''}
+                        ${r.status !== 'canceled' ? `<button class="action-btn cancel" onclick="updateRes('${r.id}','canceled')">Annulla</button>` : ''}
+                    </td>
+                </tr>`;
+            });
+            html += '</tbody></table>';
+            el.innerHTML = html;
+        }
+
+        function updateResStats() {
+            document.getElementById('totalRes').textContent = allReservations.length;
+            document.getElementById('pendingRes').textContent = allReservations.filter(r => r.status === 'pending').length;
+            document.getElementById('confirmedRes').textContent = allReservations.filter(r => r.status === 'confirmed').length;
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('todayGuests').textContent = allReservations.filter(r => r.res_date === today && r.status === 'confirmed').reduce((s, r) => s + parseInt(r.guests || 0), 0);
+        }
+
+        async function updateRes(id, status) {
+            await apiCall('update-reservation-status', { reservation_id: id, status: status });
+            loadReservations();
+        }
+
+        function openNewReservationModal() {
+            document.getElementById('resDateInput').value = new Date().toISOString().split('T')[0];
+            document.getElementById('reservationModal').classList.add('active');
+        }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        async function submitReservation() {
+            if (!currentRestaurantId) { alert('Seleziona un ristorante'); return; }
+            const data = {
+                restaurant_id: currentRestaurantId,
+                customer_name: document.getElementById('resName').value,
+                customer_phone: document.getElementById('resPhone').value,
+                customer_email: document.getElementById('resEmail').value,
+                res_date: document.getElementById('resDateInput').value,
+                res_time: document.getElementById('resTimeInput').value,
+                guests: parseInt(document.getElementById('resGuests').value),
+                notes: document.getElementById('resNotes').value
+            };
+            if (!data.customer_name || !data.res_date || !data.res_time) { alert('Compila i campi obbligatori'); return; }
+            const res = await fetch(API + '?action=create-reservation', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+            const result = await res.json();
+            if (result.success) {
+                closeModal('reservationModal');
+                loadReservations();
+            } else {
+                alert('Errore: ' + (result.error || 'sconosciuto'));
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!token) { window.location.href = 'login.html'; return; }
+            loadRestaurants().then(() => {
+                if (currentRestaurantId) loadReservations();
+            });
+        });
+    </script>
+</body>
+</html>

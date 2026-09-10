@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traccia il tuo Ordine - trovapiatto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#e73a3a; --bg:#0f0a15; --bg-card:#1a1125; --text:#f1e8ff; --text-dim:#9b8cb8; --border:#2d2145; --success:#34d399; --warning:#fbbf24; --info:#60a5fa; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; }
+        .container { max-width:600px; margin:0 auto; padding:24px 16px; }
+        .header { text-align:center; margin-bottom:32px; }
+        .header img { height:40px; border-radius:8px; margin-bottom:12px; }
+        .header h1 { font-size:1.3em; margin-bottom:4px; }
+        .header p { color:var(--text-dim); font-size:0.85em; }
+        .search-box { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:24px; }
+        .search-box label { display:block; color:var(--text-dim); font-size:0.8em; margin-bottom:6px; }
+        .search-box input { width:100%; padding:12px; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:10px; font-size:0.95em; margin-bottom:12px; }
+        .search-box input:focus { outline:none; border-color:var(--primary); }
+        .btn { width:100%; padding:14px; background:var(--primary); color:white; border:none; border-radius:10px; font-weight:700; font-size:0.95em; cursor:pointer; }
+        .btn:hover { background:#d63018; }
+        .order-result { display:none; }
+        .order-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:16px; }
+        .order-card h3 { font-size:1em; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+        .status-steps { display:flex; justify-content:space-between; margin:20px 0; position:relative; }
+        .status-steps::before { content:''; position:absolute; top:18px; left:0; right:0; height:3px; background:var(--border); z-index:0; }
+        .step { display:flex; flex-direction:column; align-items:center; gap:6px; z-index:1; flex:1; }
+        .step .dot { width:36px; height:36px; border-radius:50%; background:var(--border); display:flex; align-items:center; justify-content:center; font-size:0.85em; color:var(--text-dim); transition:all 0.3s; }
+        .step.active .dot { background:var(--primary); color:white; box-shadow:0 0 12px rgba(231,58,58,0.4); }
+        .step.done .dot { background:var(--success); color:white; }
+        .step .label { font-size:0.7em; color:var(--text-dim); text-align:center; }
+        .step.active .label, .step.done .label { color:var(--text); font-weight:600; }
+        .item-list { margin-top:16px; }
+        .item-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:0.85em; }
+        .item-row:last-child { border-bottom:none; }
+        .total-row { display:flex; justify-content:space-between; padding:12px 0 0; font-weight:800; font-size:1.05em; border-top:2px solid var(--border); margin-top:8px; }
+        .empty-state { text-align:center; padding:48px 24px; color:var(--text-dim); }
+        .empty-state i { font-size:2.5em; margin-bottom:12px; display:block; opacity:0.5; }
+    </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    <link rel="canonical" href="https://www.trovapiatto.it/track-order.html">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="/logo/logo-trovapiatto.png" alt="trovapiatto">
+            <h1>Traccia il tuo Ordine</h1>
+            <p>Inserisci il tuo ID ordine o numero di telefono</p>
+        </div>
+
+        <div class="search-box">
+            <label>ID Ordine o Telefono</label>
+            <input type="text" id="searchInput" placeholder="es: ord_5f5571... o +39 333 1234567">
+            <button class="btn" onclick="trackOrder()"><i class="fas fa-search" style="margin-right:6px;"></i>Cerca</button>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const API = '/app/admin/api-crud.php';
+
+        async function trackOrder() {
+            const q = document.getElementById('searchInput').value.trim();
+            if (!q) return;
+            const el = document.getElementById('results');
+            el.innerHTML = '<div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>Ricerca...</p></div>';
+
+            try {
+                let url;
+                if (q.startsWith('ord_')) {
+                    url = `${API}?action=get-order&id=${encodeURIComponent(q)}`;
+                } else {
+                    url = `${API}?action=get-order&phone=${encodeURIComponent(q)}`;
+                }
+                const res = await fetch(url);
+                const data = await res.json();
+
+                if (!data.success || !data.orders || (Array.isArray(data.orders) && data.orders.length === 0)) {
+                    el.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><h3>Nessun ordine trovato</h3><p>Controlla il codice e riprova</p></div>';
+                    return;
+                }
+
+                const orders = Array.isArray(data.orders) ? data.orders : [data.orders];
+                el.innerHTML = orders.map(o => renderOrder(o)).join('');
+            } catch (e) {
+                el.innerHTML = '<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><h3>Errore</h3><p>Riprova più tardi</p></div>';
+            }
+        }
+
+        function renderOrder(o) {
+            const statusSteps = ['pending', 'confirmed', 'preparing', 'ready', 'completed'];
+            const statusLabels = ['Ricevuto', 'Confermato', 'In preparazione', 'Pronto', 'Completato'];
+            const statusIcons = ['fa-receipt', 'fa-check', 'fa-fire', 'fa-bell', 'fa-flag-checkered'];
+            const currentIdx = statusSteps.indexOf(o.status);
+            const items = o.items || [];
+
+            return `
+                <div class="order-card">
+                    <h3><i class="fas fa-receipt" style="color:var(--primary);"></i> Ordine #${o.id.substring(0,12)}</h3>
+                    <div style="display:flex;justify-content:space-between;font-size:0.8em;color:var(--text-dim);margin-bottom:8px;">
+                        <span>${new Date(o.created_at).toLocaleDateString('it-IT')} ${new Date(o.created_at).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})}</span>
+                        <span style="text-transform:capitalize;">${(o.order_type || o.type) === 'dinein' ? 'Al tavolo' : (o.order_type || o.type) === 'takeaway' ? 'Asporto' : (o.order_type || o.type) === 'delivery' ? 'Delivery' : (o.order_type || o.type || '-')}</span>
+                    </div>
+                    <div class="status-steps">
+                        ${statusSteps.map((s, i) => `
+                            <div class="step ${i < currentIdx ? 'done' : i === currentIdx ? 'active' : ''}">
+                                <div class="dot"><i class="fas ${statusIcons[i]}"></i></div>
+                                <div class="label">${statusLabels[i]}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="item-list">
+                        ${items.map(i => `
+                            <div class="item-row">
+                                <span>${i.quantity}x ${i.dish_name}</span>
+                                <span>€${parseFloat(i.total_price || i.unit_price * i.quantity).toFixed(2)}</span>
+                            </div>
+                        `).join('')}
+                        <div class="total-row">
+                            <span>Totale</span>
+                            <span>€${parseFloat(o.total).toFixed(2)}</span>
+                        </div>
+                    </div>
+                    ${o.notes ? `<div style="margin-top:12px;padding:10px;background:rgba(255,255,255,0.04);border-radius:8px;font-size:0.8em;color:var(--text-dim);"><i class="fas fa-sticky-note" style="margin-right:4px;"></i>${o.notes}</div>` : ''}
+                </div>
+            `;
+        }
+
+        document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') trackOrder(); });
+    </script>
+</body>
+</html>

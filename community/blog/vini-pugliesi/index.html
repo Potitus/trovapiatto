@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vini Pugliesi: Guida ai Migliori Vini della Regione | trovapiatto</title>
+  <meta name="description" content="Scopri i vini pugliesi piu famosi: Primitivo, Negroamaro, Bombino e molti altri. Guida alle cantine, zone di produzione e dove assaggiarli a Bari.">
+  <meta name="keywords" content="vini pugliese, vino Primitivo, vino Negroamaro, cantine Puglia, degustazione vini Bari, vini Puglia">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/vini-pugliesi/">
+  <meta property="og:title" content="Vini Pugliesi: Guida ai Migliori Vini della Regione">
+  <meta property="og:description" content="Guida completa ai vini pugliesi piu famosi. Primitivo, Negroamaro, cantine e degustazioni.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Vini">
+  <meta property="article:tag" content="Puglia">
+  <meta property="article:tag" content="Enologia">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vini Pugliesi: Guida ai Migliori Vini della Regione">
+  <meta name="twitter:description" content="Guida completa ai vini pugliesi piu famosi con cantine e degustazioni.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/vini-pugliesi/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --bg-card-hover: #221833;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .article-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .article-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .article-nav .logo img { height: 32px; }
+    
+    .article-nav .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+    
+    .article-nav .back-link:hover { color: var(--primary); }
+    
+    .article-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 350px;
+      overflow: hidden;
+    }
+    
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%);
+    }
+    
+    .article-hero .hero-content {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .article-hero .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .article-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    
+    @media (min-width: 768px) {
+      .article-hero h1 { font-size: 2.8rem; }
+    }
+    
+    .article-hero .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-hero .meta i { color: var(--primary); }
+    
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+    
+    .article-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: var(--text-white);
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text-white);
+    }
+    
+    .article-content p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .article-content strong { color: var(--text-white); }
+    
+    .article-content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .article-content a:hover { color: var(--primary-light); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      transition: all 0.3s;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    
+    .restaurant-card .rc-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245,158,11,0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-food);
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-cuisine {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-dish {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .restaurant-card .rc-dish-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    
+    .restaurant-card .rc-dish-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    
+    .restaurant-card .rc-dish-price {
+      font-weight: 700;
+      color: var(--accent-food);
+      font-size: 1rem;
+    }
+    
+    .restaurant-card .rc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    
+    .map-section {
+      margin: 40px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #article-map {
+      width: 100%;
+      height: 350px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .cta-box .cta-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+    }
+    
+    .ad-container {
+      margin: 30px 0;
+      text-align: center;
+      min-height: 90px;
+    }
+    
+    .article-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .article-footer .share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .article-footer .share span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-footer .share a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    
+    .article-footer .share a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="article-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <a href="/community/blog/" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Magazine
+    </a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1400&h=700&fit=crop" alt="Vino pugliese">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-wine-glass"></i> Vino</span>
+      <h1>Vini Pugliesi: Guida ai Migliori Vini della Regione</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 9 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 8 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+
+      <p>La <strong>Puglia</strong> e la regione vinicola piu grande d'Italia, con oltre 50.000 ettari di vigneti che si estendono dal Gargano alla Salentina. Qui il vino non e solo una bevanda: e <strong>cultura, tradizione e identita</strong>. In questa guida scopri i <strong>migliori vini pugliesi</strong>, le cantine da visitare e dove assaggiarli a Bari e dintorni.</p>
+
+      <p>La Puglia e famosa per i suoi <strong>vini robusti e corposi</strong>, perfetti per accompagnare i piatti della cucina tradizionale. Il clima caldo e soleggiato, i terreni calcarei e la brezza marina creano le condizioni ideali per uve di qualita. Dai rossi potenti ai bianchi freschi, la Puglia offre una gamma di sapori unica al mondo.</p>
+
+      <h2>1. Primitivo di Manduria — Il Re dei Vini Pugliesi</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Primitivo di Manduria</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Manduria, Taranto</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Primitivo di Manduria DOP</div>
+          <div class="rc-dish-desc">Vino rosso corposo con note di frutti di bosco, cioccolato e spezie. Gradazione 14-15%</div>
+          <div class="rc-dish-price">&euro;12-25</div>
+        </div>
+        <a href="/menu/primitivo-manduria/" class="rc-link">Vedi le cantine <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>Primitivo di Manduria</strong> e il vino pugliese per eccellenza. Nasce dall'uva Primitivo, coltivata nella zona di Manduria da oltre 2.000 anni. E un vino rosso <strong>corpo, caldo e avvolgente</strong>, con tannini morbidi e note di frutti di bosco, prugna matura, cioccolato e vaniglia. La versione Dolce Naturale e un甜点 wine pregiato, perfetto con i dolci pugliesi.</p>
+
+      <p><strong>Da provare:</strong> Il Primitivo di Manduria Riserva, invecchiato 12 mesi in botti di rovere, per apprezzarne tutta la complessita.</p>
+
+      <h2>2. Negroamaro — Il Vino dell'Ionomia</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Negroamaro</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Salento, Lecce</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Negroamaro Salento IGP</div>
+          <div class="rc-dish-desc">Vino rosso elegante con note di ciliegia, tabacco e erbe mediterranee. Gradazione 13%</div>
+          <div class="rc-dish-price">&euro;8-18</div>
+        </div>
+        <a href="/menu/negroamaro/" class="rc-link">Vedi le cantine <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>Negroamaro</strong> e il vino simbolo del Salento. Il suo nome, che significa "nero amaro", descrive perfettamente il suo carattere: un vino <strong>scuro, intenso e leggermente amaro</strong>, con sentori di ciliegia matura, tabacco e erbe selvatiche. E perfetto con i piatti di carne alla griglia, i formaggi stagionati e i piatti speziati della cucina salentina.</p>
+
+      <p><strong>Da provare:</strong> Il Negroamaro Rosato, leggero e fresco, perfetto per l'estate con insalate e pesce.</p>
+
+      <h2>3. Bombino Bianco — Il Bianco Sorpresa</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Bombino Bianco</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Daunia, Foggia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.5</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Bombino Bianco Puglia IGP</div>
+          <div class="rc-dish-desc">Vino bianco fresco con note di fiori bianchi, agrumi e erbe aromatiche. Gradazione 12%</div>
+          <div class="rc-dish-price">&euro;7-12</div>
+        </div>
+        <a href="/menu/bombino-bianco/" class="rc-link">Vedi le cantine <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>Bombino Bianco</strong> e un bianco fresco e minerale, perfetto per chi ama i vini leggeri. Nasce nella zona della Daunia, e ha sentori di <strong>fiori bianchi, agrumi e erbe di campo</strong>. E un ottimo aperitivo e si abbina perfettamente con i piatti di pesce, le insalate e le verdure grigliate.</p>
+
+      <p><strong>Da provare:</strong> Il Bombino Bianco in versione frizzante, leggero e rinfrescante.</p>
+
+      <h2>4. Susumaniello — Il Vino Antico</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Susumaniello</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Brindisi</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Susumaniello Brindisi DOP</div>
+          <div class="rc-dish-desc">Vino rosso intense con note di frutti neri, grafite e pepe. Gradazione 13.5%</div>
+          <div class="rc-dish-price">&euro;10-20</div>
+        </div>
+        <a href="/menu/susumaniello/" class="rc-link">Vedi le cantine <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>Susumaniello</strong> e un vino antico, quasi dimenticato, che ha ritrovato nuova vita negli ultimi decenni. Il suo nome deriva dal dialetto e significa "asino di mare", per la resistenza dell'uva alle condizioni difficili. E un vino <strong>intenso, complesso e longevo</strong>, con note di frutti neri, grafite e spezie.</p>
+
+      <p><strong>Da provare:</strong> Il Susumaniello in blends con il Negroamaro, per un vino complesso e armonioso.</p>
+
+      <h2>5. Verdeca — Il Bianco della Murgia</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Verdeca</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Murgia, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.4</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Verdeca Puglia IGP</div>
+          <div class="rc-dish-desc">Vino bianco secco con note di erbe selvatiche, mandorla e fiori bianchi. Gradazione 12%</div>
+          <div class="rc-dish-price">&euro;7-11</div>
+        </div>
+        <a href="/menu/verdeca/" class="rc-link">Vedi le cantine <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>Verdeca</strong> e un bianco autoctono della Murgia, poco conosciuto ma di grande qualita. Ha un colore giallo paglierino, un profumo <strong>delicato di erbe selvatiche, mandorla e fiori bianchi</strong>, e un gusto fresco e minerale. E perfetto con i piatti di pesce crudo, le insalate e le verdure.</p>
+
+      <p><strong>Da provare:</strong> Il Verdeca in versione spumante, per un aperitivo elegante e originale.</p>
+
+      <h2>6. Aglianico — Il Barolo del Sud</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Aglianico del Vulture</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Vulture, Basilicata</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Aglianico del Vulture DOP</div>
+          <div class="rc-dish-desc">Vino rosso strutturato con note di frutti neri, cuoio e tabacco. Gradazione 14%</div>
+          <div class="rc-dish-price">&euro;12-28</div>
+        </div>
+        <a href="/menu/aglianico/" class="rc-link">Vedi le cantine <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>L'<strong>Aglianico del Vulture</strong> e considerato il "Barolo del Sud" per la sua struttura e longevita. Nasce sulle pendici del Monte Vulture, un vulcano spento che conferisce ai terreni una ricchezza minerale unica. E un vino <strong>potente, complesso e longevo</strong>, con tannini nobili e note di frutti neri, cuoio e tabacco.</p>
+
+      <p><strong>Da provare:</strong> L'Aglianico del Vulture Superiore, invecchiato 24 mesi, per una degustazione di alto livello.</p>
+
+      <h2>7. Ottavianello — Il Rosato Prezioso</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ottavianello</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Castel del Monte, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Ottavianello Castel del Monte DOP</div>
+          <div class="rc-dish-desc">Vino rosato fresco con note di fragola, lampone e fiori di campo. Gradazione 12.5%</div>
+          <div class="rc-dish-price">&euro;8-14</div>
+        </div>
+        <a href="/menu/ottavianello/" class="rc-link">Vedi le cantine <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>L'<strong>Ottavianello</strong> e un rosato elegante e raffinato, poco conosciuto fuori dalla Puglia. Nasce dall'uva Ottavianello, un vitigno autoctono quasi estinto, e ha un colore <strong>rosa tenue con riflessi dorati</strong>. Il profumo e delicato, con note di fragola, lampone e fiori di campo. E perfetto come aperitivo o con piatti leggeri.</p>
+
+      <p><strong>Da provare:</strong> L'Ottavianello in versione spumante, per un'esperienza unica e originale.</p>
+
+      <h2>8. Minutolo — Il Bianco della Gargana</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Minutolo</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Gargano, Foggia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.5</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Minutolo Foggia IGP</div>
+          <div class="rc-dish-desc">Vino bianco aromatico con note di albicocca, pesca e fiori bianchi. Gradazione 13%</div>
+          <div class="rc-dish-price">&euro;8-13</div>
+        </div>
+        <a href="/menu/minutolo/" class="rc-link">Vedi le cantine <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>Minutolo</strong> e un bianco aromatico della Gargana, un vitigno antico che ha ritrovato popolarita negli ultimi anni. Ha un colore <strong>giallo dorato</strong>, un profumo intenso di <strong>albicocca, pesca e fiori bianchi</strong>, e un gusto fresco e persistente. E perfetto con i piatti di pesce, le insalate e i formaggi freschi.</p>
+
+      <p><strong>Da provare:</strong> Il Minutolo in versione passito, per un dolce elegante e originale.</p>
+
+      <!-- AdSense In-Article -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <!-- Mappa Interattiva -->
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Cantine da Visitare</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Dove Bere Vino Pugliese a Bari</h2>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Enoteche:</strong> A Bari ci sono diverse enoteche specializzate in vini pugliesi, come l'Enoteca di Via Sparano e il Wine Bar del Centro Storico.</span></li>
+          <li><i class="fa-solid fa-store"></i> <span><strong>Supermercati:</strong> I supermercati grossi hanno sezioni dedicate ai vini pugliesi, con prezzi accessibili.</span></li>
+          <li><i class="fa-solid fa-utensils"></i> <span><strong>Ristoranti:</strong> I ristoranti di Bari Vecchia offrono solitamente una carta dei vini con ottimi vini locali.</span></li>
+          <li><i class="fa-solid fa-map-pin"></i> <span><strong>degustazioni:</strong> Alcune cantine organizzano degustazioni guidate, perfette per scoprire i vini pugliesi.</span></li>
+          <li><i class="fa-solid fa-calendar"></i> <span><strong>Feste del Vino:</strong> Durante l'anno si tengono numerose feste del vino in Puglia, dove puoi assaggiare e acquistare vini direttamente dai produttori.</span></li>
+          <li><i class="fa-solid fa-wine-bottle"></i> <span><strong>Abbinamenti:</strong> I vini pugliesi si abbinano perfettamente con la cucina locale: Primitivo con la carne alla griglia, Negroamaro con i formaggi, Verdaca con il pesce.</span></li>
+        </ul>
+      </div>
+
+      <h2>Perche i Vini Pugliesi Sono Speciali</h2>
+
+      <p>La Puglia ha una <strong>tradizione vinicola millenaria</strong>, che risale ai tempi dei Greci e dei Romani. I vigneti pugliesi si estendono per oltre 50.000 ettari, rendendo la regione la piu grande produttrice di vino d'Italia. Ma la quantita non va a discapito della qualita: i vini pugliesi sono sempre piu apprezzati a livello internazionale per la loro <strong>ricchezza di sapori e la loro personalita unica</strong>.</p>
+
+      <p>Il segreto dei vini pugliesi sta nel <strong>terroir</strong>: terreni calcarei, clima caldo e soleggiato, brezza marina e una tradizione enologica che si tramanda di generazione in generazione. Questa combinazione crea vini con un carattere unico, impossibile da replicare in altre zone del mondo.</p>
+
+      <div class="cta-box">
+        <h3>Scopri Altri Sapori della Puglia</h3>
+        <p>Cerca piatti, ristoranti e menu nella nostra mappa interattiva</p>
+        <a href="/piatti/?q=vino+pugliese" class="cta-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Cerca Vini Pugliesi
+        </a>
+      </div>
+
+      <!-- AdSense Bottom -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/vini-pugliesi/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/vini-pugliesi/&text=Vini+Pugliesi:+Guida+ai+Migliori+Vini+della+Regione"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+i+migliori+vini+pugliesi:+https://www.trovapiatto.it/community/blog/vini-pugliesi/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const wineries = [
+      { name: 'Cantine due Palme', lat: 40.4667, lng: 17.9500, price: '€12-25', slug: 'due-palme', rating: '4.9' },
+      { name: 'Feudi di San Gregorio', lat: 40.8167, lng: 15.6333, price: '€15-30', slug: 'feudi-san-gregorio', rating: '4.8' },
+      { name: 'Cantine Varvaglione', lat: 40.3500, lng: 17.7333, price: '€10-20', slug: 'varvaglione', rating: '4.7' },
+      { name: 'Masseria Li Veli', lat: 40.4000, lng: 17.8833, price: '€12-22', slug: 'li-veli', rating: '4.8' },
+      { name: 'Cantine Tormaresca', lat: 40.8500, lng: 17.3833, price: '€14-28', slug: 'tormaresca', rating: '4.7' },
+      { name: 'Tenute Rubino', lat: 40.3833, lng: 17.7500, price: '€10-18', slug: 'rubino', rating: '4.6' },
+      { name: 'Cantine Paolo Leo', lat: 40.3333, lng: 17.5333, price: '€8-15', slug: 'paolo-leo', rating: '4.5' },
+      { name: 'Agriturismo Masseria Ferragnano', lat: 40.7833, lng: 17.0333, price: '€9-16', slug: 'ferragnano', rating: '4.6' }
+    ];
+
+    const map = L.map('article-map').setView([40.7000, 17.0000], 7);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    wineries.forEach(w => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${w.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([w.lat, w.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${w.name}</strong><br>
+            <span style="color:#f59e0b;">⭐ ${w.rating}</span> &middot; <strong>${w.price}</strong><br>
+            <a href="/menu/${w.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Scopri di Più →</a>
+          </div>
+        `);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Vini Pugliesi: Guida ai Migliori Vini della Regione",
+    "description": "Scopri i vini pugliesi piu famosi: Primitivo, Negroamaro, Bombino e molti altri. Guida alle cantine, zone di produzione e dove assaggiarli a Bari.",
+    "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-07-09T10:00:00+02:00",
+    "dateModified": "2026-07-09T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/vini-pugliesi/" },
+    "articleSection": "Food Guide",
+    "keywords": "vini pugliese, vino Primitivo, vino Negroamaro, cantine Puglia, degustazione vini Bari"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Magazine", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Vini Pugliesi", "item": "https://www.trovapiatto.it/community/blog/vini-pugliesi/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quali sono i vini più famosi della Puglia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I vini più famosi della Puglia sono il Primitivo di Manduria, il Negroamaro, il Bombino Bianco, il Susumaniello e il Verdeca. Consulta la nostra guida completa per tutti i dettagli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Dove bere vino pugliese a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Bari puoi bere vino pugliese nelle enoteche specializzate, nei ristoranti di Bari Vecchia e nei wine bar del centro storico. Anche i supermercati hanno sezioni dedicate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual è il vino più tipico della Puglia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il vino più tipico della Puglia è il Primitivo di Manduria, un rosso corposo e avvolgente che rappresenta l'eccellenza enologica della regione."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

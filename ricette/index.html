@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricette dei Ristoranti - trovapiatto</title>
+    <meta name="description" content="Riproduci a casa i piatti dei migliori ristoranti di Bari. Ingredienti, tempi e procedimento passo-passo.">
+    <meta name="keywords" content="ricette, cucina italiana, ricette pugliesi, cucina a casa, piatti ristoranti">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Ricette dei Ristoranti - trovapiatto">
+    <meta property="og:description" content="Riproduci a casa i piatti dei migliori ristoranti di Bari">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.trovapiatto.it/ricette/">
+    <link rel="canonical" href="https://www.trovapiatto.it/ricette/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Ricette dei Ristoranti - trovapiatto",
+        "description": "Riproduci a casa i piatti dei migliori ristoranti di Bari. Ingredienti, tempi e procedimento passo-passo.",
+        "url": "https://www.trovapiatto.it/ricette/",
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Ricette di cucina italiana",
+            "itemListElement": [
+                {"@type": "Recipe", "name": "Pizza Margherita", "description": "La regina delle pizzerie italiane con pomodoro, mozzarella e basilico", "recipeCategory": "Pizza", "cookTime": "PT10M", "prepTime": "PT90M", "recipeYield": "4 porzioni"},
+                {"@type": "Recipe", "name": "Orecchiette alle Cime di Rapa", "description": "Il piatto simbolo della cucina pugliese", "recipeCategory": "Primo", "cookTime": "PT15M", "prepTime": "PT15M", "recipeYield": "4 porzioni"},
+                {"@type": "Recipe", "name": "Burrata Pugliese", "description": "La regina della tavola pugliese", "recipeCategory": "Antipasto", "cookTime": "PT0M", "prepTime": "PT10M", "recipeYield": "4 porzioni"},
+                {"@type": "Recipe", "name": "Focaccia Barese", "description": "La focaccia più famosa d'Italia", "recipeCategory": "Pizza", "cookTime": "PT25M", "prepTime": "PT120M", "recipeYield": "4 porzioni"},
+                {"@type": "Recipe", "name": "Tiramisù", "description": "Il classico italiano per finire in dolcezza", "recipeCategory": "Dolce", "cookTime": "PT0M", "prepTime": "PT30M", "recipeYield": "6 porzioni"},
+                {"@type": "Recipe", "name": "Spaghetti alla Carbonara", "description": "Classico romano con guanciale e pecorino", "recipeCategory": "Primo", "cookTime": "PT15M", "prepTime": "PT10M", "recipeYield": "4 porzioni"},
+                {"@type": "Recipe", "name": "Branzino al Forno", "description": "Pesce fresco del Mediterraneo al forno", "recipeCategory": "Secondo", "cookTime": "PT25M", "prepTime": "PT20M", "recipeYield": "4 porzioni"},
+                {"@type": "Recipe", "name": "Panzerotto Baresce", "description": "Pizza fritta tradizionale barese", "recipeCategory": "Street Food", "cookTime": "PT10M", "prepTime": "PT120M", "recipeYield": "4 porzioni"}
+            ]
+        }
+    }
+    </script>
+    <style>
+        :root {
+            --primary: #e73a3a;
+            --accent-food: #f59e0b;
+            --accent-pizza: #ef4444;
+            --accent-pesce: #06b6d4;
+            --accent-med: #10b981;
+            --accent-dolci: #a855f7;
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.04);
+            --border-card: rgba(255,255,255,0.08);
+            --text-light: #ffffff;
+            --text-muted: #a0aec0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, #1a0a15 0%, var(--bg-dark) 100%);
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(245,158,11,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(231,58,58,0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-food), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Search */
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        .search-container input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            color: var(--text-light);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(231,58,58,0.2);
+        }
+        .search-container i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            padding: 1.5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .filter-btn {
+            padding: 0.5rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(231,58,58,0.15);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Grid */
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Card */
+        .recipe-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .recipe-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(245,158,11,0.4);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        .recipe-card-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .recipe-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .recipe-card:hover .recipe-card-img img {
+            transform: scale(1.08);
+        }
+        .recipe-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: flex;
+            gap: 6px;
+        }
+        .recipe-badge span {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            backdrop-filter: blur(8px);
+        }
+        .badge-difficulty {
+            background: rgba(16,185,129,0.9);
+            color: white;
+        }
+        .badge-time {
+            background: rgba(245,158,11,0.9);
+            color: white;
+        }
+        .recipe-card-body {
+            padding: 1.25rem;
+        }
+        .recipe-card-body h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .recipe-card-body p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .recipe-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .recipe-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .recipe-meta i {
+            color: var(--accent-food);
+        }
+        .recipe-restaurant {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-card);
+            font-size: 0.8rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+        }
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-food);
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-card);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-card);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--primary); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .recipes-grid { grid-template-columns: 1fr; padding: 1rem; }
+        }
+    </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+    <section class="hero">
+        <h1><i class="fa-solid fa-book-open"></i> Ricette dei Ristoranti</h1>
+        <p>Riproduci a casa i piatti che hai mangiato nei migliori ristoranti di Bari. Ingredienti, tempi e procedimento passo-passo.</p>
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Cerca una ricetta... (es. Pizza, Branzino, Tiramisù)">
+        </div>
+    </section>
+
+    <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">Tutte</button>
+        <button class="filter-btn" data-filter="primo">🍝 Primi</button>
+        <button class="filter-btn" data-filter="secondo">🥩 Secondi</button>
+        <button class="filter-btn" data-filter="pizza">🍕 Pizza</button>
+        <button class="filter-btn" data-filter="pesce">🐟 Pesce</button>
+        <button class="filter-btn" data-filter="dolce">🍰 Dolci</button>
+        <button class="filter-btn" data-filter="antipasto">🧀 Antipasti</button>
+        <button class="filter-btn" data-filter="contorno">🥗 Contorni</button>
+    </div>
+
+    <div class="filters" id="restaurant-filters" style="padding-top: 0;">
+        <span style="font-size: 0.8rem; color: var(--text-muted); margin-right: 0.5rem;"><i class="fa-solid fa-store"></i> Ristorante:</span>
+        <select id="restaurantFilter" style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; color: var(--text-light); padding: 0.5rem 1rem; font-size: 0.85rem; font-family: inherit; cursor: pointer;">
+            <option value="all">Tutti i ristoranti</option>
+        </select>
+    </div>
+
+    <div class="recipes-grid" id="recipesGrid">
+        <!-- Ricette statiche indicizzabili da Google -->
+        <a href="/ricette/ricetta.html?slug=pizza-margherita" class="recipe-card" itemscope itemtype="https://schema.org/Recipe">
+            <div class="recipe-card-img">
+                <img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=600&h=400&fit=crop" alt="Pizza Margherita" itemprop="image" loading="lazy">
+                <div class="recipe-badge"><span class="badge-difficulty"><i class="fa-solid fa-signal"></i> Media</span><span class="badge-time"><i class="fa-solid fa-clock"></i> 100 min</span></div>
+            </div>
+            <div class="recipe-card-body">
+                <h3 itemprop="name">Pizza Margherita</h3>
+                <p itemprop="description">La regina delle pizzerie italiane, con pomodoro, mozzarella e basilico.</p>
+                <div class="recipe-meta"><span><i class="fa-solid fa-clock"></i> Prep: 90 min</span><span><i class="fa-solid fa-fire"></i> Cottura: 10 min</span><span><i class="fa-solid fa-users"></i> 4 porzioni</span></div>
+            </div>
+        </a>
+        <a href="/ricette/ricetta.html?slug=orecchiette-cime-di-rapa" class="recipe-card" itemscope itemtype="https://schema.org/Recipe">
+            <div class="recipe-card-img">
+                <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=600&h=400&fit=crop" alt="Orecchiette Cime di Rapa" itemprop="image" loading="lazy">
+                <div class="recipe-badge"><span class="badge-difficulty"><i class="fa-solid fa-signal"></i> Facile</span><span class="badge-time"><i class="fa-solid fa-clock"></i> 30 min</span></div>
+            </div>
+            <div class="recipe-card-body">
+                <h3 itemprop="name">Orecchiette alle Cime di Rapa</h3>
+                <p itemprop="description">Il piatto simbolo della cucina pugliese con cime di rapa, acciughe e aglio.</p>
+                <div class="recipe-meta"><span><i class="fa-solid fa-clock"></i> Prep: 15 min</span><span><i class="fa-solid fa-fire"></i> Cottura: 15 min</span><span><i class="fa-solid fa-users"></i> 4 porzioni</span></div>
+            </div>
+        </a>
+        <a href="/ricette/ricetta.html?slug=burrata-pugliese" class="recipe-card" itemscope itemtype="https://schema.org/Recipe">
+            <div class="recipe-card-img">
+                <img src="https://images.unsplash.com/photo-1631209121750-a9f656d26e80?w=600&h=400&fit=crop" alt="Burrata Pugliese" itemprop="image" loading="lazy">
+                <div class="recipe-badge"><span class="badge-difficulty"><i class="fa-solid fa-signal"></i> Facile</span><span class="badge-time"><i class="fa-solid fa-clock"></i> 10 min</span></div>
+            </div>
+            <div class="recipe-card-body">
+                <h3 itemprop="name">Burrata Pugliese</h3>
+                <p itemprop="description">La regina della tavola pugliese con pomodori, rucola e prosciutto crudo.</p>
+                <div class="recipe-meta"><span><i class="fa-solid fa-clock"></i> Prep: 10 min</span><span><i class="fa-solid fa-fire"></i> Cottura: 0 min</span><span><i class="fa-solid fa-users"></i> 4 porzioni</span></div>
+            </div>
+        </a>
+        <a href="/ricette/ricetta.html?slug=focaccia-barese" class="recipe-card" itemscope itemtype="https://schema.org/Recipe">
+            <div class="recipe-card-img">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&h=400&fit=crop" alt="Focaccia Barese" itemprop="image" loading="lazy">
+                <div class="recipe-badge"><span class="badge-difficulty"><i class="fa-solid fa-signal"></i> Media</span><span class="badge-time"><i class="fa-solid fa-clock"></i> 145 min</span></div>
+            </div>
+            <div class="recipe-card-body">
+                <h3 itemprop="name">Focaccia Barese</h3>
+                <p itemprop="description">La focaccia più famosa d'Italia con pomodorini e olive.</p>
+                <div class="recipe-meta"><span><i class="fa-solid fa-clock"></i> Prep: 120 min</span><span><i class="fa-solid fa-fire"></i> Cottura: 25 min</span><span><i class="fa-solid fa-users"></i> 4 porzioni</span></div>
+            </div>
+        </a>
+        <a href="/ricette/ricetta.html?slug=tiramisu" class="recipe-card" itemscope itemtype="https://schema.org/Recipe">
+            <div class="recipe-card-img">
+                <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600&h=400&fit=crop" alt="Tiramisù" itemprop="image" loading="lazy">
+                <div class="recipe-badge"><span class="badge-difficulty"><i class="fa-solid fa-signal"></i> Media</span><span class="badge-time"><i class="fa-solid fa-clock"></i> 30 min</span></div>
+            </div>
+            <div class="recipe-card-body">
+                <h3 itemprop="name">Tiramisù</h3>
+                <p itemprop="description">Il classico italiano per finire in dolcezza con mascarpone e savoiardi.</p>
+                <div class="recipe-meta"><span><i class="fa-solid fa-clock"></i> Prep: 30 min</span><span><i class="fa-solid fa-fire"></i> Cottura: 0 min</span><span><i class="fa-solid fa-users"></i> 6 porzioni</span></div>
+            </div>
+        </a>
+        <a href="/ricette/ricetta.html?slug=spaghetti-carbonara" class="recipe-card" itemscope itemtype="https://schema.org/Recipe">
+            <div class="recipe-card-img">
+                <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600&h=400&fit=crop" alt="Spaghetti alla Carbonara" itemprop="image" loading="lazy">
+                <div class="recipe-badge"><span class="badge-difficulty"><i class="fa-solid fa-signal"></i> Facile</span><span class="badge-time"><i class="fa-solid fa-clock"></i> 25 min</span></div>
+            </div>
+            <div class="recipe-card-body">
+                <h3 itemprop="name">Spaghetti alla Carbonara</h3>
+                <p itemprop="description">Classico romano con guanciale croccante e pecorino romano.</p>
+                <div class="recipe-meta"><span><i class="fa-solid fa-clock"></i> Prep: 10 min</span><span><i class="fa-solid fa-fire"></i> Cottura: 15 min</span><span><i class="fa-solid fa-users"></i> 4 porzioni</span></div>
+            </div>
+        </a>
+        <a href="/ricette/ricetta.html?slug=branzino-al-forno" class="recipe-card" itemscope itemtype="https://schema.org/Recipe">
+            <div class="recipe-card-img">
+                <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&h=400&fit=crop" alt="Branzino al Forno" itemprop="image" loading="lazy">
+                <div class="recipe-badge"><span class="badge-difficulty"><i class="fa-solid fa-signal"></i> Media</span><span class="badge-time"><i class="fa-solid fa-clock"></i> 45 min</span></div>
+            </div>
+            <div class="recipe-card-body">
+                <h3 itemprop="name">Branzino al Forno</h3>
+                <p itemprop="description">Pesce fresco del Mediterraneo al forno con patate e pomodorini.</p>
+                <div class="recipe-meta"><span><i class="fa-solid fa-clock"></i> Prep: 20 min</span><span><i class="fa-solid fa-fire"></i> Cottura: 25 min</span><span><i class="fa-solid fa-users"></i> 4 porzioni</span></div>
+            </div>
+        </a>
+        <a href="/ricette/ricetta.html?slug=panzerotto-barese" class="recipe-card" itemscope itemtype="https://schema.org/Recipe">
+            <div class="recipe-card-img">
+                <img src="https://images.unsplash.com/photo-1536964549204-cce9eab227bd?w=600&h=400&fit=crop" alt="Panzerotto Baresce" itemprop="image" loading="lazy">
+                <div class="recipe-badge"><span class="badge-difficulty"><i class="fa-solid fa-signal"></i> Media</span><span class="badge-time"><i class="fa-solid fa-clock"></i> 130 min</span></div>
+            </div>
+            <div class="recipe-card-body">
+                <h3 itemprop="name">Panzerotto Baresce</h3>
+                <p itemprop="description">Pizza fritta tradizionale barese con pomodoro e mozzarella.</p>
+                <div class="recipe-meta"><span><i class="fa-solid fa-clock"></i> Prep: 120 min</span><span><i class="fa-solid fa-fire"></i> Cottura: 10 min</span><span><i class="fa-solid fa-users"></i> 4 porzioni</span></div>
+            </div>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <a href="/">trovapiatto</a> - Riproduci i piatti dei ristoranti a casa tua</p>
+    </footer>
+
+    <script>
+        const API_BASE = '/app/admin/recipes-api.php';
+        let allRecipes = [];
+        let currentFilter = 'all';
+        let currentRestaurant = 'all';
+
+        // Fetch recipes
+        async function loadRecipes() {
+            try {
+                const res = await fetch(`${API_BASE}?action=get-recipes&limit=50`);
+                const data = await res.json();
+                if (data.success) {
+                    allRecipes = data.recipes;
+                    populateRestaurants(allRecipes);
+                    renderRecipes(allRecipes);
+                }
+            } catch (err) {
+                document.getElementById('recipesGrid').innerHTML = `
+                    <div class="empty-state" style="grid-column:1/-1;">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <h3>Errore di connessione</h3>
+                        <p>Impossibile caricare le ricette. Riprova più tardi.</p>
+                    </div>`;
+            }
+        }
+
+        // Populate restaurant dropdown
+        function populateRestaurants(recipes) {
+            const restaurants = {};
+            recipes.forEach(r => {
+                if (r.restaurant_name && r.restaurant_slug) {
+                    restaurants[r.restaurant_slug] = r.restaurant_name;
+                }
+            });
+            const select = document.getElementById('restaurantFilter');
+            const sorted = Object.entries(restaurants).sort((a, b) => a[1].localeCompare(b[1]));
+            sorted.forEach(([slug, name]) => {
+                const opt = document.createElement('option');
+                opt.value = slug;
+                opt.textContent = name;
+                select.appendChild(opt);
+            });
+        }
+
+        // Render recipes
+        function renderRecipes(recipes) {
+            const grid = document.getElementById('recipesGrid');
+            if (!recipes.length) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column:1/-1;">
+                        <i class="fa-solid fa-book-open"></i>
+                        <h3>Nessuna ricetta trovata</h3>
+                        <p>Prova a cercare qualcosa di diverso o controlla più tardi.</p>
+                    </div>`;
+                return;
+            }
+
+            grid.innerHTML = recipes.map(r => {
+                const totalTime = (r.prep_time_minutes || 0) + (r.cook_time_minutes || 0);
+                const diffLabel = {facile: 'Facile', media: 'Media', difficile: 'Difficile'}[r.difficulty] || 'Media';
+                return `
+                <a href="/ricette/ricetta.html?slug=${r.slug}" class="recipe-card">
+                    <div class="recipe-card-img">
+                        <img src="${r.image_url || 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop'}" alt="${r.dish_name}" loading="lazy">
+                        <div class="recipe-badge">
+                            <span class="badge-difficulty"><i class="fa-solid fa-signal"></i> ${diffLabel}</span>
+                            <span class="badge-time"><i class="fa-solid fa-clock"></i> ${totalTime} min</span>
+                        </div>
+                    </div>
+                    <div class="recipe-card-body">
+                        <h3>${r.dish_name}</h3>
+                        <p>${r.description || 'Riproduci questo piatto a casa tua con la ricetta originale.'}</p>
+                        <div class="recipe-meta">
+                            <span><i class="fa-solid fa-clock"></i> Prep: ${r.prep_time_minutes || 15} min</span>
+                            <span><i class="fa-solid fa-fire"></i> Cottura: ${r.cook_time_minutes || 30} min</span>
+                            <span><i class="fa-solid fa-users"></i> ${r.portions || 4} porzioni</span>
+                        </div>
+                        ${r.restaurant_name ? `<div class="recipe-restaurant"><i class="fa-solid fa-store"></i> ${r.restaurant_name}</div>` : ''}
+                    </div>
+                </a>`;
+            }).join('');
+        }
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', async (e) => {
+            const q = e.target.value.trim();
+            if (q.length < 2) {
+                filterAndRender(allRecipes);
+                return;
+            }
+            try {
+                const res = await fetch(`${API_BASE}?action=search-recipes&q=${encodeURIComponent(q)}`);
+                const data = await res.json();
+                if (data.success) filterAndRender(data.recipes);
+            } catch (err) {}
+        });
+
+        // Filters
+        document.getElementById('filters').addEventListener('click', (e) => {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.dataset.filter;
+            filterAndRender(allRecipes);
+        });
+
+        // Restaurant filter
+        document.getElementById('restaurantFilter').addEventListener('change', (e) => {
+            currentRestaurant = e.target.value;
+            filterAndRender(allRecipes);
+        });
+
+        function filterAndRender(recipes) {
+            let filtered = recipes;
+            if (currentFilter !== 'all') {
+                filtered = recipes.filter(r => {
+                    const name = (r.dish_name || '').toLowerCase();
+                    const desc = (r.description || '').toLowerCase();
+                    switch(currentFilter) {
+                        case 'primo': return name.match(/pasta|spaghetti|orecchiette|risotto|gnocch|lasagn|linguin|tagliatell|penne|fusill|ziti|cacio|carbonara|amatriciana|gricia|norma|pesto/);
+                        case 'secondo': return name.match(/bistecca|branzino|pesce|carne|pollo|agnello|maiale|tonno|calamari|gamberi|scampi|involtini/);
+                        case 'pizza': return name.match(/pizza|focaccia|calzon|panzerott/);
+                        case 'pesce': return name.match(/branzino|pesce|tonno|salmon|orata|gamberi|scampi|calamar|cozze|vongol|frutta di mare|tarantola/);
+                        case 'dolce': return name.match(/tiramis|dolce|cheesecake|pannacotta|budino|semifreddo|cannol|sfogliat|pastiera|baba|zuccotto/);
+                        case 'antipasto': return name.match(/antipast|bruschett|carpaccio|tartare|burrata|mozzarella|affettat|crostini|involtini/);
+                        case 'contorno': return name.match(/contorn|insalat|verdur|patate|spinac|cavolfior|carciof|pomodor/);
+                        default: return true;
+                    }
+                });
+            }
+            if (currentRestaurant !== 'all') {
+                filtered = filtered.filter(r => r.restaurant_slug === currentRestaurant);
+            }
+            renderRecipes(filtered);
+        }
+
+        // Init
+        loadRecipes();
+    </script>
+</body>
+</html>

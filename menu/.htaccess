@@ -1,0 +1,11 @@
+<IfModule mod_headers.c>
+    Header set Content-Type "text/html; charset=utf-8"
+    Header always set Content-Type "text/html; charset=utf-8"
+</IfModule>
+
+<IfModule mod_mime.c>
+    AddCharset UTF-8 .html .js .json .css
+</IfModule>
+
+# Forza UTF-8 senza BOM per tutti i file HTML
+AddType text/html;charset=UTF-8 .html

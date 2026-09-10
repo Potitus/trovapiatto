@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi Siamo - trovapiatto</title>
+  <meta name="description" content="Scopri trovapiatto: la piattaforma gratuita che ti aiuta a trovare i migliori ristoranti e piatti a Bari e Puglia. 8000+ piatti, mappa interattiva, menu digitali.">
+  <meta name="keywords" content="trovapiatto, chi siamo, piattaforma ristoranti Bari, menu digitale gratuito, food discovery Puglia">
+  <meta name="theme-color" content="#e73a3a">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --primary:#e73a3a;--primary-dark:#c92a2a;
+      --dark-bg:#0f0a15;--card-bg:#1a1225;
+      --text-light:#e0e0e0;--text-muted:#999;
+      --border-color:rgba(231,58,58,0.2);
+      --glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);
+      --green:#10b981;--purple:#8b5cf6;--cyan:#06b6d4;--amber:#f59e0b;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(135deg,#0f0a15 0%,#1a0f25 50%,#0f0a15 100%);
+      color:var(--text-light);line-height:1.7;min-height:100vh;
+    }
+
+    /* HEADER */
+    .header{position:sticky;top:0;z-index:100;background:rgba(15,10,21,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+    .header-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
+    .header-logo img{height:36px}
+    .header-nav{display:flex;align-items:center;gap:1.5rem}
+    .header-nav a{color:var(--text-light);text-decoration:none;font-weight:500;font-size:0.85rem;transition:all 0.3s}
+    .header-nav a:hover{color:var(--primary)}
+    @media(max-width:768px){.header{padding:0.6rem 1rem}.header-nav a:not(.btn-back){display:none}.btn-back{padding:6px 14px;background:linear-gradient(135deg,var(--primary),#ff6b6b);color:white;border-radius:50px;font-weight:600;font-size:0.75rem}}
+
+    /* HERO */
+    .hero{text-align:center;padding:5rem 1.5rem 4rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(231,58,58,0.1),transparent 70%);pointer-events:none}
+    .hero-icon{width:90px;height:90px;margin:0 auto 1.5rem;background:linear-gradient(135deg,rgba(231,58,58,0.15),rgba(231,58,58,0.05));border:2px solid rgba(231,58,58,0.3);border-radius:28px;display:flex;align-items:center;justify-content:center;animation:float 3s ease-in-out infinite}
+    .hero-icon i{font-size:2.2rem;color:var(--primary)}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .hero h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;margin-bottom:1rem;line-height:1.1}
+    .hero h1 span{background:linear-gradient(135deg,var(--primary),#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{font-size:1.1rem;color:var(--text-muted);max-width:650px;margin:0 auto 1.5rem}
+    .hero-tagline{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:rgba(231,58,58,0.1);border:1px solid rgba(231,58,58,0.3);border-radius:50px;font-size:0.9rem;font-weight:600;color:var(--primary)}
+    .hero-tagline i{font-size:0.8rem}
+
+    /* CONTENT */
+    .content{max-width:1000px;margin:0 auto;padding:0 1.5rem 4rem}
+
+    /* SECTION TITLE */
+    .section-title{text-align:center;margin-bottom:2.5rem}
+    .section-title h2{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;color:#fff;margin-bottom:0.5rem}
+    .section-title p{color:var(--text-muted);font-size:1rem}
+
+    /* MISSION CARDS */
+    .mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:4rem}
+    @media(max-width:768px){.mission-grid{grid-template-columns:1fr}}
+    .mission-card{
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:20px;padding:2rem;text-align:center;
+      backdrop-filter:blur(10px);transition:all 0.3s;position:relative;overflow:hidden;
+    }
+    .mission-card:hover{border-color:rgba(231,58,58,0.3);transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.3)}
+    .mission-card .icon-wrap{
+      width:60px;height:60px;margin:0 auto 1.25rem;
+      background:linear-gradient(135deg,rgba(231,58,58,0.12),rgba(231,58,58,0.04));
+      border:1.5px solid rgba(231,58,58,0.25);border-radius:18px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .mission-card .icon-wrap i{font-size:1.4rem;color:var(--primary)}
+    .mission-card h3{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.5rem}
+    .mission-card p{font-size:0.88rem;color:var(--text-muted);line-height:1.6}
+
+    /* STATS */
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:4rem}
+    @media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+    .stat-card{
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:16px;padding:1.5rem;text-align:center;
+      backdrop-filter:blur(10px);transition:all 0.3s;
+    }
+    .stat-card:hover{border-color:rgba(231,58,58,0.3);transform:translateY(-3px)}
+    .stat-card .stat-number{font-size:2.2rem;font-weight:800;color:var(--primary);margin-bottom:0.25rem}
+    .stat-card .stat-label{font-size:0.82rem;color:var(--text-muted);font-weight:500}
+
+    /* TEAM */
+    .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:4rem}
+    @media(max-width:768px){.team-grid{grid-template-columns:1fr}}
+    .team-card{
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:20px;padding:2rem;text-align:center;
+      backdrop-filter:blur(10px);transition:all 0.3s;
+    }
+    .team-card:hover{border-color:rgba(231,58,58,0.3);transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.3)}
+    .team-avatar{
+      width:72px;height:72px;margin:0 auto 1rem;
+      border-radius:50%;overflow:hidden;
+      border:2px solid rgba(231,58,58,0.4);
+      background:linear-gradient(135deg,rgba(231,58,58,0.2),rgba(139,92,246,0.1));
+      display:flex;align-items:center;justify-content:center;
+    }
+    .team-avatar i{font-size:1.8rem;color:var(--primary)}
+    .team-card h4{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:2px}
+    .team-card .role{font-size:0.8rem;color:var(--primary);font-weight:600;margin-bottom:0.5rem}
+    .team-card .desc{font-size:0.82rem;color:var(--text-muted);line-height:1.5}
+
+    /* VALUES */
+    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:4rem}
+    @media(max-width:768px){.values-grid{grid-template-columns:1fr}}
+    .value-card{
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:20px;padding:2rem;text-align:center;
+      backdrop-filter:blur(10px);transition:all 0.3s;
+    }
+    .value-card:hover{border-color:rgba(231,58,58,0.3);transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.3)}
+    .value-card .icon-wrap{
+      width:60px;height:60px;margin:0 auto 1.25rem;
+      border-radius:18px;display:flex;align-items:center;justify-content:center;
+    }
+    .value-card:nth-child(1) .icon-wrap{background:linear-gradient(135deg,rgba(231,58,58,0.15),rgba(231,58,58,0.05));border:1.5px solid rgba(231,58,58,0.25)}
+    .value-card:nth-child(1) .icon-wrap i{color:var(--primary)}
+    .value-card:nth-child(2) .icon-wrap{background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(139,92,246,0.05));border:1.5px solid rgba(139,92,246,0.25)}
+    .value-card:nth-child(2) .icon-wrap i{color:var(--purple)}
+    .value-card:nth-child(3) .icon-wrap{background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(16,185,129,0.05));border:1.5px solid rgba(16,185,129,0.25)}
+    .value-card:nth-child(3) .icon-wrap i{color:var(--green)}
+    .value-card h3{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:0.5rem}
+    .value-card p{font-size:0.88rem;color:var(--text-muted);line-height:1.6}
+
+    /* CTA */
+    .cta-card{
+      background:linear-gradient(135deg,rgba(231,58,58,0.1),rgba(231,58,58,0.03));
+      border:1px solid rgba(231,58,58,0.25);border-radius:24px;padding:3rem 2rem;text-align:center;
+      position:relative;overflow:hidden;
+    }
+    .cta-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(231,58,58,0.05),transparent 50%);pointer-events:none}
+    .cta-card h3{font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:0.5rem}
+    .cta-card p{color:var(--text-muted);margin-bottom:1.5rem;font-size:0.95rem}
+    .cta-btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:14px 32px;background:linear-gradient(135deg,var(--primary),#ff6b6b);
+      color:white;border-radius:50px;font-weight:700;font-size:0.95rem;
+      text-decoration:none;transition:all 0.3s;
+      box-shadow:0 10px 30px rgba(231,58,58,0.4);
+    }
+    .cta-btn:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(231,58,58,0.6);color:white;text-decoration:none}
+
+    .back-link{display:inline-flex;align-items:center;gap:8px;margin-top:2rem;padding:14px 32px;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);border-radius:50px;color:var(--text-light);text-decoration:none;font-weight:600;font-size:0.9rem;transition:all 0.3s}
+    .back-link:hover{border-color:var(--primary);color:var(--primary);background:rgba(231,58,58,0.06);transform:translateY(-2px);text-decoration:none}
+
+    .footer{text-align:center;padding:2.5rem 1.5rem;border-top:1px solid var(--border-color);background:rgba(0,0,0,0.2)}
+    .footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+    .footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;transition:all 0.3s}
+    .footer-links a:hover{color:var(--primary)}
+    .footer p{color:var(--text-muted);font-size:0.8rem}
+
+    .fade-in{opacity:0;transform:translateY(20px);transition:all 0.6s cubic-bezier(0.4,0,0.2,1)}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    <link rel="canonical" href="https://www.trovapiatto.it/about.html">
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-inner">
+    <a href="/" class="header-logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+    <div class="header-nav">
+      <a href="/">Home</a>
+      <a href="aggiungi-menu.html">Aggiungi Menu</a>
+      <a href="/" class="btn-back"><i class="fas fa-arrow-left"></i> Home</a>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-icon"><i class="fas fa-utensils"></i></div>
+  <h1>Chi <span>Siamo</span></h1>
+  <p>trovapiatto nasce dalla passione per il buon cibo e dalla voglia di rendere la scoperta dei ristoranti italiani più semplice, veloce e piacevole.</p>
+  <div class="hero-tagline"><i class="fas fa-heart"></i> Connnettiamo gli amanti della cucina con i migliori ristoranti</div>
+</div>
+
+<!-- Content -->
+<div class="content">
+
+  <!-- Mission -->
+  <div class="section-title fade-in">
+    <h2>La Nostra Missione</h2>
+    <p>Tre pilastri guidano ogni cosa che facciamo</p>
+  </div>
+  <div class="mission-grid">
+    <div class="mission-card fade-in">
+      <div class="icon-wrap"><i class="fas fa-search-location"></i></div>
+      <h3>Scoperta Facile</h3>
+      <p>Trova i ristoranti migliori nella tua zona con una mappa interattiva intuitiva e filtri intelligenti per categoria, cucina e preferenze.</p>
+    </div>
+    <div class="mission-card fade-in">
+      <div class="icon-wrap"><i class="fas fa-mobile-screen-button"></i></div>
+      <h3>Menu Digitali</h3>
+      <p>Accedi ai menu completi dei ristoranti direttamente dal tuo smartphone, con prezzi aggiornati, descrizioni e foto dei piatti.</p>
+    </div>
+    <div class="mission-card fade-in">
+      <div class="icon-wrap"><i class="fas fa-star"></i></div>
+      <h3>Community</h3>
+      <p>Condividi recensioni autentiche, scopri cosa mangiano gli altri e contribuisci a migliorare l'esperienza culinaria di tutti.</p>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="section-title fade-in">
+    <h2>I Nostri Numeri</h2>
+    <p>La crescita della community trovapiatto</p>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card fade-in">
+      <div class="stat-number" data-target="8000">0</div>
+      <div class="stat-label">Piatti Disponibili</div>
+    </div>
+    <div class="stat-card fade-in">
+      <div class="stat-number" data-target="79">0</div>
+      <div class="stat-label">Ristoranti Partner</div>
+    </div>
+    <div class="stat-card fade-in">
+      <div class="stat-number" data-target="25">0</div>
+      <div class="stat-label">K+ Utenti Attivi</div>
+    </div>
+    <div class="stat-card fade-in">
+      <div class="stat-number" data-target="15">0</div>
+      <div class="stat-label">Città Coperte</div>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <div class="section-title fade-in">
+    <h2>Il Nostro Team</h2>
+    <p>Un team appassionato di food lovers, sviluppatori e designer</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card fade-in">
+      <div class="team-avatar"><i class="fas fa-user-tie"></i></div>
+      <h4>Marco Rossi</h4>
+      <div class="role">CEO & Founder</div>
+      <div class="desc">Appassionato di cucina italiana e tecnologia, ha fondato trovapiatto per unire queste due passioni.</div>
+    </div>
+    <div class="team-card fade-in">
+      <div class="team-avatar"><i class="fas fa-code"></i></div>
+      <h4>Laura Bianchi</h4>
+      <div class="role">CTO</div>
+      <div class="desc">Sviluppatrice full-stack con esperienza in startup tech, cura ogni dettaglio della piattaforma.</div>
+    </div>
+    <div class="team-card fade-in">
+      <div class="team-avatar"><i class="fas fa-palette"></i></div>
+      <h4>Giuseppe Verdi</h4>
+      <div class="role">Design Lead</div>
+      <div class="desc">Designer UX/UI con focus su esperienza utente, rende trovapiatto intuitivo e bello da usare.</div>
+    </div>
+  </div>
+
+  <!-- Values -->
+  <div class="section-title fade-in">
+    <h2>I Nostri Valori</h2>
+    <p>Le principi che guidano ogni nostra decisione</p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card fade-in">
+      <div class="icon-wrap"><i class="fas fa-heart"></i></div>
+      <h3>Passione per il Cibo</h3>
+      <p>Selezioniamo solo i migliori ristoranti e piatti, con attenzione alla qualità e alla tradizione culinaria italiana.</p>
+    </div>
+    <div class="value-card fade-in">
+      <div class="icon-wrap"><i class="fas fa-users"></i></div>
+      <h3>Comunità</h3>
+      <p>Costruiamo una community di appassionati che condividono recensioni, consigli e esperienze autentiche.</p>
+    </div>
+    <div class="value-card fade-in">
+      <div class="icon-wrap"><i class="fas fa-shield-halved"></i></div>
+      <h3>Affidabilità</h3>
+      <p>Garantiamo informazioni accurate, aggiornate e verificate su tutti i ristoranti presenti sulla piattaforma.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-card fade-in">
+    <h3>Hai Domande?</h3>
+    <p>Il nostro team è sempre disponibile per te. Scrivici e ti risponderemo entro 24 ore.</p>
+    <a href="mailto:info@trovapiatto.it" class="cta-btn"><i class="fas fa-envelope"></i> info@trovapiatto.it</a>
+  </div>
+
+  <div style="text-align:center">
+    <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Torna alla Home</a>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms-of-service.html">Termini di Servizio</a>
+    <a href="contact.html">Contatti</a>
+    <a href="about.html">Chi Siamo</a>
+    <a href="aggiungi-menu.html">Aggiungi Menu</a>
+  </div>
+  <p>&copy; 2026 trovapiatto — Tutti i diritti riservati</p>
+</div>
+
+<script>
+// Scroll animations
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Animated counters
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.dataset.target);
+      const duration = 1500;
+      const start = performance.now();
+      function update(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(eased * target).toLocaleString('it-IT') + (target >= 100 ? '+' : '');
+        if (p < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+      counterObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-number').forEach(el => counterObs.observe(el));
+</script>
+
+</body>
+</html>

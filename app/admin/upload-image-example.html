@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Foto Piatti</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input[type="file"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input[type="file"]:focus,
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #EF3D26;
+            box-shadow: 0 0 0 3px rgba(239, 61, 38, 0.1);
+        }
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+        .upload-area:hover {
+            border-color: #EF3D26;
+            background: #fff5f2;
+        }
+        .upload-area.dragover {
+            border-color: #EF3D26;
+            background: #fff5f2;
+        }
+        .upload-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .upload-text {
+            color: #666;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #EF3D26;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #d63018;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .preview {
+            margin-top: 20px;
+            display: none;
+        }
+        .preview img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .result.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        .result.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        .url-result {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .copy-btn {
+            padding: 6px 12px;
+            font-size: 12px;
+            margin-top: 10px;
+            width: auto;
+        }
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #EF3D26;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 Upload Foto Piatti</h1>
+        
+        <div class="info-box">
+            <strong>📋 Formati supportati:</strong> JPG, PNG, WebP (max 5MB)
+        </div>
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <!-- Upload Area -->
+            <div class="form-group">
+                <label>Seleziona o trascina la foto</label>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <div class="upload-text">
+                        Clicca per selezionare<br>o trascina la foto qui
+                    </div>
+                    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                </div>
+            </div>
+
+            <!-- Preview -->
+            <div class="preview" id="preview">
+                <img id="previewImg" src="" alt="Preview">
+                <button type="button" onclick="clearPreview()" style="background: #999; margin-top: 10px;">Cambia foto</button>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" id="submitBtn">Carica Foto</button>
+            
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Caricamento in corso...</p>
+            </div>
+        </form>
+
+        <!-- Risultato -->
+        <div class="result" id="result"></div>
+
+        <!-- Sezione Salva Piatto -->
+        <div id="saveDishSection" style="display: none; margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px; border: 2px solid #EF3D26;">
+            <h3>💾 Salva Piatto nel Database</h3>
+            <p style="color: #666; margin-bottom: 15px;">Completa i dati del piatto per salvarlo nel database.</p>
+            
+            <div class="form-group">
+                <label>Ristorante *</label>
+                <select id="restaurantSelect" required>
+                    <option value="">Seleziona ristorante...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Nome Piatto *</label>
+                <input type="text" id="dishName" required placeholder="es. Spaghetti alla Carbonara">
+            </div>
+
+            <div class="form-group">
+                <label>Categoria</label>
+                <select id="dishCategory">
+                    <option value="">Seleziona ristorante per caricare categorie</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Descrizione</label>
+                <input type="text" id="dishDescription" placeholder="es. Fresco, con guanciale e pecorino">
+            </div>
+
+            <div class="form-group">
+                <label>Prezzo (€)</label>
+                <input type="number" id="dishPrice" step="0.01" placeholder="es. 12.50">
+            </div>
+
+            <button type="button" onclick="saveDish()" style="width: 100%; background: #EF3D26;">💾 Salva Piatto</button>
+        </div>
+
+        <!-- Codice di integrazione -->
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+            <h3>📝 Codice di Integrazione</h3>
+            <p>Usa questo URL nell'API per aggiungere/modificare il piatto:</p>
+            <div class="url-result" id="codeSnippet">
+                image_url: "https://www.trovapiatto.it/app/admin/uploads/[file_caricato]"
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadForm = document.getElementById('uploadForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loading = document.getElementById('loading');
+        const resultDiv = document.getElementById('result');
+        const previewDiv = document.getElementById('preview');
+        const previewImg = document.getElementById('previewImg');
+        const saveDishSection = document.getElementById('saveDishSection');
+        
+        let currentImageUrl = null;
+        let currentImageFilename = null;
+
+        // Inizializza caricando ristoranti
+        window.addEventListener('load', loadRestaurants);
+        
+        // Quando cambia ristorante, carica le categorie
+        document.getElementById('restaurantSelect').addEventListener('change', loadCategories);
+
+        // Click per selezionare file
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        // Gestione drag & drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                showPreview();
+            }
+        });
+
+        // Anteprima quando seleziona file
+        fileInput.addEventListener('change', showPreview);
+
+        function showPreview() {
+            const file = fileInput.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    previewImg.src = e.target.result;
+                    previewDiv.style.display = 'block';
+                    uploadArea.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function clearPreview() {
+            fileInput.value = '';
+            previewDiv.style.display = 'none';
+            uploadArea.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '';
+            saveDishSection.style.display = 'none';
+        }
+
+        // Carica lista ristoranti
+        const adminToken = () => localStorage.getItem('auth_token') || localStorage.getItem('adminToken') || '';
+        const withToken = url => url + (url.includes('?') ? '&' : '?') + 'token=' + encodeURIComponent(adminToken());
+
+        async function loadRestaurants() {
+            try {
+                const response = await fetch('/app/admin/api.php?action=get-restaurants');
+                const data = await response.json();
+                if (data.success && data.data) {
+                    const select = document.getElementById('restaurantSelect');
+                    data.data.forEach(restaurant => {
+                        const option = document.createElement('option');
+                        option.value = restaurant.id;
+                        option.textContent = restaurant.name;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.warn('Impossibile caricare ristoranti:', error);
+            }
+        }
+
+        // Submit form per upload immagine
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const file = fileInput.files[0];
+            if (!file) {
+                showResult('Seleziona una foto', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            submitBtn.disabled = true;
+            loading.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '';
+
+            try {
+                const response = await fetch(withToken('/app/admin/api.php?action=upload-image'), {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const fullUrl = 'https://www.trovapiatto.it/app' + data.url;
+                    currentImageUrl = data.url;
+                    currentImageFilename = data.filename;
+                    
+                    showResult(
+                        `✅ Foto caricata con successo!<div class="url-result">${fullUrl}</div>
+                        <button type="button" class="copy-btn" onclick="copyToClipboard('${fullUrl}')">📋 Copia URL</button>`,
+                        'success'
+                    );
+                    
+                    // Mostra sezione di salvataggio piatto
+                    saveDishSection.style.display = 'block';
+                } else {
+                    showResult('❌ ' + (data.error || 'Errore durante il caricamento'), 'error');
+                }
+            } catch (error) {
+                showResult('❌ Errore di connessione: ' + error.message, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+
+        // Carica categorie per il ristorante selezionato
+        async function loadCategories() {
+            const restaurantId = document.getElementById('restaurantSelect').value;
+            const categorySelect = document.getElementById('dishCategory');
+            
+            if (!restaurantId) {
+                categorySelect.innerHTML = '<option value="">Seleziona ristorante prima</option>';
+                return;
+            }
+            
+            categorySelect.innerHTML = '<option value="">Caricamento categorie...</option>';
+            
+            try {
+                const response = await fetch(`/app/admin/api.php?action=get-categories&restaurant_id=${restaurantId}`);
+                const data = await response.json();
+                
+                if (data.success && data.data && data.data.length > 0) {
+                    categorySelect.innerHTML = '<option value="">-- Seleziona categoria --</option>';
+                    
+                    data.data.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category.id;
+                        option.textContent = category.name;
+                        categorySelect.appendChild(option);
+                    });
+                    
+                    // Aggiungi opzione per creare nuova categoria
+                    const divider = document.createElement('option');
+                    divider.disabled = true;
+                    divider.textContent = '---';
+                    categorySelect.appendChild(divider);
+                    
+                    const newOpt = document.createElement('option');
+                    newOpt.value = 'NEW';
+                    newOpt.textContent = '➕ Crea nuova categoria';
+                    categorySelect.appendChild(newOpt);
+                } else {
+                    categorySelect.innerHTML = '<option value="">Nessuna categoria disponibile</option>';
+                }
+            } catch (error) {
+                categorySelect.innerHTML = '<option value="">Errore caricamento categorie</option>';
+                console.error('Errore:', error);
+            }
+        }
+
+        // Salva piatto nel database
+        async function saveDish() {
+            if (!currentImageUrl) {
+                alert('❌ Prima carica una foto!');
+                return;
+            }
+
+            const restaurantId = document.getElementById('restaurantSelect').value;
+            const dishName = document.getElementById('dishName').value.trim();
+            const categoryValue = document.getElementById('dishCategory').value;
+
+            if (!restaurantId) {
+                alert('❌ Seleziona un ristorante');
+                return;
+            }
+
+            if (!dishName) {
+                alert('❌ Scrivi il nome del piatto');
+                return;
+            }
+            
+            // Se l'utente vuole creare una nuova categoria
+            let categoryId = null;
+            if (categoryValue === 'NEW') {
+                const newCategoryName = prompt('Inserisci il nome della nuova categoria:');
+                if (!newCategoryName) {
+                    alert('❌ Creazione categoria annullata');
+                    return;
+                }
+                
+                try {
+                    const createResponse = await fetch(withToken('/app/admin/api.php?action=add-category'), {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            restaurant_id: restaurantId,
+                            name: newCategoryName,
+                            display_order: 0
+                        })
+                    });
+                    
+                    const createData = await createResponse.json();
+                    if (createData.success) {
+                        categoryId = createData.id;
+                        alert('✅ Categoria creata con successo!');
+                        await loadCategories();  // Ricarica le categorie
+                    } else {
+                        alert('❌ Errore creazione categoria: ' + createData.error);
+                        return;
+                    }
+                } catch (error) {
+                    alert('❌ Errore di connessione: ' + error.message);
+                    return;
+                }
+            } else if (categoryValue) {
+                categoryId = categoryValue;
+            }
+
+            const dishData = {
+                restaurant_id: restaurantId,
+                name: dishName,
+                category_id: categoryId,
+                description: document.getElementById('dishDescription').value.trim() || null,
+                price: document.getElementById('dishPrice').value ? parseFloat(document.getElementById('dishPrice').value) : null,
+                image_url: currentImageUrl,
+                available: true
+            };
+
+            try {
+                const response = await fetch(withToken('/app/admin/api.php?action=add-item'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dishData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('✅ Piatto salvato nel database!\n\nID: ' + data.id);
+                    // Reset
+                    document.getElementById('dishName').value = '';
+                    document.getElementById('dishCategory').value = '';
+                    document.getElementById('dishDescription').value = '';
+                    document.getElementById('dishPrice').value = '';
+                    clearPreview();
+                } else {
+                    alert('❌ Errore nel salvataggio: ' + (data.error || 'Errore sconosciuto'));
+                }
+            } catch (error) {
+                alert('❌ Errore di connessione: ' + error.message);
+            }
+        }
+
+        function showResult(message, type) {
+            resultDiv.className = 'result ' + type;
+            resultDiv.innerHTML = message;
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ URL copiato negli appunti!');
+            });
+        }
+    </script>
+</body>
+</html>

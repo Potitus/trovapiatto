@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orecchiette a Bari: 7 Ristoranti Dove Mangiare le Migliori | trovapiatto</title>
+  <meta name="description" content="Scopri dove mangiare le migliori orecchiette a Bari. Guida ai 7 ristoranti con prezzi, menu e consigli. Dal classico con cime di rapa alle versioni creative.">
+  <meta name="keywords" content="orecchiette Bari, orecchiette cime di rapa, dove mangiare orecchiette Bari, migliori orecchiette Bari, pasta pugliese, cucina barese, ristoranti Bari">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/orecchiette-bari/">
+  <meta property="og:title" content="Orecchiette a Bari: 7 Ristoranti Dove Mangiare le Migliori">
+  <meta property="og:description" content="Guida completa alle migliori orecchiette di Bari. Dal classico con cime di rapa alle versioni creative, ecco dove trovarle.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-02T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-02T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Orecchiette">
+  <meta property="article:tag" content="Bari">
+  <meta property="article:tag" content="Cucina Pugliese">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Orecchiette a Bari: 7 Ristoranti Dove Mangiare le Migliori">
+  <meta name="twitter:description" content="Guida completa alle migliori orecchiette di Bari con prezzi e consigli.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/orecchiette-bari/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --bg-card-hover: #221833;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .article-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .article-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .article-nav .logo img { height: 32px; }
+    
+    .article-nav .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+    
+    .article-nav .back-link:hover { color: var(--primary); }
+    
+    .article-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 350px;
+      overflow: hidden;
+    }
+    
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%);
+    }
+    
+    .article-hero .hero-content {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .article-hero .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .article-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    
+    @media (min-width: 768px) {
+      .article-hero h1 { font-size: 2.8rem; }
+    }
+    
+    .article-hero .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-hero .meta i { color: var(--primary); }
+    
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+    
+    .article-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: var(--text-white);
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text-white);
+    }
+    
+    .article-content p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .article-content strong { color: var(--text-white); }
+    
+    .article-content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .article-content a:hover { color: var(--primary-light); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      transition: all 0.3s;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    
+    .restaurant-card .rc-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245,158,11,0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-food);
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-cuisine {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-dish {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .restaurant-card .rc-dish-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    
+    .restaurant-card .rc-dish-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    
+    .restaurant-card .rc-dish-price {
+      font-weight: 700;
+      color: var(--accent-food);
+      font-size: 1rem;
+    }
+    
+    .restaurant-card .rc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    
+    .map-section {
+      margin: 40px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #article-map {
+      width: 100%;
+      height: 350px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .cta-box .cta-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+    }
+    
+    .ad-container {
+      margin: 30px 0;
+      text-align: center;
+      min-height: 90px;
+    }
+    
+    .article-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .article-footer .share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .article-footer .share span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-footer .share a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    
+    .article-footer .share a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="article-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <a href="/community/blog/" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Magazine
+    </a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=1400&h=700&fit=crop" alt="Orecchiette pugliesi">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-utensils"></i> Piatto Tipico</span>
+      <h1>Orecchiette a Bari: 7 Ristoranti Dove Mangiare le Migliori</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 2 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 6 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+
+      <p>Le <strong>orecchiette</strong> non sono solo un piatto: a Bari sono un'identita. Derivate dal latino <em>"oreticula"</em> (orecchie piccole), queste pasta fatta a mano con la punta del coltello e il pollice e il pilastro della cucina barese da secoli. Ogni nonna, ogni massaia, ogni ristorante ha la sua versione, ma il cuore del piatto resta immutato: <strong>orecchiette fresche, cime di rapa amare, acciughe sotto sale e pangrattato tostato</strong>.</p>
+
+      <p>In questa guide ti portiamo alla scoperta dei <strong>7 migliori ristoranti di Bari</strong> dove assaggiare le orecchiette più buone della città. Dal classico indimenticabile alle versioni più creative, con prezzi reali tratti dai menu.</p>
+
+      <h2>1. Osteria delle Travi — Il Classico Perfetto</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Osteria delle Travi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via delle Travi, Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette con Cime di Rapa</div>
+          <div class="rc-dish-desc">La ricetta originale barese — orecchiette fresche, cime di rapa, acciughe e pangrattato</div>
+          <div class="rc-dish-price">&euro;10</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette con Salsiccia</div>
+          <div class="rc-dish-desc">Salsiccia fresca di maiale e pomodoro</div>
+          <div class="rc-dish-price">&euro;11</div>
+        </div>
+        <a href="/menu/osteria-delle-travi/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Nascosta nel cuore di Bari Vecchia, l'Osteria delle Travi e il punto di riferimento per chi cerca le orecchiette piu autentiche della città. Il locale e piccolo, familiare, e il menu e breve ma puntato tutto sulla qualita. Le orecchiette con cime di rapa qui sono un capolavoro di equilibrio: l'amaro delle rapa, il sapore pieno delle acciughe, la croccantezza del pangrattato. A soli 10 euro, e un bargain assoluto.</p>
+
+      <p><strong>Cosa ordinare:</strong> Le orecchiette con cime di rapa sono obbligatorie. Se vuoi provare qualcosa di diverso, la versione con salsiccia e un'ottima alternativa.</p>
+
+      <h2>2. Da Gianni — La Tradizione al Meglio</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Da Gianni</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 5.0</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette con Cime di Rapa</div>
+          <div class="rc-dish-desc">Orecchiette con cime di rapa, acciughe e pangrattato</div>
+          <div class="rc-dish-price">&euro;9</div>
+        </div>
+        <a href="/menu/da-gianni/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Da Gianni e uno di quei locali che non appaiono nelle guide turistiche ma che i baresi conoscono bene. A soli 9 euro, le orecchiette con cime di rapa sono tra le migliori in assoluto a Bari. Porzioni generose, pasta fatta in casa e un sapore che ti riporta alla tavola della nonna. Il rating di 5.0 parla da solo.</p>
+
+      <p><strong>Cosa ordinare:</strong> Le orecchiette con cime di rapa sono l'unico piatto che conta. Non serve ordinare altro.</p>
+
+      <h2>3. Ai 2 Ghiottoni — La Versione con Rapini</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ai 2 Ghiottoni</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette con Rapini</div>
+          <div class="rc-dish-desc">La ricetta tradizionale barese con rapini freschi</div>
+          <div class="rc-dish-price">&euro;12</div>
+        </div>
+        <a href="/menu/ai-2-ghiottoni/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Ai 2 Ghiottoni e un ristorante di pesce che pero non dimentica le radici pugliesi. Le orecchiette con rapini (una variante delle cime di rapa, con foglie piu grandi e sapore leggermente diverso) sono un piatto che coniuga tradizione e qualita superiore. Il ristorante e famoso per i piatti di pesce, ma le orecchiette qui non hanno nulla da invidiare.</p>
+
+      <p><strong>Cosa ordinare:</strong> Le orecchiette con rapini come primo, poi un pesce alla griglia come secondo.</p>
+
+      <h2>4. Radicale Restaurant — Orecchiette Gourmet</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Radicale Restaurant</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Cucina Moderna</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 5.0</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Stracotto di Manzo e 36 Mesi</div>
+          <div class="rc-dish-desc">Orecchiette giganti di pasta fresca, stracotto di manzo sfilacciato e fonduta di parmigiano 36 mesi</div>
+          <div class="rc-dish-price">&euro;18</div>
+        </div>
+        <a href="/menu/radicale/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Se cerchi qualcosa di diverso, Radicale e il posto giusto. Qui le orecchiette prendono una piega gourmet: <strong>orecchiette giganti di pasta fresca</strong> con stracotto di manzo sfilacciato e fonduta di parmigiano 36 mesi. Un piatto moderno che rispetta la tradizione ma la porta avanti. A 18 euro e un investimento, ma ne vale assolutamente la pena per un'esperienza gastronomica unica.</p>
+
+      <p><strong>Cosa ordinare:</strong> Lo stracotto di manzo e 36 mesi e il piatto signature. Prenota perche i posti finiscono in fretta.</p>
+
+      <h2>5. Gaeribaldi — Il Piatto della Tradizione</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ristorante Pizzeria Gaeribaldi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Steakhouse &amp; Pizzeria</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette con Cime di Rapa</div>
+          <div class="rc-dish-desc">Orecchiette pugliesi con cime di rapa, acciughe e mollica</div>
+          <div class="rc-dish-price">&euro;10</div>
+        </div>
+        <a href="/menu/gaeribaldi-grill-house/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Gaeribaldi e un locale versatile: pizzeria, steakhouse e ristorante di cucina pugliese allo stesso tempo. Le orecchiette con cime di rapa qui usano la mollica al posto del pangrattato, per una texture leggermente diversa ma altrettanto buona. A 10 euro e un ottimo rapporto qualita-prezzo.</p>
+
+      <p><strong>Cosa ordinare:</strong> Le orecchiette come primo, poi una fiorentina alla griglia se hai fame.</p>
+
+      <h2>6. La Battigia — Pesce e Orecchiette</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">La Battigia</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Ristorante di Pesce</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.5</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette alle Cime di Rapa</div>
+          <div class="rc-dish-desc">Orecchiette con cime di rapa, acciughe e pangrattato</div>
+          <div class="rc-dish-price">&euro;10</div>
+        </div>
+        <a href="/menu/la-battigia/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>La Battigia e un ristorante di pesce che fa le cose bene anche con la pasta. Le orecchiette alle cime di rapa sono preparate con la stessa cura riservata ai piatti di pesce: ingredienti freschi, cottura perfetta, presentazione curata. Un buon compromesso tra tradizione e qualita ristorante.</p>
+
+      <p><strong>Cosa ordinare:</strong> Le orecchiette come primo, poi un piatto di pesce del giorno.</p>
+
+      <h2>7. Da Vito — Orecchiette con Braciola</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Da Vito</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.0</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette e Braciola</div>
+          <div class="rc-dish-desc">Orecchiette con braciola di manzo</div>
+          <div class="rc-dish-price">&euro;14</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette e Rape</div>
+          <div class="rc-dish-desc">Orecchiette con cime di rapa</div>
+          <div class="rc-dish-price">&euro;14</div>
+        </div>
+        <a href="/menu/davito/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Da Vito e il classico ristorante di quartiere, quello dove vai per mangiare come a casa. Le orecchiette con braciola sono un piatto unico: la carne si sfalda e si mescola con la pasta, creando un sapore ricco e sostanzioso. A 14 euro e un piatto completo che fa da secondo primo e secondo insieme.</p>
+
+      <p><strong>Cosa ordinare:</strong> Le orecchiette con braciola se vuoi qualcosa di sostanzioso, le orecchiette e rape se preferisci il classico.</p>
+
+      <!-- AdSense In-Article -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <!-- Mappa Interattiva -->
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Dove Trovarle sulla Mappa</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Consigli per Assaggiare le Migliori Orecchiette a Bari</h2>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-clock"></i> <span><strong>Vai a pranzo:</strong> Le orecchiette sono un piatto da pranzo. La sera molti locali le hanno finite o usano quelle fatte prima.</span></li>
+          <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Prezzo medio:</strong> Da 9 a 14 euro per la versione classica. sopra i 15 euro stai pagando il "gourmet" o il brand.</span></li>
+          <li><i class="fa-solid fa-hand-point-up"></i> <span><strong>Fatte a mano:</strong> Chiedi sempre se sono fatte a mano. Le orecchiette industriali non hanno lo stesso sapore.</span></li>
+          <li><i class="fa-solid fa-pepper-hot"></i> <span><strong>Aggiungi peperoncino:</strong> Un po' di peperoncino fresco migliora tutto. I baresi lo mettono sempre.</span></li>
+          <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Il vino giusto:</strong> Un Verdesca o unesiko bianco fresco sono perfetti con le orecchiette.</span></li>
+          <li><i class="fa-solid fa-map-pin"></i> <span><strong>Bari Vecchia:</strong> I migliori locali sono nel centro storico. Passeggia e scegli quello che ti piace di piu.</span></li>
+        </ul>
+      </div>
+
+      <a href="https://www.getyourguide.com/bari-l721/bari-guided-private-bus-day-tour-of-alberobello-monopoli-and-polignano-t1267871/?partner_id=MH3AZB7&utm_medium=online_publisher" target="_blank" rel="sponsored nofollow" style="display:block;text-decoration:none;margin:30px 0;">
+        <div style="background:linear-gradient(135deg, rgba(59,130,246,0.1), rgba(16,185,129,0.05)); border:1px solid rgba(59,130,246,0.2); border-radius:16px; padding:24px; transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(59,130,246,0.5)';this.style.boxShadow='0 8px 30px rgba(59,130,246,0.1)'" onmouseout="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <i class="fa-solid fa-bus" style="color:#3b82f6; font-size:1.2rem;"></i>
+            <span style="font-size:0.75rem; color:#3b82f6; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Scopri la Puglia</span>
+          </div>
+          <div style="font-size:1.1rem; font-weight:700; color:var(--text-white); margin-bottom:6px;">Tour di Giorno a Bari, Alberobello, Monopoli e Polignano</div>
+          <div style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">Visita i borghi piu belli della Puglia con una guida privata. Alberobello, Monopoli, Polignano a Mare — tutto in un giorno.</div>
+          <div style="margin-top:12px; display:flex; align-items:center; gap:6px; color:#3b82f6; font-size:0.85rem; font-weight:600;">
+            Prenota su GetYourGuide <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.75rem;"></i>
+          </div>
+        </div>
+      </a>
+
+      <div data-gyg-widget="auto" data-gyg-partner-id="MH3AZB7" data-gyg-cmp="Trovapiatto"></div>
+
+      <h2>Perche le Orecchiette Sono il Piatto Simbolo di Bari</h2>
+
+      <p>Le orecchiette non sono solo una pasta: sono un <strong>rito</strong>. A Bari, prepararle e un'arte che si tramanda di generazione in generazione. Le donne della famiglia si riuniscono attorno al tavolo, con la sfoglia di pasta e un coltello dalla punta arrotondata, e creano queste piccole "orecchie" una a una. E un processo lento, paziente, meditativo.</p>
+
+      <p>Il piatto piu classico — <strong>orecchiette con cime di rapa</strong> — e un equilibrio perfetto di sapori: l'amaro delle rapa, il salato delle acciughe, la croccantezza del pangrattato tostato. E un piatto povero, nato dalla necessita, che e diventato un simbolo di identita culturale.</p>
+
+      <p>Oggi a Bari puoi trovare le orecchiette in ogni ristorante, ma le migliori sono quelle dei locali piccoli, di famiglia, dove la pasta e ancora fatta a mano e la ricetta e la stessa di 100 anni fa.</p>
+
+      <div class="cta-box">
+        <h3>Scopri Altri Piatti Tipici di Bari</h3>
+        <p>Cerca piatti, ristoranti e menu nella nostra mappa interattiva</p>
+        <a href="/piatti/?q=orecchiette" class="cta-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Cerca Orecchiette
+        </a>
+      </div>
+
+      <!-- AdSense Bottom -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/orecchiette-bari/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/orecchiette-bari/&text=Orecchiette+a+Bari:+7+Ristoranti+Dove+Mangiare+le+Migliori"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+le+migliori+orecchiette+a+Bari:+https://www.trovapiatto.it/community/blog/orecchiette-bari/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'Osteria delle Travi', lat: 41.1285, lng: 16.8705, price: '€10', slug: 'osteria-delle-travi', rating: '4.8' },
+      { name: 'Da Gianni', lat: 41.1185, lng: 16.8716, price: '€9', slug: 'da-gianni', rating: '5.0' },
+      { name: 'Ai 2 Ghiottoni', lat: 41.1291, lng: 16.8702, price: '€12', slug: 'ai-2-ghiottoni', rating: '4.7' },
+      { name: 'Radicale Restaurant', lat: 41.1245, lng: 16.8690, price: '€18', slug: 'radicale', rating: '5.0' },
+      { name: 'Gaeribaldi', lat: 41.124061, lng: 16.862950, price: '€10', slug: 'gaeribaldi-grill-house', rating: '4.6' },
+      { name: 'La Battigia', lat: 41.1285, lng: 16.8705, price: '€10', slug: 'la-battigia', rating: '4.5' },
+      { name: 'Da Vito', lat: 41.1236, lng: 16.8686, price: '€14', slug: 'davito', rating: '4.0' }
+    ];
+
+    const map = L.map('article-map').setView([41.1245, 16.8695], 15);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">⭐ ${r.rating}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Orecchiette a Bari: 7 Ristoranti Dove Mangiare le Migliori",
+    "description": "Guida completa alle migliori orecchiette di Bari. Dal classico con cime di rapa alle versioni creative, ecco dove trovarle con prezzi e consigli.",
+    "image": "https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-07-02T10:00:00+02:00",
+    "dateModified": "2026-07-02T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/orecchiette-bari/" },
+    "articleSection": "Food Guide",
+    "keywords": "orecchiette, Bari, cucina pugliese, ristoranti Bari, pasta, orecchiette cime di rapa, dove mangiare orecchiette Bari"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Magazine", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Orecchiette a Bari", "item": "https://www.trovapiatto.it/community/blog/orecchiette-bari/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Dove mangiare le migliori orecchiette a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le migliori orecchiette a Bari si trovano all'Osteria delle Travi (4.8 stelle, €10), Da Gianni (5.0 stelle, €9) e Ai 2 Ghiottoni (4.7 stelle, €12). Consulta la nostra guida completa per tutti i dettagli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costano le orecchiette a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il prezzo medio delle orecchiette a Bari va da €9 a €14 per la versione classica con cime di rapa. Le versioni gourmet o in ristoranti stellati possono arrivare a €18-25."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual e il piatto tradizionale con le orecchiette?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il piatto tradizionale e le orecchiette con cime di rapa, acciughe e pangrattato tostato. E il piatto simbolo della cucina barese."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="MH3AZB7"></script>
+
+</body>
+</html>

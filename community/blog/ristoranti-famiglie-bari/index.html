@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ristoranti per Famiglie a Bari: Guida Completa | trovapiatto</title>
+  <meta name="description" content="Scopri i migliori ristoranti per famiglie a Bari. Guida completa con 8+ locali kid-friendly, menu bambini, aree gioco e atmosfere familiari.">
+  <meta name="keywords" content="ristoranti famiglie Bari, menu bambini Bari, ristoranti kid friendly Bari, dove portare bambini Bari, ristoranti familiari Bari centro">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/ristoranti-famiglie-bari/">
+  <meta property="og:title" content="Ristoranti per Famiglie a Bari: Guida Completa">
+  <meta property="og:description" content="I migliori ristoranti per famiglie a Bari con menu bambini e aree gioco.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Ristoranti Famiglie">
+  <meta property="article:tag" content="Bari">
+  <meta property="article:tag" content="Cucina Familiare">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ristoranti per Famiglie a Bari: Guida Completa">
+  <meta name="twitter:description" content="I migliori ristoranti per famiglie a Bari con menu bambini e aree gioco.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/ristoranti-famiglie-bari/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --bg-card-hover: #221833;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .article-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .article-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .article-nav .logo img { height: 32px; }
+    
+    .article-nav .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+    
+    .article-nav .back-link:hover { color: var(--primary); }
+    
+    .article-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 350px;
+      overflow: hidden;
+    }
+    
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%);
+    }
+    
+    .article-hero .hero-content {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .article-hero .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .article-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    
+    @media (min-width: 768px) {
+      .article-hero h1 { font-size: 2.8rem; }
+    }
+    
+    .article-hero .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-hero .meta i { color: var(--primary); }
+    
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+    
+    .article-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: var(--text-white);
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text-white);
+    }
+    
+    .article-content p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .article-content strong { color: var(--text-white); }
+    
+    .article-content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .article-content a:hover { color: var(--primary-light); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      transition: all 0.3s;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    
+    .restaurant-card .rc-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245,158,11,0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-food);
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-cuisine {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-dish {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .restaurant-card .rc-dish-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    
+    .restaurant-card .rc-dish-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    
+    .restaurant-card .rc-dish-price {
+      font-weight: 700;
+      color: var(--accent-food);
+      font-size: 1rem;
+    }
+    
+    .restaurant-card .rc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    
+    .map-section {
+      margin: 40px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #article-map {
+      width: 100%;
+      height: 350px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .cta-box .cta-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+    }
+    
+    .ad-container {
+      margin: 30px 0;
+      text-align: center;
+      min-height: 90px;
+    }
+    
+    .article-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .article-footer .share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .article-footer .share span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-footer .share a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    
+    .article-footer .share a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="article-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <a href="/community/blog/" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Magazine
+    </a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&h=700&fit=crop" alt="Ristorante per famiglie a Bari">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-users"></i> Famiglie</span>
+      <h1>Ristoranti per Famiglie a Bari: Guida Completa</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 9 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 7 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+
+      <p>Portare i bambini a mangiare fuori a Bari non deve essere un problema. La citta offre numerose opzioni per le famiglie, con ristoranti che combinano <strong>cucina di qualita, atmosfere accoglienti e servizi pensati per i piu piccoli</strong>. Dalla pizza alla cucina pugliese, esistono locali perfetti per ogni esigenza familiare.</p>
+
+      <p>In questa guida ti presentiamo gli <strong>8 migliori ristoranti per famiglie a Bari</strong>, con menu per bambini, aree gioco, prezzi accessibili e un'atmosfera che fa sentire tutti a proprio agio. Che tu stia cercando un posto per un pranzo veloce o una cena tranquilla, troverai l'opzione perfetta per la tua famiglia.</p>
+
+      <h2>Perche Scegliere un Ristorante Familiare a Bari</h2>
+
+      <p>Un ristorante per famiglie non e solo un posto dove i bambini possono correre: e un luogo pensato per offrire un'esperienza piacevole a tutti i componenti della famiglia. I ristoranti per famiglie a Bari si distinguono per <strong>menu specifici per bambini</strong>, <strong>atmosfere informali</strong>, <strong>spazi ludici</strong> e <strong>servizi come seggioloni e cameriere esperte</strong>.</p>
+
+      <p>La tradizione pugliese e profondamente legata alla famiglia, e i ristoranti di Bari riflettono questa cultura. Molti locali sono gestiti da famiglie che trasmettono la stessa ospitalita e cura che riservano ai propri figli anche agli avventori.</p>
+
+      <h2>8 Migliori Ristoranti per Famiglie a Bari</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">La Tana dei Golosi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Argiro, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Menu Bambini</div>
+          <div class="rc-dish-desc">Pizza margherita + succo di frutta — porzioni ridotte per i piu piccoli</div>
+          <div class="rc-dish-price">&euro;6</div>
+        </div>
+        <a href="/menu/la-tana-dei-golosi/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>La Tana dei Golosi e il ristorante per eccellenza per le famiglie a Bari. Il locale e colorato, accogliente, e dispone di un'area gioco interna dove i bambini possono divertirsi mentre i genitori mangiano tranquilli. Il menu per bambini e pensato per essere sano e gustoso, con porzioni adatte alle loro esigenze.</p>
+
+      <p><strong>Cosa ordinare:</strong> Il menu bambini a 6 euro e perfetto. Per gli adulti, la pizza margherita e un'ottima scelta.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Pizzeria Da Michele</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza Margherita Bambini</div>
+          <div class="rc-dish-desc">Pizza margherita con mozzarella e pomodoro — porzione per bambini</div>
+          <div class="rc-dish-price">&euro;5</div>
+        </div>
+        <a href="/menu/pizzeria-da-michele/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Pizzeria Da Michele e un classico di Bari, famoso per le sue pizze tradizionali. Il locale e sempre pieno, ma l'atmosfera e informale e accogliente, perfetta per le famiglie. La pizza margherita per bambini a 5 euro e un'ottima soluzione per un pranzo veloce.</p>
+
+      <p><strong>Cosa ordinare:</strong> La pizza margherita bambini e imperdibile. Per gli adulti, la pizza diavola e un'ottima scelta.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Trattoria Bella Bari</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Andrea da Bari, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pranzo Famiglia</div>
+          <div class="rc-dish-desc">Menu completo per 4 persone con primo, secondo, contorno e dolce</div>
+          <div class="rc-dish-price">&euro;40</div>
+        </div>
+        <a href="/menu/trattoria-bella-bari/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Trattoria Bella Bari e un ristorante di cucina pugliese tradizionale che offre un'atmosfera familiare e accogliente. Il menu per famiglie a 40 euro include tutto il necessario per un pranzo completo, con piatti semplici e gustosi che piacciono sia ai grandi che ai piccoli.</p>
+
+      <p><strong>Cosa ordinare:</strong> Il pranzo famiglia a 40 euro e conveniente e completo. I conti si possono personalizzare in base alle esigenze.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ristorante Pizzeria Gaeribaldi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Steakhouse &amp; Pizzeria</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Menu Bambini</div>
+          <div class="rc-dish-desc">Chicken fingers, patatine fritte e gelato — per i piu piccoli</div>
+          <div class="rc-dish-price">&euro;7</div>
+        </div>
+        <a href="/menu/gaeribaldi-grill-house/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Gaeribaldi e un locale versatile che funge da pizzeria, steakhouse e ristorante di cucina pugliese. Il menu per bambini a 7 euro include chicken fingers, patatine fritte e gelato, piatti che i bambini adorano. Il locale e spazioso e adatto a famiglie numerose.</p>
+
+      <p><strong>Cosa ordinare:</strong> Il menu bambini a 7 euro e perfetto per i piu piccoli. Per gli adulti, una fiorentina alla griglia e un'ottima scelta.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Osteria delle Travi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via delle Travi, Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pasta al Pomodoro Bambini</div>
+          <div class="rc-dish-desc">Pasta semplice con sugo di pomodoro fresco — porzione per bambini</div>
+          <div class="rc-dish-price">&euro;5</div>
+        </div>
+        <a href="/menu/osteria-delle-travi/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>L'Osteria delle Travi e un locale piccolo e familiare nel cuore di Bari Vecchia. Non e un ristorante dedicato alle famiglie, ma l'atmosfera e cosi accogliente e il personale cosi simpatico che i bambini si sentono subito a proprio agio. La pasta al pomodoro a 5 euro e perfetta per i piu piccoli.</p>
+
+      <p><strong>Cosa ordinare:</strong> La pasta al pomodoro bambini e un'ottima scelta. Per gli adulti, le orecchiette con cime di rapa sono imperdibili.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Forno di Piazza</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Piazza Ferrante Ferranti, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza al Taglio Bambini</div>
+          <div class="rc-dish-desc">Fette di pizza al taglio con diverse conditure — scegli quella che preferisci</div>
+          <div class="rc-dish-price">&euro;2</div>
+        </div>
+        <a href="/menu/forno-di-piazza/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Forno di Piazza e un forno storico di Bari, famoso per la sua focaccia e la pizza al taglio. E un posto perfetto per le famiglie che cercano una soluzione veloce e economica. I bambini possono scegliere la feta di pizza che preferiscono, e il prezzo e imbattibile.</p>
+
+      <p><strong>Cosa ordinare:</strong> La pizza al taglio a 2 euro e perfetta per i bambini. Per gli adulti, la focaccia classica e un must.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Da Gianni</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 5.0</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette Bambini</div>
+          <div class="rc-dish-desc">Orecchiette semplici con sugo — porzione per bambini</div>
+          <div class="rc-dish-price">&euro;5</div>
+        </div>
+        <a href="/menu/da-gianni/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Da Gianni e uno dei locali piu amati di Bari, con un rating perfetto di 5.0 stelle. Il locale e piccolo e familiare, gestito da una famiglia che trasmette calore e ospitalita. Le orecchiette per bambini a 5 euro sono semplici ma gustose, perfette per introdurre i piu piccoli alla cucina pugliese.</p>
+
+      <p><strong>Cosa ordinare:</strong> Le orecchiette bambini a 5 euro sono perfette. Per gli adulti, le orecchiette con cime di rapa sono un must.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Radicale Restaurant</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Cucina Moderna</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 5.0</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Menu Degustazione Bambini</div>
+          <div class="rc-dish-desc">Mini porzioni dei piatti signature — un'esperienza gastronomica per i piu piccoli</div>
+          <div class="rc-dish-price">&euro;12</div>
+        </div>
+        <a href="/menu/radicale/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Radicale e un ristorante gourmet che pero non dimentica le famiglie. Il menu degustazione per bambini a 12 euro offre mini porzioni dei piatti signature, permettendo anche ai piu piccoli di vivere un'esperienza gastronomica di qualita. Il personale e esperto nel trattare con i bambini.</p>
+
+      <p><strong>Cosa ordinare:</strong> Il menu degustazione bambini e un'esperienza unica. Per gli adulti, lo stracotto di manzo e 36 mesi e imperdibile.</p>
+
+      <!-- AdSense In-Article -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <!-- Mappa Interattiva -->
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Dove Trovarli sulla Mappa</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Consigli per Mangiare con Bambini a Bari</h2>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-clock"></i> <span><strong>Vai a pranzo:</strong> I ristoranti sono meno affollati a pranzo, e i bambini sono piu tranquilli durante il giorno.</span></li>
+          <li><i class="fa-solid fa-phone"></i> <span><strong>Prenota sempre:</strong> Chiama prima per verificare se il ristorante ha seggioloni, menu per bambini e aree gioco.</span></li>
+          <li><i class="fa-solid fa-child-reaching"></i> <span><strong>Cerca aree gioco:</strong> I ristoranti con aree gioco interne o esterne permettono ai bambini di sfogare l'energia.</span></li>
+          <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Prezzo medio:</strong> Da 5 a 12 euro per il menu bambini. I pranzi famiglia arrivano a 40-50 euro per 4 persone.</span></li>
+          <li><i class="fa-solid fa-utensils"></i> <span><strong>Semplicita e meglio:</strong> I bambini preferiscono piatti semplici: pasta al pomodoro, pizza margherita, chicken fingers.</span></li>
+          <li><i class="fa-solid fa-face-smile"></i> <span><strong>Atmosfera informale:</strong> Scegli locali dove i bambini possono muoversi liberamente senza creare disturbo.</span></li>
+        </ul>
+      </div>
+
+      <h2>Attrezzature e Servizi per Famiglie</h2>
+
+      <p>I ristoranti per famiglie a Bari offrono una serie di servizi pensati per rendere l'esperienza piacevole per tutti. I <strong>seggioaloni per neonati</strong> sono disponibili nella maggior parte dei locali, cosi come <strong>piattini e posate per bambini</strong>. Molti ristoranti hanno anche <strong>cameriere esperte</strong> in grado di consigliare i piatti piu adatti ai bambini.</p>
+
+      <p>Alcuni locali offrono anche <strong>carte colorate e crayon</strong> per intrattenere i bambini durante l'attesa, e <strong>servizio prioritario</strong> per le famiglie con bambini piccoli. La cosa piu importante e che i ristoranti per famiglie a Bari non fanno mai sentire i genitori a disagio per il rumore o il movimento dei bambini.</p>
+
+      <div class="cta-box">
+        <h3>Scopri Altri Ristoranti a Bari</h3>
+        <p>Cerca ristoranti, menu e recensioni nella nostra mappa interattiva</p>
+        <a href="/piatti/?q=famiglie" class="cta-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Cerca Ristoranti per Famiglie
+        </a>
+      </div>
+
+      <!-- AdSense Bottom -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/ristoranti-famiglie-bari/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/ristoranti-famiglie-bari/&text=Ristoranti+per+Famiglie+a+Bari:+Guida+Completa"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+i+migliori+ristoranti+per+famiglie+a+Bari:+https://www.trovapiatto.it/community/blog/ristoranti-famiglie-bari/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'La Tana dei Golosi', lat: 41.1236, lng: 16.8686, price: '€6', slug: 'la-tana-dei-golosi', rating: '4.8' },
+      { name: 'Pizzeria Da Michele', lat: 41.1291, lng: 16.8702, price: '€5', slug: 'pizzeria-da-michele', rating: '4.7' },
+      { name: 'Trattoria Bella Bari', lat: 41.1285, lng: 16.8705, price: '€40', slug: 'trattoria-bella-bari', rating: '4.6' },
+      { name: 'Gaeribaldi', lat: 41.124061, lng: 16.862950, price: '€7', slug: 'gaeribaldi-grill-house', rating: '4.6' },
+      { name: 'Osteria delle Travi', lat: 41.1285, lng: 16.8705, price: '€5', slug: 'osteria-delle-travi', rating: '4.8' },
+      { name: 'Forno di Piazza', lat: 41.1245, lng: 16.8690, price: '€2', slug: 'forno-di-piazza', rating: '4.6' },
+      { name: 'Da Gianni', lat: 41.1185, lng: 16.8716, price: '€5', slug: 'da-gianni', rating: '5.0' },
+      { name: 'Radicale Restaurant', lat: 41.1245, lng: 16.8690, price: '€12', slug: 'radicale', rating: '5.0' }
+    ];
+
+    const map = L.map('article-map').setView([41.1245, 16.8695], 15);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">⭐ ${r.rating}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Ristoranti per Famiglie a Bari: Guida Completa",
+    "description": "Guida completa ai migliori ristoranti per famiglie a Bari con menu bambini, aree gioco e atmosfere accoglienti.",
+    "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-07-09T10:00:00+02:00",
+    "dateModified": "2026-07-09T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/ristoranti-famiglie-bari/" },
+    "articleSection": "Food Guide",
+    "keywords": "ristoranti famiglie Bari, menu bambini Bari, ristoranti kid friendly Bari, dove portare bambini Bari, ristoranti familiari Bari centro"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Magazine", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Ristoranti per Famiglie a Bari", "item": "https://www.trovapiatto.it/community/blog/ristoranti-famiglie-bari/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quali ristoranti hanno il menu per bambini a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I ristoranti con menu per bambini a Bari includono La Tana dei Golosi (€6), Pizzeria Da Michele (€5), Gaeribaldi (€7) e Radicale Restaurant (€12). Consulta la nostra guida completa per tutti i dettagli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Dove portare i bambini a mangiare a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I posti migliori per portare i bambini a mangiare a Bari sono La Tana dei Golosi, Pizzeria Da Michele e Da Gianni. Tutti offrono menu per bambini e atmosfere accoglienti."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ci sono ristoranti con area gioco a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì, La Tana dei Golosi ha un'area gioco interna. Molti altri ristoranti offrono spazi aperti dove i bambini possono muoversi liberamente."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

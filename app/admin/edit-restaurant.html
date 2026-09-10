@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifica Ristorante e Menu</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #537b83;
+            --secondary: #3d5a62;
+            --accent: #EF3D26;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .header .back-btn {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 1.5em;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-weight: 600;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background-color: #d63018;
+            border-color: #d63018;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .dish-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .dish-info {
+            flex: 1;
+        }
+
+        .dish-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .dish-description {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .dish-price {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1.1em;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .dish-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-edit-dish {
+            padding: 2px 8px;
+            font-size: 0.85em;
+            color: white;
+            background: var(--primary);
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-edit-dish:hover {
+            background: var(--secondary);
+        }
+
+        .btn-delete-dish {
+            padding: 2px 8px;
+            font-size: 0.85em;
+            color: white;
+            background: #dc3545;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-delete-dish:hover {
+            background: #c82333;
+        }
+
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            min-width: 300px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .no-dishes {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container-lg">
+            <div style="display: flex; align-items: center;">
+                <a href="./restaurants.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <div>
+                    <h1><i class="fas fa-edit"></i> Modifica Ristorante e Menu</h1>
+                    <p id="restaurantNameHeader" style="margin: 5px 0 0 0; opacity: 0.9;">Caricamento...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-lg">
+        <!-- Alerts -->
+        <div id="successAlert" class="alert alert-success d-none" role="alert">
+            <strong>Successo!</strong> <span id="successMsg"></span>
+        </div>
+        <div id="errorAlert" class="alert alert-danger d-none" role="alert">
+            <strong>Errore!</strong> <span id="errorMsg"></span>
+        </div>
+
+        <!-- Sezione Modifica Ristorante -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-utensils"></i> Informazioni Ristorante
+            </div>
+            <div class="card-body">
+                <form id="restaurantForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Nome Ristorante *</label>
+                                <input type="text" class="form-control" id="restaurantName" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="restaurantEmail">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Telefono</label>
+                                <input type="tel" class="form-control" id="restaurantPhone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Indirizzo</label>
+                                <input type="text" class="form-control" id="restaurantAddress">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Descrizione</label>
+                        <textarea class="form-control" id="restaurantDescription" rows="3"></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Latitudine</label>
+                                <input type="number" class="form-control" id="restaurantLatitude" step="0.00001">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Longitudine</label>
+                                <input type="number" class="form-control" id="restaurantLongitude" step="0.00001">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Logo URL</label>
+                        <input type="url" class="form-control" id="restaurantLogo">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"><i class="fas fa-clock"></i> Orari di Disponibilità Prenotazioni</label>
+                        <div id="hoursEditor" style="background:#1a1125;border:1px solid #2d2145;border-radius:10px;padding:16px;">
+                            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;" id="hoursGrid"></div>
+                        </div>
+                        <small class="text-muted">Configura gli orari in cui il ristorante accetta prenotazioni</small>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary btn-lg" onclick="saveRestaurant()">
+                            <i class="fas fa-save"></i> Salva Ristorante
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sezione Gestione Menu -->
+        <div class="section-title">
+            <i class="fas fa-list"></i> Gestione Menu Piatti
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Piatti del Ristorante
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2 mb-4">
+                    <button class="btn btn-success btn-lg" onclick="showAddDishModal()">
+                        <i class="fas fa-plus-circle"></i> Aggiungi Nuovo Piatto
+                    </button>
+                </div>
+
+                <div id="menuContainer">
+                    <div class="no-dishes">Caricamento piatti...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Aggiungi Piatto -->
+    <div class="modal fade" id="addDishModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-plus-circle"></i> Aggiungi Piatto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="dishForm">
+                        <div class="mb-3">
+                            <label class="form-label">Categoria *</label>
+                            <select class="form-select" id="dishCategory" required>
+                                <option value="">-- Caricamento categorie... --</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nome Piatto *</label>
+                            <input type="text" class="form-control" id="dishName" placeholder="Es: Spaghetti al Nero di Seppia" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descrizione</label>
+                            <textarea class="form-control" id="dishDescription" rows="3" placeholder="Breve descrizione del piatto"></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Prezzo (€) *</label>
+                                    <input type="number" class="form-control" id="dishPrice" placeholder="15.50" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">URL Immagine</label>
+                                    <input type="url" class="form-control" id="dishImage" placeholder="https://...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dishAvailable" checked>
+                                <label class="form-check-label" for="dishAvailable">
+                                    Disponibile
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-success" onclick="saveDish()">
+                                <i class="fas fa-save"></i> Aggiungi Piatto
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Modifica Categoria Piatto -->
+    <div class="modal fade" id="editCategoryModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-edit"></i> Modifica Categoria - <span id="editDishName"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCategoryForm">
+                        <div class="mb-3">
+                            <label class="form-label">Categoria *</label>
+                            <select class="form-select" id="editDishCategory" required>
+                                <option value="">-- Caricamento categorie... --</option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-primary" onclick="saveEditCategory()">
+                                <i class="fas fa-save"></i> Salva Categoria
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Modifica Foto Piatto -->
+    <div class="modal fade" id="editImageModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-image"></i> Modifica Foto - <span id="editImageDishName"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editImageForm">
+                        <div class="mb-3">
+                            <label class="form-label">Foto Attuale</label>
+                            <div id="currentImagePreview" style="margin-bottom: 15px; text-align: center;">
+                                <img id="currentImage" src="" alt="Foto piatto" style="max-width: 100%; max-height: 300px; border-radius: 8px;">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nuova Foto o URL *</label>
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;">
+                                    <label style="display: block; margin-bottom: 8px; font-size: 0.9em; color: #666;">
+                                        <strong>Opzione 1:</strong> Carica file
+                                    </label>
+                                    <input type="file" class="form-control" id="editImageFile" accept="image/jpeg,image/png,image/webp">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label style="display: block; margin-bottom: 8px; font-size: 0.9em; color: #666;">
+                                <strong>Opzione 2:</strong> Incolla URL immagine
+                            </label>
+                            <input type="url" class="form-control" id="editImageUrl" placeholder="https://...">
+                        </div>
+
+                        <div id="editImagePreview" style="display: none; margin-bottom: 15px; text-align: center;">
+                            <label style="display: block; margin-bottom: 8px; font-size: 0.9em; color: #666;">
+                                <strong>Anteprima nuova foto:</strong>
+                            </label>
+                            <img id="editPreviewImg" src="" alt="Anteprima" style="max-width: 100%; max-height: 300px; border-radius: 8px;">
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-primary" onclick="saveEditImage()">
+                                <i class="fas fa-save"></i> Salva Foto
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./core/restaurant-manager.js?v=4"></script>
+    <script src="./core/sync-manager.js?v=5"></script>
+    <script>
+        let restaurantManager;
+        let currentRestaurantId = null;
+        let currentEditDishId = null;
+        const authToken = localStorage.getItem('auth_token') || '';
+
+        // Inizializza
+        window.addEventListener('load', async () => {
+            restaurantManager = new RestaurantManager('./api-crud.php');
+            
+            // Recupera ID ristorante dai parametri URL
+            const params = new URLSearchParams(window.location.search);
+            currentRestaurantId = params.get('id');
+            
+            console.log('✅ Current Restaurant ID:', currentRestaurantId);
+            
+            if (!currentRestaurantId) {
+                showError('ID ristorante non trovato');
+                return;
+            }
+
+            await loadRestaurant();
+            await loadMenu();
+        });
+
+        /**
+         * Carica dati ristorante
+         */
+        async function loadRestaurant() {
+            try {
+                const restaurant = await restaurantManager.getRestaurant(currentRestaurantId);
+                
+                if (!restaurant) {
+                    showError('Ristorante non trovato');
+                    return;
+                }
+
+                // Popola form
+                document.getElementById('restaurantNameHeader').textContent = restaurant.name;
+                document.getElementById('restaurantName').value = restaurant.name || '';
+                document.getElementById('restaurantEmail').value = restaurant.email || '';
+                document.getElementById('restaurantPhone').value = restaurant.phone || '';
+                document.getElementById('restaurantAddress').value = restaurant.address || '';
+                document.getElementById('restaurantDescription').value = restaurant.description || '';
+                document.getElementById('restaurantLatitude').value = restaurant.latitude || '';
+                document.getElementById('restaurantLongitude').value = restaurant.longitude || '';
+                document.getElementById('restaurantLogo').value = restaurant.logo_url || '';
+            } catch (error) {
+                console.error('Errore:', error);
+                showError('Errore nel caricamento del ristorante');
+            }
+        }
+
+        /**
+         * Salva dati ristorante
+         */
+        async function saveRestaurant() {
+            const data = {
+                id: currentRestaurantId,
+                name: document.getElementById('restaurantName').value.trim(),
+                email: document.getElementById('restaurantEmail').value.trim() || null,
+                phone: document.getElementById('restaurantPhone').value.trim() || null,
+                address: document.getElementById('restaurantAddress').value.trim() || null,
+                description: document.getElementById('restaurantDescription').value.trim() || null,
+                latitude: document.getElementById('restaurantLatitude').value || null,
+                longitude: document.getElementById('restaurantLongitude').value || null,
+                logo_url: document.getElementById('restaurantLogo').value.trim() || null,
+                available_hours: collectHours()
+            };
+
+            if (!data.name) {
+                showError('Il nome del ristorante è obbligatorio');
+                return;
+            }
+
+            try {
+                const tokenParam = authToken ? '&token=' + authToken : '';
+                const response = await fetch('./api-crud.php?action=update-restaurant' + tokenParam, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showSuccess('✅ Ristorante aggiornato con successo');
+                } else {
+                    showError('Errore nell\'aggiornamento: ' + (result.error || 'Errore sconosciuto'));
+                }
+            } catch (error) {
+                console.error('Errore:', error);
+                showError('Errore nella comunicazione con il server');
+            }
+        }
+
+        /**
+         * Carica menu piatti
+         */
+        async function loadMenu() {
+            try {
+                const dishes = await restaurantManager.getMenu(currentRestaurantId);
+                displayMenu(dishes);
+            } catch (error) {
+                console.error('Errore:', error);
+                showError('Errore nel caricamento del menu');
+            }
+        }
+
+        /**
+         * Visualizza menu piatti
+         */
+        function displayMenu(dishes) {
+            const container = document.getElementById('menuContainer');
+            
+            if (!dishes || dishes.length === 0) {
+                container.innerHTML = '<div class="no-dishes">Nessun piatto nel menu. Aggiungi il primo piatto!</div>';
+                return;
+            }
+
+            // Raggruppa per categoria
+            const grouped = restaurantManager.groupDishesByCategory(dishes);
+            let html = '';
+            
+            for (const [category, items] of Object.entries(grouped)) {
+                html += `<div style="margin-bottom: 20px;">
+                        <div style="font-weight: 600; color: var(--primary); margin-bottom: 12px; font-size: 1.1em;">
+                            ${category}
+                        </div>`;
+                
+                items.forEach(dish => {
+                    // Parse allergeni
+                    let allergens = [];
+                    if (dish.allergens) {
+                        try {
+                            allergens = typeof dish.allergens === 'string' ? JSON.parse(dish.allergens) : dish.allergens;
+                        } catch(e) {
+                            allergens = [];
+                        }
+                    }
+                    
+                    const allergensHtml = allergens.length > 0 
+                        ? `<div style="margin-top: 4px; font-size: 0.8em; color: #d32f2f;">
+                            ⚠️ ${allergens.join(', ')}
+                           </div>`
+                        : '';
+                    
+                    const imageHtml = dish.image_url
+                        ? `<img src="${dish.image_url}" alt="${dish.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 6px; margin-right: 12px;">`
+                        : '';
+                    
+                    html += `<div class="dish-item">
+                            ${imageHtml}
+                            <div class="dish-info">
+                                <div class="dish-name">${dish.name}</div>
+                                ${dish.description ? `<div class="dish-description">${dish.description}</div>` : ''}
+                                ${allergensHtml}
+                            </div>
+                            <div class="dish-price">€${parseFloat(dish.price).toFixed(2)}</div>
+                            <div class="dish-actions">
+                                <button class="btn-edit-dish" title="Modifica categoria" onclick="showEditCategoryModal('${dish.id}', '${dish.name}', '${dish.category_id || ''}')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-edit-dish" title="Modifica foto" onclick="showEditImageModal('${dish.id}', '${dish.name}', '${dish.image_url || ''}')">
+                                    <i class="fas fa-image"></i>
+                                </button>
+                                <button class="btn-delete-dish" title="Elimina piatto" onclick="deleteDishConfirm('${dish.id}', '${dish.name}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>`;
+                });
+                
+                html += '</div>';
+            }
+            
+            container.innerHTML = html;
+        }
+
+        /**
+         * Mostra modal aggiungi piatto
+         */
+        async function showAddDishModal() {
+            console.log('📋 showAddDishModal - currentRestaurantId:', currentRestaurantId);
+            
+            document.getElementById('dishForm').reset();
+            
+            // Carica categorie
+            const categorySelect = document.getElementById('dishCategory');
+            categorySelect.innerHTML = '<option value="">-- Caricamento categorie... --</option>';
+            
+            try {
+                console.log('🔄 Caricando categorie per restaurant:', currentRestaurantId);
+                const categories = await restaurantManager.getCategories(currentRestaurantId);
+                console.log('✅ Categorie ricevute:', categories);
+                
+                if (categories && categories.length > 0) {
+                    categorySelect.innerHTML = '<option value="">-- Seleziona categoria --</option>';
+                    
+                    categories.forEach(cat => {
+                        const option = document.createElement('option');
+                        option.value = cat.id;
+                        option.textContent = cat.name;
+                        categorySelect.appendChild(option);
+                    });
+                } else {
+                    // Se nessuna categoria, mostra opzione per crearla
+                    categorySelect.innerHTML = `
+                        <option value="">-- Nessuna categoria --</option>
+                        <option value="__create_new__">+ Crea nuova categoria</option>
+                    `;
+                }
+            } catch (error) {
+                console.error('Errore:', error);
+            }
+            
+            // Aggiungi event listener al select per creare categoria
+            categorySelect.onchange = async function() {
+                if (this.value === '__create_new__') {
+                    const categoryName = prompt('Nome della categoria:');
+                    if (categoryName && categoryName.trim()) {
+                        try {
+                            console.log('🆕 Creando categoria:', categoryName);
+                            const newCat = await restaurantManager.addCategory(currentRestaurantId, { name: categoryName.trim() });
+                            console.log('✅ Categoria creata:', newCat);
+                            if (newCat && newCat.id) {
+                                // Ricarica modal
+                                bootstrap.Modal.getInstance(document.getElementById('addDishModal')).hide();
+                                showAddDishModal();
+                            }
+                        } catch (e) {
+                            console.error('Errore creazione categoria:', e);
+                            alert('Errore nella creazione della categoria');
+                        }
+                    }
+                    this.value = '';
+                }
+            };
+            
+            const modal = new bootstrap.Modal(document.getElementById('addDishModal'));
+            modal.show();
+        }
+
+        /**
+         * Salva nuovo piatto
+         */
+        async function saveDish() {
+            const categoryValue = document.getElementById('dishCategory').value;
+            const name = document.getElementById('dishName').value.trim();
+            const description = document.getElementById('dishDescription').value.trim();
+            const price = document.getElementById('dishPrice').value;
+            const image = document.getElementById('dishImage').value.trim();
+            const available = document.getElementById('dishAvailable').checked ? 1 : 0;
+
+            console.log('📝 saveDish - Dati:', {
+                categoryValue,
+                name,
+                price,
+                restaurantId: currentRestaurantId
+            });
+
+            if (!categoryValue || !name || !price) {
+                showError('Compilare i campi obbligatori');
+                return;
+            }
+
+            const dishData = {
+                category_id: categoryValue,
+                name,
+                description: description || null,
+                price: parseFloat(price),
+                image_url: image || null,
+                available
+            };
+
+            console.log('📤 Inviando piatto:', dishData);
+
+            try {
+                const result = await restaurantManager.addDish(currentRestaurantId, dishData);
+                
+                if (result && result.success) {
+                    showSuccess(`✅ Piatto '${name}' aggiunto con successo`);
+                    bootstrap.Modal.getInstance(document.getElementById('addDishModal')).hide();
+                    await loadMenu();
+                } else {
+                    showError('Errore nell\'aggiunta del piatto');
+                }
+            } catch (error) {
+                console.error('Errore:', error);
+                showError('Errore nella comunicazione con il server');
+            }
+        }
+
+        /**
+         * Mostra modal modifica categoria
+         */
+        async function showEditCategoryModal(dishId, dishName, currentCategoryId) {
+            currentEditDishId = dishId;
+            
+            document.getElementById('editDishName').textContent = dishName;
+            
+            const categorySelect = document.getElementById('editDishCategory');
+            categorySelect.innerHTML = '<option value="">-- Caricamento categorie... --</option>';
+            
+            try {
+                const categories = await restaurantManager.getCategories(currentRestaurantId);
+                
+                if (categories && categories.length > 0) {
+                    categorySelect.innerHTML = '<option value="">-- Seleziona categoria --</option>';
+                    
+                    categories.forEach(cat => {
+                        const option = document.createElement('option');
+                        option.value = cat.id;
+                        option.textContent = cat.name;
+                        if (cat.id === currentCategoryId) {
+                            option.selected = true;
+                        }
+                        categorySelect.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Errore:', error);
+            }
+            
+            const modal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
+            modal.show();
+        }
+
+        /**
+         * Salva categoria modificata
+         */
+        async function saveEditCategory() {
+            if (!currentEditDishId) {
+                showError('Errore: piatto non selezionato');
+                return;
+            }
+
+            const categoryId = document.getElementById('editDishCategory').value;
+
+            if (!categoryId) {
+                showError('Seleziona una categoria');
+                return;
+            }
+
+            try {
+                const response = await fetch('./api-crud.php?action=update-dish' + (authToken ? '&token=' + authToken : ''), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id: currentEditDishId,
+                        category_id: categoryId
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showSuccess('✅ Categoria aggiornata');
+                    bootstrap.Modal.getInstance(document.getElementById('editCategoryModal')).hide();
+                    await loadMenu();
+                } else {
+                    showError('Errore nell\'aggiornamento della categoria');
+                }
+            } catch (error) {
+                console.error('Errore:', error);
+                showError('Errore nella comunicazione');
+            }
+        }
+
+        /**
+         * Mostra modal modifica foto
+         */
+        async function showEditImageModal(dishId, dishName, currentImageUrl) {
+            currentEditDishId = dishId;
+            
+            document.getElementById('editImageDishName').textContent = dishName;
+            document.getElementById('editImageFile').value = '';
+            document.getElementById('editImageUrl').value = '';
+            document.getElementById('editImagePreview').style.display = 'none';
+            
+            if (currentImageUrl) {
+                document.getElementById('currentImage').src = currentImageUrl;
+                document.getElementById('currentImagePreview').style.display = 'block';
+            } else {
+                document.getElementById('currentImagePreview').style.display = 'none';
+            }
+            
+            const modal = new bootstrap.Modal(document.getElementById('editImageModal'));
+            modal.show();
+        }
+
+        /**
+         * Event listeners per anteprima foto
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('editImageFile');
+            if (fileInput) {
+                fileInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            document.getElementById('editPreviewImg').src = event.target.result;
+                            document.getElementById('editImagePreview').style.display = 'block';
+                            document.getElementById('editImageUrl').value = '';
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        alert('❌ Seleziona una immagine valida');
+                    }
+                });
+            }
+            
+            const urlInput = document.getElementById('editImageUrl');
+            if (urlInput) {
+                urlInput.addEventListener('change', function(e) {
+                    const url = e.target.value.trim();
+                    if (url) {
+                        document.getElementById('editPreviewImg').src = url;
+                        document.getElementById('editImagePreview').style.display = 'block';
+                        document.getElementById('editImageFile').value = '';
+                    }
+                });
+            }
+        });
+
+        /**
+         * Salva foto modificata
+         */
+        async function saveEditImage() {
+            if (!currentEditDishId) {
+                showError('Errore: piatto non selezionato');
+                return;
+            }
+
+            const fileInput = document.getElementById('editImageFile');
+            const urlInput = document.getElementById('editImageUrl');
+            
+            if ((!fileInput.files || fileInput.files.length === 0) && !urlInput.value.trim()) {
+                showError('Carica una foto o incolla un URL');
+                return;
+            }
+
+            let newImageUrl = null;
+
+            try {
+                if (fileInput.files && fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    
+                    if (!file.type.startsWith('image/')) {
+                        showError('Il file deve essere una immagine');
+                        return;
+                    }
+                    
+                    if (file.size > 5 * 1024 * 1024) {
+                        showError('La foto non deve superare 5MB');
+                        return;
+                    }
+
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    const uploadResponse = await fetch('./api-crud.php?action=upload-image' + (authToken ? '&token=' + authToken : ''), {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const uploadData = await uploadResponse.json();
+
+                    if (!uploadData.success) {
+                        showError('Errore nel caricamento della foto');
+                        return;
+                    }
+
+                    newImageUrl = uploadData.url;
+                } else {
+                    newImageUrl = urlInput.value.trim();
+                    if (!newImageUrl.startsWith('http')) {
+                        showError('URL non valido');
+                        return;
+                    }
+                }
+
+                const response = await fetch('./api-crud.php?action=update-dish' + (authToken ? '&token=' + authToken : ''), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id: currentEditDishId,
+                        image_url: newImageUrl
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showSuccess('✅ Foto aggiornata');
+                    bootstrap.Modal.getInstance(document.getElementById('editImageModal')).hide();
+                    await loadMenu();
+                } else {
+                    showError('Errore nell\'aggiornamento della foto');
+                }
+            } catch (error) {
+                console.error('Errore:', error);
+                showError('Errore nella comunicazione');
+            }
+        }
+
+        /**
+         * Conferma eliminazione piatto
+         */
+        function deleteDishConfirm(dishId, dishName) {
+            if (confirm(`Vuoi eliminare il piatto "${dishName}"?`)) {
+                deleteDish(dishId);
+            }
+        }
+
+        /**
+         * Elimina piatto
+         */
+        async function deleteDish(dishId) {
+            try {
+                const success = await restaurantManager.deleteDish(dishId);
+                
+                if (success) {
+                    showSuccess('✅ Piatto eliminato');
+                    await loadMenu();
+                } else {
+                    showError('Errore nell\'eliminazione del piatto');
+                }
+            } catch (error) {
+                console.error('Errore:', error);
+                showError('Errore nella comunicazione');
+            }
+        }
+
+        /**
+         * Mostra messaggio successo
+         */
+        function showSuccess(msg) {
+            const alert = document.getElementById('successAlert');
+            document.getElementById('successMsg').textContent = msg;
+            alert.classList.remove('d-none');
+            setTimeout(() => alert.classList.add('d-none'), 4000);
+        }
+
+        /**
+         * Mostra messaggio errore
+         */
+        function showError(msg) {
+            const alert = document.getElementById('errorAlert');
+            document.getElementById('errorMsg').textContent = msg;
+            alert.classList.remove('d-none');
+            setTimeout(() => alert.classList.add('d-none'), 4000);
+        }
+    </script>
+</body>
+</html>

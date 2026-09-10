@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magazine | trovapiatto - Guida ai Piatti e Ristoranti di Bari</title>
+  <meta name="description" content="Scopri le nostre guide ai piatti tipici di Bari e Puglia. Consigli, ristoranti e ricette per vivere al meglio la cucina pugliese.">
+  <meta name="keywords" content="blog trovapiatto, guide Bari, piatti puglia, cucina barese, ristoranti Bari, food blog Bari">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#e73a3a">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/">
+  <meta property="og:title" content="Magazine | trovapiatto - Guida ai Piatti e Ristoranti di Bari">
+  <meta property="og:description" content="Guide, consigli e classifiche per scoprire i migliori piatti e ristoranti di Bari e Puglia.">
+  <meta property="og:image" content="https://www.trovapiatto.it/logo/logo_ufficiale.png">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Magazine | trovapiatto">
+  <meta name="twitter:description" content="Guide ai piatti e ristoranti di Bari e Puglia.">
+  <meta name="twitter:image" content="https://www.trovapiatto.it/logo/logo_ufficiale.png">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --bg-card-hover: #221833;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+    }
+    
+    .blog-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .blog-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .blog-nav .logo img { height: 32px; }
+    
+    .blog-nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .blog-nav .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    
+    .blog-nav .nav-links a:hover { color: var(--primary); }
+    
+    .breadcrumb {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: rgba(255,255,255,0.2); }
+    .breadcrumb .current { color: var(--text-light); }
+    
+    .blog-hero {
+      text-align: center;
+      padding: 70px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=1400&h=500&fit=crop') center/cover no-repeat;
+      filter: blur(4px) brightness(0.5) scale(1.05);
+      z-index: 0;
+    }
+    
+    .blog-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,10,21,0.55) 0%, rgba(15,10,21,0.85) 100%);
+      z-index: 1;
+    }
+    
+    .blog-hero > * { position: relative; z-index: 2; }
+    
+    .blog-hero .badge {
+      display: inline-block;
+      background: rgba(231,58,58,0.15);
+      color: var(--primary-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .blog-hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text-white), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    @media (min-width: 768px) {
+      .blog-hero h1 { font-size: 2.8rem; }
+    }
+    
+    .blog-hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    .blog-hero .hero-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .blog-hero .hero-stats i { color: var(--primary); }
+    
+    .filter-bar {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    
+    .filter-bar::-webkit-scrollbar { display: none; }
+    
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s;
+    }
+    
+    .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--text-white);
+    }
+    
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    
+    .filter-btn .count {
+      background: rgba(255,255,255,0.15);
+      padding: 1px 7px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+    }
+    
+    .filter-btn.active .count {
+      background: rgba(255,255,255,0.25);
+    }
+    
+    .featured-section {
+      max-width: 1100px;
+      margin: 32px auto 0;
+      padding: 0 20px;
+    }
+    
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s;
+    }
+    
+    @media (min-width: 768px) {
+      .featured-card { grid-template-columns: 1.2fr 1fr; }
+    }
+    
+    .featured-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 16px 50px rgba(231,58,58,0.12);
+      transform: translateY(-4px);
+    }
+    
+    .featured-card .feat-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+    
+    @media (min-width: 768px) {
+      .featured-card .feat-img { height: 100%; min-height: 300px; }
+    }
+    
+    .featured-card .feat-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .featured-card .feat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245,158,11,0.15);
+      color: var(--accent-food);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+    
+    .featured-card .feat-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    
+    @media (min-width: 768px) {
+      .featured-card .feat-title { font-size: 1.7rem; }
+    }
+    
+    .featured-card .feat-excerpt {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    
+    .featured-card .feat-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    
+    .featured-card .feat-meta i { color: var(--primary); }
+    
+    .featured-card .feat-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: gap 0.3s;
+    }
+    
+    .featured-card:hover .feat-cta { gap: 12px; }
+    
+    .blog-grid {
+      max-width: 1100px;
+      margin: 32px auto 0;
+      padding: 0 20px 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+    
+    .blog-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 12px 40px rgba(231,58,58,0.15);
+    }
+    
+    .blog-card .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .blog-card .card-body {
+      padding: 20px;
+    }
+    
+    .blog-card .card-tag {
+      display: inline-block;
+      background: rgba(231,58,58,0.15);
+      color: var(--primary-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .blog-card .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    
+    .blog-card .card-excerpt {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    
+    .blog-card .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    
+    .blog-card .card-meta i { color: var(--primary); }
+    
+    .blog-card .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 12px;
+      transition: gap 0.3s;
+    }
+    
+    .blog-card:hover .read-more { gap: 10px; }
+    
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+      grid-column: 1 / -1;
+    }
+    
+    .no-results i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: block;
+    }
+    
+    .newsletter-section {
+      max-width: 700px;
+      margin: 20px auto 48px;
+      padding: 0 20px;
+    }
+    
+    .newsletter-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.1), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 20px;
+      padding: 40px 32px;
+      text-align: center;
+    }
+    
+    .newsletter-box .nl-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(231,58,58,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    
+    .newsletter-box .nl-icon i {
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+    
+    .newsletter-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .newsletter-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    
+    .newsletter-form input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: var(--text-white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    
+    .newsletter-form input::placeholder { color: var(--text-muted); }
+    .newsletter-form input:focus { border-color: var(--primary); }
+    
+    .newsletter-form button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    
+    .newsletter-form button:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+    
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 20px 30px;
+    }
+    
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    
+    @media (min-width: 768px) {
+      .footer-inner { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+    }
+    
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+    
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-white);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+    
+    .footer-col a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 4px 0;
+      transition: color 0.3s;
+    }
+    
+    .footer-col a:hover { color: var(--primary); }
+    
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .footer-social a:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 24px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="blog-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <div class="nav-links">
+      <a href="/piatti/">Piatti</a>
+      <a href="/bari/migliori-ristoranti-bari/">Ristoranti</a>
+      <a href="/community/blog/" style="color:var(--primary)">Magazine</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+    <span class="sep">/</span>
+    <span class="current">Magazine</span>
+  </div>
+
+  <section class="blog-hero">
+    <span class="badge"><i class="fa-solid fa-pen-nib"></i> Magazine trovapiatto</span>
+    <h1>Guide, Consigli e Classifiche</h1>
+    <p>Tutto quello che devi sapere sui piatti tipici e i ristoranti migliori di Bari e Puglia</p>
+    <div class="hero-stats">
+      <span><i class="fa-solid fa-newspaper"></i> 33+ articoli</span>
+      <span><i class="fa-solid fa-utensils"></i> Bari e Puglia</span>
+      <span><i class="fa-solid fa-fire"></i> Aggiornato 2026</span>
+    </div>
+  </section>
+
+  <div class="filter-bar" id="filter-bar">
+    <!-- Generated by JS -->
+  </div>
+
+  <div class="featured-section" id="featured-section">
+    <!-- Generated by JS -->
+  </div>
+
+  <div class="blog-grid" id="blog-grid">
+    <!-- Generated by JS -->
+  </div>
+
+  <div class="newsletter-section">
+    <div class="newsletter-box">
+      <div class="nl-icon"><i class="fa-solid fa-envelope"></i></div>
+      <h3>Resta Aggiornato</h3>
+      <p>Ricevi le nuove guide e i consigli direttamente nella tua casella email. Niente spam, solo cibo buono.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='Iscritto! ✓';this.querySelector('button').style.background='#16a34a'">
+        <input type="email" placeholder="La tua email..." required>
+        <button type="submit">Iscriviti</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text-white)">
+          <img src="/logo/logo_ufficiale.png" alt="trovapiatto" style="height:28px">
+        </a>
+        <p>La guida definitiva ai piatti tipici e ristoranti migliori di Bari e Puglia. Scopri, cerca e prenota.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/trovapiatto" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/trovapiatto" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@trovapiatto" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Esplora</h4>
+        <a href="/piatti/">Tutti i Piatti</a>
+        <a href="/bari/migliori-ristoranti-bari/">Ristoranti</a>
+        <a href="/community/blog/">Magazine</a>
+        <a href="/bari/">Cosa Mangiare a Bari</a>
+      </div>
+      <div class="footer-col">
+        <h4>Categorie</h4>
+        <a href="/community/blog/street-food-bari/">Street Food</a>
+        <a href="/community/blog/pizza-bari/">Pizza</a>
+        <a href="/community/blog/ristoranti-mare-bari/">Pesce e Mare</a>
+        <a href="/community/blog/vini-pugliesi/">Vini Pugliesi</a>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <a href="/about.html">Chi Siamo</a>
+        <a href="/contatti.html">Contatti</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/termini.html">Termini e Condizioni</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 trovapiatto &mdash; P.IVA 00000000000 &mdash; Tutti i diritti riservati
+    </div>
+  </footer>
+
+  <script>
+    const articles = [
+      {
+        slug: 'orecchiette-bari',
+        tag: 'Piatto Tipico',
+        title: 'Orecchiette a Bari: 7 Ristoranti Dove Mangiare le Migliori',
+        excerpt: 'Guida completa alle migliori orecchiette di Bari. Dal classico con cime di rapa alle versioni creative, ecco dove trovarle con prezzi e consigli.',
+        img: 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=600&h=400&fit=crop',
+        date: '2 Luglio 2026',
+        readTime: '6 min',
+        url: '/community/blog/orecchiette-bari/'
+      },
+      {
+        slug: 'cosa-mangiare-bari',
+        tag: 'Guida Completa',
+        title: 'Cosa Mangiare a Bari: La Guida Completa ai Piatti Tipici',
+        excerpt: '15 piatti tipici che devi assolutamente provare a Bari. Orecchiette, focaccia, panzerotti, branzino, burrata e molto altro con ristoranti e prezzi.',
+        img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop',
+        date: '6 Luglio 2026',
+        readTime: '12 min',
+        url: '/bari/'
+      },
+      {
+        slug: 'piatti-cucina-pugliese',
+        tag: 'Cucina Pugliese',
+        title: 'I 10 Migliori Piatti della Cucina Pugliese',
+        excerpt: 'Scopri i piatti più iconici della Puglia: dalle orecchiette alla focaccia, dai panzerotti alla tiella. Guida completa con ristoranti e prezzi.',
+        img: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '7 min',
+        url: '/community/blog/piatti-cucina-pugliese/'
+      },
+      {
+        slug: 'guida-ristoranti-bari',
+        tag: 'Ristoranti',
+        title: 'Guida Completa ai Ristoranti di Bari',
+        excerpt: 'Panoramica completa della scena ristorativa di Bari: pesce, pizza, carne e cucina tradizionale. 10+ ristoranti con prezzi e consigli.',
+        img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '8 min',
+        url: '/community/blog/guida-ristoranti-bari/'
+      },
+      {
+        slug: 'ristoranti-mare-bari',
+        tag: 'Mare e Pesce',
+        title: 'Ristoranti sul Mare a Bari: Guida ai Migliori',
+        excerpt: 'I migliori ristoranti con vista mare di Bari. Pesce fresco, atmosfera marina e prezzi per ogni tasca.',
+        img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '6 min',
+        url: '/community/blog/ristoranti-mare-bari/'
+      },
+      {
+        slug: 'street-food-bari',
+        tag: 'Street Food',
+        title: 'Street Food a Bari: Guida Completa al Cibo di Strada',
+        excerpt: 'Focaccia, panzerotti, frittini e pollo fritto: dove trovare i migliori street food di Bari con prezzi e consigli.',
+        img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '6 min',
+        url: '/community/blog/street-food-bari/'
+      },
+      {
+        slug: 'migliori-pizzeria-bari',
+        tag: 'Pizza',
+        title: 'I Migliori Pizzeria a Bari: Dove Mangiare Pizza',
+        excerpt: 'Dalla pizza tradizionale alla gourmet: 10+ pizzerie di Bari con prezzi, tipi di pizza e consigli.',
+        img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '7 min',
+        url: '/community/blog/migliori-pizzeria-bari/'
+      },
+      {
+        slug: 'cucina-pugliese-storia',
+        tag: 'Storia',
+        title: 'Cucina Pugliese: Storia e Tradizioni',
+        excerpt: 'Le origini e le tradizioni della cucina pugliese: influenze, ingredienti tipici e come si è evoluta nel tempo.',
+        img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '6 min',
+        url: '/community/blog/cucina-pugliese-storia/'
+      },
+      {
+        slug: 'ristoranti-michelin-bari',
+        tag: 'Fine Dining',
+        title: 'Ristoranti Michelin a Bari: Dove Mangiare Stellato',
+        excerpt: 'Villa Crespi, Primo, Quintessenza e gli altri ristoranti stellati della zona. Guida al fine dining pugliese.',
+        img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '6 min',
+        url: '/community/blog/ristoranti-michelin-bari/'
+      },
+      {
+        slug: 'aperitivo-bari',
+        tag: 'Aperitivo',
+        title: 'Aperitivo a Bari: I Migliori Locali',
+        excerpt: 'I migliori bar e locali per l\'aperitivo a Bari. Spritz, taglieri e atmosfera con prezzi e consigli.',
+        img: 'https://images.unsplash.com/photo-1514362545857-3bc16c8c7f1b?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '5 min',
+        url: '/community/blog/aperitivo-bari/'
+      },
+      {
+        slug: 'cibo-asporto-bari',
+        tag: 'Asporto',
+        title: 'Cibo da Asporto a Bari: Guida ai Migliori',
+        excerpt: 'I migliori ristoranti con cibo da asporto a Bari. Consegna a domicilio e take away con prezzi e consigli.',
+        img: 'https://images.unsplash.com/photo-1526367790999-0150786686a2?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '5 min',
+        url: '/community/blog/cibo-asporto-bari/'
+      },
+      {
+        slug: 'ristoranti-romantici-bari',
+        tag: 'Romantico',
+        title: 'I Migliori Ristoranti Romantici a Bari',
+        excerpt: 'Dove portare la fidanzata a Bari: ristoranti con atmosfera intima, menu speciali e vista mare.',
+        img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '5 min',
+        url: '/community/blog/ristoranti-romantici-bari/'
+      },
+      {
+        slug: 'focaccia-barese',
+        tag: 'Piatto Tipico',
+        title: 'Focaccia Barese: Storia, Ricetta e Dove Mangiarla',
+        excerpt: 'La storia della focaccia barese, la ricetta tradizionale e i 8+ posti migliori per assaggiarla a Bari.',
+        img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '6 min',
+        url: '/community/blog/focaccia-barese/'
+      },
+      {
+        slug: 'ristoranti-famiglie-bari',
+        tag: 'Famiglie',
+        title: 'Ristoranti per Famiglie a Bari: Guida Completa',
+        excerpt: 'I migliori ristoranti per famiglie con bambini a Bari. Menu kids, aree gioco e atmosfera familiare.',
+        img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '5 min',
+        url: '/community/blog/ristoranti-famiglie-bari/'
+      },
+      {
+        slug: 'pizza-bari',
+        tag: 'Pizza',
+        title: 'Pizza a Bari: Dove Mangiare le Migliori',
+        excerpt: 'Dalla pizza al taglio alla gourmet: 10+ pizzerie di Bari con prezzi e consigli per ogni tipo di pizza.',
+        img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '7 min',
+        url: '/community/blog/pizza-bari/'
+      },
+      {
+        slug: 'ristoranti-economici-bari',
+        tag: 'Budget',
+        title: 'Ristoranti Economici a Bari: Mangiare Bene Spendingo Poco',
+        excerpt: '10+ ristoranti economici a Bari dove mangiare bene con poco budget. Menu del giorno e offerte.',
+        img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '6 min',
+        url: '/community/blog/ristoranti-economici-bari/'
+      },
+      {
+        slug: 'fritti-pugliesi',
+        tag: 'Cucina Pugliese',
+        title: 'Fritti Pugliesi: Guida Completa ai Migliori',
+        excerpt: 'Polpo fritto, frittini, panzerotti e calzoni: guida completa ai fritti tipici della Puglia.',
+        img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '5 min',
+        url: '/community/blog/fritti-pugliesi/'
+      },
+      {
+        slug: 'ristoranti-celiaci-bari',
+        tag: 'Senza Glutine',
+        title: 'Ristoranti per Celiaci a Bari: Guida al Senza Glutine',
+        excerpt: 'I migliori ristoranti con menu senza glutine a Bari. Opzioni per celiaci e intolleranti.',
+        img: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '5 min',
+        url: '/community/blog/ristoranti-celiaci-bari/'
+      },
+      {
+        slug: 'vini-pugliesi',
+        tag: 'Vini',
+        title: 'Vini Pugliesi: Guida ai Migliori Vini della Regione',
+        excerpt: 'Primitivo, Negroamaro, Minutolo: scopri i vini più famosi della Puglia e dove assaggiarli a Bari.',
+        img: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '6 min',
+        url: '/community/blog/vini-pugliesi/'
+      },
+      {
+        slug: 'ristoranti-vegetariani-bari',
+        tag: 'Vegetariano',
+        title: 'Ristoranti Vegetariani e Vegani a Bari',
+        excerpt: 'I migliori ristoranti vegetariani e vegani a Bari. Menu senza carne e opzioni plant-based.',
+        img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '5 min',
+        url: '/community/blog/ristoranti-vegetariani-bari/'
+      },
+      {
+        slug: 'giovinazzo-ristoranti',
+        tag: 'Provincia',
+        title: 'Giovinazzo: Guida ai Migliori Ristoranti',
+        excerpt: 'I migliori ristoranti di Giovinazzo, vicino Bari. Pesce fresco, cucina tradizionale e atmosfera marina.',
+        img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop',
+        date: '8 Luglio 2026',
+        readTime: '5 min',
+        url: '/community/blog/giovinazzo-ristoranti/'
+      },
+      {
+        slug: 'panzerotti-luini-bari',
+        tag: 'Street Food',
+        title: 'Panzerotti a Bari: La Guida Definitiva ai Migliori 2026',
+        excerpt: 'La guida completa ai migliori panzerotti di Bari. Dal classico fritto alle varianti creative, con prezzi e ristoranti.',
+        img: 'https://images.unsplash.com/photo-1536964549204-cce9eab227bd?w=600&h=400&fit=crop',
+        date: '10 Agosto 2026',
+        readTime: '6 min',
+        url: '/community/blog/panzerotti-luini-bari/'
+      },
+      {
+        slug: 'cucina-barese-piatti-imperdibili',
+        tag: 'Tradizione',
+        title: 'Cucina Baresa: I 10 Piatti Imperdibili da Assaggiare',
+        excerpt: 'I piatti simbolo della cucina barese: orecchiette, focaccia, panzerotti, tiella e molto altro con ristoranti e prezzi.',
+        img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop',
+        date: '8 Agosto 2026',
+        readTime: '8 min',
+        url: '/community/blog/cucina-barese-piatti-imperdibili/'
+      },
+      {
+        slug: 'ristoranti-vista-mare-bari',
+        tag: 'Vista Mare',
+        title: 'Ristoranti con Vista Mare a Bari: 8 Locali sull\'Adriatico',
+        excerpt: 'I migliori ristoranti con vista mare di Bari. Pesce fresco e panorama mozzafiato sull\'Adriatico.',
+        img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&h=400&fit=crop',
+        date: '5 Agosto 2026',
+        readTime: '7 min',
+        url: '/community/blog/ristoranti-vista-mare-bari/'
+      },
+      {
+        slug: 'dolci-pugliesi',
+        tag: 'Dolci',
+        title: 'Dolci Pugliesi: I 10 Dolci Tradizionali da non perdere',
+        excerpt: 'Pasticciotto, cartellate, strudel di Pascella e gli altri dolci tipici della Puglia da provare almeno una volta.',
+        img: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&h=400&fit=crop',
+        date: '3 Agosto 2026',
+        readTime: '6 min',
+        url: '/community/blog/dolci-pugliesi/'
+      },
+      {
+        slug: 'ristoranti-romani-napolitani-bari',
+        tag: 'Cucina del Sud',
+        title: 'Ristoranti Romani e Napoletani a Bari: 7 Locali',
+        excerpt: 'I migliori ristoranti di cucina romana e napoletana a Bari. Pizza, pasta e tradizione del sud Italia.',
+        img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&h=400&fit=crop',
+        date: '28 Luglio 2026',
+        readTime: '7 min',
+        url: '/community/blog/ristoranti-romani-napolitani-bari/'
+      },
+      {
+        slug: 'giovinazzo-gioiello-nascosto',
+        tag: 'Borghi',
+        title: 'Giovinazzo: Il Gioiello Nascosto della Puglia',
+        excerpt: 'Giovinazzo, borgo marino a 20 minuti da Bari: storia, cosa vedere e dove mangiare i piatti più buoni.',
+        img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop',
+        date: '25 Luglio 2026',
+        readTime: '6 min',
+        url: '/community/blog/giovinazzo-gioiello-nascosto/'
+      },
+      {
+        slug: 'mercati-bari',
+        tag: 'Mercati',
+        title: 'Mercati di Bari: Dove Mangiare il Meglio della Tradizione',
+        excerpt: 'Mercato di Via Ferrante Ferranti, mercato del pesce e strada delle orecchiette: guida ai mercati di Bari.',
+        img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop',
+        date: '22 Luglio 2026',
+        readTime: '7 min',
+        url: '/community/blog/mercati-bari/'
+      },
+      {
+        slug: 'cucina-mare-pugliese',
+        tag: 'Pesce',
+        title: 'Cucina di Mare Pugliese: I Migliori Piatti di Pesce',
+        excerpt: 'Crudo di pesce, frittura di paranza, polpo alla piastra e risotto: i piatti di pesce più buoni della Puglia.',
+        img: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&h=400&fit=crop',
+        date: '18 Luglio 2026',
+        readTime: '7 min',
+        url: '/community/blog/cucina-mare-pugliese/'
+      },
+      {
+        slug: 'mangiare-bari-con-bambini',
+        tag: 'Famiglie',
+        title: 'Bari con Bambini: Dove Mangiare nei Migliori Ristoranti',
+        excerpt: 'I migliori ristoranti famiglia a Bari. Menu kids, porzioni generose e atmosfera accogliente per tutta la famiglia.',
+        img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&h=400&fit=crop',
+        date: '15 Luglio 2026',
+        readTime: '6 min',
+        url: '/community/blog/mangiare-bari-con-bambini/'
+      },
+      {
+        slug: 'burrata-puglia',
+        tag: 'Formaggio',
+        title: 'Burrata di Puglia: La Guida Definitiva al Re dei Formaggi',
+        excerpt: 'Tutto sulla burrata pugliese: storia, dove assaggiarla, abbinamenti e i migliori produttori dalla Valle d\'Itria a Bari.',
+        img: 'https://images.unsplash.com/photo-1631209121750-a9f656d38f5f?w=600&h=400&fit=crop',
+        date: '28 Agosto 2026',
+        readTime: '6 min',
+        url: '/community/blog/burrata-puglia/'
+      },
+      {
+        slug: 'orecchiette-cime-rapa',
+        tag: 'Pasta',
+        title: 'Orecchiette alle Cime di Rapa: Ricetta e Dove Mangiarle',
+        excerpt: 'La ricetta tradizionale delle orecchiette con cime di rapa e i 7+ ristoranti di Bari dove ordinarle come si deve.',
+        img: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&h=400&fit=crop',
+        date: '26 Agosto 2026',
+        readTime: '5 min',
+        url: '/community/blog/orecchiette-cime-rapa/'
+      },
+      {
+        slug: 'pesce-bari',
+        tag: 'Pesce',
+        title: 'Pesce a Bari: I Migliori Ristoranti di Pesce Fresco',
+        excerpt: 'Crudo, frittura di paranza, risotto e pesce alla griglia: guida ai migliori ristoranti di pesce di Bari con prezzi.',
+        img: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&h=400&fit=crop',
+        date: '24 Agosto 2026',
+        readTime: '7 min',
+        url: '/community/blog/pesce-bari/'
+      },
+      {
+        slug: 'tiella-barese',
+        tag: 'Tradizione',
+        title: 'Tiella Barese: La Tradizione della Cucina di Mare',
+        excerpt: 'Tiella di riso, patate e cozze: storia, ricetta e dove gustare questo piatto simbolo della tradizione barese.',
+        img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop',
+        date: '22 Agosto 2026',
+        readTime: '6 min',
+        url: '/community/blog/tiella-barese/'
+      },
+      {
+        slug: 'mercato-bari',
+        tag: 'Mercato',
+        title: 'Mercato di Bari: Dove Mangiare il Meglio della Tradizione',
+        excerpt: 'Mercato di Via Ferrante Ferranti, mercato del pesce e strada delle orecchiette: guida completa ai mercati di Bari.',
+        img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop',
+        date: '20 Agosto 2026',
+        readTime: '7 min',
+        url: '/community/blog/mercato-bari/'
+      },
+      {
+        slug: 'cucina-pugliese-salute',
+        tag: 'Salute',
+        title: 'Cucina Pugliese e Salute: Benefici della Dieta Mediterranea',
+        excerpt: 'Olio d\'oliva, legumi, pesce e verdure: come la cucina pugliese è tra le più sane al mondo secondo la scienza.',
+        img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop',
+        date: '18 Agosto 2026',
+        readTime: '6 min',
+        url: '/community/blog/cucina-pugliese-salute/'
+      },
+      {
+        slug: 'polpo-griglia',
+        tag: 'Pesce',
+        title: 'Polpo alla Griglia: Il Piatto di Mare più Amato della Puglia',
+        excerpt: 'Polpo cotto alla brace con olio e limone: dove trovare il migliore polpo alla griglia a Bari con prezzi e consigli.',
+        img: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&h=400&fit=crop',
+        date: '16 Agosto 2026',
+        readTime: '5 min',
+        url: '/community/blog/polpo-griglia/'
+      },
+      {
+        slug: 'dolci-puglia',
+        tag: 'Dolci',
+        title: 'Dolci di Puglia: I 10 Dolci Tradizionali da Non Perdere',
+        excerpt: 'Pasticciotto, cartellate, strudel di Pascella e gli altri dolci tipici della Puglia da provare almeno una volta nella vita.',
+        img: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&h=400&fit=crop',
+        date: '14 Agosto 2026',
+        readTime: '6 min',
+        url: '/community/blog/dolci-puglia/'
+      },
+      {
+        slug: 'cibo-bambini-bari',
+        tag: 'Famiglie',
+        title: 'Cibo per Bambini a Bari: Dove Mangiare con i Più Piccoli',
+        excerpt: 'I migliori ristoranti con menu per bambini, aree gioco e atmosfera familiare a Bari. Guida per genitori.',
+        img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&h=400&fit=crop',
+        date: '12 Agosto 2026',
+        readTime: '5 min',
+        url: '/community/blog/cibo-bambini-bari/'
+      }
+    ];
+
+    const tagIcons = {
+      'Piatto Tipico': 'fa-utensils',
+      'Guida Completa': 'fa-book-open',
+      'Cucina Pugliese': 'fa-pepper-hot',
+      'Ristoranti': 'fa-store',
+      'Mare e Pesce': 'fa-fish',
+      'Street Food': 'fa-fire',
+      'Pizza': 'fa-pizza-slice',
+      'Storia': 'fa-landmark',
+      'Fine Dining': 'fa-star',
+      'Aperitivo': 'fa-martini-glass-citrus',
+      'Asporto': 'fa-bag-shopping',
+      'Romantico': 'fa-heart',
+      'Famiglie': 'fa-children',
+      'Budget': 'fa-euro-sign',
+      'Senza Glutine': 'fa-wheat-awn',
+      'Vini': 'fa-wine-glass',
+      'Vegetariano': 'fa-leaf',
+      'Provincia': 'fa-map-location-dot',
+      'Tradizione': 'fa-hand-fist',
+      'Vista Mare': 'fa-water',
+      'Dolci': 'fa-cake-candles',
+      'Cucina del Sud': 'fa-flag',
+      'Borghi': 'fa-church',
+      'Mercati': 'fa-cart-shopping',
+      'Mercato': 'fa-cart-shopping',
+      'Pesce': 'fa-shrimp',
+      'Formaggio': 'fa-cheese',
+      'Pasta': 'fa-bowl-food',
+      'Salute': 'fa-heart-pulse'
+    };
+
+    const allTags = [...new Set(articles.map(a => a.tag))];
+    let activeFilter = 'Tutti';
+
+    function renderFilters() {
+      const bar = document.getElementById('filter-bar');
+      const counts = { 'Tutti': articles.length };
+      allTags.forEach(t => counts[t] = articles.filter(a => a.tag === t).length);
+
+      let html = `<button class="filter-btn active" onclick="setFilter('Tutti')">Tutti <span class="count">${counts['Tutti']}</span></button>`;
+      allTags.forEach(t => {
+        const icon = tagIcons[t] || 'fa-tag';
+        html += `<button class="filter-btn" onclick="setFilter('${t}')"><i class="fa-solid ${icon}"></i> ${t} <span class="count">${counts[t]}</span></button>`;
+      });
+      bar.innerHTML = html;
+    }
+
+    function setFilter(tag) {
+      activeFilter = tag;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.includes(tag === 'Tutti' ? 'Tutti' : tag));
+      });
+      renderGrid();
+    }
+
+    function renderFeatured() {
+      const section = document.getElementById('featured-section');
+      if (activeFilter !== 'Tutti') { section.innerHTML = ''; return; }
+      const a = articles[0];
+      section.innerHTML = `
+        <a href="${a.url}" class="featured-card">
+          <img src="${a.img}" alt="${a.title}" class="feat-img" loading="lazy">
+          <div class="feat-body">
+            <span class="feat-badge"><i class="fa-solid fa-crown"></i> In Evidenza</span>
+            <h2 class="feat-title">${a.title}</h2>
+            <p class="feat-excerpt">${a.excerpt}</p>
+            <div class="feat-meta">
+              <span><i class="fa-regular fa-calendar"></i> ${a.date}</span>
+              <span><i class="fa-regular fa-clock"></i> ${a.readTime} lettura</span>
+            </div>
+            <span class="feat-cta">Leggi l'articolo <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>`;
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById('blog-grid');
+      const filtered = activeFilter === 'Tutti' ? articles.slice(1) : articles.filter(a => a.tag === activeFilter);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="no-results"><i class="fa-solid fa-magnifying-glass"></i><p>Nessun articolo trovato per questa categoria.</p></div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(a => `
+        <a href="${a.url}" class="blog-card">
+          <img src="${a.img}" alt="${a.title}" class="card-img" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">${a.tag}</span>
+            <h2 class="card-title">${a.title}</h2>
+            <p class="card-excerpt">${a.excerpt}</p>
+            <div class="card-meta">
+              <span><i class="fa-regular fa-calendar"></i> ${a.date}</span>
+              <span><i class="fa-regular fa-clock"></i> ${a.readTime} lettura</span>
+            </div>
+            <span class="read-more">Leggi l'articolo <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+      `).join('');
+
+      renderFeatured();
+    }
+
+    renderFilters();
+    renderGrid();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Magazine trovapiatto",
+    "description": "Guide ai piatti e ristoranti di Bari e Puglia",
+    "url": "https://www.trovapiatto.it/community/blog/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Magazine", "item": "https://www.trovapiatto.it/community/blog/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "url": "https://www.trovapiatto.it/community/blog/orecchiette-bari/", "name": "Orecchiette a Bari: 7 Ristoranti Dove Mangiare le Migliori" },
+      { "@type": "ListItem", "position": 2, "url": "https://www.trovapiatto.it/bari/", "name": "Cosa Mangiare a Bari: La Guida Completa ai Piatti Tipici" },
+      { "@type": "ListItem", "position": 3, "url": "https://www.trovapiatto.it/community/blog/piatti-cucina-pugliese/", "name": "I 10 Migliori Piatti della Cucina Pugliese" },
+      { "@type": "ListItem", "position": 4, "url": "https://www.trovapiatto.it/community/blog/guida-ristoranti-bari/", "name": "Guida Completa ai Ristoranti di Bari" },
+      { "@type": "ListItem", "position": 5, "url": "https://www.trovapiatto.it/community/blog/ristoranti-mare-bari/", "name": "Ristoranti sul Mare a Bari" },
+      { "@type": "ListItem", "position": 6, "url": "https://www.trovapiatto.it/community/blog/street-food-bari/", "name": "Street Food a Bari" },
+      { "@type": "ListItem", "position": 7, "url": "https://www.trovapiatto.it/community/blog/migliori-pizzeria-bari/", "name": "I Migliori Pizzeria a Bari" },
+      { "@type": "ListItem", "position": 8, "url": "https://www.trovapiatto.it/community/blog/cucina-pugliese-storia/", "name": "Cucina Pugliese: Storia e Tradizioni" },
+      { "@type": "ListItem", "position": 9, "url": "https://www.trovapiatto.it/community/blog/ristoranti-michelin-bari/", "name": "Ristoranti Michelin a Bari" },
+      { "@type": "ListItem", "position": 10, "url": "https://www.trovapiatto.it/community/blog/aperitivo-bari/", "name": "Aperitivo a Bari" },
+      { "@type": "ListItem", "position": 11, "url": "https://www.trovapiatto.it/community/blog/burrata-puglia/", "name": "Burrata di Puglia" },
+      { "@type": "ListItem", "position": 12, "url": "https://www.trovapiatto.it/community/blog/orecchiette-cime-rapa/", "name": "Orecchiette alle Cime di Rapa" },
+      { "@type": "ListItem", "position": 13, "url": "https://www.trovapiatto.it/community/blog/pesce-bari/", "name": "Pesce a Bari" },
+      { "@type": "ListItem", "position": 14, "url": "https://www.trovapiatto.it/community/blog/tiella-barese/", "name": "Tiella Barese" },
+      { "@type": "ListItem", "position": 15, "url": "https://www.trovapiatto.it/community/blog/mercato-bari/", "name": "Mercato di Bari" },
+      { "@type": "ListItem", "position": 16, "url": "https://www.trovapiatto.it/community/blog/cucina-pugliese-salute/", "name": "Cucina Pugliese e Salute" },
+      { "@type": "ListItem", "position": 17, "url": "https://www.trovapiatto.it/community/blog/polpo-griglia/", "name": "Polpo alla Griglia" },
+      { "@type": "ListItem", "position": 18, "url": "https://www.trovapiatto.it/community/blog/dolci-puglia/", "name": "Dolci di Puglia" },
+      { "@type": "ListItem", "position": 19, "url": "https://www.trovapiatto.it/community/blog/cibo-bambini-bari/", "name": "Cibo per Bambini a Bari" }
+    ]
+  }
+  </script>
+
+</body>
+</html>

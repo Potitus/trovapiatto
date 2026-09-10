@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosa Mangiare a Orta San Giulio: La Guida Completa ai Piatti Tipici | trovapiatto</title>
+  <meta name="description" content="Scopri cosa mangiare a Orta San Giulio: risotto ai funghi porcini, faraona alla griglia, torta di nocciole e 6 piatti tipici piemontesi con ristoranti, prezzi e consigli.">
+  <meta name="keywords" content="cosa mangiare Orta San Giulio, piatti tipici Orta San Giulio, funghi porcini, torta nocciole, Villa Crespi, ristoranti Orta San Giulio, Piemonte, Lago d'Orta">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <!-- Geo Meta Tags (Local SEO) -->\n  <meta name="geo.region" content="IT-NO">\n  <meta name="geo.placename" content="Orta San Giulio">\n  <meta name="geo.position" content="45.7978;8.4053">\n  <meta name="ICBM" content="45.7978, 8.4053">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/cosa-mangiare-orta-san-giulio/">
+  <meta property="og:title" content="Cosa Mangiare a Orta San Giulio: La Guida Completa ai Piatti Tipici">
+  <meta property="og:description" content="Guida completa ai piatti tipici di Orta San Giulio. Specialità da provare, con ristoranti e prezzi.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-08-29T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-08-29T10:00:00+02:00">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cosa Mangiare a Orta San Giulio: La Guida Completa ai Piatti Tipici">
+  <meta name="twitter:description" content="Piatti tipici di Orta San Giulio da provare assolutamente. Ristoranti, prezzi e consigli.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/cosa-mangiare-orta-san-giulio/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .page-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .page-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .page-nav .logo img { height: 32px; }
+    
+    .page-nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .page-nav .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    
+    .page-nav .nav-links a:hover { color: var(--primary); }
+    
+    .hero {
+      text-align: center;
+      padding: 80px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('HERO_IMAGE') center/cover no-repeat;
+      filter: blur(4px) brightness(0.55) scale(1.05);
+      z-index: 0;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,10,21,0.6) 0%, rgba(15,10,21,0.85) 100%);
+      z-index: 1;
+    }
+    
+    .hero > * { position: relative; z-index: 2; }
+    
+    .hero .badge {
+      display: inline-block;
+      background: rgba(231,58,58,0.15);
+      color: var(--primary-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text-white), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+    }
+    
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+    
+    .hero .stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .hero .stats i { color: var(--primary); }
+    
+    .breadcrumb {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: rgba(255,255,255,0.2); }
+    .breadcrumb .current { color: var(--text-light); }
+    
+    .author-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px auto;
+      max-width: 900px;
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(231,58,58,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .author-avatar i { color: var(--primary); font-size: 1.1rem; }
+    
+    .author-info { flex: 1; }
+    .author-name { font-size: 0.85rem; font-weight: 600; color: var(--text-white); }
+    .author-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .intro {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    
+    .intro strong { color: var(--text-white); }
+    
+    .dish-section {
+      margin-bottom: 48px;
+    }
+    
+    .dish-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    
+    .dish-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    
+    .dish-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-text {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .dish-text strong { color: var(--text-white); }
+    
+    .dish-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-info .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .dish-info .tag i { color: var(--accent-food); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 6px 20px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-icon i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .restaurant-card .rc-info {
+      flex: 1;
+    }
+    
+    .restaurant-card .rc-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    
+    .restaurant-card .rc-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .restaurant-card .rc-action {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: rgba(231,58,58,0.1);
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .map-section {
+      margin: 48px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #guide-map {
+      width: 100%;
+      height: 380px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 40px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .faq-section {
+      margin: 48px 0;
+    }
+    
+    .faq-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    
+    .faq-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 18px 20px;
+      color: var(--text-white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: background 0.3s;
+    }
+    
+    .faq-item h3:hover { background: rgba(255,255,255,0.03); }
+    
+    .faq-item h3 .faq-arrow {
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+    
+    .faq-item.open h3 .faq-arrow { transform: rotate(180deg); }
+    
+    .faq-item .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+    }
+    
+    .faq-item .faq-answer p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 0 20px 18px;
+    }
+    
+    .social-share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0;
+    }
+    
+    .social-share .share-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    
+    .social-share a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .share-fb { background: rgba(59,89,152,0.15); color: #3b5998; }
+    .share-fb:hover { background: #3b5998; color: white; }
+    .share-wa { background: rgba(37,211,102,0.15); color: #25d366; }
+    .share-wa:hover { background: #25d366; color: white; }
+    .share-copy { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+    .share-copy:hover { background: var(--primary); color: white; }
+    
+    .floating-share {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 90;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .floating-share a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    
+    .floating-share a:hover { transform: scale(1.1); }
+    
+    @media (max-width: 768px) {
+      .floating-share { display: flex; }
+      .social-share.inline-share { display: none; }
+    }
+    
+    @media (min-width: 769px) {
+      .floating-share { display: none !important; }
+    }
+    
+    .toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .toc h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-white);
+      letter-spacing: 0.5px;
+    }
+    
+    .toc-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 6px;
+    }
+    
+    .toc-list a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 4px 0;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .toc-list a:hover { color: var(--primary); }
+    
+    .toc-list a .num {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.75rem;
+      width: 18px;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+    
+    .cta-box .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .cta-box .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(231,58,58,0.3);
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+    
+    .site-footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .site-footer a:hover { color: var(--primary); }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="page-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <div class="nav-links">
+      <a href="/piatti/">Piatti</a>
+      <a href="/community/blog/">Magazine</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+    <span class="sep">/</span>
+    <span class="current">Cosa Mangiare a Orta San Giulio</span>
+  </div>
+
+  <header class="hero">
+    <span class="badge"><i class="fa-solid fa-utensils"></i> Guida Aggiornata 2026</span>
+    <h1>Cosa Mangiare a Orta San Giulio: La Guida Completa</h1>
+    <p>6 piatti tipici da provare quando visiti Orta San Giulio. Con ristoranti consigliati, prezzi reali e consigli dei locali.</p>
+    <div class="stats">
+      <span><i class="fa-solid fa-utensils"></i> 6 piatti</span>
+      <span><i class="fa-solid fa-map-marker-alt"></i> Orta San Giulio, Piemonte</span>
+      <span><i class="fa-regular fa-clock"></i> 18 min lettura</span>
+      <span><i class="fa-solid fa-mountain-sun"></i> Cucina Piemontese</span>
+    </div>
+  </header>
+
+  <div class="author-box">
+    <div class="author-avatar"><i class="fa-solid fa-user-pen"></i></div>
+    <div class="author-info">
+      <div class="author-name">trovapiatto</div>
+      <div class="author-meta">Pubblicato il 29 Agosto 2026</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="intro">
+      <strong>Orta San Giulio in breve:</strong> Questo borgo magico si trova sulle rive del Lago d'Orta, in Piemonte.
+      Nascosto tra vicoli medievali e giardini segreti, qui si trova Villa Crespi,
+      uno dei ristoranti più importanti d'Italia con 2 stelle Michelin.
+      La popolazione è di circa 1.200 abitanti, ma d'estate raddoppia grazie ai turisti
+      che scoprono i suoi piatti e i suoi panorami mozzafiato sul lago.
+      La cucina di Orta è raffinata, innovativa, radicata nella tradizione piemontese —
+      funghi porcini, tartufi, nocciole, carni pregiate e formaggi d'autore
+      sono gli ingredienti protagonisti dei piatti più celebri di questo angolo di Piemonte.
+      I ristoranti qui non cercano i riflettori — cercano la perfezione.
+      Il Lago d'Orta, con le sue acque limpide e i suoi panorami sul Monte Mottarone,
+      è il palcoscenico perfetto per una cena indimenticabile.
+      Orta San Giulio è una tappa imperdibile per chi visita il Piemonte —
+      un luogo dove il tempo sembra essersi fermato, e dove il cibo è ancora fatto come una volta,
+      con ingredienti freschi del territorio e ricette tramandate da generazioni.
+    </div>
+
+    <div class="social-share inline-share">
+      <span class="share-label"><i class="fa-solid fa-share-nodes"></i> Condividi:</span>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/cosa-mangiare-orta-san-giulio/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Orta%20San%20Giulio:%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/cosa-mangiare-orta-san-giulio/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/cosa-mangiare-orta-san-giulio/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+    </div>
+
+    <div class="toc">
+      <h3><i class="fa-solid fa-list"></i> Indice</h3>
+      <div class="toc-list">
+        <a href="#storia"><span class="num">-</span> Storia e Tradizioni</a>
+        <a href="#risotto-ai-funghi-porcini"><span class="num">1.</span> Risotto ai Funghi Porcini</a>
+        <a href="#faraona-alla-griglia"><span class="num">2.</span> Faraona alla Griglia</a>
+        <a href="#torta-di-nocciole"><span class="num">3.</span> Torta di Nocciole</a>
+        <a href="#vitello-tonnato"><span class="num">4.</span> Vitello Tonnato</a>
+        <a href="#bollito-misto"><span class="num">5.</span> Bollito Misto</a>
+        <a href="#gnocchi-al-ragu"><span class="num">6.</span> Gnocchi al Ragù</a>
+        <a href="#curiosita"><span class="num">-</span> Curiosità Gastronomiche</a>
+        <a href="#consigli"><span class="num">-</span> Consigli per Visitare</a>
+      </div>
+    </div>
+
+      <section class="dish-section" id="storia">
+        <div class="dish-header">
+          <div class="dish-number"><i class="fa-solid fa-landmark"></i></div>
+          <h2>Storia e Tradizioni di Orta San Giulio</h2>
+        </div>
+        <div class="dish-text">
+          <strong>Le origini di Orta San Giulio</strong> risalgono al Medioevo, quando il borgo fu costruito
+          sulle rive del Lago d'Orta come centro di pesca e commercio.
+          Il nome deriva da San Giulio, il santo patrono dell'isola nel lago,
+          dove si trova la Basilica dedicata al santo — un capolavoro di arte romanica
+          che attrae pellegrini da secoli. Le prime notizie documentate risalgono al X secolo,
+          quando Orta era un importante centro di commercio del legno e del pesce del lago.
+          Il borgo antico, con i suoi vicoli stretti e le case in pietra che scendono verso il lago,
+          è un labirinto di profumi e sapori che si rivelano a ogni angolo.
+          I muri delle antiche abitazioni, ricoperti di edera e illuminati da lampade ad olio,
+          custodiscono segreti culinari tramandati di padre in figlio per generazioni.
+          Ogni vicolo ha il suo profumo: pane appena sfornato, sughi che sobbollono,
+          nocciole tostate che profumano l'aria nelle sere d'autunno.
+        </div>
+        <div class="dish-text">
+          Il <strong>Sacro Monte di Orta</strong>, patrimonio UNESCO dal 2003 insieme ai Sacri Monti
+          di Varallo, Crea, Varese e Ossuccio, è un complesso di 20 cappelle
+          dedicate a San Francesco d'Assisi che si arrampicano lungo il versante orientale
+          del monte che sovrasta il borgo. Fu voluto dal beato Bernardino Caimi nel 1390,
+          dopo un pellegrinaggio in Terra Santa, e costruito nel corso di due secoli.
+          Le cappelle ospitano affreschi e terracotta di grande valore artistico,
+          ma per i food lover il Sacro Monte è importante anche per un altro motivo:
+          i sentieri che collegano le cappelle attraversano boschi di castagni e nocciole
+          dove, in autunno, si raccolgono i funghi porcini più pregiati del Piemonte.
+          Molti chef del borgo conoscono personally i percorsi dei raccoglitori
+          e ricevono le prime speculazioni di funghi freschissimi direttamente dai boschi del Sacro Monte.
+        </div>
+        <div class="dish-text">
+          <strong>Villa Crespi</strong>, la splendida villa liberty sul lungolago, ha una storia culinaria
+          che precede di molto l'arrivo di Antonino Cannavacciuolo. Costruita alla fine dell'Ottocento
+          dal farmacista crespiense Giovanni Motta, la villa fu per decenni una locanda rinomata
+          tra i viaggiatori del Grand Tour che percorrevano la Via Francisca, l'antica rotta
+          che collegava Milano a Roma attraverso le valli piemontesi e l'umbria.
+          Questo percorso, segnato da ospizi e conventi, portava i pellegrini a passare proprio
+          da Orta, dove la tradizione dell'accoglienza e della tavola buona era già radicata.
+          Quando Cannavacciuolo aprì qui il suo ristorante nel 2003, non fece che raccogliere
+          un'eredità culinaria lunga secoli, elevandola a livelli di eccellenza internazionale.
+          Oggi Villa Crespi è un punto di riferimento per la ristorazione italiana,
+          ma il suo legame con il territorio e le sue tradizioni resta più forte che mai.
+        </div>
+        <div class="dish-text">
+          La <strong>tradizione dei funghi porcini</strong> è il cuore pulsante della gastronomia di Orta.
+          I boschi del Monte Mottarone e delle colline circostanti producono ogni anno
+          una grande quantità di funghi porcini, tartufi neri e rossi, e funghi chiodini.
+          I ristoranti del borgo lavorano esclusivamente con funghi freschi raccolti nei boschi,
+          e i piatti sono semplici proprio perché la materia prima è talmente eccellente
+          che non ha bisogno di elaborazioni. Il risotto ai funghi porcini di Villa Crespi è un capolavoro
+          che ha reso celebre Orta in tutto il mondo — un piatto che celebra i sapori del bosco piemontese
+          in modo semplice e raffinato.
+        </div>
+        <div class="dish-text">
+          La <strong>coltivazione delle nocciole</strong> rappresenta un pilastro dell'economia e della cultura
+          alimentare di Orta e del Novarese. Le nocciole Tonda Gentile delle Alpi Piemontesi, IGP,
+          trovano in queste colline il terreno ideale: suoli vulcanici, altitudine moderata,
+          brevi estati calde e inverni freddi creano le condizioni perfette per sviluppare
+          quel sapore intenso e quella consistenza croccante che rendono la Tonda Gentile
+          la nocciola più appreziata al mondo. In autunno, i sentieri che circondano il lago
+          si riempiono di raccoglitori che cercano le nocciole cadute sotto gli alberi secolari.
+          Le latterie sociali del territorio lavorano queste nocciole per produrre torrone,
+          crema spalmabile, gelato e la celebre torta di nocciole che chiude
+          ogni pasto nei ristoranti del borgo. La raccolta, che avviene tra settembre e ottobre,
+          è ancora oggi un evento comunitario che coinvolge intere famiglie.
+        </div>
+        <div class="dish-text">
+          Una particolarità che contraddistingue Orta è la tradizione della <strong>torta di nocciole</strong>:
+          un dolce che celebra una delle materie prime più importanti del Piemonte.
+          Le nocciole Tonda Gentile delle Alpi Piemontesi, IGP, vengono raccolte nei boschi
+          attorno al Lago d'Orta e lavorate fresche per preparare questa torta deliziosa.
+          La tradizione della torta di nocciole a Orta risale al XIX secolo,
+          quando le massaie del borgo la preparavano per le feste patronali e le occasioni speciali.
+          Oggi, la torta di nocciole è il dolce più ordinato nei ristoranti del centro,
+          e non c'è turista che non ne porti a casa un pezzo come souvenir.
+        </div>
+        <div class="dish-text">
+          Le <strong>feste popolari</strong> di Orta sono strettamente legate al cibo.
+          Durante la festa del patrono San Giulio, il 31 gennaio, le strade si riempiono
+          di bancarelle che offrono caldarroste, polenta e dolci tradizionali.
+          D'estate, le feste sul lungomare diventano occasioni per gustare pesce del lago
+          accompagnato da un bicchiere di Nebbiolo. La sagra del fungo porcino,
+          che si tiene a settembre, richiude migliaia di visitatori da tutto il Piemonte —
+          i funghi vengono cucinati in centinaia di modi diversi: in risotto, in padella, al forno,
+          in stuffing, e persino nei dolci. È in queste occasioni che si comprende appieno
+          il legame indissoluble tra Orta, i boschi e il cibo.
+        </div>
+        <div class="dish-text">
+          La <strong>pesca sul Lago d'Orta</strong> ha radici antichissime: già in epoca romana
+          le acque limpide del lago erano famose per la qualità dei suoi pesci,
+          in particolare la trota marmorata e il lavareto, un piccolo crostaceo endemico
+          che oggi è diventato raro e pregiatissimo. I pescatori del borgo utilizzano ancora
+          le tradizionali reti a traino e le tamiele, le characteristiche barche piatte
+          che hanno navigato queste acque per secoli. Il pesce del lago, servito semplice
+          alla griglia o in acqua pazza, è un ingrediente fondamentale della cucina ortese
+          e rappresenta il legame più direct tra il borgo e la sua natura lacustre.
+        </div>
+      </section>
+
+      <section class="dish-section" id="risotto-ai-funghi-porcini">
+        <div class="dish-header">
+          <div class="dish-number">1</div>
+          <h2>Risotto ai Funghi Porcini</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=800&h=400&fit=crop" alt="Risotto ai Funghi Porcini" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Il <strong>risotto ai funghi porcini</strong> di Villa Crespi è un capolavoro di equilibrio:
+          Carnaroli cremoso, funghi freschi di stagione, burro mantecato e un tocco di tartufo.
+          Un piatto che celebra i sapori del bosco piemontese.
+          Il riso Carnaroli viene tostato in padella con burro e cipolla,
+          poi sfumato con vino bianco e cotto lentamente con brodo di funghi freschi.
+        </div>
+        <div class="dish-text">
+          Il segreto sta nella qualità dei funghi porcini, che vengono raccolti nei boschi
+          del Monte Mottarone e lavorati ancora freschi. Il risotto viene mantecato con burro
+          e parmigiano grattugiato, poi servito con una spolverata di tartufo nero del Piemonte —
+          un tocco di lusso che esalta il sapore dei funghi in modo straordinario.
+          A €35-45, è un primo piatto che vale ogni centesimo — la qualità degli ingredienti è tale
+          che basta poco per esaltarne il sapore. Villa Crespi, con le sue 2 stelle Michelin,
+          ha reso celebre questo piatto in tutto il mondo.
+        </div>
+        <div class="dish-text">
+          L'abbinamento ideale è un Nebbiolo d'Alta Langa o un Barbera d'Asti,
+          che bilancia la cremosità del risotto con le sue note fruttate e la sua tannicità elegante.
+          Il risotto ai funghi porcini è un piatto che si mangia soprattutto in autunno,
+          quando i funghi sono al loro apice e i boschi profumano di terra e pioggia.
+          È un'esperienza culinaria che racconta la tradizione della terra piemontese —
+          un piatto semplice ma straordinario, come tutti i grandi classici della cucina italiana.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €35-45</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Primo</span>
+        <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariano</span>
+        </div>
+        <a href="/menu/villa-crespi/" class="restaurant-card">
+          <img src="/loghi/villa-crespi.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Villa Crespi</div>
+            <div class="rc-detail">Risotto ai porcini · €40</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="faraona-alla-griglia">
+        <div class="dish-header">
+          <div class="dish-number">2</div>
+          <h2>Faraona alla Griglia</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=400&fit=crop" alt="Faraona alla Griglia" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>faraona</strong> (guinea fowl) alla griglia è uno dei piatti firm di Antonino Cannavacciuolo:
+          croccante fuori, succosa dentro, servita con un contorno di verdure di stagione del lago.
+          La faraona viene allevata nelle campagne attorno al Lago d'Orta,
+          e il suo sapore è più intenso e complesso rispetto al pollo tradizionale.
+          La carne di faraona ha una texture più compatta e un sapore selvatico
+          che richiama i boschi e le colline piemontesi — è un animale che si muove in libertà,
+          becca erba e insetti, e questo si riflette nella qualità della carne.
+          Da Cannavacciuolo, la faraona viene marinata per ore in erbe del giardino —
+          rosmarino, timo, alloro — prima di essere cotta sulla brace di faggio,
+          un legno che dà alla carne un lieve sentore affumicato impossibile da replicare.
+        </div>
+        <div class="dish-text">
+          A Villa Crespi, la faraona viene cotta lentamente sulla brace di legna,
+          con un solo filo d'olio e una spolverata di sale grosso.
+          Il segreto è nella cottura lenta e nel legno di faggio bruciato,
+          che dà alla carne quel sapore affumicato impossibile da replicare.
+          A €40-55, è un secondo piatto che vale ogni centesimo — la qualità della faraona è tale
+          che basta poco per esaltarne il sapore.
+          I contorni sono verdure di stagione del lago — fagiolini, zucchine, pomodorini —
+          che bilanciano la ricchezza della carne con la loro freschezza.
+          Il piatto viene servito su un tagliere di legno con una salsina preparata
+          con il fondo di cottura, ridotto con vino bianco e burro freddo — una tecnica
+          che richiede precisione e che conferisce al piatto un'eleganza raffinata.
+        </div>
+        <div class="dish-text">
+          La faraona alla griglia è un piatto che racconta la tradizione della terra piemontese —
+          un animale allevato in libertà, cucinato con semplicità e rispetto per l'ingrediente.
+          A Villa Crespi, la faraona viene servita con un bonito di verdure del lago
+          e una salsina preparata con il fondo di cottura — un piatto che unisce terra e lago
+          in modo perfetto. L'abbinamento ideale è un Barolo o un Barbaresco,
+          che bilancia la ricchezza della carne con le sue note di frutti di bosco e spezie.
+          Per chi preferisce vini bianchi, un Timorasso dei Colli Tortonesi,
+          con la sua struttura e complessità, è un abbinamento sorprendente e delizioso.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €40-55</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Secondo</span>
+        </div>
+        <a href="/menu/villa-crespi/" class="restaurant-card">
+          <img src="/loghi/villa-crespi.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Villa Crespi</div>
+            <div class="rc-detail">Faraona alla griglia · €48</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="torta-di-nocciole">
+        <div class="dish-header">
+          <div class="dish-number">3</div>
+          <h2>Torta di Nocciole</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=400&fit=crop" alt="Torta di Nocciole" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>torta di nocciole</strong> Tonda Gentile del Piemonte è il dolce che chiude perfettamente un pasto a Villa Crespi.
+          Croccante, profumata, con nocciole IGP tostate e un cuore morbido.
+          La Tonda Gentile è una varietà di nocciola esclusiva del Piemonte,
+          con un sapore intenso e una consistenza croccante che la rende unica al mondo.
+          A €15-20, è un dolce che vale ogni centesimo — un pezzo di tradizione piemontese.
+        </div>
+        <div class="dish-text">
+          La torta viene preparata con farina di nocciole IGP, zucchero, uova e burro fresco.
+          Le nocciole vengono tostate a bassa temperatura per esaltarne il sapore,
+          poi frantumate e impastate con gli altri ingredienti. La cottura nel forno a bassa temperatura
+          dà alla torta quella consistenza perfetta: croccante fuori, morbida dentro,
+          con un profumo di nocciole che riempie la stanza.
+          I ristoranti del centro la servono con un cucchiaino di gelato alla vaniglia
+          o con una schiuma di mascarpone — un abbinamento perfetto che esalta il sapore delle nocciole.
+        </div>
+        <div class="dish-text">
+          La tradizione della torta di nocciole a Orta risale al XIX secolo,
+          quando le massaie del borgo la preparavano per le feste patronali e le occasioni speciali.
+          Oggi, la torta di nocciole è il dolce più ordinato nei ristoranti del centro,
+          e non c'è turista che non ne porti a casa un pezzo come souvenir.
+          I productori locali offrono anche corsi di pasticceria dove si impara a preparare la torta —
+          un'esperienza unica che unisce la tradizione e la manualità della pasticceria piemontese.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €15-20</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Dolce</span>
+        <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariana</span>
+        </div>
+        <a href="/menu/villa-crespi/" class="restaurant-card">
+          <img src="/loghi/villa-crespi.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Villa Crespi</div>
+            <div class="rc-detail">Torta di nocciole · €18</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+
+      <section class="dish-section" id="vitello-tonnato">
+        <div class="dish-header">
+          <div class="dish-number">4</div>
+          <h2>Vitello Tonnato</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1608897013039-887f21d8c804?w=800&h=400&fit=crop" alt="Vitello Tonnato" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Il <strong>vitello tonnato</strong> è un classico della tavola piemontese che a Orta trova
+          una delle sue interpretazioni più raffinate. Fettine sottili di vitello di razza piemontese,
+          cotto lentamente e servito con una crema di tonno, acciughe e capperi.
+          È un piatto che racconta l'incontro tra terra e mare, tra la tradizione piemontese
+          e i sapori del Mediterraneo che arrivavano lungo le rotte commerciali.
+          A Villa Crespi, il vitello tonnato viene preparato con vitello allevato in libertà
+          nelle valli circostanti, cotto a bassa temperatura e lasciato riposare per ore
+          nella sua marinata prima di essere affettato sottilissimo.
+        </div>
+        <div class="dish-text">
+          La crema di tonno è il cuore del piatto: tonno di qualità, acciughe di Cetara,
+          capperi di Pantelleria, tutto amalgamato con olio extravergine d'oliva e un tocco
+          di succo di limone. Il segreto sta nell'equilibrio tra i sapori — il tonno non deve dominare,
+          le acciughe devono dare profondità, i capperi devono aggiungere quel tocco piccante
+          che sveglia il palato. A €22-30, è un antipasto o un primo piatto che rappresenta
+          l'eleganza della cucina piemontese in modo impeccabile.
+          Il vitello tonnato si mangia tradizionalmente fresco, mai caldo,
+          ed è perfetto nelle calde giornate estive quando il lago profuma di sudorazione e di pesce.
+        </div>
+        <div class="dish-text">
+          In Piemonte, il vitello tonnato è un piatto che non può mancare nelle occasioni speciali.
+          A Orta, i ristoranti del borgo lo preparano con una ricetta che si tramanda da secoli,
+          apportando lievi modifiche per esaltare la qualità degli ingredienti locali.
+          L'abbinamento ideale è un Arneis o un Roero Arneis,
+          vini bianchi piemontesi che con la loro freschezza e mineralità bilanciano
+          la ricchezza della crema di tonno e la delicatezza del vitello.
+          È un piatto che racconta la storia del Piemonte — una terra di confine
+          dove le influenze del nord e del sud si incontrano e si fondono nella tavola.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €22-30</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto</span>
+        </div>
+        <a href="/menu/villa-crespi/" class="restaurant-card">
+          <img src="/loghi/villa-crespi.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Villa Crespi</div>
+            <div class="rc-detail">Vitello tonnato · €26</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="bollito-misto">
+        <div class="dish-header">
+          <div class="dish-number">5</div>
+          <h2>Bollito Misto</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=400&fit=crop" alt="Bollito Misto" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Il <strong>bollito misto</strong> piemontese è uno dei grandi classici della cucina del nord Italia,
+          e a Orta assume una connotazione particolare grazie alla qualità delle carni locali.
+          Un mix di pezzi — bollito di manzo, cappello del prete, lingua, polpettone —
+          cotti lentamente in un brodo profumato con erbe del territorio per diverse ore.
+          Il bollito misto è un piatto della tradizione contadina piemontese,
+          nato come modo per utilizzare ogni parte dell'animale e trasformarla in un pasto
+          ricco e nutriente. A Orta, la tradizione del bollito misto è particolarmente sentita
+          nelle feste invernali, quando il freddo del lago rende necessari piatti sostanziosi.
+        </div>
+        <div class="dish-text">
+          Il segreto del bollito misto è nella cottura lenta e nel brodo: ogni pezzo
+          ha il suo tempo di cottura, e il cuoco esperto sa quando inserire e quando estrarre
+          ogni taglio per ottenere la consistenza perfetta. Il brodo viene preparato
+          con sedano, carote, cipolle, alloro, chiodi di garofano e una spolverata
+          di pepe in grani. A Villa Crespi, il bollito misto viene servito con
+          la bagnet verd — una salsa verde fatta con prezzemolo, aglio, acciughe e capperi —
+          e la bagnet ross — una salsa di peperoni rossi arrostiti e pomodori.
+          A €28-35, è un secondo piatto che rappresenta l'anima più autentica
+          della cucina piemontese — un piatto semplice ma straordinario nella sua complessità.
+        </div>
+        <div class="dish-text">
+          Il bollito misto è un piatto che si mangia soprattutto nei mesi freddi,
+          da ottobre a marzo, quando il corpo chiede calore e sostanza.
+          L'abbinamento ideale è un Barbera d'Asti o un Dolcetto di Dogliani,
+          vini rossi piemontesi che con la loro acidità e morbidezza bilanciano
+          la ricchezza delle carni bollite. A Orta, il bollito misto viene spesso
+          accompagnato da una polenta cremosa preparata con farina di mais macinata a pietra,
+          un contorno che completa il piatto e lo rende ancora più autentico.
+          È un piatto che racconta la storia della cucina di resistenza piemontese —
+          una tradizione che ha saputo trasformare le parti meno nobili dell'animale
+          in un capolavoro di sapori e consistenze.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €28-35</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Secondo</span>
+        </div>
+        <a href="/menu/villa-crespi/" class="restaurant-card">
+          <img src="/loghi/villa-crespi.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Villa Crespi</div>
+            <div class="rc-detail">Bollito misto · €32</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="gnocchi-al-ragu">
+        <div class="dish-header">
+          <div class="dish-number">6</div>
+          <h2>Gnocchi al Ragù</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&h=400&fit=crop" alt="Gnocchi al Ragù" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Gli <strong>gnocchi al ragù</strong> sono il piatto della domenica piemontese per eccellenza:
+          gnocchi di patate morbidi e soffici, conditi con un ragù di carne macinata
+          cotto lentamente con pomodoro, vino rosso e spezie. A Orta, gli gnocchi vengono
+          preparati con patate locali, cotte al forno per perdere l'umidità
+          e poi passate machines per ottenere un impasto liscio e omogeneo.
+          La tradizione vuole che gli gnocchi vengano fatti a mano, uno a uno,
+          con un movimento rapido e preciso che richiede anni di pratica.
+          I migliori gnocchi sono quelli che si sciolgono in bocca,
+          leggeri come nuvole, con una consistenza a metà tra la morbidezza e la resistenza.
+        </div>
+        <div class="dish-text">
+          Il ragù piemontese è diverso dal ragù bolognese: è più denso, più concentrato,
+          con un sapore più profondo e complesso. La carne viene cotta per ore
+          con pomodoro San Marzano, vino Barbera, cipolle, carote, sedano,
+          e un mix di spezie segreto che ogni famiglia custodisce gelosamente.
+          A Villa Crespi, il ragù viene preparato con un mix di carne di manzo e maiale,
+          macinata grossolanamente per mantenere la consistenza, e cotto per almeno quattro ore
+          a fuoco lentissimo. A €16-22, è un primo piatto che rappresenta
+          l'essenza della cucina piemontese — un piatto della domenica,
+          un piatto della famiglia, un piatto che parla al cuore.
+        </div>
+        <div class="dish-text">
+          Gli gnocchi al ragù sono un piatto che si mangia soprattutto d'inverno,
+          quando il corpo chiede calore e comfort food. L'abbinamento ideale
+          è un Nebbiolo d'Alta Langa o un Barbera d'Alba,
+          vini rossi piemontesi che con la loro struttura e complessità bilanciano
+          la ricchezza del ragù e la morbidezza degli gnocchi.
+          A Orta, gli gnocchi al ragù vengono spesso serviti con una spolverata
+          di Parmigiano Reggiano grattugiato fresco e un filo d'olio extravergine d'oliva —
+          un tocco finale che esalta i sapori del piatto e lo rende ancora più invitante.
+          È un piatto che racconta la storia della cucina casalinga piemontese —
+          una tradizione che ha saputo trasformare ingredienti semplici
+          in un capolavoro di sapori e consistenze.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €16-22</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Primo</span>
+        </div>
+        <a href="/menu/villa-crespi/" class="restaurant-card">
+          <img src="/loghi/villa-crespi.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Villa Crespi</div>
+            <div class="rc-detail">Gnocchi al ragù · €18</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+      <h3><i class="fa-solid fa-lightbulb"></i> Consigli per Mangiare a Orta San Giulio</h3>
+      <ul>
+        <li><i class="fa-solid fa-check"></i> Prenota sempre per la cena, soprattutto d'estate</li>
+        <li><i class="fa-solid fa-check"></i> Chiedi al cameriere cosa c'è di fresco oggi</li>
+        <li><i class="fa-solid fa-check"></i> I prezzi indicati sono indicativi e possono variare</li>
+        <li><i class="fa-solid fa-check"></i> Porta pazienza: la cucina buona non si può accelerare</li>
+      </ul>
+    </div>
+
+    <section class="dish-section" id="curiosita">
+      <div class="dish-header">
+        <div class="dish-number"><i class="fa-solid fa-lightbulb"></i></div>
+        <h2>Curiosità Gastronomiche</h2>
+      </div>
+      <div class="dish-text">
+        L'<strong>Isola San Giulio</strong>, che si erge al centro del Lago d'Orta come una sentinella di pietra,
+        è conosciuta come "l'isola del silenzio". L'unico modo per raggiungerla è in barca,
+        e una volta sbarcati, i visitatori trovano un mondo dove il tempo sembra essersi fermato.
+        L'isola ospita l'abbazia benedettina del XII secolo e un percorso di meditazione
+        con dieci lapidi che invitano alla riflessione. Ma per i food lover, l'isola ha una sorpresa:
+        nel piccolo ristorante dell'abbazia si serve un menu vegetariano preparato con erbe
+        raccolte direttamente nell'orto monastico, un'esperienza unica che unisce spiritualità e cucina.
+        Le erbe aromatiche — rosmarino, salvia, timo, lavanda — crescono rigogliose nei giardini
+        dell'abbazia e profumano l'aria dell'isola con un'intensità che si respira ancora
+        prima di toccare terra.
+      </div>
+      <div class="dish-text">
+        I <strong>pescatori del Lago d'Orta</strong> utilizzano ancora oggi la tradizionale tecnica della "lucciola",
+        un metodo di pesca notturno che consiste nell'attrarre i pesci con una luce
+        posizionata sopra l'acqua. Questa tecnica, che risale al Medioevo, era utilizzata
+        principalmente per catturare le trote e i lavareti che popolano le acque del lago.
+        Oggi, la pesca alla lucciola è più un rituale che una pratica commerciale,
+        ma i pescatori più anziani la continuano per mantenere viva una tradizione
+        che ha caratterizzato la vita del borgo per secoli. Il lavareto, in particolare,
+        è un piccolo crostaceo endemico del Lago d'Orta che viene servito fritto
+        con un velo di farina — un antipasto leggero e delicato che racconta
+        la storia millenaria della pesca sul lago.
+      </div>
+      <div class="dish-text">
+        L'<strong>autunno a Orta</strong> è la stagione più importante per i food lover:
+        è il momento della raccolta dei funghi porcini e delle nocciole, ma anche
+        del tartufo nero del Piemonte, che cresce nei boschi di querce e faggi
+        che circondano il Lago d'Orta. La stagione del tartufo va da ottobre a dicembre,
+        e i raccoglitori di tartufi — i tartufai — percorrono i boschi con i loro cani addestrati
+        per cercare questo "diamante nero della cucina". Il tartufo nero del Piemonte,
+       grow sull'appennino e sulle Alpi, ha un sapore terroso e complesso
+        che esalta ogni piatto — dal risotto alla frittata, dalla carne alla pasta fresca.
+        A Orta, il tartufo viene spesso servito in taggedli con burro e parmigiano,
+        un piatto semplice che esalta la qualità del tartufo in modo impeccabile.
+      </div>
+      <div class="dish-text">
+        Una curiosità poco nota è che il <strong>Lago d'Orta</strong> è l'unico lago italiano
+        a ospitare una specie endemica di pesci: il lavareto (galanella), un piccolo pesce
+        che può raggiungere i 12 cm e che vive esclusivamente in queste acque.
+        La presenza del lavareto è un indicatore della qualità ecologica del lago,
+        le cui acque sono tra le più pulite d'Italia. I ristoranti del borgo
+        servono il lavareto fritto, croccante e leggero, accompagnato da un bicchiere
+        di bianco fresco — un'esperienza culinaria che non si trova in nessun altro luogo al mondo.
+      </div>
+    </section>
+
+    <section class="dish-section" id="consigli">
+      <div class="dish-header">
+        <div class="dish-number"><i class="fa-solid fa-utensils"></i></div>
+        <h2>Consigli per Visitare Orta San Giulio</h2>
+      </div>
+      <div class="dish-text">
+        <strong>Come arrivare:</strong> Orta San Giulio è raggiungibile in auto da Milano in circa un'ora
+        seguendo l'autostrada A26 direzione Gravellona Toce, poi uscita Orta-Miasino.
+        In treno, la stazione più vicina è Orta-Miasino, raggiungibile con i regionali
+        da Milano Centrale con un cambio a Novara. Dalla stazione, un autobus
+        collega Orta San Giulio in circa 15 minuti. Per chi preferisce muoversi in barca,
+        è possibile raggiungere Orta anche dal Lago Maggiore, navigando lungo il Canale di Verezzo.
+      </div>
+      <div class="dish-text">
+        <strong>Quando visitare:</strong> La stagione migliore per visitare Orta San Giulio è da maggio a ottobre,
+        con i mesi estivi che offrono il clima più mite e le giornate più lunghe.
+        Settembre e ottobre sono i mesi ideali per i food lover: la sagra del fungo porcino,
+        la raccolta delle nocciole e il tartufo nero rendono questi mesi un paradiso
+        per gli amanti della buona cucina. L'inverno, sebbene freddo, ha il suo fascino:
+        il borgo si svuota dei turisti e ritrova la sua anima autentica,
+        con le trattorie che servono piatti caldi e sostanziosi come il bollito misto
+        e la polenta concia. A Natale, il mercatino sul lungolago regala atmosfere
+        indimenticabili tra luci, profumi di caldarroste e vino caldo.
+      </div>
+      <div class="dish-text">
+        <strong>Dove dormire:</strong> Orta San Giulio offre diverse opzioni di alloggio,
+        dalle hotel sul lungolago con vista panoramica sul monte, ai B&B nel centro storico,
+        fino alle case vacanze nelle colline circostanti. Per un'esperienza unica,
+        è possibile soggiornare nei pressi del Sacro Monte, dove alcuni agriturismi
+        offrono camere con vista sul lago e menus basati su ingredienti a km zero.
+        I prezzi variano da €80 a €200 a notte per una camera doppia,
+        con picchi nei mesi estivi e nei weekend. È consigliabile prenotare con anticipo
+        soprattutto per i weekend di settembre e ottobre, quando le sagre alimentari
+        attirano visitatori da tutta Italia.
+      </div>
+      <div class="dish-text">
+        <strong>Cosa vedere oltre il cibo:</strong> Oltre ai ristoranti e alle tradizioni culinarie,
+        Orta San Giulio offre attrattive uniche. Il Sacro Monte, con le sue 20 cappelle
+        e i sentieri panoramici, è un'escursione imperdibile. L'Isola San Giulio,
+        raggiungibile in barca dal lungolago, è un'esperienza di silenzio e bellezza.
+        Il borgo antico, con i suoi vicoli e le sue piazze, si esplora meglio a piedi,
+        perdersi tra le botteghe artigiane e i caffè storici. Il Museo Civico di Palazzo Toro,
+        ospitato in un palazzo nobiliare del XVII secolo, racconta la storia del borgo
+        attraverso dipinti, arredi e oggetti della tradizione locale.
+        Per gli amanti della natura, il Monte Mottarone offre sentieri escursionistici
+        con panorami spettacolari sul Lago d'Orta, sul Lago Maggiore e sulle Alpi.
+      </div>
+    </section>
+
+    <div class="map-section">
+      <h2><i class="fa-solid fa-map-location-dot"></i> Dove Mangiare a Orta San Giulio</h2>
+      <div id="guide-map"></div>
+    </div>
+
+    <div class="faq-section">
+      <h2><i class="fa-solid fa-circle-question"></i> Domande Frequenti</h2>
+      <div class="faq-item">
+        <h3>Qual è il piatto più famoso di Orta San Giulio? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>I piatti di Villa Crespi di Antonino Cannavacciuolo sono i più celebri. Il risotto ai funghi porcini e la faraona alla griglia sono imperdibili.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Quanto costa mangiare a Orta San Giulio? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Da Villa Crespi un pasto completo costa €80-150 a persona. Altri locali del borgo offrono opzioni più accessibili a €25-40.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Come si arriva a Orta San Giulio? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Orta San Giulio è raggiungibile in auto da Milano (1h) o in treno fino a stazione di Orta-Miasino, poi autobus.</p></div>
+      </div>
+
+    </div>
+
+    <div class="cta-box">
+      <h2>Sei un ristoratore a Orta San Giulio?</h2>
+      <p>Crea il tuo menu online gratuito su trovapiatto e raggiungi più clienti.</p>
+      <a href="/app/admin/" class="btn"><i class="fa-solid fa-plus"></i> Crea il tuo Menu</a>
+    </div>
+
+    <div class="ad-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/blog/">Magazine</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <div class="floating-share">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/cosa-mangiare-orta-san-giulio/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Orta%20San%20Giulio:%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/cosa-mangiare-orta-san-giulio/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/cosa-mangiare-orta-san-giulio/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'Villa Crespi', lat: 45.7978, lng: 8.4053, slug: 'villa-crespi', dish: 'Alta cucina', price: '€35-55' },
+    ];
+
+    const map = L.map('guide-map').setView([45.7978, 8.4053], 14);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">${r.dish}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+
+    document.querySelectorAll('.faq-item h3').forEach(h3 => {
+      h3.addEventListener('click', () => {
+        const item = h3.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cosa Mangiare a Orta San Giulio: La Guida Completa ai Piatti Tipici",
+    "description": "Scopri cosa mangiare a Orta San Giulio: alta cucina piemontese, risotti, carni e specialità del Lago d'Orta con ristoranti stellati.",
+    "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-08-29T10:00:00+02:00",
+    "dateModified": "2026-08-29T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/cosa-mangiare-orta-san-giulio/" },
+    "keywords": "cosa mangiare Orta San Giulio, piatti tipici Orta San Giulio, cucina piemontese, ristoranti Orta San Giulio, Villa Crespi, Lago d'Orta"
+  }
+  </script>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "name": "Cosa Mangiare a Orta San Giulio",
+    "description": "Guida gastronomica a Orta San Giulio: piatti tipici, ristoranti, prezzi e consigli per scoprire la cucina di Orta San Giulio (Piemonte).",
+    "url": "https://www.trovapiatto.it/orta-san-giulio/",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.7978,
+      "longitude": 8.4053
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Orta San Giulio",
+      "addressRegion": "Piemonte",
+      "addressCountry": "IT"
+    },
+    "touristType": ["Foodie", "Culinary Traveler"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Cosa Mangiare a Orta San Giulio", "item": "https://www.trovapiatto.it/cosa-mangiare-orta-san-giulio/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è il piatto più famoso di Orta San Giulio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I piatti di Villa Crespi di Antonino Cannavacciuolo sono i più celebri. Il risotto ai funghi porcini e la faraona alla griglia sono imperdibili."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa mangiare a Orta San Giulio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Da Villa Crespi un pasto completo costa €80-150 a persona. Altri locali del borgo offrono opzioni più accessibili a €25-40

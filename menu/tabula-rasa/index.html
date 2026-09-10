@@ -1,0 +1,2696 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+        <title>Tabula Rasa - Menu Digitale | trovapiatto</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+    <meta name="HandheldFriendly" content="true">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Consent Mode v2: default negato; rispetta la scelta fatta sul sito (localStorage condiviso)
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    
+    <meta name="description" content="Scopri il menu di Tabula Rasa. Menu digitale su trovapiatto">
+    <meta property="og:title" content="Tabula Rasa - Menu Digitale | trovapiatto">
+    <meta property="og:description" content="Scopri il menu di Tabula Rasa. Menu digitale con tutti i piatti, prezzi e allergeni su trovapiatto">
+    <meta property="og:image" content="https://www.trovapiatto.it/logo/default-ristorante.svg">
+    <meta property="og:url" content="https://www.trovapiatto.it/menu/tabula-rasa/"
+    <link rel="canonical" href="https://www.trovapiatto.it/menu/tabula-rasa/">>
+    <meta property="og:type" content="restaurant">
+    <meta property="og:site_name" content="trovapiatto">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tabula Rasa - Menu Digitale">
+    <meta name="twitter:description" content="Scopri il menu di Tabula Rasa. Piatti, prezzi e allergeni su trovapiatto">
+    <meta name="twitter:image" content="https://www.trovapiatto.it/logo/default-ristorante.svg">
+    <meta name="theme-color" content="#537b83">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#e73a3a">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/jquery.lm.cart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Source+Sans+Pro:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: "roboto", sans-serif !important; }
+        h1, h2, h3, h4, h5, h6 { font-family: "source sans pro", sans-serif !important; }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+        .lang-btn-active {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: white;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            padding: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .lang-btn-active:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .lang-dropdown {
+            position: absolute;
+            bottom: 60px;
+            right: 50%;
+            transform: translateX(50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            padding: 8px;
+            display: none;
+            z-index: 1000;
+            min-width: 80px;
+        }
+        .lang-dropdown.show {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .lang-dropdown-item {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ddd;
+            background: transparent;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            padding: 0;
+        }
+        .lang-dropdown-item:hover {
+            border-color: #EF3D26;
+            transform: scale(1.05);
+        }
+        .lang-dropdown-item.active {
+            border-color: #EF3D26;
+            background: #ffe6e0;
+        }
+        
+        /* Footer bar language item */
+        #footer-bar a[onclick*="toggleLangDropdown"] {
+            position: relative !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #footer-bar a[onclick*="toggleLangDropdown"] span {
+            display: block;
+            line-height: 1;
+        }
+        
+        /* Pop-up Offerte Speciali */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 90%;
+            width: 500px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+            text-align: center;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f0f0f0;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .modal-close:hover {
+            background: #EF3D26;
+            color: white;
+        }
+        .modal-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #EF3D26;
+            margin-bottom: 15px;
+        }
+        .modal-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .modal-offer {
+            background: linear-gradient(135deg, rgba(239, 61, 38, 0.1) 0%, rgba(218, 68, 83, 0.1) 100%);
+            border: 2px solid #EF3D26;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #DA4453;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+        .modal-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .modal-btn-primary {
+            background: #EF3D26;
+            color: white;
+            flex: 1;
+            max-width: 200px;
+        }
+        .modal-btn-primary:hover {
+            background: #DA4453;
+            transform: scale(1.05);
+        }
+        .modal-btn-secondary {
+            background: #f0f0f0;
+            color: #666;
+            flex: 1;
+            max-width: 100px;
+        }
+        .modal-btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        @media (max-width: 600px) {
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+            .modal-title {
+                font-size: 20px;
+            }
+            .modal-buttons {
+                flex-direction: column;
+            }
+            .modal-btn {
+                max-width: none !important;
+            }
+        }
+        
+        .lmcart-add {
+            background-color: #8B0000 !important;
+            background: #EF3D26 !important;
+            border-color: #EF3D26 !important;
+        }
+        .lmcart-add:hover {
+            background-color: #d63018 !important;
+            background: #d63018 !important;
+            transform: scale(1.02);
+        }
+        .lmcart-add i { color: white !important; }
+        
+        .menu-category-section {
+            position: relative;
+            padding: 0;
+            margin: 16px 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .menu-category-section:hover {
+            box-shadow: 0 8px 28px rgba(239, 61, 38, 0.12);
+            transform: translateY(-2px);
+        }
+        .category-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #fef9f8 0%, #fdf2f0 100%);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(239, 61, 38, 0.06);
+        }
+        .category-title-wrapper:hover {
+            background: linear-gradient(135deg, #fdf2f0 0%, #fce8e5 100%);
+        }
+        .category-icon-wrapper {
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #EF3D26, #DA4453);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(239, 61, 38, 0.25);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        .category-title-wrapper:hover .category-icon-wrapper {
+            transform: scale(1.08) rotate(-3deg);
+            box-shadow: 0 6px 18px rgba(239, 61, 38, 0.35);
+        }
+        .category-icon-wrapper i {
+            font-size: 19px;
+            color: white;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+        }
+        .category-title-wrapper h2 {
+            margin: 0 !important;
+            font-size: 1.25em;
+            font-weight: 700;
+            color: #2d2d2d;
+            flex: 1;
+            line-height: 1.3;
+        }
+        .category-title-wrapper .cat-count {
+            font-size: 0.65em;
+            font-weight: 600;
+            color: #EF3D26;
+            background: rgba(239, 61, 38, 0.08);
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 6px;
+        }
+        .category-toggle-icon {
+            font-size: 14px;
+            transition: all 0.3s ease;
+            color: #EF3D26;
+            opacity: 0.5;
+            flex-shrink: 0;
+        }
+        .category-title-wrapper:hover .category-toggle-icon {
+            opacity: 1;
+        }
+        .category-toggle-icon.collapsed { transform: rotate(0deg); }
+        
+        [data-itemsContainer] {
+            max-height: 10000px;
+            opacity: 1;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            padding: 15px 0 0 0;
+            margin: 15px 0 0 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+        }
+        [data-itemsContainer].collapsed {
+            max-height: 0;
+            opacity: 0;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .dish-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .dish-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .dish-price {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #EF3D26;
+            margin: 6px 0;
+        }
+        .dish-description {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 8px;
+            flex-grow: 1;
+            line-height: 1.3;
+        }
+        .dish-allergens {
+            font-size: 0.8em;
+            color: #d32f2f;
+            margin-top: 6px;
+        }
+
+        /* ===== ALLERGEN FILTER BAR ===== */
+        .allergen-filter-bar {
+            display: none;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 16px;
+            margin: 0 15px 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        .allergen-filter-bar.visible { display: block; }
+        .allergen-filter-title {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .allergen-filter-title h3 {
+            margin: 0; color: #fff; font-size: 0.95em; font-weight: 700;
+        }
+        .allergen-filter-title small { color: rgba(255,255,255,0.5); font-size: 0.75em; }
+        .allergen-pills {
+            display: flex; flex-wrap: wrap; gap: 6px;
+        }
+        .allergen-pill {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 6px 12px; border-radius: 20px;
+            font-size: 0.78em; font-weight: 600;
+            border: 1.5px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.6);
+            cursor: pointer; transition: all 0.2s ease;
+            user-select: none;
+        }
+        .allergen-pill:active { transform: scale(0.95); }
+        .allergen-pill.active {
+            background: #d32f2f; border-color: #d32f2f;
+            color: #fff; box-shadow: 0 2px 8px rgba(211,47,47,0.4);
+        }
+        .allergen-pill i { font-size: 0.9em; }
+        .allergen-active-count {
+            background: #d32f2f; color: #fff; font-size: 0.65em;
+            padding: 1px 6px; border-radius: 10px; font-weight: 700;
+            margin-left: 4px;
+        }
+
+        /* ===== DISH FAVORITE BUTTON ===== */
+        .dish-fav-btn {
+            position: absolute; top: 10px; right: 10px;
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+            border: none; cursor: pointer; z-index: 5;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .dish-fav-btn:active { transform: scale(0.85); }
+        .dish-fav-btn i { font-size: 1.1em; color: rgba(255,255,255,0.7); transition: all 0.2s; }
+        .dish-fav-btn.active i { color: #e74c3c; }
+        .dish-card { position: relative; }
+
+        /* ===== FAVORITE DISHES SECTION ===== */
+        .fav-dishes-section {
+            display: none; margin: 0 15px 16px;
+            background: linear-gradient(135deg, #fff5f5, #fff0f0);
+            border: 1.5px solid rgba(231,76,60,0.2);
+            border-radius: 14px; padding: 14px;
+        }
+        .fav-dishes-section.visible { display: block; }
+        .fav-dishes-section h4 {
+            margin: 0 0 10px 0; font-size: 0.9em; color: #e74c3c;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .fav-dish-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: #fff; border: 1px solid rgba(231,76,60,0.25);
+            border-radius: 20px; padding: 5px 10px 5px 12px;
+            font-size: 0.78em; color: #333; margin: 0 4px 6px 0;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .fav-dish-chip:active { transform: scale(0.95); }
+        .fav-dish-chip .fav-remove {
+            width: 16px; height: 16px; border-radius: 50%;
+            background: rgba(231,76,60,0.1); color: #e74c3c;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.7em; font-weight: 700;
+        }
+        
+        /* ===== OPTIMIZATION: Enhanced Animations & Transitions ===== */
+        
+        /* Smooth page load */
+        body { animation: fadeInBody 0.6s ease; }
+        @keyframes fadeInBody {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Skeleton loading for images */
+        .skeleton-loader {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Better card transitions */
+        .card-style {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        .card-style:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Enhanced footer bar */
+        .footer-bar-5 {
+            animation: slideUpFooter 0.5s ease 0.2s both;
+        }
+        @keyframes slideUpFooter {
+            from {
+                opacity: 0;
+                transform: translateY(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Button press effect */
+        .footer-bar-5 a {
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-bar-5 a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .footer-bar-5 a:active::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Panel animations */
+        #categories-panel,
+        #search-panel {
+            animation: slideUpPanel 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes slideUpPanel {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Better dish card image handling */
+        .dish-card img {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+        .dish-card:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        
+        /* Price tag styling */
+        .dish-price {
+            background: linear-gradient(135deg, #EF3D26 0%, #DA4453 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.3em;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        
+        /* Categories button enhancement */
+        #categories-list button {
+            animation: fadeInUp 0.5s ease backwards;
+            will-change: transform;
+        }
+        #categories-list button:nth-child(1) { animation-delay: 0.05s; }
+        #categories-list button:nth-child(2) { animation-delay: 0.1s; }
+        #categories-list button:nth-child(3) { animation-delay: 0.15s; }
+        #categories-list button:nth-child(4) { animation-delay: 0.2s; }
+        #categories-list button:nth-child(5) { animation-delay: 0.25s; }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Search results animations */
+        #search-results > div {
+            animation: slideInLeft 0.3s ease backwards;
+        }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Dish card entrance animation */
+        .dish-item,
+        [data-itemsContainer] > div {
+            animation: fadeInScale 0.5s ease backwards;
+        }
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* Badge for special items */
+        .dish-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #EF3D26 0%, #DA4453 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(239, 61, 38, 0.3);
+        }
+        
+        /* Improved scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #EF3D26;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #DA4453;
+        }
+        
+        /* Custom cart menu - Override leggimenu styles */
+        #menu-cart {
+            display: none !important;
+        }
+        
+        /* Focus states for accessibility */
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid #EF3D26;
+            outline-offset: 2px;
+        }
+        
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: rippleAnimation 0.6s ease-out;
+            pointer-events: none;
+        }
+        @keyframes rippleAnimation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            [data-itemsContainer] {
+                grid-template-columns: 1fr;
+            }
+            .card-style:hover {
+                transform: translateY(-4px) scale(1.01);
+            }
+        }
+        #logo-container {
+            min-height: 60px;
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        #logo-container img {
+            max-height: 80px;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        /* Header alignment fixes: keep title centered and pin icon groups left/right */
+        .header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible; /* allow dropdown to escape */
+        }
+        .header .header-icon-1-group,
+        .header .header-icon-4-group {
+            position: absolute;
+            top: calc(50% - 20px); /* raised more to better vertically center icons */
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 2200;
+        }
+        .header .header-icon-1-group { left: 12px; }
+        .header .header-icon-4-group { right: 12px; }
+        .header .header-icon { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+        .header .header-icon i { line-height: 1; }
+        .lang-switcher { display: inline-flex; align-items: center; }
+
+        /* small upward nudge for the flag on very short headers */
+        @media (max-width: 480px) {
+            .header .header-icon-1-group, .header .header-icon-4-group { top: calc(50% - 28px); }
+            .header .header-icon { width: 36px; height: 36px; }
+        }
+
+        /* Force dropdown to appear below the header icon reliably */
+        .lang-dropdown {
+            position: absolute !important;
+            top: calc(100% + 8px) !important;
+            left: 0 !important;
+            right: auto !important;
+            transform: none !important;
+            background: white;
+            z-index: 99999 !important;
+            min-width: 88px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+        }
+        .lang-dropdown-item { width: 44px; height: 36px; }
+        .header .header-icon-1 { padding: 6px; }
+        
+        /* Desktop - Large screens (1024px+) */
+        @media (min-width: 1024px) {
+            [data-itemsContainer] { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+            .menu-category-section { padding: 20px; margin: 15px 0; }
+            .category-title-wrapper { padding: 15px 20px; margin: -20px -20px 0 -20px; gap: 12px; }
+            .category-title-wrapper h2 { font-size: 1.5em; gap: 10px; }
+            .dish-card img { height: 200px; }
+            .dish-price { font-size: 1.3em; }
+            .dish-description { font-size: 0.9em; }
+        }
+        
+        /* Tablet - Medium screens (768px - 1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            [data-itemsContainer] { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .menu-category-section { padding: 15px; margin: 12px 0; }
+            .category-title-wrapper h2 { font-size: 1.2em; }
+        }
+        
+        /* Mobile - Small screens (< 768px) */
+        @media (max-width: 767px) {
+            [data-itemsContainer] { grid-template-columns: 1fr; gap: 10px; padding: 10px 0 0 0; margin: 10px 0 0 0; }
+            .menu-category-section { padding: 12px; margin: 8px 0; border-radius: 10px; }
+            .category-title-wrapper { padding: 14px 16px; margin: -12px -12px 0 -12px; border-radius: 8px 8px 0 0; gap: 8px; }
+            .category-title-wrapper h2 { font-size: 3.0em; gap: 8px; font-weight: 700; }
+            .category-toggle-icon { font-size: 22px; }
+            .dish-card img { height: 150px; border-radius: 6px; margin-bottom: 8px; }
+            .dish-price { font-size: 1em; margin: 4px 0; }
+            .dish-description { font-size: 0.8em; margin-bottom: 6px; }
+            .dish-allergens { font-size: 0.75em; margin-top: 4px; }
+            .content { padding: 10px !important; }
+            .btn-m { padding: 10px 12px !important; font-size: 0.85em !important; }
+            .lmcart-add { margin-top: 8px !important; padding-left: 70px !important; font-size: 1.1em !important; }
+            .lmcart-add i { line-height: 50px !important; width: 50px !important; }
+            .page-header { margin: 0 -15px 10px -15px !important; border-radius: 0 !important; }
+            .page-content { padding: 0 10px !important; }
+        }
+        
+        /* Extra small - Very small phones (< 480px) */
+        @media (max-width: 479px) {
+            .category-title-wrapper h2 { font-size: 1.80em; }
+            .dish-card img { height: 120px; }
+            .dish-price { font-size: 0.95em; }
+            .dish-description { font-size: 0.85em; }
+            .menu-category-section { padding: 10px; margin: 6px 0; }
+        }
+        
+        /* Mobile Header Fix - Aumenta altezza e centra background */
+        @media (max-width: 768px) {
+            #page-header-main {
+                min-height: 280px !important;
+                height: 280px !important;
+                background-position: center center !important;
+                background-size: cover !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #page-header-main {
+                min-height: 300px !important;
+                height: 300px !important;
+                background-position: center 30% !important;
+            }
+        }
+
+        /* ===== Mobile Scrolling Improvements =====
+           - enable native momentum scrolling on iOS (-webkit-overflow-scrolling)
+           - contain overscroll to inner panels to avoid scroll chaining
+           - use smooth scroll behavior for in-page navigation
+        */
+        @media (max-width: 767px) {
+            html, body, #page { height: 100%; overflow: hidden; }
+            .page-content {
+                height: 100%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch; /* momentum scrolling iOS */
+                scroll-behavior: smooth;
+                overscroll-behavior: contain; /* prevent parent scroll chaining */
+                touch-action: pan-y;
+            }
+
+            /* Make main scrollable area explicit */
+            #menu-items-container {
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+            }
+
+            /* Ensure bottom panels have native momentum and don't propagate overscroll */
+            #menu-cart, #categories-panel, #search-panel {
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+                -ms-touch-action: pan-y;
+                touch-action: pan-y;
+            }
+
+            /* Slight padding to allow comfortable thumb reach and avoid clipped content */
+            .page-content { padding-bottom: 82px !important; }
+        }
+
+        /* Michelin Star Animation */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        .michelin-star-anim {
+            display: inline-block;
+            color: #f59e0b;
+            font-size: 1.2rem;
+            animation: twinkle 2s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(245,158,11,0.6);
+        }
+        .michelin-star-anim:nth-child(2) { animation-delay: 0.3s; }
+        .michelin-star-anim:nth-child(3) { animation-delay: 0.6s; }
+        .star-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #f59e0b;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+            box-shadow: 0 0 6px rgba(245,158,11,0.8);
+        }
+        
+        /* Recipe Banner */
+        #recipe-banner-list::-webkit-scrollbar { height: 4px; }
+        #recipe-banner-list::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 4px; }
+        #recipe-banner-list::-webkit-scrollbar-thumb { background: rgba(245,158,11,0.5); border-radius: 4px; }
+        .recipe-banner-card {
+            flex: 0 0 200px;
+            scroll-snap-align: start;
+            background: rgba(255,255,255,0.06);
+            border-radius: 12px;
+            overflow: hidden;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .recipe-banner-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(245,158,11,0.2);
+            border-color: rgba(245,158,11,0.3);
+        }
+        .recipe-banner-card-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+        }
+        .recipe-banner-card-body {
+            padding: 12px;
+        }
+        .recipe-banner-card-name {
+            color: #fff;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 0 0 6px 0;
+            line-height: 1.3;
+        }
+        .recipe-banner-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.72em;
+        }
+        .recipe-banner-card-meta i {
+            color: #f59e0b;
+        }
+        .recipe-banner-card-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: #1a1a2e;
+            font-size: 0.65em;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+    <script src="/app/assets/js/dish-placeholders.js"></script>
+</head>
+
+<body class="theme-light" data-background="none" data-highlight="custom" data-menu-id="1" data-menu-currency="&euro;">
+<div id="page">
+    
+    <!-- Header Background Image -->
+    <div id="header-blur-bg" style="position: fixed; top: 0; left: 0; right: 0; height: 120px; background-size: cover; background-position: center; background-repeat: no-repeat; z-index: 1; filter: blur(0px); opacity: 0.3;"></div>
+    
+    <!-- Header Bar -->
+    <div class="header header-fixed header-logo-center mb-4" id="header-bar">
+        <h1 class="header-title" id="header-title">Ristorante</h1>
+        <div class="header-icon-1-group">
+            <div class="lang-switcher" style="display:inline-block;">
+                <a href="javascript:void(0);" class="header-icon header-icon-1" onclick="toggleLangDropdown(); return false;" aria-haspopup="true" aria-expanded="false" title="Lingua">
+                    <span id="lang-btn-active" style="font-size: 18px;">🇮🇹</span>
+                </a>
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button class="lang-dropdown-item active" id="lang-it-dropdown" onclick="setLanguage('it')" title="Italiano">🇮🇹</button>
+                    <button class="lang-dropdown-item" id="lang-en-dropdown" onclick="setLanguage('en')" title="English">🇬🇧</button>
+                </div>
+            </div>
+        </div>
+        <div class="header-icon-4-group"><a href="javascript:void(0);" class="cart-icon header-icon header-icon-4" onclick="openOrderMenu();"><i class="far fa-list-alt" style="font-size: 18px;"></i><span class="badge bg-danger lmcart-totalitems">0</span><span class="icon-label" style="margin-left: -4px;" id="lang-ordine">Ordine</span></a></div>
+    </div>
+    
+    <!-- Menu Carrello -->
+    <div id="menu-cart" class="shopping-cart rounded-m pb-3" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; max-height: 90vh; overflow-y: auto; background: white; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 20px rgba(0,0,0,0.15); display: flex; flex-direction: column;">
+        <div class="menu-title mt-n1" style="padding: 20px; border-bottom: 1px solid #eee;"><h1 id="lang-il-tuo" style="margin: 0 0 5px 0; color: #537b83; font-size: 1.5em;">Il tuo Ordine</h1><p class="color-highlight" id="lang-hai-selezionato" style="margin: 0; color: #999; font-size: 0.9em;">Hai selezionato i seguenti prodotti</p><a href="javascript:void(0);" class="close-menu" onclick="closeOrderMenu();" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #999;">?</a></div>
+        <div id="cart-items-list" style="padding: 15px; min-height: 50px;"></div>
+        <div class="divider mt-3 mb-2"></div>
+        <div style="padding: 15px; background: #f5f5f5;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="font-size: 1em; margin: 0 0 5px 0; color: #537b83;" id="lang-totale-label">Totale</h1>
+                    <span id="cart-item-count" style="color: #999; font-size: 0.9em;">0 articoli</span>
+                </div>
+                <div style="text-align: right;">
+                    <h1 style="font-size: 1.8em; margin: 0; color: #EF3D26; font-weight: bold;">€<span id="cart-total">0.00</span></h1>
+                </div>
+            </div>
+        </div>
+        <div class="content mt-2" id="cart-buttons-container" style="padding: 15px; gap: 10px; display: flex; flex-direction: column; margin-top: auto; border-top: 1px solid #eee;">
+            <a href="javascript:void(0);" id="send-whatsapp-btn" class="btn btn-m btn-full mt-0 mb-0 rounded-xl text-uppercase font-900 shadow-s btn-icon text-left color-white" style="background-color: #25D366 !important; padding: 15px; border: none; cursor: pointer;" onclick="sendOrderViaWhatsApp(); return false;"><i class="fab fa-whatsapp font-18 text-center"></i> <span id="lang-invia-whatsapp">Invia via WhatsApp</span></a>
+            <a href="javascript:void(0);" id="empty-lmcart" class="btn btn-m btn-full mt-0 mb-0 rounded-xl text-uppercase font-900 shadow-s bg-danger btn-icon text-left color-white" style="padding: 15px; border: none; cursor: pointer;" onclick="clearCart(); return false;"><i class="fas fa-trash font-18 text-center"></i> <span id="lang-annulla">Annulla il tuo ordine</span></a>
+        </div>
+    </div>
+    
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-5">
+        <a href="javascript:void(0);" onclick="openOrderMenu();"><i class="far fa-list-alt"></i><span id="lang-ordine">Ordine</span></a>
+        <a href="javascript:void(0);" onclick="toggleCategoriesPanel();"><i class="fas fa-bars"></i><span id="lang-menu">Menu</span></a>
+        <a id="footer-offerte" href="javascript:void(0);" onclick="closeOffersModal(); localStorage.removeItem('offersModalClosed'); showOffersModal();" style="display:none;"><i class="fas fa-gift"></i><span id="lang-offerte">Offerte</span></a>
+        <a href="javascript:void(0);" onclick="toggleAllergenFilter()"><i class="fas fa-exclamation-triangle"></i><span id="lang-allergeni">Allergeni</span></a>
+        <a href="javascript:void(0);" onclick="showMenuReviews()"><i class="fas fa-star"></i><span>Recensioni</span></a>
+        
+    </div>
+    
+        <!-- Page Content -->
+        <div class="page-content header-clear">
+            <div class="page-header card m-0 mb-3 shadow-l bg-highlight" data-card-height="200" style="background: linear-gradient(135deg, #1a1a2e, #0f0f1a); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;" id="page-header-main">
+                <div id="star-particles" style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden;"></div>
+            <div style="position: relative; z-index: 2; text-align: center;">
+                <div id="logo-container" style="height: 0; display: none;"></div>
+                <div id="michelin-badge" style="display:none; margin-bottom: 8px;">
+                    <span style="display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg, #f59e0b, #f97316); color:#1a1a2e; padding:6px 16px; border-radius:20px; font-size:0.8rem; font-weight:800; letter-spacing:1px; text-transform:uppercase; box-shadow:0 4px 15px rgba(245,158,11,0.4);">
+                        <span id="michelin-stars-display"></span> Michelin
+                    </span>
+                </div>
+                <h2 id="restaurant-name" style="color: white; margin: 0; font-size: 1.8em; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Ristorante</h2>
+                <p id="restaurant-desc" style="color: rgba(255,255,255,0.95); font-size: 0.95em; margin: 8px 0 0 0; text-shadow: 0 1px 3px rgba(0,0,0,0.2);"></p>
+            </div>
+        </div>
+
+        <!-- Allergen Filter Bar -->
+        <div id="allergen-filter-bar" class="allergen-filter-bar">
+            <div class="allergen-filter-title">
+                <h3><i class="fas fa-exclamation-triangle" style="color:#f39c12;"></i> <span id="lang-filtra-allergeni">Filtra per allergeni</span><span id="allergen-active-badge" class="allergen-active-count" style="display:none;"></span></h3>
+                <small id="lang-escludi">escludi i piatti con:</small>
+            </div>
+            <div id="allergen-pills-container" class="allergen-pills"></div>
+        </div>
+
+        <!-- Favorite Dishes Section -->
+        <div id="fav-dishes-section" class="fav-dishes-section">
+            <h4><i class="fas fa-heart"></i> <span id="lang-piatti-preferiti">I tuoi piatti preferiti</span></h4>
+            <div id="fav-dishes-list"></div>
+        </div>
+
+        <div id="menu-items-container" class="menu-items-dynamic" style="padding: 0 15px;">
+            <div class="text-center p-4"><div class="spinner-border color-highlight" role="status"></div><p class="color-gray2-dark font-13 mt-3">Caricamento menu...</p></div>
+        </div>
+
+        <!-- Categories Panel -->
+        <div id="categories-panel" style="display: none; position: fixed; bottom: 60px; left: 0; right: 0; background: white; max-height: 60vh; overflow-y: auto; z-index: 999; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); border-radius: 20px 20px 0 0; padding: 20px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2 id="panel-title" style="color: #537b83; margin: 0 0 10px 0; font-size: 1.5em;">Menu Completo</h2>
+                <button onclick="toggleCategoriesPanel()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #999;">&times;</button>
+            </div>
+            <div id="categories-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;"></div>
+        </div>
+
+        <!-- Search Panel -->
+        <div id="search-panel" style="display: none; position: fixed; bottom: 60px; left: 0; right: 0; background: white; max-height: 60vh; overflow-y: auto; z-index: 999; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); border-radius: 20px 20px 0 0; padding: 20px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2 id="search-title" style="color: #537b83; margin: 0 0 10px 0; font-size: 1.5em;">Cerca</h2>
+                <input type="text" id="search-input-panel" class="border-0" placeholder="Cosa cerchi?" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 1em;" onkeyup="searchDishesPanel()">
+                <button onclick="toggleSearchPanel()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #999;">&times;</button>
+            </div>
+            <div id="search-results" style="display: grid; grid-template-columns: 1fr; gap: 10px;"></div>
+        </div>
+
+        <div class="footer card card-style">
+            <div class="text-center mb-3"><h3 id="footer-name" style="margin: 0; color: #537b83;">Ristorante</h3></div>
+            <div class="text-center mb-3">
+                <a href="javascript:void(0);" class="back-to-top icon icon-xs rounded-sm shadow-l mt-1 bg-dark1-light" onclick="window.scrollTo({top:0,behavior:'smooth'});"><i class="fa fa-angle-up"></i></a>
+                <a id="phone-link" href="" class="icon icon-xs rounded-sm shadow-l mr-1 mt-1 bg-primary color-white"><i class="fas fa-phone"></i></a>
+                <a id="whatsapp-link" href="" class="icon icon-xs rounded-sm shadow-l mr-1 mt-1 bg-phone"><i class="fab fa-whatsapp font-17"></i></a>
+                <a href="javascript:void(0);" class="back-to-top icon icon-xs rounded-sm shadow-l mt-1 bg-dark1-light" onclick="window.scrollTo({top:0,behavior:'smooth'});"><i class="fa fa-angle-up"></i></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <!-- Recipe Banner: Prova a farlo a casa -->
+        <div id="recipe-banner" style="display:none; margin: 15px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+            <div style="padding: 20px 20px 12px; display: flex; align-items: center; gap: 10px;">
+                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #f59e0b, #f97316); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px;">&#x1F525;</div>
+                <div>
+                    <h3 style="margin: 0; color: #fff; font-size: 1.1em; font-weight: 700;">Prova a farlo a casa</h3>
+                    <p style="margin: 2px 0 0; color: rgba(255,255,255,0.6); font-size: 0.8em;">Riproduci questi piatti nella tua cucina</p>
+                </div>
+            </div>
+            <div id="recipe-banner-list" style="display: flex; gap: 12px; padding: 0 20px 20px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+                <!-- Recipes loaded via JS -->
+            </div>
+        </div>
+
+        <!-- GetYourGuide: Esplora la Puglia -->
+        <style>[data-gyg-widget] * { color: #fff !important; } [data-gyg-widget] a { color: #60a5fa !important; }</style>
+        <div style="margin: 15px; padding: 20px; background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(16,185,129,0.04)); border: 1px solid rgba(59,130,246,0.15); border-radius: 16px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                <i class="fas fa-bus" style="color: #3b82f6; font-size: 1.1rem;"></i>
+                <h3 style="margin: 0; color: #fff; font-size: 1em; font-weight: 700;">Esplora la Puglia</h3>
+            </div>
+            <p style="margin: 0 0 14px; color: rgba(255,255,255,0.6); font-size: 0.8em;">Scopri tour ed esperienze nei dintorni di Bari</p>
+            <div data-gyg-widget="auto" data-gyg-partner-id="MH3AZB7" data-gyg-cmp="Trovapiatto"></div>
+        </div>
+
+        <p class="footer-copyright text-center color-gray2-dark">Il tuo Menu Digitale su <a href="https://www.trovapiatto.it" class="color-gray2-dark font-weight-bold" target="_blank">trovapiatto.it</a></p>
+    </div>
+</div>
+
+<!-- Menus -->
+<div id="menu-search" class="menu menu-box-top menu-box-detached rounded-m" data-menu-height="180" data-menu-effect="menu-over">
+    <div class="menu-title mt-n1"><h1 id="lang-trova">Trova</h1><p class="color-highlight" id="lang-scrivi">Scrivi cosa cerchi tra le voci menu</p><a href="javascript:void(0);" class="close-menu"><i class="fa fa-times"></i></a></div>
+    <div class="search-box search-header bg-theme card-style mr-3 ml-3"><i class="fa fa-search"></i><input type="text" id="search-input" class="border-0" placeholder="Cosa cerchi?" onkeyup="searchDishes()"></div>
+</div>
+
+<div id="menu-categorie" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="420" data-menu-effect="menu-over">
+    <div class="menu-title mt-n1"><h1 id="lang-menu-title">Menu</h1><p class="color-highlight mb-0" id="lang-consulta">Consulta velocemente le categorie del Menu</p><a href="#" class="close-menu"><i class="fa fa-times"></i></a></div>
+    <div class="content mb-0"><div class="divider mb-0"></div><div class="list-group list-custom-small list-icon-0" id="category-list"></div></div>
+</div>
+
+<div id="menu-contatti" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="320" data-menu-effect="menu-over">
+    <div class="menu-title mt-n1"><h1 id="lang-contatti-title">Contatti</h1><p class="color-highlight" id="lang-rimani">Rimani in contatto con noi</p><a href="javascript:void(0);" class="close-menu"><i class="fa fa-times"></i></a></div>
+    <div class="content mb-0"><div class="divider mb-0"></div><div class="list-group list-custom-small list-icon-0 notranslate" id="contact-list"></div></div>
+</div>
+
+<div id="menu-share" class="menu menu-box-bottom menu-box-detached rounded-m" data-menu-height="260" data-menu-effect="menu-over">
+    <div class="menu-title mt-n1"><h1 id="lang-condividi-title">Condividi Menu</h1><p class="color-highlight" id="lang-invia">Invia questo Menu ai tuoi Amici</p><a href="javascript:void(0);" class="close-menu"><i class="fa fa-times"></i></a></div>
+    <div class="content mb-0"><div class="divider mb-0"></div><div class="list-group list-custom-small list-icon-0"><a href="javascript:void(0);" onclick="shareToFacebook()" class="shareLink"><i class="font-18 fab fa-facebook color-facebook"></i><span class="font-13">Facebook</span><i class="fa fa-angle-right"></i></a><a href="javascript:void(0);" onclick="shareToWhatsApp()" class="shareLink"><i class="font-18 fab fa-whatsapp-square color-whatsapp"></i><span class="font-13">WhatsApp</span><i class="fa fa-angle-right"></i></a></div></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js?v=3.6.0"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.cookie.min.js"></script>
+<script src="/app/assets/js/underscore-minb307.js?v=1.8.3"></script>
+
+
+<script>
+const RESTAURANT_SLUG = 'tabula-rasa';
+const API_URL = '/app/admin/api.php';
+let allDishes = [];
+let restaurantData = null;
+let currentLanguage = 'it';
+
+// Traduzioni
+const translations = {
+    it: {
+        'home': 'Home',
+        'menu': 'Menu',
+        'cerca': 'Cerca',
+        'contatti': 'Contatti',
+        'condividi': 'Condividi',
+        'ordine': 'Ordine',
+        'trova': 'Trova',
+        'scrivi_cerchi': 'Scrivi cosa cerchi tra le voci menu',
+        'cosa_cerchi': 'Cosa cerchi?',
+        'menu_title': 'Menu',
+        'consulta_categorie': 'Consulta velocemente le categorie del Menu',
+        'menu_contatti': 'Contatti',
+        'rimani_contatto': 'Rimani in contatto con noi',
+        'condividi_menu': 'Condividi Menu',
+        'invia_amici': 'Invia questo Menu ai tuoi Amici',
+        'il_tuo_ordine': 'Il tuo Ordine',
+        'hai_selezionato': 'Hai selezionato i seguenti prodotti',
+        'totale': 'Totale',
+        'prodotto': 'prodotto/i nel tuo ordine',
+        'annulla': 'Annulla il tuo ordine',
+        'caricamento': 'Caricamento menu...',
+        'nessun_piatto': 'Nessun piatto disponibile',
+        'ordina': 'Ordina',
+        'allergeni': 'Allergeni',
+        'offerte': 'Offerte',
+        'offerte_titolo': 'Offerte Speciali!',
+        'offerte_descrizione': 'Scopri le nostre promozioni esclusive di oggi',
+        'offerte_testo': ' Offerta del mese!',
+        'offerte_scopri': 'Scopri',
+        'offerte_chiudi': 'Chiudi'
+    },
+    en: {
+        'home': 'Home',
+        'menu': 'Menu',
+        'cerca': 'Search',
+        'contatti': 'Info',
+        'condividi': 'Share',
+        'ordine': 'Order',
+        'trova': 'Search',
+        'scrivi_cerchi': 'Type what you are looking for in the menu',
+        'cosa_cerchi': 'What are you looking for?',
+        'menu_title': 'Menu',
+        'consulta_categorie': 'Quick access to Menu categories',
+        'menu_contatti': 'Contacts',
+        'rimani_contatto': 'Stay in touch with us',
+        'condividi_menu': 'Share Menu',
+        'invia_amici': 'Send this Menu to your Friends',
+        'il_tuo_ordine': 'Your Order',
+        'hai_selezionato': 'You have selected the following products',
+        'totale': 'Total',
+        'prodotto': 'product/s in your order',
+        'annulla': 'Cancel your order',
+        'caricamento': 'Loading menu...',
+        'nessun_piatto': 'No dishes available',
+        'ordina': 'Order',
+        'allergeni': 'Allergies',
+        'offerte': 'Offers',
+        'offerte_titolo': 'Special Offers!',
+        'offerte_descrizione': 'Discover our exclusive promotions today',
+        'offerte_testo': 'Discounts up to 20% on selected dishes!',
+        'offerte_scopri': 'Discover',
+        'offerte_chiudi': 'Close'
+    }
+};
+
+// Funzione per cambiare lingua
+function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('preferredLanguage', lang);
+    
+    // Aggiorna il bottone attivo
+    const flag = lang === 'it' ? '🇮🇹' : '🇬🇧';
+    document.getElementById('lang-btn-active').textContent = flag;
+    document.getElementById('lang-btn-active').title = lang === 'it' ? 'Italiano' : 'English';
+    
+    // Aggiorna i bottoni del dropdown
+    document.getElementById('lang-it-dropdown').classList.toggle('active', lang === 'it');
+    document.getElementById('lang-en-dropdown').classList.toggle('active', lang === 'en');
+    
+    // Chiudi il dropdown
+    document.getElementById('lang-dropdown').classList.remove('show');
+    
+    // Aggiorna i testi
+    updateLanguageText();
+    
+    // Re-render allergen pills if filter bar is open
+    const filterBar = document.getElementById('allergen-filter-bar');
+    if (filterBar && filterBar.classList.contains('visible')) {
+        renderAllergenPills();
+    }
+    
+    // Ricarica i piatti con la nuova lingua
+    loadDishes();
+}
+
+// Funzione per toggle il dropdown
+function toggleLangDropdown() {
+    document.getElementById('lang-dropdown').classList.toggle('show');
+}
+
+// Chiudi dropdown quando clicchi altrove
+document.addEventListener('click', function(event) {
+    const switcher = document.querySelector('.lang-switcher');
+    if (switcher && !switcher.contains(event.target)) {
+        document.getElementById('lang-dropdown').classList.remove('show');
+    }
+});
+
+// Funzione per aggiornare i testi della pagina
+function updateLanguageText() {
+    const trans = translations[currentLanguage];
+    if (document.getElementById('lang-home')) document.getElementById('lang-home').textContent = trans.home;
+    if (document.getElementById('lang-menu')) document.getElementById('lang-menu').textContent = trans.menu;
+    if (document.getElementById('lang-cerca')) document.getElementById('lang-cerca').textContent = trans.cerca;
+    if (document.getElementById('lang-contatti')) document.getElementById('lang-contatti').textContent = trans.contatti;
+    if (document.getElementById('lang-condividi')) document.getElementById('lang-condividi').textContent = trans.condividi;
+    if (document.getElementById('lang-ordine')) document.getElementById('lang-ordine').textContent = trans.ordine;
+    
+    // Aggiorna i menu
+    if (document.getElementById('lang-trova')) document.getElementById('lang-trova').textContent = trans.trova;
+    if (document.getElementById('lang-scrivi')) document.getElementById('lang-scrivi').textContent = trans.scrivi_cerchi;
+    if (document.getElementById('lang-menu-title')) document.getElementById('lang-menu-title').textContent = trans.menu_title;
+    if (document.getElementById('lang-consulta')) document.getElementById('lang-consulta').textContent = trans.consulta_categorie;
+    if (document.getElementById('lang-contatti-title')) document.getElementById('lang-contatti-title').textContent = trans.menu_contatti;
+    if (document.getElementById('lang-rimani')) document.getElementById('lang-rimani').textContent = trans.rimani_contatto;
+    if (document.getElementById('lang-condividi-title')) document.getElementById('lang-condividi-title').textContent = trans.condividi_menu;
+    if (document.getElementById('lang-invia')) document.getElementById('lang-invia').textContent = trans.invia_amici;
+    if (document.getElementById('lang-il-tuo')) document.getElementById('lang-il-tuo').textContent = trans.il_tuo_ordine;
+    if (document.getElementById('lang-hai-selezionato')) document.getElementById('lang-hai-selezionato').textContent = trans.hai_selezionato;
+    if (document.getElementById('lang-totale-label')) document.getElementById('lang-totale-label').textContent = trans.totale + '*';
+    if (document.getElementById('lang-prodotto')) document.getElementById('lang-prodotto').textContent = trans.prodotto;
+    if (document.getElementById('lang-annulla')) document.getElementById('lang-annulla').textContent = trans.annulla;
+    
+    // Aggiorna il placeholder del search
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) searchInput.placeholder = trans.cosa_cerchi;
+}
+
+// Funzione per ottenere traduzioni
+function t(key) {
+    return translations[currentLanguage][key] || translations.it[key] || key;
+}
+
+// Carica la lingua salvata
+function loadSavedLanguage() {
+    const saved = localStorage.getItem('preferredLanguage');
+    if (saved) {
+        currentLanguage = saved;
+        const flag = saved === 'it' ? '🇮🇹' : '🇬🇧';
+        document.getElementById('lang-btn-active').textContent = flag;
+        document.getElementById('lang-it-dropdown').classList.toggle('active', saved === 'it');
+        document.getElementById('lang-en-dropdown').classList.toggle('active', saved === 'en');
+    }
+    updateLanguageText();
+}
+
+const ALLERGEN_MAP = { 'glutine': 'Cereali contenenti glutine', 'lattosio': 'Latte', 'uova': 'Uova', 'pesce': 'Pesce', 'crostacei': 'Crostacei', 'molluschi': 'Molluschi', 'noci': 'Frutta a guscio', 'arachidi': 'Arachidi', 'sesamo': 'Sesamo', 'soia': 'Soia', 'sedano': 'Sedano', 'solfiti': 'Solfiti' };
+
+function normalizeAllergenKey(key) {
+    const k = key.toLowerCase();
+    const alias = { 'latticini': 'lattosio', 'frutta a guscio': 'noci', 'cereali contenenti glutine': 'glutine' };
+    return alias[k] || k;
+}
+const CATEGORY_EMOJI = { 'pizza': '🍕', 'pizze': '🍕', 'bevande': '🍷', 'bevanda': '🍷', 'dolci': '🍰', 'dolce': '🍰', 'contorni': '🥗', 'contorno': '🥗', 'insalate': '🥬', 'insalata': '🥬', 'primi': '🍝', 'secondo': '🍖', 'salumi': '🥓', 'formaggi': '🧀', 'antipasti': '🦐', 'vari': '🍽️' };
+const CATEGORY_FA_ICON = { 'antipasti': 'fa-shrimp', 'primi': 'fa-wheat-awn', 'pizze': 'fa-pizza-slice', 'pizza': 'fa-pizza-slice', 'secondi': 'fa-drumstick-bite', 'dolci': 'fa-cake-candles', 'contorni': 'fa-carrot', 'insalate': 'fa-leaf', 'salumi': 'fa-bacon', 'formaggi': 'fa-cheese', 'birre': 'fa-beer-mug-empty', 'bevande': 'fa-glass-water', 'bevanda': 'fa-glass-water', 'vari': 'fa-utensils', 'medaglioni': 'fa-burger', 'piadine': 'fa-bread-slice' };
+const CATEGORY_COLORS = { 'antipasti': '#e74c3c', 'primi': '#f39c12', 'pizze': '#e67e22', 'pizza': '#e67e22', 'secondi': '#c0392b', 'dolci': '#e91e63', 'contorni': '#27ae60', 'insalate': '#2ecc71', 'salumi': '#d35400', 'formaggi': '#f1c40f', 'birre': '#f39c12', 'bevande': '#3498db', 'bevanda': '#3498db', 'vari': '#537b83', 'medaglioni': '#e67e22', 'piadine': '#d35400' };
+
+// Ordine predefinito categorie
+const CATEGORY_ORDER = { 'Antipasti': 1, 'Panini': 1, 'Panzerotti': 2, 'Arancini': 3, 'Focacce': 3, 'Crostini': 4, 'Fritti': 5, 'Primi': 10, 'Pizze': 11, 'Calzoni': 12, 'Secondi': 20, 'Medaglioni e Piadine': 21, 'Contorni': 25, 'Insalate': 26, 'Salumi': 30, 'Formaggi': 31, 'Dolci': 40, 'Taralli e Friselle': 45, 'Birre': 90, 'Bevande': 91 };
+
+// Traduzioni categorie
+const CATEGORY_TRANSLATIONS = {
+    it: {
+        'Antipasti': 'Antipasti',
+        'Primi': 'Primi',
+        'Pizze': 'Pizze',
+        'Secondi': 'Secondi',
+        'Medaglioni e Piadine': 'Medaglioni e Piadine',
+        'Dolci': 'Dolci',
+        'Contorni': 'Contorni',
+        'Insalate': 'Insalate',
+        'Salumi': 'Salumi',
+        'Formaggi': 'Formaggi',
+        'Birre': 'Birre',
+        'Bevande': 'Bevande',
+        'Vari': 'Vari'
+    },
+    en: {
+        'Antipasti': 'Appetizers',
+        'Primi': 'First Courses',
+        'Pizze': 'Pizzas',
+        'Secondi': 'Main Courses',
+        'Medaglioni e Piadine': 'Medallions & Flatbreads',
+        'Dolci': 'Desserts',
+        'Contorni': 'Side Dishes',
+        'Insalate': 'Salads',
+        'Salumi': 'Cured Meats',
+        'Formaggi': 'Cheeses',
+        'Birre': 'Beers',
+        'Bevande': 'Drinks',
+        'Panini alla Brace': 'Grilled Sandwiches',
+        'Pizza al Metro': 'By-the-Meter Pizza',
+        'Friggitoria': 'Fried Foods',
+        'Tavola Calda': 'Hot Counter',
+        'Cocktail': 'Cocktails',
+        'Vari': 'Various'
+    }
+};
+
+// Funzione per capitalizzare solo la prima lettera
+function capitalizeFirstLetter(str) {
+    if (!str) return str;
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+// Helper: restituisce il nome del piatto nella lingua corrente
+function dishName(dish) {
+    if (currentLanguage === 'en' && dish.name_en && dish.name_en.trim()) return dish.name_en;
+    return dish.name;
+}
+
+// Helper: restituisce la descrizione del piatto nella lingua corrente
+function dishDescription(dish) {
+    if (currentLanguage === 'en' && dish.description_en && dish.description_en.trim()) return dish.description_en;
+    return dish.description || '';
+}
+
+// Funzioni Pop-up Offerte Speciali
+function updateOffersModalLanguage() {
+    const trans = translations[currentLanguage];
+    if (document.getElementById('modal-title')) document.getElementById('modal-title').textContent = trans.offerte_titolo;
+    if (document.getElementById('modal-description')) document.getElementById('modal-description').textContent = trans.offerte_descrizione;
+    if (document.getElementById('modal-offer-text')) document.getElementById('modal-offer-text').textContent = trans.offerte_testo;
+    if (document.getElementById('modal-discover-btn')) document.getElementById('modal-discover-btn').textContent = trans.offerte_scopri;
+}
+
+function showOffersModal() {
+    updateOffersModalLanguage();
+    const modal = document.getElementById('modal-offers');
+    if (!modal) return;
+    // Mostra il modal
+    modal.classList.add('show');
+    // Segna che il pop-up è stato mostrato (automatica o manuale)
+    try { localStorage.setItem('offersModalAutoShown', 'true'); } catch(e) { /* ignore */ }
+    setTimeout(() => {
+        // Pop-up mostrato dopo 1 secondo dal caricamento
+    }, 1000);
+}
+
+function closeOffersModal() {
+    const modal = document.getElementById('modal-offers');
+    modal.classList.remove('show');
+    localStorage.setItem('offersModalClosed', 'true');
+}
+
+// Chiudi il modal quando clicchi nel vuoto (overlay)
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modal-offers');
+    if (modal) {
+        modal.addEventListener('click', function(event) {
+            // Se clicchi direttamente sull'overlay (non sul contenuto), chiudi
+            if (event.target === modal) {
+                closeOffersModal();
+            }
+        });
+    }
+});
+
+// Funzione per aprire menu categorie
+// Toggle Categories Panel
+function toggleCategoriesPanel() {
+    const panel = document.getElementById('categories-panel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    if (panel.style.display === 'block') {
+        loadCategoriesPanel();
+    }
+}
+
+// Toggle Search Panel
+function toggleSearchPanel() {
+    const panel = document.getElementById('search-panel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    if (panel.style.display === 'block') {
+        document.getElementById('search-input-panel').focus();
+    }
+}
+
+// Load Categories in Panel
+function loadCategoriesPanel() {
+    const categoriesList = document.getElementById('categories-list');
+    categoriesList.innerHTML = '';
+    
+    // Get unique categories from loaded menu
+    const categories = [...new Set(allDishes.map(item => item.category))].filter(cat => cat);
+    
+    categories.forEach(cat => {
+        const count = allDishes.filter(item => item.category === cat).length;
+        const faIcon = CATEGORY_FA_ICON[cat.toLowerCase()] || 'fa-utensils';
+        const iconColor = CATEGORY_COLORS[cat.toLowerCase()] || '#EF3D26';
+        const button = document.createElement('button');
+        button.style.cssText = 'padding: 16px; background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 14px; cursor: pointer; text-align: center; font-weight: 600; color: #2d2d2d; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 8px;';
+        button.innerHTML = '<div style="width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, ' + iconColor + ', ' + iconColor + 'dd); display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px ' + iconColor + '30;"><i class="fas ' + faIcon + '" style="color: white; font-size: 17px;"></i></div><div style="font-size: 0.9em;">' + cat + '</div><div style="font-size: 0.75em; color: #999; font-weight: 500;">' + count + ' piatti</div>';
+        button.onmouseover = function() { this.style.transform = 'translateY(-3px)'; this.style.boxShadow = '0 6px 20px rgba(0,0,0,0.1)'; };
+        button.onmouseout = function() { this.style.transform = 'none'; this.style.boxShadow = 'none'; };
+        button.onclick = function() {
+            toggleCategoriesPanel();
+            // Filter dishes by category and display them
+            const categoryDishes = allDishes.filter(dish => dish.category === cat);
+            displayDishes(categoryDishes);
+            document.getElementById('menu-items-container').scrollIntoView({ behavior: 'smooth' });
+        };
+        categoriesList.appendChild(button);
+    });
+}
+
+// Search in Categories Panel
+function searchDishesPanel() {
+    const searchTerm = document.getElementById('search-input-panel').value.toLowerCase();
+    const searchResults = document.getElementById('search-results');
+    
+    if (searchTerm.length === 0) {
+        searchResults.innerHTML = '';
+        return;
+    }
+    
+    const results = allDishes.filter(item => 
+        item.name.toLowerCase().includes(searchTerm) || 
+        (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+        (item.name_en && item.name_en.toLowerCase().includes(searchTerm)) ||
+        (item.description_en && item.description_en.toLowerCase().includes(searchTerm))
+    );
+    
+    searchResults.innerHTML = '';
+    if (results.length === 0) {
+        searchResults.innerHTML = '<p class="color-gray2-dark text-center mt-4">' + (currentLanguage === 'en' ? 'No dishes found' : 'Nessun piatto trovato') + '</p>';
+        return;
+    }
+    
+    results.forEach(item => {
+        const div = document.createElement('div');
+        div.style.cssText = 'padding: 12px; background: #f9f9f9; border-radius: 8px; border-left: 4px solid #537b83; cursor: pointer; transition: all 0.3s;';
+        div.innerHTML = `<strong>${dishName(item)}</strong><br><small style="color: #999;">${item.category}</small><br><span style="color: #537b83; font-weight: 600;">€${parseFloat(item.price).toFixed(2)}</span>`;
+        div.onmouseover = function() { this.style.background = '#f0f0f0'; };
+        div.onmouseout = function() { this.style.background = '#f9f9f9'; };
+        div.onclick = function() {
+            toggleSearchPanel();
+            displayDishes(item.category);
+            // Scroll to this item
+            setTimeout(() => {
+                const itemElement = Array.from(document.querySelectorAll('.dish-item')).find(el => el.querySelector('.dish-name').textContent.includes(item.name));
+                if (itemElement) itemElement.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        };
+        searchResults.appendChild(div);
+    });
+}
+
+function toggleMenuCategories() {
+    const menu = document.getElementById('menu-categorie');
+    if (menu) {
+        if (menu.style.display === 'none' || menu.style.display === '') {
+            menu.style.display = 'block';
+            menu.classList.add('menu-open');
+        } else {
+            menu.style.display = 'none';
+            menu.classList.remove('menu-open');
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() { 
+    loadSavedLanguage();
+    loadRestaurantData(); 
+    loadDishes();
+    loadRecipes();
+    
+    // Aggiungi listener al bottone close del menu categorie
+    const closeBtn = document.querySelector('#menu-categorie .close-menu');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeCategoriesMenu();
+        });
+    }
+    
+    // ===== OPTIMIZATION: Better UX Features =====
+    
+    // Lazy load images
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.classList.remove('skeleton-loader');
+                        observer.unobserve(img);
+                    }
+                }
+            });
+        }, { rootMargin: '50px' });
+        
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+    
+    // Smooth scroll behavior
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Add ripple effect to buttons
+    document.querySelectorAll('.footer-bar-5 a, button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+    
+    // Mostra il pop-up offerte una sola volta (auto) se non è stato giè mostrato o chiuso
+    setTimeout(() => {
+        try {
+            const autoShown = localStorage.getItem('offersModalAutoShown');
+            const closed = localStorage.getItem('offersModalClosed');
+            if (!autoShown && closed !== 'true' && restaurantData && (restaurantData.offer_image_url || restaurantData.offer_text)) {
+                showOffersModal();
+                try { localStorage.setItem('offersModalAutoShown', 'true'); } catch(e) {}
+            }
+        } catch(e) {
+            // Se localStorage non è disponibile, mostra comunque il popup una volta
+            if (restaurantData && (restaurantData.offer_image_url || restaurantData.offer_text)) {
+                showOffersModal();
+            }
+        }
+    }, 30000);
+
+    // Aggiorna badge e display carrello all'avvio (sincronizza con localStorage)
+    try {
+        // Assicura che il carrello venga mostrato correttamente
+        updateCartDisplay();
+        updateBadgeCount();
+
+        // Se il footer non contiene il badge, aggiungilo per consistenza
+        const footerOrder = document.querySelector('#footer-bar a[onclick*="openOrderMenu"]');
+        if (footerOrder && !footerOrder.querySelector('.lmcart-totalitems')) {
+            const existingLabel = footerOrder.querySelector('span');
+            const badge = document.createElement('span');
+            badge.className = 'badge bg-danger lmcart-totalitems';
+            badge.style.marginLeft = '6px';
+            badge.textContent = '0';
+            // Inserisci prima del primo span testuale se presente, altrimenti append
+            if (existingLabel) footerOrder.insertBefore(badge, existingLabel);
+            else footerOrder.appendChild(badge);
+            // Aggiorna il valore appena creato
+            updateBadgeCount();
+        }
+    } catch(e) { console.error('Errore sincronizzazione badge/cart:', e); }
+
+    // Chiudi tutti i menu al caricamento
+    setTimeout(function() {
+        document.querySelectorAll('.menu').forEach(menu => {
+            menu.classList.remove('menu-open');
+            menu.style.display = 'none';
+        });
+    }, 100);
+});
+
+async function loadRestaurantData() {
+    try {
+        const response = await fetch(API_URL + '?action=get-restaurant&id=' + RESTAURANT_SLUG);
+        const result = await response.json();
+        if (result.success && result.data) {
+            restaurantData = result.data;
+            if (result.data.offer_image_url || result.data.offer_text) {
+                document.getElementById('footer-offerte').style.display = '';
+            }
+            document.getElementById('restaurant-name').textContent = result.data.name;
+            document.getElementById('header-title').textContent = result.data.name;
+            document.getElementById('footer-name').textContent = result.data.name;
+            document.title = result.data.name + ' | Menu Digitale';
+
+            // Breadcrumb
+            const bc = document.createElement('nav');
+            bc.setAttribute('aria-label', 'Breadcrumb');
+            bc.style.cssText = 'padding:8px 16px;font-size:0.8rem;color:#888;';
+            bc.innerHTML = '<a href="/" style="color:#e73a3a;text-decoration:none;">Home</a> &rsaquo; <a href="/ristorante/' + (result.data.slug || '') + '/" style="color:#e73a3a;text-decoration:none;">' + result.data.name + '</a> &rsaquo; Menu';
+            const headerEl = document.querySelector('.header') || document.querySelector('[class*="header"]');
+            if (headerEl && headerEl.parentNode) headerEl.parentNode.insertBefore(bc, headerEl.nextSibling);
+
+            // Schema.org Menu
+            const menuSchema = {
+                "@context": "https://schema.org",
+                "@type": "Menu",
+                "name": "Menu di " + result.data.name,
+                "url": window.location.href,
+                "hasMenuSection": []
+            };
+            if (result.data.name) menuSchema.about = {
+                "@type": "Restaurant",
+                "name": result.data.name,
+                "url": window.location.href,
+                "servesCuisine": (result.data.cuisine || ""),
+                "telephone": (result.data.phone || ""),
+                "address": result.data.address ? { "@type": "PostalAddress", "streetAddress": result.data.address, "addressCountry": "IT" } : undefined,
+                "geo": (result.data.latitude && result.data.longitude) ? { "@type": "GeoCoordinates", "latitude": parseFloat(result.data.latitude), "longitude": parseFloat(result.data.longitude) } : undefined,
+                "aggregateRating": result.data.rating ? { "@type": "AggregateRating", "ratingValue": parseFloat(result.data.rating), "reviewCount": 1 } : undefined
+            };
+            document.getElementById('schema-menu')?.remove();
+            
+            // Michelin stars badge
+            const michelinStars = parseInt(result.data.michelin_stars) || 0;
+            if (michelinStars > 0) {
+                const badge = document.getElementById('michelin-badge');
+                const starsDisplay = document.getElementById('michelin-stars-display');
+                if (badge && starsDisplay) {
+                    badge.style.display = 'block';
+                    starsDisplay.innerHTML = '';
+                    for (let i = 0; i < michelinStars; i++) {
+                        const star = document.createElement('span');
+                        star.className = 'michelin-star-anim';
+                        star.innerHTML = '&#9733;';
+                        starsDisplay.appendChild(star);
+                    }
+                    // Add floating star particles to header
+                    const particles = document.getElementById('star-particles');
+                    if (particles) {
+                        for (let i = 0; i < 20; i++) {
+                            const p = document.createElement('div');
+                            p.className = 'star-particle';
+                            p.style.left = Math.random() * 100 + '%';
+                            p.style.top = Math.random() * 100 + '%';
+                            p.style.animationDelay = Math.random() * 3 + 's';
+                            p.style.animationDuration = (2 + Math.random() * 2) + 's';
+                            particles.appendChild(p);
+                        }
+                    }
+                }
+            }
+            if (result.data.logo || result.data.logo_url) {
+                const logoUrl = result.data.logo || result.data.logo_url;
+                const logoContainer = document.getElementById('logo-container');
+                const headerBlur = document.getElementById('header-blur-bg');
+                if (logoContainer) {
+                    const logoImg = document.createElement('img');
+                    logoImg.src = logoUrl;
+                    logoImg.style.maxHeight = '80px';
+                    logoImg.style.maxWidth = '100%';
+                    logoImg.style.objectFit = 'contain';
+                    logoContainer.appendChild(logoImg);
+                    if (headerBlur) {
+                        headerBlur.style.backgroundImage = `url('${logoUrl}')`;
+                        headerBlur.style.backgroundPosition = 'center';
+                        headerBlur.style.backgroundSize = 'cover';
+            } else {
+                // Logo di Enzociro se non presente nel database
+                const logoContainer = document.getElementById('logo-container');
+                if (logoContainer) {
+                    const logoImg = document.createElement('img');
+                    logoImg.src = 'https://www.trovapiatto.it/img/enzociro-logo.png';
+                    logoImg.style.maxHeight = '80px';
+                    logoImg.style.maxWidth = '100%';
+                    logoImg.style.objectFit = 'contain';
+                    logoContainer.appendChild(logoImg);
+                }
+                        headerBlur.style.backgroundRepeat = 'no-repeat';
+                    }
+                }
+            }
+            if (result.data.description) document.getElementById('restaurant-desc').textContent = result.data.description;
+            if (result.data.phone) {
+                const phoneLink = document.getElementById('phone-link');
+                const whatsappLink = document.getElementById('whatsapp-link');
+                if (phoneLink) phoneLink.href = 'tel:' + result.data.phone;
+                if (whatsappLink) whatsappLink.href = 'https://wa.me/' + result.data.phone.replace(/[^0-9]/g, '');
+            }
+            if (result.data.email) {
+                const emailLink = document.getElementById('email-link');
+                if (emailLink) emailLink.href = 'mailto:' + result.data.email;
+            }
+            if (result.data.address) {
+                const mapLink = document.getElementById('map-link');
+                if (mapLink) mapLink.href = 'https://www.google.com/maps/search/' + encodeURIComponent(result.data.address);
+            }
+            loadContactList(result.data);
+        }
+    } catch(e) { console.error('Errore:',e); }
+}
+
+function loadContactList(data) {
+    let html = '';
+    if (data.phone) {
+        html += '<a href="tel:' + data.phone + '"><i class="font-18 fas fa-phone color-highlight"></i><span class="font-13">' + data.phone + '</span><i class="fa fa-angle-right"></i></a>';
+        html += '<a href="https://wa.me/' + data.phone.replace(/[^0-9]/g, '') + '"><i class="font-20 fab fa-whatsapp-square color-highlight"></i><span class="font-13">Messaggio WhatsApp</span><i class="fa fa-angle-right"></i></a>';
+    }
+    if (data.address) html += '<a href="https://www.google.com/maps/search/' + encodeURIComponent(data.address) + '" target="_blank"><i class="font-18 fas fa-map-marker-alt color-highlight"></i><span class="font-13">Visualizza su Google Map</span><strong>' + data.address + '</strong><i class="fa fa-angle-right"></i></a>';
+    document.getElementById('contact-list').innerHTML = html;
+}
+
+// Recipe banner images by category
+const RECIPE_IMAGES = {
+    'antipasti': 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=400&h=300&fit=crop',
+    'primi': 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop',
+    'secondi': 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&h=300&fit=crop',
+    'dolci': 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop',
+    'pizze': 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop',
+    'contorni': 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop',
+    'default': 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&h=300&fit=crop'
+};
+
+function getRecipeImage(category) {
+    return RECIPE_IMAGES[category.toLowerCase()] || RECIPE_IMAGES['default'];
+}
+
+async function loadRecipes() {
+    try {
+        const dishNames = allDishes ? allDishes.map(d => d.name.toLowerCase()) : [];
+        const response = await fetch('/app/admin/recipes-api.php?action=get-recipes&limit=20&restaurant_id=' + RESTAURANT_SLUG);
+        const result = await response.json();
+        if (result.success && result.recipes && result.recipes.length > 0) {
+            const valid = result.recipes.filter(r => {
+                const name = r.dish_name.toLowerCase();
+                if (dishNames.length > 0 && !dishNames.some(d => d.includes(name) || name.includes(d))) return false;
+                return true;
+            });
+            if (valid.length === 0) return;
+            const today = new Date();
+            const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+            const shuffled = valid.sort((a, b) => {
+                const sa = Math.sin(seed + a.dish_name.length) * 10000;
+                const sb = Math.sin(seed + b.dish_name.length) * 10000;
+                return (sa - Math.floor(sa)) - (sb - Math.floor(sb));
+            });
+            const recipes = shuffled.slice(0, 3);
+            if (recipes.length > 0) {
+                const banner = document.getElementById('recipe-banner');
+                const list = document.getElementById('recipe-banner-list');
+                list.innerHTML = recipes.map(r => {
+                    const img = r.image_url || getRecipeImage(r.difficulty || 'default');
+                    const time = (r.prep_time_minutes || 0) + (r.cook_time_minutes || 0);
+                    const diffLabel = r.difficulty === 'facile' ? 'Facile' : r.difficulty === 'medio' ? 'Medio' : 'Difficile';
+                    return '<a href="/ricette/ricetta.html?slug=' + r.slug + '" class="recipe-banner-card">' +
+                        '<img src="' + img + '" alt="' + r.dish_name + '" class="recipe-banner-card-img" loading="lazy">' +
+                        '<div class="recipe-banner-card-body">' +
+                        '<div class="recipe-banner-card-name">' + r.dish_name + '</div>' +
+                        '<div class="recipe-banner-card-meta">' +
+                        '<span><i class="fas fa-clock"></i> ' + time + ' min</span>' +
+                        '<span><i class="fas fa-signal"></i> ' + diffLabel + '</span>' +
+                        '</div>' +
+                        '<div class="recipe-banner-card-badge">Ricetta</div>' +
+                        '</div></a>';
+                }).join('');
+                banner.style.display = 'block';
+            }
+        }
+    } catch(e) { console.log('Recipe banner not loaded:', e); }
+}
+
+async function loadDishes() {
+    try {
+        const url = API_URL + '?action=get-menu&restaurant_id=' + RESTAURANT_SLUG + '&language=' + currentLanguage;
+        const response = await fetch(url);
+        const result = await response.json();
+        if (result.success && result.data) {
+            allDishes = applyDishPlaceholders(result.data);
+            displayDishes(allDishes);
+            loadCategoryList(allDishes);
+            highlightDishFromURL();
+            renderFavoriteDishes();
+            if (activeAllergenFilters.length > 0) {
+                const bar = document.getElementById('allergen-filter-bar');
+                bar.classList.add('visible');
+                bar.dataset.initialized = '1';
+                renderAllergenPills();
+                applyAllergenFilter();
+            }
+        } else {
+            document.getElementById('menu-items-container').innerHTML = '<div class="text-center p-4"><p>Errore nel caricamento dei piatti</p></div>';
+        }
+    } catch(e) { console.error('Errore:', e); document.getElementById('menu-items-container').innerHTML = '<div class="text-center p-4"><p>Errore di connessione</p></div>'; }
+}
+
+function highlightDishFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const highlight = params.get('highlight');
+    if (!highlight) return;
+    const highlightLower = highlight.toLowerCase();
+    const dish = allDishes.find(d => d.name.toLowerCase().includes(highlightLower));
+    if (!dish) return;
+    const cat = (dish.category && dish.category.trim()) ? dish.category.trim() : 'Vari';
+    const sections = document.querySelectorAll('.menu-category-section');
+    sections.forEach(section => {
+        const title = section.querySelector('h2');
+        if (title && title.textContent.toLowerCase().includes(cat.toLowerCase())) {
+            const container = section.querySelector('[data-itemsContainer]');
+            const icon = section.querySelector('.category-toggle-icon');
+            if (container && container.classList.contains('collapsed')) {
+                container.classList.remove('collapsed');
+                if (icon) icon.classList.remove('collapsed');
+            }
+        }
+    });
+    setTimeout(() => {
+        const dishCards = document.querySelectorAll('.dish-card');
+        dishCards.forEach(card => {
+            const nameEl = card.querySelector('h2');
+            if (nameEl && nameEl.textContent.toLowerCase().includes(highlightLower)) {
+                card.style.border = '3px solid #EF3D26';
+                card.style.boxShadow = '0 0 20px rgba(239, 61, 38, 0.4)';
+                card.style.borderRadius = '12px';
+                setTimeout(() => { card.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
+                setTimeout(() => { card.style.border = ''; card.style.boxShadow = ''; }, 5000);
+            }
+        });
+    }, 500);
+}
+
+function displayDishes(dishes) {
+    if (!dishes || dishes.length === 0) {
+        document.getElementById('menu-items-container').innerHTML = '<div class="text-center p-4"><p>' + (currentLanguage === 'en' ? 'No dishes available' : 'Nessun piatto disponibile') + '</p></div>';
+        return;
+    }
+    const grouped = {};
+    dishes.forEach(dish => {
+        const cat = (dish.category && dish.category.trim()) ? dish.category.trim() : 'Vari';
+        if (!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(dish);
+    });
+    // Ordina le categorie secondo CATEGORY_ORDER
+    const sortedCategories = Object.keys(grouped).sort((a, b) => {
+        const orderA = CATEGORY_ORDER[a] || 999;
+        const orderB = CATEGORY_ORDER[b] || 999;
+        return orderA - orderB;
+    });
+
+    // Schema.org Menu Sections
+    const menuSchema = { "@context": "https://schema.org", "@type": "Menu", "name": "Menu", "hasMenuSection": sortedCategories.map(cat => ({
+        "@type": "MenuSection",
+        "name": cat,
+        "hasMenuItem": grouped[cat].map(d => ({
+            "@type": "MenuItem",
+            "name": d.name,
+            "description": d.description || '',
+            "offers": d.price ? { "@type": "Offer", "price": parseFloat(d.price).toFixed(2), "priceCurrency": "EUR" } : undefined
+        }))
+    }))};
+    const existingSchema = document.getElementById('schema-menu');
+    if (existingSchema) existingSchema.remove();
+    const schemaScript = document.createElement('script');
+    schemaScript.id = 'schema-menu';
+    schemaScript.type = 'application/ld+json';
+    schemaScript.textContent = JSON.stringify(menuSchema);
+    document.head.appendChild(schemaScript);
+
+    let html = '';
+    sortedCategories.forEach(category => {
+        const items = grouped[category];
+        // Ordina i piatti per prezzo (dal piè economico al piè caro)
+        items.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        const emoji = CATEGORY_EMOJI[category.toLowerCase()] || '???';
+        const faIcon = CATEGORY_FA_ICON[category.toLowerCase()] || 'fa-utensils';
+        const iconColor = CATEGORY_COLORS[category.toLowerCase()] || '#EF3D26';
+        // Traduci la categoria
+        const translatedCategory = CATEGORY_TRANSLATIONS[currentLanguage] && CATEGORY_TRANSLATIONS[currentLanguage][category] ? CATEGORY_TRANSLATIONS[currentLanguage][category] : category;
+        const capitalizedCategory = capitalizeFirstLetter(translatedCategory);
+        const dishCount = items.length;
+        html += '<div class="menu-category-section"><div class="category-title-wrapper" onclick="toggleCategory(this)"><div class="category-icon-wrapper" style="background: linear-gradient(135deg, ' + iconColor + ', ' + iconColor + 'dd); box-shadow: 0 4px 12px ' + iconColor + '40;"><i class="fas ' + faIcon + '"></i></div><h2>' + capitalizedCategory + '<span class="cat-count">' + dishCount + ' ' + (currentLanguage === 'en' ? 'dishes' : 'piatti') + '</span></h2><i class="category-toggle-icon fas fa-chevron-up collapsed"></i></div><div data-itemsContainer class="collapsed">';
+        items.forEach(dish => {
+            const name = dishName(dish);
+            const desc = dishDescription(dish);
+            const allergens = dish.allergens ? (typeof dish.allergens === 'string' ? JSON.parse(dish.allergens) : dish.allergens) : [];
+            const allergensHtml = allergens.length > 0 ? '<div class="dish-allergens"><i class="fa fa-exclamation-circle mr-2"></i>' + allergens.map(a => ALLERGEN_MAP[normalizeAllergenKey(a)] || normalizeAllergenKey(a)).join(', ') + '</div>' : '';
+            const favClass = isDishFavorite(dish.id) ? ' active' : '';
+            const favIcon = isDishFavorite(dish.id) ? 'fas fa-heart' : 'far fa-heart';
+            html += '<div class="card card-style dish-card">';
+            html += '<button class="dish-fav-btn' + favClass + '" data-dish-id="' + dish.id + '" onclick="event.stopPropagation();toggleDishFavorite(\'' + dish.id + '\', \'' + name.replace(/'/g, "\\'") + '\', \'' + RESTAURANT_SLUG + '\')"><i class="' + favIcon + '"></i></button>';
+            if (dish.image_url) html += '<img src="' + dish.image_url + '" alt="' + name + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/300x200?text=' + encodeURIComponent(name) + '\'  ">';
+            html += '<div class="content mb-0"><h2 style="font-size: 1.7em; margin-bottom: 8px;">' + name + '</h2>';
+            if (desc) html += '<p class="dish-description">' + desc + '</p>';
+            html += '<div class="dish-price" style="font-size: 1.5em;">€ ' + parseFloat(dish.price).toFixed(2) + '</div>' + allergensHtml;
+            html += '<a href="javascript:void(0);" onclick="addToCart(\'' + dish.id + '\', \'' + name.replace(/'/g, "\\'") + '\', ' + dish.price + ', \'' + category.replace(/'/g, "\\'") + '\'); return false;" class="btn btn-m btn-full mb-0 rounded-xl text-uppercase font-900 shadow-s bg-red2-dark btn-icon text-left" style="margin-top: 12px; color: #FFFFFF !important; font-weight: 900 !important; letter-spacing: 0.5px;"><i class="fas fa-shopping-cart font-15 text-center"></i> ' + (currentLanguage === 'en' ? 'Order' : 'Ordina') + '</a></div></div>';
+        });
+        html += '</div></div>';
+    });
+    document.getElementById('menu-items-container').innerHTML = html;
+}
+
+function toggleCategory(element) {
+    const container = element.nextElementSibling;
+    container.classList.toggle('collapsed');
+    element.querySelector('.category-toggle-icon').classList.toggle('collapsed');
+}
+
+function openCategoriesMenu() {
+    const menu = document.getElementById('menu-categorie');
+    if (menu) {
+        menu.classList.add('menu-open');
+        menu.style.display = 'block';
+        menu.style.zIndex = '1000';
+        menu.style.position = 'fixed';
+        menu.style.bottom = '0';
+        menu.style.left = '0';
+        menu.style.right = '0';
+        menu.style.maxHeight = '70vh';
+        menu.style.overflowY = 'auto';
+        menu.offsetHeight; // force reflow
+    }
+}
+
+function closeCategoriesMenu() {
+    const menu = document.getElementById('menu-categorie');
+    if (menu) {
+        menu.classList.remove('menu-open');
+        menu.style.display = 'none';
+    }
+}
+
+function loadCategoryList(dishes) {
+    const categories = [...new Set(dishes.map(d => d.category || 'Vari'))];
+    // Ordina le categorie secondo CATEGORY_ORDER
+    categories.sort((a, b) => {
+        const orderA = CATEGORY_ORDER[a] || 999;
+        const orderB = CATEGORY_ORDER[b] || 999;
+        return orderA - orderB;
+    });
+    let html = '';
+    categories.forEach(cat => {
+        const faIcon = CATEGORY_FA_ICON[cat.toLowerCase()] || 'fa-utensils';
+        const iconColor = CATEGORY_COLORS[cat.toLowerCase()] || '#EF3D26';
+        html += '<a href="javascript:void(0);" class="cat-link main-lev cat-pl-0" onclick="scrollToCategory(\''+cat+'\')" style="display: flex; align-items: center; gap: 10px;"><div style="width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, ' + iconColor + ', ' + iconColor + 'dd); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fas ' + faIcon + '" style="color: white; font-size: 13px;"></i></div><span class="font-13 line-height-s" style="flex: 1;">' + cat + '</span><i class="fa fa-angle-right"></i></a>';
+    });
+    document.getElementById('category-list').innerHTML = html;
+}
+
+function scrollToCategory(category) {
+    const element = document.querySelector('[data-itemsContainer]');
+    if (element && element.parentElement.querySelector('.category-title-wrapper h2').textContent.includes(category)) {
+        element.closest('.menu-category-section').scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('.close-menu').click();
+    }
+}
+
+function searchDishes() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    if (!query) { displayDishes(allDishes); return; }
+    const filtered = allDishes.filter(d => d.name.toLowerCase().includes(query) || d.description.toLowerCase().includes(query) || (d.name_en && d.name_en.toLowerCase().includes(query)) || (d.description_en && d.description_en.toLowerCase().includes(query)));
+    displayDishes(filtered);
+}
+
+function shareToFacebook() {
+    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+    document.querySelector('.close-menu').click();
+}
+
+// ==================== SISTEMA CARRELLO CUSTOM ====================
+// Key per localStorage
+const getCartKey = () => `trovapiatto_cart_${RESTAURANT_SLUG}`;
+
+// Carica carrello da localStorage
+function loadCart() {
+    try {
+        const saved = localStorage.getItem(getCartKey());
+        return saved ? JSON.parse(saved) : { items: [], timestamp: Date.now() };
+    } catch (e) {
+        console.error('Errore caricamento carrello:', e);
+        return { items: [], timestamp: Date.now() };
+    }
+}
+
+// Salva carrello in localStorage
+function saveCart(cart) {
+    try {
+        localStorage.setItem(getCartKey(), JSON.stringify(cart));
+        updateCartDisplay();
+        updateBadgeCount();
+    } catch (e) {
+        console.error('Errore salvataggio carrello:', e);
+    }
+}
+
+// Aggiungi piatto al carrello
+function addToCart(dishId, dishName, dishPrice, category) {
+    console.log('?? addToCart called:', { dishId, dishName, dishPrice, category });
+    
+    let cart = loadCart();
+    console.log('?? Carrello caricato:', cart);
+    
+    const existing = cart.items.find(item => item.id === dishId);
+    
+    if (existing) {
+        existing.quantity++;
+        console.log('? Piatto esistente, quantitè aumentata a', existing.quantity);
+    } else {
+        cart.items.push({
+            id: dishId,
+            name: dishName,
+            price: parseFloat(dishPrice),
+            quantity: 1,
+            category: category
+        });
+        console.log('? Piatto aggiunto al carrello');
+    }
+    
+    console.log('?? Salvataggio carrello...', cart);
+    saveCart(cart);
+    console.log('? Carrello salvato!');
+}
+
+// Rimuovi piatto dal carrello
+function removeFromCart(dishId) {
+    console.log('removeFromCart:', dishId);
+    let cart = loadCart();
+    cart.items = cart.items.filter(item => item.id !== dishId);
+    saveCart(cart);
+}
+
+// Aggiorna quantitè piatto
+function updateCartQuantity(dishId, newQuantity) {
+    console.log('updateCartQuantity:', dishId, newQuantity);
+    let cart = loadCart();
+    const item = cart.items.find(i => i.id === dishId);
+    
+    if (item) {
+        if (newQuantity <= 0) {
+            removeFromCart(dishId);
+        } else {
+            item.quantity = parseInt(newQuantity);
+            saveCart(cart);
+        }
+    }
+}
+
+// Svuota carrello
+function clearCart() {
+    if (confirm('Annullare l\'ordine?')) {
+        localStorage.removeItem(getCartKey());
+        updateCartDisplay();
+        updateBadgeCount();
+        openOrderMenu();
+    }
+}
+
+// Aggiorna numero badge
+function updateBadgeCount() {
+    const cart = loadCart();
+    const totalQuantity = (cart.items || []).reduce((sum, it) => sum + (parseInt(it.quantity) || 0), 0);
+    const badgeElements = document.querySelectorAll('.lmcart-totalitems');
+    badgeElements.forEach(badge => {
+        try {
+            if (totalQuantity > 0) {
+                badge.textContent = totalQuantity;
+                badge.style.display = 'inline-block';
+            } else {
+                badge.textContent = '0';
+                badge.style.display = 'none';
+            }
+        } catch(e) { console.error(e); }
+    });
+}
+
+// Aggiorna visualizzazione carrello
+function updateCartDisplay() {
+    const cart = loadCart();
+    const itemsContainer = document.getElementById('cart-items-list');
+    
+    if (!itemsContainer) {
+        console.warn('cart-items-list non trovato');
+        return;
+    }
+    
+    if (cart.items.length === 0) {
+        itemsContainer.innerHTML = '<div style="padding: 40px 20px; text-align: center; color: #999;">Il tuo ordine è vuoto</div>';
+        return;
+    }
+    
+    let html = '';
+    let total = 0;
+    
+    cart.items.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        html += '<div style="padding: 15px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; gap: 10px;">';
+        html += '<div style="flex: 1;">';
+        html += '<div style="font-weight: 600; color: #537b83; margin-bottom: 4px;">' + item.name + '</div>';
+        html += '<div style="color: #999; font-size: 0.9em;">è' + item.price.toFixed(2) + ' x ' + item.quantity + ' = <strong style="color: #EF3D26;">è' + itemTotal.toFixed(2) + '</strong></div>';
+        html += '</div>';
+        html += '<div style="display: flex; gap: 5px; align-items: center;">';
+        html += '<button onclick="updateCartQuantity(\'' + item.id + '\', ' + (item.quantity - 1) + ');" style="width: 32px; height: 32px; padding: 0; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 16px; font-weight: bold; color: #537b83;">-</button>';
+        html += '<span style="width: 30px; text-align: center; font-weight: 600;">' + item.quantity + '</span>';
+        html += '<button onclick="updateCartQuantity(\'' + item.id + '\', ' + (item.quantity + 1) + ');" style="width: 32px; height: 32px; padding: 0; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 16px; font-weight: bold; color: #537b83;">+</button>';
+        html += '<button onclick="removeFromCart(\'' + item.id + '\');" style="width: 32px; height: 32px; padding: 0; border: 1px solid #ddd; border-radius: 6px; background: #ffebee; color: #c62828; cursor: pointer; font-size: 16px; border: 1px solid #ffcdd2;">?</button>';
+        html += '</div></div>';
+    });
+    
+    itemsContainer.innerHTML = html;
+    
+    // Aggiorna totale e conteggio
+    document.getElementById('cart-total').textContent = total.toFixed(2);
+    const itemCountEl = document.getElementById('cart-item-count');
+    if (itemCountEl) {
+        itemCountEl.textContent = cart.items.length + ' articolo' + (cart.items.length !== 1 ? 'i' : '');
+    }
+}
+
+// Apri/Chiudi menu ordine
+function openOrderMenu() {
+    console.log('?? openOrderMenu called - inizio funzione');
+    const menuCart = document.getElementById('menu-cart');
+    console.log('?? menu-cart element:', menuCart);
+    console.log('?? display corrente:', menuCart ? menuCart.style.display : 'elemento non trovato');
+    
+    if (!menuCart) {
+        console.error('? menu-cart non trovato!');
+        return;
+    }
+    
+    const isHidden = menuCart.style.display === 'none' || menuCart.style.display === '';
+    console.log('?? è nascosto?', isHidden);
+    
+    if (isHidden) {
+        console.log('?? Aprendo menu-cart...');
+        menuCart.setAttribute('style', 'display: block !important; position: fixed !important; bottom: 0 !important; left: 0 !important; right: 0 !important; z-index: 9999 !important; max-height: 90vh !important; overflow-y: auto !important; background: white !important; border-radius: 20px 20px 0 0 !important; box-shadow: 0 -5px 20px rgba(0,0,0,0.15) !important; visibility: visible !important; opacity: 1 !important;');
+        console.log('? display impostato a block con !important');
+        console.log('? style attribute:', menuCart.getAttribute('style'));
+        updateCartDisplay();
+        console.log('? Menu aperto - updateCartDisplay eseguito');
+    } else {
+        console.log('?? Chiudendo menu-cart...');
+        menuCart.setAttribute('style', 'display: none !important; position: fixed !important; bottom: 0 !important; left: 0 !important; right: 0 !important; z-index: 9999 !important; max-height: 90vh !important; overflow-y: auto !important; background: white !important; border-radius: 20px 20px 0 0 !important; box-shadow: 0 -5px 20px rgba(0,0,0,0.15) !important; visibility: visible !important; opacity: 1 !important;');
+        console.log('? Menu chiuso');
+    }
+}function closeOrderMenu() {
+    const menuCart = document.getElementById('menu-cart');
+    if (menuCart) {
+        menuCart.style.display = 'none';
+    }
+}
+
+// Invia ordine via WhatsApp
+function sendOrderViaWhatsApp() {
+    console.log('sendOrderViaWhatsApp called');
+    
+    const cart = loadCart();
+    
+    if (cart.items.length === 0) {
+        alert('Il tuo ordine è vuoto');
+        return;
+    }
+    
+    if (!restaurantData || (!restaurantData.whatsapp && !restaurantData.phone)) {
+        alert('Numero WhatsApp non disponibile');
+        return;
+    }
+    
+    // Costruisci messaggio
+    let message = '?? *Nuovo Ordine da trovapiatto.it*\n\n*Ristorante:* ' + restaurantData.name + '\n\n*Piatti:*\n';
+    
+    let total = 0;
+    cart.items.forEach((item, idx) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        message += (idx + 1) + '. ' + item.name + ' (x' + item.quantity + ') = €' + itemTotal.toFixed(2) + '\n';
+    });
+    
+    message += '\n*TOTALE: €' + total.toFixed(2) + '*\n\n? ' + new Date().toLocaleString('it-IT') + '\n\n_Inviato da trovapiatto.it_';
+    
+    // Estrai numero WhatsApp
+    let whatsappNumber = restaurantData.whatsapp || restaurantData.phone;
+    whatsappNumber = whatsappNumber.replace(/\D/g, '');
+    
+    if (!whatsappNumber.startsWith('+')) {
+        whatsappNumber = whatsappNumber.replace(/^0/, '');
+    }
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodedMessage;
+    
+    console.log('WhatsApp URL:', whatsappUrl);
+    window.open(whatsappUrl, '_blank');
+}
+// ==================== FINE SISTEMA CARRELLO ====================
+
+function shareToWhatsApp() {
+    window.open('https://wa.me/?text=' + encodeURIComponent('Guarda questo menu: ' + window.location.href), '_blank');
+    document.querySelector('.close-menu').click();
+}
+
+// ==================== FILTRO ALLERGENI ====================
+const ALLERGEN_FILTER_DATA = [
+    ['glutine', 'Glutine', 'fa-bread-slice', '#c0392b', 'Gluten'],
+    ['lattosio', 'Latte', 'fa-glass-water', '#3498db', 'Milk'],
+    ['uova', 'Uova', 'fa-egg', '#f39c12', 'Eggs'],
+    ['pesce', 'Pesce', 'fa-fish', '#2980b9', 'Fish'],
+    ['crostacei', 'Crostacei', 'fa-shrimp', '#e74c3c', 'Crustaceans'],
+    ['molluschi', 'Molluschi', 'fa-shrimp', '#8e44ad', 'Mollusks'],
+    ['arachidi', 'Arachidi', 'fa-seedling', '#27ae60', 'Peanuts'],
+    ['noci', 'Frutta a guscio', 'fa-seedling', '#d35400', 'Tree Nuts'],
+    ['sesamo', 'Sesamo', 'fa-seedling', '#7f8c8d', 'Sesame'],
+    ['soia', 'Soia', 'fa-seedling', '#16a085', 'Soy'],
+    ['sedano', 'Sedano', 'fa-leaf', '#2ecc71', 'Celery'],
+    ['solfiti', 'Solfiti', 'fa-wine-glass', '#9b59b6', 'Sulfites']
+];
+
+let activeAllergenFilters = JSON.parse(localStorage.getItem('tp_allergen_filters') || '[]');
+
+function toggleAllergenFilter() {
+    const bar = document.getElementById('allergen-filter-bar');
+    bar.classList.toggle('visible');
+    if (bar.classList.contains('visible')) { bar.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+    if (bar.classList.contains('visible') && !bar.dataset.initialized) {
+        renderAllergenPills();
+        bar.dataset.initialized = '1';
+    }
+}
+
+function renderAllergenPills() {
+    const container = document.getElementById('allergen-pills-container');
+    const lang = currentLanguage || 'it';
+    container.innerHTML = ALLERGEN_FILTER_DATA.map(([key, itName, icon, color, enName]) => {
+        const name = lang === 'en' ? enName : itName;
+        const isActive = activeAllergenFilters.includes(key);
+        return '<div class="allergen-pill' + (isActive ? ' active' : '') + '" data-allergen="' + key + '" onclick="toggleAllergenFilterPill(\'' + key + '\')"><i class="fas ' + icon + '"></i> ' + name + '</div>';
+    }).join('');
+    updateAllergenBadge();
+}
+
+function toggleAllergenFilterPill(allergen) {
+    const idx = activeAllergenFilters.indexOf(allergen);
+    if (idx > -1) activeAllergenFilters.splice(idx, 1);
+    else activeAllergenFilters.push(allergen);
+    localStorage.setItem('tp_allergen_filters', JSON.stringify(activeAllergenFilters));
+    const pill = document.querySelector('.allergen-pill[data-allergen="' + allergen + '"]');
+    if (pill) pill.classList.toggle('active');
+    updateAllergenBadge();
+    applyAllergenFilter();
+}
+
+function updateAllergenBadge() {
+    const badge = document.getElementById('allergen-active-badge');
+    if (activeAllergenFilters.length > 0) {
+        badge.style.display = 'inline';
+        badge.textContent = activeAllergenFilters.length;
+    } else {
+        badge.style.display = 'none';
+    }
+}
+
+function applyAllergenFilter() {
+    if (!allDishes || allDishes.length === 0) return;
+    if (activeAllergenFilters.length === 0) {
+        displayDishes(allDishes);
+        return;
+    }
+    const filtered = allDishes.filter(dish => {
+        const dishAllergens = dish.allergens ? (typeof dish.allergens === 'string' ? JSON.parse(dish.allergens) : dish.allergens) : [];
+        const normalizedDishAllergens = dishAllergens.map(normalizeAllergenKey);
+        return !activeAllergenFilters.some(a => normalizedDishAllergens.includes(a));
+    });
+    displayDishes(filtered);
+}
+
+// ==================== PIATTI PREFERITI ====================
+function getFavoriteDishes() {
+    try { return JSON.parse(localStorage.getItem('tp_fav_dishes') || '[]'); } catch { return []; }
+}
+
+function saveFavoriteDishes(favs) {
+    localStorage.setItem('tp_fav_dishes', JSON.stringify(favs));
+}
+
+function toggleDishFavorite(dishId, dishName, restaurantSlug) {
+    let favs = getFavoriteDishes();
+    const idx = favs.findIndex(f => f.id === dishId);
+    if (idx > -1) {
+        favs.splice(idx, 1);
+    } else {
+        favs.push({ id: dishId, name: dishName, slug: restaurantSlug });
+    }
+    saveFavoriteDishes(favs);
+    updateDishFavButtons();
+    renderFavoriteDishes();
+}
+
+function isDishFavorite(dishId) {
+    return getFavoriteDishes().some(f => f.id === dishId);
+}
+
+function updateDishFavButtons() {
+    document.querySelectorAll('.dish-fav-btn').forEach(btn => {
+        const dishId = btn.dataset.dishId;
+        btn.classList.toggle('active', isDishFavorite(dishId));
+        const icon = btn.querySelector('i');
+        if (icon) icon.className = isDishFavorite(dishId) ? 'fas fa-heart' : 'far fa-heart';
+    });
+}
+
+function renderFavoriteDishes() {
+    const section = document.getElementById('fav-dishes-section');
+    const list = document.getElementById('fav-dishes-list');
+    const favs = getFavoriteDishes();
+    if (favs.length === 0) {
+        section.classList.remove('visible');
+        return;
+    }
+    section.classList.add('visible');
+    list.innerHTML = favs.map(f => {
+        const url = f.slug ? '/menu/' + f.slug + '/?highlight=' + encodeURIComponent(f.name) : '#';
+        return '<a href="' + url + '" class="fav-dish-chip"><i class="fas fa-utensils" style="color:#EF3D26;font-size:0.8em;"></i> ' + f.name + '<span class="fav-remove" onclick="event.preventDefault();event.stopPropagation();toggleDishFavorite(\'' + f.id + '\', \'' + f.name.replace(/'/g, "\\'") + '\', \'' + (f.slug || '') + '\')">&times;</span></a>';
+    }).join('');
+}
+
+// Carica immagine offerta personalizzata
+function loadOfferImage() {
+    if (restaurantData && restaurantData.offer_image_url) {
+        const img = document.getElementById('offer-image');
+        const container = document.getElementById('offer-image-container');
+        if (img && container) {
+            img.src = restaurantData.offer_image_url;
+            container.style.display = 'block';
+        }
+    }
+}
+
+// Chiama dopo il caricamento dei dati ristorante
+const originalLoadRestaurantData = loadRestaurantData;
+loadRestaurantData = async function() {
+    await originalLoadRestaurantData();
+    loadOfferImage();
+};
+</script>
+
+<!-- Pop-up Recensioni -->
+<style>
+    @keyframes reviewSlideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes reviewFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes bubblePop { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
+    #menu-reviews-panel.show { animation: reviewFadeIn .25s ease; }
+    #menu-reviews-panel.show .review-panel-card { animation: reviewSlideUp .35s cubic-bezier(.22,1,.36,1); }
+    .review-bar-track { height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden; flex: 1; }
+    .review-bar-fill { height: 100%; border-radius: 4px; transition: width .6s ease; }
+    .review-card-item { background: white; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.06); border-left: 4px solid #f59e0b; transition: transform .15s; }
+    .review-card-item:active { transform: scale(.98); }
+    .review-form-input { width: 100%; padding: 12px 14px; border: 1.5px solid #e0e0e0; border-radius: 10px; font-size: .9em; box-sizing: border-box; transition: border-color .2s, box-shadow .2s; background: #fafafa; }
+    .review-form-input:focus { outline: none; border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245,158,11,.12); background: white; }
+    .review-star-pick { font-size: 1.8em; cursor: pointer; color: #ddd; transition: color .12s, transform .12s; user-select: none; }
+    .review-star-pick:hover, .review-star-pick.active { color: #f59e0b; transform: scale(1.15); }
+</style>
+<div id="menu-reviews-panel" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.55); z-index:9999; overflow-y:auto; padding:0;" onclick="if(event.target===this)closeMenuReviews()">
+    <div class="review-panel-card" style="background:white; border-radius:20px 20px 0 0; margin:auto auto 0; max-width:500px; position:relative; overflow:hidden; box-shadow:0 -4px 30px rgba(0,0,0,.15); animation:reviewSlideUp .35s cubic-bezier(.22,1,.36,1);">
+        <!-- Header -->
+        <div style="background:linear-gradient(135deg,#f59e0b 0%,#f97316 50%,#ef4444 100%); padding:24px 20px 20px; text-align:center; position:relative;">
+            <button onclick="closeMenuReviews()" style="position:absolute; top:12px; right:12px; background:rgba(255,255,255,.2); backdrop-filter:blur(4px); border:none; font-size:18px; cursor:pointer; color:white; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center;">&times;</button>
+            <div style="width:48px; height:48px; background:rgba(255,255,255,.2); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
+                <i class="fas fa-star" style="font-size:1.4rem; color:white;"></i>
+            </div>
+            <h2 style="color:white; margin:0; font-size:1.25em; font-weight:700;">Recensioni</h2>
+            <p id="review-rest-name" style="color:rgba(255,255,255,.85); margin:4px 0 0; font-size:.82em; font-weight:500;"></p>
+        </div>
+        <!-- Stats -->
+        <div id="review-stats-bar" style="display:none; padding:16px 20px; background:#fefce8; border-bottom:1px solid #fef3c7;">
+            <div style="display:flex; align-items:center; gap:14px; margin-bottom:10px;">
+                <div style="text-align:center; min-width:56px;">
+                    <div style="font-size:2.2em; font-weight:800; color:#f59e0b; line-height:1;" id="review-avg">0</div>
+                    <div style="font-size:.7em; color:#92400e; font-weight:600;" id="review-count">0 recensioni</div>
+                </div>
+                <div style="flex:1;" id="review-bars">
+                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:3px;"><span style="font-size:.72em; color:#666; width:12px; text-align:right;">5</span><i class="fas fa-star" style="font-size:.6em; color:#f59e0b;"></i><div class="review-bar-track"><div class="review-bar-fill" id="bar-5" style="width:0%; background:linear-gradient(90deg,#f59e0b,#f97316);"></div></div><span style="font-size:.68em; color:#999; width:18px;" id="bar-5-n">0</span></div>
+                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:3px;"><span style="font-size:.72em; color:#666; width:12px; text-align:right;">4</span><i class="fas fa-star" style="font-size:.6em; color:#f59e0b;"></i><div class="review-bar-track"><div class="review-bar-fill" id="bar-4" style="width:0%; background:linear-gradient(90deg,#f59e0b,#f97316);"></div></div><span style="font-size:.68em; color:#999; width:18px;" id="bar-4-n">0</span></div>
+                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:3px;"><span style="font-size:.72em; color:#666; width:12px; text-align:right;">3</span><i class="fas fa-star" style="font-size:.6em; color:#f59e0b;"></i><div class="review-bar-track"><div class="review-bar-fill" id="bar-3" style="width:0%; background:linear-gradient(90deg,#eab308,#f59e0b);"></div></div><span style="font-size:.68em; color:#999; width:18px;" id="bar-3-n">0</span></div>
+                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:3px;"><span style="font-size:.72em; color:#666; width:12px; text-align:right;">2</span><i class="fas fa-star" style="font-size:.6em; color:#f59e0b;"></i><div class="review-bar-track"><div class="review-bar-fill" id="bar-2" style="width:0%; background:linear-gradient(90deg,#fbbf24,#eab308);"></div></div><span style="font-size:.68em; color:#999; width:18px;" id="bar-2-n">0</span></div>
+                    <div style="display:flex; align-items:center; gap:6px;"><span style="font-size:.72em; color:#666; width:12px; text-align:right;">1</span><i class="fas fa-star" style="font-size:.6em; color:#f59e0b;"></i><div class="review-bar-track"><div class="review-bar-fill" id="bar-1" style="width:0%; background:linear-gradient(90deg,#fbbf24,#f59e0b);"></div></div><span style="font-size:.68em; color:#999; width:18px;" id="bar-1-n">0</span></div>
+                </div>
+            </div>
+        </div>
+        <!-- Reviews list -->
+        <div style="padding:16px 20px 0; max-height:35vh; overflow-y:auto;" id="review-list-menu">
+            <div style="text-align:center; padding:24px; color:#bbb; font-size:.85em;"><i class="fas fa-spinner fa-spin"></i> Caricamento...</div>
+        </div>
+        <!-- Divider -->
+        <div style="padding:0 20px;"><div style="border-top:1px solid #f0f0f0; margin-top:8px;"></div></div>
+        <!-- Form -->
+        <div style="padding:12px 20px 20px;">
+            <div id="menu-star-rating" style="display:flex; gap:6px; margin-bottom:6px; justify-content:center;">
+                <span class="review-star-pick" onclick="setMenuRating(1)" style="font-size:2em;">★</span>
+                <span class="review-star-pick" onclick="setMenuRating(2)" style="font-size:2em;">★</span>
+                <span class="review-star-pick" onclick="setMenuRating(3)" style="font-size:2em;">★</span>
+                <span class="review-star-pick" onclick="setMenuRating(4)" style="font-size:2em;">★</span>
+                <span class="review-star-pick" onclick="setMenuRating(5)" style="font-size:2em;">★</span>
+            </div>
+            <input type="hidden" id="menu-review-rating" value="0">
+            <div style="display:flex; gap:8px; margin-bottom:10px;">
+                <input type="text" id="menu-review-name" class="review-form-input" placeholder="Nome" maxlength="100" style="flex:0 0 35%; margin-bottom:0;">
+                <textarea id="menu-review-comment" class="review-form-input" placeholder="La tua esperienza..." maxlength="500" rows="1" style="resize:none; margin-bottom:0; flex:1; min-height:42px;"></textarea>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <select id="menu-review-dish" class="review-form-input" style="flex:1; margin-bottom:0; font-size:.82em; padding:9px 10px; color:#888;">
+                    <option value="">Piatto (opzionale)</option>
+                </select>
+                <button onclick="submitMenuReview()" id="btn-submit-review" style="flex:0 0 auto; padding:10px 18px; background:linear-gradient(135deg,#f59e0b,#f97316); color:white; border:none; border-radius:10px; font-size:.88em; font-weight:700; cursor:pointer; box-shadow:0 3px 10px rgba(249,115,22,.25); transition:transform .15s; white-space:nowrap;" onmousedown="this.style.transform='scale(.95)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'"><i class="fas fa-paper-plane" style="margin-right:4px;"></i>Invia</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pop-up Offerte Speciali -->
+<div id="modal-offers" class="modal-overlay">
+    <div class="modal-content" style="max-width: 480px; padding: 0; overflow: hidden;">
+        <button class="modal-close" onclick="closeOffersModal()" style="z-index: 10;">&times;</button>
+        <div id="offer-image-container" style="width: 100%; height: 200px; overflow: hidden; display: none;">
+            <img id="offer-image" src="" alt="Offerta" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="background: linear-gradient(135deg, #EF3D26, #DA4453); padding: 25px 20px 15px; text-align: center;">
+            <div style="font-size: 42px; margin-bottom: 8px;">🎁</div>
+            <h2 style="color: white; margin: 0 0 5px; font-size: 1.4em;" id="modal-title">Offerte Speciali!</h2>
+            <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 0.85em;" id="modal-description">Scopri le nostre promozioni esclusive</p>
+        </div>
+        <div style="padding: 20px; background: white;">
+            <div style="background: linear-gradient(135deg, rgba(239,61,38,0.08), rgba(218,68,83,0.05)); border: 2px dashed #EF3D26; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 15px;">
+                <div style="font-size: 0.75em; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Promozione del mese</div>
+                <div style="font-size: 1.2em; font-weight: 700; color: #EF3D26;" id="modal-offer-text">Offerta speciale!</div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="modal-btn modal-btn-secondary" onclick="closeOffersModal()" style="flex: 1;">Chiudi</button>
+                <a href="https://www.trovapiatto.it/" class="modal-btn modal-btn-primary" style="flex: 1; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px;">Scopri trovapiatto</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+// ===== MENU REVIEWS =====
+let menuReviewRating = 0;
+
+function populateMenuReviewDishes() {
+    const sel = document.getElementById("menu-review-dish");
+    if (!sel || !allDishes || allDishes.length === 0) return;
+    const current = sel.value;
+    sel.innerHTML = '<option value="">Recensione generale al ristorante</option>';
+    const byCategory = {};
+    allDishes.forEach(d => {
+        const cat = d.category || "Altro";
+        if (!byCategory[cat]) byCategory[cat] = [];
+        byCategory[cat].push(d);
+    });
+    Object.keys(byCategory).sort().forEach(cat => {
+        const group = document.createElement("optgroup");
+        group.label = cat;
+        byCategory[cat].sort((a,b) => a.name.localeCompare(b.name)).forEach(d => {
+            const opt = document.createElement("option");
+            opt.value = d.id;
+            opt.textContent = d.name + (d.price ? " - \u20ac" + parseFloat(d.price).toFixed(2) : "");
+            group.appendChild(opt);
+        });
+        sel.appendChild(group);
+    });
+    sel.value = current;
+}
+
+function setMenuRating(n) {
+    menuReviewRating = n;
+    document.getElementById('menu-review-rating').value = n;
+    document.querySelectorAll('#menu-star-rating .review-star-pick').forEach((s, i) => {
+        s.classList.toggle('active', i < n);
+        s.style.color = i < n ? '#f59e0b' : '#ddd';
+    });
+}
+
+function initStarHover() {
+    const stars = document.querySelectorAll('#menu-star-rating .review-star-pick');
+    stars.forEach((s, i) => {
+        s.addEventListener('mouseenter', () => {
+            stars.forEach((ss, j) => { ss.style.color = j <= i ? '#f59e0b' : '#ddd'; });
+        });
+        s.addEventListener('mouseleave', () => {
+            stars.forEach((ss, j) => { ss.style.color = j < menuReviewRating ? '#f59e0b' : '#ddd'; });
+        });
+    });
+}
+
+function timeAgo(dateStr) {
+    const diff = (Date.now() - new Date(dateStr).getTime()) / 1000;
+    if (diff < 60) return 'adesso';
+    if (diff < 3600) return Math.floor(diff/60) + ' min fa';
+    if (diff < 86400) return Math.floor(diff/3600) + ' ore fa';
+    if (diff < 604800) return Math.floor(diff/86400) + ' g fa';
+    if (diff < 2592000) return Math.floor(diff/604800) + ' sett fa';
+    return new Date(dateStr).toLocaleDateString('it-IT', {day:'numeric',month:'short'});
+}
+
+function showMenuReviews() {
+    if (!restaurantData || !restaurantData.id) { alert('Caricamento in corso, riprova tra qualche secondo.'); return; }
+    document.getElementById('review-rest-name').textContent = restaurantData.name;
+    const panel = document.getElementById('menu-reviews-panel');
+    panel.style.display = 'block';
+    panel.classList.add('show');
+    populateMenuReviewDishes();
+    initStarHover();
+    loadMenuReviewsList();
+}
+
+function closeMenuReviews() {
+    const panel = document.getElementById('menu-reviews-panel');
+    panel.classList.remove('show');
+    panel.style.display = 'none';
+}
+
+async function loadMenuReviewsList() {
+    const container = document.getElementById('review-list-menu');
+    try {
+        const res = await fetch(API_URL + '?action=get-reviews&restaurant_id=' + restaurantData.id);
+        const data = await res.json();
+        const reviews = data.data || [];
+        const stats = data.stats || {};
+
+        if (stats.total_reviews > 0) {
+            document.getElementById('review-stats-bar').style.display = 'block';
+            document.getElementById('review-avg').textContent = parseFloat(stats.avg_rating).toFixed(1);
+            document.getElementById('review-count').textContent = stats.total_reviews + ' recensioni';
+            const total = parseInt(stats.total_reviews) || 1;
+            const dist = {5:0,4:0,3:0,2:0,1:0};
+            reviews.forEach(r => { const b = Math.round(r.rating); if(dist[b]!==undefined) dist[b]++; });
+            for (let s=5; s>=1; s--) {
+                const pct = Math.round((dist[s]/total)*100);
+                const bar = document.getElementById('bar-'+s);
+                const num = document.getElementById('bar-'+s+'-n');
+                if(bar) bar.style.width = pct+'%';
+                if(num) num.textContent = dist[s];
+            }
+        } else {
+            document.getElementById('review-stats-bar').style.display = 'none';
+        }
+
+        if (reviews.length === 0) {
+            container.innerHTML = '<div style="text-align:center; padding:28px 16px; color:#ccc;"><i class="fas fa-pen-fancy" style="font-size:1.8rem; display:block; margin-bottom:8px;"></i><span style="font-size:.85em;">Nessuna recensione ancora.<br>Sii il primo!</span></div>';
+            return;
+        }
+
+        container.innerHTML = reviews.slice(0, 15).map((r, idx) => {
+            const full = Math.floor(r.rating);
+            const half = r.rating % 1 >= 0.5 ? 1 : 0;
+            const empty = 5 - full - half;
+            const starsHtml = '<i class="fas fa-star" style="color:#f59e0b;"></i>'.repeat(full) +
+                              (half ? '<i class="fas fa-star-half-alt" style="color:#f59e0b;"></i>' : '') +
+                              '<i class="far fa-star" style="color:#ddd;"></i>'.repeat(empty);
+            const userName = r.user_name || 'Anonimo';
+            const initial = userName.charAt(0).toUpperCase();
+            const hue = userName.split('').reduce((a,c)=>a+c.charCodeAt(0),0) % 360;
+            const avatarUrl = r.user_avatar || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=random&color=fff&size=120&bold=true&format=png';
+            const dishTag = r.dish_name ? '<div style="font-size:.78em; color:#06b6d4; margin-bottom:6px; font-weight:600;"><i class="fas fa-utensils" style="margin-right:4px;"></i>' + r.dish_name + '</div>' : '';
+            return '<div class="review-card-item" style="animation:reviewFadeIn .3s ease '+(idx*0.06)+'s both;">' +
+                '<div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">' +
+                    '<div style="width:40px; height:40px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid #e73a3a; box-shadow:0 3px 10px rgba(231,58,58,0.3); animation:bubblePop .3s ease '+(idx*0.06)+'s both;"><img src="' + avatarUrl + '" style="width:100%; height:100%; object-fit:cover;" onerror="this.src=\'https://ui-avatars.com/api/?name='+encodeURIComponent(userName)+'&background=hsl('+hue+',55%25,92%25)&color=hsl('+hue+',55%25,40%25)&size=120&bold=true&format=png\'"></div>' +
+                    '<div style="flex:1; min-width:0;">' +
+                        '<div style="font-weight:600; font-size:.85em; color:#333; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">' + userName + '</div>' +
+                        '<div style="font-size:.7em; color:#aaa;">' + timeAgo(r.created_at) + '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div style="display:flex; align-items:center; gap:4px; margin-bottom:6px; font-size:.9em;">' + starsHtml + ' <span style="color:#999; font-size:.75em; margin-left:2px;">' + r.rating + '/5</span></div>' +
+                dishTag +
+                (r.comment ? '<div style="font-size:.84em; color:#555; line-height:1.45; padding:8px 10px; background:#f9fafb; border-radius:8px; border-left:3px solid #fde68a;">"' + r.comment + '"</div>' : '') +
+            '</div>';
+        }).join('');
+    } catch(e) {
+        container.innerHTML = '<div style="text-align:center; padding:28px; color:#ccc;"><i class="fas fa-exclamation-circle" style="font-size:1.4rem; display:block; margin-bottom:6px;"></i><span style="font-size:.85em;">Errore di caricamento</span></div>';
+    }
+}
+
+async function submitMenuReview() {
+    if (!restaurantData || !restaurantData.id) return;
+    const name = document.getElementById('menu-review-name').value.trim() || 'Anonimo';
+    const rating = menuReviewRating;
+    const comment = document.getElementById('menu-review-comment').value.trim();
+    if (!rating || rating < 1) { alert('Seleziona una valutazione (stelle)'); return; }
+    const btn = document.getElementById('btn-submit-review');
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio...';
+    btn.disabled = true;
+    try {
+        const res = await fetch(API_URL + '?action=add-review', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ restaurant_id: restaurantData.id, dish_id: document.getElementById('menu-review-dish').value || null, user_name: name, rating: rating, comment: comment || null })
+        });
+        const data = await res.json();
+        if (data.success) {
+            document.getElementById('menu-review-name').value = '';
+            document.getElementById('menu-review-comment').value = '';
+            document.getElementById('menu-review-dish').value = '';
+            setMenuRating(0);
+            loadMenuReviewsList();
+            btn.innerHTML = '<i class="fas fa-check" style="margin-right:6px;"></i>Inviato!';
+            setTimeout(() => { btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:6px;"></i>Invia Recensione'; btn.disabled = false; }, 1500);
+        } else {
+            alert('Errore: ' + (data.error || 'Sconosciuto'));
+            btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:6px;"></i>Invia Recensione';
+            btn.disabled = false;
+        }
+    } catch(e) {
+        alert('Errore di rete');
+        btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:6px;"></i>Invia Recensione';
+        btn.disabled = false;
+    }
+}
+
+</script>
+
+<script src="/menu/track-view.js"></script>
+<script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="MH3AZB7"></script>
+
+</body>
+</html>
+
+
+

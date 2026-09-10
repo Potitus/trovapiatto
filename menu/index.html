@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consigli Piatti - I Piatti Più Amati dai Turisti a Bari | trovapiatto</title>
+    <meta name="description" content="Scopri i piatti più cercati e mangiati dai turisti a Bari e Puglia. Branzino, orecchiette, focaccia barese, burrata e molto altro. Trova i ristoranti migliori su trovapiatto.">
+    <meta name="keywords" content="piatti Bari, cosa mangiare Bari, piatti tipici Puglia, ristoranti Bari, cucina pugliese, branzino, orecchiette, focaccia barese, burrata, trovapiatto">
+    <meta property="og:title" content="Consigli Piatti - I Piatti Più Amati a Bari | trovapiatto">
+    <meta property="og:description" content="Scopri i piatti più cercati e mangiati dai turisti a Bari e Puglia.">
+    <meta property="og:image" content="https://www.trovapiatto.it/logo/logo_ufficiale.png">
+    <meta property="og:url" content="https://www.trovapiatto.it/menu/">
+    <link rel="canonical" href="https://www.trovapiatto.it/menu/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#e73a3a">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #e73a3a;
+            --primary-dark: #c92a2a;
+            --secondary: #461356;
+            --dark-bg: #0f0a15;
+            --card-bg: #1a1225;
+            --text-light: #e0e0e0;
+            --text-muted: #999;
+            --border-color: rgba(231, 58, 58, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0a15 0%, #1a0f25 50%, #0f0a15 100%);
+            color: #fff;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+        /* Header */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(15, 10, 21, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+        }
+        .header-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .header-logo img { height: 40px; }
+        .header-logo span {
+            font-size: 1.3rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), #ff6b6b);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header-nav { display: flex; gap: 1.5rem; align-items: center; }
+        .header-nav a { color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: var(--transition); }
+        .header-nav a:hover { color: var(--primary); }
+        .btn-add {
+            padding: 8px 20px; background: linear-gradient(135deg, var(--primary), #ff6b6b);
+            color: white; border-radius: 50px; font-weight: 600; font-size: 0.85rem;
+            display: inline-flex; align-items: center; gap: 6px; transition: var(--transition);
+        }
+        .btn-add:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(231,58,58,0.4); }
+
+        /* Hero */
+        .hero {
+            text-align: center; padding: 4rem 2rem 3rem;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; right: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(231,58,58,0.12), transparent);
+            border-radius: 50%; pointer-events: none;
+        }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
+        .hero h1 span { background: linear-gradient(135deg, var(--primary), #ff6b6b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.1rem; color: var(--text-light); max-width: 700px; margin: 0 auto 2rem; }
+
+        /* Banner Piatto del Momento */
+        .banner {
+            max-width: 900px; margin: 0 auto 3rem;
+            background: linear-gradient(135deg, rgba(231,58,58,0.15), rgba(107,45,122,0.1));
+            border: 2px solid var(--primary);
+            border-radius: 20px; padding: 2rem;
+            display: flex; align-items: center; gap: 2rem;
+            position: relative; overflow: hidden;
+        }
+        .banner::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(231,58,58,0.1), transparent);
+            border-radius: 50%;
+        }
+        .banner-img {
+            width: 150px; height: 150px; border-radius: 16px; overflow: hidden;
+            flex-shrink: 0; border: 3px solid var(--primary);
+            box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+        }
+        .banner-img img { width: 100%; height: 100%; object-fit: cover; }
+        .banner-content { flex: 1; position: relative; z-index: 1; }
+        .banner-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: linear-gradient(135deg, var(--primary), #ff6b6b);
+            color: white; font-size: 0.7rem; padding: 4px 12px;
+            border-radius: 20px; font-weight: 700; margin-bottom: 10px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .banner-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+        .banner-desc { font-size: 0.9rem; color: var(--text-light); margin-bottom: 15px; }
+        .banner-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px; background: linear-gradient(135deg, var(--primary), #ff6b6b);
+            color: white; border-radius: 50px; text-decoration: none;
+            font-weight: 600; font-size: 0.9rem; transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+        }
+        .banner-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(231,58,58,0.5); }
+        @media (max-width: 768px) {
+            .banner { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .banner-img { width: 120px; height: 120px; }
+        }
+
+        /* Categories */
+        .categories { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-title {
+            text-align: center; margin-bottom: 2rem;
+        }
+        .section-title h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 0.5rem; }
+        .section-title p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Dish Grid */
+        .dish-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem; margin-bottom: 3rem;
+        }
+        .dish-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px; overflow: hidden;
+            transition: var(--transition); cursor: pointer;
+        }
+        .dish-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 12px 35px rgba(231,58,58,0.15); }
+        .dish-card-img {
+            width: 100%; height: 200px; overflow: hidden;
+            position: relative;
+        }
+        .dish-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .dish-card:hover .dish-card-img img { transform: scale(1.08); }
+        .dish-card-badge {
+            position: absolute; top: 10px; right: 10px;
+            background: linear-gradient(135deg, var(--primary), #ff6b6b);
+            color: white; font-size: 0.65rem; padding: 3px 10px;
+            border-radius: 20px; font-weight: 700;
+        }
+        .dish-card-body { padding: 1.25rem; }
+        .dish-card-cat {
+            font-size: 0.7rem; color: var(--primary); font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+        }
+        .dish-card-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+        .dish-card-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
+        .dish-card-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 10px; border-top: 1px solid var(--glass-border);
+        }
+        .dish-card-price { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+        .dish-card-rest {
+            font-size: 0.75rem; color: var(--text-muted);
+            display: flex; align-items: center; gap: 4px;
+        }
+        .dish-card-link {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 8px 16px; background: rgba(231,58,58,0.1);
+            border: 1px solid var(--border-color); border-radius: 8px;
+            color: var(--primary); text-decoration: none; font-size: 0.8rem;
+            font-weight: 600; transition: var(--transition); margin-top: 10px;
+        }
+        .dish-card-link:hover { background: var(--primary); color: white; }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center; padding: 4rem 2rem;
+            background: linear-gradient(180deg, rgba(70,19,86,0.15) 0%, rgba(15,10,21,1) 100%);
+            border-top: 1px solid var(--border-color);
+        }
+        .cta-section h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 1rem; }
+        .cta-section p { color: var(--text-light); max-width: 600px; margin: 0 auto 2rem; }
+        .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .cta-btn {
+            padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; transition: var(--transition); display: inline-flex;
+            align-items: center; gap: 8px; text-decoration: none;
+        }
+        .cta-primary { background: linear-gradient(135deg, var(--primary), #ff6b6b); color: white; box-shadow: 0 8px 20px rgba(231,58,58,0.3); }
+        .cta-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(231,58,58,0.5); }
+        .cta-secondary { background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3); color: white; }
+        .cta-secondary:hover { background: rgba(255,255,255,0.15); border-color: var(--primary); color: var(--primary); }
+
+        /* Footer */
+        footer {
+            background: rgba(0,0,0,0.5); border-top: 1px solid var(--border-color);
+            padding: 2rem; text-align: center; font-size: 0.85rem; color: var(--text-muted);
+        }
+        footer a { color: var(--primary); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .header { padding: 0.75rem 1rem; }
+            .header-nav a:not(.btn-add) { display: none; }
+            .hero { padding: 3rem 1.5rem 2rem; }
+            .categories { padding: 1.5rem; }
+            .dish-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="header-inner">
+        <a href="https://www.trovapiatto.it/" class="header-logo">
+            <img src="https://www.trovapiatto.it/logo/logo_ufficiale.png" alt="trovapiatto">
+        </a>
+        <div class="header-nav">
+            <a href="https://www.trovapiatto.it/">Home</a>
+            <a href="https://www.trovapiatto.it/app/">Mappa</a>
+            <a href="https://www.trovapiatto.it/aggiungi-menu.html" class="btn-add">
+                <i class="fas fa-plus-circle"></i> Aggiungi Menu
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+    <h1>I Piatti <span>Più Amati</span> a Bari</h1>
+    <p>Scopri i piatti più cercati e mangiati dai turisti a Bari e Puglia. Trova il ristorante perfetto per ogni piatto.</p>
+</section>
+
+<!-- Banner Piatto del Momento -->
+<div class="banner">
+    <div class="banner-img">
+        <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=300&h=300&fit=crop" alt="Branzino">
+    </div>
+    <div class="banner-content">
+        <div class="banner-badge"><i class="fas fa-fire"></i> Piatto del Momento</div>
+        <h3 class="banner-title">Branzino al Forno</h3>
+        <p class="banner-desc">Il piatto più cercato dai turisti a Bari. Pesce fresco cotto al forno con patate, pomodorini e olive. Tipico della cucina marinara pugliese.</p>
+        <a href="https://www.trovapiatto.it/piatti/?q=branzino" class="banner-btn">
+            <i class="fas fa-search"></i> Trova Ristorante
+        </a>
+    </div>
+</div>
+
+<!-- Categories -->
+<section class="categories">
+    <div class="section-title">
+        <h2><i class="fas fa-utensils"></i> Piatti Consigliati</h2>
+        <p>I piatti più amati e consigliati dai turisti che visitano Bari e la Puglia</p>
+    </div>
+
+    <div class="dish-grid" id="dish-grid">
+        <!-- Caricamento dinamico -->
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2><i class="fas fa-store" style="color:var(--primary);"></i> Sei un Ristorante?</h2>
+    <p>Aggiungi il tuo menu su trovapiatto e raggiungi migliaia di turisti che cercano dove mangiare a Bari.</p>
+    <div class="cta-btns">
+        <a href="https://www.trovapiatto.it/aggiungi-menu.html" class="cta-btn cta-primary">
+            <i class="fas fa-plus-circle"></i> Aggiungi Menu Gratis
+        </a>
+        <a href="https://www.trovapiatto.it/app/" class="cta-btn cta-secondary">
+            <i class="fas fa-map-location-dot"></i> Vedi Mappa
+        </a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 <a href="https://www.trovapiatto.it">trovapiatto</a> — Tutti i diritti riservati | <a href="https://www.trovapiatto.it/aggiungi-menu.html">Aggiungi Menu</a> | <a href="https://www.trovapiatto.it/privacy-policy.html">Privacy</a> | <a href="https://www.trovapiatto.it/contact.html">Contatti</a></p>
+</footer>
+
+<script>
+const ALL_DISHES = [
+    {
+        name: 'Branzino al Forno',
+        category: 'Secondi',
+        desc: 'Pesce fresco cotto al forno con patate, pomodorini e olive. Il piatto più amato dai turisti a Bari.',
+        price: '18.00',
+        image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&h=300&fit=crop',
+        search: 'branzino',
+        badge: '#1 Più Cercato'
+    },
+    {
+        name: 'Orecchiette alle Cime di Rapa',
+        category: 'Primi',
+        desc: 'Il primo piatto simbolo della Puglia. Pasta fresca con cime di rapa, acciughe e mollica croccante.',
+        price: '10.00',
+        image: 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=400&h=300&fit=crop',
+        search: 'orecchiette',
+        badge: 'Tipico Pugliese'
+    },
+    {
+        name: 'Focaccia Barese',
+        category: 'Antipasti',
+        desc: 'La regina della street food barese. Morbida, alta, con pomodorino, olive e origano.',
+        price: '5.00',
+        image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=400&h=300&fit=crop',
+        search: 'focaccia',
+        badge: 'Street Food'
+    },
+    {
+        name: 'Burrata',
+        category: 'Antipasti',
+        desc: 'Crema di mozzarella e stracciatella. La specialità pugliese che ha conquistato il mondo.',
+        price: '12.00',
+        image: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?w=400&h=300&fit=crop',
+        search: 'burrata',
+        badge: 'Specialità'
+    },
+    {
+        name: 'Spaghetti alle Vongole',
+        category: 'Primi',
+        desc: 'Pasta con vongole veraci, aglio, olio e prezzemolo. Un classico della cucina di mare pugliese.',
+        price: '14.00',
+        image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop',
+        search: 'vongole',
+        badge: 'Di Mare'
+    },
+    {
+        name: 'Cozze e Vongole',
+        category: 'Antipasti',
+        desc: 'Frutti di mare freschissimi serviti crudi o gratinati. Il gusto autentico del mare Adriatico.',
+        price: '10.00',
+        image: 'https://images.unsplash.com/photo-1565557623814-695d41c38d8f?w=400&h=300&fit=crop',
+        search: 'cozze',
+        badge: 'Mare'
+    },
+    {
+        name: 'Tiramisù',
+        category: 'Dolci',
+        desc: 'Il dolce italiano più amato al mondo. Savoiardi, mascarpone, caffè e cacao.',
+        price: '7.00',
+        image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop',
+        search: 'tiramisu',
+        badge: 'Dolce'
+    },
+    {
+        name: 'Pizza Margherita',
+        category: 'Pizze',
+        desc: 'La pizza napoletana per eccellenza. Pomodoro, mozzarella, basilico. Semplice e perfetta.',
+        price: '8.00',
+        image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop',
+        search: 'margherita',
+        badge: 'Classica'
+    },
+    {
+        name: 'Risotto ai Funghi',
+        category: 'Primi',
+        desc: 'Risotto cremoso con funghi porcini. Un piatto comfort che profuma di bosco.',
+        price: '13.00',
+        image: 'https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&h=300&fit=crop',
+        search: 'risotto funghi',
+        badge: 'Comfort'
+    },
+    {
+        name: 'Frittura di Pesce',
+        category: 'Secondi',
+        desc: 'Paranzelli, calamari e gamberi fritti. Il fritto di mare più amato sulla costa pugliese.',
+        price: '15.00',
+        image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&h=300&fit=crop',
+        search: 'frittura',
+        badge: 'Mare'
+    },
+    {
+        name: 'Panzerotto',
+        category: 'Antipasti',
+        desc: 'Pizza fritta ripiena di mozzarella e pomodoro. Lo street food barese per eccellenza.',
+        price: '4.00',
+        image: 'https://images.unsplash.com/photo-1536964549204-cce9eab227bd?w=400&h=300&fit=crop',
+        search: 'panzerotto',
+        badge: 'Street Food'
+    },
+    {
+        name: 'Lasagna',
+        category: 'Primi',
+        desc: 'Strati di pasta, ragù, besciamella e mozzarella. Il comfort food italiano per eccellenza.',
+        price: '12.00',
+        image: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=400&h=300&fit=crop',
+        search: 'lasagna',
+        badge: 'Comfort'
+    },
+    {
+        name: 'Carbonara',
+        category: 'Primi',
+        desc: 'Guanciale croccante, pecorino romano, uova e pepe nero. Il classico romano senza panna.',
+        price: '12.00',
+        image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&h=300&fit=crop',
+        search: 'carbonara',
+        badge: 'Classico'
+    },
+    {
+        name: 'Tagliata di Manzo',
+        category: 'Secondi',
+        desc: 'Manzo alla griglia con rucola, pomodorini e scaglie di grana. Carne perfetta.',
+        price: '26.00',
+        image: 'https://images.unsplash.com/photo-1558030006-450675393462?w=400&h=300&fit=crop',
+        search: 'tagliata',
+        badge: 'Carne'
+    },
+    {
+        name: 'Carpaccio di Manzo',
+        category: 'Antipasti',
+        desc: 'Fettine sottili di manzo con rucola, scaglie di parmigiano e tartufo.',
+        price: '14.00',
+        image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=400&h=300&fit=crop',
+        search: 'carpaccio',
+        badge: 'Crudo'
+    },
+    {
+        name: 'Gnocchi al Pesto',
+        category: 'Primi',
+        desc: 'Gnocchi di patate con pesto genovese, pinoli e parmigiano.',
+        price: '11.00',
+        image: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&h=300&fit=crop',
+        search: 'gnocchi pesto',
+        badge: 'Genovese'
+    },
+    {
+        name: 'Insalata Pugliese',
+        category: 'Contorni',
+        desc: 'Pomodori del sole, cipolla, olive e cetrioli con olio EVO fresco.',
+        price: '7.00',
+        image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop',
+        search: 'insalata',
+        badge: 'Leggero'
+    },
+    {
+        name: 'Salmone alla Griglia',
+        category: 'Secondi',
+        desc: 'Filetto di salmone fresco grigliato con limone e erbe aromatiche.',
+        price: '22.00',
+        image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop',
+        search: 'salmone',
+        badge: 'Pesce'
+    }
+];
+
+// Daily seeded random shuffle
+function seededRandom(seed) {
+    let x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+}
+const today = new Date();
+const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+const shuffled = [...ALL_DISHES].sort((a, b) => seededRandom(seed + a.name.length) - seededRandom(seed + b.name.length));
+const DISHES = shuffled.slice(0, 8);
+
+// Render dishes
+const grid = document.getElementById('dish-grid');
+grid.innerHTML = DISHES.map(d => `
+    <div class="dish-card">
+        <div class="dish-card-img">
+            <img src="${d.image}" alt="${d.name}" loading="lazy">
+            <div class="dish-card-badge">${d.badge}</div>
+        </div>
+        <div class="dish-card-body">
+            <div class="dish-card-cat">${d.category}</div>
+            <div class="dish-card-name">${d.name}</div>
+            <div class="dish-card-desc">${d.desc}</div>
+            <div class="dish-card-footer">
+                <div class="dish-card-price">€ ${parseFloat(d.price).toFixed(2)}</div>
+                <div class="dish-card-rest"><i class="fas fa-star" style="color:#ffc107;"></i> Top</div>
+            </div>
+            <a href="https://www.trovapiatto.it/piatti/?q=${encodeURIComponent(d.search)}" class="dish-card-link">
+                <i class="fas fa-search"></i> Trova Ristorante
+            </a>
+        </div>
+    </div>
+`).join('');
+</script>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Piatti Consigliati a Bari",
+    "description": "I piatti più cercati e mangiati dai turisti a Bari e Puglia",
+    "url": "https://www.trovapiatto.it/menu/",
+    "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Branzino al Forno"},
+        {"@type": "ListItem", "position": 2, "name": "Orecchiette alle Cime di Rapa"},
+        {"@type": "ListItem", "position": 3, "name": "Focaccia Barese"},
+        {"@type": "ListItem", "position": 4, "name": "Burrata"},
+        {"@type": "ListItem", "position": 5, "name": "Spaghetti alle Vongole"}
+    ]
+}
+</script>
+
+<script>
+// ===== MENU REVIEWS =====
+let menuReviewRating = 0;
+
+function setMenuRating(n) {
+    menuReviewRating = n;
+    document.getElementById('menu-review-rating').value = n;
+    const stars = document.querySelectorAll('#menu-star-rating span');
+    stars.forEach((s, i) => s.style.color = i < n ? '#f59e0b' : '#ddd');
+}
+
+function showMenuReviews() {
+    if (!restaurantData || !restaurantData.id) { alert('Caricamento in corso, riprova tra qualche secondo.'); return; }
+    document.getElementById('review-rest-name').textContent = restaurantData.name;
+    document.getElementById('menu-reviews-panel').style.display = 'block';
+    loadMenuReviewsList();
+}
+
+function closeMenuReviews() {
+    document.getElementById('menu-reviews-panel').style.display = 'none';
+}
+
+async function loadMenuReviewsList() {
+    const container = document.getElementById('review-list-menu');
+    try {
+        const res = await fetch(API_URL + '?action=get-reviews&restaurant_id=' + restaurantData.id);
+        const data = await res.json();
+        const reviews = data.data || [];
+        const stats = data.stats || {};
+
+        if (stats.total_reviews > 0) {
+            document.getElementById('review-stats-bar').style.display = 'block';
+            document.getElementById('review-avg').textContent = parseFloat(stats.avg_rating).toFixed(1);
+            document.getElementById('review-count').textContent = stats.total_reviews + ' recensioni';
+        } else {
+            document.getElementById('review-stats-bar').style.display = 'none';
+        }
+
+        if (reviews.length === 0) {
+            container.innerHTML = '<div style="text-align:center; padding:20px; color:#999; font-size:0.85em;"><i class="fas fa-pen-fancy"></i> Nessuna recensione ancora. Sii il primo!</div>';
+            return;
+        }
+
+        container.innerHTML = reviews.slice(0, 10).map(r => {
+            const stars = '\u2605'.repeat(Math.round(r.rating)) + '\u2606'.repeat(5 - Math.round(r.rating));
+            const date = new Date(r.created_at).toLocaleDateString('it-IT');
+            return '<div style="padding:12px; background:#f8f9fa; border-radius:10px; margin-bottom:8px;">' +
+                '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">' +
+                    '<span style="font-weight:600; font-size:0.85em; color:#333;"><i class="fas fa-user-circle" style="color:#f59e0b;"></i> ' + (r.user_name || 'Anonimo') + '</span>' +
+                    '<span style="font-size:0.75em; color:#999;">' + date + '</span>' +
+                '</div>' +
+                '<div style="color:#f59e0b; font-size:0.9em; margin-bottom:4px;">' + stars + ' <span style="color:#666; font-size:0.8em;">' + r.rating + '/5</span></div>' +
+                (r.comment ? '<div style="font-size:0.85em; color:#555; font-style:italic;">"' + r.comment + '"</div>' : '') +
+            '</div>';
+        }).join('');
+    } catch(e) {
+        container.innerHTML = '<div style="text-align:center; padding:20px; color:#999;">Errore di caricamento</div>';
+    }
+}
+
+async function submitMenuReview() {
+    if (!restaurantData || !restaurantData.id) return;
+    const name = document.getElementById('menu-review-name').value.trim() || 'Anonimo';
+    const rating = menuReviewRating;
+    const comment = document.getElementById('menu-review-comment').value.trim();
+    if (!rating || rating < 1) { alert('Seleziona una valutazione (stelle)'); return; }
+
+    try {
+        const res = await fetch(API_URL + '?action=add-review', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ restaurant_id: restaurantData.id, user_name: name, rating: rating, comment: comment || null })
+        });
+        const data = await res.json();
+        if (data.success) {
+            alert('Recensione inviata! Grazie!');
+            document.getElementById('menu-review-name').value = '';
+            document.getElementById('menu-review-comment').value = '';
+            setMenuRating(0);
+            loadMenuReviewsList();
+        } else {
+            alert('Errore: ' + (data.error || 'Sconosciuto'));
+        }
+    } catch(e) {
+        alert('Errore di rete');
+    }
+}
+</script>
+
+</body>
+</html>

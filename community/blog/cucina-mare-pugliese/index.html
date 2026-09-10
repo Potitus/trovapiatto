@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cucina di Mare Pugliese: I Migliori Piatti di Pesce da Assaggiare | trovapiatto</title>
+  <meta name="description" content="Scopri i migliori piatti di pesce della cucina pugliese: crudo, frittura di paranza, polpo alla piastra, risotto ai frutti di mare. Guida ai ristoranti di Bari con i menù completi.">
+  <meta name="keywords" content="cucina di mare Puglia, pesce fresco Bari, ristoranti pesce Bari, crudo di pesce Puglia, frittura di paranza, polpo alla piastra, risotto frutti di mare">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  <meta property="og:title" content="Cucina di Mare Pugliese: I Migliori Piatti di Pesce da Assaggiare">
+  <meta property="og:description" content="Scopri i migliori piatti di pesce della cucina pugliese: crudo, frittura di paranza, polpo alla piastra, risotto ai frutti di mare.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=1400&h=700&fit=crop">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/cucina-mare-pugliese/">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cucina di Mare Pugliese: I Migliori Piatti di Pesce da Assaggiare">
+  <meta name="twitter:description" content="Scopri i migliori piatti di pesce della cucina pugliese: crudo, frittura di paranza, polpo alla piastra, risotto ai frutti di mare.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=1400&h=700&fit=crop">
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/cucina-mare-pugliese/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root { --bg-dark: #0f0a15; --bg-card: #1a1225; --bg-card-hover: #221833; --primary: #e73a3a; --primary-light: #ff6b6b; --accent-food: #f59e0b; --text-white: #ffffff; --text-light: #e0e0e0; --text-muted: #9ca3af; --border: rgba(255,255,255,0.08); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg-dark); color: var(--text-white); min-height: 100vh; line-height: 1.7; }
+    .article-nav { position: sticky; top: 0; z-index: 100; background: rgba(15,10,21,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .article-nav .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-white); }
+    .article-nav .logo img { height: 32px; }
+    .article-nav .back-link { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
+    .article-nav .back-link:hover { color: var(--primary); }
+    .article-hero { position: relative; height: 50vh; min-height: 350px; overflow: hidden; }
+    .article-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .article-hero .overlay { position: absolute; inset: 0; background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%); }
+    .article-hero .hero-content { position: absolute; bottom: 30px; left: 0; right: 0; padding: 0 20px; max-width: 800px; margin: 0 auto; }
+    .article-hero .tag { display: inline-block; background: var(--primary); color: white; padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 12px; }
+    .article-hero h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+    @media (min-width: 768px) { .article-hero h1 { font-size: 2.8rem; } }
+    .article-hero .meta { display: flex; align-items: center; gap: 16px; font-size: 0.85rem; color: var(--text-muted); }
+    .article-hero .meta i { color: var(--primary); }
+    .article-container { max-width: 800px; margin: 0 auto; padding: 30px 20px 60px; }
+    .article-content h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text-white); padding-left: 14px; border-left: 3px solid var(--primary); }
+    .article-content h3 { font-size: 1.2rem; font-weight: 600; margin: 24px 0 10px; color: var(--text-white); }
+    .article-content p { font-size: 1rem; color: var(--text-light); margin-bottom: 16px; line-height: 1.8; }
+    .article-content strong { color: var(--text-white); }
+    .article-content a { color: var(--primary); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+    .article-content a:hover { color: var(--primary-light); }
+    .article-content ul { margin: 12px 0 20px 20px; }
+    .article-content li { margin-bottom: 8px; color: var(--text-light); }
+    .restaurant-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin: 24px 0; transition: all 0.3s; }
+    .restaurant-card:hover { border-color: var(--primary); box-shadow: 0 8px 30px rgba(231,58,58,0.1); }
+    .restaurant-card .rc-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+    .restaurant-card .rc-name { font-size: 1.15rem; font-weight: 700; color: var(--text-white); }
+    .restaurant-card .rc-rating { display: flex; align-items: center; gap: 4px; background: rgba(245,158,11,0.15); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: var(--accent-food); white-space: nowrap; }
+    .restaurant-card .rc-cuisine { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; }
+    .restaurant-card .rc-dish { background: rgba(255,255,255,0.04); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+    .restaurant-card .rc-dish-name { font-weight: 600; font-size: 0.95rem; color: var(--text-white); margin-bottom: 4px; }
+    .restaurant-card .rc-dish-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+    .restaurant-card .rc-dish-price { font-weight: 700; color: var(--accent-food); font-size: 1rem; }
+    .restaurant-card .rc-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; color: var(--primary); font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: gap 0.3s; }
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    .map-section { margin: 40px 0; }
+    .map-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; padding-left: 14px; border-left: 3px solid var(--primary); }
+    #article-map { width: 100%; height: 350px; border-radius: 16px; border: 1px solid var(--border); }
+    .tips-box { background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05)); border: 1px solid rgba(231,58,58,0.2); border-radius: 16px; padding: 24px; margin: 30px 0; }
+    .tips-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: var(--primary-light); }
+    .tips-box ul { list-style: none; padding: 0; }
+    .tips-box li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 0.9rem; color: var(--text-light); }
+    .tips-box li i { color: var(--accent-food); margin-top: 4px; flex-shrink: 0; }
+    .cta-box { text-align: center; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 40px 24px; margin: 40px 0; }
+    .cta-box h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+    .cta-box p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .cta-box .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: white; padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; }
+    .cta-box .cta-btn:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(231,58,58,0.3); }
+    .ad-container { margin: 30px 0; text-align: center; min-height: 90px; }
+    .faq-section { margin: 40px 0; }
+    .faq-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; padding-left: 14px; border-left: 3px solid var(--primary); }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+    .faq-item h4 { font-size: 1rem; font-weight: 600; color: var(--text-white); margin-bottom: 8px; }
+    .faq-item p { font-size: 0.9rem; color: var(--text-light); margin-bottom: 0; }
+    .gyg-widget { margin: 30px 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; }
+    .gyg-widget h3 { margin-bottom: 12px; font-size: 1.1rem; }
+    .article-footer { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .article-footer .share { display: flex; align-items: center; gap: 10px; }
+    .article-footer .share span { font-size: 0.85rem; color: var(--text-muted); }
+    .article-footer .share a { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.06); color: var(--text-light); text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
+    .article-footer .share a:hover { background: var(--primary); color: white; }
+    .site-footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.8rem; }
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+  <nav class="article-nav">
+    <a href="/" class="logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+    <a href="/community/blog/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Magazine</a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=1400&h=700&fit=crop" alt="Cucina di mare pugliese pesce fresco">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-fish"></i> Pesce</span>
+      <h1>Cucina di Mare Pugliese: I Migliori Piatti di Pesce da Assaggiare</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 18 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 7 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+      <p>La Puglia è una regione che vive in stretta simbiosi con il mare. Le sue oltre 800 chilometri di costa affacciano su due mari, l'Adriatico e lo Ionio, e questa vicinanza ha plasmato una tradizione culinaria in cui il <strong>pesce fresco</strong> è protagonista assoluto dei piatti. A Bari, capitale della regione, la cucina di mare è un'arte che si tramanda da generazioni e che regala piatti di una semplicità disarmante ma di un sapore incredibile.</p>
+
+      <p>In questa guida ti portiamo alla scoperta dei <strong>migliori piatti di pesce</strong> della tradizione pugliese, con consigli su dove assaggiarli nei ristoranti della città adriatica.</p>
+
+      <h2>Il Crudo di Pesce: Freschezza Pura</h2>
+
+      <p>Il <strong>crudo di pesce</strong> è forse il piatto che meglio rappresenta la qualità degli ingredienti nella cucina pugliese. Qui il pesce è talmente fresco che basta un filo d'olio EVO, un po' di sale marino e una spruzzata di limone per esaltarne il sapore. Il crudo pugliese si prepara tipicamente con ricciola, tonno, gamberi rossi e lampascioni, creando un contrasto di sapori e consistenze che è una vera e propria esplosione in bocca.</p>
+
+      <p>La chiave del crudo perfetto è la <strong>freschezza assoluta</strong>: il pesce deve essere pescato il giorno stesso e lavorato con maestria. Il taglio è fondamentale: sottile abbastanza da essere trasparente ma abbastanza spesso da mantenere la consistenza. L'olio EVO pugliese, con le sue note fruttate, completa il piatto regalando una ricchezza di sapori che non ha bisogno di altri ingredienti.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <span class="rc-name">Ai 2 Ghiottoni</span>
+          <span class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+        </div>
+        <div class="rc-cuisine"><i class="fa-solid fa-utensils"></i> Ristorante di Pesce &bull; Via Ferrante Ferranti, Bari</div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Crudo Misto di Pesce</div>
+          <div class="rc-dish-desc">Ricciola, tonno, gamberi rossi, lampascioni, rucola selvatica</div>
+          <div class="rc-dish-price">&euro;16.00</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Tartare di Tonno</div>
+          <div class="rc-dish-desc">Tonno rosso macinato fresco, olio EVO, scorza di limone, pepe rosa</div>
+          <div class="rc-dish-price">&euro;14.00</div>
+        </div>
+        <a href="/menu/ai-2-ghiottoni/" class="rc-link">Vedi menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Ai 2 Ghiottoni</strong> è considerato uno dei migliori ristoranti di pesce di Bari. Il crudo misto è un capolavoro di equilibrio e freschezza, con pesci selezionati personalmente dallo chef al mercato del pesce ogni mattina. Il locale, arredato con eleganza ma senza formalità, è perfetto per una cena romantica o un pranzo di lavoro.</p>
+
+      <div class="ad-container">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>La Frittura di Paranza: Sapori del Mare Adriatico</h2>
+
+      <p>La <strong>frittura di paranza</strong> è un piatto semplice e goloso che racconta la tradizione dei pescatori pugliesi. Composta da un mix di piccoli pesci dell'Adriatico — come sarde, acciughe, triglie e bianchetti — questa frittura viene preparata con una pastella leggera di farina di semola e cotta in olio caldo fino a diventare dorata e croccante.</p>
+
+      <p>Il segreto della frittura perfetta è l'<strong>olio di cottura</strong>: deve essere sempre fresco e alla temperatura giusta. La pastella deve essere sottilissima, quasi invisibile, per non coprire il sapore del pesce. Servita con una spruzzata di limone e un po' di sale grosso, la frittura di paranza è un piatto che conquista al primo morso.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <span class="rc-name">La Battigia</span>
+          <span class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+        </div>
+        <div class="rc-cuisine"><i class="fa-solid fa-utensils"></i> Trattoria di Mare &bull; Via Ferrante Ferranti, Bari</div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Frittura di Paranza</div>
+          <div class="rc-dish-desc">Misto di piccoli pesci del Adriatico, farina di semola, olio EVO</div>
+          <div class="rc-dish-price">&euro;13.00</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Frittura di Calamari</div>
+          <div class="rc-dish-desc">Calamari freschi, pastella leggera, prezzemolo, limone</div>
+          <div class="rc-dish-price">&euro;11.00</div>
+        </div>
+        <a href="/menu/la-battigia/" class="rc-link">Vedi menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>La Battigia</strong> è una trattoria di mare con una tradizione che si tramanda da decenni. Situata nel cuore di Bari, questo locale è famoso per la sua frittura di paranza preparata con pesce pescato ogni mattina dai pescatori del porto. L'atmosfera è informale e accogliente, perfetta per una cena tra amici o una famiglia.</p>
+
+      <h2>Il Polpo alla Piastra: Semplicità e Complessità</h2>
+
+      <p>Il <strong>polpo alla piastra</strong> è un piatto che rappresenta l'essenza della cucina pugliese: pochi ingredienti, preparazione semplice, ma un risultato di una ricchezza di sapori incredibile. Il polpo viene Lessato lentamente in acqua con vino bianco e aceto, poi grigliato su una piastra rovente fino a diventare croccante fuori e tenero dentro.</p>
+
+      <p>Il polpo alla piastra viene servito con un filo d'olio EVO, prezzemolo fresco e spesso accompagnato da patate lesse o insalata. Il sapore è deciso ma equilibrato, con note marine che si fondono perfettamente con il gusto tostato della grigliatura. È un piatto che va assaggiato almeno una volta nella vita.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <span class="rc-name">Quintessenza</span>
+          <span class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</span>
+        </div>
+        <div class="rc-cuisine"><i class="fa-solid fa-utensils"></i> Ristorante Gourmet &bull; Via Sparano da Bari, Bari</div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Polpo alla Piastra</div>
+          <div class="rc-dish-desc">Polpo lessato e grigliato, olio EVO, patate, prezzemolo fresco</div>
+          <div class="rc-dish-price">&euro;16.00</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Risotto ai Frutti di Mare</div>
+          <div class="rc-dish-desc">Riso carnaroli, vongole, cozze, gamberi, zafferano</div>
+          <div class="rc-dish-price">&euro;18.00</div>
+        </div>
+        <a href="/menu/quintessenza/" class="rc-link">Vedi menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Quintessenza</strong> è il ristorante gourmet per eccellenza di Bari per quanto riguarda la cucina di mare. Il polpo alla piastra è preparato con una tecnica impeccabile, e il risotto ai frutti di mare è un capolavoro di equilibrio e sapore. Il locale, situato in Via Sparano da Bari nel cuore del centro storico, è perfetto per una cena speciale.</p>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Consigli per Scegliere un Ristorante di Pesce a Bari</h3>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Verifica sempre che il pesce sia fresco del giorno: chiedi quale pesce hanno</li>
+          <li><i class="fa-solid fa-check"></i> I ristoranti vicini al porto hanno spesso il pesce più fresco e i prezzi più competitivi</li>
+          <li><i class="fa-solid fa-check"></i> Controlla che l'olio di frittura sia sempre fresco: è fondamentale per la qualità</li>
+          <li><i class="fa-solid fa-check"></i> Non aver paura di chiedere consiglio al cameriere: conosce i piatti meglio di chiunque</li>
+          <li><i class="fa-solid fa-check"></i> Abbinamento perfetto: un vino bianco pugliese come il Verdesca o il Bianco di Corato</li>
+        </ul>
+      </div>
+
+      <h2>Il Risotto ai Frutti di Mare: Eleganza in Tavola</h2>
+
+      <p>Il <strong>risotto ai frutti di mare</strong> è un piatto che unisce la tradizione italiana della cucina del riso con i sapori del mare pugliese. Il riso carnaroli o arborio viene tostato e poi cotto lentamente con un brodo di pesce, vino bianco e una selezione di frutti di mare freschi come vongole, cozze, gamberi e calamari.</p>
+
+      <p>Il segreto di un buon risotto è la <strong>cottura lenta e costante</strong>: il riso deve assorbire il brodo gradualmente, rilasciando l'amido che crea quella cremosità caratteristica. I frutti di mare vanno aggiunti nell'ultimo momento per evitare che si cuociano troppo. Il risultato è un piatto di una ricchezza di sapori che regala un'esperienza gastronomica indimenticabile.</p>
+
+      <div class="ad-container">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>Altre Specialità di Mare da Non Perdere</h2>
+
+      <p>Oltre ai piatti principali, la cucina pugliese offre una varietà di preparazioni che meritano di essere assaggiate:</p>
+
+      <ul>
+        <li><strong>Sarde a Beccafico</strong> - Sarde ripiene con mollica, pinoli, uvetta e acciughe</li>
+        <li><strong>Cozze Gratinate</strong> - Cozze fresche con pangrattato, aglio, prezzemolo e burro</li>
+        <li><strong>Stocco alla Barese</strong> - Baccalà in umido con pomodori, olive e capperi</li>
+        <li><strong>Insalata di Mare</strong> - Misto di frutti di mare lessati con sedano, carota e limone</li>
+        <li><strong>Gamberi alla Busara</strong> - Gamberi in salsa di pomodoro piccante</li>
+      </ul>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <span class="rc-name">Da Vito</span>
+          <span class="rc-rating"><i class="fa-solid fa-star"></i> 4.5</span>
+        </div>
+        <div class="rc-cuisine"><i class="fa-solid fa-utensils"></i> Trattoria di Mare &bull; Via Ferrante Ferranti, Bari</div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Sarde a Beccafico</div>
+          <div class="rc-dish-desc">Sarde fresche ripiene con mollica, pinoli, uvetta, acciughe</div>
+          <div class="rc-dish-price">&euro;9.00</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Cozze Gratinate</div>
+          <div class="rc-dish-desc">Cozze fresche, pangrattato, aglio, prezzemolo, burro fuso</div>
+          <div class="rc-dish-price">&euro;8.00</div>
+        </div>
+        <a href="/menu/da-vito/" class="rc-link">Vedi menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Da Vito</strong> è una trattoria di mare autentica e senza pretese, dove il pesce è sempre freschissimo e i piatti sono preparati con amore e rispetto per la tradizione. Le sarde a beccafico sono un capolavoro di sapori contrastanti, e le cozze gratinate sono un antipasto perfetto per iniziare la cena.</p>
+
+      <div class="cta-box">
+        <h3>Scopri i Migliori Ristoranti di Pesce</h3>
+        <p>Cerca il ristorante perfetto per una cena a base di pesce fresco a Bari</p>
+        <a href="/" class="cta-btn"><i class="fa-solid fa-fish"></i> Esplora i Menu</a>
+      </div>
+
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Dove Trovarli</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <div class="gyg-widget">
+        <h3><i class="fa-solid fa-umbrella-beach"></i> Escursioni in Puglia</h3>
+        <div data-gyg-href="https://www.getyourguide.com/s/?partner_id=MH3AZB7" data-gyg-widget-id="17" style="width:100%;display:inline-block;"></div>
+        <script src="https://widgets.getyourguide.com/iframe.js" defer async></script>
+      </div>
+
+      <div class="faq-section">
+        <h2><i class="fa-solid fa-circle-question"></i> Domande Frequenti</h2>
+        <div class="faq-item">
+          <h4>Dove trovare pesce fresco a Bari?</h4>
+          <p>Il pesce più fresco a Bari si trova al Mercato del Pesce, vicino al porto. I ristoranti vicino al porto come Ai 2 Ghiottoni e La Battigia offrono pesce pescato il giorno stesso.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Qual è il piatto di pesce più tipico della Puglia?</h4>
+          <p>I piatti di pesce più tipici della Puglia sono la frittura di paranza, il polpo alla piastra, il crudo di pesce e le sarde a beccafico. Tutti questi piatti utilizzano pesce fresco dell'Adriatico.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Quanto costa una cena di pesce a Bari?</h4>
+          <p>Il prezzo medio di una cena di pesce a Bari si aggira tra i 25 e i 40 &euro; a persona, a seconda del ristorante e dei piatti scelti. I piatti singoli costano in media tra 12 e 18 &euro;.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Ci sono ristoranti di pesce economici a Bari?</h4>
+          <p>Sì, a Bari ci sono diversi ristoranti di pesce con prezzi accessibili. La Battigia e Da Vito offrono piatti di pesce di qualità a prezzi competitivi, ideali per una cena informale.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-footer">
+      <div class="share">
+        <span>Condividi:</span>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/cucina-mare-pugliese/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/cucina-mare-pugliese/&text=Cucina+di+Mare+Pugliese+I+Migliori+Piatti+di+Pesce" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://wa.me/?text=Cucina+di+Mare+Pugliese+I+Migliori+Piatti+di+Pesce%20https://www.trovapiatto.it/community/blog/cucina-mare-pugliese/" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://t.me/share/url?url=https://www.trovapiatto.it/community/blog/cucina-mare-pugliese/&text=Cucina+di+Mare+Pugliese+I+Migliori+Piatti+di+Pesce" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i></a>
+        <a href="mailto:?subject=Cucina+di+Mare+Pugliese+I+Migliori+Piatti+di+Pesce&body=Leggi+questo+articolo:+https://www.trovapiatto.it/community/blog/cucina-mare-pugliese/"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </article>
+
+  <footer class="site-footer">&copy; 2026 trovapiatto</footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('article-map').setView([41.1177, 16.8719], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    var redIcon = L.divIcon({ className: 'custom-marker', html: '<div style="background:#e73a3a;width:14px;height:14px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3)"></div>', iconSize: [14, 14], iconAnchor: [7, 7] });
+    L.marker([41.1185, 16.8725], {icon: redIcon}).addTo(map).bindPopup('<b>Ai 2 Ghiottoni</b><br>Via Ferrante Ferranti, Bari');
+    L.marker([41.1170, 16.8710], {icon: redIcon}).addTo(map).bindPopup('<b>La Battigia</b><br>Via Ferrante Ferranti, Bari');
+    L.marker([41.1195, 16.8705], {icon: redIcon}).addTo(map).bindPopup('<b>Quintessenza</b><br>Via Sparano da Bari, Bari');
+    L.marker([41.1175, 16.8720], {icon: redIcon}).addTo(map).bindPopup('<b>Da Vito</b><br>Via Ferrante Ferranti, Bari');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cucina di Mare Pugliese: I Migliori Piatti di Pesce da Assaggiare",
+    "description": "Scopri i migliori piatti di pesce della cucina pugliese: crudo, frittura di paranza, polpo alla piastra, risotto ai frutti di mare.",
+    "image": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=1400&h=700&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": { "@type": "Organization", "name": "trovapiatto", "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" } },
+    "datePublished": "2026-07-18",
+    "dateModified": "2026-07-18",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/cucina-mare-pugliese/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Cucina di Mare Pugliese: I Migliori Piatti di Pesce da Assaggiare" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Dove trovare pesce fresco a Bari?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Il pesce più fresco a Bari si trova al Mercato del Pesce vicino al porto. I ristoranti come Ai 2 Ghiottoni e La Battigia offrono pesce pescato il giorno stesso." }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual è il piatto di pesce più tipico della Puglia?",
+        "acceptedAnswer": { "@type": "Answer", "text": "I piatti più tipici sono la frittura di paranza, il polpo alla piastra, il crudo di pesce e le sarde a beccafico, tutti con pesce fresco dell'Adriatico." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa una cena di pesce a Bari?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Il prezzo medio di una cena di pesce a Bari si aggira tra 25 e 40 euro a persona, con piatti singoli tra 12 e 18 euro." }
+      },
+      {
+        "@type": "Question",
+        "name": "Ci sono ristoranti di pesce economici a Bari?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sì, La Battigia e Da Vito offrono piatti di pesce di qualità a prezzi competitivi, ideali per una cena informale." }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>

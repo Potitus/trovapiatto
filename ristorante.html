@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Ristorante - trovapiatto</title>
+    <meta name="description" id="pageDesc" content="Scopri il menu, i piatti e le recensioni del ristorante su trovapiatto">
+    <meta property="og:title" id="ogTitle" content="">
+    <meta property="og:description" id="ogDesc" content="">
+    <meta property="og:image" id="ogImage" content="">
+    <meta property="og:type" content="restaurant">
+    <link id="pageCanon" rel="canonical" href="https://www.trovapiatto.it/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --primary:#e73a3a; --bg:#0f0a15; --bg-card:#1a1125; --bg-card-hover:#231833; --text:#f1e8ff; --text-dim:#9b8cb8; --border:#2d2145; --success:#34d399; --warning:#fbbf24; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; }
+        .hero { position:relative; height:280px; overflow:hidden; }
+        .hero img { width:100%; height:100%; object-fit:cover; }
+        .hero-overlay { position:absolute; bottom:0; left:0; right:0; height:60%; background:linear-gradient(transparent,var(--bg)); }
+        .hero-content { position:absolute; bottom:20px; left:20px; right:20px; }
+        .hero-content h1 { font-size:1.8em; font-weight:800; margin-bottom:4px; text-shadow:0 2px 8px rgba(0,0,0,0.5); }
+        .hero-content .meta { display:flex; gap:12px; flex-wrap:wrap; font-size:0.85em; color:var(--text-dim); }
+        .hero-content .meta span { display:flex; align-items:center; gap:4px; }
+        .container { max-width:800px; margin:0 auto; padding:0 16px 80px; }
+        .info-bar { display:flex; gap:12px; margin:-30px 0 20px; position:relative; z-index:1; flex-wrap:wrap; }
+        .info-chip { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:12px 16px; flex:1; min-width:120px; text-align:center; }
+        .info-chip .icon { font-size:1.2em; color:var(--primary); margin-bottom:4px; }
+        .info-chip .value { font-weight:700; font-size:0.95em; }
+        .info-chip .label { color:var(--text-dim); font-size:0.75em; }
+        .section { margin-bottom:24px; }
+        .section-title { display:flex; align-items:center; gap:8px; font-size:1.1em; font-weight:700; margin-bottom:16px; }
+        .section-title i { color:var(--primary); }
+        .cat-header { display:flex; align-items:center; gap:8px; padding:12px 0 8px; border-bottom:1px solid var(--border); margin-bottom:8px; }
+        .cat-header i { color:var(--primary); font-size:0.9em; }
+        .cat-header span { font-weight:700; }
+        .cat-header .count { font-size:0.7rem; color:var(--text-dim); background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:8px; }
+        .dish-row { display:flex; justify-content:space-between; align-items:flex-start; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.03); }
+        .dish-name { font-weight:600; font-size:0.9em; }
+        .dish-desc { font-size:0.8em; color:var(--text-dim); margin-top:2px; }
+        .dish-price { font-weight:800; color:var(--primary); font-size:0.95em; white-space:nowrap; margin-left:12px; }
+        .dish-img { width:60px; height:60px; border-radius:10px; object-fit:cover; margin-right:12px; }
+        .review-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:12px; }
+        .review-header { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+        .review-avatar { width:36px; height:36px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85em; }
+        .review-stars { color:var(--warning); font-size:0.8em; }
+        .review-text { font-size:0.85em; color:var(--text-dim); line-height:1.4; }
+        .btn-cta { display:flex; gap:10px; margin-bottom:24px; }
+        .btn-cta a { flex:1; text-align:center; padding:14px; border-radius:12px; text-decoration:none; font-weight:700; font-size:0.9em; }
+        .btn-primary { background:var(--primary); color:white; }
+        .btn-secondary { background:var(--bg-card); border:1px solid var(--border); color:var(--text); }
+        .loading { text-align:center; padding:48px; color:var(--text-dim); }
+        .loading i { animation:spin 1s linear infinite; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        .map-frame { width:100%; height:200px; border-radius:12px; border:1px solid var(--border); overflow:hidden; margin-bottom:16px; }
+        .map-frame iframe { width:100%; height:100%; border:0; }
+        .back-btn { display:inline-flex; align-items:center; gap:6px; color:var(--text-dim); text-decoration:none; font-size:0.85em; margin-bottom:16px; }
+        .back-btn:hover { color:var(--primary); }
+    </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+    <div id="content">
+        <div class="loading"><i class="fas fa-spinner"></i><p>Caricamento...</p></div>
+    </div>
+
+    <script>
+        const API = '/app/admin/api-crud.php';
+        const slug = window.location.pathname.split('/').filter(Boolean).pop();
+
+        let restaurantId = null;
+
+        async function init() {
+            if (!slug) { document.getElementById('content').innerHTML = '<div class="loading"><p>Ristorante non trovato</p></div>'; return; }
+            try {
+                const res = await fetch(`${API}?action=get-restaurant&id=${encodeURIComponent(slug)}`);
+                const data = await res.json();
+                const r = data.restaurant || data.data || null;
+                if (!data.success || !r) {
+                    document.getElementById('content').innerHTML = '<div class="loading"><p>Ristorante non trovato</p></div>';
+                    return;
+                }
+                let dishes = data.dishes || [];
+                // Fallback: se il ristorante non include i piatti, caricali dal menu
+                if (!dishes.length && r.id) {
+                    try {
+                        const mr = await fetch(`${API}?action=get-menu&restaurant_id=${encodeURIComponent(r.id)}`);
+                        const md = await mr.json();
+                        if (md.success && Array.isArray(md.data)) dishes = md.data;
+                    } catch (e) { /* menu opzionale */ }
+                }
+                restaurantId = r.id;
+                renderPage(r, dishes);
+                if (r.id) loadReviews(r.id);
+                setMinDate();
+            } catch (e) {
+                document.getElementById('content').innerHTML = '<div class="loading"><p>Errore nel caricamento</p></div>';
+            }
+        }
+
+        function setMinDate() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('resDate');
+            if (dateInput) { dateInput.min = today; dateInput.value = today; }
+        }
+
+        async function submitPublicReservation() {
+            const btn = document.getElementById('resSubmitBtn');
+            const msg = document.getElementById('resMessage');
+            const data = {
+                restaurant_id: restaurantId,
+                customer_name: document.getElementById('resName').value.trim(),
+                customer_phone: document.getElementById('resPhone').value.trim(),
+                customer_email: document.getElementById('resEmail').value.trim(),
+                res_date: document.getElementById('resDate').value,
+                res_time: document.getElementById('resTime').value,
+                guests: parseInt(document.getElementById('resGuests').value),
+                notes: document.getElementById('resNotes').value.trim()
+            };
+            if (!data.customer_name || !data.customer_phone || !data.res_date || !data.res_time) {
+                msg.style.display = 'block';
+                msg.innerHTML = '<i class="fas fa-exclamation-circle" style="color:var(--warning);"></i> Compila tutti i campi obbligatori';
+                return;
+            }
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio...';
+            try {
+                const res = await fetch(`${API}?action=create-reservation`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (result.success) {
+                    msg.style.display = 'block';
+                    msg.innerHTML = '<i class="fas fa-check-circle" style="color:var(--success);"></i> Prenotazione confermata! Riceverai una conferma a breve.';
+                    btn.innerHTML = '<i class="fas fa-check"></i> Prenotato!';
+                    btn.style.background = 'var(--success)';
+                    document.getElementById('resName').value = '';
+                    document.getElementById('resPhone').value = '';
+                    document.getElementById('resEmail').value = '';
+                    document.getElementById('resNotes').value = '';
+                } else {
+                    msg.style.display = 'block';
+                    msg.innerHTML = '<i class="fas fa-exclamation-circle" style="color:var(--warning);"></i> ' + (result.error || 'Errore. Riprova.');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-calendar-check" style="margin-right:6px;"></i> Prenota Ora';
+                }
+            } catch (e) {
+                msg.style.display = 'block';
+                msg.innerHTML = '<i class="fas fa-exclamation-circle" style="color:var(--warning);"></i> Errore di connessione.';
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-calendar-check" style="margin-right:6px;"></i> Prenota Ora';
+            }
+        }
+
+        function renderPage(r, dishes) {
+            const logo = r.logo_url && !r.logo_url.includes('default-ristorante') ? r.logo_url : '/logo/default-ristorante.svg';
+            const stars = r.michelin_stars > 0 ? '<span style="color:#f59e0b;">' + '★'.repeat(r.michelin_stars) + '</span> ' : '';
+            document.title = `${r.name} - Menu e Piatti | trovapiatto`;
+            document.getElementById('pageTitle').textContent = `${r.name} - Menu e Piatti`;
+            document.getElementById('pageDesc').content = `Scopri il menu di ${r.name}${r.address ? ' a ' + r.address : ''}. ${dishes.length} piatti disponibili.`;
+            document.getElementById('ogTitle').content = `${r.name} - Menu | trovapiatto`;
+            document.getElementById('pageCanon').href = `https://www.trovapiatto.it/ristorante/${slug}/`;
+            document.getElementById('ogDesc').content = `Scopri il menu di ${r.name}. Ordina o prenota online.`;
+            if (r.logo_url) document.getElementById('ogImage').content = r.logo_url;
+
+            const grouped = {};
+            dishes.forEach(d => {
+                const cat = d.category || d.category_name || 'Vari';
+                if (!grouped[cat]) grouped[cat] = [];
+                grouped[cat].push(d);
+            });
+
+            const existingSchema = document.getElementById('schema-restaurant');
+            if (existingSchema) existingSchema.remove();
+            const schema = {
+                "@context": "https://schema.org",
+                "@type": "Restaurant",
+                "name": r.name,
+                "description": r.description || '',
+                "url": `https://www.trovapiatto.it/ristorante/${slug}/`,
+                "image": r.logo_url || '',
+                "address": r.address ? { "@type": "PostalAddress", "streetAddress": r.address, "addressLocality": r.city || 'Bari', "addressRegion": "BA", "addressCountry": "IT" } : undefined,
+                "telephone": r.phone || undefined,
+                "email": r.email || undefined,
+                "geo": r.latitude && r.longitude ? { "@type": "GeoCoordinates", "latitude": parseFloat(r.latitude), "longitude": parseFloat(r.longitude) } : undefined,
+                "servesCuisine": r.cuisine || undefined,
+                "aggregateRating": r.rating && parseFloat(r.rating) > 0 ? { "@type": "AggregateRating", "ratingValue": r.rating, "bestRating": "5", "worstRating": "1", "ratingCount": "1" } : undefined,
+                "hasMenu": { "@type": "Menu", "hasMenuSection": Object.entries(grouped).map(([cat, catDishes]) => ({
+                    "@type": "MenuSection",
+                    "name": cat,
+                    "hasMenuItem": catDishes.map(d => ({
+                        "@type": "MenuItem",
+                        "name": d.name,
+                        "description": d.description || '',
+                        "offers": d.price ? { "@type": "Offer", "price": parseFloat(d.price).toFixed(2), "priceCurrency": "EUR" } : undefined
+                    }))
+                }))}
+            };
+            Object.keys(schema).forEach(k => schema[k] === undefined && delete schema[k]);
+            const script = document.createElement('script');
+            script.id = 'schema-restaurant';
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(schema);
+            document.head.appendChild(script);
+
+            const CATEGORY_ICONS = {'antipasti':'fa-plate-wheat','primi':'fa-bowl-food','secondi':'fa-drumstick-bite','pizza':'fa-pizza-slice','dolci':'fa-ice-cream','bevande':'fa-wine-glass','panini':'fa-burger','focacce':'fa-bread-slice','insalate':'fa-leaf','contorni':'fa-leaf','salumi':'fa-drumstick-bite','formaggi':'fa-cheese','fritti':'fa-fire','arancini':'fa-circle','crostini':'fa-bread-slice','taralli':'fa-cookie','birre':'fa-beer-mug','piatti':'fa-utensils'};
+            function getIcon(name) { const l=(name||'').toLowerCase(); for(const[k,v] of Object.entries(CATEGORY_ICONS)){if(l.includes(k))return 'fas '+v;} return 'fas fa-utensils'; }
+
+            let html = `
+                <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Home</a>
+                <div class="hero">
+                    <img src="${logo}" alt="${r.name}" loading="eager" onerror="this.src='/logo/default-ristorante.svg'">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <h1>${stars}${r.name}</h1>
+                        <div class="meta">
+                            ${r.cuisine ? `<span><i class="fas fa-utensils"></i> ${r.cuisine}</span>` : ''}
+                            ${r.address ? `<span><i class="fas fa-location-dot"></i> ${r.address}</span>` : ''}
+                            ${r.phone ? `<span><i class="fas fa-phone"></i> ${r.phone}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="info-bar">
+                        <div class="info-chip">
+                            <div class="icon"><i class="fas fa-utensils"></i></div>
+                            <div class="value">${dishes.length}</div>
+                            <div class="label">Piatti</div>
+                        </div>
+                        <div class="info-chip">
+                            <div class="icon"><i class="fas fa-layer-group"></i></div>
+                            <div class="value">${Object.keys(grouped).length}</div>
+                            <div class="label">Categorie</div>
+                        </div>
+                        <div class="info-chip" id="reviewCount">
+                            <div class="icon"><i class="fas fa-star"></i></div>
+                            <div class="value">-</div>
+                            <div class="label">Recensioni</div>
+                        </div>
+                    </div>
+                    <div class="btn-cta">
+                        <a href="tel:${r.phone || ''}" class="btn-secondary" style="flex:0 0 auto;padding:14px 20px;"><i class="fas fa-phone"></i></a>
+                        <a href="https://www.trovapiatto.it/menu/${slug}/" class="btn-primary" style="flex:1;"><i class="fas fa-book-open" style="margin-right:6px;"></i>Menu Completo</a>
+                    </div>
+                    ${r.latitude && r.longitude ? `<div class="map-frame"><iframe title="Mappa ${r.name}" src="https://www.openstreetmap.org/export/embed.html?bbox=${r.longitude-0.01},${r.latitude-0.01},${r.longitude+0.01},${r.latitude+0.01}&layer=mapnik&marker=${r.latitude},${r.longitude}" loading="lazy"></iframe></div>` : ''}
+                    <div class="section">
+                        <div class="section-title"><i class="fas fa-utensils"></i> Menu</div>
+                        ${Object.entries(grouped).map(([cat, catDishes]) => `
+                            <div>
+                                <div class="cat-header">
+                                    <i class="${getIcon(cat)}"></i>
+                                    <span>${cat}</span>
+                                    <span class="count">${catDishes.length}</span>
+                                </div>
+                                ${catDishes.map(d => `
+                                    <div class="dish-row">
+                                        <div style="display:flex;align-items:center;">
+                                            ${d.image_url ? `<img src="${d.image_url}" alt="${d.name}" loading="lazy" class="dish-img" onerror="this.style.display='none'">` : ''}
+                                            <div>
+                                                <div class="dish-name">${d.name}</div>
+                                                ${d.description ? `<div class="dish-desc">${d.description}</div>` : ''}
+                                            </div>
+                                        </div>
+                                        <div class="dish-price">${d.price ? '&euro;' + parseFloat(d.price).toFixed(2) : ''}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="section" id="reviewsSection">
+                        <div class="section-title"><i class="fas fa-star"></i> Recensioni</div>
+                        <div id="reviewsList"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+                        <div class="review-form" style="background:var(--bg-card);border:1px dashed var(--border);border-radius:12px;padding:16px;margin-top:12px;">
+                            <div style="font-weight:700;margin-bottom:10px;font-size:0.9em;">Lascia una recensione</div>
+                            <input type="text" id="revName" placeholder="Il tuo nome" autocomplete="name" style="width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.9em;margin-bottom:8px;">
+                            <div id="revStars" style="display:flex;gap:4px;margin-bottom:8px;font-size:22px;cursor:pointer;user-select:none;"></div>
+                            <textarea id="revComment" rows="2" placeholder="Com'e andata?" style="width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.9em;resize:vertical;margin-bottom:8px;"></textarea>
+                            <button onclick="submitReview()" id="revBtn" style="width:100%;padding:12px;background:var(--primary);color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">Invia recensione</button>
+                            <div id="revMsg" style="margin-top:8px;display:none;text-align:center;font-size:0.85em;"></div>
+                        </div>
+                    </div>
+                    <div class="section" id="reservationSection">
+                        <div class="section-title"><i class="fas fa-calendar-check"></i> Prenota un Tavolo</div>
+                        <div class="reservation-form" style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:20px;">
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                                <div>
+                                    <label style="display:block;color:var(--text-dim);font-size:0.8em;margin-bottom:4px;">Nome e Cognome *</label>
+                                    <input type="text" id="resName" placeholder="Mario Rossi" autocomplete="name" style="width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.9em;">
+                                </div>
+                                <div>
+                                    <label style="display:block;color:var(--text-dim);font-size:0.8em;margin-bottom:4px;">Telefono *</label>
+                                    <input type="tel" id="resPhone" placeholder="+39 333 1234567" autocomplete="tel" style="width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.9em;">
+                                </div>
+                                <div>
+                                    <label style="display:block;color:var(--text-dim);font-size:0.8em;margin-bottom:4px;">Email</label>
+                                    <input type="email" id="resEmail" placeholder="email@esempio.it" autocomplete="email" style="width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.9em;">
+                                </div>
+                                <div>
+                                    <label style="display:block;color:var(--text-dim);font-size:0.8em;margin-bottom:4px;">Ospiti *</label>
+                                    <input type="number" id="resGuests" min="1" max="20" value="2" style="width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.9em;">
+                                </div>
+                                <div>
+                                    <label style="display:block;color:var(--text-dim);font-size:0.8em;margin-bottom:4px;">Data *</label>
+                                    <input type="date" id="resDate" style="width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.9em;">
+                                </div>
+                                <div>
+                                    <label style="display:block;color:var(--text-dim);font-size:0.8em;margin-bottom:4px;">Ora *</label>
+                                    <select id="resTime" style="width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.9em;">
+                                        <option value="12:00">12:00</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="20:00" selected>20:00</option>
+                                        <option value="21:00">21:00</option>
+                                    </select>
+                                    <div id="slotInfo" style="font-size:0.75em;color:var(--text-dim);margin-top:4px;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top:12px;">
+                                <label style="display:block;color:var(--text-dim);font-size:0.8em;margin-bottom:4px;">Note (allergie, richieste speciali...)</label>
+                                <textarea id="resNotes" rows="2" placeholder="Es. Tavolo all'aperto, allergia al glutine..." style="width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.9em;resize:vertical;"></textarea>
+                            </div>
+                            <button id="resSubmitBtn" onclick="submitPublicReservation()" style="margin-top:16px;width:100%;padding:14px;background:var(--primary);color:white;border:none;border-radius:10px;font-weight:700;font-size:1em;cursor:pointer;">
+                                <i class="fas fa-calendar-check" style="margin-right:6px;"></i> Prenota Ora
+                            </button>
+                            <div id="resMessage" style="margin-top:12px;display:none;text-align:center;"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('content').innerHTML = html;
+        }
+
+        function escapeHtml(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+
+        async function loadReviews(restaurantId) {
+            try {
+                const res = await fetch(`${API}?action=get-reviews&restaurant_id=${encodeURIComponent(restaurantId)}`);
+                const data = await res.json();
+                const reviews = data.data || data.reviews || [];
+                const el = document.getElementById('reviewsList');
+                if (!el) return;
+                const countEl = document.querySelector('#reviewCount .value');
+                if (countEl) countEl.textContent = reviews.length;
+                if (!reviews.length) { el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-dim);"><i class="fas fa-star" style="font-size:1.5em;opacity:0.3;display:block;margin-bottom:8px;"></i>Nessuna recensione ancora</div>'; return; }
+                el.innerHTML = reviews.slice(0, 20).map(r => {
+                    const name = r.user_name || 'Anonimo';
+                    const initials = name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+                    const dishLabel = r.dish_name || (r.dish && (r.dish.name || r.dish)) || '';
+                    const dateLabel = r.created_at ? new Date(r.created_at).toLocaleDateString('it-IT') : '';
+                    return `<div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">${escapeHtml(initials)}</div>
+                            <div>
+                                <div style="font-weight:600;font-size:0.9em;">${escapeHtml(name)}</div>
+                                <div class="review-stars">${'★'.repeat(r.rating||0)}${'☆'.repeat(5-(r.rating||0))}</div>
+                            </div>
+                            <div style="margin-left:auto;font-size:0.75em;color:var(--text-dim);">${escapeHtml(dateLabel)}</div>
+                        </div>
+                        ${dishLabel ? `<div style="font-size:0.8em;color:var(--primary);margin-bottom:4px;"><i class="fas fa-utensils" style="margin-right:4px;"></i>${escapeHtml(dishLabel)}</div>` : ''}
+                        <div class="review-text">${escapeHtml(r.comment || '')}</div>
+                    </div>`;
+                }).join('');
+            } catch (e) {
+                const el = document.getElementById('reviewsList');
+                if (el) el.innerHTML = '<div style="text-align:center;padding:24px;color:var(--text-dim);">Recensioni non disponibili</div>';
+            }
+        }
+
+        let revRating = 5;
+        function renderRevStars() {
+            const el = document.getElementById('revStars');
+            if (!el) return;
+            el.innerHTML = [1,2,3,4,5].map(i => `<span data-v="${i}" style="color:${i <= revRating ? '#fbbf24' : '#4a3a5e'};">★</span>`).join('');
+            el.querySelectorAll('span').forEach(s => s.onclick = () => { revRating = parseInt(s.dataset.v); renderRevStars(); });
+        }
+        async function submitReview() {
+            const msg = document.getElementById('revMsg');
+            const btn = document.getElementById('revBtn');
+            const name = document.getElementById('revName').value.trim() || 'Anonimo';
+            const comment = document.getElementById('revComment').value.trim();
+            if (!comment) { msg.style.display = 'block'; msg.textContent = 'Scrivi un commento prima di inviare.'; return; }
+            btn.disabled = true;
+            try {
+                const res = await fetch(`${API}?action=add-review`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ restaurant_id: restaurantId, user_name: name, rating: revRating, comment })
+                });
+                const out = await res.json();
+                if (out.success) {
+                    msg.style.display = 'block'; msg.textContent = 'Grazie! Recensione inviata.';
+                    document.getElementById('revComment').value = '';
+                    loadReviews(restaurantId);
+                } else { msg.style.display = 'block'; msg.textContent = out.error || 'Errore. Riprova.'; }
+            } catch (e) { msg.style.display = 'block'; msg.textContent = 'Errore di connessione.'; }
+            btn.disabled = false;
+        }
+        renderRevStars();
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosa Mangiare a Palese: La Guida Completa ai Piatti Tipici | trovapiatto</title>
+  <meta name="description" content="Scopri cosa mangiare a Palese: orecchiette alle cime di rapa, burrata pugliese, tiella barese e 6 piatti tipici del litorale nord di Bari con ristoranti, prezzi e consigli.">
+  <meta name="keywords" content="cosa mangiare Palese, piatti tipici Palese, orecchiette, burrata, tiella barese, ristoranti Palese, litorale Bari nord, pesce Palese, Puglia">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <!-- Geo Meta Tags (Local SEO) -->\n  <meta name="geo.region" content="IT-BA">\n  <meta name="geo.placename" content="Palese">\n  <meta name="geo.position" content="41.1514;16.8089">\n  <meta name="ICBM" content="41.1514, 16.8089">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/cosa-mangiare-palese/">
+  <meta property="og:title" content="Cosa Mangiare a Palese: La Guida Completa ai Piatti Tipici">
+  <meta property="og:description" content="Guida completa ai piatti tipici di Palese. Specialità da provare, con ristoranti e prezzi.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-08-29T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-08-29T10:00:00+02:00">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cosa Mangiare a Palese: La Guida Completa ai Piatti Tipici">
+  <meta name="twitter:description" content="Piatti tipici di Palese da provare assolutamente. Ristoranti, prezzi e consigli.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/cosa-mangiare-palese/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .page-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .page-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .page-nav .logo img { height: 32px; }
+    
+    .page-nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .page-nav .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    
+    .page-nav .nav-links a:hover { color: var(--primary); }
+    
+    .hero {
+      text-align: center;
+      padding: 80px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('HERO_IMAGE') center/cover no-repeat;
+      filter: blur(4px) brightness(0.55) scale(1.05);
+      z-index: 0;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,10,21,0.6) 0%, rgba(15,10,21,0.85) 100%);
+      z-index: 1;
+    }
+    
+    .hero > * { position: relative; z-index: 2; }
+    
+    .hero .badge {
+      display: inline-block;
+      background: rgba(231,58,58,0.15);
+      color: var(--primary-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text-white), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+    }
+    
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+    
+    .hero .stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .hero .stats i { color: var(--primary); }
+    
+    .breadcrumb {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: rgba(255,255,255,0.2); }
+    .breadcrumb .current { color: var(--text-light); }
+    
+    .author-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px auto;
+      max-width: 900px;
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(231,58,58,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .author-avatar i { color: var(--primary); font-size: 1.1rem; }
+    
+    .author-info { flex: 1; }
+    .author-name { font-size: 0.85rem; font-weight: 600; color: var(--text-white); }
+    .author-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .intro {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    
+    .intro strong { color: var(--text-white); }
+    
+    .dish-section {
+      margin-bottom: 48px;
+    }
+    
+    .dish-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    
+    .dish-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    
+    .dish-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-text {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .dish-text strong { color: var(--text-white); }
+    
+    .dish-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-info .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .dish-info .tag i { color: var(--accent-food); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 6px 20px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-icon i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .restaurant-card .rc-info {
+      flex: 1;
+    }
+    
+    .restaurant-card .rc-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    
+    .restaurant-card .rc-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .restaurant-card .rc-action {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: rgba(231,58,58,0.1);
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .map-section {
+      margin: 48px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #guide-map {
+      width: 100%;
+      height: 380px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 40px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .faq-section {
+      margin: 48px 0;
+    }
+    
+    .faq-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    
+    .faq-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 18px 20px;
+      color: var(--text-white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: background 0.3s;
+    }
+    
+    .faq-item h3:hover { background: rgba(255,255,255,0.03); }
+    
+    .faq-item h3 .faq-arrow {
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+    
+    .faq-item.open h3 .faq-arrow { transform: rotate(180deg); }
+    
+    .faq-item .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+    }
+    
+    .faq-item .faq-answer p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 0 20px 18px;
+    }
+    
+    .social-share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0;
+    }
+    
+    .social-share .share-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    
+    .social-share a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .share-fb { background: rgba(59,89,152,0.15); color: #3b5998; }
+    .share-fb:hover { background: #3b5998; color: white; }
+    .share-wa { background: rgba(37,211,102,0.15); color: #25d366; }
+    .share-wa:hover { background: #25d366; color: white; }
+    .share-copy { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+    .share-copy:hover { background: var(--primary); color: white; }
+    
+    .floating-share {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 90;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .floating-share a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    
+    .floating-share a:hover { transform: scale(1.1); }
+    
+    @media (max-width: 768px) {
+      .floating-share { display: flex; }
+      .social-share.inline-share { display: none; }
+    }
+    
+    @media (min-width: 769px) {
+      .floating-share { display: none !important; }
+    }
+    
+    .toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .toc h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-white);
+      letter-spacing: 0.5px;
+    }
+    
+    .toc-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 6px;
+    }
+    
+    .toc-list a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 4px 0;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .toc-list a:hover { color: var(--primary); }
+    
+    .toc-list a .num {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.75rem;
+      width: 18px;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+    
+    .cta-box .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .cta-box .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(231,58,58,0.3);
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+    
+    .site-footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .site-footer a:hover { color: var(--primary); }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="page-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <div class="nav-links">
+      <a href="/piatti/">Piatti</a>
+      <a href="/community/blog/">Magazine</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+    <span class="sep">/</span>
+    <span class="current">Cosa Mangiare a Palese</span>
+  </div>
+
+  <header class="hero">
+    <span class="badge"><i class="fa-solid fa-utensils"></i> Guida Aggiornata 2026</span>
+    <h1>Cosa Mangiare a Palese: La Guida Completa</h1>
+    <p>6 piatti tipici da provare quando visiti Palese. Con ristoranti consigliati, prezzi reali e consigli dei locali.</p>
+    <div class="stats">
+      <span><i class="fa-solid fa-utensils"></i> 6 piatti</span>
+      <span><i class="fa-solid fa-map-marker-alt"></i> Palese, Puglia</span>
+      <span><i class="fa-regular fa-clock"></i> 12 min lettura</span>
+      <span><i class="fa-solid fa-mountain-sun"></i> Cucina Barese</span>
+    </div>
+  </header>
+
+  <div class="author-box">
+    <div class="author-avatar"><i class="fa-solid fa-user-pen"></i></div>
+    <div class="author-info">
+      <div class="author-name">trovapiatto</div>
+      <div class="author-meta">Pubblicato il 29 Agosto 2026</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="intro">
+      <strong>Palese in breve:</strong> Questa frazione di Bari conserva l'anima di un villaggio di pescatori.
+      Situata sul litorale nord, vicino all'aeroporto Karol Wojtyla,
+      Palese offre una cucina che è un ponte tra la tradizione barese e il gusto del mare Adriatico.
+      La popolazione è di circa 20.000 abitanti, ma d'estate raddoppia grazie ai turisti
+      che scoprono i suoi piatti e le sue spiagge.
+      Il pesce di Palese è celebre in tutta la Puglia per la sua freschezza e qualità —
+      i pescatori del porto tornano ogni mattina con reti piene di triglie, saraghi, branzini e cozze.
+      I ristoranti del borgo lavorano esclusivamente con pesce fresco del giorno,
+      e i piatti sono semplici proprio perché la materia prima non ha bisogno di maschere.
+      Palese è una tappa imperdibile per chi visita la Puglia —
+      un luogo dove il tempo sembra essersi fermato, e dove il cibo è ancora fatto come una volta.
+      Le orecchiette alle cime di rapa sono un piatto fondamentale della tradizione palese —
+      una ricetta semplice ma straordinaria che racconta il sapore della terra pugliese.
+      La burrata di Palese è famosa in tutta la regione — morbida, filante, con quella crema interna
+      che è il pregio più alto della lavorazione pugliese.
+      I ristoranti qui non cercano i riflettori — cercano la perfezione.
+    </div>
+
+    <div class="social-share inline-share">
+      <span class="share-label"><i class="fa-solid fa-share-nodes"></i> Condividi:</span>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/cosa-mangiare-palese/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Palese:%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/cosa-mangiare-palese/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/cosa-mangiare-palese/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+    </div>
+
+    <div class="toc">
+      <h3><i class="fa-solid fa-list"></i> Indice</h3>
+      <div class="toc-list">
+        <a href="#storia"><span class="num">-</span> Storia e Tradizioni</a>
+        <a href="#orecchiette-alle-cime-di-rapa"><span class="num">1.</span> Orecchiette alle Cime di Rapa</a>
+        <a href="#burrata-pugliese"><span class="num">2.</span> Burrata Pugliese</a>
+        <a href="#tiella-barese"><span class="num">3.</span> Tiella Barese</a>
+        <a href="#focaccia-pugliese"><span class="num">4.</span> Focaccia Pugliese</a>
+        <a href="#cozze-in-brodo"><span class="num">5.</span> Cozze in Brodo</a>
+        <a href="#fave-e-cicoria"><span class="num">6.</span> Fave e Cicoria</a>
+        <a href="#stagione"><span class="num">-</span> Piatti di Stagione</a>
+        <a href="#curiosita"><span class="num">-</span> Curiosità Gastronomiche</a>
+      </div>
+    </div>
+
+      <section class="dish-section" id="storia">
+        <div class="dish-header">
+          <div class="dish-number"><i class="fa-solid fa-landmark"></i></div>
+          <h2>Storia e Tradizioni di Palese</h2>
+        </div>
+        <div class="dish-text">
+          <strong>Le origini di Palese</strong> risalgono all'epoca romana, quando fu fondato un primo insediamento peschereccio sulla costa.
+          Palese era un tempo un villaggio separato da Bari, ma oggi è una sua frazione che ha conservato il suo carattere di borgo di pescatori.
+          Le prime notizie documentate risalgono al XII secolo, quando Palese era un importante centro di pesca
+          e commercio di prodotti della costa. Il borgo antico, con i suoi vicoli stretti e le case bianche,
+          è un esempio perfetto di architettura pugliese — i muri di pietra, i portali in legno,
+          le fontanelle di pietra e le chiese nascoste creano un'atmosfera unica e irripetibile.
+        </div>
+        <div class="dish-text">
+          La <strong>tradizione dei pescatori</strong> è il cuore pulsante di Palese.
+          Per generazioni, le famiglie del borgo hanno vissuto di pesca,
+          e questa dipendenza dal mare ha plasmato la cucina locale in modo indelebile.
+          La mattina presto, quando le barche tornano al porto, si accende il mercato del pesce:
+          triglie, saraghi, calamari, polpi e cozze vengono venduti direttamente ai ristoranti e alle famiglie.
+          La cucina palese è figlia di questa freschezza impossibile da replicare altrove —
+          i piatti sono semplici proprio perché il pesce non ha bisogno di maschere.
+          Il porto di Palese, seppur piccolo, è uno dei più attivi della costa barese,
+          e la flotta di pesca artigianale è ancora oggi al centro dell'economia locale.
+        </div>
+        <div class="dish-text">
+          Una particolarità che contraddistingue Palese è la tradizione delle <strong>orecchiette</strong>:
+          pasta fatta a mano ogni giorno dalle nonne del borgo, che le preparano con farina di grano duro,
+          acqua e sale. Le orecchiette di Palese sono più spesse e robuste di quelle di altre città,
+          e il segreto sta nella lavorazione lenta e meticolosa — ogni orecchietta viene fatta a mano,
+          una per una, con un movimento del pollice che crea quella caratteristica forma a "orecchia".
+          La tradizione delle orecchiette a Palese risale al Medioevo,
+          quando le donne del borgo le preparavano per le feste patronali e le occasioni speciali.
+          Oggi, le orecchiette alle cime di rapa sono il piatto più ordinato nei ristoranti del centro,
+          e non c'è palese che non ne mangi almeno una volta alla settimana.
+        </div>
+        <div class="dish-text">
+          Le <strong>feste popolari</strong> di Palese sono strettamente legate al cibo.
+          Durante la festa del patrono San Pietro, il 29 giugno, le strade si riempiono di bancarelle
+          che offrono frittelle di pesce, taralli e dolci tradizionali.
+          D'estate, le feste dei pescatori sul lungomare diventano occasioni per gustare
+          frutta di mare freschissima accompagnata da un bicchiere di vino locale.
+          La sagra delle orecchiette, che si tiene a settembre, richiude migliaia di visitatori
+          da tutta la Puglia — le orecchiette vengono cucinate in centinaia di modi diversi,
+          con cime di rapa, ragù, burrata, pomodoro fresco e mille altre varianti.
+          È in queste occasioni che si comprende appieno il legame indissoluble tra Palese, la terra e il cibo.
+        </div>
+      </section>
+
+      <section class="dish-section" id="orecchiette-alle-cime-di-rapa">
+        <div class="dish-header">
+          <div class="dish-number">1</div>
+          <h2>Orecchiette alle Cime di Rapa</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=800&h=400&fit=crop" alt="Orecchiette alle Cime di Rapa" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Le <strong>orecchiette</strong> sono il cuore della cucina barese anche a Palese.
+          Fatte a mano ogni giorno, condite con cime di rapa, acciughe e pangrattato tostato.
+          Un piatto che non ha bisogno di presentazioni.
+          Le orecchiette di Palese sono più spesse e robuste di quelle di altre città,
+          e il segreto sta nella lavorazione lenta e meticolosa.
+        </div>
+        <div class="dish-text">
+          La versione più amata a Palese è quella con <strong>cime di rapa</strong>:
+          le orecchiette vengono cotte in acqua salata con le cime di rapa fresche,
+          poi condite con un soffritto di aglio, acciughe sotto sale, peperoncino e pangrattato tostato.
+          Il sapore è un equilibrio perfetto tra l'amaro delle cime di rapa, la dolcezza delle orecchiette
+          e la sapidità delle acciughe. A €9-13, è un primo piatto che non ha bisogno di elaborazioni —
+          la qualità degli ingredienti è tale che basta poco per esaltarne il sapore.
+          I ristoranti del centro lo servono come piatto unico, spesso accompagnato
+          da una insalata mista e una fetta di pane casereccio.
+        </div>
+        <div class="dish-text">
+          La tradizione delle orecchiette a Palese risale al Medioevo,
+          quando le donne del borgo le preparavano per le feste patronali e le occasioni speciali.
+          Oggi, le orecchiette alle cime di rapa sono il piatto più ordinato nei ristoranti del centro,
+          e non c'è palese che non ne mangi almeno una volta alla settimana.
+          Le orecchiette vengono fatte a mano nelle case del borgo,
+          e i ristoranti del centro le acquistano direttamente dalle massaie del luogo.
+          L'abbinamento ideale è un Primitivo leggero della Murgia,
+          che bilancia l'amaro delle cime di rapa con le sue note fruttate.
+          È un piatto che racconta la tradizione della terra pugliese —
+          un piatto semplice ma straordinario, come tutti i grandi classici della cucina barese.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €9-13</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Pranzo</span>
+        <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariana (senza acciughe)</span>
+        </div>
+        <a href="/menu/l-incanto/" class="restaurant-card">
+          <img src="/loghi/l-incanto.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">L'Incanto</div>
+            <div class="rc-detail">Orecchiette · €11</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="burrata-pugliese">
+        <div class="dish-header">
+          <div class="dish-number">2</div>
+          <h2>Burrata Pugliese</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1626957772657-22b9c5f28c81?w=800&h=400&fit=crop" alt="Burrata Pugliese" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>burrata</strong> di Palese è un'altra cosa: morbida, filante, con quella crema interna
+          che è il pregio più alto della lavorazione pugliese.
+          Si gusta con pomodorini freschi e un filo d'olio EVO.
+          La burrata è un prodotto artigianale che si produce ancora oggi nelle latterie del borgo,
+          seguendo ricette che risalgono al XIX secolo.
+        </div>
+        <div class="dish-text">
+          A Palese, la burrata viene prodotta al mattino presto con latte di bufala fresco,
+          e venduta ancora tiepida nei mercati e nei ristoranti del centro.
+          Il segreto è nella qualità del latte — deve essere quello del giorno stesso,
+          raccolto nelle masserie della Murgia dove le bufale pascolano libere nei campi.
+          A €8-12, è un antipasto o un piatto unico che racconta la tradizione della terra pugliese —
+          un prodotto semplice ma straordinario, come tutti i grandi classici della lavorazione casearia.
+          I ristoranti del centro la servono con pomodorini freschi, insalata mista
+          e un filo generoso di olio EVO del Premio.
+        </div>
+        <div class="dish-text">
+          La burrata di Palese è diversa da quella di altre città pugliesi:
+          più morbida, più filante, con una crema interna più abbondante e saporita.
+          Il segreto sta nella lavorazione artigianale — ogni burrata viene fatta a mano,
+          una per una, con un movimento del pollice che crea quella caratteristica forma a sacchetto.
+          La tradizione della burrata a Palese risale al XIX secolo,
+          quando i casari del borgo iniziarono a produrla con il latte delle bufale della Murgia.
+          Oggi, la burrata di Palese è un prodotto IGP riconosciuto,
+          e i ristoranti del centro la servono in centinaia di modi diversi —
+          con pomodorini, con insalata, con prosciutto crudo, con melanzane grigliate.
+          L'abbinamento ideale è un bianco fresco come il Verdeca della Murgia,
+          che bilancia la cremosità della burrata con le sue note fresche e minerali.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €8-12</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto</span>
+        <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariana</span>
+        </div>
+        <a href="/menu/l-incanto/" class="restaurant-card">
+          <img src="/loghi/l-incanto.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">L'Incanto</div>
+            <div class="rc-detail">Burrata · €10</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="tiella-barese">
+        <div class="dish-header">
+          <div class="dish-number">3</div>
+          <h2>Tiella Barese</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&h=400&fit=crop" alt="Tiella Barese" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>tiella</strong> è un riso, patate e cozze cotto al forno in una teglia di rame.
+          Un piatto unico della tradizione barese che unisce terra e mare in una sola forchettata.
+          Il segreto sta nella qualità degli ingredienti e nella cottura lenta nel forno a legna,
+          che fa fondere tutti i sapori in un'armonia perfetta.
+        </div>
+        <div class="dish-text">
+          A Palese, la tiella viene preparata con cozze fresche del giorno, riso basmati,
+          patate del Gargano e un sugo di pomodoro semplice ma saporito.
+          Le cozze vengono aperte a metà e disposte in una teglia di rame,
+          poi ricoperte con riso e patate a rondelle, e cotte nel forno a legna
+          fino a quando il riso non diventa dorato e croccante in superficie.
+          A €10-14, è un piatto unico che soddisfa e riempie — un monumento alla cucina povera pugliese,
+          dove terra e mare si incontrano in una sola teglia.
+          I ristoranti del centro la servono direttamente nella teglia di cottura,
+          accompagnata da una insalata mista e una fetta di pane casereccio.
+        </div>
+        <div class="dish-text">
+          La tiella di Palese è diversa da quella di other città barese:
+          più umida, più saporita, con un brodo di cozze che permea tutto il piatto.
+          Il segreto sta nella qualità delle cozze — devono essere quelle del giorno stesso,
+          pescate nel porto di Palese e lavorate immediatamente.
+          La tradizione della tiella a Palese risale al XIX secolo,
+          quando i pescatori del borgo preparavano questo piatto con il pesce rimasto invenduto.
+          Oggi, la tiella è un piatto che si mangia tutto l'anno,
+          ma soprattutto d'inverno, quando il freddo rende irresistibile un piatto caldo e saporito.
+          L'abbinamento ideale è un Primitivo della Murgia,
+          che bilancia la ricchezza del piatto con le sue note di frutti di bosco e spezie.
+          È un piatto che racconta la tradizione della terra e del mare pugliesi —
+          unire due mondi in una sola teglia è il cuore della cucina barese.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €10-14</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Primo o Secondo</span>
+        </div>
+        <a href="/menu/l-incanto/" class="restaurant-card">
+          <img src="/loghi/l-incanto.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">L'Incanto</div>
+            <div class="rc-detail">Tiella · €12</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="focaccia-pugliese">
+        <div class="dish-header">
+          <div class="dish-number">4</div>
+          <h2>Focaccia Pugliese</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&h=400&fit=crop" alt="Focaccia Pugliese" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>focaccia pugliese</strong> di Palese ha una personalità tutta sua:
+          alta, soffice, con olio EVO generoso e sale grosso.
+          Si trova in ogni forno del paese, sfornata più volte al giorno.
+          Da provare con un bicchiere di vino locale.
+        </div>
+        <div class="dish-text">
+          A Palese, la focaccia viene preparata con farina locale, acqua di sorgente,
+          lievito madre e un filo d'olio EVO del Premio.
+          La versione più amata è quella "classica" con sale grosso e pomodorini schiacciati,
+          ma nelle panifici del centro trovi anche quella con olive, cipolline e acciughe.
+          A €1.50-2.50, è lo street food più democratico di Palese —
+          non c'è turista o locale che non ne mangi almeno una volta al giorno.
+          I forni più antichi del borgo usano ancora le antiche fornaci a legna,
+          che danno alla focaccia quel sapore affumicato impossibile da replicare.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €1.50-2.50</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Tutto il giorno</span>
+          <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariana</span>
+        </div>
+        <a href="/menu/l-incanto/" class="restaurant-card">
+          <img src="/loghi/l-incanto.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">L'Incanto</div>
+            <div class="rc-detail">Focaccia · €2</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="cozze-in-brodo">
+        <div class="dish-header">
+          <div class="dish-number">5</div>
+          <h2>Cozze in Brodo</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1631963580532-27a8a4f0fb5f?w=800&h=400&fit=crop" alt="Cozze in Brodo" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Le <strong>cozze in brodo</strong> sono un piatto semplice e delizioso che racconta il sapore del mare palese.
+          Cozze fresche cotte in brodo di pesce con patate — un piatto che sa di casa, di terra, di Mediterraneo.
+        </div>
+        <div class="dish-text">
+          Le cozze vengono pulite a mano ogni mattina dai pescatori del porto,
+          e cotte in una casseruola di ferro con patate a rondelle, aglio, prezzemolo e un filo d'olio.
+          Il brodo che si forma durante la cottura è il vero tesoro:
+          acqua di mare, amido delle patate e sapore delle cozze si fondono in un liquido dorato e profumato.
+          A €10-14, è un piatto che soddisfa e scalda l'anima,
+          perfetto per le serate fredde d'inverno o per un pranzo leggero d'estate.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €10-14</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Pranzo e Cena</span>
+          <span class="tag"><i class="fa-solid fa-leaf"></i> Glutine-Free</span>
+        </div>
+        <a href="/menu/l-incanto/" class="restaurant-card">
+          <img src="/loghi/l-incanto.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">L'Incanto</div>
+            <div class="rc-detail">Cozze in brodo · €12</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="fave-e-cicoria">
+        <div class="dish-header">
+          <div class="dish-number">6</div>
+          <h2>Fave e Cicoria</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=400&fit=crop" alt="Fave e Cicoria" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Le <strong>fave e cicoria</strong> sono il piatto della memoria: quello che le nonne preparavano il lunedì.
+          Crema di fave secche con cicoria selvatica lessata, condita con olio EVO e aglio.
+          Un monumento alla cucina povera pugliese.
+        </div>
+        <div class="dish-text">
+          Le fave si cuociono lentamente in acqua con foglie di alloro fino a diventare una crema densa e vellutata,
+          mentre la cicoria viene lessata e condita con olio EVO e aglio.
+          A Palese, i pescatori lo mangiano come condimento per la scaglia di pane raffermo —
+          il cosiddetto "pane cunzato". A €7-10, è uno dei piatti più economici ma anche più autentici.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €7-10</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto o Primo</span>
+          <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariana</span>
+        </div>
+        <a href="/menu/l-incanto/" class="restaurant-card">
+          <img src="/loghi/l-incanto.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">L'Incanto</div>
+            <div class="rc-detail">Fave e cicoria · €8</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="stagione">
+        <div class="dish-header">
+          <div class="dish-number"><i class="fa-solid fa-calendar-days"></i></div>
+          <h2>Piatti di Stagione a Palese</h2>
+        </div>
+        <div class="dish-text">
+          <strong>Primavera:</strong> I fiori di zucca fritti in pastella leggera sono l'antipasto perfetto.
+          Le cime di rapa sono al loro apice, e i ristoranti del centro offrono orecchiette con cime di rapa fresche.
+        </div>
+        <div class="dish-text">
+          <strong>Estate:</strong> La focaccia pugliese è perfetta per una colazione leggera.
+          Le cozze sono al loro apice, e i ristoranti sul mare offrono menu a prezzo fisso con pesce fresco.
+        </div>
+        <div class="dish-text">
+          <strong>Autunno:</strong> I funghi porcini compaiono nei ristoranti del centro.
+          Le castagne del Gargano vengono usate per preparare dolci e miele.
+        </div>
+        <div class="dish-text">
+          <strong>Inverno:</strong> La tiella barese è il piatto per eccellenza.
+          Le fave secche sono protagoniste della tavola pugliese, cotte con cime di rapa e olio EVO fresco.
+          Il Natale porta con sé le cartellate e i dolci tradizionali.
+        </div>
+      </section>
+
+      <section class="dish-section" id="curiosita">
+        <div class="dish-header">
+          <div class="dish-number"><i class="fa-solid fa-star"></i></div>
+          <h2>Curiosità Gastronomiche di Palese</h2>
+        </div>
+        <div class="dish-text">
+          <strong>Il mercato delle 5 di mattina:</strong>
+          Al porto di Palese, alle 5 di mattina, i pescatori scaricano le reti.
+          Il mercato del pesce è uno spettacolo di colori e odori.
+          I ristoranti del borgo comprano qui il pesce per la giornata.
+        </div>
+        <div class="dish-text">
+          <strong>La tradizione delle orecchiette:</strong>
+          A Palese, le orecchiette vengono fatte a mano nelle case del borgo.
+          Le nonne le preparano ogni mattina, e i ristoranti le acquistano direttamente da loro.
+          È un'arte che si tramanda di generazione in generazione.
+        </div>
+        <div class="dish-text">
+          <strong>La focaccia delle 5 di mattina:</strong>
+          I panifici di Palese aprono alle 4:30 per preparare la focaccia per la colazione dei pescatori.
+          È un rituale antichissimo che ancora oggi raduna i palese attorno ai banconi dei panifici.
+        </div>
+      </section>
+
+    <div class="tips-box">
+      <h3><i class="fa-solid fa-lightbulb"></i> Consigli per Mangiare Bene a Palese</h3>
+      <ul>
+        <li><i class="fa-solid fa-clock"></i> <span><strong>Vai a pranzo presto:</strong> I palese pranzano alle 12:30-13:00. Se vai alle 13:30, i piatti migliori sono già finiti.</span></li>
+        <li><i class="fa-solid fa-map-marker-alt"></i> <span><strong>Il borgo è il cuore:</strong> I migliori ristoranti tradizionali sono nel centro storico. Passeggia e segui il profumo delle orecchiette.</span></li>
+        <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Prezzi reali:</strong> Un pranzo completo costa €18-30. I menù a prezzo fisso offrono ottimi rapporti qualità-prezzo.</span></li>
+        <li><i class="fa-solid fa-hand-point-up"></i> <span><strong>Chiedi il pesce del giorno:</strong> I ristoranti di Palese lavorano con il pesce che arriva la mattina.</span></li>
+        <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Il vino giusto:</strong> Un Primitivo o un Negroamaro accompagnano perfettamente i piatti.</span></li>
+        <li><i class="fa-solid fa-fish"></i> <span><strong>Il mercato del pesce:</strong> Al porto puoi comprare il pesce appena pescato e fartelo cucinare nei ristoranti vicini.</span></li>
+        <li><i class="fa-solid fa-sun"></i> <span><strong>Estate al lungomare:</strong> D'estate i ristoranti sul mare offrono menu a prezzo fisso con pesce grigliato e fritto.</span></li>
+        <li><i class="fa-solid fa-camera"></i> <span><strong>Foto consigliata:</strong> Scatta una foto alla tiella dal balcone di L'Incanto con il mare sullo sfondo.</span></li>
+      </ul>
+    </div>
+
+    <div class="map-section">
+      <h2><i class="fa-solid fa-map-location-dot"></i> Dove Mangiare a Palese</h2>
+      <div id="guide-map"></div>
+    </div>
+
+    <div class="faq-section">
+      <h2><i class="fa-solid fa-circle-question"></i> Domande Frequenti</h2>
+      <div class="faq-item">
+        <h3>Qual è il piatto più tipico di Palese? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Le orecchiette con cime di rapa e la tiella barese sono i piatti più amati. La cucina qui è genuinamente barese — le orecchiette vengono fatte a mano ogni giorno dalle nonne del borgo, e la tiella viene cotta nel forno a legna con cozze fresche del giorno.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Quanto costa mangiare a Palese? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Un pranzo costa €12-22 a persona. Palese è più economica del centro di Bari, e i piatti sono autentici e ben conditi. Lo street food come focaccia e taralli costa €2-5.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Come si arriva a Palese? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Palese è a 10 minuti dall'aeroporto di Bari e a 20 minuti dal centro città. Si può raggiungere in auto o con l'autobus dalla stazione centrale di Bari. È vicina al Parco dell'Alta Murgia.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Dove si mangia il meglio a Palese? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>L'Incanto è il ristorante di riferimento per le orecchiette e la burrata. I locali del centro storico offrono i piatti più autentici, con ingredienti freschi del giorno.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Palese è adatta per i vegetariani? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Sì: orecchiette alle cime di rapa (senza acciughe), burrata, focaccia pugliese e fave e cicoria sono piatti vegetariani tipici. Molti ristoranti offrono opzioni vegetariane abbondanti.</p></div>
+      </div>
+    </div>
+
+    <!-- Scopri anche -->
+    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin: 40px 0;">
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: var(--text-white);"><i class="fa-solid fa-compass" style="color: var(--primary); margin-right: 8px;"></i> Scopri anche</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;">
+        <a href="/bari/" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; text-decoration: none; color: var(--text-light); transition: all 0.3s; border: 1px solid transparent;">
+          <i class="fa-solid fa-utensils" style="color: var(--primary);"></i>
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;">Cosa Mangiare a Bari</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">15 piatti tipici</div>
+          </div>
+        </a>
+        <a href="/cosa-mangiare-giovinazzo/" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; text-decoration: none; color: var(--text-light); transition: all 0.3s; border: 1px solid transparent;">
+          <i class="fa-solid fa-fish" style="color: var(--primary);"></i>
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;">Cosa Mangiare a Giovinazzo</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Polpo alla pignattara e focaccia</div>
+          </div>
+        </a>
+        <a href="/cosa-mangiare-mola-di-bari/" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; text-decoration: none; color: var(--text-light); transition: all 0.3s; border: 1px solid transparent;">
+          <i class="fa-solid fa-fish" style="color: var(--primary);"></i>
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;">Cosa Mangiare a Mola di Bari</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Branzino e pesce fresco</div>
+          </div>
+        </a>
+        <a href="/cosa-mangiare-torre-a-mare/" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; text-decoration: none; color: var(--text-light); transition: all 0.3s; border: 1px solid transparent;">
+          <i class="fa-solid fa-umbrella-beach" style="color: var(--primary);"></i>
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;">Cosa Mangiare a Torre a Mare</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Frittura e griglia</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Sei un ristoratore a Palese?</h2>
+      <p>Crea il tuo menu online gratuito su trovapiatto e raggiungi più clienti. La piattaforma è gratuita per i primi 12 mesi.</p>
+      <a href="/app/admin/" class="btn"><i class="fa-solid fa-plus"></i> Crea il tuo Menu</a>
+    </div>
+
+    <div class="ad-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/blog/">Magazine</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <div class="floating-share">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/cosa-mangiare-palese/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Palese:%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/cosa-mangiare-palese/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/cosa-mangiare-palese/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'L'Incanto', lat: 41.1514, lng: 16.8089, slug: 'l-incanto', dish: 'Orecchiette/Burrata', price: '€8-14' },
+    ];
+
+    const map = L.map('guide-map').setView([41.1514, 16.8089], 14);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">${r.dish}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+
+    document.querySelectorAll('.faq-item h3').forEach(h3 => {
+      h3.addEventListener('click', () => {
+        const item = h3.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cosa Mangiare a Palese: La Guida Completa ai Piatti Tipici",
+    "description": "Scopri cosa mangiare a Palese: cucina barese, pesce fresco e specialità tipiche del litorale nord di Bari con ristoranti e prezzi.",
+    "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-08-29T10:00:00+02:00",
+    "dateModified": "2026-08-29T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/cosa-mangiare-palese/" },
+    "keywords": "cosa mangiare Palese, piatti tipici Palese, cucina barese, ristoranti Palese, litorale Bari nord, pesce Palese"
+  }
+  </script>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "name": "Cosa Mangiare a Palese",
+    "description": "Guida gastronomica a Palese: piatti tipici, ristoranti, prezzi e consigli per scoprire la cucina di Palese (Puglia).",
+    "url": "https://www.trovapiatto.it/palese/",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.1514,
+      "longitude": 16.8089
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Palese",
+      "addressRegion": "Puglia",
+      "addressCountry": "IT"
+    },
+    "touristType": ["Foodie", "Culinary Traveler"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Cosa Mangiare a Palese", "item": "https://www.trovapiatto.it/cosa-mangiare-palese/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è il piatto più tipico di Palese?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le orecchiette con cime di rapa e la tiella barese sono i piatti più amati. La cucina qui è genuinamente barese."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa mangiare a Palese?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un pranzo costa €12-22 a persona. Palese è più economica del centro di Bari."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come si arriva a Palese?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Palese è a 10 minuti dall'aeroporto di Bari e a 20 minuti dal centro città. Si può raggiungere in auto o con l'autobus."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="MH3AZB7"></script>
+
+</body>
+</html>

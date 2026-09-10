@@ -1,0 +1,282 @@
+<
+    <meta name="robots" content="noindex, follow">!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Digitali a {CITY_NAME} - trovapiatto</title>
+    <meta name="description" content="Scopri i menu digitali dei ristoranti a {CITY_NAME}. Menù, prezzi e piatti su trovapiatto">
+    <meta property="og:title" content="Menu Digitali a {CITY_NAME} | trovapiatto">
+    <meta property="og:description" content="Tutti i ristoranti con menu digitale a {CITY_NAME} su trovapiatto">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="trovapiatto">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f0a15;
+            --bg-card: #1a1125;
+            --bg-card-hover: #231833;
+            --text: #f1e8ff;
+            --text-dim: #9b8cb8;
+            --accent: #ff3b3b;
+            --accent2: #ff6b35;
+            --border: #2d2145;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1a1125 0%, #0f0a15 50%, #1a0f25 100%);
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,59,59,0.08) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .hero h1 {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff, #f1e8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.1em;
+            color: var(--text-dim);
+            margin-bottom: 30px;
+        }
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border-radius: 14px;
+            border: 2px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text);
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        .search-box input:focus { outline: none; border-color: var(--accent); }
+        .search-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .section-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title i { color: var(--accent); }
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .restaurant-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+        .restaurant-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(255,59,59,0.15);
+        }
+        .restaurant-card .card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: var(--bg-card-hover);
+        }
+        .restaurant-card .card-body { padding: 18px; }
+        .restaurant-card .card-body h3 {
+            font-size: 1.15em;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .restaurant-card .card-body .meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-dim);
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+        .restaurant-card .card-body .meta i { color: var(--accent); font-size: 0.8em; }
+        .restaurant-card .card-body .dishes-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255,59,59,0.1);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-dim);
+        }
+        .empty-state i { font-size: 3em; margin-bottom: 16px; opacity: 0.3; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--accent); }
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .stat-item { text-align: center; }
+        .stat-item .num { font-size: 1.8em; font-weight: 800; color: var(--accent); }
+        .stat-item .label { color: var(--text-dim); font-size: 0.85em; }
+    </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> trovapiatto.it</a>
+            <h1>🍽️ Menu Digitali a {CITY_NAME}</h1>
+            <p>{CITY_DESCRIPTION}</p>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Cerca un ristorante o un piatto..." onkeyup="filterRestaurants()">
+            </div>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="num" id="restCount">{RESTAURANT_COUNT}</div>
+                    <div class="label">Ristoranti</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num" id="dishCount">{DISH_COUNT}</div>
+                    <div class="label">Piatti nel Menu</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-store"></i> Ristoranti a {CITY_NAME}</h2>
+        <div class="restaurants-grid" id="restaurantsGrid">
+            <div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>Caricamento...</p></div>
+        </div>
+    </div>
+
+    <script>
+        const CITY_SLUG = '{CITY_SLUG}';
+        const API = '/app/admin/api-crud.php';
+        let allRestaurants = [];
+
+        async function loadRestaurants() {
+            try {
+                const res = await fetch(`${API}?action=get-city-restaurants&slug=` + CITY_SLUG);
+                const data = await res.json();
+                if (data.success && data.data) {
+                    allRestaurants = data.data;
+                    renderRestaurants(allRestaurants);
+                }
+            } catch (e) {
+                document.getElementById('restaurantsGrid').innerHTML = '<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><p>Errore nel caricamento</p></div>';
+            }
+        }
+
+        function renderRestaurants(restaurants) {
+            const grid = document.getElementById('restaurantsGrid');
+            if (restaurants.length === 0) {
+                grid.innerHTML = '<div class="empty-state"><i class="fas fa-store-slash"></i><p>Nessun ristorante trovato</p></div>';
+                return;
+            }
+            grid.innerHTML = restaurants.map(r => `
+                <a href="/menu/${r.slug}/" class="restaurant-card">
+                    ${r.logo_url ? `<img src="${r.logo_url}" class="card-image" alt="${r.name}">` : `<div class="card-image" style="display:flex;align-items:center;justify-content:center;font-size:2em;">🍽️</div>`}
+                    <div class="card-body">
+                        <h3>${r.name}</h3>
+                        <div class="meta">
+                            <span><i class="fas fa-map-marker-alt"></i> ${r.address || r.city || ''}</span>
+                            ${r.cuisine ? `<span><i class="fas fa-utensils"></i> ${r.cuisine}</span>` : ''}
+                        </div>
+                        <span class="dishes-count"><i class="fas fa-utensils"></i> ${(r.dishes_count || 0)} piatti</span>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        function filterRestaurants() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allRestaurants.filter(r =>
+                r.name.toLowerCase().includes(q) ||
+                (r.cuisine || '').toLowerCase().includes(q) ||
+                (r.address || '').toLowerCase().includes(q)
+            );
+            renderRestaurants(filtered);
+        }
+
+        loadRestaurants();
+    </script>
+</body>
+</html>

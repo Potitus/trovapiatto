@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida Navigazione Menu - trovapiatto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .container-guide {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .guide-header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .categories-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: #667eea;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background: #667eea;
+            color: white;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .guide-content {
+            padding: 40px;
+            min-height: 500px;
+        }
+
+        .category-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .category-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .category-section p {
+            font-size: 1.05em;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .items-list {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .items-list h4 {
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .items-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .items-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .items-list li:last-child {
+            border-bottom: none;
+        }
+
+        .items-list li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .tag-badge {
+            display: inline-block;
+            background: #e9ecef;
+            color: #764ba2;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 5px;
+            margin-top: 10px;
+        }
+
+        .guide-tips {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .guide-tips h5 {
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guide-tips ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .guide-tips li {
+            padding: 8px 0;
+            color: #555;
+        }
+
+        .guide-tips li:before {
+            content: "💡 ";
+            margin-right: 8px;
+        }
+
+        .navigation-arrows {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .nav-btn:hover {
+            background: #764ba2;
+            transform: translateX(-3px);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-bar-guide {
+            height: 4px;
+            background: #e9ecef;
+            margin: 0;
+            display: none;
+        }
+
+        .progress-bar-guide.show {
+            display: block;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .footer-guide {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            border-top: 1px solid #e9ecef;
+        }
+
+        @media (max-width: 768px) {
+            .guide-header h1 {
+                font-size: 1.8em;
+            }
+
+            .guide-content {
+                padding: 20px;
+            }
+
+            .categories-tabs {
+                gap: 8px;
+            }
+
+            .category-btn {
+                padding: 10px 16px;
+                font-size: 0.9em;
+            }
+
+            .category-icon {
+                font-size: 3em;
+            }
+
+            .category-section h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-guide">
+        <!-- Header -->
+        <div class="guide-header">
+            <h1>🍽️ Guida al Menu</h1>
+            <p>Naviga tra le diverse categorie del nostro menu</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar-guide show">
+            <div class="progress-fill"></div>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="categories-tabs">
+            <button class="category-btn active" onclick="showCategory(0)">🥗 Antipasti</button>
+            <button class="category-btn" onclick="showCategory(1)">🍝 Primi</button>
+            <button class="category-btn" onclick="showCategory(2)">🍖 Secondi</button>
+            <button class="category-btn" onclick="showCategory(3)">🍕 Pizze</button>
+            <button class="category-btn" onclick="showCategory(4)">🍷 Bevande</button>
+        </div>
+
+        <!-- Content -->
+        <div class="guide-content">
+            <!-- Antipasti -->
+            <div class="category-section active">
+                <span class="category-icon">🥗</span>
+                <h2>Antipasti</h2>
+                <p>Scopri le nostre deliziose portate di inizio pasto. Perfette per iniziare il vostro pranzo o cena con gusti autentici e ingredienti freschi a km 0.</p>
+                
+                <div class="items-list">
+                    <h4><i class="fas fa-star"></i> Piatti Consigliati</h4>
+                    <ul>
+                        <li>
+                            <div>
+                                <strong>Tagliere della Casa</strong>
+                                <span class="tag-badge">Biologico</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Manzo italiano e formaggi a km 0</p>
+                            </div>
+                            <span class="price-badge">€ 12.00</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Polpettine Speziate</strong>
+                                <span class="tag-badge">Vegetariano</span>
+                                <span class="tag-badge">Piccante</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Con granella di arachidi tostate</p>
+                            </div>
+                            <span class="price-badge">€ 6.00</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Involtini di Bresaola</strong>
+                                <span class="tag-badge">Biologico</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Con burrata di Andria IGP</p>
+                            </div>
+                            <span class="price-badge">€ 8.00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="guide-tips">
+                    <h5><i class="fas fa-lightbulb"></i> Consigli</h5>
+                    <ul>
+                        <li>I nostri antipasti sono preparati con ingredienti a km 0</li>
+                        <li>Disponibili in versioni vegetariane e vegane</li>
+                        <li>Perfetti da condividere in gruppo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Primi -->
+            <div class="category-section">
+                <span class="category-icon">🍝</span>
+                <h2>Primi Piatti</h2>
+                <p>Le nostre specialità culinarie a base di pasta e riso, preparate con ricette tradizionali e ingredienti di qualità. Ogni piatto è un'esperienza autentica.</p>
+                
+                <div class="items-list">
+                    <h4><i class="fas fa-star"></i> Specialità della Casa</h4>
+                    <ul>
+                        <li>
+                            <div>
+                                <strong>Pasta all'Amatriciana</strong>
+                                <span class="tag-badge">Biologico</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Con guanciale DOP e pomodori San Marzano</p>
+                            </div>
+                            <span class="price-badge">€ 14.00</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Risotto ai Funghi Porcini</strong>
+                                <span class="tag-badge">Vegetariano</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Riso Carnaroli con vino bianco</p>
+                            </div>
+                            <span class="price-badge">€ 15.50</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Lasagna della Nonna</strong>
+                                <span class="tag-badge">Ricetta Classica</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Con ragù di manzo e besciamella</p>
+                            </div>
+                            <span class="price-badge">€ 12.50</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="guide-tips">
+                    <h5><i class="fas fa-lightbulb"></i> Consigli</h5>
+                    <ul>
+                        <li>I primi sono preparati al momento</li>
+                        <li>Disponibili porzioni dimezzate</li>
+                        <li>Perfetti da accompagnare con i nostri vini</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Secondi -->
+            <div class="category-section">
+                <span class="category-icon">🍖</span>
+                <h2>Secondi Piatti</h2>
+                <p>Piatti principali selezionati e preparati con cura. Dalla carne fresca al pesce di qualità, ogni secondo è una celebrazione dei sapori italiani.</p>
+                
+                <div class="items-list">
+                    <h4><i class="fas fa-star"></i> Piatti Principali</h4>
+                    <ul>
+                        <li>
+                            <div>
+                                <strong>Branzino al Forno</strong>
+                                <span class="tag-badge">Pesce Fresco</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Con limone e rosmarino</p>
+                            </div>
+                            <span class="price-badge">€ 18.00</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Ossobuco alla Milanese</strong>
+                                <span class="tag-badge">Specialità</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Stinco di vitello brasato</p>
+                            </div>
+                            <span class="price-badge">€ 22.00</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Melanzane alla Parmigiana</strong>
+                                <span class="tag-badge">Vegetariano</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Con mozzarella di bufala</p>
+                            </div>
+                            <span class="price-badge">€ 11.00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="guide-tips">
+                    <h5><i class="fas fa-lightbulb"></i> Consigli</h5>
+                    <ul>
+                        <li>I pesci sono selezionati freschi ogni giorno</li>
+                        <li>Disponibili accompagnamenti personalizzati</li>
+                        <li>Chiedete al nostro staff gli accostamenti consigliati</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pizze -->
+            <div class="category-section">
+                <span class="category-icon">🍕</span>
+                <h2>Pizze</h2>
+                <p>Le nostre pizze sono preparate con impasto a lievitazione naturale e forno a legna. Un'esperienza autentica della tradizione napoletana.</p>
+                
+                <div class="items-list">
+                    <h4><i class="fas fa-star"></i> Pizze Classiche</h4>
+                    <ul>
+                        <li>
+                            <div>
+                                <strong>Margherita</strong>
+                                <span class="tag-badge">Vegetariano</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Pomodoro, mozzarella di bufala, basilico</p>
+                            </div>
+                            <span class="price-badge">€ 9.50</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Diavola</strong>
+                                <span class="tag-badge">Piccante</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Mozzarella, pepperoni, salsiccia</p>
+                            </div>
+                            <span class="price-badge">€ 11.00</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Quattro Formaggi</strong>
+                                <span class="tag-badge">Vegetariano</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Mix di formaggi pregiati</p>
+                            </div>
+                            <span class="price-badge">€ 12.50</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="guide-tips">
+                    <h5><i class="fas fa-lightbulb"></i> Consigli</h5>
+                    <ul>
+                        <li>Tutte le pizze sono cotte in forno a legna</li>
+                        <li>È possibile personalizzare gli ingredienti</li>
+                        <li>Disponibili in versione piccola o grande</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bevande -->
+            <div class="category-section">
+                <span class="category-icon">🍷</span>
+                <h2>Bevande</h2>
+                <p>Una selezione curata di vini italiani di qualità, dalle denominazioni più prestigiose. Ogni bottiglia è scelta per esaltare i nostri piatti.</p>
+                
+                <div class="items-list">
+                    <h4><i class="fas fa-star"></i> Vini Rossi</h4>
+                    <ul>
+                        <li>
+                            <div>
+                                <strong>Barolo DOCG</strong>
+                                <span class="tag-badge">Piemonte</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Vino piemontese di grande struttura</p>
+                            </div>
+                            <span class="price-badge">€ 35.00</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Brunello di Montalcino DOCG</strong>
+                                <span class="tag-badge">Toscana</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Note di ciliegia e spezie</p>
+                            </div>
+                            <span class="price-badge">€ 40.00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="items-list" style="margin-top: 20px;">
+                    <h4><i class="fas fa-star"></i> Vini Bianchi</h4>
+                    <ul>
+                        <li>
+                            <div>
+                                <strong>Vermentino di Sardegna DOC</strong>
+                                <span class="tag-badge">Sardegna</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Fresco, con note di agrumi</p>
+                            </div>
+                            <span class="price-badge">€ 18.00</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Pinot Grigio del Friuli DOC</strong>
+                                <span class="tag-badge">Friuli</span>
+                                <p style="font-size: 0.9em; color: #999; margin: 5px 0 0 0;">Leggero ed elegante</p>
+                            </div>
+                            <span class="price-badge">€ 16.00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="guide-tips">
+                    <h5><i class="fas fa-lightbulb"></i> Consigli</h5>
+                    <ul>
+                        <li>I nostri sommelier consiglia gli abbinamenti perfetti</li>
+                        <li>Disponibile lista vini completa</li>
+                        <li>Possibili degustazioni per gruppi su prenotazione</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="guide-content">
+            <div class="navigation-arrows">
+                <button class="nav-btn" id="prevBtn" onclick="previousCategory()" disabled>
+                    <i class="fas fa-chevron-left"></i> Indietro
+                </button>
+                <button class="nav-btn" id="nextBtn" onclick="nextCategory()">
+                    Avanti <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-guide">
+            <p>🍽️ trovapiatto - Menu Digitale Interattivo</p>
+            <p>Per domande su ingredienti, allergie o preferenze dietetiche, contatta il nostro staff</p>
+        </div>
+    </div>
+
+    <script>
+        let currentCategory = 0;
+        const totalCategories = 5;
+
+        function showCategory(index) {
+            // Nascondi tutte le sezioni
+            const sections = document.querySelectorAll('.category-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Rimuovi active dai bottoni
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Mostra la sezione selezionata
+            sections[index].classList.add('active');
+            buttons[index].classList.add('active');
+
+            // Aggiorna indice corrente
+            currentCategory = index;
+
+            // Aggiorna barra di progresso
+            updateProgressBar();
+
+            // Aggiorna bottoni di navigazione
+            updateNavigationButtons();
+
+            // Scroll in alto
+            document.querySelector('.guide-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function nextCategory() {
+            if (currentCategory < totalCategories - 1) {
+                showCategory(currentCategory + 1);
+            }
+        }
+
+        function previousCategory() {
+            if (currentCategory > 0) {
+                showCategory(currentCategory - 1);
+            }
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentCategory + 1) / totalCategories) * 100;
+            document.querySelector('.progress-fill').style.width = progress + '%';
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = currentCategory === 0;
+            nextBtn.disabled = currentCategory === totalCategories - 1;
+        }
+
+        // Navigazione con tastiera
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextCategory();
+            if (e.key === 'ArrowLeft') previousCategory();
+        });
+
+        // Inizializzazione
+        updateNavigationButtons();
+        updateProgressBar();
+    </script>
+</body>
+</html>

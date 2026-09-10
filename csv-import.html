@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importa Piatti CSV - trovapiatto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --primary:#e73a3a; --bg:#0f0a15; --bg-card:#1a1125; --text:#f1e8ff; --text-dim:#9b8cb8; --border:#2d2145; --success:#34d399; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; }
+        .container { max-width:700px; margin:0 auto; padding:24px 16px; }
+        .header { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+        .header img { height:32px; }
+        .header h1 { font-size:1.3em; }
+        .card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:16px; }
+        .card h2 { font-size:1em; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+        .card h2 i { color:var(--primary); }
+        .upload-zone { border:2px dashed var(--border); border-radius:12px; padding:40px; text-align:center; cursor:pointer; transition:all 0.2s; }
+        .upload-zone:hover { border-color:var(--primary); background:rgba(231,58,58,0.05); }
+        .upload-zone.dragover { border-color:var(--primary); background:rgba(231,58,58,0.1); }
+        .upload-zone i { font-size:2em; color:var(--text-dim); margin-bottom:8px; }
+        .upload-zone p { color:var(--text-dim); font-size:0.85em; }
+        table { width:100%; border-collapse:collapse; margin-top:12px; }
+        th, td { padding:8px 10px; text-align:left; border-bottom:1px solid var(--border); font-size:0.85em; }
+        th { color:var(--text-dim); font-weight:600; }
+        .badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:0.75em; font-weight:600; }
+        .badge-ok { background:rgba(52,211,153,0.15); color:var(--success); }
+        .badge-err { background:rgba(231,58,58,0.15); color:var(--primary); }
+        .btn { padding:12px 24px; border:none; border-radius:10px; font-weight:700; font-size:0.9em; cursor:pointer; }
+        .btn-primary { background:var(--primary); color:white; }
+        .btn-primary:hover { background:#d63018; }
+        .btn-secondary { background:var(--bg); color:var(--text); border:1px solid var(--border); }
+        .btn:disabled { opacity:0.5; cursor:not-allowed; }
+        .progress { display:none; margin-top:12px; }
+        .progress-bar { height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+        .progress-fill { height:100%; background:var(--primary); transition:width 0.3s; }
+        .progress-text { font-size:0.8em; color:var(--text-dim); margin-top:4px; }
+        .template-link { color:var(--primary); text-decoration:none; font-weight:600; font-size:0.85em; }
+        .template-link:hover { text-decoration:underline; }
+        select { width:100%; padding:10px; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:8px; font-size:0.9em; }
+    </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    <link rel="canonical" href="https://www.trovapiatto.it/csv-import.html">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/app/admin/dashboard.html"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+            <h1><i class="fas fa-file-csv" style="color:var(--primary);"></i> Importa Piatti da CSV</h1>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-download"></i> 1. Scarica il Template</h2>
+            <p style="color:var(--text-dim);font-size:0.85em;margin-bottom:12px;">Scarica il file CSV vuoto con le colonne corrette.</p>
+            <button class="btn btn-secondary" onclick="downloadTemplate()">
+                <i class="fas fa-download" style="margin-right:6px;"></i>Scarica Template CSV
+            </button>
+            <div style="margin-top:12px;font-size:0.8em;color:var(--text-dim);">
+                <strong>Colonne:</strong> nome, prezzo, categoria, descrizione, allergeni, foto_url<br>
+                <strong>Categorie valide:</strong> pizzeria, pasta, secondi, contorni, dessert, pizze-rosse, pizze-bianche, piatti-unici, antipasti, formaggi, salumi, frutta, bibite, pizza
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-upload"></i> 2. Carica il CSV</h2>
+            <div class="upload-zone" id="uploadZone" onclick="document.getElementById('csvFile').click()">
+                <i class="fas fa-cloud-arrow-up"></i>
+                <p>Clicca qui o trascina il file CSV</p>
+                <p style="margin-top:4px;font-size:0.75em;">Massimo 500 piatti per importazione</p>
+            </div>
+            <input type="file" id="csvFile" accept=".csv" style="display:none;" onchange="handleFile(this)">
+        </div>
+
+        <div class="card" id="previewCard" style="display:none;">
+            <h2><i class="fas fa-eye"></i> 3. Anteprima</h2>
+            <div class="form-group">
+                <label>Ristorante</label>
+                <select id="restaurantSelect"></select>
+            </div>
+            <div class="form-group">
+                <label>Token admin (richiesto per l'import)</label>
+                <input type="password" id="adminToken" placeholder="Incolla il token admin" autocomplete="off" style="width:100%;padding:10px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:0.9em;">
+            </div>
+            <div id="previewTable"></div>
+            <div id="previewStats" style="margin-top:12px;font-size:0.85em;"></div>
+            <div style="margin-top:16px;">
+                <button class="btn btn-primary" id="importBtn" onclick="importDishes()">
+                    <i class="fas fa-file-import" style="margin-right:6px;"></i>Importa Piatti
+                </button>
+            </div>
+            <div class="progress" id="progress">
+                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+                <div class="progress-text" id="progressText">0/0 piatti importati...</div>
+            </div>
+        </div>
+
+        <div class="card" id="resultCard" style="display:none;">
+            <h2><i class="fas fa-check-circle" style="color:var(--success);"></i> Risultato</h2>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const API = '/app/admin/api-crud.php';
+        let csvData = [];
+        let restaurantId = '';
+
+        function downloadTemplate() {
+            const csv = 'nome,prezzo,categoria,descrizione,allergeni,foto_url\nMargherita,8.00,pizze-rosse,Pomodoro mozzarella fresca,,https://example.com/foto.jpg\nOrecchiette Cime di Rapa,12.00,pasta,Orecchiette pugliesi con cime di rapa,,\n';
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'template-piatti-trovapiatto.csv';
+            a.click();
+        }
+
+        // Drag & drop
+        const zone = document.getElementById('uploadZone');
+        zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            zone.classList.remove('dragover');
+            if (e.dataTransfer.files.length) parseCSV(e.dataTransfer.files[0]);
+        });
+
+        function handleFile(input) {
+            if (input.files.length) parseCSV(input.files[0]);
+        }
+
+        function parseCSV(file) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                const text = e.target.result;
+                const lines = text.split('\n').filter(l => l.trim());
+                if (lines.length < 2) { alert('CSV vuoto o senza dati'); return; }
+                const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+                csvData = [];
+                for (let i = 1; i < lines.length; i++) {
+                    const vals = lines[i].split(',');
+                    const dish = {};
+                    headers.forEach((h, idx) => { dish[h] = (vals[idx] || '').trim(); });
+                    if (dish.nome) csvData.push(dish);
+                }
+                showPreview();
+            };
+            reader.readAsText(file);
+        }
+
+        async function showPreview() {
+            const previewCard = document.getElementById('previewCard');
+            previewCard.style.display = 'block';
+
+            // Load restaurants
+            try {
+                const res = await fetch(API + '?action=get-restaurants');
+                const data = await res.json();
+                const sel = document.getElementById('restaurantSelect');
+                const list = data.restaurants || data.data || [];
+                sel.innerHTML = '<option value="">Seleziona ristorante...</option>' +
+                    list.map(r => `<option value="${r.id}" data-slug="${r.slug || r.id}">${r.name}</option>`).join('');
+            } catch (e) {}
+
+            // Preview table
+            const cats = ['pizzeria','pasta','secondi','contorni','dessert','pizze-rosse','pizze-bianche','piatti-unici','antipasti','formaggi','salumi','frutta','bibite','pizza'];
+            let html = '<table><tr><th>Nome</th><th>Prezzo</th><th>Categoria</th><th>Stato</th></tr>';
+            csvData.forEach(d => {
+                const catOk = cats.includes(d.categoria || '');
+                html += `<tr><td>${d.nome}</td><td>€${d.prezzo || '?'}</td><td>${d.categoria || '-'}</td><td>${catOk ? '<span class="badge badge-ok">OK</span>' : '<span class="badge badge-err">Cat. non valida</span>'}</td></tr>`;
+            });
+            html += '</table>';
+            document.getElementById('previewTable').innerHTML = html;
+            document.getElementById('previewStats').innerHTML = `Totale: <strong>${csvData.length}</strong> piatti trovati`;
+        }
+
+        async function importDishes() {
+            const selEl = document.getElementById('restaurantSelect');
+            restaurantId = selEl.value;
+            const restaurantSlug = selEl.selectedOptions[0] ? (selEl.selectedOptions[0].dataset.slug || restaurantId) : restaurantId;
+            const adminToken = document.getElementById('adminToken').value.trim();
+            if (!restaurantId) { alert('Seleziona un ristorante'); return; }
+            if (!adminToken) { alert('Incolla il token admin (lo trovi nella dashboard dopo il login)'); return; }
+
+            const btn = document.getElementById('importBtn');
+            btn.disabled = true;
+            document.getElementById('progress').style.display = 'block';
+
+            let imported = 0;
+            let errors = 0;
+            const total = csvData.length;
+
+            for (const dish of csvData) {
+                try {
+                    const data = {
+                        restaurant_id: restaurantId,
+                        name: dish.nome,
+                        price: parseFloat(dish.prezzo) || 0,
+                        category: dish.categoria || 'vari',
+                        description: dish.descrizione || '',
+                        allergens: dish.allergeni || '',
+                        photo_url: dish.foto_url || ''
+                    };
+                    const res = await fetch(API + '?action=add-dish&token=' + encodeURIComponent(adminToken), {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    const result = await res.json();
+                    if (result.success) imported++;
+                    else { errors++; if (!window._firstImportError && result.error) window._firstImportError = result.error; }
+                } catch (e) { errors++; }
+
+                const pct = Math.round(((imported + errors) / total) * 100);
+                document.getElementById('progressFill').style.width = pct + '%';
+                document.getElementById('progressText').textContent = `${imported + errors}/${total} piatti...`;
+            }
+
+            document.getElementById('resultCard').style.display = 'block';
+            document.getElementById('resultContent').innerHTML = `
+                <div style="font-size:0.9em;">
+                    <p><span class="badge badge-ok">${imported}</span> piatti importati con successo</p>
+                    ${errors ? `<p style="margin-top:6px;"><span class="badge badge-err">${errors}</span> errori</p>` : ''}
+                    <div style="margin-top:16px;">
+                        ${window._firstImportError ? `<p style="margin-top:6px;font-size:0.8em;color:var(--text-dim);">Primo errore: ${window._firstImportError}</p>` : ''}
+                        <a href="/menu/${restaurantSlug}/" class="btn btn-primary" style="text-decoration:none;display:inline-block;">
+                            <i class="fas fa-eye" style="margin-right:6px;"></i>Vedi Menu
+                        </a>
+                    </div>
+                </div>
+            `;
+            btn.disabled = false;
+        }
+    </script>
+</body>
+</html>

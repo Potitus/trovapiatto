@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosa Mangiare a Mola di Bari: La Guida Completa ai Piatti Tipici | trovapiatto</title>
+  <meta name="description" content="Scopri cosa mangiare a Mola di Bari: branzino al forno, polpo alla griglia, focaccia molese e 6 piatti tipici da provare con ristoranti, prezzi e consigli.">
+  <meta name="keywords" content="cosa mangiare Mola di Bari, piatti tipici Mola di Bari, pesce fresco Mola, ristoranti Mola di Bari, branzino Mola, polpo Mola di Bari, focaccia Mola, pesce Mola di Bari, Trani, Puglia">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <!-- Geo Meta Tags (Local SEO) -->\n  <meta name="geo.region" content="IT-BA">\n  <meta name="geo.placename" content="Mola di Bari">\n  <meta name="geo.position" content="41.0583;17.0786">\n  <meta name="ICBM" content="41.0583, 17.0786">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/cosa-mangiare-mola-di-bari/">
+  <meta property="og:title" content="Cosa Mangiare a Mola di Bari: La Guida Completa ai Piatti Tipici">
+  <meta property="og:description" content="Guida completa ai piatti tipici di Mola di Bari. Specialità da provare, con ristoranti e prezzi.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1544124499-58912cbddaad?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-08-29T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-08-29T10:00:00+02:00">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cosa Mangiare a Mola di Bari: La Guida Completa ai Piatti Tipici">
+  <meta name="twitter:description" content="Piatti tipici di Mola di Bari da provare assolutamente. Ristoranti, prezzi e consigli.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1544124499-58912cbddaad?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/cosa-mangiare-mola-di-bari/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .page-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .page-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .page-nav .logo img { height: 32px; }
+    
+    .page-nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .page-nav .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    
+    .page-nav .nav-links a:hover { color: var(--primary); }
+    
+    .hero {
+      text-align: center;
+      padding: 80px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('HERO_IMAGE') center/cover no-repeat;
+      filter: blur(4px) brightness(0.55) scale(1.05);
+      z-index: 0;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,10,21,0.6) 0%, rgba(15,10,21,0.85) 100%);
+      z-index: 1;
+    }
+    
+    .hero > * { position: relative; z-index: 2; }
+    
+    .hero .badge {
+      display: inline-block;
+      background: rgba(231,58,58,0.15);
+      color: var(--primary-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text-white), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+    }
+    
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+    
+    .hero .stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .hero .stats i { color: var(--primary); }
+    
+    .breadcrumb {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: rgba(255,255,255,0.2); }
+    .breadcrumb .current { color: var(--text-light); }
+    
+    .author-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px auto;
+      max-width: 900px;
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(231,58,58,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .author-avatar i { color: var(--primary); font-size: 1.1rem; }
+    
+    .author-info { flex: 1; }
+    .author-name { font-size: 0.85rem; font-weight: 600; color: var(--text-white); }
+    .author-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .intro {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    
+    .intro strong { color: var(--text-white); }
+    
+    .dish-section {
+      margin-bottom: 48px;
+    }
+    
+    .dish-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    
+    .dish-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    
+    .dish-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-text {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .dish-text strong { color: var(--text-white); }
+    
+    .dish-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-info .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .dish-info .tag i { color: var(--accent-food); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 6px 20px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-icon i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .restaurant-card .rc-info {
+      flex: 1;
+    }
+    
+    .restaurant-card .rc-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    
+    .restaurant-card .rc-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .restaurant-card .rc-action {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: rgba(231,58,58,0.1);
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .map-section {
+      margin: 48px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #guide-map {
+      width: 100%;
+      height: 380px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 40px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .faq-section {
+      margin: 48px 0;
+    }
+    
+    .faq-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    
+    .faq-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 18px 20px;
+      color: var(--text-white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: background 0.3s;
+    }
+    
+    .faq-item h3:hover { background: rgba(255,255,255,0.03); }
+    
+    .faq-item h3 .faq-arrow {
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+    
+    .faq-item.open h3 .faq-arrow { transform: rotate(180deg); }
+    
+    .faq-item .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+    }
+    
+    .faq-item .faq-answer p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 0 20px 18px;
+    }
+    
+    .social-share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0;
+    }
+    
+    .social-share .share-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    
+    .social-share a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .share-fb { background: rgba(59,89,152,0.15); color: #3b5998; }
+    .share-fb:hover { background: #3b5998; color: white; }
+    .share-wa { background: rgba(37,211,102,0.15); color: #25d366; }
+    .share-wa:hover { background: #25d366; color: white; }
+    .share-copy { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+    .share-copy:hover { background: var(--primary); color: white; }
+    
+    .floating-share {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 90;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .floating-share a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    
+    .floating-share a:hover { transform: scale(1.1); }
+    
+    @media (max-width: 768px) {
+      .floating-share { display: flex; }
+      .social-share.inline-share { display: none; }
+    }
+    
+    @media (min-width: 769px) {
+      .floating-share { display: none !important; }
+    }
+    
+    .toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .toc h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-white);
+      letter-spacing: 0.5px;
+    }
+    
+    .toc-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 6px;
+    }
+    
+    .toc-list a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 4px 0;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .toc-list a:hover { color: var(--primary); }
+    
+    .toc-list a .num {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.75rem;
+      width: 18px;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+    
+    .cta-box .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .cta-box .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(231,58,58,0.3);
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+    
+    .site-footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .site-footer a:hover { color: var(--primary); }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="page-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <div class="nav-links">
+      <a href="/piatti/">Piatti</a>
+      <a href="/community/blog/">Magazine</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+    <span class="sep">/</span>
+    <span class="current">Cosa Mangiare a Mola di Bari</span>
+  </div>
+
+  <header class="hero">
+    <span class="badge"><i class="fa-solid fa-utensils"></i> Guida Aggiornata 2026</span>
+    <h1>Cosa Mangiare a Mola di Bari: La Guida Completa</h1>
+    <p>6 piatti tipici da provare quando visiti Mola di Bari. Con ristoranti consigliati, prezzi reali e consigli dei locali.</p>
+    <div class="stats">
+      <span><i class="fa-solid fa-utensils"></i> 6 piatti</span>
+      <span><i class="fa-solid fa-map-marker-alt"></i> Mola di Bari, Puglia</span>
+      <span><i class="fa-regular fa-clock"></i> 12 min lettura</span>
+      <span><i class="fa-solid fa-fish"></i> Cucina di Mare</span>
+    </div>
+  </header>
+
+  <div class="author-box">
+    <div class="author-avatar"><i class="fa-solid fa-user-pen"></i></div>
+    <div class="author-info">
+      <div class="author-name">trovapiatto</div>
+      <div class="author-meta">Pubblicato il 29 Agosto 2026</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="intro">
+      <strong>Mola di Bari in breve:</strong> Questa piccola cittadina marinara si trova a soli 30 km a sud di Bari, sulla costa pugliese che guarda l'Adriatico. Fondata in epoca romana, ha attraversato i secoli sotto dominazioni longobarda e bizantina, accumulando un patrimonio culinario che riflette tutti questi influssi. La popolazione è di circa 25.000 abitanti, ma d'estate raddoppia grazie ai turisti che scoprono i suoi piatti e le sue spiagge. Il porto di Mola è uno dei più attivi della costa barese: ogni mattina, prima dell'alba, le barche tornano dal mare e il mercato del pesce si accende di colori, voci e odori. I ristoranti del borgo lavorano esclusivamente con pesce fresco del giorno, e i piatti sono semplici proprio perché la materia prima non ha bisogno di maschere. Mola di Bari è una tappa imperdibile per chi visita la Puglia — una città che si gusta prima con gli occhi e poi con il palato. Il branzino di Mola è celebre in tutta la Puglia, ma non è l'unico motivo per venire qui: la focaccia molese, il polpo alla griglia e le cozze in brodo sono tutti piatti che meritano un viaggio.
+    </div>
+
+    <div class="social-share inline-share">
+      <span class="share-label"><i class="fa-solid fa-share-nodes"></i> Condividi:</span>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/cosa-mangiare-mola-di-bari/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Mola%20di%20Bari:%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/cosa-mangiare-mola-di-bari/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/cosa-mangiare-mola-di-bari/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+    </div>
+
+    <div class="toc">
+      <h3><i class="fa-solid fa-list"></i> Indice</h3>
+      <div class="toc-list">
+        <a href="#storia"><span class="num">-</span> Storia e Tradizioni</a>
+        <a href="#branzino-al-forno"><span class="num">1.</span> Branzino al Forno</a>
+        <a href="#polpo-alla-griglia"><span class="num">2.</span> Polpo alla Griglia</a>
+        <a href="#pizza-al-taglio-molese"><span class="num">3.</span> Pizza al Taglio Molese</a>
+        <a href="#cozze-in-brodo"><span class="num">4.</span> Cozze in Brodo con Patate</a>
+        <a href="#zuppa-di-pesce"><span class="num">5.</span> Zuppa di Pesce</a>
+        <a href="#fave-e-cicoria"><span class="num">6.</span> Fave e Cicoria</a>
+        <a href="#stagione"><span class="num">-</span> Piatti di Stagione</a>
+        <a href="#curiosita"><span class="num">-</span> Curiosità Gastronomiche</a>
+      </div>
+    </div>
+
+      <section class="dish-section" id="storia">
+        <div class="dish-header">
+          <div class="dish-number"><i class="fa-solid fa-landmark"></i></div>
+          <h2>Storia e Tradizioni di Mola di Bari</h2>
+        </div>
+        <div class="dish-text">
+          <strong>Le origini di Mola di Bari</strong> risalgono all'epoca romana, quando fu fondato un primo insediamento peschereccio sulla costa. Il nome "Mola" deriva dal latino "mola" — macina — riferendosi ai mulini a vento che un tempo dominavano la collina su cui sorge il borgo. Durante il Medioevo, Mola divenne un importante centro commerciale grazie alla posizione strategica tra Bari e Polignano a Mare. Il castello normanno, ancora oggi visibile nel centro storico, fu costruito per difendere il porto dalle incursioni saracene. Le prime notizie documentate risalgono al XII secolo, quando Mola era un borgo di pescatori che già allora lavorava il pesce con tecniche che oggi consideriamo tradizionali.
+        </div>
+        <div class="dish-text">
+          La <strong>tradizione dei pescatori</strong> è il cuore pulsante di Mola di Bari. Per generazioni, le famiglie del borgo antico hanno vissuto di pesca, e questa dipendenza dal mare ha plasmato la cucina locale in modo indelebile. La mattina presto, quando le barche tornano al porto, si accende il mercato del pesce: triglie, saraghi, branzini, polpi e cozze vengono venduti direttamente ai ristoranti e alle famiglie. A Mola, il branzino ha un sapore particolare — i pescatori locali lo chiamano "il re del mare" e lo cuociono in decine di modi diversi. La cucina molese è figlia di questa freschezza impossibile da replicare altrove — i piatti sono semplici proprio perché il pesce non ha bisogno di maschere. Il porto di Mola, seppur piccolo, è uno dei più attivi della costa barese, e la flotta di pesca artigianale è ancora oggi al centro dell'economia locale.           I pescatori di Mola sono famosi in tutta la Puglia per la loro abilità nel pescare il branzino — un'arte che si tramanda di padre in figlio da secoli, e che oggi è riconosciuta come patrimonio culturale immateriale della Puglia. I pescatori di Mola conoscono ogni scoglio, ogni corrente, ogni zona di pesca del loro tratto di mare — è un sapere che non si trova nei libri, ma che si impara stando in mare aperto, con le mani sulle reti e gli occhi sull'orizzonte.
+        </div>
+        <div class="dish-text">
+          Il <strong>legame tra Mola e il branzino</strong> è così forte che il pesce è diventato un simbolo della comunità. Durante la festa del patrono San Lorenzo, il 10 agosto, il branzino viene cucinato in ogni forma possibile: al forno, alla griglia, in guazzetto, fritto, e persino in conserve sott'olio. La tradizione vuole che il primo branzino della stagione venga portato in chiesa come ex-voto, e che venga poi cucinato per il banchetto comunitario. È un rito che unisce tutta la comunità attorno a un piatto — il piatto che per Mola è molto più di un cibo: è un simbolo di identità, di appartenenza, di legame con il mare e con la terra. Ogni anno, la sagra del branzino attira migliaia di visitatori da tutta la Puglia, e i ristoranti del porto preparano il branzino in decine di modi diversi per soddisfare tutti i palati.
+        </div>
+        <div class="dish-text">
+          Una particolarità che contraddistingue Mola è la tradizione della <strong>"focaccia molese"</strong>: una focaccia sottile e croccante, condita con pomodoro fresco e origano, che i panifici del centro sfornano più volte al giorno. A differenza della focaccia barese, quella molese è più leggera e croccante, con una crosticina dorata che scrocca sotto i denti. È uno dei simboli culinari di Mola, e non c'è molese che non ne mangi almeno una volta al giorno. La focaccia di Mola è un pezzo di storia locale: i panifici più antichi usano ancora ricette tramandate da generazioni, con farina locale, acqua di sorgente e lievito madre.
+        </div>
+        <div class="dish-text">
+          Le <strong>feste popolari</strong> di Mola sono strettamente legate al cibo. Durante la festa del patrono San Lorenzo, il 10 agosto, le strade si riempiono di bancarelle che offrono frittelle di pesce, taralli e dolci tradizionali. D'estate, le feste dei pescatori sul lungomare diventano occasioni per gustare frutta di mare freschissima accompagnata da un bicchiere di vino locale. La sagra del branzino, che si tiene a luglio, richiude migliaia di visitatori da tutta la Puglia: il branzino viene cucinato in decine di modi diversi — al forno, alla griglia, in guazzetto, fritto — e ogni ristorante propone la sua versione. È in queste occasioni che si comprende appieno il legame indissoluble tra Mola, il mare e il cibo. La processione di San Lorenzo, il 10 agosto, è preceduta da un banchetto comunitario dove si preparano piatti di pesce per tutti gli abitanti del borgo — una tradizione che risale al Medioevo e che ancora oggi raduna centinaia di persone attorno alle tavole imbandite nelle piazze del centro storico. Durante la processione, il simulacro del santo viene portato in processione per le strade del borgo, accompagnato da musiche e canti tradizionali.
+        </div>
+        <div class="dish-text">
+          Il <strong>castello normanno</strong>, risalente al XII secolo, è il simbolo architettonico di Mola. Al suo interno si trova una piccola collezione di ceramiche pugliesi del XVIII secolo, tra cui alcune che raffigurano scene di cucina e di pesca. Le cantine sotterranee del castello, un tempo usate come magazzini per il sale e le spezie, oggi ospitano occasionali eventi enogastronomici dove si assaggiano i vini della Murgia accompagnati da prodotti tipici locali. Il castello domina il borgo dal punto più alto della collina, e dalla sua terrazza si godono panorami mozzafiato sul mare — perfetti per una foto dopo un buon pranzo. Il castello è aperto al pubblico dal martedì alla domenica, e durante l'estate ospita eventi musicali e gastronomici che richiamano visitatori da tutta la Puglia.
+        </div>
+        <div class="dish-text">
+          La <strong>chiesa madre di San Lorenzo</strong>, situata nel cuore del centro storico, è un'altra tappa imperdibile per chi visita Mola. La chiesa, risalente al XV secolo, conserva al suo interno un altare in pietra leccese e un dipinto di San Lorenzo martire che secondo la tradizione locale ha il potere di proteggere i pescatori in mare. Durante la festa del patrono, il 10 agosto, la chiesa viene decorata con fiori e candele, e la processione per le strade del borgo è preceduta da un banchetto comunitario dove si preparano piatti di pesce per tutti gli abitanti — una tradizione che risale al Medioevo e che ancora oggi raduna centinaia di persone attorno alle tavole imbandite nelle piazze del centro storico. Il portale della chiesa, scolpito in pietra locale, è un esempio di arte romanica che merita di essere ammirato.
+        </div>
+        <div class="dish-text">
+          Il <strong>borgo antico di Mola</strong> è un labirinto di vicoli stretti, case bianche e balconi fioriti che scendono verso il porto. Passeggiare per i suoi vicoli è come entrare in un'altra epoca: i muri di pietra, i portali in legno, le fontanelle di pietra e le chiese nascoste creano un'atmosfera unica e irripetibile. Ogni angolo racconta una storia: il vicolo dei pescatori, dove un tempo le reti venivano stese ad asciugare; la piazza del mercato, dove ancora oggi si vendono pesce e verdure fresche; la scalinata del castello, da dove si godono panorami mozzafiato sul mare.           Il borgo antico è il cuore pulsante di Mola, ed è qui che si trovano i ristoranti più autentici e i panifici più antichi — un luogo dove il tempo sembra essersi fermato, e dove il cibo è ancora fatto come una volta. I vicoli del borgo sono pieni di sorprese: angoli nascosti con fontanelle di pietra, balconi pieni di fiori di gerani, e piazzette dove i vecchi del borgo si siedono a chiacchierare mangiando taralli e bevendo vino locale. Il borgo antico di Mola è un esempio perfetto di come la tradizione e la modernità possano convivere in armonia: i ristoranti più tradizionali si affiancano alle botteghe artigiane, e i vicoli storici sono attraversati da turisti e locali che camminano fianco a fianco alla ricerca del piatto perfetto.
+        </div>
+      </section>
+
+      <section class="dish-section" id="branzino-al-forno">
+        <div class="dish-header">
+          <div class="dish-number">1</div>
+          <h2>Branzino al Forno</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&h=400&fit=crop" alt="Branzino al Forno" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Il <strong>branzino</strong> di Mola è celebre in tutta la Puglia.
+          Fritto, al forno o alla griglia, questo pesce è il re della tavola molese.
+          Cotto con patate, limone e rosmarino, è un piatto che racconta il sapore del Mediterraneo.
+          Il branzino di Mola ha un sapore particolare perché viene pescato in acque poco profonde,
+          dove il fondale roccioso gli dà un sapore più intenso e minerale rispetto al branzino d'allevamento.
+        </div>
+        <div class="dish-text">
+          La versione più amata a Mola è il <strong>branzino al forno con patate</strong>:
+          il pesce viene aperto a libro, condito con sale grosso, rosmarino, foglie di alloro e un filo d'olio EVO,
+          poi cotto lentamente su un letto di patate a rondelle.
+          La crosta esterna diventa dorata e croccante, mentre la carne interna resta morbida e succosa.
+          Il segreto è nella cottura lenta e nel forno a legna,
+          che dà al branzino quel sapore affumicato impossibile da replicare.
+          A €18-28, è un piatto che vale ogni centesimo — la qualità del branzino di Mola è tale che basta poco per esaltarne il sapore.
+        </div>
+        <div class="dish-text">
+          I ristoranti del porto lo servono direttamente dalla teglia del forno, accompagnato da una insalata mista e una fetta di pane casereccio. L'abbinamento ideale è un bianco fresco come il Verdeca della Murgia o un Primitivo leggero, che bilancia la dolcezza del pesce con le sue note fruttate. Il branzino di Mola è un piatto che racconta la tradizione dei pescatori molese — un piatto semplice ma straordinario, come tutti i grandi classici della cucina pugliese. La tradizione del branzino al forno a Mola risale ai pescatori del XVIII secolo, che lo preparavano per le feste patronali e le occasioni speciali.
+        </div>
+        <div class="dish-text">
+          La versione <strong>fritta</strong> è un'altra delizia: il branzino viene pulito, infarinato leggermente e fritto in olio bollente fino a quando la pelle diventa dorata e croccante. A Mola, la frittura di branzino è un piatto che si mangia soprattutto d'estate, quando il caldo rende irresistibile il sapore del pesce fritto. I ristoranti del porto la servono con una spolverata di sale grosso e una fetta di limone fresco — semplice, diretto, perfetto. A €16-22, è un secondo piatto che non ha bisogno di accompagnamenti elaborati: il branzino è talmente buono che basta un filo d'olio per esaltarne il sapore. Il branzino fritto di Mola è un piatto che si gusta meglio seduti al tavolo sul lungomare, con il profumo del mare che si mescola a quello del pesce appena sfornato dalla padella. I pescatori di Mola lo considerano il modo migliore per gustare il branzino: senza maschere, senza elaborazioni, solo il sapore puro del pesce fresco con un filo d'olio e una spolverata di sale grosso. È un'esperienza che vale la pena vivere almeno una volta nella vita.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €18-28</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Cena</span>
+        </div>
+        <a href="/menu/la-rotonda/" class="restaurant-card">
+          <img src="/loghi/la-rotonda.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">La Rotonda</div>
+            <div class="rc-detail">Branzino al forno · €22</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="pizza-al-taglio-molese">
+        <div class="dish-header">
+          <div class="dish-number">2</div>
+          <h2>Pizza al Taglio Molese</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&h=400&fit=crop" alt="Pizza al Taglio Molese" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>pizza al taglio</strong> di Mola ha una crosta sottile e croccante, condita semplicemente con pomodoro fresco e origano. La si trova nelle pizzerie del centro, dove la fanno da generazioni. A differenza della pizza napoletana, quella molese è più sottile e croccante, con un impasto che segue la tradizione pugliese della "scaccia" — una focaccia sottile condita che si piega su se stessa.
+        </div>
+        <div class="dish-text">
+          Il segreto della pizza al taglio molese è nella qualità della farina e nella cottura nel forno a legna. L'impasto usa farina locale, acqua di sorgente, lievito madre e un filo d'olio EVO del Premio. La versione più amata è quella "classica" con pomodoro schiacciato e origano, ma nelle pizzerie del centro trovi anche quella con le cipolline caramellate, le olive del Tapasano e le acciughe sotto sale. A €2-4, è lo street food più democratico di Mola — non c'è turista o locale che non ne mangi almeno una volta al giorno.
+        </div>
+        <div class="dish-text">
+          I panifici del centro la sfornano già prima dell'alba, e la mattina presto i molese la comprano per la colazione, spezzata a metà e farcita con un pezzo di mozzarella fresca o con le cime di rapa. Le pizzerie più antiche del borgo usano ancora le antiche fornaci a legna, che danno alla pizza quel sapore affumicato impossibile da replicare. La pizza al taglio di Mola è diversa da quella di Bari, da quella di Polignano — ogni borgo ha la sua, e quella di Mola è riconoscibile al primo morso. La tradizione della pizza al taglio a Mola risale al XIX secolo, quando le pizzerie del borgo iniziarono a condire le pizze con gli ingredienti più disponibili.
+        </div>
+        <div class="dish-text">
+          La versione più raffinata della pizza al taglio molese è quella con <strong>olive del Tapasano e acciughe sotto sale</strong>: le olive nere, coltivate nei campi attorno a Mola, hanno un sapore dolce e leggermente amaro che si abbina perfettamente con il sapore umami delle acciughe. A €3-4 il pezzo, è un aperitivo perfetto accompagnato da un bicchiere di vino locale. Le pizzerie del centro offrono anche versioni stagionali: d'estate con pomodorini freschi e basilico, d'inverno con cipolline caramellate e pancetta. La pizza al taglio di Mola è un fenomeno sociale — i molese si fermano al bancone della pizzeria prima di andare a lavorare, ordinano un pezzo di pizza e lo mangiano in piedi, chiacchierando con il pizzaiolo. È un rituale che si ripete ogni mattina da generazioni, e che racconta meglio di qualsiasi guida il legame tra Mola e il cibo.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €2-4</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Tutto il giorno</span>
+        <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariana</span>
+        </div>
+        <a href="/menu/antica-pizzeria-guglielmi/" class="restaurant-card">
+          <img src="/loghi/antica-pizzeria-guglielmi.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Antica Pizzeria Guglielmi</div>
+            <div class="rc-detail">Pizza al taglio · €2.50</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="zuppa-di-pesce">
+        <div class="dish-header">
+          <div class="dish-number">3</div>
+          <h2>Zuppa di Pesce</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1534766555764-ce878a5e3a2b?w=800&h=400&fit=crop" alt="Zuppa di Pesce" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>zuppa di pesce</strong> di Mola è un misto di crostacei, molluschi e pesce di scoglio,
+          cotto in un brodo di pomodoro e vino bianco.
+          Un piatto che riassume in una ciotola tutto il sapore del Adriatico.
+          Il segreto sta nella varietà degli ingredienti: gamberi, mazzancolle, scorfano, seppie,
+          polpo, cozze e vongole si cuociono insieme in un brodo che si arricchisce di tutti questi sapori.
+        </div>
+        <div class="dish-text">
+          A Mola, la zuppa di pesce viene servita in una ciotola di terracotta,
+          con un cucchiaio di legno per bere il brodo — che è il vero tesoro del piatto.
+          La versione molese prevede un brodo più denso e saporito rispetto alle altre versioni pugliesi,
+          perché qui si usa il pesce più piccolo e meno pregiato per fare il brodo di base,
+          poi si aggiungono i crostacei più pregiati.
+          Il pane casereccio affogato nella zuppa è un rituale obbligato — i molese lo chiamano "fare la scarpetta con il brodo del mare".
+          A €16-24, è un piatto che soddisfa e scalda l'anima, perfetto per le serate fredde d'inverno.
+        </div>
+        <div class="dish-text">
+          I ristoranti sul porto lo servono direttamente nella casseruola di cottura, accompagnato da una fetta di pane casereccio. L'abbinamento ideale è un bianco fresco come il Verdeca o il Bombino Bianco della Murgia, che bilancia la ricchezza del brodo con le sue note minerali e agrumate. A Mola, la zuppa di pesce è un piatto che si mangia soprattutto d'inverno, quando il mare è più generoso e i pescatori tornano con reti piene di pesce di scoglio — un'esperienza culinaria che racconta il legame tra l'uomo e il mare in modo diretto e senza fronzoli. La versione molese della zuppa di pesce è diversa da quella genovese o da quella romana: qui il brodo è più denso, il pesce più vario e la presentazione più semplice — tutto ruota attorno alla qualità della materia prima.
+        </div>
+        <div class="dish-text">
+          La zuppa di pesce di Mola ha una storia lunga secoli: già nel Medioevo, i pescatori del porto preparavano una versione semplicissima di questo piatto con il pesce rimasto invenduto alla fine della giornata. Pomodoro, aglio, peperoncino e vino bianco furono aggiunti nei secoli successivi, creando la ricetta che conosciamo oggi. Ogni ristorante di Mola ha la sua versione segreta: some usano più gamberi, other più cozze, altre ancora aggiungono un pizzico di zafferano per dare colore e profumo. Il consiglio è provarne più versioni in ristoranti diversi — ognuno racconta una storia diversa dello stesso mare.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €16-24</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Cena</span>
+        </div>
+        <a href="/menu/la-rotonda/" class="restaurant-card">
+          <img src="/loghi/la-rotonda.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">La Rotonda</div>
+            <div class="rc-detail">Zuppa di pesce · €20</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="polpo-alla-griglia">
+        <div class="dish-header">
+          <div class="dish-number">2</div>
+          <h2>Polpo alla Griglia</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=400&fit=crop" alt="Polpo alla Griglia" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Il <strong>polpo alla griglia</strong> di Mola è semplicità fatta piatto:
+          polpo fresco, griglia rovente, olio EVO e sale grosso.
+          A differenza delle versioni più elaborate, qui il polpo viene cotto così com'è,
+          perché la qualità della materia prima è tale che non ha bisogno di maschere.
+          Il polpo viene lessato prima per renderlo tenero,
+          poi passato sulla griglia a legna fino a quando la pelle diventa croccante e leggermente annerita.
+        </div>
+        <div class="dish-text">
+          Il segreto è nella qualità del polpo, che a Mola viene pescato fresco ogni mattina nei fondali rocciosi attorno al porto. Il polpo di scoglio, più piccolo e saporito di quello d'allevamento, è il preferito dai ristoranti molese. La cottura alla griglia dà al polpo quel sapore affumicato che si abbina perfettamente con un filo d'olio EVO del Premio e una spolverata di prezzemolo fresco. A €12-18, è un antipasto o un secondo piatto che racconta il sapore puro del mare.
+        </div>
+        <div class="dish-text">
+          I ristoranti del porto lo servono direttamente dalla griglia, accompagnato da una fetta di limone e una insalata di pomodorini cherry. L'abbinamento ideale è un bianco fresco come il Verdeca della Murgia o una birra artigianale locale, che bilancia la dolcezza del polpo con le sue note fresche e minerali. Il polpo alla griglia di Mola è un piatto che si mangia soprattutto d'estate, quando il caldo rende irresistibile il sapore affumicato della griglia. La tradizione del polpo alla griglia a Mola risale ai pescatori del XIX secolo, che lo cuocevano direttamente sulle barche dopo la pesca — un'esperienza culinaria che racconta l'estate pugliese in modo semplice e diretto.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €12-18</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto o Secondo</span>
+          <span class="tag"><i class="fa-solid fa-leaf"></i> Glutine-Free</span>
+        </div>
+        <a href="/menu/la-rotonda/" class="restaurant-card">
+          <img src="/loghi/la-rotonda.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">La Rotonda</div>
+            <div class="rc-detail">Polpo alla griglia · €14</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="cozze-in-brodo">
+        <div class="dish-header">
+          <div class="dish-number">4</div>
+          <h2>Cozze in Brodo con Patate</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1631963580532-27a8a4f0fb5f?w=800&h=400&fit=crop" alt="Cozze in Brodo" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Le <strong>cozze</strong> cotte in brodo con patate sono una specialità della costa pugliese adottata anche a Mola di Bari. Semplice, fresco, genuino — come deve essere il cibo di mare pugliese. Le cozze vengono pulite a mano ogni mattina dai pescatori del porto, e cotte in una casseruola di ferro con patate a rondelle, aglio, prezzemolo e un filo d'olio.
+        </div>
+        <div class="dish-text">
+          Il brodo che si forma durante la cottura è il vero tesoro: acqua di mare, amido delle patate e sapore delle cozze si fondono in un liquido dorato e profumato che i molese bevono con un cucchiaio di rame direttamente dalla casseruola. Le cozze di Mola sono particolarmente saporite perché il porto è un ambiente naturale perfetto per la loro crescita — le acque pulite e il fondale roccioso danno alle cozze un sapore intenso e minerale. A €10-14, è un piatto che soddisfa e scalda l'anima, perfetto per le serate fredde d'inverno o per un pranzo leggero d'estate.
+        </div>
+        <div class="dish-text">
+          Le patate devono essere quelle gialle del Gargano, che si sfaldano e addensano il brodo in modo naturale. I ristoranti sul porto lo servono direttamente nella casseruola di cottura, con un cucchiaio di legno per bere il brodo. L'abbinamento ideale è un bianco fresco, come il Verdeca o il Bombino Bianco della Murgia. A Mola, le cozze sono un ingrediente fondamentale — le si trova nei primi piatti, nei secondi, nelle zuppe, e persino nelle insalate miste. La tradizione delle cozze a Mola risale ai pescatori del XVIII secolo, che le raccoglievano a mano sui fondali rocciosi del porto. Le cozze sono anche il ingrediente principale delle cosiddette "mulese" — cozze farcite con pane grattugiato, aglio e prezzemolo, cotte al forno — un piatto che non trovi altrove.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €10-14</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Pranzo e Cena</span>
+          <span class="tag"><i class="fa-solid fa-leaf"></i> Glutine-Free</span>
+        </div>
+        <a href="/menu/la-rotonda/" class="restaurant-card">
+          <img src="/loghi/la-rotonda.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">La Rotonda</div>
+            <div class="rc-detail">Cozze in brodo · €12</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="fave-e-cicoria">
+        <div class="dish-header">
+          <div class="dish-number">6</div>
+          <h2>Fave e Cicoria</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=400&fit=crop" alt="Fave e Cicoria" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Le <strong>fave e cicoria</strong> sono il piatto della memoria:
+          quello che le nonne preparavano il lunedì, quando il frigorifero era vuoto
+          e la dispensa conteneva solo fave secche e cicoria selvatica.
+          Un piatto che racconta la povertà e l'ingegno della cucina pugliese,
+          dove niente andava sprecato e tutto veniva trasformato in qualcosa di buono.
+        </div>
+        <div class="dish-text">
+          Le fave si cuociono lentamente in acqua con foglie di alloro fino a diventare una crema densa e vellutata,
+          mentre la cicoria viene lessata e condita con olio EVO e aglio.
+          A Mola di Bari, i pescatori lo mangiano come condimento per la scaglia di pane raffermo —
+          il cosiddetto "pane cunzato" — creando un piatto che è un monumento alla cucina povera pugliese.
+          Il segreto è nella qualità delle fave secche, che devono essere quelle bianche del Gargano,
+          e nella cicoria selvatica raccolta nei campi attorno al borgo,
+          che ha un sapore leggermente amaro che bilancia la dolcezza delle fave.
+        </div>
+        <div class="dish-text">
+          A €7-10, è uno dei piatti più economici ma anche più autentici che puoi trovare a Mola di Bari.
+          I ristoranti del centro lo servono come antipasto o come primo piatto,
+          spesso accompagnato da una fetta di pane casereccio con pomodoro e origano.
+          La versione più raffinata prevede l'aggiunta di olive e capperi,
+          che danno una nota piccante alla crema di fave.
+          È un piatto che racconta la storia di un territorio, di una comunità,
+          di una cultura culinaria fatta di ingegno e rispetto per gli ingredienti.
+          Anche se Mola è una città di mare, le fave e cicoria sono un piatto fondamentale della tradizione locale.
+          La versione molese prevede l'aggiunta di una manciata di cicoria selvatica lessata,
+          che dà al piatto una nota amara che bilancia la dolcezza delle fave —
+          un contrasto di sapori che è il cuore della cucina povera pugliese.
+          A Mola, le fave e cicoria vengono servite anche come contorno per il pesce alla griglia —
+          un abbinamento inusuale ma straordinario che funziona grazie alla nota di terra
+          che bilancia il sapore del mare.
+        </div>
+        <div class="dish-text">
+          La tradizione delle fave e cicoria a Mola è legata alle feste dei pescatori: durante le sagre estive, i pescatori preparano le fave e cicoria come condimento per le loro cene sul porto. Le fave vengono cotte in enormi pentole di rame, e la cicoria viene lessata in acqua di mare — una variante locale che dà alla cicoria una nota salina che bilancia perfettamente la dolcezza delle fave. È un piatto che si mangia soprattutto d'inverno, quando il freddo rende irresistibile una crema calda di fave condita con olio EVO fresco e una spolverata di pepe nero. A Mola, le fave e cicoria sono un piatto che unisce le generazioni — i nonni le preparano per i nipoti, insegnando loro l'arte della cucina povera pugliese.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €7-10</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto o Primo</span>
+          <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariana</span>
+        </div>
+        <a href="/menu/la-rotonda/" class="restaurant-card">
+          <img src="/loghi/la-rotonda.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">La Rotonda</div>
+            <div class="rc-detail">Fave e cicoria · €8</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="stagione">
+        <div class="dish-header">
+          <div class="dish-number"><i class="fa-solid fa-calendar-days"></i></div>
+          <h2>Piatti di Stagione a Mola di Bari</h2>
+        </div>
+        <div class="dish-text">
+          <strong>Primavera:</strong> Con l'arrivo della primavera, a Mola di Bari iniziano a comparire i primi fiori di zucca, che vengono fritti in pastella leggera e serviti come antipasto. Le fave fresche sono in stagione e vengono cotte in centinaia di modi diversi, dalle fave e cicoria alle fave con pomodori secchi. I pomodori d'alicino, piccoli e dolcissimi, fanno la loro comparsa nei ristoranti come condimento per le insalate e per i primi piatti.
+        </div>
+        <div class="dish-text">
+          <strong>Estate:</strong> L'estate è la stagione del pesce fresco e delle grigliate sul lungomare. Le cozze, i gamberi e i mormore sono al loro apice, e i ristoranti del porto offrono menu a prezzo fisso con antipasti di pesce crudo, pesce alla griglia e fritture miste. La focaccia molese è perfetta per una colazione leggera o per un aperitivo accompagnata da una birra fredda. I fichi d'India, che crescono ovunque attorno a Mola, sono il frutto estivo per eccellenza.
+        </div>
+        <div class="dish-text">
+          <strong>Autunno:</strong> Con l'autunno, i funghi porcini appena raccolti nei boschi della Murgia compaiono nei ristoranti del centro, spesso conditi con olio fresco e parmigiano. Le castagne del Gargano vengono usate per preparare dolci e miele, e i pomodori secchi vengono preparati per l'inverno. Il pesce d'acqua dolce, come le tinche e le carpe dei laghi della Murgia, diventa protagonista di piatti rustici e saporiti.
+        </div>
+        <div class="dish-text">
+          <strong>Inverno:</strong> L'inverno a Mola è la stagione della cucina di pesce più tradizionale, con la zuppa di pesce e il polpo alla pignattara come piatti caldi che scaldano l'anima. Le fave secche sono protagoniste della tavola pugliese, cotte con cime di rapa e olio EVO fresco. Il Natale porta con sé le cartellate e i dolci tradizionali, che si gustano accompagnati da un bicchiere di vin santo locale.
+        </div>
+      </section>
+
+      <section class="dish-section" id="curiosita">
+        <div class="dish-header">
+          <div class="dish-number"><i class="fa-solid fa-star"></i></div>
+          <h2>Curiosità Gastronomiche di Mola di Bari</h2>
+        </div>
+        <div class="dish-text">
+          <strong>Il mercato del pesce delle 5 di mattina:</strong> Se vuoi vivere un'esperienza autentica, alzati presto e vai al porto di Mola di Bari alle 5 di mattina, quando i pescatori scaricano le reti. Il mercato del pesce è un spettacolo di colori, voci e odori: le triglie ancora che guizzano, i polpi che si muonono pigramente, le cozze che brillano nere nell'alba. I ristoranti del borgo comprano qui il pesce per la giornata, e se sei fortunato il pescatore ti venderà direttamente un chilo di saraghi per pochi euro. È un'esperienza che nessun tour operator ti propone, ma che racconta meglio di qualsiasi guida il legame tra Mola e il mare.
+        </div>
+        <div class="dish-text">
+          <strong>La tradizione del pesce azzurro:</strong> A Mola di Bari, il pesce azzurro (sardine, acciughe, maccarelli) è la base della cucina povera. Le sardine vengono conservate sotto sale in botti di legno, trasformandosi in quel "pesce stocco" che accompagna i piatti di pasta più semplici. Le acciughe sotto sale sono un ingrediente fondamentale della focaccia molese — sono loro a dare quel sapore umami e profondo che rende la focaccia di Mola unica. A €3-5 il chilo, il pesce azzurro è lo street food perfetto per una colazione leggera o per un aperitivo sul lungomare.
+        </div>
+        <div class="dish-text">
+          <strong>Il vino della Murgia:</strong> I vini della Murgia, come il Primitivo di Gioia del Colle, il Nero di Troia e il Bombino Bianco, sono i compagni perfetti dei piatti di pesce di Mola. I ristoranti del centro offrono una selezione di vini locali che si abbina perfettamente con il branzino, le cozze e la zuppa di pesce. L'abbinamento inusuale tra vino rosso e pesce, che funziona grazie alla nota di spezie e frutti di bosco che bilancia il sapore del mare, è una tradizione locale che pochi conoscono.           A Mola, i vini della Murgia vengono serviti anche nelle osterie più semplici, dove il calice di Primitivo accompagna ogni piatto — una tradizione che risale ai contadini del XIX secolo che coltivavano le vigne sui pendii della collina. L'abbinamento tra Primitivo e branzino al forno è una specialità locale che pochi conoscono: il vino rosso, con le sue note di frutti di bosco e spezie, bilancia la dolcezza del pesce e crea un contrasto di sapori che è il cuore della cucina molese. I ristoranti del porto offrono questa degustazione abbinata a un prezzo accessibile, ed è un'esperienza che vale la pena provare almeno una volta.
+        </div>
+        <div class="dish-text">
+          <strong>La focaccia delle 5 di mattina:</strong> A Mola, la focaccia molese viene sfornata già prima dell'alba. I panifici del centro aprono alle 4:30 di mattina per preparare la focaccia per la colazione dei pescatori, che la mangiano ancora calda prima di salpare. È un rituale antichissimo che ancora oggi raduna i molese attorno ai banconi dei panifici — una tradizione che racconta meglio di qualsiasi guida il legame tra Mola e il cibo. A €1.50-2.50, è la colazione perfetta per iniziare la giornata in modo autentico e saporito. La focaccia molese è diversa da quella barese: più sottile, più croccante, con una crosticina che scrocca sotto i denti e una mollica morbida e alveolata che assorbe l'olio e il pomodoro in modo perfetto. I panifici più antichi del borgo usano ancora le antiche fornaci a legna, che danno alla focaccia quel sapore affumicato impossibile da replicare. La focaccia molese è un simbolo dell'identità culinaria del borgo — un piatto che non trovi altrove con lo stesso sapore e la stessa tradizione. Ordinarla è come assaggiare un pezzo di storia locale, un'esperienza che va oltre il semplice gusto.
+        </div>
+        <div class="dish-text">
+          <strong>I taralli del borgo:</strong> I taralli di Mola sono unici nel loro genere: croccanti, leggermente salati, con un sapore di finocchio selvatico che li rende riconoscibili al primo morso. I panifici del centro li preparano freschi ogni giorno, e i molese li mangiano come snack durante la giornata o come accompagnamento al pesce. A €2-3 la confezione, sono il souvenir perfetto da portare a casa — quando li apri in cucina, il profumo di finocchio e olio ti riporterà immediatamente a Mola. La tradizione dei taralli a Mola risale al XVIII secolo, quando i panifici iniziarono a prepararli con gli ingredienti più disponibili: farina, acqua, sale e finocchio selvatico raccolto nei campi attorno al borgo. Oggi, i taralli di Mola sono un prodotto IGP riconosciuto, e i panifici più antichi del centro storico ancora oggi li preparano secondo ricette originali.
+        </div>
+        <div class="dish-text">
+          <strong>La cucina dei pescatori sulle barche:</strong> Una tradizione poco conosciuta di Mola è la cucina che i pescatori preparano direttamente sulle barche durante le battute di pesca più lunghe. Con il pesce appena pescato, acqua di mare, pomodorini selvatici e olio, preparano una sorta di zuppa grezza che mangiano calda a pranzo, seduti sulle battute. Non esiste ricetta scritta: ognuno cuoce a modo suo, seguendo l'istinto e la tradizione orale. È un'esperienza culinaria che non puoi trovare in nessun ristorante — è un piatto che esiste solo in mare aperto, tra le onde e il profumo di sale. Se hai la fortuna di conoscere un pescatore molese, chiedigli se ti fa provare il suo brodetto di mare — sarà il piatto più autentico e memorabile della tua vita gastronomica. Questa tradizione è ancora viva oggi: molti pescatori di Mola preparano il brodetto durante le battute notturne, quando il mare è calmo e le stelle sono l'unica luce che illumina la pentola sul fuoco. È un rituale che unisce i pescatori tra loro e che rappresenta il legame più profondo tra l'uomo e il mare.
+        </div>
+      </section>
+
+    <div class="tips-box">
+      <h3><i class="fa-solid fa-lightbulb"></i> Consigli per Mangiare Bene a Mola di Bari</h3>
+      <ul>
+        <li><i class="fa-solid fa-clock"></i> <span><strong>Vai a pranzo presto:</strong> I molese pranzano alle 12:30-13:00. Se vai alle 13:30, i piatti migliori del pesce fresco sono già finiti. La cucina qui lavora con quello che arriva la mattina al mercato.</span></li>
+        <li><i class="fa-solid fa-map-marker-alt"></i> <span><strong>Il porto è il cuore:</strong> I migliori ristoranti tradizionali sono attorno al porto peschereccio. Passeggia e segui il profumo del branzino al forno — i vicoli di Mola sono un labirinto di profumi che ti guidano verso i piatti migliori.</span></li>
+        <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Prezzi reali:</strong> Un pranzo completo (primo + secondo + acqua) costa €18-30 nei ristoranti normali, €30-45 nei raffinati con vista mare. I menù a prezzo fisso d'estate offrono ottimi rapporti qualità-prezzo.</span></li>
+        <li><i class="fa-solid fa-hand-point-up"></i> <span><strong>Chiedi il pesce del giorno:</strong> I ristoranti di Mola lavorano con il pesce che arriva la mattina. Chiedi sempre cosa c'è di fresco oggi — i camerieri saranno felici di consigliarti il piatto migliore.</span></li>
+        <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Il vino giusto:</strong> Un Primitivo o un Negroamaro accompagnano perfettamente i piatti di pesce. Prova anche il Verdeca, un bianco fresco e minerale della Murgia, perfetto con il branzino e le cozze.</span></li>
+        <li><i class="fa-solid fa-fish"></i> <span><strong>Il mercato del pesce:</strong> Al porto peschereccio di Mola puoi comprare il pesce appena pescato e fartelo cucinare nei ristoranti vicini. È un'esperienza autentica che non trovi altrove.</span></li>
+        <li><i class="fa-solid fa-sun"></i> <span><strong>Estate al lungomare:</strong> D'estate i ristoranti sul mare offrono menu a prezzo fisso con pesce grigliato, fritto e antipasti. Ottimo rapporto qualità-prezzo con vista sull'Adriatico.</span></li>
+        <li><i class="fa-solid fa-camera"></i> <span><strong>Foto consigliata:</strong> Scatta una foto al branzino al forno dal balcone di La Rotonda con il mare sullo sfondo — l'immagine perfetta per Instagram.</span></li>
+        <li><i class="fa-solid fa-shoe-prints"></i> <span><strong>Passeggiata consigliata:</strong> Dopo pranzo, fai una passeggiata lungo il lungomare fino al porto. Il borgo antico è piccolo ma pieno di sorprese — vicoli, chiese, balconi fioriti e panorami mozzafiato sul mare. Il castello normanno è la meta perfetta per una vista a 360 gradi.</span></li>
+        <li><i class="fa-solid fa-bread-slice"></i> <span><strong>Pane e focaccia:</strong> Prova la focaccia molese al mattino presto, quando è appena sfornata. I panifici del centro aprono alle 4:30, e la focaccia è perfetta per una colazione leggera prima di una passeggiata al porto.</span></li>
+        <li><i class="fa-solid fa-fish"></i> <span><strong>Pesce crudo:</strong> Se ti piace il pesce crudo, chiedi al ristorante se hanno le crudi di pesce fresco del giorno. Le polpettine di pesce crudo con limone e olio sono un antipasto delizioso e leggero che trovi solo nei ristoranti più tradizionali.</span></li>
+      </ul>
+    </div>
+    </div>
+
+    <div class="map-section">
+      <h2><i class="fa-solid fa-map-location-dot"></i> Dove Mangiare a Mola di Bari</h2>
+      <div id="guide-map"></div>
+    </div>
+
+    <div class="faq-section">
+      <h2><i class="fa-solid fa-circle-question"></i> Domande Frequenti</h2>
+      <div class="faq-item">
+        <h3>Qual è il piatto più tipico di Mola di Bari? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Il branzino al forno è il piatto simbolo. Mola è famosa in tutta la Puglia per la qualità del suo branzino, pescato fresco ogni mattina nel porto locale. Cotto con patate, limone e rosmarino, è un piatto semplice ma straordinario. I ristoranti del porto come La Rotonda lo preparano secondo ricette tramandate da generazioni.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Quanto costa mangiare a Mola di Bari? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Un pranzo in trattoria costa €15-30 a persona. Il pesce fresco è più conveniente che nei ristoranti di Bari perché arriva direttamente dal porto. I menù a prezzo fisso sui ristoranti sul lungomare offrono ottimi rapporti qualità-prezzo, soprattutto d'estate. Lo street food come focaccia e taralli costa €2-5.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>A che ora si mangia a Mola? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>I ristoranti aprono per pranzo (12:30-14:30) e cena (19:30-22:30). I locali sul porto sono più affollati la sera, soprattutto d'estate. Per la focaccia molese, i panifici aprono già alle 4:30 di mattina — la colazione perfetta prima di una passeggiata al porto.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Dove si mangia il meglio a Mola di Bari? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>I locali attorno al porto peschereccio offrono i piatti più autentici, con pesce appena pescato. La Rotonda è il ristorante di riferimento per il branzino al forno. Per la focaccia molese, i panifici del centro storico sfornano la migliore. Per le fave e cicoria, le trattorie del borgo antico sono le più autentiche.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Cosa mangiare a Mola di Bari per strada? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Lo street food di Mola include focaccia molese (€1.50-2.50), taralli (€2-3) e le classiche fritture di pesce da asporto. D'estate, le bancarelle sul lungomare offrono polpo alla griglia e cozze cotte. I panifici del centro sfornano anche pizze al taglio con ingredienti locali. La focaccia di Mola è diversa da quella di Bari — più sottile e croccante.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Qual è il miglior periodo per visitare Mola di Bari? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Primavera e autunno sono le stagioni migliori: il pesce è più saporito, i fiori di zucca sono in stagione, e la città non è affollata. D'estate è più animata ma anche più calda, con le feste dei pescatori sul lungomare e la sagra del branzino a luglio. L'inverno è ideale per la cucina di pesce più tradizionale, con la zuppa di pesce e il polpo alla pignattara.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Come si arriva a Mola di Bari? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Mola di Bari è a 30 minuti da Bari in auto, raggiungibile anche con il treno regionale dalla stazione centrale di Bari. È vicina all'aeroporto Karol Wojtyla, perfetta per una mezza giornata di esplorazione. Si può raggiungere anche in autobus dalla linea principale Bari-Polignano-Monopoli.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Mola di Bari è adatta per i vegetariani? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Assolutamente sì! Le fave e cicoria, la focaccia molese, le frittelle di fiori di zucca e le insalate di pomodorini sono solo alcuni dei piatti vegetariani che puoi gustare. Molti ristoranti offrono piatti a base di verdure fresche dell'orto, in particolare le cime di rapa, i pomodori secchi e le melanzane grigliate. La tradizione della "cucina dei poveri" ha reso Mola particolarmente ricca di opzioni per chi non mangia carne o pesce.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Quali sono le specialità dolci di Mola di Bari? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>I dolci tipici di Mola includono le cartellate, frittelle di pasta fritta e ricoperte di miele, e i biscotti di mandorle. D'estate, i gelati artigianali con mandorla e limone sono imperdibili. Le pasticcerie del centro sfornano anche le paste di cioccolato ripiene di crema di mandorla. Durante le festività natalizie, le cartellate vengono preparate in ogni casa con ricette che risalgono a diversi secoli fa.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Cosa fare a Mola dopo aver mangiato? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Dopo un buon pranzo, passeggia nel borgo antico tra i vicoli storici fino al castello normanno con vista sul mare. Visita la chiesa madre di San Lorenzo con il suo campanile romanico. D'estate, una passeggiata sul lungomare al tramonto è l'ideale per digerire e godersi la brezza marina. Il borgo antico è pieno di angoli fotografici — vicoli, chiese, balconi fioriti e panorami mozzafiato.</p></div>
+      </div>
+    </div>
+
+    <!-- GetYourGuide -->
+    <div class="gyg-widget" style="margin: 32px 0;">
+      <div class="tips-box">
+        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: var(--primary-light);"><i class="fa-solid fa-compass" style="margin-right: 8px;"></i> Tour ed Esperienze</h3>
+        <div style="font-size:1.1rem; font-weight:700; color:var(--text-white); margin-bottom:6px;">Tour di Giorno da Bari a Mola, Polignano e Monopoli</div>
+        <div style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">Visita i borghi più belli della costa barese con una guida privata. Mola di Bari, Polignano a Mare, Monopoli — tutto in un giorno.</div>
+        <div style="margin-top:12px; display:flex; align-items:center; gap:6px; color:#3b82f6; font-size:0.85rem; font-weight:600;">
+          Prenota su GetYourGuide <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.75rem;"></i>
+
+    </div>
+
+    <!-- Scopri anche -->
+    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin: 40px 0;">
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: var(--text-white);"><i class="fa-solid fa-compass" style="color: var(--primary); margin-right: 8px;"></i> Scopri anche</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;">
+        <a href="/bari/" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; text-decoration: none; color: var(--text-light); transition: all 0.3s; border: 1px solid transparent;">
+          <i class="fa-solid fa-utensils" style="color: var(--primary);"></i>
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;">Cosa Mangiare a Bari</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">15 piatti tipici</div>
+          </div>
+        </a>
+        <a href="/cosa-mangiare-giovinazzo/" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; text-decoration: none; color: var(--text-light); transition: all 0.3s; border: 1px solid transparent;">
+          <i class="fa-solid fa-fish" style="color: var(--primary);"></i>
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;">Cosa Mangiare a Giovinazzo</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Polpo alla pignattara e focaccia</div>
+          </div>
+        </a>
+        <a href="/cosa-mangiare-torre-a-mare/" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; text-decoration: none; color: var(--text-light); transition: all 0.3s; border: 1px solid transparent;">
+          <i class="fa-solid fa-umbrella-beach" style="color: var(--primary);"></i>
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;">Cosa Mangiare a Torre a Mare</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Frittura e griglia</div>
+          </div>
+        </a>
+        <a href="/cosa-mangiare-palese/" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; text-decoration: none; color: var(--text-light); transition: all 0.3s; border: 1px solid transparent;">
+          <i class="fa-solid fa-fish" style="color: var(--primary);"></i>
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;">Cosa Mangiare a Palese</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Cucina barese tradizionale</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Sei un ristoratore a Mola di Bari?</h2>
+      <p>Crea il tuo menu online gratuito su trovapiatto e raggiungi più clienti. La piattaforma è gratuita per i primi 12 mesi.</p>
+      <a href="/app/admin/" class="btn"><i class="fa-solid fa-plus"></i> Crea il tuo Menu</a>
+    </div>
+
+    <div class="ad-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/blog/">Magazine</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <div class="floating-share">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/cosa-mangiare-mola-di-bari/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Mola%20di%20Bari:%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/cosa-mangiare-mola-di-bari/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/cosa-mangiare-mola-di-bari/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'La Rotonda', lat: 41.0583, lng: 17.0786, slug: 'la-rotonda', dish: 'Branzino', price: '€18-28' },
+      { name: 'Antica Pizzeria Guglielmi', lat: 41.0575, lng: 17.08, slug: 'antica-pizzeria-guglielmi', dish: 'Pizza', price: '€2-10' },
+    ];
+
+    const map = L.map('guide-map').setView([41.0583, 17.0786], 14);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">${r.dish}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+
+    document.querySelectorAll('.faq-item h3').forEach(h3 => {
+      h3.addEventListener('click', () => {
+        const item = h3.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cosa Mangiare a Mola di Bari: La Guida Completa ai Piatti Tipici",
+    "description": "Scopri cosa mangiare a Mola di Bari: pesce fresco, pizza al taglio, branzino e specialità di mare con ristoranti e prezzi.",
+    "image": "https://images.unsplash.com/photo-1544124499-58912cbddaad?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-08-29T10:00:00+02:00",
+    "dateModified": "2026-08-29T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/cosa-mangiare-mola-di-bari/" },
+    "keywords": "cosa mangiare Mola di Bari, piatti tipici Mola di Bari, pesce fresco Mola, ristoranti Mola di Bari, branzino Mola, pizza Mola di Bari"
+  }
+  </script>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "name": "Cosa Mangiare a Mola di Bari",
+    "description": "Guida gastronomica a Mola di Bari: piatti tipici, ristoranti, prezzi e consigli per scoprire la cucina di Mola di Bari (Puglia).",
+    "url": "https://www.trovapiatto.it/mola-di-bari/",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.0583,
+      "longitude": 17.0786
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Mola di Bari",
+      "addressRegion": "Puglia",
+      "addressCountry": "IT"
+    },
+    "touristType": ["Foodie", "Culinary Traveler"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Cosa Mangiare a Mola di Bari", "item": "https://www.trovapiatto.it/cosa-mangiare-mola-di-bari/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è il piatto più tipico di Mola di Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il branzino al forno è il piatto simbolo. Mola è famosa in tutta la Puglia per la qualità del suo branzino, pescato fresco ogni mattina nel porto locale."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa mangiare a Mola di Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un pranzo in trattoria costa €15-30 a persona. Il pesce fresco è più conveniente che nei ristoranti di Bari grazie al porto locale."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A che ora si mangia a Mola?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I ristoranti aprono per pranzo (12:30-14:30) e cena (19:30-22:30). I locali sul porto sono più affollati la sera. La focaccia molese si trova già dalle 4:30 di mattina."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Dove si mangia il meglio a Mola di Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I locali attorno al porto peschereccio offrono i piatti più autentici. La Rotonda è il ristorante di riferimento per il branzino al forno."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mola di Bari è adatta per i vegetariani?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì: fave e cicoria, focaccia molese, frittelle di fiori di zucca e insalate di pomodorini sono piatti vegetariani tipici."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come si arriva a Mola di Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mola di Bari è a 30 minuti da Bari in auto, raggiungibile anche con il treno regionale. È vicina all'aeroporto Karol Wojtyla."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="MH3AZB7"></script>
+
+</body>
+</html>

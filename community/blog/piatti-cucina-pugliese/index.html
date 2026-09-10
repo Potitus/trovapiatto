@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I 10 Migliori Piatti della Cucina Pugliese | trovapiatto</title>
+  <meta name="description" content="Scopri i 10 piatti piu buoni della cucina pugliese. Orecchiette, focaccia, panzerotti, tiella e molto altro con prezzi e dove mangiarli a Bari.">
+  <meta name="keywords" content="cucina pugliese, piatti tipici Puglia, orecchiette, focaccia barese, panzerotti, tiella, ristoranti Bari, cibo pugliese, specialita Puglia">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/piatti-cucina-pugliese/">
+  <meta property="og:title" content="I 10 Migliori Piatti della Cucina Pugliese">
+  <meta property="og:description" content="Guida completa ai piu buoni piatti della tradizione pugliese con prezzi e consigli dove mangiarli a Bari.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-05T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-05T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Cucina Pugliese">
+  <meta property="article:tag" content="Piatti Tipici">
+  <meta property="article:tag" content="Bari">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="I 10 Migliori Piatti della Cucina Pugliese">
+  <meta name="twitter:description" content="Guida completa ai piu buoni piatti della tradizione pugliese con prezzi e consigli.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/piatti-cucina-pugliese/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --bg-card-hover: #221833;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .article-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .article-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .article-nav .logo img { height: 32px; }
+    
+    .article-nav .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+    
+    .article-nav .back-link:hover { color: var(--primary); }
+    
+    .article-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 350px;
+      overflow: hidden;
+    }
+    
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%);
+    }
+    
+    .article-hero .hero-content {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .article-hero .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .article-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    
+    @media (min-width: 768px) {
+      .article-hero h1 { font-size: 2.8rem; }
+    }
+    
+    .article-hero .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-hero .meta i { color: var(--primary); }
+    
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+    
+    .article-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: var(--text-white);
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text-white);
+    }
+    
+    .article-content p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .article-content strong { color: var(--text-white); }
+    
+    .article-content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .article-content a:hover { color: var(--primary-light); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      transition: all 0.3s;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    
+    .restaurant-card .rc-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245,158,11,0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-food);
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-cuisine {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-dish {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .restaurant-card .rc-dish-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    
+    .restaurant-card .rc-dish-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    
+    .restaurant-card .rc-dish-price {
+      font-weight: 700;
+      color: var(--accent-food);
+      font-size: 1rem;
+    }
+    
+    .restaurant-card .rc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    
+    .map-section {
+      margin: 40px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #article-map {
+      width: 100%;
+      height: 350px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .cta-box .cta-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+    }
+    
+    .ad-container {
+      margin: 30px 0;
+      text-align: center;
+      min-height: 90px;
+    }
+    
+    .article-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .article-footer .share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .article-footer .share span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-footer .share a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    
+    .article-footer .share a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="article-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <a href="/community/blog/" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Magazine
+    </a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=1400&h=700&fit=crop" alt="Cucina pugliese">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-utensils"></i> Cucina Regionale</span>
+      <h1>I 10 Migliori Piatti della Cucina Pugliese</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 5 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 8 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+
+      <p>La <strong>cucina pugliese</strong> e una delle tradizioni gastronomiche piu ricche e autentiche d'Italia. Fondata su ingredienti semplici, freschi e di qualita, la tradizione culinaria della Puglia e il risultato di secoli di storia, culture diverse e una terra generosa. Dalle orecchiette fatte a mano alla focaccia calda, dai panzerotti fritti alla tiella bake, i piatti pugliesi raccontano un popolo che ha saputo trasformare la poverta in arte culinaria.</p>
+
+      <p>In questa guida completa ti portiamo alla scoperta dei <strong>10 piatti piu iconici della cucina pugliese</strong>, con descrizioni dettagliate, prezzi reali e i migliori posti dove assaggiarli a Bari. Preparati a sboccigliarti: stai per viaggiare attraverso i sapori più autentici del Sud Italia.</p>
+
+      <h2>1. Orecchiette con Cime di Rapa — Il Piatto Simbolo</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Le Orecchiette di Strada</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Arco Basso, Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette con Cime di Rapa</div>
+          <div class="rc-dish-desc">Orecchiette fatte a mano, cime di rapa, acciughe sotto sale e pangrattato tostato</div>
+          <div class="rc-dish-price">&euro;8</div>
+        </div>
+        <a href="/menu/orecchiette-di-strada/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Le <strong>orecchiette</strong> (dall latino "oreticula", orecchie piccole) sono la pasta simbolo della Puglia. Fatte a mano con la punta del coltello e il pollice, vengono condite con le <strong>cime di rapa</strong>, un ortaggio amaro che e il cuore della cucina barese. Le acciughe sotto sale aggiungono sapori di mare, mentre il pangrattato tostato crea il contrasto perfetto. A Bari, le migliori orecchiette si trovano a Bari Vecchia, dove le nonne le preparano ancora come una volta.</p>
+
+      <p><strong>Prezzo medio:</strong> da 8 a 12 euro. A soli 8 euro da Le Orecchiette di Strada, e un piatto che non puoi perderti.</p>
+
+      <h2>2. Focaccia Barese — La Regina della Street Food</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Forno Fiore</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Focaccia con Pomodorini</div>
+          <div class="rc-dish-desc">Focaccia bassa e croccante con pomodorini freschi, origano e olio extravergine</div>
+          <div class="rc-dish-price">&euro;3</div>
+        </div>
+        <a href="/menu/forno-fiore/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>La <strong>focaccia barese</strong> e diversa da quella di altre citta: e piu bassa, croccante e piena di olio. I pomodorini freschi, l'origano e l'olio extravergine d'oliva creano un connubio di sapori semplice ma irresistibile. A Bari la focaccia si mangia a colazione, a pranzo, a merenda e a cena. E' un piatto di strada che ha conquistato il mondo.</p>
+
+      <p><strong>Prezzo medio:</strong> da 2 a 4 euro. A Forno Fiore la trovi perfetta a soli 3 euro.</p>
+
+      <h2>3. Panzerotti — La Delizia Fritta</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ai Monizzati</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Panzerotto Classico</div>
+          <div class="rc-dish-desc">Pasta fritta ripiena di mozzarella e pomodoro, dorata e croccante</div>
+          <div class="rc-dish-price">&euro;4</div>
+        </div>
+        <a href="/menu/ai-monizzati/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>I <strong>panzerotti</strong> sono la versione pugliese della pizza fritta. Impasto morbido, mozzarella fresca e pomodoro: tre ingredienti che, una volta fritti nell'olio bollente, creano un cibo irresistibile. A Bari i panzerotti si mangiano in piedi davanti al forno, con un tocco di sale grosso sopra. La versions al formaggio o con le olive sono ottime alternative.</p>
+
+      <p><strong>Prezzo medio:</strong> da 3 a 5 euro. Da Ai Monizzati trovi il panzerotto classico a soli 4 euro.</p>
+
+      <h2>4. Tiella — Il Baked Rice di Bari</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Trattoria della Nonna</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Tiella di Riso, Patate e Cozze</div>
+          <div class="rc-dish-desc">Riso, patate e cozze stratificati e cotti al forno con pomodoro e cipolla</div>
+          <div class="rc-dish-price">&euro;12</div>
+        </div>
+        <a href="/menu/trattoria-della-nonna/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>La <strong>tiella</strong> e un piatto unico che unisce terra e mare. Riso, patate e cozze vengono stratificati in una teglia e cotti al forno con pomodoro, cipolla e un po' di peperoncino. Il risultato e un piatto sostanzioso, profumato e completo. A Bari la tiella e un pranzo perfetto per la domenica, ma la trovi anche nei ristoranti durante la settimana.</p>
+
+      <p><strong>Prezzo medio:</strong> da 10 a 14 euro. A Trattoria della Nonna la preparano con cozze fresche del giorno.</p>
+
+      <h2>5. Calzone con Ripieno — Il Piatto Piu Amato</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Pizzeria da Michele</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Calzone Ripieno</div>
+          <div class="rc-dish-desc">Pizza ripiena di ricotta, mozzarella e pomodoro, cotta al forno</div>
+          <div class="rc-dish-price">&euro;8</div>
+        </div>
+        <a href="/menu/pizzeria-da-michele/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>calzone ripieno</strong> pugliese non e il calzone chiuso del Nord. E' una pizza ripiena di ricotta, mozzarella e pomodoro, chiusa e cotta al forno fino a diventare dorata e soffice. A Bari lo trovi in ogni pizzeria, ma quello di Da Michele e leggendario. Un piatto sostanzioso che fa da pasto unico.</p>
+
+      <p><strong>Prezzo medio:</strong> da 7 a 10 euro. A Da Michele il calzone e un capolavoro a soli 8 euro.</p>
+
+      <!-- AdSense In-Article -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>6. Crapi e Fagiol — Zuppa di Mare e Legumi</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">La Tana del Mare</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Lungomare, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.5</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Crapi e Fagiol</div>
+          <div class="rc-dish-desc">Zuppa di pesce con fagioli, pomodoro e peperoncino</div>
+          <div class="rc-dish-price">&euro;14</div>
+        </div>
+        <a href="/menu/la-tana-del-mare/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>I <strong>crapi e fagiol</strong> sono una zuppa di pesce con fagioli bianchi, pomodoro e peperoncino. Un piatto di mare e terra che rappresenta l'anima della cucina pugliese. Il pesce viene cotto lentamente con i fagiuli fino a creare un brodo ricco e saporito. A Bari lo trovi nei ristoranti di pesce sul lungomare.</p>
+
+      <p><strong>Prezzo medio:</strong> da 12 a 16 euro. A La Tana del Mare lo preparano con pesce fresco del giorno.</p>
+
+      <h2>7. Bombe di Riso — Le Polpette di Riso</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Forno di Strada</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Bomba di Riso</div>
+          <div class="rc-dish-desc">Palline di riso farcite con ragu, bollite e fritte fino a doratura</div>
+          <div class="rc-dish-price">&euro;5</div>
+        </div>
+        <a href="/menu/forno-di-strada/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Le <strong>bombe di riso</strong> sono palline di riso cotte nel brodo, farcite con ragu di carne, poi passate nella farina e fritte fino a diventare croccanti fuori e morbide dentro. A Bari sono un antipasto tipico che si trova in ogni osteria. Il contrasto tra la croccantezza esterna e il ripieno saporito le rende irresistibili.</p>
+
+      <p><strong>Prezzo medio:</strong> da 4 a 6 euro. A Forno di Strada le preparano ancora con la ricetta tradizionale.</p>
+
+      <h2>8. Pasticciotto — La Dolcezza Leccese a Bari</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Pasticceria Savoia</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Corso Vittorio Emanuele, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pasticciotto alla Crema</div>
+          <div class="rc-dish-desc">Pasta frola ripiena di crema pasticcera, cotta al forno</div>
+          <div class="rc-dish-price">&euro;3</div>
+        </div>
+        <a href="/menu/pasticceria-savoia/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>pasticciotto</strong> e originario di Galatina (Lecce), ma a Bari ha trovato una casa. Una pasta frola ripiena di crema pasticcera, cotta al forno fino a doratura. Si mangia caldo o tiepido, spesso a colazione con un caffè. E' il dolce pugliese per eccellenza, semplice e perfetto.</p>
+
+      <p><strong>Prezzo medio:</strong> da 2 a 4 euro. A Pasticceria Savoia lo trovi a soli 3 euro, ancora caldo dal forno.</p>
+
+      <h2>9. Polpo alla Pignatta — Tentacoli di Mare</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Osteria del Mare</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Polpo alla Pignatta</div>
+          <div class="rc-dish-desc">Polpo cotto lentamente in pentola di coccio con pomodoro, olive e patate</div>
+          <div class="rc-dish-price">&euro;16</div>
+        </div>
+        <a href="/menu/osteria-del-mare/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>polpo alla pignatta</strong> e un piatto di mare che si cuoce lentamente in una pentola di coccio con pomodoro, olive nere, patate e un po' di peperoncino. Il polpo diventa tenero e si sfalda, il sugo si addensa e i sapori si fondono in un connubio perfetto. A Bari e un piatto tipico dei ristoranti di mare.</p>
+
+      <p><strong>Prezzo medio:</strong> da 14 a 18 euro. A Osteria del Mare lo preparano con polpo fresco del mercato.</p>
+
+      <h2>10. Cartellate — I Dolci Natalizi</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Dolci Tradizioni</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari Centro</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Cartellate con Miele</div>
+          <div class="rc-dish-desc">Strips di pasta fritti e ricoperti di miele di mandorle e vincotto</div>
+          <div class="rc-dish-price">&euro;6</div>
+        </div>
+        <a href="/menu/dolci-tradizioni/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Le <strong>cartellate</strong> sono dolci natalizi pugliesi fatti a mano: strisce di pasta sottili, arrotolate e fritte, poi ricoperte di miele di mandorle e vincotto di uva. A Bari le trovi nei bar e pasticcerie durante il periodo natalizio, ma alcune le preparano tutto l'anno. Sono il dolce che racconta la tradizione della Puglia.</p>
+
+      <p><strong>Prezzo medio:</strong> da 5 a 8 euro. A Dolci Tradizioni le preparano con miele di mandorle genuino.</p>
+
+      <!-- Mappa Interattiva -->
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Dove Trovarli sulla Mappa</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Consigli per Assaggiare la Vera Cucina Pugliese</h2>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-clock"></i> <span><strong>Vai a pranzo:</strong> Molti piatti pugliesi sono piatti da pranzo. Le orecchiette, la tiella e i crapi e fagiol sono perfetti a mezzogiorno.</span></li>
+          <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Budget:</strong> La cucina pugliese e economica. Con 15-20 euro a testa puoi mangiare un pasto completo con antipasto, primo e dolce.</span></li>
+          <li><i class="fa-solid fa-map-pin"></i> <span><strong>Bari Vecchia:</strong> I locali piu autentici sono nel centro storico. Passeggia per le vie e scegli quello che ti piace di piu.</span></li>
+          <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Il vino:</strong> Un Primitivo o un Negroamaro sono perfetti con i piatti di carne. Per il pesce, un Verdeca o un Bianco di Puglia.</span></li>
+          <li><i class="fa-solid fa-pepper-hot"></i> <span><strong>Peperoncino:</strong> I baresi amano il peperoncino fresco. Aggiungilo a piacere per un tocco piccante.</span></li>
+          <li><i class="fa-solid fa-hand-point-up"></i> <span><strong>Fatto a mano:</strong> Cerca sempre la pasta fatta a mano. La differenza con quella industriale e enorme.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <h3>Scopri Altri Piatti Tipici di Bari</h3>
+        <p>Cerca piatti, ristoranti e menu nella nostra mappa interattiva</p>
+        <a href="/piatti/" class="cta-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Cerca Piatti
+        </a>
+      </div>
+
+      <!-- AdSense Bottom -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/piatti-cucina-pugliese/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/piatti-cucina-pugliese/&text=I+10+Migliori+Piatti+della+Cucina+Pugliese"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+i+10+migliori+piatti+della+cucina+pugliese:+https://www.trovapiatto.it/community/blog/piatti-cucina-pugliese/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'Le Orecchiette di Strada', lat: 41.1285, lng: 16.8705, price: '€8', slug: 'orecchiette-di-strada', rating: '4.9' },
+      { name: 'Forno Fiore', lat: 41.1291, lng: 16.8702, price: '€3', slug: 'forno-fiore', rating: '4.8' },
+      { name: 'Ai Monizzati', lat: 41.1291, lng: 16.8702, price: '€4', slug: 'ai-monizzati', rating: '4.7' },
+      { name: 'Trattoria della Nonna', lat: 41.1280, lng: 16.8700, price: '€12', slug: 'trattoria-della-nonna', rating: '4.6' },
+      { name: 'Pizzeria da Michele', lat: 41.1291, lng: 16.8702, price: '€8', slug: 'pizzeria-da-michele', rating: '4.9' },
+      { name: 'La Tana del Mare', lat: 41.1185, lng: 16.8680, price: '€14', slug: 'la-tana-del-mare', rating: '4.5' },
+      { name: 'Forno di Strada', lat: 41.1285, lng: 16.8705, price: '€5', slug: 'forno-di-strada', rating: '4.7' },
+      { name: 'Pasticceria Savoia', lat: 41.1240, lng: 16.8670, price: '€3', slug: 'pasticceria-savoia', rating: '4.8' },
+      { name: 'Osteria del Mare', lat: 41.1285, lng: 16.8705, price: '€16', slug: 'osteria-del-mare', rating: '4.6' },
+      { name: 'Dolci Tradizioni', lat: 41.1245, lng: 16.8695, price: '€6', slug: 'dolci-tradizioni', rating: '4.9' }
+    ];
+
+    const map = L.map('article-map').setView([41.1245, 16.8695], 14);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">⭐ ${r.rating}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "I 10 Migliori Piatti della Cucina Pugliese",
+    "description": "Guida completa ai piu buoni piatti della tradizione pugliese. Orecchiette, focaccia, panzerotti, tiella e molto altro con prezzi e dove mangiarli a Bari.",
+    "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-07-05T10:00:00+02:00",
+    "dateModified": "2026-07-05T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/piatti-cucina-pugliese/" },
+    "articleSection": "Food Guide",
+    "keywords": "cucina pugliese, piatti tipici Puglia, orecchiette, focaccia barese, panzerotti, tiella, ristoranti Bari"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Magazine", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Piatti Cucina Pugliese", "item": "https://www.trovapiatto.it/community/blog/piatti-cucina-pugliese/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quali sono i piatti tipici della Puglia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I piatti tipici della Puglia includono le orecchiette con cime di rapa, la focaccia barese, i panzerotti, la tiella di riso patate e cozze, i crapi e fagiol, le bombe di riso, il pasticciotto, il polpo alla pignatta e le cartellate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Dove mangiare la vera cucina pugliese a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I migliori posti per la cucina pugliese a Bari si trovano a Bari Vecchia, come Le Orecchiette di Strada (4.9 stelle, €8), Forno Fiore (4.8 stelle, €3) e Ai Monizzati (4.7 stelle, €4). Consulta la nostra guida completa per tutti i dettagli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa un pasto in Puglia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un pasto completo in Puglia costa in media da 15 a 25 euro a testa, incluso antipasto, primo piatto, secondo con contorno e dolce. La cucina pugliese e tra le piu economiche d'Italia."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Immagini Piatti - trovapiatto.it</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #537b83;
+            --secondary-color: #3d5a62;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #EF3D26;
+        }
+        * { box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            padding: 20px 0;
+        }
+        .navbar-custom {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 15px 0;
+        }
+        .navbar-custom h1 {
+            color: white;
+            margin-bottom: 0;
+            font-weight: 700;
+        }
+        .container-main {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            border-bottom: 3px solid var(--warning-color);
+            padding-bottom: 10px;
+        }
+        .form-group-custom {
+            margin-bottom: 25px;
+        }
+        .form-group-custom label {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .form-control-custom {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        .form-control-custom:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(83, 123, 131, 0.25);
+            outline: none;
+        }
+        .btn-custom {
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .btn-primary-custom {
+            background: var(--primary-color);
+            color: white;
+        }
+        .btn-primary-custom:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(83, 123, 131, 0.3);
+        }
+        .btn-warning-custom {
+            background: var(--warning-color);
+            color: white;
+        }
+        .btn-warning-custom:hover {
+            background: #d63018;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 61, 38, 0.3);
+        }
+        .dish-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .dish-card {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .dish-card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        .dish-card h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        .dish-card p {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .dish-image-preview {
+            width: 100%;
+            height: 150px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .dish-image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .dish-image-preview.no-image {
+            color: #999;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+        .file-input-label {
+            display: block;
+            padding: 10px 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 8px 0;
+        }
+        .file-input-label:hover {
+            background: var(--secondary-color);
+        }
+        .file-name {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .upload-progress {
+            display: none;
+            margin-top: 10px;
+        }
+        .progress-bar-animated {
+            animation: progress-animation 1s linear infinite;
+        }
+        @keyframes progress-animation {
+            0% { background-position: 0 0; }
+            100% { background-position: 30px 0; }
+        }
+        .alert-custom {
+            border-radius: 8px;
+            border-left: 4px solid;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .alert-custom.success {
+            background: #d4edda;
+            color: #155724;
+            border-left-color: var(--success-color);
+            display: block;
+        }
+        .alert-custom.error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left-color: var(--danger-color);
+            display: block;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-box {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-box h6 {
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar-custom">
+        <div class="container-fluid">
+            <h1><i class="fas fa-images"></i> Gestione Immagini Piatti</h1>
+            <a href="dashboard.html" class="btn btn-light btn-sm" style="position: absolute; right: 20px; top: 15px;">
+                <i class="fas fa-arrow-left"></i> Torna al Dashboard
+            </a>
+        </div>
+    </nav>
+
+    <div class="container-main">
+        <!-- Alert -->
+        <div id="alertBox" class="alert-custom"></div>
+
+        <!-- Statistiche -->
+        <div class="stats-section">
+            <div class="stat-box">
+                <h6>Ristoranti</h6>
+                <div class="number" id="restaurantCount">-</div>
+            </div>
+            <div class="stat-box">
+                <h6>Piatti Totali</h6>
+                <div class="number" id="dishCount">-</div>
+            </div>
+            <div class="stat-box">
+                <h6>Con Immagine</h6>
+                <div class="number" id="imageCount">-</div>
+            </div>
+        </div>
+
+        <!-- Selezione Ristorante -->
+        <div class="form-group-custom">
+            <label for="restaurantSelect"><i class="fas fa-building"></i> Seleziona Ristorante</label>
+            <select id="restaurantSelect" class="form-control-custom" style="width: 100%;">
+                <option value="">-- Carica Ristoranti --</option>
+            </select>
+        </div>
+
+        <!-- NUOVA SEZIONE: Foto Placeholder Automatiche -->
+        <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 2px solid #cce5ff;">
+            <h4 style="color: #0066cc; margin-bottom: 15px;">
+                <i class="fas fa-magic"></i> Genera Foto Rapide Automatiche
+            </h4>
+            
+            <p style="color: #666; margin-bottom: 15px;">
+                Genera immagini placeholder professional per tutti i piatti senza immagine. Le foto verranno create automaticamente con il nome del piatto.
+            </p>
+
+            <div class="form-group-custom">
+                <label>Stile Immagine</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                    <label style="display: flex; align-items: center; cursor: pointer; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px; background: white;">
+                        <input type="radio" name="autoImageStyle" value="food" checked style="margin-right: 10px;">
+                        <span><i class="fas fa-utensils"></i> Stile Cibo</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px; background: white;">
+                        <input type="radio" name="autoImageStyle" value="gradient" style="margin-right: 10px;">
+                        <span><i class="fas fa-palette"></i> Gradiente</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px; background: white;">
+                        <input type="radio" name="autoImageStyle" value="dark" style="margin-right: 10px;">
+                        <span><i class="fas fa-moon"></i> Scuro</span>
+                    </label>
+                </div>
+            </div>
+
+            <button class="btn btn-custom btn-primary-custom" id="autoGenBtn" onclick="startAutoGeneration()">
+                <i class="fas fa-magic"></i> Genera Foto per Piatti Senza Immagine
+            </button>
+            <button class="btn btn-custom btn-warning-custom" id="autoGenAllBtn" onclick="startAutoGenerationAll()" style="margin-left: 10px;">
+                <i class="fas fa-sparkles"></i> Rigenera Tutte le Foto
+            </button>
+            <button class="btn btn-custom btn-warning-custom" id="syncImagesBtn" onclick="syncImagesToDatabase()" style="margin-left: 10px;">
+                <i class="fas fa-database"></i> Sincronizza con Database
+            </button>
+            <button class="btn btn-custom btn-warning-custom" id="autoAssignBtn" onclick="autoAssignImagesToDishes()" style="margin-left: 10px;">
+                <i class="fas fa-link"></i> Assegna Immagini ai Piatti
+            </button>
+
+            <div style="margin-top: 15px; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                <h6 style="color: #856404; margin-bottom: 10px;"><i class="fas fa-globe"></i> Scarica da Internet</h6>
+                <button class="btn btn-custom btn-warning-custom" id="unsplashBtn" onclick="generateFromUnsplash()" style="margin-right: 10px;">
+                    <i class="fas fa-image"></i> Scarica da Unsplash
+                </button>
+                <button class="btn btn-custom btn-warning-custom" id="pixabayBtn" onclick="generateFromPixabay()">
+                    <i class="fas fa-images"></i> Scarica da Pixabay
+                </button>
+            </div>
+
+            <div id="autoGenProgress" style="display: none; margin-top: 15px;">
+                <div class="progress" style="height: 25px; margin-bottom: 10px;">
+                    <div class="progress-bar progress-bar-animated" id="autoGenProgressBar" style="width: 0%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">0%</div>
+                </div>
+                <div id="autoGenStatus" style="font-size: 0.9em; color: #666; text-align: center;"></div>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Caricamento piatti...</p>
+        </div>
+
+        <!-- Lista Piatti -->
+        <h3 class="section-title" id="dishListTitle" style="display: none;">Piatti da Gestire</h3>
+        <div id="dishListContainer" class="dish-list"></div>
+    </div>
+
+    <script>
+        const API_URL = './api-crud.php';
+        const UPLOAD_URL = './upload-handler.php';
+        let allDishes = [];
+        const authToken = localStorage.getItem('auth_token') || '';
+
+        // Carica ristoranti al load
+        document.addEventListener('DOMContentLoaded', loadRestaurants);
+
+        // Carica ristoranti
+        async function loadRestaurants() {
+            try {
+                const response = await fetch(API_URL + '?action=get-restaurants');
+                const result = await response.json();
+                
+                if (result.success && result.data) {
+                    populateRestaurants(result.data);
+                    updateStats();
+                }
+            } catch (e) {
+                showAlert('Errore nel caricamento dei ristoranti', 'error');
+                console.error(e);
+            }
+        }
+
+        // Popola select ristoranti
+        function populateRestaurants(restaurants) {
+            const select = document.getElementById('restaurantSelect');
+            
+            select.innerHTML = '<option value="">-- Seleziona un Ristorante --</option>';
+            
+            restaurants.forEach(restaurant => {
+                const option = document.createElement('option');
+                option.value = restaurant.slug || restaurant.id;
+                option.textContent = restaurant.name;
+                option.dataset.id = restaurant.id;
+                select.appendChild(option);
+            });
+        }
+
+        // Al cambio ristorante
+        document.getElementById('restaurantSelect').addEventListener('change', function() {
+            if (this.value) {
+                loadDishes(this.value);
+            } else {
+                document.getElementById('dishListContainer').innerHTML = '';
+                document.getElementById('dishListTitle').style.display = 'none';
+            }
+        });
+
+        // Carica piatti del ristorante
+        async function loadDishes(restaurantSlug) {
+            console.log('📚 loadDishes() - Caricando piatti per:', restaurantSlug);
+            
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('dishListContainer').innerHTML = '';
+            document.getElementById('dishListTitle').style.display = 'none';
+            
+            try {
+                const url = API_URL + '?action=get-menu&restaurant_id=' + restaurantSlug;
+                console.log('🔗 URL richiesta:', url);
+                
+                const response = await fetch(url);
+                console.log('📡 Risposta HTTP:', response.status, response.statusText);
+                
+                const result = await response.json();
+                console.log('📦 Dati ricevuti:', result);
+                
+                if (result.success && result.data) {
+                    console.log('✅ Piatti caricati:', result.data.length);
+                    displayDishes(result.data);
+                    document.getElementById('dishListTitle').style.display = 'block';
+                    updateStats();
+                } else {
+                    console.warn('⚠️ Nessun piatto trovato:', result);
+                    showAlert('Nessun piatto trovato', 'error');
+                }
+            } catch (e) {
+                console.error('❌ Errore nel caricamento dei piatti:', e);
+                showAlert('Errore nel caricamento dei piatti: ' + e.message, 'error');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        // Visualizza piatti
+        function displayDishes(dishes) {
+            const container = document.getElementById('dishListContainer');
+            allDishes = dishes; // Salva per uso batch
+            container.innerHTML = '';
+
+            dishes.forEach(dish => {
+                const card = document.createElement('div');
+                card.className = 'dish-card';
+                
+                const imageHtml = dish.image_url 
+                    ? `<div class="dish-image-preview"><img src="${dish.image_url}" alt="${dish.name}" onerror="this.src='/app/assets/images/placeholder.png'"></div>`
+                    : `<div class="dish-image-preview no-image"><i class="fas fa-image"></i><br>Nessuna immagine</div>`;
+                
+                card.innerHTML = `
+                    <h5>${dish.name}</h5>
+                    <p style="margin-bottom: 5px;"><strong>Categoria:</strong> ${dish.category}</p>
+                    <p><strong>Prezzo:</strong> €${parseFloat(dish.price).toFixed(2)}</p>
+                    ${imageHtml}
+                    <div class="file-input-wrapper">
+                        <input type="file" id="file_${dish.id}" accept="image/*" onchange="uploadImage('${dish.id}', '${dish.name}', this)">
+                        <label for="file_${dish.id}" class="file-input-label">
+                            <i class="fas fa-upload"></i> Carica Immagine
+                        </label>
+                        <div class="file-name" id="fileName_${dish.id}"></div>
+                    </div>
+                    <div class="upload-progress" id="progress_${dish.id}">
+                        <div class="progress" style="height: 4px;">
+                            <div class="progress-bar progress-bar-animated" style="width: 0%"></div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Upload immagine
+        async function uploadImage(dishId, dishName, input) {
+            if (!input.files || !input.files[0]) return;
+
+            const file = input.files[0];
+            const fileName = document.getElementById('fileName_' + dishId);
+            const progress = document.getElementById('progress_' + dishId);
+
+            // Validazione file
+            if (!file.type.startsWith('image/')) {
+                showAlert('Seleziona un file immagine valido', 'error');
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) { // 5MB
+                showAlert('L\'immagine è troppo grande (max 5MB)', 'error');
+                return;
+            }
+
+            fileName.textContent = 'Caricamento: ' + file.name + '...';
+            progress.style.display = 'block';
+
+            const formData = new FormData();
+            formData.append('action', 'upload-dish-image');
+            formData.append('dish_id', dishId);
+            formData.append('image', file);
+
+            try {
+                const tokenParam = authToken ? '?token=' + authToken : '';
+                const response = await fetch(API_URL + tokenParam, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    fileName.textContent = '✅ Caricato: ' + file.name;
+                    fileName.style.color = 'var(--success-color)';
+                    showAlert('Immagine caricata per: ' + dishName, 'success');
+                    
+                    // Reload piatti dopo 1 secondo
+                    setTimeout(() => {
+                        const restaurantSelect = document.getElementById('restaurantSelect');
+                        if (restaurantSelect.value) {
+                            loadDishes(restaurantSelect.value);
+                        }
+                    }, 1000);
+                } else {
+                    showAlert('Errore: ' + (result.message || 'Errore sconosciuto'), 'error');
+                    fileName.textContent = '❌ Errore nel caricamento';
+                    fileName.style.color = 'var(--danger-color)';
+                }
+            } catch (e) {
+                showAlert('Errore di connessione', 'error');
+                console.error(e);
+                fileName.textContent = '❌ Errore di connessione';
+                fileName.style.color = 'var(--danger-color)';
+            } finally {
+                progress.style.display = 'none';
+            }
+        }
+
+        // Mostra alert
+        function showAlert(message, type) {
+            const box = document.getElementById('alertBox');
+            box.className = 'alert-custom ' + type;
+            box.textContent = message;
+            
+            setTimeout(() => {
+                box.className = 'alert-custom';
+            }, 5000);
+        }
+
+        // Aggiorna statistiche
+        async function updateStats() {
+            try {
+                const response = await fetch(API_URL + '?action=get-restaurants');
+                const result = await response.json();
+                
+                if (result.success && result.data) {
+                    document.getElementById('restaurantCount').textContent = result.data.length;
+                    
+                    // Conta piatti totali con immagine
+                    let totalDishes = 0;
+                    let dishesWithImage = 0;
+                    
+                    for (const restaurant of result.data) {
+                        const dishResponse = await fetch(API_URL + '?action=get-menu&restaurant_id=' + (restaurant.slug || restaurant.id));
+                        const dishResult = await dishResponse.json();
+                        
+                        if (dishResult.success && dishResult.data) {
+                            totalDishes += dishResult.data.length;
+                            dishesWithImage += dishResult.data.filter(d => d.image_url).length;
+                        }
+                    }
+                    
+                    document.getElementById('dishCount').textContent = totalDishes;
+                    document.getElementById('imageCount').textContent = dishesWithImage;
+                }
+            } catch (e) {
+                console.error('Errore nel caricamento statistiche', e);
+            }
+        }
+
+        // ===== GENERAZIONE AUTOMATICA =====
+
+        // Genera immagine placeholder con canvas
+        function generatePlaceholderImage(text, style = 'food') {
+            const canvas = document.createElement('canvas');
+            canvas.width = 400;
+            canvas.height = 300;
+            const ctx = canvas.getContext('2d');
+
+            // Colori per diversi stili
+            const styles = {
+                food: {
+                    bg1: '#FF6B6B',
+                    bg2: '#FFE66D',
+                    textColor: '#fff',
+                    accent: '#4ECDC4'
+                },
+                gradient: {
+                    bg1: '#667eea',
+                    bg2: '#764ba2',
+                    textColor: '#fff',
+                    accent: '#f093fb'
+                },
+                dark: {
+                    bg1: '#2c3e50',
+                    bg2: '#34495e',
+                    textColor: '#ecf0f1',
+                    accent: '#e74c3c'
+                }
+            };
+
+            const colorSet = styles[style] || styles.food;
+
+            // Gradiente di sfondo
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, colorSet.bg1);
+            gradient.addColorStop(1, colorSet.bg2);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Decorazione geometrica
+            ctx.fillStyle = colorSet.accent;
+            ctx.globalAlpha = 0.3;
+            ctx.fillRect(0, 0, canvas.width, 80);
+            ctx.globalAlpha = 1.0;
+
+            // Testo del piatto
+            ctx.fillStyle = colorSet.textColor;
+            ctx.font = 'bold 32px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            // Tronca il testo se troppo lungo
+            let displayText = text;
+            if (displayText.length > 25) {
+                displayText = displayText.substring(0, 22) + '...';
+            }
+
+            // Ombra del testo
+            ctx.fillStyle = 'rgba(0,0,0,0.3)';
+            ctx.fillText(displayText, 202, 152);
+
+            // Testo principale
+            ctx.fillStyle = colorSet.textColor;
+            ctx.fillText(displayText, 200, 150);
+
+            // Icona cibo (semplice)
+            ctx.font = 'bold 60px Arial';
+            ctx.fillText('🍽️', 200, 80);
+
+            // Numero progressivo
+            ctx.font = 'bold 16px Arial';
+            ctx.fillStyle = 'rgba(255,255,255,0.7)';
+            ctx.fillText('Auto-Generated', 200, 280);
+
+            return canvas.toDataURL('image/jpeg', 0.85);
+        }
+
+        // Avvia generazione automatica
+        async function startAutoGeneration() {
+            console.log('🔧 startAutoGeneration() chiamata');
+            
+            const restaurantId = document.getElementById('restaurantSelect').value;
+            const style = document.querySelector('input[name="autoImageStyle"]:checked').value;
+
+            console.log('📋 Parametri:', { restaurantId, style });
+
+            if (!restaurantId) {
+                showAlert('❌ Seleziona un ristorante', 'error');
+                return;
+            }
+
+            if (allDishes.length === 0) {
+                console.warn('⚠️ allDishes è vuoto:', allDishes);
+                showAlert('❌ Carica prima i piatti del ristorante dalla sezione sopra', 'error');
+                return;
+            }
+
+            // Filtra solo piatti senza immagine
+            const dishesWithoutImage = allDishes.filter(d => !d.image_url);
+            console.log('🍽️ Piatti senza immagine:', dishesWithoutImage.length, 'di', allDishes.length);
+
+            if (dishesWithoutImage.length === 0) {
+                showAlert('✅ Tutti i piatti hanno già un\'immagine!', 'success');
+                return;
+            }
+
+            await generateImages(dishesWithoutImage, style, 'Generazione foto per piatti senza immagine');
+        }
+
+        // Avvia rigenerazione di tutte le foto
+        async function startAutoGenerationAll() {
+            console.log('🔧 startAutoGenerationAll() chiamata');
+            
+            const restaurantId = document.getElementById('restaurantSelect').value;
+            const style = document.querySelector('input[name="autoImageStyle"]:checked').value;
+
+            console.log('📋 Parametri:', { restaurantId, style });
+
+            if (!restaurantId) {
+                showAlert('❌ Seleziona un ristorante', 'error');
+                return;
+            }
+
+            if (allDishes.length === 0) {
+                console.warn('⚠️ allDishes è vuoto');
+                showAlert('❌ Carica prima i piatti del ristorante dalla sezione sopra', 'error');
+                return;
+            }
+
+            const confirmed = confirm(`⚠️ Rigenerare tutte le ${allDishes.length} foto? Questo sovrascriverà le immagini esistenti.`);
+            if (!confirmed) {
+                console.log('❌ Rigenerazione annullata dall\'utente');
+                return;
+            }
+
+            console.log('✅ Rigenerazione confermata per', allDishes.length, 'piatti');
+            await generateImages(allDishes, style, 'Rigenerazione di tutte le foto');
+        }
+
+        // Genera e carica immagini
+        async function generateImages(dishes, style, title) {
+            console.log('🔄 Inizio generazione:', { dishes: dishes.length, style, title });
+            
+            document.getElementById('autoGenProgress').style.display = 'block';
+            document.getElementById('autoGenBtn').disabled = true;
+            document.getElementById('autoGenAllBtn').disabled = true;
+
+            const progressBar = document.getElementById('autoGenProgressBar');
+            const statusDiv = document.getElementById('autoGenStatus');
+            let successCount = 0;
+            let errorCount = 0;
+
+            for (let i = 0; i < dishes.length; i++) {
+                const dish = dishes[i];
+                console.log(`📦 Elaborando piatto ${i + 1}/${dishes.length}:`, dish.name);
+
+                // Aggiorna progress
+                const percent = Math.round(((i + 1) / dishes.length) * 100);
+                progressBar.style.width = percent + '%';
+                progressBar.textContent = percent + '%';
+                statusDiv.textContent = `${title}: ${i + 1}/${dishes.length} - ${dish.name}`;
+
+                try {
+                    // Genera placeholder
+                    console.log('🎨 Generando immagine per:', dish.name);
+                    const dataUrl = generatePlaceholderImage(dish.name, style);
+                    console.log('✅ Immagine generata, lunghezza:', dataUrl.length);
+
+                    // Converti data URL a blob
+                    const response = await fetch(dataUrl);
+                    const blob = await response.blob();
+                    console.log('📤 Blob creato, dimensione:', blob.size, 'bytes');
+
+                    // Carica tramite handler dedicato
+                    const formData = new FormData();
+                    formData.append('image', blob, 'placeholder.jpg');
+
+                    console.log('🚀 Inizio upload a:', UPLOAD_URL);
+                    const upToken = authToken ? '?token=' + encodeURIComponent(authToken) : '';
+                    const uploadResponse = await fetch(UPLOAD_URL + upToken, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    console.log('📡 Risposta HTTP:', uploadResponse.status, uploadResponse.statusText);
+
+                    // Verifica risposta
+                    if (!uploadResponse.ok) {
+                        throw new Error('Errore upload: HTTP ' + uploadResponse.status);
+                    }
+
+                    const responseText = await uploadResponse.text();
+                    console.log('📄 Testo risposta:', responseText.substring(0, 200));
+                    
+                    if (!responseText) {
+                        throw new Error('Risposta vuota');
+                    }
+
+                    let result;
+                    try {
+                        result = JSON.parse(responseText);
+                    } catch (e) {
+                        console.error('❌ Errore parse JSON:', e.message);
+                        console.error('Contenuto risposta:', responseText.substring(0, 500));
+                        throw new Error('Risposta server non valida');
+                    }
+
+                    console.log('✅ Risultato upload:', result);
+
+                    if (result.success) {
+                        successCount++;
+                        console.log('✓ Upload riuscito! Totale successi:', successCount);
+                    } else {
+                        errorCount++;
+                        console.warn('⚠️ Upload fallito:', result.error);
+                    }
+                } catch (e) {
+                    console.error('❌ Errore generazione:', e.message, e);
+                    errorCount++;
+                }
+
+                // Piccolo delay
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+
+            // Completa
+            progressBar.style.width = '100%';
+            progressBar.textContent = '✅ 100%';
+            statusDiv.textContent = `✅ Completato! Foto generate: ${successCount}, Errori: ${errorCount}`;
+
+            console.log('🎉 Generazione completata:', { successCount, errorCount });
+            showAlert(`✅ ${title} completato: ${successCount} foto generate, ${errorCount} errori`, 'success');
+
+            // Reset
+            setTimeout(() => {
+                document.getElementById('autoGenProgress').style.display = 'none';
+                document.getElementById('autoGenBtn').disabled = false;
+                document.getElementById('autoGenAllBtn').disabled = false;
+                progressBar.style.width = '0%';
+                progressBar.textContent = '0%';
+
+                // Ricarica
+                const restaurantSelect = document.getElementById('restaurantSelect');
+                if (restaurantSelect.value) {
+                    loadDishes(restaurantSelect.value);
+                }
+            }, 2000);
+        }
+
+        // ===== SINCRONIZZAZIONE CON DATABASE =====
+
+        // Sincronizza immagini con database
+        async function syncImagesToDatabase() {
+            console.log('🔧 syncImagesToDatabase() INIZIATA');
+            
+            // Usa il primo select (quello principale) invece di autoRestaurantSelect
+            const restaurantId = document.getElementById('restaurantSelect').value;
+            console.log('📋 RestaurantId ricavato:', restaurantId);
+
+            if (!restaurantId) {
+                console.warn('⚠️ RestaurantId vuoto!');
+                showAlert('❌ Seleziona un ristorante dalla lista principale', 'error');
+                return;
+            }
+
+            if (!confirm('Sincronizzare le immagini con il database? Questo assegnerà le immagini più recenti ai piatti.')) {
+                console.log('❌ Utente ha cancellato la conferma');
+                return;
+            }
+
+            console.log('✅ Utente ha confermato sincronizzazione per:', restaurantId);
+            document.getElementById('syncImagesBtn').disabled = true;
+            showAlert('⏳ Sincronizzazione in corso...', 'success');
+
+            try {
+                const url = './update-dish-images.php?action=sync';
+                console.log('🚀 Richiesta a:', url);
+                console.log('📦 Body:', 'restaurant_id=' + restaurantId);
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'restaurant_id=' + restaurantId
+                });
+
+                console.log('📡 Status risposta:', response.status);
+                const responseText = await response.text();
+                console.log('📄 Testo risposta:', responseText);
+                
+                const result = JSON.parse(responseText);
+                console.log('📦 JSON parsato:', result);
+
+                if (result.success) {
+                    console.log('✅ Sincronizzazione completata:', result);
+                    showAlert(`✅ Sincronizzazione completata! ${result.results.updated} piatti aggiornati.`, 'success');
+                    
+                    // Ricarica piatti
+                    setTimeout(() => {
+                        loadDishes(restaurantId);
+                    }, 1000);
+                } else {
+                    console.error('❌ Errore dal server:', result.error);
+                    showAlert('❌ Errore: ' + result.error, 'error');
+                }
+            } catch (e) {
+                console.error('❌ Errore sincronizzazione:', e);
+                showAlert('❌ Errore di connessione: ' + e.message, 'error');
+            } finally {
+                document.getElementById('syncImagesBtn').disabled = false;
+            }
+        }
+
+        // Assegna automaticamente immagini ai piatti
+        async function autoAssignImagesToDishes() {
+            console.log('🔧 autoAssignImagesToDishes() INIZIATA');
+            
+            // Usa il primo select (quello principale) invece di autoRestaurantSelect
+            const restaurantId = document.getElementById('restaurantSelect').value;
+            console.log('📋 RestaurantId ricavato:', restaurantId);
+
+            if (!restaurantId) {
+                console.warn('⚠️ RestaurantId vuoto!');
+                showAlert('❌ Seleziona un ristorante dalla lista principale', 'error');
+                return;
+            }
+
+            if (!confirm('Assegnare automaticamente le immagini ai piatti senza immagine? Le immagini verranno assegnate in ordine di data più recente.')) {
+                console.log('❌ Utente ha cancellato la conferma');
+                return;
+            }
+
+            console.log('✅ Utente ha confermato auto-assegnazione per:', restaurantId);
+            document.getElementById('autoAssignBtn').disabled = true;
+            showAlert('⏳ Assegnazione in corso...', 'success');
+
+            try {
+                const url = './update-dish-images.php?action=auto-assign';
+                console.log('🚀 Richiesta a:', url);
+                console.log('📦 Body:', 'restaurant_id=' + restaurantId);
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'restaurant_id=' + restaurantId
+                });
+
+                console.log('📡 Status risposta:', response.status);
+                const responseText = await response.text();
+                console.log('📄 Testo risposta:', responseText);
+                
+                const result = JSON.parse(responseText);
+                console.log('📦 JSON parsato:', result);
+
+                if (result.success) {
+                    console.log('✅ Assegnazione completata:', result);
+                    showAlert(`✅ Assegnazione completata! ${result.results.assigned} piatti aggiornati.`, 'success');
+                    
+                    // Ricarica piatti
+                    setTimeout(() => {
+                        loadDishes(restaurantId);
+                    }, 1000);
+                } else {
+                    console.error('❌ Errore dal server:', result.error);
+                    showAlert('❌ Errore: ' + result.error, 'error');
+                }
+            } catch (e) {
+                console.error('❌ Errore assegnazione:', e);
+                showAlert('❌ Errore di connessione: ' + e.message, 'error');
+            } finally {
+                document.getElementById('autoAssignBtn').disabled = false;
+            }
+        }
+
+        // Lista immagini nella cartella
+        async function listUploadedImages() {
+            try {
+                const response = await fetch('./update-dish-images.php?action=list');
+                const result = await response.json();
+
+                if (result.success) {
+                    console.log('📁 Immagini caricate:', result);
+                    return result.images;
+                }
+            } catch (e) {
+                console.error('Errore lista immagini:', e);
+            }
+        }
+
+        // ===== SCARICA DA UNSPLASH/PIXABAY =====
+
+        // Scarica immagini da Unsplash
+        async function generateFromUnsplash() {
+            console.log('📸 Avvio download da Unsplash');
+            
+            const restaurantId = document.getElementById('restaurantSelect').value;
+            if (!restaurantId) {
+                showAlert('❌ Seleziona un ristorante', 'error');
+                return;
+            }
+
+            if (!confirm('Scaricare immagini reali di piatti da Unsplash? (Gratis)')) {
+                return;
+            }
+
+            await callGeneratorScript('generate-food-images.php', restaurantId, 'Unsplash');
+        }
+
+        // Scarica immagini da Pixabay
+        async function generateFromPixabay() {
+            console.log('🖼️ Avvio download da Pixabay');
+            
+            const restaurantId = document.getElementById('restaurantSelect').value;
+            if (!restaurantId) {
+                showAlert('❌ Seleziona un ristorante', 'error');
+                return;
+            }
+
+            if (!confirm('Scaricare immagini da Pixabay? (Gratis)')) {
+                return;
+            }
+
+            await callGeneratorScript('generate-pixabay-images.php', restaurantId, 'Pixabay');
+        }
+
+        // Chiama uno script generatore
+        async function callGeneratorScript(scriptName, restaurantId, serviceName) {
+            console.log('🚀 Chiamando:', scriptName, 'con restaurant_id:', restaurantId);
+            
+            document.getElementById('autoGenProgress').style.display = 'block';
+            document.getElementById('autoGenBtn').disabled = true;
+            document.getElementById('autoGenAllBtn').disabled = true;
+            document.getElementById('unsplashBtn').disabled = true;
+            document.getElementById('pixabayBtn').disabled = true;
+
+            const progressBar = document.getElementById('autoGenProgressBar');
+            const statusDiv = document.getElementById('autoGenStatus');
+            
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+            statusDiv.textContent = `Connessione a ${serviceName}...`;
+
+            try {
+                const url = `./${scriptName}?restaurant_id=${restaurantId}`;
+                console.log('📡 URL:', url);
+                
+                const response = await fetch(url);
+                console.log('📡 Risposta:', response.status);
+                
+                const result = await response.json();
+                console.log('📦 Risultato:', result);
+
+                if (result.success) {
+                    const { generated, failed } = result.results;
+                    progressBar.style.width = '100%';
+                    progressBar.textContent = '✅ 100%';
+                    statusDiv.textContent = `✅ Completato: ${generated} foto caricate, ${failed} errori`;
+
+                    showAlert(`✅ Download da ${serviceName} completato! ${generated} immagini caricate.`, 'success');
+
+                    // Ricarica dopo 2 secondi
+                    setTimeout(() => {
+                        loadDishes(restaurantId);
+                    }, 2000);
+                } else {
+                    statusDiv.textContent = `❌ Errore: ${result.error}`;
+                    showAlert(`❌ Errore: ${result.error}`, 'error');
+                }
+            } catch (e) {
+                console.error('❌ Errore:', e);
+                statusDiv.textContent = `❌ Errore di connessione: ${e.message}`;
+                showAlert(`❌ Errore di connessione: ${e.message}`, 'error');
+            } finally {
+                setTimeout(() => {
+                    document.getElementById('autoGenProgress').style.display = 'none';
+                    document.getElementById('autoGenBtn').disabled = false;
+                    document.getElementById('autoGenAllBtn').disabled = false;
+                    document.getElementById('unsplashBtn').disabled = false;
+                    document.getElementById('pixabayBtn').disabled = false;
+                    progressBar.style.width = '0%';
+                    progressBar.textContent = '0%';
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

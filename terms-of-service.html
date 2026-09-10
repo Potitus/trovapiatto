@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termini di Servizio - trovapiatto</title>
+  <meta name="description" content="Termini e condizioni di utilizzo della piattaforma trovapiatto. Leggi i nostri termini di servizio.">
+  <meta name="theme-color" content="#e73a3a">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --primary:#e73a3a;--primary-dark:#c92a2a;
+      --dark-bg:#0f0a15;--card-bg:#1a1225;
+      --text-light:#e0e0e0;--text-muted:#999;
+      --border-color:rgba(231,58,58,0.2);
+      --glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(135deg,#0f0a15 0%,#1a0f25 50%,#0f0a15 100%);
+      color:var(--text-light);line-height:1.7;min-height:100vh;
+    }
+
+    /* ===== HEADER ===== */
+    .header{
+      position:sticky;top:0;z-index:100;
+      background:rgba(15,10,21,0.95);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;
+    }
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+    .header-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
+    .header-logo img{height:36px}
+    .header-nav{display:flex;align-items:center;gap:1.5rem}
+    .header-nav a{color:var(--text-light);text-decoration:none;font-weight:500;font-size:0.85rem;transition:all 0.3s}
+    .header-nav a:hover{color:var(--primary)}
+    @media(max-width:768px){
+      .header{padding:0.6rem 1rem}
+      .header-nav a:not(.btn-back){display:none}
+      .btn-back{padding:6px 14px;background:linear-gradient(135deg,var(--primary),#ff6b6b);color:white;border-radius:50px;font-weight:600;font-size:0.75rem}
+    }
+
+    /* ===== HERO ===== */
+    .hero{text-align:center;padding:4rem 1.5rem 3rem;position:relative;overflow:hidden}
+    .hero::before{
+      content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);
+      width:600px;height:600px;
+      background:radial-gradient(circle,rgba(231,58,58,0.08),transparent 70%);
+      pointer-events:none;
+    }
+    .hero-icon{
+      width:80px;height:80px;margin:0 auto 1.5rem;
+      background:linear-gradient(135deg,rgba(231,58,58,0.15),rgba(231,58,58,0.05));
+      border:2px solid rgba(231,58,58,0.3);border-radius:24px;
+      display:flex;align-items:center;justify-content:center;
+      animation:float 3s ease-in-out infinite;
+    }
+    .hero-icon i{font-size:2rem;color:var(--primary)}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .hero h1{
+      font-size:clamp(2rem,5vw,3.2rem);font-weight:800;
+      margin-bottom:0.75rem;line-height:1.1;
+    }
+    .hero h1 span{
+      background:linear-gradient(135deg,var(--primary),#ff6b6b);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hero p{font-size:1.05rem;color:var(--text-muted);max-width:550px;margin:0 auto}
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:6px;margin-top:1.25rem;
+      padding:8px 20px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);
+      border-radius:50px;font-size:0.8rem;font-weight:600;color:#f59e0b;
+    }
+    .hero-badge i{font-size:0.7rem}
+
+    /* ===== CONTENT ===== */
+    .content{max-width:900px;margin:0 auto;padding:0 1.5rem 4rem}
+
+    .section-card{
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:20px;padding:2rem;margin-bottom:1.25rem;
+      backdrop-filter:blur(10px);transition:all 0.3s;
+    }
+    .section-card:hover{border-color:rgba(231,58,58,0.2);background:rgba(255,255,255,0.06)}
+    .section-header{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
+    .section-num{
+      width:32px;height:32px;flex-shrink:0;
+      background:linear-gradient(135deg,var(--primary),#ff6b6b);
+      border-radius:10px;display:flex;align-items:center;justify-content:center;
+      font-size:0.8rem;font-weight:700;color:white;
+    }
+    .section-title{font-size:1.15rem;font-weight:700;color:#fff}
+    .section-card p{color:var(--text-light);font-size:0.92rem;margin-bottom:1rem}
+    .section-card p:last-child{margin-bottom:0}
+    .section-card ul{list-style:none;margin:0.75rem 0 0}
+    .section-card li{
+      position:relative;padding:8px 0 8px 28px;font-size:0.9rem;color:var(--text-light);
+      border-bottom:1px solid rgba(255,255,255,0.04);
+    }
+    .section-card li:last-child{border-bottom:none}
+    .section-card li::before{
+      content:'';position:absolute;left:0;top:14px;
+      width:8px;height:8px;border-radius:50%;background:var(--primary);
+    }
+    .section-card a{color:var(--primary);text-decoration:none;font-weight:600;transition:all 0.2s}
+    .section-card a:hover{color:#ff6b6b;text-decoration:underline}
+
+    .contact-card{
+      background:linear-gradient(135deg,rgba(231,58,58,0.1),rgba(231,58,58,0.03));
+      border:1px solid rgba(231,58,58,0.25);border-radius:20px;padding:2rem;text-align:center;
+    }
+    .contact-card h3{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:0.5rem}
+    .contact-card p{color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem}
+    .contact-email{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:12px 28px;background:linear-gradient(135deg,var(--primary),#ff6b6b);
+      color:white;border-radius:50px;font-weight:600;font-size:0.9rem;
+      text-decoration:none;transition:all 0.3s;
+      box-shadow:0 8px 25px rgba(231,58,58,0.3);
+    }
+    .contact-email:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(231,58,58,0.5);color:white;text-decoration:none}
+
+    .back-link{
+      display:inline-flex;align-items:center;gap:8px;margin-top:2rem;
+      padding:14px 32px;background:rgba(255,255,255,0.06);
+      border:1px solid var(--glass-border);border-radius:50px;
+      color:var(--text-light);text-decoration:none;font-weight:600;font-size:0.9rem;
+      transition:all 0.3s;
+    }
+    .back-link:hover{border-color:var(--primary);color:var(--primary);background:rgba(231,58,58,0.06);transform:translateY(-2px);text-decoration:none}
+    .back-link i{font-size:0.8rem}
+
+    .footer{
+      text-align:center;padding:2.5rem 1.5rem;border-top:1px solid var(--border-color);
+      background:rgba(0,0,0,0.2);
+    }
+    .footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+    .footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;transition:all 0.3s}
+    .footer-links a:hover{color:var(--primary)}
+    .footer p{color:var(--text-muted);font-size:0.8rem}
+
+    .fade-in{opacity:0;transform:translateY(20px);transition:all 0.6s cubic-bezier(0.4,0,0.2,1)}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    <link rel="canonical" href="https://www.trovapiatto.it/terms-of-service.html">
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-inner">
+    <a href="/" class="header-logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <div class="header-nav">
+      <a href="/">Home</a>
+      <a href="about.html">Chi Siamo</a>
+      <a href="/" class="btn-back"><i class="fas fa-arrow-left"></i> Home</a>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-icon">
+    <i class="fas fa-file-contract"></i>
+  </div>
+  <h1><span>Termini di Servizio</span></h1>
+  <p>Leggi attentamente i termini e condizioni che regolano l'utilizzo della piattaforma trovapiatto.</p>
+  <div class="hero-badge">
+    <i class="fas fa-circle-info"></i> Ultimo aggiornamento: 30 Marzo 2026
+  </div>
+</div>
+
+<!-- Content -->
+<div class="content">
+
+  <!-- 1 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Accettazione dei Termini</div>
+    </div>
+    <p>Accedendo o utilizzando trovapiatto, accetti di essere vincolato da questi Termini di Servizio e dalla nostra <a href="privacy-policy.html">Privacy Policy</a>. Se non accetti questi termini, non utilizzare i nostri servizi.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Descrizione del Servizio</div>
+    </div>
+    <p>trovapiatto è una piattaforma che consente agli utenti di:</p>
+    <ul>
+      <li>Scoprire ristoranti e piatti nella loro zona</li>
+      <li>Visualizzare menu e prezzi aggiornati</li>
+      <li>Effettuare prenotazioni presso ristoranti partner</li>
+      <li>Lasciare recensioni e valutazioni</li>
+      <li>Salvare preferenze e ristoranti preferiti</li>
+      <li>Utilizzare la mappa interattiva per trovare ristoranti vicini</li>
+    </ul>
+  </div>
+
+  <!-- 3 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">Registrazione e Account</div>
+    </div>
+    <p>Per utilizzare alcune funzionalità del nostro servizio, potrebbe essere necessario creare un account. Sei responsabile di:</p>
+    <ul>
+      <li>Fornire informazioni accurate e complete durante la registrazione</li>
+      <li>Mantenere la riservatezza delle tue credenziali di accesso</li>
+      <li>Notificare immediatamente qualsiasi uso non autorizzato del tuo account</li>
+      <li>Accettare la responsabilità per tutte le attività che avvengono sotto il tuo account</li>
+    </ul>
+  </div>
+
+  <!-- 4 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Utilizzo Accettabile</div>
+    </div>
+    <p>Utilizzando trovapiatto, ti impegni a:</p>
+    <ul>
+      <li>Non utilizzare il servizio per scopi illegali o non autorizzati</li>
+      <li>Non interferire con il funzionamento del sito o dei suoi server</li>
+      <li>Non tentare di accedere non autorizzato a sistemi o database</li>
+      <li>Non pubblicare contenuti offensivi, diffamatori o inappropriati</li>
+      <li>Non utilizzare robot, spider o altri mezzi automatici per accedere al sito</li>
+      <li>Non manipolare le recensioni o le valutazioni in modo fraudolento</li>
+    </ul>
+  </div>
+
+  <!-- 5 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">Proprietà Intellettuale</div>
+    </div>
+    <p>Tutto il contenuto presente su trovapiatto — inclusi testi, grafici, loghi, immagini, software e codice — è di proprietà di trovapiatto o dei suoi licenzianti e protetto dalle leggi sul copyright e sulla proprietà intellettuale. È vietato copiare, modificare o distribuire il contenuto senza autorizzazione scritta.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Contenuti degli Utenti</div>
+    </div>
+    <p>Pubblicando contenuti su trovapiatto (recensioni, commenti, foto), concedi a trovapiatto una licenza non esclusiva, globale, royalty-free per utilizzare, modificare, distribuire e mostrare tali contenuti in relazione al servizio. Rimani proprietario dei tuoi contenuti.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title">Prenotazioni e Pagamenti</div>
+    </div>
+    <p>Le prenotazioni effettuate attraverso trovapiatto sono soggette alle politiche di cancellazione e pagamento dei singoli ristoranti. trovapiatto agisce esclusivamente come intermediario e non è responsabile per servizi forniti dai ristoranti partner.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-title">Limitazione di Responsabilità</div>
+    </div>
+    <p>trovapiatto non sarà responsabile per:</p>
+    <ul>
+      <li>Danni diretti, indiretti, speciali o consequenziali</li>
+      <li>Perdita di dati, profitto o reputazione</li>
+      <li>Interruzioni del servizio o errori nei contenuti</li>
+      <li>Azioni di ristoranti terzi o altri utenti</li>
+    </ul>
+  </div>
+
+  <!-- 9 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div class="section-title">Indennizzo</div>
+    </div>
+    <p>Accetti di indennizzare e mantere indenne trovapiatto e i suoi affiliati da qualsiasi reclamo, danno, perdita o spesa derivante dalla violazione di questi Termini o dall'uso improprio del servizio.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div class="section-title">Modifiche ai Termini</div>
+    </div>
+    <p>Ci riserviamo il diritto di modificare questi Termini in qualsiasi momento. Le modifiche entreranno in vigore immediatamente dopo la pubblicazione sul sito. L'uso continuato del servizio costituisce accettazione dei Termini modificati.</p>
+  </div>
+
+  <!-- 11 -->
+  <div class="section-card fade-in">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div class="section-title">Risoluzione delle Dispute</div>
+    </div>
+    <p>Qualsiasi disputa derivante da questi Termini sarà risolta attraverso arbitrato in conformità con le leggi italiane. La giurisdizione esclusiva sarà quella dei tribunali competenti.</p>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-card fade-in">
+    <div class="section-header" style="justify-content:center">
+      <div class="section-num"><i class="fas fa-envelope" style="font-size:0.85rem"></i></div>
+      <div class="section-title">Contattaci</div>
+    </div>
+    <p>Per domande relative a questi Termini di Servizio, siamo a disposizione:</p>
+    <a href="mailto:legal@trovapiatto.it" class="contact-email">
+      <i class="fas fa-envelope"></i> legal@trovapiatto.it
+    </a>
+  </div>
+
+  <!-- Back -->
+  <div style="text-align:center">
+    <a href="/" class="back-link">
+      <i class="fas fa-arrow-left"></i> Torna alla Home
+    </a>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms-of-service.html">Termini di Servizio</a>
+    <a href="contact.html">Contatti</a>
+    <a href="about.html">Chi Siamo</a>
+    <a href="aggiungi-menu.html">Aggiungi Menu</a>
+  </div>
+  <p>&copy; 2026 trovapiatto — Tutti i diritti riservati</p>
+</div>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

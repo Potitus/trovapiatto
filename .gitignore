@@ -1,0 +1,18 @@
+# Segreti locali (mai committare)
+.env
+app/admin/.env
+
+# Upload utenti e cache runtime
+app/admin/uploads/
+page_views.json
+app/admin/page_views.json
+
+# Log
+*.log
+app/admin/logs/*.log
+
+# Dipendenze e OS
+node_modules/
+.DS_Store
+Thumbs.db
+desktop.ini

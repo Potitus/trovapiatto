@@ -1,0 +1,60 @@
+
+/* jQuery LM Cart Styles */
+
+.lmcart-remove-item,
+.lmcart-remove-all,
+.lmcart-add-item {
+    padding: 0;
+    border: none;
+}
+
+
+
+/* OLD CSS */
+
+
+.cookiescart-add .loading,
+.lmcart-add .loading {
+    background: transparent;
+}
+
+.cookiescart-add .loading:before,
+.lmcart-add .loading:before {
+    font-weight: bold;
+    content: "\f110";
+}
+
+.cookiescart-add .checked:before,
+.lmcart-add .checked:before {
+    font-weight: bold;
+    content: "\f00c";
+}
+
+.cookiescart-item-note,
+.lmcart-item-note{
+    font-style: italic;
+}
+
+#note-title {
+    padding-right: 40px;
+}
+
+.scale-icon-1 {
+    animation: scale-icon 1s;
+    animation-iteration-count: 2;
+}
+
+.notification {
+    top: 50px;
+    left: 0;
+    right: 0;
+    transform: translateY(-120px);
+}
+
+.close-toast {
+    cursor: pointer;
+}
+
+.note-voce {
+    padding-left: 30px !important;
+}

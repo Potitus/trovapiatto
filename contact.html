@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contatti - trovapiatto</title>
+  <meta name="description" content="Contattaci per informazioni, supporto o collaborazioni. Il nostro team è sempre disponibile per te.">
+  <meta name="theme-color" content="#e73a3a">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --primary:#e73a3a;--primary-dark:#c92a2a;
+      --dark-bg:#0f0a15;--card-bg:#1a1225;
+      --text-light:#e0e0e0;--text-muted:#999;
+      --border-color:rgba(231,58,58,0.2);
+      --glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);
+      --green:#10b981;--purple:#8b5cf6;--cyan:#06b6d4;--amber:#f59e0b;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(135deg,#0f0a15 0%,#1a0f25 50%,#0f0a15 100%);
+      color:var(--text-light);line-height:1.7;min-height:100vh;
+    }
+
+    /* HEADER */
+    .header{position:sticky;top:0;z-index:100;background:rgba(15,10,21,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+    .header-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
+    .header-logo img{height:36px}
+    .header-nav{display:flex;align-items:center;gap:1.5rem}
+    .header-nav a{color:var(--text-light);text-decoration:none;font-weight:500;font-size:0.85rem;transition:all 0.3s}
+    .header-nav a:hover{color:var(--primary)}
+    @media(max-width:768px){.header{padding:0.6rem 1rem}.header-nav a:not(.btn-back){display:none}.btn-back{padding:6px 14px;background:linear-gradient(135deg,var(--primary),#ff6b6b);color:white;border-radius:50px;font-weight:600;font-size:0.75rem}}
+
+    /* HERO */
+    .hero{text-align:center;padding:5rem 1.5rem 4rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(231,58,58,0.1),transparent 70%);pointer-events:none}
+    .hero-icon{width:90px;height:90px;margin:0 auto 1.5rem;background:linear-gradient(135deg,rgba(231,58,58,0.15),rgba(231,58,58,0.05));border:2px solid rgba(231,58,58,0.3);border-radius:28px;display:flex;align-items:center;justify-content:center;animation:float 3s ease-in-out infinite}
+    .hero-icon i{font-size:2.2rem;color:var(--primary)}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .hero h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;margin-bottom:1rem;line-height:1.1}
+    .hero h1 span{background:linear-gradient(135deg,var(--primary),#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{font-size:1.1rem;color:var(--text-muted);max-width:550px;margin:0 auto 1.5rem}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:50px;font-size:0.85rem;font-weight:600;color:var(--green)}
+    .hero-badge i{font-size:0.8rem}
+
+    /* CONTENT */
+    .content{max-width:1000px;margin:0 auto;padding:0 1.5rem 4rem}
+
+    /* CONTACT CARDS */
+    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:3rem}
+    @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+    .contact-card{
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:20px;padding:2rem;text-align:center;
+      backdrop-filter:blur(10px);transition:all 0.3s;position:relative;overflow:hidden;
+    }
+    .contact-card:hover{border-color:rgba(231,58,58,0.3);transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.3)}
+    .contact-card .icon-wrap{
+      width:60px;height:60px;margin:0 auto 1.25rem;
+      border-radius:18px;display:flex;align-items:center;justify-content:center;
+    }
+    .contact-card:nth-child(1) .icon-wrap{background:linear-gradient(135deg,rgba(231,58,58,0.15),rgba(231,58,58,0.05));border:1.5px solid rgba(231,58,58,0.25)}
+    .contact-card:nth-child(1) .icon-wrap i{color:var(--primary)}
+    .contact-card:nth-child(2) .icon-wrap{background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(16,185,129,0.05));border:1.5px solid rgba(16,185,129,0.25)}
+    .contact-card:nth-child(2) .icon-wrap i{color:var(--green)}
+    .contact-card:nth-child(3) .icon-wrap{background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(139,92,246,0.05));border:1.5px solid rgba(139,92,246,0.25)}
+    .contact-card:nth-child(3) .icon-wrap i{color:var(--purple)}
+    .contact-card h3{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.75rem}
+    .contact-card p{font-size:0.85rem;color:var(--text-muted);margin-bottom:0.25rem}
+    .contact-card a{color:var(--primary);text-decoration:none;font-weight:600;font-size:0.9rem;transition:all 0.2s}
+    .contact-card a:hover{color:#ff6b6b;text-decoration:underline}
+
+    /* FORM */
+    .form-card{
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:20px;padding:2.5rem;
+      backdrop-filter:blur(10px);margin-bottom:3rem;
+    }
+    .form-header{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
+    .form-header .icon-wrap{width:42px;height:42px;background:linear-gradient(135deg,rgba(231,58,58,0.15),rgba(231,58,58,0.05));border:1.5px solid rgba(231,58,58,0.25);border-radius:12px;display:flex;align-items:center;justify-content:center}
+    .form-header .icon-wrap i{font-size:1rem;color:var(--primary)}
+    .form-header h2{font-size:1.3rem;font-weight:700;color:#fff}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    @media(max-width:600px){.form-row{grid-template-columns:1fr}}
+    .form-group{margin-bottom:1.25rem}
+    .form-group label{display:block;font-size:0.85rem;font-weight:600;color:var(--text-light);margin-bottom:0.5rem}
+    .form-group input,.form-group textarea{
+      width:100%;padding:14px 16px;
+      background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.08);
+      border-radius:12px;color:#fff;font-family:'Inter',sans-serif;font-size:0.9rem;
+      transition:all 0.3s;outline:none;
+    }
+    .form-group input::placeholder,.form-group textarea::placeholder{color:#555}
+    .form-group input:focus,.form-group textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(231,58,58,0.1)}
+    .form-group textarea{min-height:140px;resize:vertical}
+    .submit-btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:14px 36px;background:linear-gradient(135deg,var(--primary),#ff6b6b);
+      color:white;border:none;border-radius:50px;font-weight:700;font-size:0.95rem;
+      cursor:pointer;transition:all 0.3s;font-family:'Inter',sans-serif;
+      box-shadow:0 8px 25px rgba(231,58,58,0.3);
+    }
+    .submit-btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(231,58,58,0.5)}
+
+    /* SOCIAL */
+    .social-section{text-align:center;margin-bottom:3rem}
+    .social-section h3{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:1rem}
+    .social-links{display:flex;justify-content:center;gap:1rem}
+    .social-link{
+      width:52px;height:52px;border-radius:14px;
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--text-light);font-size:1.2rem;text-decoration:none;
+      transition:all 0.3s;
+    }
+    .social-link:hover{transform:translateY(-3px)}
+    .social-link.fb:hover{border-color:#1877f2;color:#1877f2;background:rgba(24,119,242,0.1)}
+    .social-link.ig:hover{border-color:#e4405f;color:#e4405f;background:rgba(228,64,95,0.1)}
+    .social-link.tw:hover{border-color:#1da1f2;color:#1da1f2;background:rgba(29,161,242,0.1)}
+    .social-link.li:hover{border-color:#0a66c2;color:#0a66c2;background:rgba(10,102,194,0.1)}
+    .social-link.tt:hover{border-color:#000;color:#fff;background:rgba(255,255,255,0.1)}
+
+    .back-link{display:inline-flex;align-items:center;gap:8px;margin-top:1rem;padding:14px 32px;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);border-radius:50px;color:var(--text-light);text-decoration:none;font-weight:600;font-size:0.9rem;transition:all 0.3s}
+    .back-link:hover{border-color:var(--primary);color:var(--primary);background:rgba(231,58,58,0.06);transform:translateY(-2px);text-decoration:none}
+
+    .footer{text-align:center;padding:2.5rem 1.5rem;border-top:1px solid var(--border-color);background:rgba(0,0,0,0.2)}
+    .footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+    .footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;transition:all 0.3s}
+    .footer-links a:hover{color:var(--primary)}
+    .footer p{color:var(--text-muted);font-size:0.8rem}
+
+    .fade-in{opacity:0;transform:translateY(20px);transition:all 0.6s cubic-bezier(0.4,0,0.2,1)}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    <link rel="canonical" href="https://www.trovapiatto.it/contact.html">
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-inner">
+    <a href="/" class="header-logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+    <div class="header-nav">
+      <a href="/">Home</a>
+      <a href="about.html">Chi Siamo</a>
+      <a href="/" class="btn-back"><i class="fas fa-arrow-left"></i> Home</a>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-icon"><i class="fas fa-envelope"></i></div>
+  <h1>Contatt<span>aci</span></h1>
+  <p>Siamo qui per aiutarti! Contattaci per qualsiasi domanda, suggerimento o supporto.</p>
+  <div class="hero-badge"><i class="fas fa-clock"></i> Rispondiamo entro 24 ore</div>
+</div>
+
+<!-- Content -->
+<div class="content">
+
+  <!-- Contact Cards -->
+  <div class="contact-grid">
+    <div class="contact-card fade-in">
+      <div class="icon-wrap"><i class="fas fa-envelope"></i></div>
+      <h3>Email</h3>
+      <p>Informazioni generali</p>
+      <a href="mailto:info@trovapiatto.it">info@trovapiatto.it</a>
+      <p style="margin-top:1rem">Supporto tecnico</p>
+      <a href="mailto:support@trovapiatto.it">support@trovapiatto.it</a>
+    </div>
+    <div class="contact-card fade-in">
+      <div class="icon-wrap"><i class="fas fa-phone"></i></div>
+      <h3>Telefono</h3>
+      <p>Lun - Ven: 9:00 - 18:00</p>
+      <a href="tel:+390612345678">+39 06 1234 5678</a>
+    </div>
+    <div class="contact-card fade-in">
+      <div class="icon-wrap"><i class="fas fa-location-dot"></i></div>
+      <h3>Sede</h3>
+      <p>trovapiatto S.r.l.</p>
+      <p>Via Example 123</p>
+      <p>00100 Roma, Italia</p>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card fade-in">
+    <div class="form-header">
+      <div class="icon-wrap"><i class="fas fa-paper-plane"></i></div>
+      <h2>Invia un Messaggio</h2>
+    </div>
+    <form action="mailto:info@trovapiatto.it" method="POST" enctype="text/plain">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Nome Completo</label>
+          <input type="text" id="name" name="name" required placeholder="Mario Rossi">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="mario@email.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subject">Oggetto</label>
+        <input type="text" id="subject" name="subject" placeholder="Come posso aiutarti?">
+      </div>
+      <div class="form-group">
+        <label for="message">Messaggio</label>
+        <textarea id="message" name="message" required placeholder="Scrivi il tuo messaggio qui..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Invia Messaggio</button>
+    </form>
+  </div>
+
+  <!-- Social -->
+  <div class="social-section fade-in">
+    <h3>Seguici sui Social</h3>
+    <div class="social-links">
+      <a href="https://www.facebook.com/trovapiatto" target="_blank" class="social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/trovapiatto" target="_blank" class="social-link ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.twitter.com/trovapiatto" target="_blank" class="social-link tw" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/company/trovapiatto" target="_blank" class="social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.tiktok.com/@trovapiatto" target="_blank" class="social-link tt" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <!-- Back -->
+  <div style="text-align:center">
+    <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Torna alla Home</a>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms-of-service.html">Termini di Servizio</a>
+    <a href="contact.html">Contatti</a>
+    <a href="about.html">Chi Siamo</a>
+    <a href="aggiungi-menu.html">Aggiungi Menu</a>
+  </div>
+  <p>&copy; 2026 trovapiatto — Tutti i diritti riservati</p>
+</div>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cucina Pugliese: Storia e Tradizioni | trovapiatto</title>
+  <meta name="description" content="Scopri la storia della cucina pugliese: origini, influenze, ingredienti tipici e tradizioni che hanno formato uno dei patrimoni gastronomici piu ricchi d'Italia.">
+  <meta name="keywords" content="cucina pugliese, storia cucina puglia, tradizioni pugliesi, ingredienti tipici Puglia, food puglia, gastronomia pugliese, piatti tipici Puglia">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/cucina-pugliese-storia/">
+  <meta property="og:title" content="Cucina Pugliese: Storia e Tradizioni">
+  <meta property="og:description" content="Un viaggio nella storia della cucina pugliese: dalle origini ai giorni nostri, ingredienti, ricette e tradizioni uniche.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Cucina Pugliese">
+  <meta property="article:tag" content="Storia">
+  <meta property="article:tag" content="Tradizioni">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cucina Pugliese: Storia e Tradizioni">
+  <meta name="twitter:description" content="Un viaggio nella storia della cucina pugliese: dalle origini ai giorni nostri.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/cucina-pugliese-storia/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --bg-card-hover: #221833;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .article-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .article-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .article-nav .logo img { height: 32px; }
+    
+    .article-nav .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+    
+    .article-nav .back-link:hover { color: var(--primary); }
+    
+    .article-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 350px;
+      overflow: hidden;
+    }
+    
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%);
+    }
+    
+    .article-hero .hero-content {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .article-hero .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .article-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    
+    @media (min-width: 768px) {
+      .article-hero h1 { font-size: 2.8rem; }
+    }
+    
+    .article-hero .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-hero .meta i { color: var(--primary); }
+    
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+    
+    .article-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: var(--text-white);
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text-white);
+    }
+    
+    .article-content p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .article-content strong { color: var(--text-white); }
+    
+    .article-content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .article-content a:hover { color: var(--primary-light); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      transition: all 0.3s;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    
+    .restaurant-card .rc-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245,158,11,0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-food);
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-cuisine {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-dish {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .restaurant-card .rc-dish-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    
+    .restaurant-card .rc-dish-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    
+    .restaurant-card .rc-dish-price {
+      font-weight: 700;
+      color: var(--accent-food);
+      font-size: 1rem;
+    }
+    
+    .restaurant-card .rc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    
+    .map-section {
+      margin: 40px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #article-map {
+      width: 100%;
+      height: 350px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .cta-box .cta-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+    }
+    
+    .ad-container {
+      margin: 30px 0;
+      text-align: center;
+      min-height: 90px;
+    }
+    
+    .article-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .article-footer .share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .article-footer .share span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-footer .share a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    
+    .article-footer .share a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="article-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <a href="/community/blog/" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Magazine
+    </a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&h=700&fit=crop" alt="Cucina pugliese tradizionale">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-book-open"></i> Storia &amp; Tradizioni</span>
+      <h1>Cucina Pugliese: Storia e Tradizioni</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 9 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 8 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+
+      <p>La <strong>cucina pugliese</strong> e uno dei patrimoni gastronomici piu ricchi e autentici d'Italia. Radicata in secoli di storia, influenzata da molteplici culture e forgiata dalla semplicita degli ingredienti, essa rappresenta un viaggio unico tra sapori, tradizioni e rituali che si tramandano di generazione in generazione. In questa guida esploreremo le origini, le influenze e le tradizioni che hanno reso la cucina pugliese un fenomeno unico nel panorama gastronomico nazionale.</p>
+
+      <h2>Le Origini della Cucina Pugliese</h2>
+
+      <h3>L'Era Messapica e Greca</h3>
+      <p>Le origini della cucina pugliese risalgono ai <strong>Messapi</strong>, il popolo che abitava la Puglia prima dell'arrivo dei Greci. I Messapi erano già esperti coltivatori di grano, olive e vite. Con l'arrivo dei Greci, intorno all'VIII secolo a.C., la regione conobbe un vero e proprio Rinascimento gastronomico. I Greci portarono con sé la coltivazione dell'ulivo in modo sistematico, la viticoltura e l'arte della panificazione. La Magna Grecia, con colonie come <strong>Taranto</strong> e <strong>Metaponto</strong>, divenne un centro nevralgico per lo scambio di spezie, tecniche culinarie e ingredienti esotici.</p>
+
+      <p>Il grano duro, che oggi e la base della cucina pugliese, fu introdotto e perfezionato durante questo periodo. Le <strong>orecchiette</strong>, il piatto simbolo della regione, hanno radici che risalgono proprio a quest'epoca, quando le prime forme di pasta fatta a mano iniziarono a comparire nelle tavole delle famiglie pugliesi.</p>
+
+      <h3>L'Influenza Romana</h3>
+      <p>Con la conquista romana, la Puglia divenne il <strong>"granaio d'Italia"</strong>. La pianura del Tavoliere, la seconda pianura piu estesa d'Italia dopo la Pianura Padana, fu intensamente coltivata a grano duro. I Romani perfezionarono le tecniche di conservazione degli alimenti, introducendo il <strong>salting</strong> e la preparazione di <strong>garum</strong>, il famoso condimento a base di pesce fermentato che ancora oggi ricorda nelle acciughe sotto sale.</p>
+
+      <p>Fu in questo periodo che nacquero le prime forme di <strong>pane</strong> tipiche della regione, come il celebre <strong>pane di Altamura</strong>, che ancora oggi viene preparato con la stessa cura e rispetto per la tradizione. I Romani introdussero anche le tecniche di conservazione delle olive e la produzione di olio extravergine, pilastri della dieta mediterranea.</p>
+
+      <h3>L'Epoca Bizantina e Longobarda</h3>
+      <p>Dopo la caduta dell'Impero Romano, la Puglia fu contesa tra Bizantini e Longobardi. I Bizantini, con la loro cultura raffinata, portarono nuove spezie come il pepe, la cannella e lo zafferano. I Longobardi, dal canto loro, contribuirono con la tradizione dei <strong>cibi alla brace</strong> e la preparazione di salumi e formaggi. Questo periodo segno la nascita di molte tradizioni alimentari che ancora oggi caratterizzano la regione.</p>
+
+      <h2>L'Influenza Araba e Normanna</h2>
+
+      <p>L'arrivo degli <strong>Arabi</strong> nel IX secolo rappresento un momento cruciale per la cucina pugliese. Gli Arabi portarono con sé una rivoluzione agricola: introdussero la coltivazione degli <strong>agrumi</strong>, delle <strong>mandorle</strong>, dello <strong>zucchero</strong> e delle <strong>spezie esotiche</strong> come lo zafferano e il coriandolo. Fu in questo periodo che nacquero i primi <strong>dolci tipici</strong> della regione, come i <strong>cartellate</strong> e i <strong>pasticciotti</strong>.</p>
+
+      <p>Gli Arabi introdussero anche il <strong>caffè</strong> e le prime forme di <strong>pasticceria</strong> nella regione. Le <strong>mandorle</strong>, ancora oggi ingredienti fondamentali della cucina pugliese, furono coltivate intensamente durante questo periodo. I <strong>taralli</strong> alle mandorle e i <strong>croccanti</strong> hanno le loro radici proprio nelle ricette arabe.</p>
+
+      <p>Con l'arrivo dei <strong>Normanni</strong> nel XI secolo, la cucina pugliese subì un'ulteriore evoluzione. I Normanni, con la loro cultura nordeuropea, portarono nuove tecniche di conservazione della carne e la tradizione dei <strong>formaggi stagionati</strong>. Il <strong>cacioricotta</strong> e la <strong>burrata</strong> hanno le loro origini in questo periodo, anche se la ricetta come la conosciamo oggi e il risultato di secoli di perfezionamento.</p>
+
+      <h2>Gli Ingredienti Tipici della Puglia</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">I Pilastri della Cucina Pugliese</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-leaf"></i> Ingredienti Fondamentali</div>
+          </div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Olio Extravergine d'Oliva</div>
+          <div class="rc-dish-desc">La Puglia e la regione che produce piu olio in Italia. Le varietà principali sono Ogliarola, Coratina e Peranzana.</div>
+          <div class="rc-dish-price">Piatto base della tradizione</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Grano Duro e Orecchiette</div>
+          <div class="rc-dish-desc">La pasta fatta a mano con semola di grano duro e acqua, modellata con la punta del coltello.</div>
+          <div class="rc-dish-price">Dal 1300 circa</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Tomato San Marzano</div>
+          <div class="rc-dish-desc">Il pomodoro piu famoso d'Italia, perfetto per sughi e conserve.</div>
+          <div class="rc-dish-price">Ingredienti fondamentale</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Mandorle e Agrumi</div>
+          <div class="rc-dish-desc">Introdotte dagli Arabi, le mandorle e gli agrumi sono ingredienti essenziali della pasticceria pugliese.</div>
+          <div class="rc-dish-price">Tradizione araba</div>
+        </div>
+        <a href="/piatti/?q=puglia" class="rc-link">Scopri tutti i piatti pugliesi <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>L'<strong>olio extravergine d'oliva</strong> e il vero pilastro della cucina pugliese. La regione e la prima produttrice italiana, con una superficie olivata di circa 500.000 ettari. Le varietà principali sono l'<strong>Ogliarola</strong>, la <strong>Coratina</strong> — una delle piu corpose e aromatiche d'Italia — e la <strong>Peranzana</strong>. Ogni piatto pugliese, dal semplice pane al sugo di pomodoro, e condito con abbondante olio extravergine.</p>
+
+      <p>Il <strong>grano duro</strong> e l'altro ingrediente fondamentale. La semola di grano duro, macinata a pietra, e la base di tutta la pasta pugliese: orecchiette, cavatelli, troccoli, strascinati. La tradizione della <strong>tria</strong>, pasta fritta servita con sugo, risale al periodo medievale.</p>
+
+      <p>I <strong>pomodori</strong>, introdotti nel XVI secolo dal Nuovo Mondo, divennero rapidamente un ingrediente essenziale. La Puglia e famosa per i suoi pomodori secchi, i <strong>friselline</strong> condite con pomodoro e olio, e i sughi di pomodoro che accompagnano la pasta.</p>
+
+      <h2>Le Tradizioni Gastronomiche</h2>
+
+      <h3>Il Rito del Pane</h3>
+      <p>Il <strong>pane</strong> nella tradizione pugliese non e solo un alimento: e un simbolo sacro. Il <strong>pane di Altamura</strong>, con la sua crosta dorata e il sapore intenso, e stato riconosciuto come <strong>IGP</strong> dall'Unione Europea. La preparazione del pane era un rituale checoinvolgeva l'intera famiglia: la sera si preparava l'impasto, la notte lievitava, al mattino si infornava. Il forno del pane era il cuore del villaggio, un luogo di incontro e scambio.</p>
+
+      <p>Ogni zona della Puglia ha le sue varianti: il <strong>pane di grano duro di Gravina</strong>, il <strong>pane casereccio</strong> di Bari, il <strong>pane di semola</strong> della Murgia. Ogni forma ha il suo significato e il suo momento di consumo.</p>
+
+      <h3>La Tradizione delle conserve</h3>
+      <p>La <strong>tradizione delle conserve</strong> e uno degli aspetti piu affascinanti della cucina pugliese. Le <strong>putecche</strong> (dispense) erano riempite ogni estate con pomodori secchi, peperoni cruschi, fave secche, mandorle e frutta secca. I <strong>pomodori secchi</strong> venivano preparati sotto il sole cocente dell'estate pugliese, stesi su graticci di canne.</p>
+
+      <p>Le <strong>oglie</strong> (olive) venivano conservate sotto sale o in acqua, i <strong>capperi</strong> venivano sotto sale, le <strong>cipolline</strong> in aceto. Questa tradizione delle conserve ha origini che risalgono ai periodi di carestia, quando era necessario conservare il cibo per l'inverno.</p>
+
+      <h3>Le Feste e il Cibo</h3>
+      <p>Ogni festa della tradizione pugliese ha il suo piatto tipico. A <strong>Natale</strong> si preparano le <strong>cartellate</strong>, pasta fritta con miele e vin cotto. A <strong>Pasqua</strong> si mangia l'<strong>agnello alla piastra</strong> con le <strong>lampascioni</strong>. Durante la <strong>festa di San Martino</strong> (11 novembre) si sfutta il <strong>novello</strong> con le <strong>castagne arrosto</strong>.</p>
+
+      <p>Le <strong>feste patronali</strong> sono momenti di aggregazione culinaria fondamentali: durante la festa di San Nicola a Bari, per esempio, si preparano i <strong>zeppole di San Giuseppe</strong> e i <strong>calzoncelli</strong> ripieni di cioccolato e mandorle.</p>
+
+      <h2>Le Zone Gastronomiche della Puglia</h2>
+
+      <p>La Puglia e una regione lunga oltre 400 km, e la sua cucina varia significativamente da nord a sud. Ecco le principali zone gastronomiche:</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Mappa delle Tradizioni Culinarie</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-map"></i> 5 Aree Gastronomiche</div>
+          </div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Gargano e Daunia</div>
+          <div class="rc-dish-desc">Focaccia, olive taggiasche, pesce del Gargano, miele di acacia.</div>
+          <div class="rc-dish-price">Tradizioni padane e adriatiche</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Bari e la Terra di Bari</div>
+          <div class="rc-dish-desc">Orecchiette, burrata, focaccia, panzerotti, bombette pugliesi.</div>
+          <div class="rc-dish-price">Cuore della tradizione</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Murgia e Itria</div>
+          <div class="rc-dish-desc">Masseria, olio Coratina, taralli, friselline, pasta fatta a mano.</div>
+          <div class="rc-dish-price">Cucina contadina raffinata</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Salento</div>
+          <div class="rc-dish-desc">Peperoni cruschi, fave e cicoria, rustico leccese, pasticciotto.</div>
+          <div class="rc-dish-price">Influenze greche e orientali</div>
+        </div>
+        <a href="/piatti/" class="rc-link">Esplora tutti i piatti <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>Gargano</strong> e la <strong>Daunia</strong> rappresentano la parte piu "settentrionale" della tradizione culinaria pugliese, con influenze adriatiche e campane. Il <strong>pane di Gravina</strong> e le <strong>olive del Gargano</strong> sono tra i prodotti piu pregiati.</p>
+
+      <p><strong>Bari</strong> e il cuore della tradizione: qui nascono le orecchiette, qui si trova la migliore burrata, qui la focaccia raggiunge il suo apice. <strong>Alberobello</strong>, con i suoi trulli, e il centro della tradizione dei taralli e delle orecchiette.</p>
+
+      <p>Il <strong>Sallento</strong>, con le sue influenze greche e albanesi, ha una tradizione culinaria unica: i <strong>peperoni cruschi</strong>, i <strong>pasticciotti</strong>, i <strong>rustici leccesi</strong> sono piatti che non si trovano altrove in Italia.</p>
+
+      <!-- AdSense In-Article -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <!-- Mappa Interattiva -->
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Mappa delle Tradizioni Culinarie</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>La Cucina Pugliese Oggi</h2>
+
+      <p>La cucina pugliese contemporanea e un equilibrio perfetto tra <strong>tradizione</strong> e <strong>innovazione</strong>. I chef pugliesi stanno portando i sapori della tradizione in una nuova dimensione, mantenendo fede alle radici ma con un approccio moderno. Ristoranti come il <a href="/community/blog/ristoranti-michelin-bari/">Villa Crespi</a> di Cannobio, guidato dallo chef Antonino Cannavacciuolo, hanno dimostrato che la cucina pugliese puo competere ai massimi livelli.</p>
+
+      <p>Anche nella Puglia locale, la ristorazione sta vivendo un periodo di rinascita. Le <strong>masserie</strong> trasformate in ristoranti di alta cucina, le <strong>cucine di famiglia</strong> aperte al pubblico, i <strong>giovani chef</strong> che reinterpretano le ricette della nonna stanno ridisegnando il panorama gastronomico regionale.</p>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Consigli per Assaggiare la Cucina Pugliese</h3>
+        <ul>
+          <li><i class="fa-solid fa-map-pin"></i> <span><strong>Viaggia nella regione:</strong> Ogni zona ha i suoi piatti tipici. Il Salento non e come il Gargano, e viceversa.</span></li>
+          <li><i class="fa-solid fa-store"></i> <span><strong>Visita le masserie:</strong> Le masserie offrono l'esperienza piu autentica della cucina pugliese, con ingredienti prodotti localmente.</span></li>
+          <li><i class="fa-solid fa-hand-point-up"></i> <span><strong>Chiedi i piatti della tradizione:</strong> Non avere paura di chiedere qualcosa di diverso dal menu. I ristoranti pugliesi hanno spesso piatti non elencati.</span></li>
+          <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Abbinamento vino:</strong> Un Primitivo o un Negroamaro del Salento sono perfetti con i piatti di carne, un Verdeca o un Minutolo con il pesce.</span></li>
+          <li><i class="fa-solid fa-clock"></i> <span><strong>Orari pugliesi:</strong> Il pranzo e tra le 13:00 e le 14:30, la cena dalle 20:30 in poi. I ristoranti sono pieni in quegli orari.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <h3>Scopri i Piatti Tipici della Puglia</h3>
+        <p>Cerca piatti, ristoranti e menu nella nostra mappa interattiva</p>
+        <a href="/piatti/?q=puglia" class="cta-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Esplora i Piatti Pugliesi
+        </a>
+      </div>
+
+      <!-- AdSense Bottom -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/cucina-pugliese-storia/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/cucina-pugliese-storia/&text=Cucina+Pugliese:+Storia+e+Tradizioni"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+la+storia+della+cucina+pugliese:+https://www.trovapiatto.it/community/blog/cucina-pugliese-storia/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const regions = [
+      { name: 'Gargano e Daunia', lat: 41.8010, lng: 16.0000, desc: 'Focaccia, olive, pesce' },
+      { name: 'Bari e Terra di Bari', lat: 41.1245, lng: 16.8695, desc: 'Orecchiette, burrata, focaccia' },
+      { name: 'Murgia e Itria', lat: 40.8300, lng: 17.1000, desc: 'Olio Coratina, taralli, pasta' },
+      { name: 'Taranto', lat: 40.4170, lng: 17.2400, desc: 'Pesce, cozze, cime di rapa' },
+      { name: 'Salento', lat: 40.3515, lng: 18.1750, desc: 'Peperoni cruschi, pasticciotto' }
+    ];
+
+    const map = L.map('article-map').setView([40.8500, 17.0000], 7);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    regions.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">${r.desc}</span>
+          </div>
+        `);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cucina Pugliese: Storia e Tradizioni",
+    "description": "Scopri la storia della cucina pugliese: origini, influenze, ingredienti tipici e tradizioni che hanno formato uno dei patrimoni gastronomici piu ricchi d'Italia.",
+    "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-07-09T10:00:00+02:00",
+    "dateModified": "2026-07-09T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/cucina-pugliese-storia/" },
+    "articleSection": "Food Guide",
+    "keywords": "cucina pugliese, storia cucina puglia, tradizioni pugliesi, ingredienti tipici Puglia, gastronomia pugliese"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Magazine", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Cucina Pugliese: Storia e Tradizioni", "item": "https://www.trovapiatto.it/community/blog/cucina-pugliese-storia/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quali sono le origini della cucina pugliese?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La cucina pugliese ha origini antichissime, risalenti ai Messapi e ai Greci della Magna Grecia. I Romani la resero il granaio d'Italia, gli Arabi introdussero agrumi, mandorle e spezie, e i Normanni contribuirono con formaggi e salumi. Ogni cultura ha lasciato il suo segno."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quali sono gli ingredienti tipici della Puglia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gli ingredienti fondamentali sono l'olio extravergine d'oliva (la Puglia e la prima produttrice italiana), il grano duro per la pasta fatta a mano, i pomodori, le mandorle, gli agrumi, i formaggi freschi come burrata e stracciatella, e le erbe selvatiche come cime di rapa e cicoria."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come si e evoluta la cucina pugliese nel tempo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dalle semplici origini contadine, la cucina pugliese ha assorbito le influenze di Messapi, Greci, Romani, Arabi, Normanni, Spagnoli e Borbone. Oggi e un equilibrio tra tradizione e innovazione, con chef che portano i sapori locali in una dimensione gourmet mantenendo fede alle radici."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

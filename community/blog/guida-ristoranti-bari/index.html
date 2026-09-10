@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guida Completa ai Ristoranti di Bari: Dove Mangiare nel 2026 | trovapiatto</title>
+  <meta name="description" content="Scopri i migliori ristoranti di Bari: pesce, pizza, carne, tradizionale e gourmet. Guida completa con prezzi, valutazioni e consigli per ogni budget.">
+  <meta name="keywords" content="ristoranti Bari, migliori ristoranti Bari, dove mangiare Bari, ristoranti pesce Bari, ristoranti pizza Bari, cucina Bari, guide ristoranti">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/guida-ristoranti-bari/">
+  <meta property="og:title" content="Guida Completa ai Ristoranti di Bari">
+  <meta property="og:description" content="Tutti i migliori ristoranti di Bari con prezzi, valutazioni e consigli. Dalla pizza alla cucina gourmet, dalla tradizione al pesce fresco.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-06T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-06T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Ristoranti">
+  <meta property="article:tag" content="Bari">
+  <meta property="article:tag" content="Guida">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guida Completa ai Ristoranti di Bari">
+  <meta name="twitter:description" content="Tutti i migliori ristoranti di Bari con prezzi, valutazioni e consigli per ogni budget.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/guida-ristoranti-bari/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --bg-card-hover: #221833;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .article-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .article-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .article-nav .logo img { height: 32px; }
+    
+    .article-nav .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+    
+    .article-nav .back-link:hover { color: var(--primary); }
+    
+    .article-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 350px;
+      overflow: hidden;
+    }
+    
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%);
+    }
+    
+    .article-hero .hero-content {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .article-hero .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .article-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    
+    @media (min-width: 768px) {
+      .article-hero h1 { font-size: 2.8rem; }
+    }
+    
+    .article-hero .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-hero .meta i { color: var(--primary); }
+    
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+    
+    .article-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: var(--text-white);
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text-white);
+    }
+    
+    .article-content p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .article-content strong { color: var(--text-white); }
+    
+    .article-content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .article-content a:hover { color: var(--primary-light); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      transition: all 0.3s;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    
+    .restaurant-card .rc-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245,158,11,0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-food);
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-cuisine {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-dish {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .restaurant-card .rc-dish-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    
+    .restaurant-card .rc-dish-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    
+    .restaurant-card .rc-dish-price {
+      font-weight: 700;
+      color: var(--accent-food);
+      font-size: 1rem;
+    }
+    
+    .restaurant-card .rc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    
+    .map-section {
+      margin: 40px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #article-map {
+      width: 100%;
+      height: 350px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .cta-box .cta-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+    }
+    
+    .ad-container {
+      margin: 30px 0;
+      text-align: center;
+      min-height: 90px;
+    }
+    
+    .article-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .article-footer .share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .article-footer .share span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-footer .share a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    
+    .article-footer .share a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="article-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <a href="/community/blog/" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Magazine
+    </a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&h=700&fit=crop" alt="Ristoranti Bari">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-utensils"></i> Guida Ristoranti</span>
+      <h1>Guida Completa ai Ristoranti di Bari</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 6 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 10 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+
+      <p><strong>Bari</strong> e una citta che vive di cibo. Dalle vie di Bari Vecchia ai lungomare, dai mercati del pesce alle osterie di quartiere, la scena gastronomica barese e tra le piu ricche e autentiche del Sud Italia. Che tu cerchi pesce fresco appena pescato, pizza napoletana perfetta, carne alla griglia o la tradizione pugliese in purezza, a Bari troverai il ristorante giusto per ogni occasione.</p>
+
+      <p>In questa guida completa ti presentiamo <strong>12 ristoranti imperdibili di Bari</strong>, suddivisi per categoria, con prezzi reali, valutazioni e consigli pratici. Preparati a pianificare la tua prossima cena a Bari: avrai bisogno di un buon appetito.</p>
+
+      <h2>Ristoranti di Pesce — Il Meglio del Mare</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">La Tana del Mare</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Lungomare, Bari — Ristorante di Pesce</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Crapi e Fagiol</div>
+          <div class="rc-dish-desc">Zuppa di pesce con fagioli bianchi, pomodoro e peperoncino</div>
+          <div class="rc-dish-price">&euro;16</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Branzino alla Griglia</div>
+          <div class="rc-dish-desc">Branzino fresco con patate e verdure grigliate</div>
+          <div class="rc-dish-price">&euro;22</div>
+        </div>
+        <a href="/menu/la-tana-del-mare/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>La Tana del Mare</strong> e il ristorante di pesce per eccellenza a Bari. Situato sul lungomare, il locale propone piatti di pesce freschissimo preparati con semplicita e qualita. I <strong>crapi e fagiol</strong> sono un antipasto da provare assolutamente, mentre il branzino alla griglia e un secondo impeccabile. Il prezzo medio e di 20-30 euro a testa.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Osteria del Mare</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari Vecchia — Ristorante di Pesce</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Polpo alla Pignatta</div>
+          <div class="rc-dish-desc">Polpo cotto lentamente con pomodoro, olive e patate</div>
+          <div class="rc-dish-price">&euro;18</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Zuppa di Pesce</div>
+          <div class="rc-dish-desc">Misto di pesce del giorno con pomodoro e vino bianco</div>
+          <div class="rc-dish-price">&euro;20</div>
+        </div>
+        <a href="/menu/osteria-del-mare/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Osteria del Mare</strong> e un locale piccolo e accogliente nel cuore di Bari Vecchia. Il polpo alla pignatta e cotto lentamente in una pentola di coccio, creando un piatto saporito e profumato. Il locale e famoso anche per la zuppa di pesce, preparata con il pesce fresco del giorno. Prezzo medio: 25-35 euro a testa.</p>
+
+      <h2>Ristoranti di Carne — Per gli Amanti della Griglia</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Radicale Restaurant</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Cucina Moderna &amp; Steakhouse</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 5.0</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Stracotto di Manzo e 36 Mesi</div>
+          <div class="rc-dish-desc">Orecchiette giganti con stracotto sfilacciato e fonduta di parmigiano</div>
+          <div class="rc-dish-price">&euro;22</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Fiorentina alla Griglia</div>
+          <div class="rc-dish-desc">Bistecca di manzo chianina, 1 kg, con rosmarino e sale grosso</div>
+          <div class="rc-dish-price">&euro;45</div>
+        </div>
+        <a href="/menu/radicale/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Radicale Restaurant</strong> e il ristorante gourmet per eccellenza a Bari. Il rating di 5.0 stelle parla da solo. Il chef crea piatti che uniscono tradizione pugliese e tecnica moderna. Lo stracotto di manzo e 36 mesi e un capolavoro, mentre la fiorentina e tra le migliori della citta. Prezzo medio: 35-50 euro a testa.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Gaeribaldi Grill House</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Steakhouse &amp; Pizzeria</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Tagliata di Manzo</div>
+          <div class="rc-dish-desc">Tagliata con rucola, parmigiano e balsamico</div>
+          <div class="rc-dish-price">&euro;18</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Costolette d'Agnello</div>
+          <div class="rc-dish-desc">Costolette alla griglia con erbe e aglio</div>
+          <div class="rc-dish-price">&euro;22</div>
+        </div>
+        <a href="/menu/gaeribaldi-grill-house/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Gaeribaldi</strong> e il punto di riferimento per la carne a Bari. Il locale e un mix tra steakhouse e pizzeria, con una griglia che profuma di tutta la zona. La tagliata di manzo e una perla, le costolette d'agnello sono succose e saporite. Prezzo medio: 20-30 euro a testa.</p>
+
+      <h2>Pizzerie — La Pizza che Fa Impazzire</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Pizzeria da Michele</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari — Pizza Napoletana</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Margherita</div>
+          <div class="rc-dish-desc">Pomodoro San Marzano, mozzarella di bufala, basilico e olio EVO</div>
+          <div class="rc-dish-price">&euro;7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Marinara</div>
+          <div class="rc-dish-desc">Pomodoro, aglio, origano e olio extravergine</div>
+          <div class="rc-dish-price">&euro;5</div>
+        </div>
+        <a href="/menu/pizzeria-da-michele/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Da Michele</strong> e un'istituzione. La pizza napoletana qui e perfetta: impasto soffice, cottura nel forno a legna, ingredienti di qualita. La Margherita e un capolavoro di semplicita, la Marinara e un classico immortale. Le file sono lunghe, ma ne vale assolutamente la pena. Prezzo medio: 10-15 euro a testa.</p>
+
+      <!-- AdSense In-Article -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>Tradizionale — La Vera Cucina Pugliese</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Osteria delle Travi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via delle Travi, Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette con Cime di Rapa</div>
+          <div class="rc-dish-desc">Orecchiette fresche, cime di rapa, acciughe e pangrattato</div>
+          <div class="rc-dish-price">&euro;10</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Fave e Cicorie</div>
+          <div class="rc-dish-desc">Purea di fave con cicorie selvatiche e olio EVO</div>
+          <div class="rc-dish-price">&euro;8</div>
+        </div>
+        <a href="/menu/osteria-delle-travi/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Osteria delle Travi</strong> e il ristorante perfetto per assaggiare la vera cucina pugliese. Le orecchiette con cime di rapa sono tra le migliori della citta, le fave e cicorie sono un antipasto semplice e perfetto. Il locale e piccolo e familiare, l'atmosfera e quella di un tempo. Prezzo medio: 15-25 euro a testa.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Trattoria della Nonna</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari Vecchia — Cucina della Nonna</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Tiella di Riso, Patate e Cozze</div>
+          <div class="rc-dish-desc">Stratificato al forno con pomodoro e cipolla</div>
+          <div class="rc-dish-price">&euro;12</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Bombe di Riso</div>
+          <div class="rc-dish-desc">Palline di riso farcite con ragu, bollite e fritte</div>
+          <div class="rc-dish-price">&euro;6</div>
+        </div>
+        <a href="/menu/trattoria-della-nonna/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Trattoria della Nonna</strong> e come mangiare a casa della nonna. La tiella di riso, patate e cozze e un piatto unico sostanzioso e saporito, le bombe di riso sono un antipasto irresistibile. Il servizio e familiare e i prezzi sono molto accessibili. Prezzo medio: 15-20 euro a testa.</p>
+
+      <h2>Budget — Mangiare Bene a Bari Spending Poco</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ai Monizzati</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari — Panzerotti e Street Food</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Panzerotto Classico</div>
+          <div class="rc-dish-desc">Pasta fritta ripiena di mozzarella e pomodoro</div>
+          <div class="rc-dish-price">&euro;4</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza a Taglio</div>
+          <div class="rc-dish-desc">Fette di pizza con diversi condimenti</div>
+          <div class="rc-dish-price">&euro;3</div>
+        </div>
+        <a href="/menu/ai-monizzati/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Ai Monizzati</strong> e il posto perfetto per mangiare bene spending poco. I panzerotti sono tra i migliori di Bari, la pizza a taglio e buona e conveniente. Il locale e piccolo e sempre pieno, ma il cibo merita la pazienza. Prezzo medio: 5-10 euro a testa.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Forno Fiore</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari — Focacceria</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Focaccia con Pomodorini</div>
+          <div class="rc-dish-desc">Focaccia croccante con pomodorini freschi e origano</div>
+          <div class="rc-dish-price">&euro;3</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Focaccia con Cipolla</div>
+          <div class="rc-dish-desc">Focaccia dolce con cipolla caramellata</div>
+          <div class="rc-dish-price">&euro;3</div>
+        </div>
+        <a href="/menu/forno-fiore/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Forno Fiore</strong> e la focacceria di riferimento a Bari. La focaccia con pomodorini e un classico perfetto, quella con cipolla e una delizia dolce-salata. A soli 3 euro e un pasto completo e saporito. Il forno e sempre caldo e il profumo ti attira da lontano.</p>
+
+      <!-- Mappa Interattiva -->
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Tutti i Ristoranti sulla Mappa</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Consigli per Scegliere il Ristorante Giusto a Bari</h2>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-clock"></i> <span><strong>Prenota:</strong> Per i ristoranti stellati e i locali piu popolari, prenota almeno 2-3 giorni prima. Le file possono essere lunghe.</span></li>
+          <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Budget:</strong> A Bari puoi mangiare bene con qualsiasi budget. Da 5 euro per un panzerotto a 50 euro per una cena gourmet.</span></li>
+          <li><i class="fa-solid fa-map-pin"></i> <span><strong>Zona:</strong> Bari Vecchia e il cuore della ristorazione. Il lungomare e perfetto per il pesce. Il centro e ideale per la pizza.</span></li>
+          <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Vini:</strong> Chiedi sempre il consiglio del cameriere. I vini pugliesi sono eccezionali e spesso sottovalutati.</span></li>
+          <li><i class="fa-solid fa-calendar"></i> <span><strong>Orari:</strong> I ristoranti a Bari aprono tardi. Pranzo dalle 13:00, cena dalle 20:30. Non arrivare prima.</span></li>
+          <li><i class="fa-solid fa-comment"></i> <span><strong>Lingua:</strong> Molti camerieri parlano inglese, ma provare con l'italiano e sempre meglio. I baresi apprezzano lo sforzo.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <h3>Scopri Tutti i Ristoranti di Bari</h3>
+        <p>Cerca ristoranti, menu e prezzi nella nostra mappa interattiva</p>
+        <a href="/bari/migliori-ristoranti-bari/" class="cta-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Cerca Ristoranti
+        </a>
+      </div>
+
+      <!-- AdSense Bottom -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/guida-ristoranti-bari/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/guida-ristoranti-bari/&text=Guida+Completa+ai+Ristoranti+di+Bari"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+la+guida+completa+ai+ristoranti+di+Bari:+https://www.trovapiatto.it/community/blog/guida-ristoranti-bari/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'La Tana del Mare', lat: 41.1185, lng: 16.8680, price: '€22', slug: 'la-tana-del-mare', rating: '4.8' },
+      { name: 'Osteria del Mare', lat: 41.1285, lng: 16.8705, price: '€25', slug: 'osteria-del-mare', rating: '4.7' },
+      { name: 'Radicale Restaurant', lat: 41.1245, lng: 16.8690, price: '€45', slug: 'radicale', rating: '5.0' },
+      { name: 'Gaeribaldi', lat: 41.124061, lng: 16.862950, price: '€22', slug: 'gaeribaldi-grill-house', rating: '4.6' },
+      { name: 'Pizzeria da Michele', lat: 41.1291, lng: 16.8702, price: '€10', slug: 'pizzeria-da-michele', rating: '4.9' },
+      { name: 'Osteria delle Travi', lat: 41.1285, lng: 16.8705, price: '€15', slug: 'osteria-delle-travi', rating: '4.8' },
+      { name: 'Trattoria della Nonna', lat: 41.1280, lng: 16.8700, price: '€15', slug: 'trattoria-della-nonna', rating: '4.6' },
+      { name: 'Ai Monizzati', lat: 41.1291, lng: 16.8702, price: '€5', slug: 'ai-monizzati', rating: '4.7' },
+      { name: 'Forno Fiore', lat: 41.1291, lng: 16.8702, price: '€3', slug: 'forno-fiore', rating: '4.8' }
+    ];
+
+    const map = L.map('article-map').setView([41.1245, 16.8695], 14);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">⭐ ${r.rating}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Guida Completa ai Ristoranti di Bari: Dove Mangiare nel 2026",
+    "description": "Scopri i migliori ristoranti di Bari: pesce, pizza, carne, tradizionale e gourmet. Guida completa con prezzi, valutazioni e consigli.",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-07-06T10:00:00+02:00",
+    "dateModified": "2026-07-06T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/guida-ristoranti-bari/" },
+    "articleSection": "Food Guide",
+    "keywords": "ristoranti Bari, migliori ristoranti Bari, dove mangiare Bari, ristoranti pesce Bari, ristoranti pizza Bari"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Magazine", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Guida Ristoranti Bari", "item": "https://www.trovapiatto.it/community/blog/guida-ristoranti-bari/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quali sono i migliori ristoranti a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I migliori ristoranti a Bari includono La Tana del Mare (4.8 stelle, pesce), Radicale Restaurant (5.0 stelle, gourmet), Pizzeria da Michele (4.9 stelle, pizza), Osteria delle Travi (4.8 stelle, tradizionale) e Ai Monizzati (4.7 stelle, street food). Consulta la nostra guida completa per tutti i dettagli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Dove mangiare a Bari a prezzi accessibili?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Bari puoi mangiare bene a prezzi accessibili da Ai Monizzati (panzerotti a €4), Forno Fiore (focaccia a €3) e Trattoria della Nonna (menu completi a €15-20). La cucina pugliese e tra le piu economiche d'Italia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ci sono ristoranti stellati a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si, a Bari ci sono ristoranti di alto livello. Radicale Restaurant ha un rating di 5.0 stelle e propone cucina gourmet con piatti a €22-45. Per esperienze stellati, consulta le guide Michelin e Gambero Rosso."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

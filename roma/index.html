@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosa Mangiare a Roma: La Guida Completa ai Piatti Tipici | trovapiatto</title>
+  <meta name="description" content="Scopri cosa mangiare a Roma: carbonara, cacio e pepe, amatriciana e le 4 tradizioni romane con ristoranti, prezzi e consigli.">
+  <meta name="keywords" content="cosa mangiare Roma, piatti tipici Roma, carbonara Roma, cacio e pepe, amatriciana, gricia, coda alla vaccinara, ristoranti Roma">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <!-- Geo Meta Tags (Local SEO) -->\n  <meta name="geo.region" content="IT-RM">\n  <meta name="geo.placename" content="Roma">\n  <meta name="geo.position" content="41.9200;12.4200">\n  <meta name="ICBM" content="41.9200, 12.4200">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/cosa-mangiare-roma/">
+  <meta property="og:title" content="Cosa Mangiare a Roma: La Guida Completa ai Piatti Tipici">
+  <meta property="og:description" content="Guida completa ai piatti tipici di Roma. Specialità da provare, con ristoranti e prezzi.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-08-29T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-08-29T10:00:00+02:00">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cosa Mangiare a Roma: La Guida Completa ai Piatti Tipici">
+  <meta name="twitter:description" content="Piatti tipici di Roma da provare assolutamente. Ristoranti, prezzi e consigli.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/cosa-mangiare-roma/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .page-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .page-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .page-nav .logo img { height: 32px; }
+    
+    .page-nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .page-nav .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    
+    .page-nav .nav-links a:hover { color: var(--primary); }
+    
+    .hero {
+      text-align: center;
+      padding: 80px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('HERO_IMAGE') center/cover no-repeat;
+      filter: blur(4px) brightness(0.55) scale(1.05);
+      z-index: 0;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,10,21,0.6) 0%, rgba(15,10,21,0.85) 100%);
+      z-index: 1;
+    }
+    
+    .hero > * { position: relative; z-index: 2; }
+    
+    .hero .badge {
+      display: inline-block;
+      background: rgba(231,58,58,0.15);
+      color: var(--primary-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text-white), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+    }
+    
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+    
+    .hero .stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .hero .stats i { color: var(--primary); }
+    
+    .breadcrumb {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: rgba(255,255,255,0.2); }
+    .breadcrumb .current { color: var(--text-light); }
+    
+    .author-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px auto;
+      max-width: 900px;
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(231,58,58,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .author-avatar i { color: var(--primary); font-size: 1.1rem; }
+    
+    .author-info { flex: 1; }
+    .author-name { font-size: 0.85rem; font-weight: 600; color: var(--text-white); }
+    .author-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .intro {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    
+    .intro strong { color: var(--text-white); }
+    
+    .dish-section {
+      margin-bottom: 48px;
+    }
+    
+    .dish-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    
+    .dish-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    
+    .dish-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-text {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .dish-text strong { color: var(--text-white); }
+    
+    .dish-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-info .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .dish-info .tag i { color: var(--accent-food); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 6px 20px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-icon i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .restaurant-card .rc-info {
+      flex: 1;
+    }
+    
+    .restaurant-card .rc-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    
+    .restaurant-card .rc-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .restaurant-card .rc-action {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: rgba(231,58,58,0.1);
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .map-section {
+      margin: 48px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #guide-map {
+      width: 100%;
+      height: 380px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 40px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .faq-section {
+      margin: 48px 0;
+    }
+    
+    .faq-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    
+    .faq-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 18px 20px;
+      color: var(--text-white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: background 0.3s;
+    }
+    
+    .faq-item h3:hover { background: rgba(255,255,255,0.03); }
+    
+    .faq-item h3 .faq-arrow {
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+    
+    .faq-item.open h3 .faq-arrow { transform: rotate(180deg); }
+    
+    .faq-item .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+    }
+    
+    .faq-item .faq-answer p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 0 20px 18px;
+    }
+    
+    .social-share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0;
+    }
+    
+    .social-share .share-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    
+    .social-share a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .share-fb { background: rgba(59,89,152,0.15); color: #3b5998; }
+    .share-fb:hover { background: #3b5998; color: white; }
+    .share-wa { background: rgba(37,211,102,0.15); color: #25d366; }
+    .share-wa:hover { background: #25d366; color: white; }
+    .share-copy { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+    .share-copy:hover { background: var(--primary); color: white; }
+    
+    .floating-share {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 90;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .floating-share a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    
+    .floating-share a:hover { transform: scale(1.1); }
+    
+    @media (max-width: 768px) {
+      .floating-share { display: flex; }
+      .social-share.inline-share { display: none; }
+    }
+    
+    @media (min-width: 769px) {
+      .floating-share { display: none !important; }
+    }
+    
+    .toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .toc h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-white);
+      letter-spacing: 0.5px;
+    }
+    
+    .toc-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 6px;
+    }
+    
+    .toc-list a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 4px 0;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .toc-list a:hover { color: var(--primary); }
+    
+    .toc-list a .num {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.75rem;
+      width: 18px;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+    
+    .cta-box .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .cta-box .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(231,58,58,0.3);
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+    
+    .site-footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .site-footer a:hover { color: var(--primary); }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="page-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <div class="nav-links">
+      <a href="/piatti/">Piatti</a>
+      <a href="/community/blog/">Magazine</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+    <span class="sep">/</span>
+    <span class="current">Cosa Mangiare a Roma</span>
+  </div>
+
+  <header class="hero">
+    <span class="badge"><i class="fa-solid fa-utensils"></i> Guida Aggiornata 2026</span>
+    <h1>Cosa Mangiare a Roma: La Guida Completa</h1>
+    <p>6 piatti tipici da provare quando visiti Roma. Con ristoranti consigliati, prezzi reali e consigli dei locali.</p>
+    <div class="stats">
+      <span><i class="fa-solid fa-utensils"></i> 6 piatti</span>
+      <span><i class="fa-solid fa-map-marker-alt"></i> Roma, Lazio</span>
+      <span><i class="fa-regular fa-clock"></i> 15 min lettura</span>
+    </div>
+  </header>
+
+  <div class="author-box">
+    <div class="author-avatar"><i class="fa-solid fa-user-pen"></i></div>
+    <div class="author-info">
+      <div class="author-name">trovapiatto</div>
+      <div class="author-meta">Pubblicato il 29 Agosto 2026</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="intro">
+      Roma è una città che si mangia per strada, nei trattorie, nelle pizzerie. La cucina romana è una delle più <strong>forti e definite</strong> d'Italia: quattro piatti fondamentali — carbonara, cacio e pepe, amatriciana, gricia — più decine di specialità che raccontano millenni di storia culinaria.
+    </div>
+
+    <section class="dish-section" id="storia">
+      <div class="dish-header">
+        <div class="dish-number"><i class="fa-solid fa-landmark"></i></div>
+        <h2>Storia della Cucina Romana</h2>
+      </div>
+      <div class="dish-text">
+        Le <strong>trattorie romane</strong> sono un'istituzione che risale al XIX secolo, quando i primi locali
+        iniziarono a servire piatti della tradizione popolare ai lavoratori del Testaccio,
+        del Ghetto e dei quartieri periferici. Le trattorie erano luoghi semplici, senza fronzoli,
+        dove il cibo era buono e abbondante, e dove i camerieri conoscevano i clienti per nome.
+        La tradizione della trattoria romana è ancora viva oggi: locali come Da Enzo al Testaccio,
+        Felice a Testaccio, Roscioli e Armando al Pantheon continuano a servire piatti
+        preparati con ingredienti freschi e ricette tramandate da generazioni.
+        La differenza tra una trattoria e un ristorante a Roma è sottile ma importante:
+        la trattoria è un luogo dove si mangia come a casa, con piatti semplici
+        ma preparati con cura e passione. È in queste trattorie che si è formata
+        l'identità della cucina romana, un'identità fatta di ingredienti poveri
+        trasformati in capolavori di sapori dalla sapienza culinaria dei romani.
+      </div>
+      <div class="dish-text">
+        Il <strong>quartiere di Testaccio</strong> è il cuore pulsante della cucina popolare romana.
+        La sua storia culinaria è legata al Mattatoio comunale, il mercato del bestiame
+        che operò dal 1891 al 1975 nella piazza principale del quartiere.
+        Il Mattatoio attirava macellai, salumifici, cuochi e popolani
+        che trovavano nel quartiere il pane e il lavoro. Il "quinto quarto" —
+        le quattro parti meno nobili dell'animale: coda, testa, piedi e interiora —
+        diventò la base della cucina testaccina: coda alla vaccinara, pajata,
+        rigatoni con la pajata, coratella con i carciofi.
+        I cuochi del Mattatoio, esperti nel lavorare le carni meno pregiate,
+        inventarono ricette geniali che trasformavano i "ritagli" in piatti
+        squisiti e nutriventi. Questa tradizione del "quinto quarto"
+        è ancora viva nelle trattorie del Testaccio, dove si possono trovare
+        piatti che raccontano una storia di povertà e ingegnosità culinaria.
+      </div>
+      <div class="dish-text">
+        La <strong>tradizione del "quinto quarto"</strong> affonda le sue radici nella Roma papalina,
+        quando i macellai del Testaccio ricevevano come pagamento parte della carcassa
+        dell'animale. Le parti più nobili —filetto, costate, rosticc — andavano ai ricchi,
+        mentre i macellai si tenevano le interiora, la coda, la testa e i piedi.
+        Fu così che nacquero i piatti più iconici della cucina romana:
+        la coda alla vaccinara, brasata lentamente con sedano, pomodoro, pinoli e uvetta;
+        i rigatoni con la pajata, i intestini del vitello cotti nel sugo di pomodoro;
+        la coratella d'agnello con i carciofi, un piatto di Pasqua che unisce
+        le interiora dell'agnello ai carciofi romaneschi. Questi piatti,
+        nati dalla necessità di non sprecare nulla, sono diventati oggi
+        i più ambiti e richiesti nelle trattorie romane — una dimostrazione
+        che la cucina più autentica nasce spesso dalla povertà e dall'ingegno.
+      </div>
+      <div class="dish-text">
+        La <strong>cucina romana</strong> ha attraversato i secoli mantenendo la sua identità intatta.
+        Dai banchetti dell'antica Roma, dove si mangiava pavone e ghiottonerie esotiche,
+        alla cucina medievale dei monasteri, dove i monaci preparavano minestre e legumi,
+        fino alla Roma barocca dei papi e dei cardinali, dove la tavola diventò un teatro
+        di lusso e raffinatezza. Ma la cucina che oggi conosciamo come "romana"
+        si è definita nell'Ottocento, quando i flussi migratori dall'Agro romano
+        e dalle regioni limitrofe portarono nella capitale nuovi ingredienti e nuove ricette.
+        L'arrivo del pomodoro dall'America, la diffusione della pasta secca,
+        l'importazione del pecorino romano dalle marche dell'Agro — tutti questi elementi
+        contribuirono a definire i quattro pilastri della cucina romana:
+        carbonara, cacio e pepe, amatriciana e gricia, piatti che raccontano
+        millenni di storia culinaria in un solo piatto.
+      </div>
+      <div class="dish-text">
+        Il <strong>Mattatoio del Testaccio</strong>, chiuso nel 1975, è stato il cuore della tradizione
+        culinaria popolare per quasi un secolo. Il mercato del bestiame attirava macellai,
+        cuochi, salumifici e contadini che portavano i loro prodotti dall'Agro romano.
+        Fu qui che nacquero le ricette più iconiche della cucina romana: la coda alla vaccinara,
+        i rigatoni con la pajata, la coratella con i carciofi. I macellai, che ricevevano
+        come pagamento il "quinto quarto" dell'animale, dovettero inventare ricette
+        per trasformare le parti meno nobili in piatti saporiti e nutriventi.
+        Oggi, il Mattatoio è stato trasformato in un centro culturale,
+        ma la sua eredità culinaria vive nelle trattorie del quartiere,
+        dove si continuano a servire piatti che raccontano una storia di povertà,
+        ingegnosità e amore per il cibo. Il Testaccio è ancora oggi il quartiere
+        dove si mangia la Roma più autentica, quella dei piatti semplici
+        e degli ingredienti freschi del territorio.
+      </div>
+    </section>
+
+    <div class="social-share inline-share">
+      <span class="share-label"><i class="fa-solid fa-share-nodes"></i> Condividi:</span>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/cosa-mangiare-roma/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Roma:%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/cosa-mangiare-roma/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/cosa-mangiare-roma/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+    </div>
+
+    <div class="toc">
+      <h3><i class="fa-solid fa-list"></i> Indice</h3>
+      <div class="toc-list">
+        <a href="#storia"><span class="num">-</span> Storia della Cucina</a>
+        <a href="#carbonara"><span class="num">1.</span> Carbonara</a>
+        <a href="#cacio-e-pepe"><span class="num">2.</span> Cacio e Pepe</a>
+        <a href="#coda-alla-vaccinara"><span class="num">3.</span> Coda alla Vaccinara</a>
+        <a href="#amatriciana"><span class="num">4.</span> Amatriciana</a>
+        <a href="#gricia"><span class="num">5.</span> Gricia</a>
+        <a href="#suppli"><span class="num">6.</span> Supplì</a>
+        <a href="#le-quattro-fonti"><span class="num">-</span> Le 4 Fonti</a>
+        <a href="#curiosita"><span class="num">-</span> Curiosità</a>
+      </div>
+    </div>
+
+      <section class="dish-section" id="carbonara">
+        <div class="dish-header">
+          <div class="dish-number">1</div>
+          <h2>Carbonara</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800&h=400&fit=crop" alt="Carbonara" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>carbonara</strong> è il piatto romano per eccellenza: guanciale croccante, pecorino romano, uova e pepe nero. Zero panna, zero aglio, zero compromessi. La versione autentica è una questione di orgoglio e tradizione. Il nome "carbonara" deriva probabilmente dai carbonai che lavoravano nei boschi dell'Appennino e che preparavano questo piatto semplice e sostanzioso durante le pause di lavoro: pasta, uova, guanciale e pecorino erano ingredienti facili da trasportare e da cucinare al campo. La ricetta autentica richiede solo cinque ingredienti: spaghetti (o rigatoni), guanciale stagionato, pecorino romano DOP, uova fresche e pepe nero macinato al momento. Il segreto è nella tecnica: il guanciale va tagliato a listarelle e rosolato lentamente nel suo grasso fino a diventare croccante; le uova vengono mescolate con il pecorino grattugiato finemente per creare una crema densa e vellutata; il tutto viene unito fuori dal fuoco, sfruttando il calore della pasta per creare quella consistenza cremosa che è il marchio di fabbrica della carbonara autentica.
+        </div>
+        <div class="dish-text">
+          La <strong>vera carbonara</strong> non ha panna — è una questione di principio. La cremosità deriva dall'emulsione perfetta tra il grasso del guanciale, le uova e il pecorino, aiutata dall'acqua di cottura della pasta. I romani più puristi usano solo il tuorlo, per ottenere una crema più densa e intensa; altri aggiungono anche l'uovo intero per una consistenza più leggera. Il pecorino romano DOP è fondamentale: deve essere stagionato almeno 5 mesi, con un sapore piccante e deciso che bilancia la dolcezza delle uova. Il guanciale deve essere lavorato a mano, con una cotenna spessa e una carne striata di grasso che, una volta cotta, diventa croccante e profumata. La carbonara si serve sempre con il pepe nero macinato fresco — mai il pepe già macinato, che ha perso il suo aroma. A €10-16 in trattoria, è un piatto che racconta l'anima più autentica della cucina romana.
+        </div>
+        <div class="dish-text">
+          Il <strong>dibattito sulla carbonara</strong> è uno dei più accesi nella gastronomia italiana. Ogni romano ha la sua versione, ogni trattoria ha il suo segreto. La questione fondamentale è: tuorlo solo o uovo intero? Aglio o no? Pancetta o guanciale? La risposta, per i romani autentici, è sempre la stessa: guanciale, pecorino romano, uova, pepe e nient'altro. La panna è un insulto, l'aglio è un peccato, la pancetta è un compromesso inaccettabile. Il dibattito sulla carbonara è anche un dibattito sull'identità: in un'epoca di globalizzazione e fusion, la carbonara rappresenta la resistenza della tradizione, la difesa di un'identità culinaria che non vuole compromessi. Le varianti più discusse sono la carbonara con crema di pecorino, la carbonara con tartufo, la carbonara con crema di zucca — tutte versioni che i romani puristi considerano eresie. Ma la carbonara resta il piatto più amato e più ordinato nelle trattorie romane, un piatto che non passa mai di moda e che continua a raccontare la storia di Roma in ogni forchettata.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €10-16</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Primo</span>
+        </div>
+        <a href="/menu/casa-malgarini/" class="restaurant-card">
+          <img src="/loghi/casa-malgarini.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Casa Malgarini</div>
+            <div class="rc-detail">Carbonara · €13</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="cacio-e-pepe">
+        <div class="dish-header">
+          <div class="dish-number">2</div>
+          <h2>Cacio e Pepe</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1673442607602-e083fa10fd9d?w=800&h=400&fit=crop" alt="Cacio e Pepe" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Il <strong>cacio e pepe</strong> è pura poesia: tonnarelli (o spaghetti) conditi con pecorino romano DOP e pepe nero macinato fresco. La crema si fa con l'acqua di cottura — è la chimica della tradizione. Il nome è ingannevolmente semplice: "cacio" è il pecorino romano, "pepe" è il pepe nero. Ma la semplicità degli ingredienti nasconde una tecnica complessa che richiede anni di pratica per essere padroneggiata. Il segreto sta nella temperatura: il pecorino deve essere grattugiato finemente e mescolato con l'acqua di cottura della pasta a una temperatura precisa — troppo calda e il pecorino si rapprende, troppo fredda e non si scioglie. Il pepe nero va tostato in padella secca per liberarne gli aromi, poi unito alla crema di pecorino. I tonnarelli, pasta fresca all'uovo dalla sezione quadrata, vengono cotti al dente e saltati nella crema di cacio e pepe fino a ricoprirsi completamente. Il risultato è un piatto di una semplicità assoluta, dove ogni ingrediente ha il suo ruolo e la sua voce.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €9-14</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Primo</span>
+        <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariano</span>
+        </div>
+        <a href="/menu/casa-malgarini/" class="restaurant-card">
+          <img src="/loghi/casa-malgarini.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Casa Malgarini</div>
+            <div class="rc-detail">Cacio e pepe · €12</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="coda-alla-vaccinara">
+        <div class="dish-header">
+          <div class="dish-number">3</div>
+          <h2>Coda alla Vaccinara</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=400&fit=crop" alt="Coda alla Vaccinara" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>coda alla vaccinara</strong> è il piatto della cucina povera romana diventata grande: coda di bue brasata lentamente con sedano, pomodoro, pinoli e uvetta. Un piatto che richiede pazienza e restituisce sapori indimenticabili. La coda viene cotta per almeno tre ore in acqua con sedano, carote, cipolle e alloro, poi sgocciolata e rosolata in padella con olio, aglio e peperoncino. Il sugo di cottura viene passato al setaccio e ridotto con pomodoro, vino bianco e una manciata di pinoli e uvetta passa — un abbinamento dolce-sapido che è il marchio di fabbrica della cucina romana. Il sedano è l'ingrediente chiave: non è un contorno, ma un protagonista, con il suo sapore amaro e aromatico che bilancia la ricchezza della carne. La coda alla vaccinara si serve con polenta o con pane abbrustolito, e richiede un vino rosso strutturato come un Montepulciano d'Abruzzo o un Cesanese del Piglio. A €14-20, è un secondo piatto che racconta la storia del Testaccio e dei suoi macellai, che sapevano trasformare le parti meno nobili dell'animale in un capolavoro di sapori.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €14-20</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Secondo</span>
+        </div>
+        <a href="/menu/casa-malgarini/" class="restaurant-card">
+          <img src="/loghi/casa-malgarini.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Casa Malgarini</div>
+            <div class="rc-detail">Coda alla vaccinara · €17</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="amatriciana">
+        <div class="dish-header">
+          <div class="dish-number">4</div>
+          <h2>Amatriciana</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&h=400&fit=crop" alt="Amatriciana" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          L'<strong>amatriciana</strong> è uno dei quattro pilastri della cucina romana: guanciale, pecorino, pomodoro e pepe. Il nome deriva dalla città di Amatrice, in provincia di Rieti, dove questa ricetta nacque come "virtù bianca" — una pasta con guanciale e pecorino, senza pomodoro. Il pomodoro fu aggiunto solo nell'Ottocento, quando il frutto delle Americhe si diffuse nella cucina italiana. L'amatriciana autentica si prepara con guanciale stagionato tagliato a listarelle, rosolato lentamente nel suo grasso fino a diventare croccante; il pomodoro San Marzano viene aggiunto e cotto per qualche minuto, poi unito alla pasta — tradizionalmente bucatini, perché i buchi trattengono il sugo in modo perfetto. Il pecorino romano DOP va grattugiato fresco e aggiunto a fine cottura, così come il pepe nero macinato al momento. A €10-14, è un piatto che rappresenta il cuore della tradizione laziale e romana.
+        </div>
+        <div class="dish-text">
+          L'<strong>amatriciana</strong> è un piatto che divide i romani: alcuni la vogliono con il pomodoro, altri senza — la versione tradizionale di Amatrice, infatti, non prevede il pomodoro. Ma a Roma, l'amatriciana con il pomodoro è diventata la norma, e i ristoranti che la servono senza sono considerati eretici. Il dibattito sulla ricetta è un argomento caldo nelle trattorie romane: il guanciale deve essere tagliato a listarelle o a cubetti? Il pecorino deve essere aggiunto a fine cottura o durante la mantecatura? Il pepe deve essere nero o bianco? Le risposte variano da cuoco a cuoco, ma l'essenza resta la stessa: ingredienti semplici, tecnica perfetta, sapori autentici. L'amatriciana è anche il piatto della festa patronale di Amatrice, che si tiene ogni agosto e richiama migliaia di visitatori da tutta Italia.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €10-14</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Primo</span>
+        </div>
+        <a href="/menu/casa-malgarini/" class="restaurant-card">
+          <img src="/loghi/casa-malgarini.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Casa Malgarini</div>
+            <div class="rc-detail">Amatriciana · €12</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="gricia">
+        <div class="dish-header">
+          <div class="dish-number">5</div>
+          <h2>Gricia</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800&h=400&fit=crop" alt="Gricia" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>gricia</strong> è l'antenata della carbonara e della amatriciana: guanciale, pecorino romano e pepe nero. Nessun uovo, nessun pomodoro — solo tre ingredienti che creano un piatto di una semplicità e complessità incredibili. Il nome deriva dalla regione dei Grisoni, in Svizzera, da cui provenivano i mercanti di formaggio che frequentavano il Lazio nel Medioevo. La gricia è considerata il "padre" della carbonara: quando i carbonai dell'Appennino aggiunsero le uova al piatto dei Grisoni, nacque la carbonara. La tecnica è simile a quella della carbonara: il guanciale viene rosolato lentamente nel suo grasso fino a diventare croccante; il pecorino romano viene grattugiato finemente e mescolato con l'acqua di cottura per creare una crema; il tutto viene unito alla pasta — tradizionalmente rigatoni o tonnarelli — e condito con pepe nero macinato fresco. A €10-13, è un piatto che racconta la storia della cucina romana nelle sue radici più antiche.
+        </div>
+        <div class="dish-text">
+          La <strong>gricia</strong> è spesso definita "la carbonara senza uova" o "l'amatriciana senza pomodoro", ma questa definizione è riduttiva. La gricia ha una personalità propria, un sapore più pulito e diretto che esalta la qualità del guanciale e del pecorino. Senza le uova della carbonara e senza il pomodoro dell'amatriciana, la gricia è un piatto che parla solo di guanciale e pecorino — due ingredienti che, quando sono di qualità, non hanno bisogno di nient'altro. I romani più esperti considerano la gricia il piatto più difficile da preparare tra i quattro classici, perché ogni difetto è amplificato dall'assenza di altri ingredienti: un guanciale troppo duro, un pecorino troppo giovane, una temperatura errata nella crema — tutto si nota immediatamente. Per questo, la gricia è considerata il banco di prova del cuoco romano: se sai fare la gricia perfetta, sai fare qualsiasi piatto della tradizione.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €10-13</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Primo</span>
+        </div>
+        <a href="/menu/casa-malgarini/" class="restaurant-card">
+          <img src="/loghi/casa-malgarini.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Casa Malgarini</div>
+            <div class="rc-detail">Gricia · €11</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="suppli">
+        <div class="dish-header">
+          <div class="dish-number">6</div>
+          <h2>Supplì</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=800&h=400&fit=crop" alt="Supplì" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          I <strong>supplì</strong> sono le palline di riso fritte con il sugo di pomodoro e mozzarella che rappresentano il street food romano per eccellenza. Il nome deriva dal francese "surprise", perché quando si rompono la mozzarella filante crea un effetto sorpresa. I supplì nacquero nel XIX quartiere di Roma, dove i contadini dell'Agro romano li portavano al mercato come spuntino economico e sostanzioso. La ricetta è semplice: riso cotto con sugo di pomodoro e carne, format palline, impanate con uovo e pangrattato, e fritte in olio bollente. Il segreto del supplì perfetto è nel riso — deve essere cotto al punto giusto, abbastanza morbido da tenere insieme ma abbastanza sodo da mantenere la forma — e nella mozzarella, che deve filare in modo spettacolare quando si rompe il supplì. A Roma, i supplì si mangiano in ogni tabaccheria, in ogni bar, in ogni pizzeria: sono il piatto della strada, il cibo veloce e buono che accompagna la vita quotidiana dei romani.
+        </div>
+        <div class="dish-text">
+          I <strong>supplì</strong> sono anche un simbolo della cucina povera romana, un piatto nato dalla necessità di creare qualcosa di buono con pochi ingredienti. Il riso avanzato della cena veniva riciclato con un po' di sugo e un pezzetto di mozzarella, poi fritto per creare uno spuntino gustoso e nutriente. Oggi, i supplì sono diventati un'icona della gastronomia romana: si trovano in ogni quartiere, dai bar di lusso del centro storico alle fuse di Trastevere. I supplì classici sono quelli al sugo di pomodoro e mozzarella, ma esistono anche versioni con burro e parmigiano, con ragù, con olive e capperi. A Roma, i supplì si accompagnano perfettamente con una birra fredda o con un bicchiere di vino bianco frizzante come il Frascati — un abbinamento semplice e delizioso che rappresenta l'essenza della vita romana.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €2-4</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Street Food</span>
+        </div>
+        <a href="/menu/casa-malgarini/" class="restaurant-card">
+          <img src="/loghi/casa-malgarini.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Casa Malgarini</div>
+            <div class="rc-detail">Supplì · €3</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+    <section class="dish-section" id="le-quattro-fonti">
+      <div class="dish-header">
+        <div class="dish-number"><i class="fa-solid fa-landmark"></i></div>
+        <h2>Le 4 Fonti della Cucina Romana</h2>
+      </div>
+      <div class="dish-text">
+        La <strong>carbonara</strong> è il piatto più iconico della cucina romana: guanciale croccante, pecorino romano DOP, uova fresche e pepe nero macinato al momento. La sua origine è dibattuta: alcuni la collegano ai carbonai dell'Appennino che cuocevano pasta con uova e guanciale nei loro accampamenti, altri ai soldati americani che, durante la Seconda Guerra Mondiale, portarono uova e bacon in Italia, ispirando i cuochi romani. La carbonara è un piatto di tecnica: la crema si fa con le uova e il pecorino fuori dal fuoco, sfruttando il calore della pasta per creare un'emulsione perfetta. La versione autentica non prevede panna, aglio o cipolla — solo ingredienti semplici e tecnica perfetta.
+      </div>
+      <div class="dish-text">
+        Il <strong>cacio e pepe</strong> è il più semplice e il più difficile dei quattro classici: pecorino romano DOP, pepe nero e acqua di cottura della pasta. La crema si fa mescolando il pecorino grattugiato finemente con l'acqua di cottura a temperatura precisa — troppo calda e il pecorino si rapprende, troppo fredda e non si scioglie. Il pepe nero va tostato in padella secca per liberarne gli aromi. I tonnarelli, pasta fresca all'uovo, vengono cotti al dente e saltati nella crema fino a ricoprirsi. Il cacio e pepe è un piatto di chimica culinaria: richiede precisione, tempismo e ingredienti di qualità impeccabile.
+      </div>
+      <div class="dish-text">
+        L'<strong>amatriciana</strong> è il piatto che lega Roma alla tradizione laziale: guanciale, pecorino, pomodoro San Marzano e pepe nero. Il nome deriva da Amatrice, in provincia di Rieti, dove la ricetta nacque come "virtù bianca" — pasta con guanciale e pecorino, senza pomodoro. Il pomodoro fu aggiunto nell'Ottocento, quando il frutto delle Americhe si diffuse in Italia. L'amatriciana si prepara con guanciale tagliato a listarelle, rosolato nel suo grasso, poi unito al pomodoro e cotto per qualche minuto. I bucatini sono la pasta tradizionale, perché i buchi trattengono il sugo in modo perfetto.
+      </div>
+      <div class="dish-text">
+        La <strong>gricia</strong> è l'antenata della carbonara e dell'amatriciana: guanciale, pecorino romano e pepe nero. Il nome deriva dai Grisoni, mercanti svizzeri che frequentavano il Lazio nel Medioevo. La gricia è considerata il "padre" della carbonara: quando i carbonai aggiunsero le uova, nacque la carbonara. È il piatto più difficile da preparare perché, senza uova e pomodoro, ogni difetto è amplificato. Il guanciale deve essere croccante, il pecorino deve essere perfettamente sciolto, la temperatura deve essere precisa. La gricia è il banco di prova del cuoco romano: se sai fare la gricia perfetta, sai fare qualsiasi piatto della tradizione.
+      </div>
+    </section>
+
+    <section class="dish-section" id="curiosita">
+      <div class="dish-header">
+        <div class="dish-number"><i class="fa-solid fa-lightbulb"></i></div>
+        <h2>Curiosità sulla Cucina Romana</h2>
+      </div>
+      <div class="dish-text">
+        Il <strong>"pranzo della domenica"</strong> è un rito sacro nella cultura romana. Ogni domenica, le famiglie si riuniscono per un pranzo che può durare anche quattro ore, con antipasti, due primi, secondo con contorno, dolce, frutta e caffè. Il menu della domenica è sempre lo stesso: antipasto di salumi e formaggi, primo piatto di pasta al sugo o in brodo, secondo di arrosto o bollito, contorno di verdure, dolce di pasticceria. Questo rito è così importante che molti ristoranti romani la domenica a pranzo sono pieni zeppi, con famiglie intere cheoccupano tavoli di 10-12 persone. La domenica a Roma è il giorno del cibo, della famiglia e della tradizione — un giorno in cui il tempo si ferma e la tavola diventa il centro della vita familiare.
+      </div>
+      <div class="dish-text">
+        I <strong>"giovedì football"</strong> sono un'altra tradizione culinaria romana: nelle sere di partita della Roma e della Lazio, le trattorie si riempiono di tifosi che mangiano pizza e birra prima di andare allo stadio. Ma la vera tradizione romana del giovedì non è il calcio — è la "pizza al taglio", che si mangia in piedi davanti al banco della pizzeria. La pizza al taglio romana è diversa da quella napoletana: è più sottile, più croccante, con una sfoglia leggera e ariosa che viene condita con ingredienti semplici — pomodoro e mozzarella, patate e rosmarino, salsiccia e friarielli. A Roma, la pizza al taglio si mangia come snack, come spuntino, come cena veloce — è il cibo della strada, il cibo della vita quotidiana.
+      </div>
+      <div class="dish-text">
+        La <strong>tradizione del "caffè freddo"</strong> è una peculiarità romana che confonde i turisti: a Roma, quando ordini un "caffè freddo", non ricevi un espresso freddo, ma un caffè caldo versato su del ghiaccio. Questa tradizione nasce dalla pratica romana di bere il caffè in piedi al bar, in fretta, senza sedersi. Il caffè freddo è perfetto per le calde giornate estive romane, quando il caldo è insopportabile e il caffè caldo sembra un supplimento. A Roma, il caffè si beve in ogni momento della mattina: al bar, in ufficio, per strada, in trattoria. È un rito sociale, un momento di pausa, un'occasione per incontrare gli amici e parlare. Il caffè romano è forte, deciso, aromatico — un caffè che ti sveglia e ti dà energia per affrontare la giornata.
+      </div>
+      <div class="dish-text">
+        Un'altra curiosità è che a Roma il <strong>"pranzo" si mangia alle 13:00</strong> e la <strong>"cena" alle 20:00-20:30</strong>, ma i romani più tradizionalisti mangiano ancora prima: il pranzo alle 12:30 e la cena alle 19:30. Questa tradizione delle "mangiate presto" è legata alla vita contadina dell'Agro romano, dove i lavoratori dei campi mangiavano presto per avere energia per il lavoro pomeridiano. Oggi, questa tradizione sta scomparendo, ma nei quartieri popolari come il Testaccio, Ostiense e San Lorenzo, ci ancora trattorie dove il pranzo inizia alle 12:00 e la cena alle 19:30. I turisti che cercano le trattorie più autentiche dovrebbero seguire queste ore: è nei momenti in cui i romani mangiano che si trova la cucina più vera e genuina.
+      </div>
+      <div class="dish-text">
+        La <strong>tradizione del vino a Roma</strong> ha radici antichissime: già i Romani coltivavano vigneti
+        sui colli che circondavano la città, e il Falerno era il vino più pregiato dell'Impero.
+        Oggi, i vini della terra di Roma — Frascati, Montefiascone, Colli Albani, Cesanese del Piglio —
+        sono tra i più sottovalutati d'Italia, ma stanno vivendo una rinascita grazie
+        a nuovi produttori che investono nella qualità. Il Frascati Superiore DOCG,
+        prodotto con uve Malvasia del Lazio, è un bianco fresco e minerale
+        che accompagna perfettamente i piatti della tradizione romana.
+        Il Cesanese del Piglio, un rosso leggero e fruttato, è perfetto con la carbonara
+        e la gricia, mentre il Montepulciano d'Abruzzo è il compagno ideale
+        per la coda alla vaccinara e i piatti di carne. A Roma, il vino si beve
+        sempre in accompagnamento al cibo — è parte integrante del pasto,
+        un rituale sociale che accompagna i piatti della tradizione da millenni.
+        Il vino a Roma non è solo una bevanda: è un elemento culturale,
+        un modo per raccontare il territorio, un ponte tra passato e presente
+        che collega i Romani antichi ai Romani di oggi attraverso un bicchiere.
+      </div>
+      <div class="dish-text">
+        Una tradizione poco nota è quella dei <strong>"ferragostani"</strong>: i romani che mangiano
+        fuori casa il 15 agosto, festa dell'Assunta e di Ferragosto. In questo giorno,
+        Roma si svuota e le trattorie chiudono, ma i locali più astuti offrono
+        menu speciali di Ferragosto con piatti freddi — insalate, vitello tonnato,
+        pesce grigliato, frutta — per i turisti e per i romani che restano in città.
+        Il Ferragosto è anche l'occasione per gustare i meloni dell'Agro romano,
+        che raggiungono la maturazione perfetta in agosto. I meloni di Mentana,
+        un comune a nord di Roma, sono tra i più pregiati d'Italia:
+        dolci, succosi, profumati, perfetti per accompagnare i salumi
+        o per essere gustati da soli come spuntino estivo. A Roma, il melone
+        con il prosciutto è un piatto che si mangia solo d'estate,
+        quando il caldo rende necessari cibi leggeri e rinfrescanti.
+      </div>
+    </section>
+
+    <div class="tips-box">
+      <h3><i class="fa-solid fa-lightbulb"></i> Consigli per Mangiare a Roma</h3>
+      <ul>
+        <li><i class="fa-solid fa-check"></i> Prenota sempre per la cena, soprattutto d'estate</li>
+        <li><i class="fa-solid fa-check"></i> Chiedi al cameriere cosa c'è di fresco oggi</li>
+        <li><i class="fa-solid fa-check"></i> I prezzi indicati sono indicativi e possono variare</li>
+        <li><i class="fa-solid fa-check"></i> Porta pazienza: la cucina buona non si può accelerare</li>
+        <li><i class="fa-solid fa-check"></i> Evita le trattorie con il menù tradotto in 10 lingue</li>
+        <li><i class="fa-solid fa-check"></i> Le migliori trattorie non hanno il cartello "carbonara" fuori</li>
+        <li><i class="fa-solid fa-check"></i> Se il cameriere ti consiglia il piatto del giorno, ascoltalo</li>
+        <li><i class="fa-solid fa-check"></i> A Roma il "pranzo" si mangia alle 13:00, la "cena" alle 20:00</li>
+      </ul>
+    </div>
+
+    <section class="dish-section" id="dove-mangiare">
+      <div class="dish-header">
+        <div class="dish-number"><i class="fa-solid fa-map-location-dot"></i></div>
+        <h2>Dove Mangiare a Roma: I Quartieri della Cucina</h2>
+      </div>
+      <div class="dish-text">
+        Il <strong>Testaccio</strong> è il quartiere della cucina popolare romana. Qui nacquero le trattorie
+        che definirono l'identità della cucina della capitale, e qui ancora oggi si trovano
+        i locali più autentici. Da Enzo al Testaccio è un punto di riferimento per la carbonara
+        e la cacio e pepe, mentre Felice a Testaccio è famoso per i suoi tonnarelli
+        cacio e pepe preparati davanti ai clienti. Il mercato di Testaccio, aperto dal lunedì al sabato,
+        è un paradiso per gli amanti del cibo: bancarelle di salumi, formaggi, frutta e verdura
+        freschissima, e i famosi "supplì" della tradizione testaccina.
+        Camminare per le vie del Testaccio significa respirare l'aria della Roma popolare,
+        quella Roma che ha fatto della cucina un'identità e di un piatto semplice un capolavoro.
+      </div>
+      <div class="dish-text">
+        <strong>Trastevere</strong> è il quartiere della movida e della cucina tradizionale.
+        Le sue vie lastricate e i suoi portoni aperti nascondono trattorie centenarie
+        dove si mangiano i piatti più autentici della tradizione. Da Enzo al Trastevere,
+        nonostante la confusione con l'omonimo del Testaccio, è un locale storico
+        dove si serve una carbonara impeccabile e una gricia che fa tremare le ginocchia.
+        La Piazza di Santa Maria in Trastevere, il cuore del quartiere,
+        è il punto di ritrovo per i romani e i turisti che cercano un piatto buono
+        in un'atmosfera magica. Trastevere è anche il quartiere dei giovani,
+        degli artisti, dei musicisti — un luogo dove la tradizione si mescola
+        con la contemporaneità e dove il cibo è parte integrante della vita notturna.
+      </div>
+      <div class="dish-text">
+        Il <strong>centro storico</strong> ospita le trattorie più antiche e più famose di Roma.
+        Armando al Pantheon, vicino al monumento più iconico della città,
+        è un punto di ristoro per chi vuole gustare una carbonara o una cacio e pepe
+        dopo aver visitato i monumenti. Roscioli, nel cuore del Ghetto,
+        è una pasticceria, un enoteca e un ristorante — un luogo unico dove si mangiano
+        i migliori salumi e formaggi d'Italia. Il Ghetto ebraico, con le sue strade
+        e le sue botteghe, ospita anche la tradizione della cucina ebraica romana:
+        i carciofi alla giudia, i filetti di baccalà, i fiori di zucca ripieni.
+        È una tradizione culinaria millenaria che si è conservata intatta nei secoli
+        e che rappresenta una delle identità più ricche e complesse della gastronomia romana.
+      </div>
+      <div class="dish-text">
+        <strong>Monti</strong> è il quartiere più antico di Roma e uno dei più affascinanti
+        per chi cerca una cucina autentica lontano dalle folle dei turisti.
+        Le sue vie strette e le sue piazze silenziose nascondono piccole trattorie
+        dove si mangia come una volta: piatti semplici, ingredienti freschi, prezzi onesti.
+        L'Emporio Lungo, con la sua terrazza panoramica, è un punto di riferimento
+        per chi vuole gustare i piatti della tradizione romana con una vista spettacolare
+        sui Fori Imperiali. Monti è anche il quartiere dei mercatini, delle botteghe artigiane,
+        dei caffè storici — un luogo dove il tempo sembra essersi fermato
+        e dove il cibo è ancora fatto come una volta, con ingredienti del territorio
+        e ricette tramandate da generazioni.
+      </div>
+    </section>
+
+    <section class="dish-section" id="street-food">
+      <div class="dish-header">
+        <div class="dish-number"><i class="fa-solid fa-hotdog"></i></div>
+        <h2>Street Food Romano: Oltre i Piatti Famosi</h2>
+      </div>
+      <div class="dish-text">
+        I <strong>supplì</strong> sono solo l'inizio della storia dello street food romano.
+        La pizza al taglio, con la sua sfoglia sottile e croccante, è un'altra icona:
+        si mangia in piedi davanti al banco, tagliata con forbici e condita
+        con ingredienti semplici — pomodoro e mozzarella, patate e rosmarino, salsiccia e friarielli.
+        A Roma, la pizza al taglio non è un pasto, ma uno spuntino, un momento di pausa
+        nella giornata frenetica. Le pizzerie più famose per la pizza al taglio
+        si trovano nei quartieri popolari: Bonci Pizzarium, vicino al Vaticano,
+        è considerata la migliore pizza al taglio di Roma, con sfoglie leggere
+        e condimenti creativi che escono dalla tradizione.
+      </div>
+      <div class="dish-text">
+        I <strong>carciofi</strong> sono un'altra protagonista dello street food romano.
+        I carciofi alla giudia, inventati nel Ghetto ebraico, sono carciofi fritti
+        in olio bollente fino a diventare croccanti come chips, con le foglie
+        che si staccano come pagliuzze d'oro. I carciofi alla romana,
+        invece, sono stufati lentamente con olio, aglio e mentuccia — un piatto
+        della tradizione che richiede pazienza e maestria. A Roma, i carciofi
+        si mangiano soprattutto in primavera, da febbraio ad aprile,
+        quando il mercato è pieno di carciofi freschi e saporiti.
+        Il carciofo è un ingrediente versatile che si presta a decine di ricette:
+        in pasta, fritto, stufato, grigliato, ripieno — un piatto che racconta
+        la storia della cucina romana in ogni sua variante.
+      </div>
+      <div class="dish-text">
+        I <strong>fiori di zucca</strong> sono un'altra specialità dello street food romano:
+        fiori di zucca ripieni di mozzarella e acciughe, poi fritti in pastella leggera.
+        È un piatto leggero e delicato, perfetto per le calde giornate estive,
+        quando il caldo romano rende necessari piatti freschi e leggeri.
+        I fiori di zucca si trovano in ogni pizzeria e trattoria di Roma,
+        ma i migliori si gustano nei mercati di Testaccio e di Campo de' Fiori,
+        dove i contadini dell'Agro romano portano i fiori freschi del giorno.
+        A Roma, lo street food non è solo cibo veloce — è una tradizione,
+        un modo di vivere la città, un'occasione per gustare i sapori
+        della tradizione romana in un'atmosfera informale e divertente.
+        Lo street food romano è un fenomeno in continua evoluzione,
+        che unisce la tradizione secolare con l'innovazione contemporanea.
+      </div>
+    </section>
+
+    <div class="map-section">
+      <h2><i class="fa-solid fa-map-location-dot"></i> Dove Mangiare a Roma</h2>
+      <div id="guide-map"></div>
+    </div>
+
+    <div class="faq-section">
+      <h2><i class="fa-solid fa-circle-question"></i> Domande Frequenti</h2>
+      <div class="faq-item">
+        <h3>Qual è il piatto più tipico di Roma? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>La carbonara è il piatto più iconico. La cucina romana ha 4 piatti fondamentali: carbonara, cacio e pepe, amatriciana e gricia.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Quanto costa mangiare a Roma? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>In trattoria un primo costa €10-16, un secondo €14-22. Nei ristoranti stellati si arriva a €50-100 a persona.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Dove si mangia la carbonara migliore a Roma? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Le trattorie del centro storico e dei Monti offrono le versioni più autentiche. Attenzione ai turistici.</p></div>
+      </div>
+
+    </div>
+
+    <div class="cta-box">
+      <h2>Sei un ristoratore a Roma?</h2>
+      <p>Crea il tuo menu online gratuito su trovapiatto e raggiungi più clienti.</p>
+      <a href="/app/admin/" class="btn"><i class="fa-solid fa-plus"></i> Crea il tuo Menu</a>
+    </div>
+
+    <div class="ad-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/blog/">Magazine</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <div class="floating-share">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/cosa-mangiare-roma/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Roma:%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/cosa-mangiare-roma/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/cosa-mangiare-roma/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'Casa Malgarini', lat: 41.92, lng: 12.42, slug: 'casa-malgarini', dish: 'Carbonara/Cacio e pepe', price: '€10-20' },
+    ];
+
+    const map = L.map('guide-map').setView([41.92, 12.42], 14);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">${r.dish}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+
+    document.querySelectorAll('.faq-item h3').forEach(h3 => {
+      h3.addEventListener('click', () => {
+        const item = h3.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cosa Mangiare a Roma: La Guida Completa ai Piatti Tipici",
+    "description": "Scopri cosa mangiare a Roma: carbonara, cacio e pepe, amatriciana e le 4 tradizioni romane con ristoranti, prezzi e consigli.",
+    "image": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-08-29T10:00:00+02:00",
+    "dateModified": "2026-08-29T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/cosa-mangiare-roma/" },
+    "keywords": "cosa mangiare Roma, piatti tipici Roma, carbonara Roma, cacio e pepe, amatriciana, gricia, coda alla vaccinara, ristoranti Roma"
+  }
+  </script>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "name": "Cosa Mangiare a Roma",
+    "description": "Guida gastronomica a Roma: piatti tipici, ristoranti, prezzi e consigli per scoprire la cucina di Roma (Lazio).",
+    "url": "https://www.trovapiatto.it/roma/",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.92,
+      "longitude": 12.42
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Roma",
+      "addressRegion": "Lazio",
+      "addressCountry": "IT"
+    },
+    "touristType": ["Foodie", "Culinary Traveler"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Cosa Mangiare a Roma", "item": "https://www.trovapiatto.it/cosa-mangiare-roma/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è il piatto più tipico di Roma?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La carbonara è il piatto più iconico. La cucina romana ha 4 piatti fondamentali: carbonara, cacio e pepe, amatriciana e gricia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa mangiare a Roma?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In trattoria un primo costa €10-16, un secondo €14-22. Nei ristoranti stellati si arriva a €50-100 a persona."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Dove si mangia la carbonara migliore a Roma?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le trattorie del centro storico e dei Monti offrono le versioni più autentiche. Attenzione ai turistici."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="MH3AZB7"></script>
+
+</body>
+</html>

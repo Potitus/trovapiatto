@@ -1,0 +1,72 @@
+{
+  "siteConfig": {
+    "title": "Trovapiatto.it | Menu Digitale",
+    "description": "Scopri il menu digitale di Trovapiatto.it",
+    "author": "Trovapiatto.it | Menu Digitale",
+    "ogUrl": "https://www.trovapiatto.it/demo",
+    "ogImage": "https://www.trovapiatto.it/assets/images/bannerbg.jpg",
+    "ogLocale": "it_IT",
+    "analyticsId": "G-SMZZK9P4W4",
+    "theme": "light",
+    "highlightColor": "#537b83",
+    "primaryColor": "#EF3D26",
+    "menuId": "1",
+    "currency": "€",
+    "logo": "https://www.trovapiatto.it/logo/logo.svg"
+  },
+  "contact": {
+    "phone": "+39",
+    "whatsapp": "",
+    "location": "Roma",
+    "mapLink": "",
+    "googleMapsLink": ""
+  },
+  "restaurant": {
+    "restaurantName": "Trovapiatto",
+    "restaurantAddress": "Corso Italia 10, Roma, Italia",
+    "latitude": 41.9028,
+    "longitude": 12.4964
+  },
+  "menu": {
+    "categories": [
+      {
+        "name": "Antipasti",
+        "link": "https://www.trovapiatto.it"
+      },
+      {
+        "name": "Primi",
+        "link": "https://www.trovapiatto.it"
+      },
+      {
+        "name": "Secondi",
+        "link": "https://www.trovapiatto.it"
+      },
+      {
+        "name": "Pizze",
+        "link": "https://www.trovapiatto.it"
+      },
+      {
+        "name": "Dessert",
+        "link": "https://www.trovapiatto.it"
+      },
+      {
+        "name": "Vini Rossi",
+        "link": "https://www.trovapiatto.it"
+      },
+      {
+        "name": "Vini Bianchi",
+        "link": "https://www.trovapiatto.it"
+      },
+      {
+        "name": "Menu Fisso",
+        "link": "https://www.trovapiatto.it"
+      }
+    ]
+  },
+  "socialLinks": {
+    "facebook": "https://www.facebook.com/trovapiatto.it",
+    "whatsapp": "https://wa.me/",
+    "instagram": "",
+    "twitter": ""
+  }
+}

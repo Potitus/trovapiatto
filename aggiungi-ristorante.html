@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggiungi il tuo Ristorante - trovapiatto</title>
+    <meta name="description" content="Aggiungi gratis il tuo ristorante su trovapiatto. Menu digitale, ordini online, prenotazioni e analytics.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --primary:#e73a3a; --bg:#0f0a15; --bg-card:#1a1125; --text:#f1e8ff; --text-dim:#9b8cb8; --border:#2d2145; --success:#34d399; --warning:#fbbf24; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; }
+        .container { max-width:600px; margin:0 auto; padding:24px 16px; }
+        .header { text-align:center; margin-bottom:32px; }
+        .header img { height:40px; border-radius:8px; margin-bottom:12px; }
+        .header h1 { font-size:1.5em; margin-bottom:6px; }
+        .header p { color:var(--text-dim); font-size:0.9em; }
+        .progress-bar { display:flex; gap:4px; margin-bottom:32px; }
+        .progress-step { flex:1; height:4px; background:var(--border); border-radius:2px; transition:background 0.3s; }
+        .progress-step.active { background:var(--primary); }
+        .progress-step.done { background:var(--success); }
+        .step { display:none; }
+        .step.active { display:block; }
+        .step h2 { font-size:1.2em; margin-bottom:6px; }
+        .step .subtitle { color:var(--text-dim); font-size:0.85em; margin-bottom:20px; }
+        .form-group { margin-bottom:16px; }
+        .form-group label { display:block; font-size:0.8em; color:var(--text-dim); margin-bottom:6px; font-weight:600; }
+        .form-group input, .form-group select, .form-group textarea { width:100%; padding:12px; background:var(--bg-card); color:var(--text); border:1px solid var(--border); border-radius:10px; font-size:0.9em; font-family:'Inter',sans-serif; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:none; border-color:var(--primary); }
+        .form-group textarea { min-height:80px; resize:vertical; }
+        .form-row { display:flex; gap:12px; }
+        .form-row .form-group { flex:1; }
+        .btn { padding:14px 24px; border:none; border-radius:10px; font-weight:700; font-size:0.95em; cursor:pointer; transition:all 0.2s; }
+        .btn-primary { background:var(--primary); color:white; width:100%; }
+        .btn-primary:hover { background:#d63018; }
+        .btn-secondary { background:var(--bg-card); color:var(--text); border:1px solid var(--border); }
+        .btn-secondary:hover { border-color:var(--text-dim); }
+        .btn-row { display:flex; gap:10px; margin-top:24px; }
+        .btn-row .btn { flex:1; }
+        .category-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+        .cat-option { background:var(--bg-card); border:2px solid var(--border); border-radius:12px; padding:16px 12px; text-align:center; cursor:pointer; transition:all 0.2s; }
+        .cat-option:hover { border-color:var(--text-dim); }
+        .cat-option.selected { border-color:var(--primary); background:rgba(231,58,58,0.1); }
+        .cat-option i { font-size:1.5em; margin-bottom:6px; display:block; color:var(--primary); }
+        .cat-option span { font-size:0.8em; font-weight:600; }
+        .success-screen { text-align:center; padding:48px 24px; }
+        .success-screen i { font-size:4em; color:var(--success); margin-bottom:16px; }
+        .success-screen h2 { margin-bottom:8px; }
+        .success-screen p { color:var(--text-dim); font-size:0.9em; margin-bottom:24px; }
+        .info-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:16px; }
+        .info-card h3 { font-size:0.95em; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+        .info-card p { font-size:0.8em; color:var(--text-dim); line-height:1.4; }
+        .price-badge { display:inline-block; padding:4px 12px; border-radius:20px; font-size:0.8em; font-weight:700; margin:4px; }
+        .price-free { background:rgba(52,211,153,0.15); color:var(--success); }
+        .price-paid { background:rgba(251,191,36,0.15); color:var(--warning); }
+    </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    <link rel="canonical" href="https://www.trovapiatto.it/aggiungi-ristorante.html">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/"><img src="/logo/logo-trovapiatto.png" alt="trovapiatto"></a>
+            <h1>Aggiungi il tuo Ristorante</h1>
+            <p>Crea il tuo menu digitale in pochi minuti</p>
+        </div>
+
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-step active"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+        </div>
+
+        <!-- Step 1: Info Base -->
+        <div class="step active" id="step1">
+            <h2><i class="fas fa-store" style="color:var(--primary);margin-right:6px;"></i>Informazioni Base</h2>
+            <div class="subtitle">Come si chiama il tuo ristorante?</div>
+            <div class="form-group">
+                <label>Nome Ristorante *</label>
+                <input type="text" id="restName" placeholder="es: Osteria del Buon Cibo" oninput="autoSlug()">
+            </div>
+            <div class="form-group">
+                <label>Slug (URL del menu)</label>
+                <input type="text" id="restSlug" placeholder="es: osteria-buon-cibo" readonly style="opacity:0.7;">
+                <div style="font-size:0.75em;color:var(--text-dim);margin-top:4px;">URL: trovapiatto.it/menu/<span id="slugPreview">...</span>/</div>
+            </div>
+            <div class="form-group">
+                <label>Cucina / Tipologia</label>
+                <select id="restCuisine">
+                    <option value="">Seleziona...</option>
+                    <option value="Italiana">Italiana</option>
+                    <option value="Pizzeria">Pizzeria</option>
+                    <option value="Pescheria">Pescheria</option>
+                    <option value="Pugliese">Pugliese</option>
+                    <option value="Gastronomia">Gastronomia</option>
+                    <option value="Paninoteca">Paninoteca</option>
+                    <option value="Gelateria">Gelateria</option>
+                    <option value="Cinese">Cinese</option>
+                    <option value="Giapponese">Giapponese</option>
+                    <option value="Indiana">Indiana</option>
+                    <option value="Messicana">Messicana</option>
+                    <option value="Mediterranea">Mediterranea</option>
+                    <option value="Fusion">Fusion</option>
+                    <option value="Altro">Altro</option>
+                </select>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-primary" onclick="goStep(2)">Avanti <i class="fas fa-arrow-right" style="margin-left:6px;"></i></button>
+            </div>
+        </div>
+
+        <!-- Step 2: Contatti e Posizione -->
+        <div class="step" id="step2">
+            <h2><i class="fas fa-location-dot" style="color:var(--primary);margin-right:6px;"></i>Contatti e Posizione</h2>
+            <div class="subtitle">Dove ti trovi?</div>
+            <div class="form-group">
+                <label>Indirizzo *</label>
+                <input type="text" id="restAddress" placeholder="es: Via Roma 15, Bari">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Città *</label>
+                    <input type="text" id="restCity" placeholder="es: Bari">
+                </div>
+                <div class="form-group">
+                    <label>Telefono</label>
+                    <input type="tel" id="restPhone" placeholder="+39 ...">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email (per notifiche ordini)</label>
+                <input type="email" id="restEmail" placeholder="info@tuoristorante.it">
+            </div>
+            <div class="form-group">
+                <label>Descrizione</label>
+                <textarea id="restDesc" placeholder="Racconta qualcosa del tuo ristorante..."></textarea>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-secondary" onclick="goStep(1)"><i class="fas fa-arrow-left" style="margin-right:6px;"></i> Indietro</button>
+                <button class="btn btn-primary" onclick="goStep(3)">Avanti <i class="fas fa-arrow-right" style="margin-left:6px;"></i></button>
+            </div>
+        </div>
+
+        <!-- Step 3: Piano -->
+        <div class="step" id="step3">
+            <h2><i class="fas fa-crown" style="color:var(--warning);margin-right:6px;"></i>Scegli il Piano</h2>
+            <div class="subtitle">Inizia gratis, aggiorna quando vuoi</div>
+            <div class="info-card" style="border-color:var(--success);">
+                <h3><span class="price-badge price-free">GRATIS</span> Free</h3>
+                <p>Menu digitale online con fino a 10 piatti. Ideale per iniziare.</p>
+            </div>
+            <div class="info-card">
+                <h3><span class="price-badge price-paid">€9.90/mese</span> Basic</h3>
+                <p>Fino a 50 piatti + analytics. Il piatto più popolare.</p>
+            </div>
+            <div class="info-card">
+                <h3><span class="price-badge price-paid">€29.90/mese</span> Pro</h3>
+                <p>Piatti illimitati + promozioni + ordini. Per ristoranti attivi.</p>
+            </div>
+            <div class="info-card">
+                <h3><span class="price-badge price-paid">€49.90/mese</span> Enterprise</h3>
+                <p>Tutto incluso + prenotazioni + POS. La soluzione completa.</p>
+            </div>
+            <div class="form-group">
+                <label>Piano Selezionato</label>
+                <select id="restPlan">
+                    <option value="free">Free - Gratis</option>
+                    <option value="basic">Basic - €9.90/mese</option>
+                    <option value="pro">Pro - €29.90/mese</option>
+                    <option value="enterprise">Enterprise - €49.90/mese</option>
+                </select>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-secondary" onclick="goStep(2)"><i class="fas fa-arrow-left" style="margin-right:6px;"></i> Indietro</button>
+                <button class="btn btn-primary" onclick="submitRestaurant()">Crea Ristorante <i class="fas fa-check" style="margin-left:6px;"></i></button>
+            </div>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div class="step" id="step4">
+            <div class="success-screen">
+                <i class="fas fa-check-circle"></i>
+                <h2>Richiesta Inviata!</h2>
+                <p>Abbiamo ricevuto i dati del tuo ristorante. Ti contatteremo entro 24 ore per mettere online il menu.</p>
+                <div id="successLinks"></div>
+                <div style="margin-top:24px;">
+                    <a href="/" style="color:var(--text-dim);text-decoration:none;font-size:0.85em;"><i class="fas fa-home" style="margin-right:4px;"></i>Torna alla Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API = '/app/admin/api-crud.php';
+        let currentStep = 1;
+
+        function goStep(n) {
+            if (n === 2 && !document.getElementById('restName').value.trim()) { alert('Inserisci il nome del ristorante'); return; }
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + n).classList.add('active');
+            document.querySelectorAll('.progress-step').forEach((s, i) => {
+                s.classList.remove('active', 'done');
+                if (i < n - 1) s.classList.add('done');
+                if (i === n - 1) s.classList.add('active');
+            });
+            currentStep = n;
+        }
+
+        function autoSlug() {
+            const name = document.getElementById('restName').value;
+            const slug = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            document.getElementById('restSlug').value = slug;
+            document.getElementById('slugPreview').textContent = slug || '...';
+        }
+
+        async function submitRestaurant() {
+            const name = document.getElementById('restName').value.trim();
+            const cuisine = document.getElementById('restCuisine').value;
+            const address = document.getElementById('restAddress').value.trim();
+            const city = document.getElementById('restCity').value.trim();
+            const phone = document.getElementById('restPhone').value.trim();
+            const email = document.getElementById('restEmail').value.trim();
+            const desc = document.getElementById('restDesc').value.trim();
+            const plan = document.getElementById('restPlan').value;
+            if (!name) { alert('Nome obbligatorio'); goStep(1); return; }
+            if (!address || !city) { alert('Indirizzo e città obbligatori'); goStep(2); return; }
+            if (!phone || !email) { alert('Telefono ed email obbligatori per essere ricontattati'); goStep(2); return; }
+
+            // Canale pubblico con moderazione: la creazione diretta richiede login admin
+            const data = {
+                restaurant_name: name,
+                cuisine: cuisine,
+                address: address + ', ' + city,
+                contact_name: name,
+                phone: phone,
+                email: email,
+                notes: 'Piano: ' + plan + '. Città: ' + city + '.' + (desc ? ' Descrizione: ' + desc : '')
+            };
+
+            try {
+                const res = await fetch('/app/admin/api.php?action=submit-menu-request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (result.success) {
+                    document.getElementById('successLinks').innerHTML = `
+                        <div style="display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto;">
+                            <div style="padding:14px;background:rgba(52,211,153,0.1);border:1px solid var(--success);color:var(--success);border-radius:10px;font-weight:600;text-align:center;">
+                                ${result.message || 'Richiesta ricevuta! Ti contatteremo entro 24 ore.'}
+                            </div>
+                            <a href="/app/admin/dashboard.html" style="padding:14px;background:var(--bg-card);border:1px solid var(--border);color:var(--text);border-radius:10px;text-decoration:none;font-weight:600;text-align:center;">
+                                <i class="fas fa-gauge-high" style="margin-right:6px;"></i>Dashboard Admin
+                            </a>
+                        </div>
+                    `;
+                    goStep(4);
+                } else {
+                    alert('Errore: ' + (result.error || 'sconosciuto'));
+                }
+            } catch (e) {
+                alert('Errore di connessione');
+            }
+        }
+    </script>
+</body>
+</html>

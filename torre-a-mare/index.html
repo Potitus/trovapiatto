@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosa Mangiare a Torre a Mare: La Guida Completa ai Piatti Tipici | trovapiatto</title>
+  <meta name="description" content="Scopri cosa mangiare a Torre a Mare: pesce alla griglia, frittura di pesce, calamaro fritto e 6 piatti tipici del litorale barese con ristoranti, prezzi e consigli.">
+  <meta name="keywords" content="cosa mangiare Torre a Mare, piatti tipici Torre a Mare, pesce griglia Torre a Mare, ristoranti Torre a Mare, frittura di pesce, calamaro fritto, litorale Bari, Puglia">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <!-- Geo Meta Tags (Local SEO) -->\n  <meta name="geo.region" content="IT-BA">\n  <meta name="geo.placename" content="Torre a Mare">\n  <meta name="geo.position" content="41.0167;17.1333">\n  <meta name="ICBM" content="41.0167, 17.1333">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/cosa-mangiare-torre-a-mare/">
+  <meta property="og:title" content="Cosa Mangiare a Torre a Mare: La Guida Completa ai Piatti Tipici">
+  <meta property="og:description" content="Guida completa ai piatti tipici di Torre. Specialità da provare, con ristoranti e prezzi.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-08-29T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-08-29T10:00:00+02:00">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cosa Mangiare a Torre a Mare: La Guida Completa ai Piatti Tipici">
+  <meta name="twitter:description" content="Piatti tipici di Torre da provare assolutamente. Ristoranti, prezzi e consigli.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/cosa-mangiare-torre-a-mare/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .page-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .page-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .page-nav .logo img { height: 32px; }
+    
+    .page-nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .page-nav .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    
+    .page-nav .nav-links a:hover { color: var(--primary); }
+    
+    .hero {
+      text-align: center;
+      padding: 80px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('HERO_IMAGE') center/cover no-repeat;
+      filter: blur(4px) brightness(0.55) scale(1.05);
+      z-index: 0;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,10,21,0.6) 0%, rgba(15,10,21,0.85) 100%);
+      z-index: 1;
+    }
+    
+    .hero > * { position: relative; z-index: 2; }
+    
+    .hero .badge {
+      display: inline-block;
+      background: rgba(231,58,58,0.15);
+      color: var(--primary-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text-white), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+    }
+    
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+    
+    .hero .stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .hero .stats i { color: var(--primary); }
+    
+    .breadcrumb {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: rgba(255,255,255,0.2); }
+    .breadcrumb .current { color: var(--text-light); }
+    
+    .author-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px auto;
+      max-width: 900px;
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(231,58,58,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .author-avatar i { color: var(--primary); font-size: 1.1rem; }
+    
+    .author-info { flex: 1; }
+    .author-name { font-size: 0.85rem; font-weight: 600; color: var(--text-white); }
+    .author-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .intro {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    
+    .intro strong { color: var(--text-white); }
+    
+    .dish-section {
+      margin-bottom: 48px;
+    }
+    
+    .dish-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    
+    .dish-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    
+    .dish-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-text {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .dish-text strong { color: var(--text-white); }
+    
+    .dish-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-info .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .dish-info .tag i { color: var(--accent-food); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 6px 20px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-icon i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .restaurant-card .rc-info {
+      flex: 1;
+    }
+    
+    .restaurant-card .rc-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    
+    .restaurant-card .rc-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .restaurant-card .rc-action {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: rgba(231,58,58,0.1);
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .map-section {
+      margin: 48px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #guide-map {
+      width: 100%;
+      height: 380px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 40px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .faq-section {
+      margin: 48px 0;
+    }
+    
+    .faq-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    
+    .faq-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 18px 20px;
+      color: var(--text-white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: background 0.3s;
+    }
+    
+    .faq-item h3:hover { background: rgba(255,255,255,0.03); }
+    
+    .faq-item h3 .faq-arrow {
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+    
+    .faq-item.open h3 .faq-arrow { transform: rotate(180deg); }
+    
+    .faq-item .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+    }
+    
+    .faq-item .faq-answer p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 0 20px 18px;
+    }
+    
+    .social-share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0;
+    }
+    
+    .social-share .share-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    
+    .social-share a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .share-fb { background: rgba(59,89,152,0.15); color: #3b5998; }
+    .share-fb:hover { background: #3b5998; color: white; }
+    .share-wa { background: rgba(37,211,102,0.15); color: #25d366; }
+    .share-wa:hover { background: #25d366; color: white; }
+    .share-copy { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+    .share-copy:hover { background: var(--primary); color: white; }
+    
+    .floating-share {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 90;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .floating-share a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    
+    .floating-share a:hover { transform: scale(1.1); }
+    
+    @media (max-width: 768px) {
+      .floating-share { display: flex; }
+      .social-share.inline-share { display: none; }
+    }
+    
+    @media (min-width: 769px) {
+      .floating-share { display: none !important; }
+    }
+    
+    .toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .toc h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-white);
+      letter-spacing: 0.5px;
+    }
+    
+    .toc-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 6px;
+    }
+    
+    .toc-list a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 4px 0;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .toc-list a:hover { color: var(--primary); }
+    
+    .toc-list a .num {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.75rem;
+      width: 18px;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+    
+    .cta-box .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .cta-box .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(231,58,58,0.3);
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+    
+    .site-footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .site-footer a:hover { color: var(--primary); }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="page-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <div class="nav-links">
+      <a href="/piatti/">Piatti</a>
+      <a href="/community/blog/">Magazine</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+    <span class="sep">/</span>
+    <span class="current">Cosa Mangiare a Torre</span>
+  </div>
+
+  <header class="hero">
+    <span class="badge"><i class="fa-solid fa-utensils"></i> Guida Aggiornata 2026</span>
+    <h1>Cosa Mangiare a Torre a Mare: La Guida Completa</h1>
+    <p>6 piatti tipici da provare quando visiti Torre a Mare. Con ristoranti consigliati, prezzi reali e consigli dei locali.</p>
+    <div class="stats">
+      <span><i class="fa-solid fa-utensils"></i> 6 piatti</span>
+      <span><i class="fa-solid fa-map-marker-alt"></i> Torre a Mare, Puglia</span>
+      <span><i class="fa-regular fa-clock"></i> 12 min lettura</span>
+      <span><i class="fa-solid fa-fish"></i> Cucina di Mare</span>
+    </div>
+  </header>
+
+  <div class="author-box">
+    <div class="author-avatar"><i class="fa-solid fa-user-pen"></i></div>
+    <div class="author-info">
+      <div class="author-name">trovapiatto</div>
+      <div class="author-meta">Pubblicato il 29 Agosto 2026</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="intro">
+      <strong>Torre a Mare in breve:</strong> Questa località balneare si trova a sud di Bari,
+      sulla costa pugliese che guarda l'Adriatico.
+      Fondata come torre di avvistamento durante il Medioevo, ha conservato il suo carattere di borgo di pescatori,
+      con il porto e il lungomare come cuore della comunità.
+      La popolazione è di circa 8.000 abitanti, ma d'estate raddoppia grazie ai turisti
+      che scoprono i suoi piatti e le sue spiagge.
+      Il pesce di Torre a Mare è celebre in tutta la Puglia per la sua freschezza e qualità —
+      i pescatori del porto tornano ogni mattina con reti piene di triglie, saraghi, branzini, calamari e polpi.
+      I ristoranti del borgo lavorano esclusivamente con pesce fresco del giorno,
+      e i piatti sono semplici proprio perché la materia prima non ha bisogno di maschere.
+      Torre a Mare è una tappa imperdibile per chi visita la Puglia —
+      un luogo dove il tempo sembra essersi fermato, e dove il cibo è ancora fatto come una volta.
+      La frittura di pesce qui è leggendaria: gamberetti, calamari, alice, polpo —
+      tutto croccante e dorato, servito su carta da giornale con una spremuta di limone fresco.
+    </div>
+
+    <div class="social-share inline-share">
+      <span class="share-label"><i class="fa-solid fa-share-nodes"></i> Condividi:</span>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/cosa-mangiare-torre-a-mare/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Torre:%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/cosa-mangiare-torre-a-mare/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/cosa-mangiare-torre-a-mare/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+    </div>
+
+    <div class="toc">
+      <h3><i class="fa-solid fa-list"></i> Indice</h3>
+      <div class="toc-list">
+        <a href="#storia"><span class="num">-</span> Storia e Tradizioni</a>
+        <a href="#frittura-di-pesce"><span class="num">1.</span> Frittura di Pesce</a>
+        <a href="#pesce-alla-griglia"><span class="num">2.</span> Pesce alla Griglia</a>
+        <a href="#calamari-fritti"><span class="num">3.</span> Calamari Fritti</a>
+        <a href="#cozze-al-pomodoro"><span class="num">4.</span> Cozze al Pomodoro</a>
+        <a href="#zuppa-di-pesce"><span class="num">5.</span> Zuppa di Pesce</a>
+        <a href="#polpo-alla-pignattara"><span class="num">6.</span> Polpo alla Pignattara</a>
+        <a href="#stagione"><span class="num">-</span> Piatti di Stagione</a>
+        <a href="#curiosita"><span class="num">-</span> Curiosità Gastronomiche</a>
+      </div>
+    </div>
+
+      <section class="dish-section" id="storia">
+        <div class="dish-header">
+          <div class="dish-number"><i class="fa-solid fa-landmark"></i></div>
+          <h2>Storia e Tradizioni di Torre a Mare</h2>
+        </div>
+        <div class="dish-text">
+          <strong>Le origini di Torre a Mare</strong> risalgono al Medioevo, quando fu costruita una torre di avvistamento sulla costa per difendere il territorio dalle incursioni saracene. Il nome della città deriva proprio da questa torre, che ancora oggi domina il lungomare dal suo punto più alto. Fondata come insediamento peschereccio, Torre ha attraversato i secoli sotto dominazioni longobarda e bizantina, accumulando un patrimonio culinario che riflette tutti questi influssi. Le prime notizie documentate risalgono al XII secolo, quando Torre era un borgo di pescatori che già allora lavorava il pesce con tecniche che oggi consideriamo tradizionali. Il borgo antico, con i suoi vicoli stretti e le case bianche che scendono verso il mare, è un labirinto di profumi e sapori che si rivelano a ogni angolo.
+        </div>
+        <div class="dish-text">
+          La <strong>tradizione dei pescatori</strong> è il cuore pulsante di Torre a Mare. Per generazioni, le famiglie del borgo antico hanno vissuto di pesca, e questa dipendenza dal mare ha plasmato la cucina locale in modo indelebile. La mattina presto, quando le barche tornano al porto, si accende il mercato del pesce: triglie, saraghi, calamari, polpi e cozze vengono venduti direttamente ai ristoranti e alle famiglie. La cucina torrese è figlia di questa freschezza impossibile da replicare altrove — i piatti sono semplici proprio perché il pesce non ha bisogno di maschere. Il porto di Torre è uno dei più attivi della costa barese, e la flotta di pesca artigianale è ancora oggi al centro dell'economia locale. I pescatori di Torre sono famosi in tutta la Puglia per la loro abilità nella pesca alla rete — un'arte che si tramanda di padre in figlio da secoli.
+        </div>
+        <div class="dish-text">
+          Una particolarità che contraddistingue Torre è la tradizione della <strong>frittura di pesce</strong>: un piatto semplice ma straordinario, che qui viene preparato seguendo ricette tramandate da generazioni. Il pesce viene fritto in olio fresco con una leggera infarinatura di farina di grano duro, e servito immediatamente su carta da giornale con una spremuta di limone fresco. A differenza delle versioni più elaborate delle altre città costiere, la frittura di Torre è semplice e diretta — il pesce è talmente fresco che basta poco per esaltarne il sapore. La tradizione della frittura a Torre risale ai pescatori del XIX secolo, che preparavano questo piatto direttamente sulle barche dopo la pesca, usando l'olio più fresco disponibile.
+        </div>
+        <div class="dish-text">
+          Le <strong>feste popolari</strong> di Torre sono strettamente legate al cibo. Durante la festa del patrono San Pietro, il 29 giugno, le strade si riempiono di bancarelle che offrono frittelle di pesce, taralli e dolci tradizionali. D'estate, le feste dei pescatori sul lungomare diventano occasioni per gustare frutta di mare freschissima accompagnata da un bicchiere di vino locale. La sagra della frittura di pesce, che si tiene a luglio, richiude migliaia di visitatori da tutta la Puglia — è un festival del pesce fritto come non ne esiste altri in Italia. Il pesce viene cucinato in decine di modi diversi: fritto, alla griglia, al forno, in zuppa — è un delizioso tour dei sapori del mare torrese. È in queste occasioni che si comprende appieno il legame indissoluble tra Torre, il mare e il cibo.
+        </div>
+      </section>
+
+      <section class="dish-section" id="frittura-di-pesce">
+        <div class="dish-header">
+          <div class="dish-number">1</div>
+          <h2>Frittura di Pesce</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&h=400&fit=crop" alt="Frittura di Pesce" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>frittura mista</strong> di Torre a Mare è leggendaria:
+          gamberetti, calamari, alice, polpo — tutto croccante e dorato, servito su carta da giornale.
+          Il segreto è l'olio fresco e la cottura rapida.
+          Il pesce viene infarinato leggermente con farina di grano duro e fritto in olio bollente per pochi secondi,
+          in modo che la pelle esterna diventi croccante mentre l'interno resta morbido e succoso.
+        </div>
+        <div class="dish-text">
+          A Torre, la frittura di pesce è un rituale: i pescatori la preparano sulle barche dopo la pesca,
+          usando l'olio più fresco disponibile e il pesce appena pescato.
+          I ristoranti del porto la servono direttamente dalla padella, con una spremuta di limone fresco
+          e una spolverata di sale grosso. A €12-18, è un antipasto o un secondo piatto che non ha bisogno di elaborazioni —
+          la qualità del pesce è tale che basta poco per esaltarne il sapore.
+          La frittura di Torre è diversa da quella di Bari, da quella di Polignano —
+          ogni borgo ha la sua, e quella di Torre è riconoscibile al primo morso per la croccantezza perfetta
+          e il sapore puro del pesce fresco.
+        </div>
+        <div class="dish-text">
+          I ristoranti del porto la servono accompagnata da una fetta di limone fresco
+          e da un bicchiere di vino bianco locale. L'abbinamento ideale è il Verdeca della Murgia,
+          un bianco fresco e minerale che bilancia l'untuosità della frittura con le sue note agrumate.
+          La frittura di Torre è un piatto che si mangia soprattutto d'estate,
+          quando il caldo rende irresistibile il sapore del pesce fritto.
+          È un'esperienza che vale la pena vivere almeno una volta nella vita —
+          seduti al tavolo sul lungomare, con il profumo del mare che si mescola a quello del pesce fritto,
+          e il sole che tramonta sull'Adriatico. Una delle esperienze culinarie più memorabili della Puglia.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €12-18</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Cena</span>
+        </div>
+        <a href="/menu/ristorante-da-nicola/" class="restaurant-card">
+          <img src="/loghi/ristorante-da-nicola.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Ristorante da Nicola</div>
+            <div class="rc-detail">Frittura di pesce · €15</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="pesce-alla-griglia">
+        <div class="dish-header">
+          <div class="dish-number">2</div>
+          <h2>Pesce alla Griglia</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&h=400&fit=crop" alt="Pesce alla Griglia" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Il <strong>pesce alla griglia</strong> è la specialità di da Nicola:
+          branzino, spigola o sarago, cotto lentamente sulla brace con solo un filo d'olio e limone.
+          Semplicità al servizio del gusto.
+          Il pesce viene cotto sulla brace di legna, che gli dà un sapore affumicato
+          che si abbina perfettamente con il sapore dolce della carne.
+        </div>
+        <div class="dish-text">
+          A Torre, il pesce alla griglia è un piatto che racconta la tradizione dei pescatori molese.
+          Il branzino viene cotto intero, con la pelle croccante e la carne morbida e succosa.
+          Il segreto è nella cottura lenta e nel forno a legna, che dà al pesce quel sapore affumicato
+          impossibile da replicare. A €16-24, è un piatto che vale ogni centesimo —
+          la qualità del pesce è tale che basta poco per esaltarne il sapore.
+          I ristoranti del porto lo servono accompagnato da una insalata mista
+          e da un bicchiere di vino bianco locale.
+        </div>
+        <div class="dish-text">
+          La versione più amata a Torre è il <strong>branzino al forno con patate</strong>:
+          il pesce viene aperto a libro, condito con sale grosso, rosmarino, foglie di alloro
+          e un filo d'olio EVO, poi cotto lentamente su un letto di patate a rondelle.
+          La crosta esterna diventa dorata e croccante, mentre la carne interna resta morbida e succosa.
+          I ristoranti del porto lo servono direttamente dalla teglia del forno,
+          accompagnato da una insalata mista e una fetta di pane casereccio.
+          L'abbinamento ideale è un Primitivo leggero della Murgia,
+          che bilancia la dolcezza del pesce con le sue note fruttate.
+          È un piatto che racconta la tradizione dei pescatori torrese —
+          un piatto semplice ma straordinario, come tutti i grandi classici della cucina pugliese.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €16-24</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Cena</span>
+        </div>
+        <a href="/menu/ristorante-da-nicola/" class="restaurant-card">
+          <img src="/loghi/ristorante-da-nicola.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Ristorante da Nicola</div>
+            <div class="rc-detail">Pesce alla griglia · €20</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="calamari-fritti">
+        <div class="dish-header">
+          <div class="dish-number">3</div>
+          <h2>Calamari Fritti</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&h=400&fit=crop" alt="Calamari Fritti" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          I <strong>calamari fritti</strong> sono un antipasto fisso di ogni tavola torrese.
+          Anelli di calamari infarinati e fritti in pochi secondi, serviti con una spremuta di limone.
+          Croccanti fuori, morbidi dentro.
+          I calamari di Torre sono particolarmente teneri perché vengono pescati freschi ogni mattina
+          nei fondali rocciosi attorno al porto, e lavorati immediatamente prima della frittura.
+        </div>
+        <div class="dish-text">
+          La versione torrese prevede una leggera infarinatura di farina di grano duro,
+          che crea una crosta croccante che protegge la carne tenera del calamaro.
+          La cottura in olio bollente deve essere rapidissima — pochi secondi, fino a quando
+          la crosticina diventa dorata ma la carne interna resta morbida e leggermente succosa.
+          A €8-12, è un antipasto che si mangia con le mani, accompagnato da una spremuta di limone fresco
+          e da un bicchiere di vino bianco locale. I ristoranti del porto lo servono
+          direttamente dalla padella, su un piatto di carta da giornale —
+          la presentazione più semplice e diretta, perfetta per un piatto che non ha bisogno di elaborazioni.
+        </div>
+        <div class="dish-text">
+          I calamari fritti di Torre sono diversi da quelli di altre città costiere:
+          più croccanti, più leggeri, più saporiti. Il segreto è nella qualità dei calamari,
+          che vengono pescati nei fondali rocciosi attorno al porto di Torre,
+          dove l'acqua pulita e il fondale pietroso danno ai calamari un sapore intenso e minerale.
+          La tradizione della frittura di calamari a Torre risale ai pescatori del XIX secolo,
+          che li preparavano direttamente sulle barche dopo la pesca —
+          un'esperienza culinaria che oggi trovi nei ristoranti del porto,
+          dove i calamari vengono ancora cucinati secondo le ricette originali.
+          L'abbinamento ideale è un bianco fresco come il Verdeca della Murgia,
+          che bilancia l'untuosità della frittura con le sue note fresche e minerali.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €8-12</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto</span>
+          <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariana</span>
+        </div>
+        <a href="/menu/ristorante-da-nicola/" class="restaurant-card">
+          <img src="/loghi/ristorante-da-nicola.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Ristorante da Nicola</div>
+            <div class="rc-detail">Calamari fritti · €10</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="cozze-al-pomodoro">
+        <div class="dish-header">
+          <div class="dish-number">4</div>
+          <h2>Cozze al Pomodoro</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1631963580532-27a8a4f0fb5f?w=800&h=400&fit=crop" alt="Cozze al Pomodoro" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Le <strong>cozze al pomodoro</strong> sono un piatto semplice e delizioso che racconta il sapore del mare torrese.
+          Cozze fresche cotte in un brodo di pomodoro, aglio, prezzemolo e un filo d'olio EVO —
+          un piatto che sa di casa, di terra, di Mediterraneo.
+        </div>
+        <div class="dish-text">
+          Le cozze vengono pulite a mano ogni mattina dai pescatori del porto,
+          e cotte in una casseruola di ferro con pomodori San Marzano schiacciati,
+          aglio, prezzemolo fresco e un filo d'olio EVO del Premio.
+          Il brodo che si forma durante la cottura è il vero tesoro:
+          acqua di mare, pomodoro e sapore delle cozze si fondono in un liquido rosso e profumato
+          che i torresi bevono con un cucchiaio di rame direttamente dalla casseruola.
+          A €10-14, è un antipasto o un secondo piatto che soddisfa e scalda l'anima,
+          perfetto per le serate fredde d'inverno o per un pranzo leggero d'estate.
+        </div>
+        <div class="dish-text">
+          I ristoranti del porto lo servono direttamente nella casseruola di cottura,
+          con un cucchiaio di legno per bere il brodo e una fetta di pane casereccio per fare la scarpetta.
+          L'abbinamento ideale è un bianco fresco come il Verdeca o il Bombino Bianco della Murgia.
+          A Torre, le cozze al pomodoro sono un piatto che si mangia tutto l'anno,
+          ma soprattutto d'inverno, quando il mare è più generoso e le cozze sono al loro apice.
+          La tradizione delle cozze al pomodoro a Torre risale ai pescatori del XVIII secolo,
+          che le preparavano nelle casseruole di ferro sulle barche —
+          un'esperienza culinaria che oggi trovi nei ristoranti del porto,
+          dove le cozze vengono ancora cucinate secondo le ricette originali.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €10-14</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto o Secondo</span>
+          <span class="tag"><i class="fa-solid fa-leaf"></i> Glutine-Free</span>
+        </div>
+        <a href="/menu/ristorante-da-nicola/" class="restaurant-card">
+          <img src="/loghi/ristorante-da-nicola.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Ristorante da Nicola</div>
+            <div class="rc-detail">Cozze al pomodoro · €12</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="zuppa-di-pesce">
+        <div class="dish-header">
+          <div class="dish-number">5</div>
+          <h2>Zuppa di Pesce</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1534766555764-ce878a5e3a2b?w=800&h=400&fit=crop" alt="Zuppa di Pesce" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          La <strong>zuppa di pesce</strong> di Torre è un misto di crostacei, molluschi e pesce di scoglio,
+          cotto in un brodo di pomodoro e vino bianco.
+          Un piatto che riassume in una ciotola tutto il sapore del Adriatico.
+        </div>
+        <div class="dish-text">
+          A Torre, la zuppa di pesce viene servita in una ciotola di terracotta,
+          con un cucchiaio di legno per bere il brodo — che è il vero tesoro del piatto.
+          La versione torrese prevede un brodo più denso e saporito rispetto alle altre versioni pugliesi,
+          perché qui si usa il pesce più piccolo e meno pregiato per fare il brodo di base,
+          poi si aggiungono i crostacei più pregiati.
+          Il pane casereccio affogato nella zuppa è un rituale obbligato —
+          i torresi lo chiamano "fare la scarpetta con il brodo del mare".
+          A €16-24, è un piatto che soddisfa e scalda l'anima,
+          perfetto per le serate fredde d'inverno.
+        </div>
+        <div class="dish-text">
+          Il brodo viene preparato con il pesce più piccolo — scorfani, mormore, piccoli saraghi —
+          che vengono cotti lentamente con pomodoro, aglio, peperoncino e vino bianco.
+          Successivamente si aggiungono i crostacei più pregiati — gamberi, mazzancolle, mazzarelli —
+          che cuociono per pochi minuti in modo da restare teneri e succosi.
+          I ristoranti sul porto lo servono direttamente nella casseruola di cottura,
+          accompagnato da una fetta di pane casereccio.
+          L'abbinamento ideale è un bianco fresco come il Verdeca o il Bombino Bianco della Murgia.
+          È un piatto che racconta il legame tra l'uomo e il mare in modo diretto e senza fronzoli.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €16-24</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Cena</span>
+        </div>
+        <a href="/menu/ristorante-da-nicola/" class="restaurant-card">
+          <img src="/loghi/ristorante-da-nicola.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Ristorante da Nicola</div>
+            <div class="rc-detail">Zuppa di pesce · €20</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="polpo-alla-pignattara">
+        <div class="dish-header">
+          <div class="dish-number">6</div>
+          <h2>Polpo alla Pignattara</h2>
+        </div>
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=400&fit=crop" alt="Polpo alla Pignattara" class="dish-img" loading="lazy">
+        <div class="dish-text">
+          Il <strong>polpo alla pignattara</strong> è un piatto che racconta la tradizione dei pescatori torresi.
+          Polpo cotto lentamente in pentola di coccio con pomodoro, olive, capperi e un filo d'olio EVO —
+          un piatto semplice ma straordinario, come tutti i grandi classici della cucina pugliese.
+        </div>
+        <div class="dish-text">
+          La versione torrese prevede il polpo lessato prima per renderlo tenero,
+          poi cotto lentamente in pentola di coccio con pomodori pelati, olive nere, capperi,
+          aglio, prezzemolo e un filo d'olio EVO. La cottura lenta fa fondere tutti i sapori
+          in un'armonia perfetta — il polpo diventa tenero e succoso, il pomodoro si addensa,
+          le olive e i capperi danno una nota piccante e umami al piatto.
+          A €12-18, è un antipasto o un secondo piatto che racconta la tradizione dei pescatori molese —
+          un piatto nato dalla necessità di non sprecare nulla, che oggi è diventato un piatto raffinato.
+        </div>
+        <div class="dish-text">
+          I ristoranti del porto lo servono direttamente nella pentola di coccio,
+          con una fetta di pane casereccio per fare la scarpetta.
+          L'abbinamento ideale è un rosso leggero come il Primitivo della Murgia,
+          che bilancia l'acidità del pomodoro con le sue note di frutti di bosco.
+          Il polpo alla pignattara di Torre è un piatto che si mangia soprattutto d'inverno,
+          quando il freddo rende irresistibile un piatto caldo e saporito.
+          È un'esperienza culinaria che racconta la tradizione dei pescatori torresi —
+          un piatto semplice ma straordinario, come tutti i grandi classici della cucina pugliese.
+        </div>
+        <div class="dish-info">
+          <span class="tag"><i class="fa-solid fa-euro-sign"></i> €12-18</span>
+          <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto o Secondo</span>
+          <span class="tag"><i class="fa-solid fa-leaf"></i> Glutine-Free</span>
+        </div>
+        <a href="/menu/ristorante-da-nicola/" class="restaurant-card">
+          <img src="/loghi/ristorante-da-nicola.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">Ristorante da Nicola</div>
+            <div class="rc-detail">Polpo alla pignattara · €14</div>
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </section>
+
+      <section class="dish-section" id="stagione">
+        <div class="dish-header">
+          <div class="dish-number"><i class="fa-solid fa-calendar-days"></i></div>
+          <h2>Piatti di Stagione a Torre a Mare</h2>
+        </div>
+        <div class="dish-text">
+          <strong>Primavera:</strong> Con l'arrivo della primavera, a Torre a Mare iniziano a comparire i primi fiori di zucca,
+          che vengono fritti in pastella leggera e serviti come antipasto. Le cozze sono al loro apice,
+          e i ristoranti del porto offrono menu a prezzo fisso con antipasti di pesce crudo e pesce alla griglia.
+          I pomodorini d'alicino, piccoli e dolcissimi, fanno la loro comparsa come condimento
+          per le insalate e per i primi piatti.
+        </div>
+        <div class="dish-text">
+          <strong>Estate:</strong> L'estate è la stagione della frittura di pesce e delle grigliate sul lungomare.
+          I calamari, i gamberi e i mormore sono al loro apice, e i ristoranti del porto offrono
+          menu a prezzo fisso con antipasti di pesce crudo, pesce alla griglia e fritture miste.
+          La focaccia pugliese è perfetta per una colazione leggera o per un aperitivo
+          accompagnata da una birra fredda. I fichi d'India, che crescono ovunque attorno a Torre,
+          sono il frutto estivo per eccellenza.
+        </div>
+        <div class="dish-text">
+          <strong>Autunno:</strong> Con l'autunno, i funghi porcini appena raccolti nei boschi della Murgia
+          compaiono nei ristoranti del centro, spesso conditi con olio fresco e parmigiano.
+          Le castagne del Gargano vengono usate per preparare dolci e miele,
+          e i pomodori secchi vengono preparati per l'inverno. Il pesce d'acqua dolce,
+          come le tinche e le carpe dei laghi della Murgia, diventa protagonista di piatti rustici e saporiti.
+        </div>
+        <div class="dish-text">
+          <strong>Inverno:</strong> L'inverno a Torre è la stagione della cucina di pesce più tradizionale,
+          con la zuppa di pesce e il polpo alla pignattara come piatti caldi che scaldano l'anima.
+          Le cozze al pomodoro sono protagoniste della tavola torrese,
+          cotte con pomodori San Marzano e olio EVO fresco. Il Natale porta con sé le cartellate
+          e i dolci tradizionali, che si gustano accompagnati da un bicchiere di vin santo locale.
+        </div>
+      </section>
+
+      <section class="dish-section" id="curiosita">
+        <div class="dish-header">
+          <div class="dish-number"><i class="fa-solid fa-star"></i></div>
+          <h2>Curiosità Gastronomiche di Torre a Mare</h2>
+        </div>
+        <div class="dish-text">
+          <strong>Il mercato del pesce delle 5 di mattina:</strong>
+          Se vuoi vivere un'esperienza autentica, alzati presto e vai al porto di Torre alle 5 di mattina,
+          quando i pescatori scaricano le reti.
+          Il mercato del pesce è uno spettacolo di colori, voci e odori:
+          le triglie ancora che guizzano, i polpi che si muonono pigramente,
+          le cozze che brillano nere nell'alba.
+          I ristoranti del borgo comprano qui il pesce per la giornata,
+          e se sei fortunato il pescatore ti venderà direttamente un chilo di saraghi per pochi euro.
+          È un'esperienza che nessun tour operator ti propone,
+          ma che racconta meglio di qualsiasi guida il legame tra Torre e il mare.
+        </div>
+        <div class="dish-text">
+          <strong>La tradizione del pesce azzurro:</strong>
+          A Torre a Mare, il pesce azzurro (sardine, acciughe, maccarelli) è la base della cucina povera.
+          Le sardine vengono conservate sotto sale in botti di legno,
+          trasformandosi in quel "pesce stocco" che accompagna i piatti di pasta più semplici.
+          Le acciughe sotto sale sono un ingrediente fondamentale della focaccia torrese —
+          sono loro a dare quel sapore umami e profondo che rende la focaccia di Torre unica.
+          A €3-5 il chilo, il pesce azzurro è lo street food perfetto per una colazione leggera
+          o per un aperitivo sul lungomare.
+        </div>
+        <div class="dish-text">
+          <strong>Il vino della Murgia:</strong>
+          I vini della Murgia, come il Primitivo di Gioia del Colle, il Nero di Troia e il Bombino Bianco,
+          sono i compagni perfetti dei piatti di pesce di Torre.
+          I ristoranti del centro offrono una selezione di vini locali che si abbina perfettamente
+          con il branzino, le cozze e la zuppa di pesce.
+          L'abbinamento inusuale tra vino rosso e pesce, che funziona grazie alla nota di spezie
+          e frutti di bosco che bilancia il sapore del mare, è una tradizione locale che pochi conoscono.
+          A Torre, i vini della Murgia vengono serviti anche nelle osterie più semplici,
+          dove il calice di Primitivo accompagna ogni piatto —
+          una tradizione che risale ai contadini del XIX secolo.
+        </div>
+        <div class="dish-text">
+          <strong>La focaccia delle 5 di mattina:</strong>
+          A Torre, la focaccia viene sfornata già prima dell'alba.
+          I panifici del centro aprono alle 4:30 di mattina per preparare la focaccia
+          per la colazione dei pescatori, che la mangiano ancora calda prima di salpare.
+          È un rituale antichissimo che ancora oggi raduna i torresi attorno ai banconi dei panifici —
+          una tradizione che racconta meglio di qualsiasi guida il legame tra Torre e il cibo.
+          A €1.50-2.50, è la colazione perfetta per iniziare la giornata in modo autentico e saporito.
+          La focaccia di Torre è diversa da quella di Bari — più sottile e croccante,
+          con una crosticina che scrocca sotto i denti e una mollica morbida e alveolata
+          che assorbe l'olio e il pomodoro in modo perfetto.
+        </div>
+      </section>
+
+    <div class="tips-box">
+      <h3><i class="fa-solid fa-lightbulb"></i> Consigli per Mangiare Bene a Torre a Mare</h3>
+      <ul>
+        <li><i class="fa-solid fa-clock"></i> <span><strong>Vai a pranzo presto:</strong> I torresi pranzano alle 12:30-13:00. Se vai alle 13:30, i piatti migliori del pesce fresco sono già finiti.</span></li>
+        <li><i class="fa-solid fa-map-marker-alt"></i> <span><strong>Il porto è il cuore:</strong> I migliori ristoranti tradizionali sono attorno al porto peschereccio. Passeggia e segui il profumo della frittura di pesce.</span></li>
+        <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Prezzi reali:</strong> Un pranzo completo (primo + secondo + acqua) costa €18-30 nei ristoranti normali, €30-45 nei raffinati con vista mare.</span></li>
+        <li><i class="fa-solid fa-hand-point-up"></i> <span><strong>Chiedi il pesce del giorno:</strong> I ristoranti di Torre lavorano con il pesce che arriva la mattina. Chiedi sempre cosa c'è di fresco oggi.</span></li>
+        <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Il vino giusto:</strong> Un Primitivo o un Negroamaro accompagnano perfettamente i piatti di pesce. Prova anche il Verdeca, un bianco fresco e minerale.</span></li>
+        <li><i class="fa-solid fa-fish"></i> <span><strong>Il mercato del pesce:</strong> Al porto peschereccio di Torre puoi comprare il pesce appena pescato e fartelo cucinare nei ristoranti vicini.</span></li>
+        <li><i class="fa-solid fa-sun"></i> <span><strong>Estate al lungomare:</strong> D'estate i ristoranti sul mare offrono menu a prezzo fisso con pesce grigliato, fritto e antipasti.</span></li>
+        <li><i class="fa-solid fa-camera"></i> <span><strong>Foto consigliata:</strong> Scatta una foto alla frittura di pesce dal balcone di da Nicola con il mare sullo sfondo — l'immagine perfetta per Instagram.</span></li>
+      </ul>
+    </div>
+
+    <div class="map-section">
+      <h2><i class="fa-solid fa-map-location-dot"></i> Dove Mangiare a Torre</h2>
+      <div id="guide-map"></div>
+    </div>
+
+    <div class="faq-section">
+      <h2><i class="fa-solid fa-circle-question"></i> Domande Frequenti</h2>
+      <div class="faq-item">
+        <h3>Qual è il piatto più tipico di Torre a Mare? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>La frittura di pesce mista è il piatto che tutti ordinano. Pesce fresco del giorno, fritto in pochi secondi, servito su carta da giornale con una spremuta di limone fresco. I ristoranti del porto come da Nicola la preparano seguendo ricette tramandate da generazioni.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Quanto costa mangiare a Torre a Mare? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Un pranzo in trattoria costa €15-25 a persona. I ristoranti sul lungomare sono leggermente più cari ma offrono una vista mozzafiato sul mare. I menù a prezzo fisso d'estate offrono ottimi rapporti qualità-prezzo.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>A che ora si va al ristorante a Torre a Mare? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>I ristoranti aprono per cena alle 19:30. D'estate è consigliabile prenotare, soprattutto nei locali sul mare. Per la focaccia, i panifici aprono già alle 4:30 di mattina.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Dove si mangia il meglio a Torre a Mare? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>I locali attorno al porto peschereccio offrono i piatti più autentici. Ristorante da Nicola è il ristorante di riferimento per la frittura di pesce e il pesce alla griglia.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3>Come si arriva a Torre a Mare? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Torre a Mare è a 20 minuti da Bari in auto, raggiungibile anche con il treno regionale. È vicina all'aeroporto Karol Wojtyla, perfetta per una mezza giornata di esplorazione della costa barese.</p></div>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Sei un ristoratore a Torre?</h2>
+      <p>Crea il tuo menu online gratuito su trovapiatto e raggiungi più clienti. La piattaforma è gratuita per i primi 12 mesi.</p>
+      <a href="/app/admin/" class="btn"><i class="fa-solid fa-plus"></i> Crea il tuo Menu</a>
+    </div>
+
+    <div class="ad-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/blog/">Magazine</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <div class="floating-share">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/cosa-mangiare-torre-a-mare/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Torre:%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/cosa-mangiare-torre-a-mare/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/cosa-mangiare-torre-a-mare/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'Ristorante da Nicola', lat: 41.0167, lng: 17.1333, slug: 'ristorante-da-nicola', dish: 'Frittura di pesce', price: '€12-24' },
+    ];
+
+    const map = L.map('guide-map').setView([41.0167, 17.1333], 14);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">${r.dish}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+
+    document.querySelectorAll('.faq-item h3').forEach(h3 => {
+      h3.addEventListener('click', () => {
+        const item = h3.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cosa Mangiare a Torre a Mare: La Guida Completa ai Piatti Tipici",
+    "description": "Scopri cosa mangiare a Torre a Mare: pesce alla griglia, frittura di pesce e piatti tipici del litorale barese con ristoranti e prezzi.",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-08-29T10:00:00+02:00",
+    "dateModified": "2026-08-29T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/cosa-mangiare-torre-a-mare/" },
+    "keywords": "cosa mangiare Torre a Mare, piatti tipici Torre a Mare, pesce griglia Torre a Mare, ristoranti Torre a Mare, litorale Bari"
+  }
+  </script>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "name": "Cosa Mangiare a Torre a Mare",
+    "description": "Guida gastronomica a Torre a Mare: piatti tipici, ristoranti, prezzi e consigli per scoprire la cucina di Torre a Mare (Puglia).",
+    "url": "https://www.trovapiatto.it/torre-a-mare/",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.0167,
+      "longitude": 17.1333
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Torre a Mare",
+      "addressRegion": "Puglia",
+      "addressCountry": "IT"
+    },
+    "touristType": ["Foodie", "Culinary Traveler"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Cosa Mangiare a Torre", "item": "https://www.trovapiatto.it/cosa-mangiare-torre-a-mare/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è il piatto più tipico di Torre a Mare?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La frittura di pesce mista è il piatto che tutti ordinano. Pesce fresco del giorno, fritto in pochi secondi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa mangiare a Torre a Mare?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un pranzo in trattoria costa €15-25 a persona. I ristoranti sul lungomare sono leggermente più cari."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A che ora si va al ristorante a Torre a Mare?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I ristoranti aprono per cena alle 19:30. D'estate è consigliabile prenotare, soprattutto nei locali sul mare."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="MH3AZB7"></script>
+
+</body>
+</html>

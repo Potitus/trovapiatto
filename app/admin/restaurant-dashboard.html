@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Ristorante - Trovapiatto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg: #0f0a15;
+            --bg-card: #1a1125;
+            --bg-card-hover: #231833;
+            --text: #f1e8ff;
+            --text-dim: #9b8cb8;
+            --accent: #ff3b3b;
+            --accent2: #ff6b35;
+            --success: #34d399;
+            --warning: #fbbf24;
+            --info: #60a5fa;
+            --border: #2d2145;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            min-height: 100vh;
+        }
+        .top-bar {
+            background: linear-gradient(135deg, #1a1125, #2d1845);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .top-bar .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .top-bar .logo img { height: 32px; border-radius: 8px; }
+        .top-bar .logo span { color: var(--text); font-size: 1.1em; font-weight: 700; }
+        .top-bar .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .top-bar .user-info .name { color: var(--text-dim); font-size: 0.9em; }
+        .top-bar .user-info .logout {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+        .top-bar .user-info .logout:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+        .restaurant-selector {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .restaurant-selector select {
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            flex: 1;
+            min-width: 200px;
+        }
+        .restaurant-selector select:focus { outline: none; border-color: var(--accent); }
+        .period-selector {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 4px;
+            border: 1px solid var(--border);
+        }
+        .period-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .period-btn.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 1.3em;
+        }
+        .stat-card .icon.views { background: rgba(96,165,250,0.15); color: var(--info); }
+        .stat-card .icon.dishes { background: rgba(255,107,53,0.15); color: var(--accent2); }
+        .stat-card .icon.visitors { background: rgba(52,211,153,0.15); color: var(--success); }
+        .stat-card .icon.searches { background: rgba(251,191,36,0.15); color: var(--warning); }
+        .stat-card .value { font-size: 1.8em; font-weight: 800; margin-bottom: 4px; }
+        .stat-card .label { color: var(--text-dim); font-size: 0.85em; }
+
+        .chart-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .chart-section h2 {
+            font-size: 1.1em;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .chart-section h2 i { color: var(--accent); }
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .tables-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 768px) {
+            .tables-grid { grid-template-columns: 1fr; }
+        }
+        .table-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+        .table-card h3 {
+            font-size: 1em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .table-card h3 i { color: var(--accent); font-size: 0.9em; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9em;
+        }
+        th { color: var(--text-dim); font-weight: 600; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; }
+        td { color: var(--text); }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: var(--bg-card-hover); }
+        .rank {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: 700;
+            background: var(--border);
+            color: var(--text-dim);
+        }
+        .rank.gold { background: rgba(251,191,36,0.2); color: var(--warning); }
+        .rank.silver { background: rgba(192,192,192,0.2); color: #c0c0c0; }
+        .rank.bronze { background: rgba(205,127,50,0.2); color: #cd7f32; }
+
+        .quick-links {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .quick-link {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 20px;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+        .quick-link:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+        }
+        .quick-link i { color: var(--accent); font-size: 1.1em; }
+
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 0.78em; font-weight: 600; }
+        .badge-pending { background: rgba(251,191,36,0.2); color: var(--warning); }
+        .badge-confirmed { background: rgba(96,165,250,0.2); color: var(--info); }
+        .badge-preparing { background: rgba(255,107,53,0.2); color: var(--accent2); }
+        .badge-ready { background: rgba(52,211,153,0.2); color: var(--success); }
+        .badge-completed { background: rgba(52,211,153,0.2); color: var(--success); }
+        .badge-canceled { background: rgba(255,59,59,0.2); color: var(--accent); }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-dim);
+        }
+        .empty-state i { font-size: 3em; margin-bottom: 16px; opacity: 0.3; }
+        .empty-state p { margin-top: 8px; font-size: 0.95em; }
+
+        .loading { text-align: center; padding: 40px; color: var(--text-dim); }
+        .loading i { animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/app/index.html" class="logo">
+            <img src="/logo/logo_ufficiale.png" alt="logo">
+            <span>trovapiatto</span>
+        </a>
+        <div class="user-info">
+            <span class="name" id="userName"></span>
+            <button class="logout" onclick="logout()">Esci</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="restaurant-selector">
+            <select id="restaurantSelect" onchange="loadDashboard()">
+                <option value="">Caricamento ristoranti...</option>
+            </select>
+            <div class="period-selector">
+                <button class="period-btn" data-days="7" onclick="setPeriod(7)">7g</button>
+                <button class="period-btn active" data-days="30" onclick="setPeriod(30)">30g</button>
+                <button class="period-btn" data-days="90" onclick="setPeriod(90)">90g</button>
+            </div>
+        </div>
+
+        <div class="quick-links">
+            <a href="restaurants.html" class="quick-link"><i class="fas fa-store"></i> Gestisci Ristoranti</a>
+            <a href="restaurants.html" class="quick-link" onclick="event.preventDefault(); showMenuManager()"><i class="fas fa-utensils"></i> Gestisci Menu</a>
+            <a href="image-manager.html" class="quick-link"><i class="fas fa-image"></i> Immagini</a>
+            <a href="reservations-dashboard.html" class="quick-link"><i class="fas fa-calendar-check"></i> Prenotazioni</a>
+            <a href="#" class="quick-link" id="menuPreviewLink" target="_blank"><i class="fas fa-external-link-alt"></i> Vedi Menu Online</a>
+        </div>
+
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+        </div>
+
+        <div class="chart-section">
+            <h2><i class="fas fa-chart-line"></i> Visite nel Tempo</h2>
+            <div class="chart-container">
+                <canvas id="viewsChart"></canvas>
+            </div>
+        </div>
+
+        <div class="tables-grid">
+            <div class="table-card">
+                <h3><i class="fas fa-fire"></i> Piatti Più Visti</h3>
+                <div id="topDishesTable"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+            </div>
+            <div class="table-card">
+                <h3><i class="fas fa-search"></i> Ricerche Più Comuni</h3>
+                <div id="topSearchesTable"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+            </div>
+        </div>
+
+        <!-- Subscription Status -->
+        <div id="subStatus" style="display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:14px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-crown" style="color:var(--warning);font-size:1.1em;"></i>
+                <span style="font-weight:600;" id="subPlanName">Free</span>
+                <span id="subPrice" style="color:var(--text-dim);font-size:0.85em;"></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+                <span id="subExpiry" style="color:var(--text-dim);font-size:0.8em;"></span>
+                <a href="subscriptions.html" style="padding:6px 14px;background:var(--primary);color:white;border-radius:8px;text-decoration:none;font-size:0.8em;font-weight:600;">Gestisci</a>
+            </div>
+        </div>
+
+        <!-- Confronto con la Zona -->
+        <div class="chart-section" id="compareSection">
+            <h2><i class="fas fa-chart-bar"></i> Confronto con la Zona</h2>
+            <div id="compareContent"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+        </div>
+
+        <!-- Prenotazioni -->
+        <div style="margin-top:24px;">
+            <div id="dashReservationsSection">
+                <div class="stats-grid" id="dashResStats"></div>
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+                    <input type="date" id="dashResDateFilter" onchange="loadDashReservations()" style="background:var(--bg-card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:0.9em;">
+                </div>
+                <div class="table-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Prenotazioni</h3>
+                    <div id="dashResList"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API = '/app/admin/api-crud.php';
+        let token = localStorage.getItem('auth_token');
+        let currentPeriod = 30;
+        let viewsChart = null;
+        let allRestaurants = [];
+
+        if (!token) { window.location.href = 'login.html'; }
+
+        async function apiCall(action, params = {}) {
+            const qs = new URLSearchParams({ action, token, ...params });
+            const res = await fetch(`${API}?${qs}`);
+            const data = await res.json();
+            if (!data.success && data.error === 'Token non valido') { logout(); return null; }
+            return data;
+        }
+
+        function logout() {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('user_data');
+            window.location.href = 'login.html';
+        }
+
+        async function init() {
+            const userData = JSON.parse(localStorage.getItem('user_data') || '{}');
+            document.getElementById('userName').textContent = userData.name || userData.email || 'Admin';
+
+            const res = await apiCall('get-restaurants');
+            if (!res || !res.data) return;
+            allRestaurants = res.data;
+
+            const sel = document.getElementById('restaurantSelect');
+            sel.innerHTML = '<option value="">Tutti i ristoranti</option>' +
+                res.data.map(r => `<option value="${r.id}">${r.name}</option>`).join('');
+
+            loadDashboard();
+        }
+
+        function setPeriod(days) {
+            currentPeriod = days;
+            document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.period-btn[data-days="${days}"]`).classList.add('active');
+            loadDashboard();
+            const rid = document.getElementById('restaurantSelect').value;
+            if (rid) loadCompare(rid);
+        }
+
+        async function loadDashboard() {
+            const rid = document.getElementById('restaurantSelect').value;
+
+            if (rid) loadSubscription(rid);
+            const menuPreview = document.getElementById('menuPreviewLink');
+            if (rid) {
+                const r = allRestaurants.find(x => x.id === rid);
+                if (r && r.slug) menuPreview.href = `/menu/${r.slug}/`;
+                menuPreview.style.display = '';
+            } else {
+                menuPreview.style.display = 'none';
+            }
+
+            document.getElementById('statsGrid').innerHTML = '<div class="stat-card"><div class="loading"><i class="fas fa-spinner"></i></div></div>';
+
+            const params = { period: currentPeriod };
+            if (rid) params.restaurant_id = rid;
+
+            const res = await apiCall('analytics-dashboard', params);
+            if (!res || !res.data) {
+                document.getElementById('statsGrid').innerHTML = '<div class="empty-state"><i class="fas fa-chart-bar"></i><p>Nessun dato disponibile. Le visite verranno tracciate automaticamente.</p></div>';
+                return;
+            }
+
+            const d = res.data;
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card">
+                    <div class="icon views"><i class="fas fa-eye"></i></div>
+                    <div class="value">${d.total_views.toLocaleString()}</div>
+                    <div class="label">Visite Totali</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon visitors"><i class="fas fa-users"></i></div>
+                    <div class="value">${d.unique_visitors.toLocaleString()}</div>
+                    <div class="label">Visitatori Unici</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon dishes"><i class="fas fa-utensils"></i></div>
+                    <div class="value">${d.dish_views.toLocaleString()}</div>
+                    <div class="label">Visite Piatti</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon searches"><i class="fas fa-search"></i></div>
+                    <div class="value">${d.top_searches.reduce((a, s) => a + parseInt(s.count), 0)}</div>
+                    <div class="label">Ricerche</div>
+                </div>
+            `;
+
+            renderViewsChart(d.views_by_date);
+            renderTopDishes(d.top_dishes);
+            renderTopSearches(d.top_searches);
+            loadCompare(rid);
+        }
+
+        async function loadCompare(rid) {
+            const el = document.getElementById('compareContent');
+            if (!rid) { el.innerHTML = '<div style="color:var(--text-dim);text-align:center;padding:24px;"><i class="fas fa-info-circle"></i> Seleziona un ristorante per vedere il confronto</div>'; return; }
+            try {
+                const data = await apiCall('analytics-compare', { restaurant_id: rid, period: currentPeriod });
+                if (!data || !data.data) { el.innerHTML = '<div style="color:var(--text-dim);text-align:center;padding:24px;">Dati non disponibili</div>'; return; }
+                const c = data.data;
+                const better = (val, avg) => val > avg ? 'var(--success)' : val < avg ? 'var(--accent)' : 'var(--text-dim)';
+                const arrow = (val, avg) => val > avg ? '<i class="fas fa-arrow-up" style="color:var(--success);margin-left:4px;"></i>' : val < avg ? '<i class="fas fa-arrow-down" style="color:var(--accent);margin-left:4px;"></i>' : '';
+                const pct = (val, avg) => avg > 0 ? Math.round(((val - avg) / avg) * 100) : 0;
+                el.innerHTML = `
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+                        <span style="color:var(--text-dim);font-size:0.9em;"><i class="fas fa-map-marker-alt" style="color:var(--accent);"></i> Zona: ${c.city || 'Non specificata'}</span>
+                        <span style="color:var(--text-dim);font-size:0.9em;">|</span>
+                        <span style="color:var(--text-dim);font-size:0.9em;">Periodo: ${currentPeriod} giorni</span>
+                        ${c.rank > 0 ? `<span style="background:rgba(251,191,36,0.15);color:var(--warning);padding:4px 12px;border-radius:12px;font-size:0.85em;font-weight:600;"><i class="fas fa-trophy"></i> #${c.rank} / ${c.total_restaurants}</span>` : ''}
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="icon views"><i class="fas fa-eye"></i></div>
+                            <div class="value" style="color:${better(c.my.views, c.zone_avg.views)}">${c.my.views.toLocaleString()}${arrow(c.my.views, c.zone_avg.views)}</div>
+                            <div class="label">Visite (tu: ${c.my.views} | media zona: ${c.zone_avg.views})</div>
+                            <div style="font-size:0.8em;margin-top:4px;color:${pct(c.my.views, c.zone_avg.views) >= 0 ? 'var(--success)' : 'var(--accent)'}">${pct(c.my.views, c.zone_avg.views) >= 0 ? '+' : ''}${pct(c.my.views, c.zone_avg.views)}% vs zona</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon visitors"><i class="fas fa-users"></i></div>
+                            <div class="value" style="color:${better(c.my.unique_visitors, c.zone_avg.unique_visitors)}">${c.my.unique_visitors.toLocaleString()}${arrow(c.my.unique_visitors, c.zone_avg.unique_visitors)}</div>
+                            <div class="label">Visitatori (tu: ${c.my.unique_visitors} | media: ${c.zone_avg.unique_visitors})</div>
+                            <div style="font-size:0.8em;margin-top:4px;color:${pct(c.my.unique_visitors, c.zone_avg.unique_visitors) >= 0 ? 'var(--success)' : 'var(--accent)'}">${pct(c.my.unique_visitors, c.zone_avg.unique_visitors) >= 0 ? '+' : ''}${pct(c.my.unique_visitors, c.zone_avg.unique_visitors)}% vs zona</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon dishes"><i class="fas fa-utensils"></i></div>
+                            <div class="value" style="color:${better(c.my.dishes, c.zone_avg.dishes)}">${c.my.dishes}${arrow(c.my.dishes, c.zone_avg.dishes)}</div>
+                            <div class="label">Piatti (tu: ${c.my.dishes} | media: ${c.zone_avg.dishes})</div>
+                        </div>
+                    </div>
+                    ${c.my_categories && c.my_categories.length > 0 ? `
+                    <div style="margin-top:16px;">
+                        <h3 style="font-size:1em;margin-bottom:12px;color:var(--text-dim);"><i class="fas fa-chart-pie"></i> Visite per Categoria</h3>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                            ${c.my_categories.map(cat => `<div style="background:var(--bg-card-hover);border-radius:8px;padding:8px 14px;font-size:0.85em;"><span style="color:var(--text-dim);">${cat.category || 'Altro'}</span> <strong style="margin-left:4px;">${cat.views}</strong></div>`).join('')}
+                        </div>
+                    </div>` : ''}`;
+            } catch(e) { el.innerHTML = '<div style="color:var(--text-dim);text-align:center;padding:24px;">Errore nel caricamento confronto</div>'; }
+        }
+
+        function renderViewsChart(data) {
+            const ctx = document.getElementById('viewsChart').getContext('2d');
+            if (viewsChart) viewsChart.destroy();
+
+            const labels = data.map(d => d.date);
+            const values = data.map(d => parseInt(d.views));
+
+            viewsChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Visite',
+                        data: values,
+                        borderColor: '#ff3b3b',
+                        backgroundColor: 'rgba(255,59,59,0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 3,
+                        pointBackgroundColor: '#ff3b3b',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1a1125',
+                            borderColor: '#ff3b3b',
+                            borderWidth: 1,
+                            titleColor: '#f1e8ff',
+                            bodyColor: '#f1e8ff'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(45,33,69,0.5)' },
+                            ticks: { color: '#9b8cb8', maxTicksLimit: 10 }
+                        },
+                        y: {
+                            grid: { color: 'rgba(45,33,69,0.5)' },
+                            ticks: { color: '#9b8cb8', precision: 0 },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderTopDishes(dishes) {
+            const el = document.getElementById('topDishesTable');
+            if (!dishes || dishes.length === 0) {
+                el.innerHTML = '<div class="empty-state"><i class="fas fa-utensils"></i><p>Nessuna visualizzazione piatto ancora</p></div>';
+                return;
+            }
+            const rankClass = (i) => i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+            el.innerHTML = `<table><thead><tr><th>#</th><th>Piatto</th><th>Categoria</th><th>Visite</th></tr></thead><tbody>` +
+                dishes.map((d, i) => `<tr><td><span class="rank ${rankClass(i)}">${i + 1}</span></td><td>${d.name}</td><td>${d.category || '-'}</td><td><strong>${d.views}</strong></td></tr>`).join('') +
+                `</tbody></table>`;
+        }
+
+        function renderTopSearches(searches) {
+            const el = document.getElementById('topSearchesTable');
+            if (!searches || searches.length === 0) {
+                el.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><p>Nessuna ricerca ancora</p></div>';
+                return;
+            }
+            el.innerHTML = `<table><thead><tr><th>#</th><th>Ricerca</th><th>Risultati</th></tr></thead><tbody>` +
+                searches.map((s, i) => `<tr><td><span class="rank">${i + 1}</span></td><td>${s.query}</td><td><strong>${s.count}</strong></td></tr>`).join('') +
+                `</tbody></table>`;
+        }
+
+        async function loadSubscription(rid) {
+            try {
+                const data = await apiCall('get-subscription', { restaurant_id: rid });
+                const el = document.getElementById('subStatus');
+                if (data && data.success && data.data) {
+                    const s = data.data;
+                    const plans = { free: { name: 'Free', price: '€0' }, basic: { name: 'Basic', price: '€9.90/mese' }, pro: { name: 'Pro', price: '€29.90/mese' }, enterprise: { name: 'Enterprise', price: '€49.90/mese' } };
+                    const p = plans[s.plan] || plans.free;
+                    document.getElementById('subPlanName').textContent = 'Piano ' + p.name;
+                    document.getElementById('subPrice').textContent = p.price;
+                    document.getElementById('subExpiry').textContent = s.current_period_end ? 'Scade: ' + new Date(s.current_period_end).toLocaleDateString('it-IT') : '';
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            } catch (e) { document.getElementById('subStatus').style.display = 'none'; }
+        }
+
+        function showMenuManager() {
+            window.location.href = 'restaurants.html';
+        }
+
+        let dashReservations = [];
+
+        async function loadDashReservations() {
+            const rid = document.getElementById('restaurantSelect').value;
+            const el = document.getElementById('dashResList');
+            if (!rid) { el.innerHTML = '<div class="empty-state"><i class="fas fa-info-circle"></i><p>Seleziona un ristorante per vedere le prenotazioni</p></div>'; return; }
+            el.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i></div>';
+            const dateFilter = document.getElementById('dashResDateFilter').value;
+            const params = { restaurant_id: rid };
+            if (dateFilter) params.date = dateFilter;
+            try {
+                const data = await apiCall('get-restaurant-reservations', params);
+                dashReservations = data.reservations || [];
+                renderDashRes();
+                updateDashResStats();
+            } catch(e) { el.innerHTML = '<div class="empty-state"><p>Errore</p></div>'; }
+        }
+
+        async function loadDashReservations() {
+            const rid = document.getElementById('restaurantSelect').value;
+            const el = document.getElementById('dashResList');
+            if (!rid) { el.innerHTML = '<div class="empty-state"><i class="fas fa-info-circle"></i><p>Seleziona un ristorante</p></div>'; return; }
+            el.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i></div>';
+            const dateFilter = document.getElementById('dashResDateFilter').value;
+            const params = { restaurant_id: rid };
+            if (dateFilter) params.date = dateFilter;
+            try {
+                const data = await apiCall('get-restaurant-reservations', params);
+                dashReservations = data.reservations || [];
+                renderDashRes();
+                updateDashResStats();
+            } catch(e) { el.innerHTML = '<div class="empty-state"><p>Errore</p></div>'; }
+        }
+
+        function renderDashRes() {
+            const el = document.getElementById('dashResList');
+            if (!dashReservations.length) { el.innerHTML = '<div class="empty-state"><i class="fas fa-calendar"></i><p>Nessuna prenotazione</p></div>'; return; }
+            const badge = s => `<span class="badge badge-${s}">${s}</span>`;
+            el.innerHTML = `<table><thead><tr><th>Data</th><th>Ora</th><th>Cliente</th><th>Ospiti</th><th>Stato</th><th>Note</th></tr></thead><tbody>` +
+                dashReservations.map(r => `<tr><td>${r.res_date}</td><td><strong>${r.res_time?r.res_time.substring(0,5):'-'}</strong></td><td>${r.customer_name}</td><td>${r.guests}</td><td>${badge(r.status)}</td><td>${r.notes||'-'}</td></tr>`).join('') +
+                `</tbody></table>`;
+        }
+
+        function updateDashResStats() {
+            const today = new Date().toISOString().split('T')[0];
+            const pending = dashReservations.filter(r => r.status === 'pending');
+            const confirmed = dashReservations.filter(r => r.status === 'confirmed');
+            const todayGuests = dashReservations.filter(r => r.res_date === today && r.status === 'confirmed').reduce((s,r) => s + parseInt(r.guests||0), 0);
+            document.getElementById('dashResStats').innerHTML = `
+                <div class="stat-card"><div class="icon views"><i class="fas fa-calendar-check"></i></div><div class="value">${dashReservations.length}</div><div class="label">Totali</div></div>
+                <div class="stat-card"><div class="icon" style="background:rgba(251,191,36,0.15);color:var(--warning)"><i class="fas fa-hourglass-half"></i></div><div class="value">${pending.length}</div><div class="label">In Attesa</div></div>
+                <div class="stat-card"><div class="icon visitors"><i class="fas fa-check"></i></div><div class="value">${confirmed.length}</div><div class="label">Confermate</div></div>
+                <div class="stat-card"><div class="icon dishes"><i class="fas fa-user-friends"></i></div><div class="value">${todayGuests}</div><div class="label">Ospiti Oggi</div></div>`;
+        }
+
+        init();
+    </script>
+</body>
+</html>

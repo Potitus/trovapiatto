@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>trovapiatto Community — Social Food di Bari</title>
+<meta name="description" content="La community food di Bari. Scopri cosa mangiano gli altri, lascia recensioni, guadagna punti e diventa il critico gastronomico della tua città.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#8b5cf6">
+<meta property="og:type" content="website">
+<meta property="og:title" content="trovapiatto Community — Social Food">
+<meta property="og:description" content="La community food di Bari. Recensioni, punti, classifiche e molto altro.">
+<meta property="og:image" content="https://www.trovapiatto.it/logo/logo_ufficiale.png">
+<meta property="og:url" content="https://www.trovapiatto.it/community/">
+<meta property="og:site_name" content="trovapiatto">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="trovapiatto Community">
+<meta name="twitter:description" content="Il social food di Bari.">
+<meta name="twitter:image" content="https://www.trovapiatto.it/logo/logo_ufficiale.png">
+<link rel="canonical" href="https://www.trovapiatto.it/community/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0a15;--bg2:#1a0f25;--card:rgba(255,255,255,0.04);--card-border:rgba(255,255,255,0.06);
+  --text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;
+  --primary:#8b5cf6;--gold:#f59e0b;--green:#10b981;--red:#ef4444;--blue:#3b82f6;--accent-food:#f59e0b;
+  --orange:#f97316;--pink:#ec4899;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px}
+a{color:var(--primary);text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:0 12px}
+
+.top-nav{position:sticky;top:0;z-index:100;background:rgba(15,10,21,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.top-nav .logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text)}
+.top-nav .logo img{height:32px}
+.top-nav .nav-actions{display:flex;gap:8px}
+.top-nav .nav-btn{width:36px;height:36px;border-radius:10px;border:1px solid var(--card-border);background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:0.85rem;cursor:pointer;transition:all 0.2s}
+.top-nav .nav-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+.breadcrumb{max-width:900px;margin:0 auto;padding:16px 20px 0;display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text2)}
+.breadcrumb a{color:var(--text2);text-decoration:none;transition:color 0.3s}
+.breadcrumb a:hover{color:var(--primary)}
+.breadcrumb .sep{color:rgba(255,255,255,0.2)}
+.breadcrumb .current{color:var(--text)}
+
+.hero{position:relative;padding:70px 1.5rem 40px;text-align:center;overflow:hidden;margin-bottom:16px}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&h=500&fit=crop') center/cover no-repeat;filter:blur(4px) brightness(0.45) saturate(1.1) scale(1.05);z-index:0}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,10,21,0.5) 0%,rgba(15,10,21,0.85) 100%);z-index:1}
+.hero>*{position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);border-radius:20px;font-size:0.7rem;font-weight:600;color:var(--primary);margin-bottom:12px}
+.hero h1{font-size:1.8rem;font-weight:900;margin-bottom:6px}
+.hero p{font-size:0.85rem;color:var(--text2);margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto}
+.hero-stats{display:flex;justify-content:center;gap:20px;margin-bottom:20px}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:1.4rem;font-weight:800;color:var(--gold)}
+.hero-stat .lbl{font-size:0.6rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:linear-gradient(135deg,var(--primary),var(--pink));color:white;border:none;border-radius:14px;font-family:'Inter',sans-serif;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.3s}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(139,92,246,0.4)}
+
+.auth-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.auth-overlay.hidden{display:none}
+.auth-box{background:var(--bg2);border:1px solid var(--card-border);border-radius:20px;padding:30px;max-width:380px;width:100%;text-align:center}
+.auth-box h2{font-size:1.2rem;margin-bottom:6px}
+.auth-box p{color:var(--text2);font-size:0.82rem;margin-bottom:20px}
+.auth-box .auth-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--primary),var(--pink));border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.5rem;color:white}
+.auth-form{display:flex;flex-direction:column;gap:10px}
+.auth-form input{padding:12px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:white;font-family:'Inter',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.3s}
+.auth-form input::placeholder{color:var(--text3)}
+.auth-form input:focus{border-color:var(--primary)}
+.auth-form button{padding:12px;background:linear-gradient(135deg,var(--primary),var(--pink));color:white;border:none;border-radius:12px;font-family:'Inter',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;transition:all 0.2s}
+.auth-form button:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(139,92,246,0.4)}
+
+.search-wrap{margin:12px 0;position:relative}
+.search-bar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--card);border:1px solid var(--card-border);border-radius:14px;transition:all 0.3s}
+.search-bar:focus-within{border-color:var(--primary);box-shadow:0 0 20px rgba(139,92,246,0.15)}
+.search-bar i{color:var(--text3);font-size:0.9rem}
+.search-bar input{flex:1;background:none;border:none;color:var(--text);font-family:'Inter',sans-serif;font-size:0.85rem;outline:none}
+.search-bar input::placeholder{color:var(--text3)}
+.search-results{position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--card-border);border-radius:14px;margin-top:4px;max-height:300px;overflow-y:auto;z-index:50;display:none}
+.search-results.show{display:block}
+.sr-item{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background 0.2s;text-decoration:none;color:var(--text)}
+.sr-item:hover{background:rgba(255,255,255,0.04)}
+.sr-item img{width:36px;height:36px;border-radius:8px;object-fit:cover}
+.sr-item .sr-name{font-size:0.8rem;font-weight:600}
+.sr-item .sr-meta{font-size:0.65rem;color:var(--text2)}
+
+.profile-strip{background:linear-gradient(135deg,rgba(139,92,246,0.12),rgba(236,72,153,0.08));border:1px solid rgba(139,92,246,0.2);border-radius:16px;padding:16px;margin:12px 0;display:none}
+.profile-strip.show{display:block}
+.ps-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.ps-avatar{width:44px;height:44px;background:linear-gradient(135deg,var(--primary),var(--pink));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:white;font-weight:700;flex-shrink:0}
+.ps-info{flex:1}
+.ps-info h3{font-size:0.9rem;font-weight:700}
+.ps-info .ps-user{font-size:0.72rem;color:var(--text2)}
+.ps-level{text-align:center}
+.ps-level .lv{font-size:1.2rem;font-weight:800;color:var(--gold)}
+.ps-level .lbl{font-size:0.55rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px}
+.ps-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ps-stat{text-align:center;padding:8px 4px;background:rgba(255,255,255,0.03);border-radius:10px}
+.ps-stat .num{font-size:1rem;font-weight:700;color:var(--primary)}
+.ps-stat .lbl{font-size:0.55rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-top:1px}
+
+.quick-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.qa-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px 8px;text-align:center;text-decoration:none;color:var(--text);transition:all 0.3s;cursor:pointer}
+.qa-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.qa-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:1rem}
+.qa-label{font-size:0.68rem;font-weight:600}
+
+.section-head{display:flex;align-items:center;gap:8px;margin:20px 0 12px}
+.section-head i{font-size:0.85rem}
+.section-head h2{font-size:0.95rem;font-weight:700;flex:1}
+.section-head .more{font-size:0.7rem;color:var(--primary);font-weight:600;display:flex;align-items:center;gap:3px;transition:gap 0.3s}
+.section-head .more:hover{gap:6px}
+
+.filter-tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.filter-tabs::-webkit-scrollbar{display:none}
+.filter-tab{padding:7px 14px;border-radius:10px;font-size:0.7rem;font-weight:600;white-space:nowrap;cursor:pointer;border:1px solid var(--card-border);background:var(--card);color:var(--text2);transition:all 0.2s}
+.filter-tab.active{background:rgba(139,92,246,0.15);border-color:rgba(139,92,246,0.3);color:var(--primary)}
+
+.feed-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px;margin-bottom:10px;transition:all 0.3s}
+.feed-card:hover{border-color:rgba(139,92,246,0.2)}
+.fc-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.fc-avatar{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:white;font-weight:600;flex-shrink:0;overflow:hidden}
+.fc-user{flex:1}
+.fc-user .name{font-size:0.78rem;font-weight:600}
+.fc-user .meta{font-size:0.62rem;color:var(--text2)}
+.fc-time{font-size:0.58rem;color:var(--text3);flex-shrink:0}
+.fc-type{display:inline-flex;align-items:center;gap:4px;font-size:0.6rem;font-weight:600;padding:3px 8px;border-radius:8px;margin-bottom:8px}
+.fc-type.review{background:rgba(245,158,11,0.12);color:var(--gold)}
+.fc-dish{display:flex;gap:10px;padding:10px;background:rgba(255,255,255,0.03);border-radius:10px;margin-bottom:8px}
+.fc-dish-img{width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0;background:rgba(255,255,255,0.06)}
+.fc-dish-info{flex:1;min-width:0}
+.fc-dish-name{font-size:0.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fc-dish-rest{font-size:0.65rem;color:var(--text2);display:flex;align-items:center;gap:3px}
+.fc-stars{display:flex;align-items:center;gap:2px;margin-top:3px}
+.fc-stars i{font-size:0.6rem;color:var(--gold)}
+.fc-stars i.empty{color:var(--text3)}
+.fc-comment{font-size:0.75rem;color:var(--text2);line-height:1.4;font-style:italic;padding:8px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid var(--primary)}
+.fc-actions{display:flex;gap:16px;margin-top:8px}
+.fc-action{font-size:0.65rem;color:var(--text3);display:flex;align-items:center;gap:4px;cursor:pointer;transition:color 0.2s}
+.fc-action:hover{color:var(--primary)}
+
+.trending-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.trending-scroll::-webkit-scrollbar{display:none}
+.trend-card{flex-shrink:0;width:150px;background:var(--card);border:1px solid var(--card-border);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--text);transition:all 0.3s}
+.trend-card:hover{border-color:var(--accent-food);transform:translateY(-2px)}
+.trend-img{width:150px;height:100px;object-fit:cover;background:rgba(255,255,255,0.06)}
+.trend-body{padding:10px}
+.trend-name{font-size:0.75rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.trend-rest{font-size:0.62rem;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trend-meta{display:flex;gap:6px;margin-top:4px}
+.trend-meta span{font-size:0.58rem;color:var(--text3);display:flex;align-items:center;gap:2px}
+.trend-meta .rev{color:var(--accent-food)}
+
+.rest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:16px}
+.rest-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:center;transition:all 0.3s;cursor:pointer;text-decoration:none;color:var(--text)}
+.rest-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.rest-card-img{width:50px;height:50px;border-radius:12px;object-fit:cover;flex-shrink:0;background:rgba(255,255,255,0.06)}
+.rest-card-info{flex:1;min-width:0}
+.rest-card-name{font-size:0.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rest-card-meta{font-size:0.65rem;color:var(--text2);display:flex;align-items:center;gap:6px}
+.rest-card-rating{display:flex;align-items:center;gap:3px;font-size:0.7rem;font-weight:600;color:var(--gold)}
+
+#community-map{width:100%;height:250px;border-radius:14px;border:1px solid var(--card-border);margin-bottom:16px}
+
+.lb-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px;margin-bottom:16px}
+.lb-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,0.02);border-radius:10px;margin-bottom:6px;transition:all 0.2s}
+.lb-row:hover{background:rgba(255,255,255,0.04)}
+.lb-rank{font-size:0.85rem;font-weight:800;width:24px;text-align:center;flex-shrink:0}
+.lb-rank.gold{color:var(--gold)}
+.lb-rank.silver{color:var(--text2)}
+.lb-rank.bronze{color:#cd7f32}
+.lb-ava{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:white;font-weight:600;flex-shrink:0}
+.lb-info{flex:1}
+.lb-info .nm{font-size:0.78rem;font-weight:600}
+.lb-info .pts{font-size:0.62rem;color:var(--text2)}
+.lb-score{font-size:0.82rem;font-weight:700;color:var(--gold);flex-shrink:0}
+
+.site-footer{border-top:1px solid rgba(255,255,255,0.06);padding:40px 20px 30px;margin-top:32px}
+.footer-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:768px){.footer-inner{grid-template-columns:1.5fr 1fr 1fr 1fr}}
+.footer-brand p{color:var(--text2);font-size:0.82rem;line-height:1.6;margin-top:12px}
+.footer-col h4{font-size:0.75rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px}
+.footer-col a{display:block;color:var(--text2);text-decoration:none;font-size:0.82rem;padding:3px 0;transition:color 0.3s}
+.footer-col a:hover{color:var(--primary)}
+.footer-social{display:flex;gap:8px;margin-top:14px}
+.footer-social a{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:0.9rem;transition:all 0.3s}
+.footer-social a:hover{background:var(--primary);border-color:var(--primary);color:white}
+.footer-bottom{max-width:900px;margin:20px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;color:var(--text3);font-size:0.7rem}
+
+.bnav{position:fixed;bottom:0;left:0;right:0;background:rgba(15,10,21,0.95);backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:center;z-index:100;padding:6px 0}
+.bnav a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 18px;color:var(--text3);font-size:0.55rem;text-decoration:none;transition:color 0.2s}
+.bnav a.active{color:var(--primary)}
+.bnav a i{font-size:1.05rem}
+
+.empty{text-align:center;padding:30px 20px;color:var(--text3)}
+.empty i{font-size:2rem;margin-bottom:8px;display:block}
+.empty p{font-size:0.8rem}
+.loading{text-align:center;padding:30px}
+.loading .spin{width:28px;height:28px;border:3px solid rgba(139,92,246,0.2);border-top-color:var(--primary);border-radius:50%;animation:sp 0.8s linear infinite;margin:0 auto 8px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.loading p{font-size:0.78rem;color:var(--text2)}
+
+@media(max-width:600px){
+  .hero{padding:60px 1rem 30px}
+  .hero h1{font-size:1.4rem}
+  .hero-stats{gap:12px}
+  .hero-stat .num{font-size:1.1rem}
+  .quick-actions{grid-template-columns:repeat(4,1fr);gap:6px}
+  .qa-card{padding:10px 4px}
+  .qa-icon{width:36px;height:36px;font-size:0.85rem}
+  .qa-label{font-size:0.6rem}
+  .ps-stats{grid-template-columns:repeat(2,1fr)}
+  .rest-grid{grid-template-columns:1fr}
+}
+</style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="/community/" class="logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+  <div class="nav-actions">
+    <div class="nav-btn" onclick="showAuth()" id="btn-profile"><i class="fas fa-user"></i></div>
+  </div>
+</div>
+
+<div class="breadcrumb">
+  <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+  <span class="sep">/</span>
+  <span class="current">Community</span>
+</div>
+
+<div class="auth-overlay hidden" id="auth-overlay">
+  <div class="auth-box">
+    <div class="auth-icon"><i class="fas fa-utensils"></i></div>
+    <h2>Entra nella Community</h2>
+    <p>Scegli un username per iniziare a guadagnare punti e condividere le tue esperienze</p>
+    <div class="auth-form">
+      <input type="text" id="auth-name" placeholder="Il tuo nome" maxlength="30">
+      <input type="text" id="auth-username" placeholder="Username (senza spazi)" maxlength="20">
+      <button onclick="doRegister()"><i class="fas fa-arrow-right"></i> Entra</button>
+    </div>
+    <div style="margin-top:12px;"><a href="#" onclick="document.getElementById('auth-overlay').classList.add('hidden');return false;" style="font-size:0.75rem;color:var(--text3)">Chiudi</a></div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge"><i class="fas fa-fire"></i> Community attiva</div>
+  <h1>trovapiatto Community</h1>
+  <p>Il social food di Bari. Condividi le tue esperienze gastronomiche e scopri cosa mangiano gli altri</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num" id="stat-users">-</div><div class="lbl">Utenti</div></div>
+    <div class="hero-stat"><div class="num" id="stat-reviews">-</div><div class="lbl">Recensioni</div></div>
+    <div class="hero-stat"><div class="num" id="stat-restaurants">-</div><div class="lbl">Ristoranti</div></div>
+    <div class="hero-stat"><div class="num" id="stat-dishes">-</div><div class="lbl">Piatti</div></div>
+  </div>
+  <button class="hero-cta" onclick="showAuth()"><i class="fas fa-plus"></i> Scrivi una recensione</button>
+</div>
+
+<div class="container">
+
+  <div class="profile-strip" id="profile-strip">
+    <div class="ps-top">
+      <div class="ps-avatar" id="ps-avatar">?</div>
+      <div class="ps-info">
+        <h3 id="ps-name">—</h3>
+        <div class="ps-user">@<span id="ps-username">—</span></div>
+      </div>
+      <div class="ps-level">
+        <div class="lv" id="ps-level">1</div>
+        <div class="lbl">Livello</div>
+      </div>
+    </div>
+    <div class="ps-stats">
+      <div class="ps-stat"><div class="num" id="ps-points">0</div><div class="lbl">Punti</div></div>
+      <div class="ps-stat"><div class="num" id="ps-reviews">0</div><div class="lbl">Recensioni</div></div>
+      <div class="ps-stat"><div class="num" id="ps-positive">0</div><div class="lbl">Positive</div></div>
+      <div class="ps-stat"><div class="num" id="ps-streak">0</div><div class="lbl">Streak</div></div>
+    </div>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" id="search-input" placeholder="Cerca ristoranti, piatti, utenti..." oninput="liveSearch(this.value)">
+    </div>
+    <div class="search-results" id="search-results"></div>
+  </div>
+
+  <div class="quick-actions">
+    <a href="/community/loyalty/" class="qa-card">
+      <div class="qa-icon" style="background:rgba(245,158,11,0.12);color:var(--gold)"><i class="fas fa-trophy"></i></div>
+      <div class="qa-label">Premi</div>
+    </a>
+    <a href="/community/cosamangio.html" class="qa-card">
+      <div class="qa-icon" style="background:rgba(16,185,129,0.12);color:var(--green)"><i class="fas fa-fire"></i></div>
+      <div class="qa-label">Cos'hanno mangiato</div>
+    </a>
+    <a href="/community/loyalty/classifica.html" class="qa-card">
+      <div class="qa-icon" style="background:rgba(139,92,246,0.12);color:var(--primary)"><i class="fas fa-ranking-star"></i></div>
+      <div class="qa-label">Classifica</div>
+    </a>
+    <a href="/community/loyalty/profilo.html" class="qa-card">
+      <div class="qa-icon" style="background:rgba(236,72,153,0.12);color:var(--pink)"><i class="fas fa-user"></i></div>
+      <div class="qa-label">Profilo</div>
+    </a>
+  </div>
+
+  <div class="section-head">
+    <i class="fas fa-fire" style="color:var(--accent-food)"></i>
+    <h2>Piatti Trending</h2>
+    <a href="/community/cosamangio.html" class="more">Vedi tutti <i class="fas fa-chevron-right"></i></a>
+  </div>
+  <div class="trending-scroll" id="trending-scroll">
+    <div class="loading"><div class="spin"></div><p>Caricamento...</p></div>
+  </div>
+
+  <div class="section-head">
+    <i class="fas fa-store" style="color:var(--green)"></i>
+    <h2>Top Ristoranti</h2>
+    <a href="/piatti/" class="more">Esplora tutti <i class="fas fa-chevron-right"></i></a>
+  </div>
+  <div class="rest-grid" id="rest-grid">
+    <div class="loading"><div class="spin"></div><p>Caricamento ristoranti...</p></div>
+  </div>
+
+  <div class="section-head">
+    <i class="fas fa-map-location-dot" style="color:var(--blue)"></i>
+    <h2>Mappa Recensioni</h2>
+  </div>
+  <div id="community-map"></div>
+
+  <div class="section-head">
+    <i class="fas fa-clock" style="color:var(--blue)"></i>
+    <h2>Attività Recente</h2>
+    <a href="/community/cosamangio.html" class="more">Vedi tutto <i class="fas fa-chevron-right"></i></a>
+  </div>
+  <div class="filter-tabs" id="filter-tabs">
+    <div class="filter-tab active" onclick="filterFeed('all',this)">Tutte</div>
+    <div class="filter-tab" onclick="filterFeed('review',this)"><i class="fas fa-star"></i> Recensioni</div>
+    <div class="filter-tab" onclick="filterFeed('photo',this)"><i class="fas fa-camera"></i> Foto</div>
+    <div class="filter-tab" onclick="filterFeed('badge',this)"><i class="fas fa-award"></i> Badge</div>
+  </div>
+  <div id="feed-list">
+    <div class="loading"><div class="spin"></div><p>Caricamento attività...</p></div>
+  </div>
+
+  <div class="section-head">
+    <i class="fas fa-ranking-star" style="color:var(--gold)"></i>
+    <h2>Top Critici</h2>
+    <a href="/community/loyalty/classifica.html" class="more">Classifica completa <i class="fas fa-chevron-right"></i></a>
+  </div>
+  <div class="lb-card" id="lb-mini">
+    <div class="loading"><div class="spin"></div><p>Caricamento classifica...</p></div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)">
+        <img src="/logo/logo_ufficiale.png" alt="trovapiatto" style="height:28px">
+      </a>
+      <p>La guida definitiva ai piatti tipici e ristoranti migliori di Bari e Puglia. Scopri, cerca e prenota.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/trovapiatto" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/trovapiatto" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@trovapiatto" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Esplora</h4>
+      <a href="/piatti/">Tutti i Piatti</a>
+      <a href="/bari/migliori-ristoranti-bari/">Ristoranti</a>
+      <a href="/community/blog/">Magazine</a>
+      <a href="/bari/">Cosa Mangiare a Bari</a>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="/community/">Home Community</a>
+      <a href="/community/loyalty/">Programma Fedeltà</a>
+      <a href="/community/loyalty/classifica.html">Classifica</a>
+      <a href="/community/loyalty/profilo.html">Il tuo Profilo</a>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <a href="/about.html">Chi Siamo</a>
+      <a href="/contact.html">Contatti</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-of-service.html">Termini e Condizioni</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 trovapiatto &mdash; Tutti i diritti riservati
+  </div>
+</footer>
+
+<nav class="bnav">
+  <a href="/community/" class="active"><i class="fas fa-home"></i> Home</a>
+  <a href="/community/cosamangio.html"><i class="fas fa-utensils"></i> Mangiato</a>
+  <a href="/community/loyalty/classifica.html"><i class="fas fa-ranking-star"></i> Classifica</a>
+  <a href="/community/loyalty/"><i class="fas fa-trophy"></i> Premi</a>
+  <a href="/community/loyalty/profilo.html"><i class="fas fa-user"></i> Profilo</a>
+</nav>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const API = '/app/admin/api.php';
+let currentUser = null;
+let allFeedData = [];
+let map = null;
+
+function getInitials(n){if(!n)return'?';return n.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)}
+function getAvatarColor(n){const c=['#8b5cf6','#06b6d4','#f59e0b','#10b981','#ef4444','#3b82f6','#ec4899','#f97316'];let h=0;for(let i=0;i<(n||'').length;i++)h=n.charCodeAt(i)+((h<<5)-h);return c[Math.abs(h)%c.length]}
+function timeAgo(s){if(!s)return'';const d=Math.floor((Date.now()-new Date(s))/1000);if(d<60)return'adesso';if(d<3600)return Math.floor(d/60)+' min fa';if(d<86400)return Math.floor(d/3600)+' ore fa';if(d<2592000)return Math.floor(d/86400)+' gg fa';return new Date(s).toLocaleDateString('it-IT',{day:'numeric',month:'short'})}
+function renderStars(r){let h='';for(let i=1;i<=5;i++)h+='<i class="fas fa-star'+(i<=r?'':' empty')+'"></i>';return h}
+function getDishImage(n){const x=(n||'').toLowerCase();if(x.includes('orecchiette'))return'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=200&h=200&fit=crop';if(x.includes('branzino'))return'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=200&h=200&fit=crop';if(x.includes('pizza')||x.includes('margherita'))return'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=200&h=200&fit=crop';if(x.includes('sushi'))return'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=200&h=200&fit=crop';if(x.includes('pasta')||x.includes('carbonara'))return'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&h=200&fit=crop';if(x.includes('focaccia'))return'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop';return'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop'}
+
+function showAuth(){document.getElementById('auth-overlay').classList.remove('hidden')}
+function checkAuth(){const u=localStorage.getItem('tp_user');if(u){currentUser=JSON.parse(u);document.getElementById('auth-overlay').classList.add('hidden');document.getElementById('profile-strip').classList.add('show');loadProfile()}}
+async function doRegister(){const name=document.getElementById('auth-name').value.trim();const username=document.getElementById('auth-username').value.trim().toLowerCase().replace(/[^a-z0-9_]/g,'');if(!name||!username)return;try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'register-user',username,name})});const d=await r.json();if(d.success||d.id){currentUser={id:d.id,username,name};localStorage.setItem('tp_user',JSON.stringify(currentUser));document.getElementById('auth-overlay').classList.add('hidden');document.getElementById('profile-strip').classList.add('show');loadProfile()}}catch(e){}}
+
+async function loadProfile(){if(!currentUser)return;try{const r=await fetch(API+'?action=get-user-profile&username='+currentUser.username);const d=await r.json();if(d.data){const u=d.data;document.getElementById('ps-avatar').textContent=getInitials(u.display_name);document.getElementById('ps-avatar').style.background=getAvatarColor(u.username);document.getElementById('ps-name').textContent=u.display_name;document.getElementById('ps-username').textContent=u.username;document.getElementById('ps-level').textContent=u.level||1;document.getElementById('ps-points').textContent=u.points||0;document.getElementById('ps-reviews').textContent=u.total_reviews||0;document.getElementById('ps-positive').textContent=u.positive_reviews||0;document.getElementById('ps-streak').textContent=u.streak_days||0}}catch(e){}}
+
+async function loadStats(){try{const r=await fetch(API+'?action=get-community-stats');const d=await r.json();if(d.data){document.getElementById('stat-users').textContent=d.data.users||'0';document.getElementById('stat-reviews').textContent=d.data.reviews||'0';document.getElementById('stat-restaurants').textContent=d.data.restaurants||'0';document.getElementById('stat-dishes').textContent=d.data.dishes||'0'}}catch(e){}}
+
+async function liveSearch(q){const c=document.getElementById('search-results');if(!q||q.length<2){c.classList.remove('show');return}try{const r=await fetch(API+'?action=search-dishes&q='+encodeURIComponent(q));const d=await r.json();const dishes=d.data||[];if(!dishes.length){c.innerHTML='<div class="sr-item"><div class="sr-name" style="color:var(--text3)">Nessun risultato</div></div>';c.classList.add('show');return}c.innerHTML=dishes.slice(0,8).map(dt=>'<a href="/menu/'+dt.restaurant_slug+'/?highlight='+encodeURIComponent(dt.name)+'" class="sr-item"><img src="'+(dt.image_url||getDishImage(dt.name))+'" alt="'+dt.name+'"><div><div class="sr-name">'+dt.name+'</div><div class="sr-meta">'+dt.restaurant_name+' · €'+dt.price+'</div></div></a>').join('');c.classList.add('show')}catch(e){}}
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))document.getElementById('search-results').classList.remove('show')});
+
+async function loadFeed(){const c=document.getElementById('feed-list');try{const r=await fetch(API+'?action=get-recent-reviews&limit=20');const d=await r.json();allFeedData=d.data||[];renderFeed(allFeedData)}catch(e){c.innerHTML='<div class="empty"><i class="fas fa-exclamation-triangle"></i><p>Errore di caricamento</p></div>'}}
+function renderFeed(reviews){const c=document.getElementById('feed-list');if(!reviews.length){c.innerHTML='<div class="empty"><i class="fas fa-pen-fancy"></i><p>Nessuna attività ancora. Sii il primo!</p></div>';return}c.innerHTML=reviews.map(rv=>{const u=rv.user_name||'Anonimo';const dish=rv.dish?rv.dish.name:null;const rest=rv.restaurant?rv.restaurant.name:'Ristorante';const slug=rv.restaurant?rv.restaurant.slug:'';const hasDish=!!dish;const av=getAvatarColor(u);const avUrl=rv.user_avatar||'https://ui-avatars.com/api/?name='+encodeURIComponent(u)+'&background=random&color=fff&size=120&bold=true&format=png';return'<div class="feed-card">'+
+'<div class="fc-header"><div class="fc-avatar" style="overflow:hidden;border:2px solid #e73a3a;box-shadow:0 3px 10px rgba(231,58,58,0.3);"><img src="'+avUrl+'" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background=\''+av+'\';this.style.display=\'none\';this.parentElement.textContent=\''+getInitials(u)+'\'"></div><div class="fc-user"><div class="name">'+u+'</div><div class="meta">'+rest+'</div></div><div class="fc-time">'+timeAgo(rv.created_at)+'</div></div>'+
+'<div class="fc-type review"><i class="fas fa-star"></i> Recensione</div>'+
+(hasDish?'<a href="/menu/'+slug+'/?highlight='+encodeURIComponent(dish)+'" style="text-decoration:none;color:inherit;"><div class="fc-dish"><img class="fc-dish-img" src="'+(rv.dish.image_url||getDishImage(dish))+'" alt="'+dish+'" onerror="this.src=\'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=120&h=120&fit=crop\'"><div class="fc-dish-info"><div class="fc-dish-name">'+dish+'</div><div class="fc-dish-rest"><i class="fas fa-store"></i> '+rest+'</div><div class="fc-stars">'+renderStars(rv.rating)+'</div></div></div></a>':'<div class="fc-dish" style="border-style:dashed;"><div style="width:50px;height:50px;border-radius:10px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;"><i class="fas fa-store" style="color:var(--text3)"></i></div><div class="fc-dish-info"><div class="fc-dish-rest"><i class="fas fa-store"></i> '+rest+'</div><div class="fc-stars">'+renderStars(rv.rating)+'</div></div></div>')+
+(rv.comment?'<div class="fc-comment">"'+rv.comment+'"</div>':'')+
+'<div class="fc-actions"><span class="fc-action"><i class="fas fa-heart"></i> Mi piace</span><span class="fc-action"><i class="fas fa-comment"></i> Commenta</span><span class="fc-action"><i class="fas fa-share"></i> Condividi</span></div>'+
+'</div>'}).join('')}
+function filterFeed(type,btn){document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');if(type==='all')renderFeed(allFeedData);else renderFeed(allFeedData.filter(r=>type==='review'))}
+
+async function loadTrending(){const c=document.getElementById('trending-scroll');try{const r=await fetch(API+'?action=get-what-people-ate&limit=8');const d=await r.json();const dishes=d.data||[];if(!dishes.length){c.innerHTML='<div class="empty"><p>Nessun piatto ancora</p></div>';return}c.innerHTML=dishes.map(dt=>{const name=dt.dish?dt.dish.name:null;const img=dt.dish?dt.dish.image_url:null;const rest=dt.restaurant?dt.restaurant.name:'';const slug=dt.restaurant?dt.restaurant.slug:'';if(!name)return'';return'<a href="/menu/'+slug+'/?highlight='+encodeURIComponent(name)+'" class="trend-card"><img class="trend-img" src="'+(img||getDishImage(name))+'" alt="'+name+'" onerror="this.src=\'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=200&fit=crop\'"><div class="trend-body"><div class="trend-name">'+name+'</div><div class="trend-rest">'+rest+'</div><div class="trend-meta"><span class="rev"><i class="fas fa-comment"></i> '+dt.review_count+'</span><span><i class="fas fa-star"></i> '+dt.avg_rating+'</span></div></div></a>'}).join('')}catch(e){c.innerHTML='<div class="empty"><p>Errore</p></div>'}}
+
+async function loadTopRestaurants(){const c=document.getElementById('rest-grid');try{const r=await fetch(API+'?action=get-restaurants&sort=rating&limit=6');const d=await r.json();const rests=d.data||[];if(!rests.length){c.innerHTML='';return}c.innerHTML=rests.filter(r=>r.rating&&parseFloat(r.rating)>0).slice(0,6).map(r=>'<a href="/menu/'+r.slug+'/" class="rest-card"><img class="rest-card-img" src="'+(r.logo_url||'https://www.trovapiatto.it/logo/default-ristorante.svg')+'" alt="'+r.name+'" onerror="this.src=\'https://www.trovapiatto.it/logo/default-ristorante.svg\'"><div class="rest-card-info"><div class="rest-card-name">'+r.name+'</div><div class="rest-card-meta"><span>'+(r.city||'Bari')+'</span><span>·</span><span>'+(r.cuisine||'Ristorante')+'</span></div></div><div class="rest-card-rating"><i class="fas fa-star"></i> '+r.rating+'</div></a>').join('')}catch(e){c.innerHTML=''}}
+
+function initMap(){try{map=L.map('community-map',{zoomControl:false,scrollWheelZoom:false}).setView([41.1245,16.8690],13);L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap',maxZoom:19}).addTo(map);loadMapReviews()}catch(e){}}
+async function loadMapReviews(){try{const r=await fetch(API+'?action=get-recent-reviews&limit=20');const d=await r.json();const reviews=d.data||[];reviews.forEach(rv=>{if(!rv.restaurant)return;const lat=parseFloat(rv.restaurant.latitude);const lng=parseFloat(rv.restaurant.longitude);if(!lat||!lng)return;const icon=L.divIcon({className:'',html:'<div style="width:28px;height:28px;background:var(--primary);border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);"><i class="fas fa-star" style="color:white;font-size:10px;"></i></div>',iconSize:[28,28],iconAnchor:[14,14]});L.marker([lat,lng],{icon}).addTo(map).bindPopup('<b>'+rv.restaurant.name+'</b><br>'+(rv.dish?rv.dish.name+' · ':'')+renderStars(rv.rating))})}catch(e){}}
+
+async function loadLeaderboard(){const c=document.getElementById('lb-mini');try{const r=await fetch(API+'?action=get-leaderboard&limit=5');const d=await r.json();const users=d.data||[];if(!users.length){c.innerHTML='<div class="empty"><p>Nessun critico ancora</p></div>';return}c.innerHTML=users.map((u,i)=>{const rc=i===0?'gold':i===1?'silver':i===2?'bronze':'';return'<div class="lb-row"><div class="lb-rank '+rc+'">'+(i+1)+'</div><div class="lb-ava" style="background:'+getAvatarColor(u.username)+'">'+getInitials(u.display_name)+'</div><div class="lb-info"><div class="nm">'+u.display_name+'</div><div class="pts">'+u.total_reviews+' recensioni</div></div><div class="lb-score">'+u.points+' pt</div></div>'}).join('')}catch(e){c.innerHTML='<div class="empty"><p>Errore</p></div>'}}
+
+checkAuth();
+loadStats();
+loadFeed();
+loadTrending();
+loadTopRestaurants();
+initMap();
+loadLeaderboard();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "trovapiatto Community",
+  "description": "La community food di Bari. Scopri cosa mangiano gli altri, lascia recensioni e guadagna punti.",
+  "url": "https://www.trovapiatto.it/community/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "trovapiatto",
+    "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Community", "item": "https://www.trovapiatto.it/community/" }
+  ]
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosa Mangiare a Bari: La Guida Completa ai Piatti Tipici | trovapiatto</title>
+  <meta name="description" content="Scopri cosa mangiare a Bari: orecchiette, focaccia, panzerotti, branzino, burrata e oltre 15 piatti tipici con ristoranti, prezzi e consigli dei locali.">
+  <meta name="keywords" content="cosa mangiare Bari, piatti tipici Bari, cosa provare Bari, cibo tipico Bari, specialità Bari, cucina barese, cucina pugliese, dove mangiare Bari, ristoranti Bari, orecchiette Bari, focaccia barese, panzerotti Bari, branzino Bari, burrata pugliese, street food Bari">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <!-- Geo Meta Tags (Local SEO) -->\n  <meta name="geo.region" content="IT-BA">\n  <meta name="geo.placename" content="Bari">\n  <meta name="geo.position" content="41.1245;16.8695">\n  <meta name="ICBM" content="41.1245, 16.8695">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/bari/">
+  <meta property="og:title" content="Cosa Mangiare a Bari: La Guida Completa ai Piatti Tipici">
+  <meta property="og:description" content="Guida completa ai piatti tipici di Bari. 15 specialità da provare assolutamente, con ristoranti e prezzi.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-06T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-08-05T10:00:00+02:00">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cosa Mangiare a Bari: La Guida Completa ai Piatti Tipici">
+  <meta name="twitter:description" content="15 piatti tipici di Bari da provare assolutamente. Ristoranti, prezzi e consigli.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/bari/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .page-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .page-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .page-nav .logo img { height: 32px; }
+    
+    .page-nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .page-nav .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    
+    .page-nav .nav-links a:hover { color: var(--primary); }
+    
+    .hero {
+      text-align: center;
+      padding: 80px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&h=600&fit=crop') center/cover no-repeat;
+      filter: blur(4px) brightness(0.55) scale(1.05);
+      z-index: 0;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,10,21,0.6) 0%, rgba(15,10,21,0.85) 100%);
+      z-index: 1;
+    }
+    
+    .hero > * { position: relative; z-index: 2; }
+    
+    .hero .badge {
+      display: inline-block;
+      background: rgba(231,58,58,0.15);
+      color: var(--primary-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text-white), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+    }
+    
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+    
+    .hero .stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .hero .stats i { color: var(--primary); }
+    
+    .breadcrumb {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: rgba(255,255,255,0.2); }
+    .breadcrumb .current { color: var(--text-light); }
+    
+    .author-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px auto;
+      max-width: 900px;
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(231,58,58,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .author-avatar i { color: var(--primary); font-size: 1.1rem; }
+    
+    .author-info { flex: 1; }
+    .author-name { font-size: 0.85rem; font-weight: 600; color: var(--text-white); }
+    .author-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .intro {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    
+    .intro strong { color: var(--text-white); }
+    
+    .dish-section {
+      margin-bottom: 48px;
+    }
+    
+    .dish-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    
+    .dish-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    
+    .dish-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-text {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .dish-text strong { color: var(--text-white); }
+    
+    .dish-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .dish-info .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .dish-info .tag i { color: var(--accent-food); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 6px 20px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-icon i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .restaurant-card .rc-info {
+      flex: 1;
+    }
+    
+    .restaurant-card .rc-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    
+    .restaurant-card .rc-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .restaurant-card .rc-action {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    
+    .map-section {
+      margin: 48px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #guide-map {
+      width: 100%;
+      height: 380px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 40px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .faq-section {
+      margin: 48px 0;
+    }
+    
+    .faq-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    
+    .faq-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 18px 20px;
+      color: var(--text-white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: background 0.3s;
+    }
+    
+    .faq-item h3:hover { background: rgba(255,255,255,0.03); }
+    
+    .faq-item h3 .faq-arrow {
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+    
+    .faq-item.open h3 .faq-arrow { transform: rotate(180deg); }
+    
+    .faq-item .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+    }
+    
+    .faq-item .faq-answer p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 0 20px 18px;
+    }
+    
+    .social-share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0;
+    }
+    
+    .social-share .share-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    
+    .social-share a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .share-fb { background: rgba(59,89,152,0.15); color: #3b5998; }
+    .share-fb:hover { background: #3b5998; color: white; }
+    .share-wa { background: rgba(37,211,102,0.15); color: #25d366; }
+    .share-wa:hover { background: #25d366; color: white; }
+    .share-copy { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+    .share-copy:hover { background: var(--primary); color: white; }
+    
+    .floating-share {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 90;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .floating-share a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    
+    .floating-share a:hover { transform: scale(1.1); }
+    
+    .restaurant-card .rc-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: rgba(231,58,58,0.1);
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback {
+      width: 44px;
+      height: 44px;
+      background: rgba(231,58,58,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .restaurant-card .rc-logo-fallback i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .floating-share { display: flex; }
+      .social-share.inline-share { display: none; }
+    }
+    
+    @media (min-width: 769px) {
+      .floating-share { display: none !important; }
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 48px 0;
+    }
+    
+    .cta-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .cta-box .cta-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+    }
+    
+    .ad-container {
+      margin: 30px 0;
+      text-align: center;
+      min-height: 90px;
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .site-footer a { color: var(--primary); text-decoration: none; }
+    
+    .toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+    }
+    
+    .toc h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .toc-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 6px;
+    }
+    
+    .toc-list a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 4px 0;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .toc-list a:hover { color: var(--primary); }
+    
+    .toc-list a .num {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.75rem;
+      width: 18px;
+    }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="page-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <div class="nav-links">
+      <a href="/piatti/">Piatti</a>
+      <a href="/bari/migliori-ristoranti-bari/">Ristoranti</a>
+      <a href="/community/blog/">Magazine</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+    <span class="sep">/</span>
+    <span class="current">Cosa Mangiare a Bari</span>
+  </div>
+
+  <header class="hero">
+    <span class="badge"><i class="fa-solid fa-utensils"></i> Guida Aggiornata 2026</span>
+    <h1>Cosa Mangiare a Bari: La Guida Completa</h1>
+    <p>15 piatti tipici che devi assolutamente provare quando visiti Bari. Con ristoranti consigliati, prezzi reali e consigli dei locali.</p>
+    <div class="stats">
+      <span><i class="fa-solid fa-utensils"></i> 15 piatti</span>
+      <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      <span><i class="fa-regular fa-clock"></i> 12 min lettura</span>
+    </div>
+  </header>
+
+  <div class="author-box">
+    <div class="author-avatar"><i class="fa-solid fa-user-pen"></i></div>
+    <div class="author-info">
+      <div class="author-name">trovapiatto</div>
+      <div class="author-meta">Pubblicato il 6 Luglio 2026 · Aggiornato il 5 Agosto 2026</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="intro">
+      Bari è una città che si mangia. Non nel senso figurato — nel senso che ogni angolo, ogni vicolo, ogni piazza ha un profumo diverso. Dall'odore di focaccia appena sfornata nel Quartiere Murat al sapore di pesce fresco al Molo San Nicola, <strong>Bari è un viaggio nel gusto</strong> che inizia la mattina presto e non finisce mai. In questa guida ti portiamo alla scoperta dei <strong>15 piatti tipici</strong> che ogni visitatore (e ogni barese doc) deve provare almeno una volta.
+    </div>
+
+    <div class="social-share inline-share">
+      <span class="share-label"><i class="fa-solid fa-share-nodes"></i> Condividi:</span>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/bari/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Bari%3A%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/bari/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/bari/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+    </div>
+
+    <div class="toc">
+      <h3><i class="fa-solid fa-list"></i> Indice</h3>
+      <div class="toc-list">
+        <a href="#orecchiette"><span class="num">1.</span> Orecchiette con cime di rapa</a>
+        <a href="#focaccia"><span class="num">2.</span> Focaccia barese</a>
+        <a href="#panzerotti"><span class="num">3.</span> Panzerotti fritti</a>
+        <a href="#branzino"><span class="num">4.</span> Branzino al forno</a>
+        <a href="#burrata"><span class="num">5.</span> Burrata pugliese</a>
+        <a href="#tiella"><span class="num">6.</span> Tiella barese</a>
+        <a href="#frutta-mare"><span class="num">7.</span> Frutta di mare</a>
+        <a href="#crudo"><span class="num">8.</span> Crudo di mare</a>
+        <a href="#polpo"><span class="num">9.</span> Polpo alla griglia</a>
+        <a href="#sgagliozze"><span class="num">10.</span> Sgagliozze e popizze</a>
+        <a href="#pizza"><span class="num">11.</span> Pizza barese</a>
+        <a href="#involtini"><span class="num">12.</span> Involtini di pesce spada</a>
+        <a href="#taralli"><span class="num">13.</span> Taralli pugliesi</a>
+        <a href="#pasticciotto"><span class="num">14.</span> Pasticciotto leccese</a>
+        <a href="#caffe"><span class="num">15.</span> Caffè leccese</a>
+      </div>
+    </div>
+
+    <!-- 1. ORECCHIETTE -->
+    <section class="dish-section" id="orecchiette">
+      <div class="dish-header">
+        <div class="dish-number">1</div>
+        <h2>Orecchiette con Cime di Rapa</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=800&h=400&fit=crop" alt="Orecchiette con cime di rapa" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        Il piatto simbolo di Bari, punto. Le <strong>orecchiette fatte a mano</strong> — con quel movimento rotatorio del pollice che crea la cavità perfetta — si condiscono con cime di rapa amare, acciughe sotto sale, aglio e pangrattato tostato. È un piatto povero diventato icona nazionale. Il segreto? Le rape devono essere fresche, e la pasta deve essere fatta quel giorno.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €9-14</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Pranzo</span>
+        <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariano (senza acciughe)</span>
+      </div>
+      <a href="/menu/osteria-delle-travi/" class="restaurant-card">
+        <img src="/loghi/osteria-delle-travi.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-utensils"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Osteria delle Travi</div>
+          <div class="rc-detail">Orecchiette con cime di rapa · €10 · ⭐ 4.8</div>
+        </div>
+        <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 2. FOCCACIA -->
+    <section class="dish-section" id="focaccia">
+      <div class="dish-header">
+        <div class="dish-number">2</div>
+        <h2>Focaccia Barese</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&h=400&fit=crop" alt="Focaccia barese" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        La focaccia barese non ha nulla a che vedere con quella genovese. E <strong>alta, morbida, croccante ai bordi</strong>, con un impasto che usa patate lesse per renderla ancora più soffice. Si condisce con olio EVO pugliese, sale grosso e pomodorini. I baresi la mangiano a colazione, a pranzo, come spuntino — e a volte anche a cena. I panifici del centro la sfornano ogni mattina.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €1.50-2.50</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Tutto il giorno</span>
+        <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariana</span>
+      </div>
+      <a href="/menu/panificio-santa-rita/" class="restaurant-card">
+        <img src="/loghi/panificio-santa-rita.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-bread-slice"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Panificio Santa Rita</div>
+          <div class="rc-detail">Focaccia barese · €1.50 · Via Ferrante Ferranti</div>
+        </div>
+        <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 3. PANZEROTTI -->
+    <section class="dish-section" id="panzerotti">
+      <div class="dish-header">
+        <div class="dish-number">3</div>
+        <h2>Panzerotti Fritti</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1536964549204-cce9eab227bd?w=800&h=400&fit=crop" alt="Panzerotti fritti" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        Il panzerotto e la <strong>pizza fritta barese</strong>: un disco di impasto ripieno di mozzarella e pomodoro, chiuso a mezzaluna e fritto in olio bollente. Croccante fuori, filante dentro. Si compra nelle friggitorie di strada, rigorosamente da asporto. Il panzerotto perfetto deve essere dorato, non unto, e la mozzarella deve fare il "filo" quando lo apri.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €2-4</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Pranzo/Merenda</span>
+        <span class="tag"><i class="fa-solid fa-fire"></i> Street Food</span>
+      </div>
+      <a href="/piatti/?q=panzerotto" class="restaurant-card">
+        <div class="rc-icon"><i class="fa-solid fa-fire"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Cerca panzerotti su trovapiatto</div>
+          <div class="rc-detail">Tutte le friggitorie di Bari</div>
+        </div>
+        <span class="rc-action">Cerca <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 4. BRANZINO -->
+    <section class="dish-section" id="branzino">
+      <div class="dish-header">
+        <div class="dish-number">4</div>
+        <h2>Branzino al Forno</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=800&h=400&fit=crop" alt="Branzino al forno" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        Il branzino al forno è il <strong>re della tavola barese</strong>. Intero, con patate, pomodorini, olive e origano, cotto lentamente fino a quando la pelle diventa croccante e la carne si sfalda con la forchetta. Nei ristoranti di pesce del centro, il branzino viene pescato la mattina stessa. Il segreto è non marinare troppo — il pesce fresco parla da solo.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €14-22</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Pranzo/Cena</span>
+        <span class="tag"><i class="fa-solid fa-fish"></i> Pesce fresco</span>
+      </div>
+      <a href="/menu/ai-2-ghiottoni/" class="restaurant-card">
+        <img src="/loghi/ai-2-ghiottoni.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-fish"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Ai 2 Ghiottoni</div>
+          <div class="rc-detail">Branzino al cartoccio · €22 · ⭐ 4.7</div>
+        </div>
+        <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 5. BURRATA -->
+    <section class="dish-section" id="burrata">
+      <div class="dish-header">
+        <div class="dish-number">5</div>
+        <h2>Burrata Pugliese</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1631209121750-a9f656d26e80?w=800&h=400&fit=crop" alt="Burrata pugliese" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        La burrata è il <strong>formaggio più famoso della Puglia</strong>. Esternamente sembra una mozzarella, ma quando la tagli rivela un cuore di stracciatella cremosa. Si produce artigianalmente nelle masserie della zona di Andria, e a Bari la trovi ovunque — come antipasto, su pizza, o in combinazione con pomodorini e rucola. Non esiste una visita a Bari senza assaggiarla.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €9-16</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto</span>
+        <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariano</span>
+      </div>
+      <a href="/menu/ai-2-ghiottoni/" class="restaurant-card">
+        <img src="/loghi/ai-2-ghiottoni.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-cheese"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Ai 2 Ghiottoni</div>
+          <div class="rc-detail">Burrata con pomodorini · €12 · ⭐ 4.7</div>
+        </div>
+        <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 6. TIELLA -->
+    <section class="dish-section" id="tiella">
+      <div class="dish-header">
+        <div class="dish-number">6</div>
+        <h2>Tiella Barese</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&h=400&fit=crop" alt="Tiella barese" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        La tiella è il <strong>piatto unico per eccellenza</strong> della cucina barese: riso, patate e cozze, cotti insieme in una teglia di terracotta. È una ricetta antica, nata dalla necessità di combinare ingredienti semplici in un piatto completo. Il riso assorbe il sapore delle cozze, le patate si sfaldano, e il tutto si gratina in forno fino a doratura perfetta.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €8-12</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Pranzo</span>
+        <span class="tag"><i class="fa-solid fa-fish"></i> Mare</span>
+      </div>
+      <a href="/piatti/?q=tiella" class="restaurant-card">
+        <div class="rc-icon"><i class="fa-solid fa-utensils"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Cerca tiella su trovapiatto</div>
+          <div class="rc-detail">Ristoranti che servono tiella barese</div>
+        </div>
+        <span class="rc-action">Cerca <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 7. FRUTTA DI MARE -->
+    <section class="dish-section" id="frutta-mare">
+      <div class="dish-header">
+        <div class="dish-number">7</div>
+        <h2>Frutta di Mare</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&h=400&fit=crop" alt="Frutta di mare" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        A Bari la <strong>frutta di mare</strong> non è un lusso — è quotidiano. Gamberetti, cozze, vongole, scampi, triglie, totani: tutto pescato la mattina stessa nel Mare Adriatico. Si servono come antipasto misto, fritti, alla griglia, o come condimento per la pasta. Il porto peschereccio di Bari è uno dei più attivi d'Italia.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €10-20</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto/Primo</span>
+        <span class="tag"><i class="fa-solid fa-fish"></i> Mare</span>
+      </div>
+      <a href="/menu/la-tana-del-polpo/" class="restaurant-card">
+        <img src="/loghi/la-tana-del-polpo.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-shrimp"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">La Tana del Polpo</div>
+          <div class="rc-detail">Frutta di mare · Bari Vecchia</div>
+        </div>
+        <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 8. CRUDO DI MARE -->
+    <section class="dish-section" id="crudo">
+      <div class="dish-header">
+        <div class="dish-number">8</div>
+        <h2>Crudo di Mare</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1534604973900-c43e1f2cbcbf?w=800&h=400&fit=crop" alt="Crudo di mare" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        Il crudo di mare è l'<strong>antipasto di lusso</strong> barese. Ostriche, ricci di mare, gamberi rossi, tartare di tonno — tutto servito crudo, freschissimo, con un filo d'olio e limone. A Bari il crudo non si elabora troppo: la qualità del pesce parla da sola. Si trova nei ristoranti di pesce più raffinati, ma anche nelle pescherie del porto.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €12-25</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto</span>
+        <span class="tag"><i class="fa-solid fa-fish"></i> Crudo</span>
+      </div>
+      <a href="/menu/la-battigia/" class="restaurant-card">
+        <img src="/loghi/la-battigia.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-fish"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">La Battigia</div>
+          <div class="rc-detail">Crudo di mare · Vista mare · ⭐ 4.5</div>
+        </div>
+        <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 9. POLPO -->
+    <section class="dish-section" id="polpo">
+      <div class="dish-header">
+        <div class="dish-number">9</div>
+        <h2>Polpo alla Griglia</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=400&fit=crop" alt="Polpo alla griglia" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        Il polpo alla griglia è un classico della <strong>cucina marinara pugliese</strong>. Lessato prima con patate, poi grigliato fino a quando i bordi diventano croccanti. Si serve con olio EVO, prezzemolo e limone. A Bari lo trovi ovunque — dai ristoranti di pesce alle trattorie del centro. Il Molo San Nicola è il posto migliore per mangiarlo con vista mare.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €10-18</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Antipasto/Secondo</span>
+        <span class="tag"><i class="fa-solid fa-fish"></i> Mare</span>
+      </div>
+      <a href="/menu/la-tana-del-polpo/" class="restaurant-card">
+        <img src="/loghi/la-tana-del-polpo.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-fish"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">La Tana del Polpo</div>
+          <div class="rc-detail">Polpo alla griglia · Bari Vecchia</div>
+        </div>
+        <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- AdSense In-Article -->
+    <div class="ad-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- 10. SGAGOZZZE -->
+    <section class="dish-section" id="sgagliozze">
+      <div class="dish-header">
+        <div class="dish-number">10</div>
+        <h2>Sgagliozze e Popizze</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1536964549204-cce9eab227bd?w=800&h=400&fit=crop" alt="Sgagliozze" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        Le <strong>sgagliozze</strong> sono polenta di mais fritta in tocchi croccanti — uno street food antico che si compra nelle friggitorie del centro. Le <strong>popizze</strong> sono invece palline di impasto fritto, simili a piccole pizze. Si mangiano in piedi, camminando per le vie di Bari Vecchia. Sono il cibo di strada più autentico della città.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €1-3</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Merenda</span>
+        <span class="tag"><i class="fa-solid fa-fire"></i> Street Food</span>
+      </div>
+      <a href="/piatti/?q=sgagliozze" class="restaurant-card">
+        <div class="rc-icon"><i class="fa-solid fa-fire"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Cerca sgagliozze su trovapiatto</div>
+          <div class="rc-detail">Friggitorie del centro di Bari</div>
+        </div>
+        <span class="rc-action">Cerca <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 11. PIZZA -->
+    <section class="dish-section" id="pizza">
+      <div class="dish-header">
+        <div class="dish-number">11</div>
+        <h2>Pizza Barese</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=800&h=400&fit=crop" alt="Pizza barese" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        La pizza barese non è napoletana — ha una <strong>personalità propria</strong>. L'impasto è più sottile, croccante ai bordi, e la cottura nel forno a legna la rende unica. Le pizzerie di Bari usano ingredienti locali: mozzarella di Gioia del Colle, pomodorini del Gargano, olio EVO pugliese. La Margherita qui ha un sapore diverso — più genuino, più territoriale.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €5-10</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Cena</span>
+        <span class="tag"><i class="fa-solid fa-pizza-slice"></i> Forno a legna</span>
+      </div>
+      <a href="/menu/piccinni28/" class="restaurant-card">
+        <img src="/loghi/piccinni28.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-pizza-slice"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Piccinni28</div>
+          <div class="rc-detail">Pizza napoletana · ⭐ 4.3 · Via Piccinni</div>
+        </div>
+        <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 12. INVOLTINI -->
+    <section class="dish-section" id="involtini">
+      <div class="dish-header">
+        <div class="dish-number">12</div>
+        <h2>Involtini di Pesce Spada</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=800&h=400&fit=crop" alt="Involtini di pesce spada" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        Gli involtini di pesce spada sono un <strong>secondo piatto elegante</strong> della cucina barese. Fette sottili di pesce spada avvolte attorno a un ripieno di pangrattato, capperi, olive, pinoli e uvetta. Si cuociono al forno o alla griglia. È un piatto che combina il sapore del mare con la dolcezza dell'uvetta — tipico della cucina siciliana che ha influenzato quella pugliese.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €14-20</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Secondo</span>
+        <span class="tag"><i class="fa-solid fa-fish"></i> Pesce</span>
+      </div>
+      <a href="/menu/al-pescatore/" class="restaurant-card">
+        <img src="/loghi/al-pescatore.png" alt="" class="rc-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rc-logo-fallback" style="display:none"><i class="fa-solid fa-fish"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Al Pescatore</div>
+          <div class="rc-detail">Involtini di pesce spada · Bari Vecchia</div>
+        </div>
+        <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 13. TARALLI -->
+    <section class="dish-section" id="taralli">
+      <div class="dish-header">
+        <div class="dish-number">13</div>
+        <h2>Taralli Pugliesi</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&h=400&fit=crop" alt="Taralli pugliesi" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        I taralli pugliesi sono <strong>snack croccanti a forma di anello</strong>, fatti con farina, olio EVO, vino bianco e sale. Esistono in infinite varianti: alle olive, ai capperi, al finocchietto, alla cipolla, al peperoncino. Si trovano in ogni panificio, alimentari e bar di Bari. Sono l'accompagnamento perfetto per un aperitivo o un antipasto.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €2-5</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Tutto il giorno</span>
+        <span class="tag"><i class="fa-solid fa-leaf"></i> Vegetariani</span>
+      </div>
+      <a href="/menu/panificio-santa-rita/" class="restaurant-card">
+        <div class="rc-icon"><i class="fa-solid fa-bread-slice"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Panificio Santa Rita</div>
+          <div class="rc-detail">Taralli artigianali · Via Ferrante Ferranti</div>
+        </div>
+        <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 14. PASTICCIOTTO -->
+    <section class="dish-section" id="pasticciotto">
+      <div class="dish-header">
+        <div class="dish-number">14</div>
+        <h2>Pasticciotto Leccese</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&h=400&fit=crop" alt="Pasticciotto leccese" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        Il pasticciotto è un <strong>dolce salentino</strong> che ha conquistato tutta la Puglia. Pasta frolla croccante ripiena di crema pasticcera, cotto al forno fino a doratura. Esiste anche nella versione con crema al cioccolato, crema di mandorle, o crema alla crema. A Bari lo trovi in ogni pasticceria — perfetto per la colazione o come merenda.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €2-4</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Colazione/Merenda</span>
+        <span class="tag"><i class="fa-solid fa-cake-candles"></i> Dolce</span>
+      </div>
+      <a href="/piatti/?q=pasticciotto" class="restaurant-card">
+        <div class="rc-icon"><i class="fa-solid fa-cake-candles"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Cerca pasticciotto su trovapiatto</div>
+          <div class="rc-detail">Pasticcerie di Bari</div>
+        </div>
+        <span class="rc-action">Cerca <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- 15. CAFFÈ LECCese -->
+    <section class="dish-section" id="caffe">
+      <div class="dish-header">
+        <div class="dish-number">15</div>
+        <h2>Caffè Leccese</h2>
+      </div>
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=400&fit=crop" alt="Caffè leccese" class="dish-img" loading="lazy">
+      <div class="dish-text">
+        Il caffè leccese è il <strong>modo barese di bere il caffè</strong>: espresso caldo versato su ghiaccio e latte di mandorla. È una bevanda dolce, fresca, perfetta per le estati torride di Bari. Non va confuso con il semplice caffè freddo — il latte di mandorla è fondamentale. Si ordina in ogni bar della città, e i baresi lo bevono tutto l'anno, anche d'inverno.
+      </div>
+      <div class="dish-info">
+        <span class="tag"><i class="fa-solid fa-euro-sign"></i> €1.50-3</span>
+        <span class="tag"><i class="fa-solid fa-clock"></i> Tutto il giorno</span>
+        <span class="tag"><i class="fa-solid fa-mug-hot"></i> Bevanda</span>
+      </div>
+      <a href="/piatti/?q=caffe+leccese" class="restaurant-card">
+        <div class="rc-icon"><i class="fa-solid fa-mug-hot"></i></div>
+        <div class="rc-info">
+          <div class="rc-name">Cerca caffè leccese su trovapiatto</div>
+          <div class="rc-detail">Bar di Bari</div>
+        </div>
+        <span class="rc-action">Cerca <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </section>
+
+    <!-- Mappa -->
+    <div class="map-section">
+      <h2><i class="fa-solid fa-map-location-dot"></i> Dove Mangiare sulla Mappa</h2>
+      <div id="guide-map"></div>
+    </div>
+
+    <!-- Tips -->
+    <div class="tips-box">
+      <h3><i class="fa-solid fa-lightbulb"></i> Consigli per Mangiare Bene a Bari</h3>
+      <ul>
+        <li><i class="fa-solid fa-clock"></i> <span><strong>Vai a pranzo presto:</strong> I baresi pranzano alle 12:30-13:00. Se vai alle 13:30, i piatti migliori sono gia finiti.</span></li>
+        <li><i class="fa-solid fa-map-marker-alt"></i> <span><strong>Bari Vecchia è il cuore:</strong> I migliori ristoranti tradizionali sono nel centro storico. Passeggia e segui il profumo.</span></li>
+        <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Prezzi reali:</strong> Un pranzo completo (primo + secondo + acqua) costa €20-30 nei ristoranti normali, €40-60 nei raffinati.</span></li>
+        <li><i class="fa-solid fa-hand-point-up"></i> <span><strong>Fatto a mano:</strong> Chiedi sempre se la pasta è fatta a mano. Le orecchiette industriali non hanno lo stesso sapore.</span></li>
+        <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Il vino giusto:</strong> Un Primitivo o un Negroamaro accompagnano perfettamente i piatti pugliesi.</span></li>
+        <li><i class="fa-solid fa-fish"></i> <span><strong>Pesce fresco:</strong> Al porto peschereccio di Bari puoi comprare il pesce appena pescato e fartelo cucinare.</span></li>
+      </ul>
+    </div>
+
+    <!-- GetYourGuide -->
+    <a href="https://www.getyourguide.com/bari-l721/bari-guided-private-bus-day-tour-of-alberobello-monopoli-and-polignano-t1267871/?partner_id=MH3AZB7&utm_medium=online_publisher" target="_blank" rel="sponsored nofollow" style="display:block;text-decoration:none;margin:30px 0;">
+      <div style="background:linear-gradient(135deg, rgba(59,130,246,0.1), rgba(16,185,129,0.05)); border:1px solid rgba(59,130,246,0.2); border-radius:16px; padding:24px; transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(59,130,246,0.5)';this.style.boxShadow='0 8px 30px rgba(59,130,246,0.1)'" onmouseout="this.style.borderColor='rgba(59,130,246,0.2)';this.style.boxShadow='none'">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+          <i class="fa-solid fa-bus" style="color:#3b82f6; font-size:1.2rem;"></i>
+          <span style="font-size:0.75rem; color:#3b82f6; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Scopri la Puglia</span>
+        </div>
+        <div style="font-size:1.1rem; font-weight:700; color:var(--text-white); margin-bottom:6px;">Tour di Giorno a Bari, Alberobello, Monopoli e Polignano</div>
+        <div style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">Visita i borghi più belli della Puglia con una guida privata. Alberobello, Monopoli, Polignano a Mare — tutto in un giorno.</div>
+        <div style="margin-top:12px; display:flex; align-items:center; gap:6px; color:#3b82f6; font-size:0.85rem; font-weight:600;">
+          Prenota su GetYourGuide <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.75rem;"></i>
+        </div>
+      </div>
+    </a>
+
+    <div data-gyg-widget="auto" data-gyg-partner-id="MH3AZB7" data-gyg-cmp="Trovapiatto"></div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <h2><i class="fa-solid fa-circle-question"></i> Domande Frequenti</h2>
+      
+      <div class="faq-item">
+        <h3>Qual è il piatto più tipico di Bari? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Le orecchiette con cime di rapa sono il piatto simbolo di Bari. Pasta fresca fatta a mano con cime di rapa, acciughe e pangrattato tostato. Si trova in praticamente ogni ristorante della città.</p></div>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Quanto costa mangiare a Bari? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Un pranzo completo in trattoria costa €15-25 a persona. Nei ristoranti di pesce si arriva a €30-50. Street food come focaccia e panzerotti costa €2-5. Bari è una città molto conveniente per mangiare bene.</p></div>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Dove si mangia la focaccia migliore a Bari? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>La focaccia barese si trova in ogni panificio della città. I panifici artigianali del centro (come Panificio Santa Rita) la sfornano ogni mattina. La focaccia perfetta deve essere alta, morbida, con i bordi croccanti.</p></div>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Cosa mangiare a Bari per strada? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>Lo street food barese include: focaccia (€1.50), panzerotti fritti (€2-3), sgagliozze (polenta fritta, €1-2), popizze (palline di impasto fritto, €1-2) e taralli (€2-3). Si comprano nelle friggitorie e panifici del centro.</p></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <h3>Cerca Altri Piatti Tipici di Bari</h3>
+      <p>Esplora oltre 8000 piatti dai migliori ristoranti di Bari e Puglia</p>
+      <a href="/piatti/" class="cta-btn">
+        <i class="fa-solid fa-magnifying-glass"></i> Esplora i Piatti
+      </a>
+    </div>
+
+    <!-- AdSense Bottom -->
+    <div class="ad-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/bari/migliori-ristoranti-bari/">Ristoranti</a> &middot; <a href="/community/blog/">Magazine</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <div class="floating-share">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/bari/" target="_blank" rel="noopener" class="share-fb"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://wa.me/?text=Cosa%20mangiare%20a%20Bari%3A%20la%20guida%20completa%20ai%20piatti%20tipici%20https://www.trovapiatto.it/bari/" target="_blank" rel="noopener" class="share-wa"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/bari/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'Osteria delle Travi', lat: 41.1285, lng: 16.8705, slug: 'osteria-delle-travi', dish: 'Orecchiette', price: '€10' },
+      { name: 'Panificio Santa Rita', lat: 41.1234, lng: 16.8756, slug: 'panificio-santa-rita', dish: 'Focaccia', price: '€1.50' },
+      { name: 'Ai 2 Ghiottoni', lat: 41.1291, lng: 16.8702, slug: 'ai-2-ghiottoni', dish: 'Branzino/Burrata', price: '€12-22' },
+      { name: 'La Battigia', lat: 41.1285, lng: 16.8705, slug: 'la-battigia', dish: 'Crudo di mare', price: '€12-18' },
+      { name: 'La Tana del Polpo', lat: 41.1275, lng: 16.8715, slug: 'la-tana-del-polpo', dish: 'Polpo', price: '€10-18' },
+      { name: 'Piccinni28', lat: 41.1259, lng: 16.8678, slug: 'piccinni28', dish: 'Pizza', price: '€5-10' },
+      { name: 'Al Pescatore', lat: 41.127, lng: 16.87, slug: 'al-pescatore', dish: 'Involtini', price: '€14-20' },
+      { name: 'Da Gianni', lat: 41.1185, lng: 16.8716, slug: 'da-gianni', dish: 'Orecchiette/Pizza', price: '€6-14' },
+      { name: 'Radicale', lat: 41.1245, lng: 16.869, slug: 'radicale', dish: 'Orecchiette gourmet', price: '€18' },
+      { name: 'La Bella Bari', lat: 41.1236, lng: 16.8682, slug: 'la-bella-bari', dish: 'Branzino/Burrata', price: '€10-18' }
+    ];
+
+    const map = L.map('guide-map').setView([41.1245, 16.8695], 15);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">${r.dish}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+
+    document.querySelectorAll('.faq-item h3').forEach(h3 => {
+      h3.addEventListener('click', () => {
+        const item = h3.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cosa Mangiare a Bari: La Guida Completa ai Piatti Tipici",
+    "description": "Scopri cosa mangiare a Bari: orecchiette, focaccia, panzerotti, branzino, burrata e oltre 15 piatti tipici con ristoranti, prezzi e consigli.",
+    "image": "https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-07-06T10:00:00+02:00",
+    "dateModified": "2026-08-05T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/bari/" },
+    "keywords": "cosa mangiare Bari, piatti tipici Bari, cucina barese, orecchiette, focaccia barese, panzerotti, branzino, burrata, street food Bari"
+  }
+  </script>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "name": "Cosa Mangiare a Bari",
+    "description": "Guida gastronomica a Bari: piatti tipici, ristoranti, prezzi e consigli per scoprire la cucina di Bari (Puglia).",
+    "url": "https://www.trovapiatto.it/bari/",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.1245,
+      "longitude": 16.8695
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bari",
+      "addressRegion": "Puglia",
+      "addressCountry": "IT"
+    },
+    "touristType": ["Foodie", "Culinary Traveler"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Cosa Mangiare a Bari", "item": "https://www.trovapiatto.it/bari/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è il piatto più tipico di Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le orecchiette con cime di rapa sono il piatto simbolo di Bari. Pasta fresca fatta a mano con cime di rapa, acciughe e pangrattato tostato."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa mangiare a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un pranzo completo in trattoria costa €15-25 a persona. Nei ristoranti di pesce si arriva a €30-50. Street food come focaccia e panzerotti costa €2-5."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Dove si mangia la focaccia migliore a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La focaccia barese si trova in ogni panificio della città. I panifici artigianali del centro la sfornano ogni mattina. La focaccia perfetta deve essere alta, morbida, con i bordi croccanti."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cosa mangiare a Bari per strada?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lo street food barese include: focaccia, panzerotti fritti, sgagliozze, popizze e taralli. Si comprano nelle friggitorie e panifici del centro."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="MH3AZB7"></script>
+
+</body>
+</html>

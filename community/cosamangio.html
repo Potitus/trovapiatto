@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosa Mangiano gli Altri — trovapiatto Community</title>
+<meta name="description" content="Scopri cosa hanno mangiato gli altri utenti della community trovapiatto. Piatti recensiti, preferiti e ultime attività.">
+<meta property="og:title" content="Cosa Mangiano gli Altri — trovapiatto">
+<meta property="og:description" content="Guarda cosa hanno mangiato gli altri utenti della community.">
+<meta property="og:image" content="https://www.trovapiatto.it/logo/default-ristorante.svg">
+<meta property="og:url" content="https://www.trovapiatto.it/community/cosamangio.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0a15;--bg2:#1a0f25;--card:rgba(255,255,255,0.04);--card-border:rgba(255,255,255,0.06);
+  --text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;
+  --primary:#8b5cf6;--gold:#f59e0b;--green:#10b981;--red:#ef4444;--blue:#3b82f6;--accent-food:#f59e0b;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+a{color:var(--primary);text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:16px}
+
+.hero{text-align:center;padding:40px 20px 30px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(139,92,246,0.12) 0%,transparent 50%);animation:pulse 8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:0.5;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.hero-icon{width:80px;height:80px;background:linear-gradient(135deg,var(--accent-food),#f97316);border-radius:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:2rem;color:white;box-shadow:0 8px 30px rgba(245,158,11,0.4);position:relative;z-index:1}
+.hero h1{font-size:1.6rem;font-weight:800;margin-bottom:6px;position:relative;z-index:1}
+.hero p{color:var(--text2);font-size:0.85rem;position:relative;z-index:1}
+
+.tabs{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;padding-bottom:4px}
+.tab-btn{flex:1;min-width:0;padding:12px 8px;background:var(--card);border:1px solid var(--card-border);border-radius:12px;color:var(--text2);font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;text-align:center;white-space:nowrap}
+.tab-btn.active{background:rgba(139,92,246,0.15);border-color:rgba(139,92,246,0.3);color:var(--primary)}
+.tab-btn:hover{border-color:rgba(139,92,246,0.2)}
+
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.stat-item{text-align:center;padding:14px 8px;background:var(--card);border:1px solid var(--card-border);border-radius:12px}
+.stat-item .stat-num{font-size:1.3rem;font-weight:800;color:var(--primary)}
+.stat-item .stat-lbl{font-size:0.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+
+.feed-list{margin-bottom:20px}
+.feed-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:16px;margin-bottom:10px;transition:all 0.3s}
+.feed-card:hover{border-color:rgba(139,92,246,0.2);transform:translateY(-1px)}
+.fc-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.fc-avatar{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:white;font-weight:600;flex-shrink:0;overflow:hidden}
+.fc-user-info{flex:1;min-width:0}
+.fc-user-info .fc-name{font-size:0.8rem;font-weight:600}
+.fc-user-info .fc-meta{font-size:0.65rem;color:var(--text2)}
+.fc-time{font-size:0.6rem;color:var(--text3);flex-shrink:0}
+
+.fc-dish{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px;display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.fc-dish-img{width:60px;height:60px;border-radius:10px;object-fit:cover;flex-shrink:0;background:rgba(255,255,255,0.06)}
+.fc-dish-info{flex:1;min-width:0}
+.fc-dish-name{font-size:0.85rem;font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fc-dish-restaurant{font-size:0.7rem;color:var(--text2);display:flex;align-items:center;gap:4px}
+.fc-dish-price{font-size:0.75rem;font-weight:700;color:var(--green);margin-top:2px}
+
+.fc-rating{display:flex;align-items:center;gap:4px;margin-top:4px}
+.fc-rating .star{color:var(--gold);font-size:0.7rem}
+.fc-rating .star.empty{color:var(--text3)}
+.fc-rating .rating-num{font-size:0.7rem;font-weight:600;color:var(--gold);margin-left:4px}
+
+.fc-comment{font-size:0.78rem;color:var(--text2);line-height:1.5;font-style:italic;margin-top:8px;padding:10px;background:rgba(255,255,255,0.02);border-radius:8px;border-left:3px solid var(--primary)}
+
+.fc-eaten{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--green);font-weight:600;margin-top:6px}
+.fc-eaten i{font-size:0.65rem}
+
+.popular-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:20px}
+.pop-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:center;transition:all 0.3s;cursor:pointer}
+.pop-card:hover{border-color:rgba(245,158,11,0.3);transform:translateY(-2px)}
+.pop-rank{font-size:1.2rem;font-weight:800;color:var(--text3);width:28px;text-align:center;flex-shrink:0}
+.pop-rank.top{color:var(--gold)}
+.pop-img{width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0;background:rgba(255,255,255,0.06)}
+.pop-info{flex:1;min-width:0}
+.pop-name{font-size:0.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pop-rest{font-size:0.68rem;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pop-stats{display:flex;align-items:center;gap:8px;margin-top:4px}
+.pop-stat{font-size:0.65rem;color:var(--text2);display:flex;align-items:center;gap:3px}
+.pop-stat i{font-size:0.55rem}
+.pop-stat.reviews{color:var(--accent-food);font-weight:600}
+.pop-stat.rating{color:var(--gold)}
+
+.empty-state{text-align:center;padding:40px 20px}
+.empty-state i{font-size:2.5rem;color:var(--text3);margin-bottom:12px}
+.empty-state h3{font-size:1rem;font-weight:600;margin-bottom:6px}
+.empty-state p{font-size:0.82rem;color:var(--text2)}
+
+.loading{text-align:center;padding:40px}
+.loading .spinner{width:36px;height:36px;border:3px solid rgba(139,92,246,0.2);border-top-color:var(--primary);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bubblePop{0%{transform:scale(0);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+.loading p{font-size:0.82rem;color:var(--text2)}
+
+.nav-bar,.bnav{position:fixed;bottom:0;left:0;right:0;background:rgba(15,10,21,0.95);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:center;gap:0;z-index:100;padding:6px 0}
+.nav-bar a,.bnav a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 16px;color:var(--text3);font-size:0.6rem;text-decoration:none;transition:color 0.2s}
+.nav-bar a.active,.bnav a.active{color:var(--primary)}
+.nav-bar a i,.bnav a i{font-size:1rem}
+body{padding-bottom:70px}
+
+@media(max-width:600px){
+  .popular-grid{grid-template-columns:1fr}
+  .stats-bar{grid-template-columns:repeat(3,1fr)}
+  .tabs{gap:4px}
+  .tab-btn{font-size:0.7rem;padding:10px 6px}
+}
+</style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    <link rel="canonical" href="https://www.trovapiatto.it/community/cosamangio.html">
+</head>
+<body>
+
+<div class="container">
+  <div class="hero">
+    <div class="hero-icon"><i class="fas fa-utensils"></i></div>
+    <h1>Cosa Mangiano gli Altri</h1>
+    <p>Scopri cosa hanno assaggiato gli utenti della community</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('feed')"><i class="fas fa-clock"></i> Attività Recenti</button>
+    <button class="tab-btn" onclick="switchTab('popular')"><i class="fas fa-fire"></i> Piatti Popolari</button>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num" id="stat-reviews">0</div><div class="stat-lbl">Recensioni</div></div>
+    <div class="stat-item"><div class="stat-num" id="stat-dishes">0</div><div class="stat-lbl">Piatti Recensiti</div></div>
+    <div class="stat-item"><div class="stat-num" id="stat-users">0</div><div class="stat-lbl">Utenti Attivi</div></div>
+  </div>
+
+  <div id="feed-view">
+    <div class="feed-list" id="feed-list">
+      <div class="loading"><div class="spinner"></div><p>Caricamento attività...</p></div>
+    </div>
+  </div>
+
+  <div id="popular-view" style="display:none">
+    <div class="popular-grid" id="popular-grid">
+      <div class="loading"><div class="spinner"></div><p>Caricamento piatti popolari...</p></div>
+    </div>
+  </div>
+</div>
+
+<nav class="bnav">
+  <a href="/community/"><i class="fas fa-home"></i> Home</a>
+  <a href="/community/cosamangio.html" class="active"><i class="fas fa-utensils"></i> Mangiato</a>
+  <a href="/community/loyalty/classifica.html"><i class="fas fa-ranking-star"></i> Classifica</a>
+  <a href="/community/loyalty/"><i class="fas fa-trophy"></i> Premi</a>
+  <a href="/community/loyalty/profilo.html"><i class="fas fa-user"></i> Profilo</a>
+</nav>
+
+<script>
+const API = '/app/admin/api.php';
+
+function getInitials(name) {
+  if (!name) return '?';
+  return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+}
+
+function getAvatarColor(name) {
+  const colors = ['#8b5cf6','#06b6d4','#f59e0b','#10b981','#ef4444','#3b82f6','#ec4899','#f97316'];
+  let hash = 0;
+  for (let i = 0; i < (name || '').length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  return colors[Math.abs(hash) % colors.length];
+}
+
+function timeAgo(dateStr) {
+  if (!dateStr) return '';
+  const now = new Date();
+  const d = new Date(dateStr);
+  const diff = Math.floor((now - d) / 1000);
+  if (diff < 60) return 'adesso';
+  if (diff < 3600) return Math.floor(diff / 60) + ' min fa';
+  if (diff < 86400) return Math.floor(diff / 3600) + ' ore fa';
+  if (diff < 2592000) return Math.floor(diff / 86400) + ' giorni fa';
+  return d.toLocaleDateString('it-IT', { day: 'numeric', month: 'short' });
+}
+
+function renderStars(rating) {
+  let html = '';
+  for (let i = 1; i <= 5; i++) {
+    html += `<i class="fas fa-star star ${i <= rating ? '' : 'empty'}"></i>`;
+  }
+  if (rating) html += `<span class="rating-num">${rating}</span>`;
+  return html;
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('feed-view').style.display = tab === 'feed' ? 'block' : 'none';
+  document.getElementById('popular-view').style.display = tab === 'popular' ? 'block' : 'none';
+}
+
+async function loadFeed() {
+  const container = document.getElementById('feed-list');
+  try {
+    const res = await fetch(`${API}?action=get-recent-reviews&limit=30`);
+    const data = await res.json();
+    const reviews = data.data || [];
+    document.getElementById('stat-reviews').textContent = data.total || reviews.length;
+
+    if (reviews.length === 0) {
+      container.innerHTML = '<div class="empty-state"><i class="fas fa-pen-fancy"></i><h3>Nessuna attività ancora</h3><p>La community è appena partita. Sii il primo a lasciare una recensione!</p></div>';
+      return;
+    }
+
+    const uniqueUsers = new Set(reviews.map(r => r.user_name).filter(Boolean));
+    const uniqueDishes = new Set(reviews.filter(r => r.dish).map(r => r.dish.name).filter(Boolean));
+    document.getElementById('stat-users').textContent = uniqueUsers.size;
+    document.getElementById('stat-dishes').textContent = uniqueDishes.size;
+
+    container.innerHTML = reviews.map(r => {
+      const userName = r.user_name || 'Anonimo';
+      const dishName = r.dish ? r.dish.name : null;
+      const dishPrice = r.dish ? r.dish.price : null;
+      const dishImage = r.dish ? r.dish.image_url : null;
+      const restName = r.restaurant ? r.restaurant.name : (r.restaurant_name || 'Ristorante');
+      const restSlug = r.restaurant ? r.restaurant.slug : '';
+      const hasDish = !!dishName;
+      const avatarBg = getAvatarColor(userName);
+      const initials = getInitials(userName);
+      const avatarUrl = r.user_avatar || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=random&color=fff&size=120&bold=true&format=png';
+      const hasComment = r.comment && r.comment.trim().length > 0;
+      return '<div class="feed-card">' +
+        '<div class="fc-top">' +
+          '<div class="fc-avatar" style="overflow:hidden;border:2px solid #e73a3a;box-shadow:0 3px 10px rgba(231,58,58,0.3);animation:bubblePop .3s ease both;"><img src="' + avatarUrl + '" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background=\'' + avatarBg + '\';this.style.display=\'none\';this.parentElement.textContent=\'' + initials + '\'"></div>' +
+          '<div class="fc-user-info">' +
+            '<div class="fc-name">' + userName + (r.level ? ' <span style="font-size:0.6rem;color:var(--gold);">Lv.' + r.level + '</span>' : '') + '</div>' +
+            '<div class="fc-meta">' + restName + '</div>' +
+          '</div>' +
+          '<div class="fc-time">' + timeAgo(r.created_at) + '</div>' +
+        '</div>' +
+        (hasDish ?
+          '<a href="/menu/' + restSlug + '/?highlight=' + encodeURIComponent(dishName) + '" style="text-decoration:none;color:inherit;">' +
+          '<div class="fc-dish">' +
+            '<img class="fc-dish-img" src="' + (dishImage || getDishImage(dishName)) + '" alt="' + dishName + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=120&h=120&fit=crop\'">' +
+            '<div class="fc-dish-info">' +
+              '<div class="fc-dish-name">' + dishName + '</div>' +
+              '<div class="fc-dish-restaurant"><i class="fas fa-store"></i> ' + restName + '</div>' +
+              (dishPrice ? '<div class="fc-dish-price">€' + dishPrice + '</div>' : '') +
+            '</div>' +
+          '</div></a>' :
+          '<div class="fc-dish" style="border-style:dashed;">' +
+            '<div style="width:60px;height:60px;border-radius:10px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-store" style="color:var(--text3);font-size:1.2rem;"></i></div>' +
+            '<div class="fc-dish-info"><div class="fc-dish-restaurant"><i class="fas fa-store"></i> ' + restName + '</div></div>' +
+          '</div>') +
+        '<div class="fc-rating">' + renderStars(r.rating) + '</div>' +
+        (hasComment ? '<div class="fc-comment">"' + r.comment + '"</div>' : (hasDish ? '<div class="fc-eaten"><i class="fas fa-check-circle"></i> Ha mangiato questo piatto</div>' : '<div class="fc-eaten"><i class="fas fa-check-circle"></i> Ha recensito ' + restName + '</div>')) +
+      '</div>';
+    }).join('');
+  } catch(e) {
+    container.innerHTML = '<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><h3>Errore di caricamento</h3><p>Riprova più tardi.</p></div>';
+  }
+}
+
+async function loadPopular() {
+  const container = document.getElementById('popular-grid');
+  try {
+    const res = await fetch(`${API}?action=get-what-people-ate&limit=20`);
+    const data = await res.json();
+    const dishes = data.data || [];
+
+    if (dishes.length === 0) {
+      container.innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-fire"></i><h3>Nessun piatto recensito</h3><p>I piatti più recensionati appariranno qui.</p></div>';
+      return;
+    }
+
+    container.innerHTML = dishes.map((d, i) => {
+      const dishName = d.dish ? d.dish.name : null;
+      const dishImage = d.dish ? d.dish.image_url : null;
+      const restName = d.restaurant ? d.restaurant.name : '';
+      const restSlug = d.restaurant ? d.restaurant.slug : '';
+      if (!dishName) return '';
+      return '<a href="/menu/' + restSlug + '/?highlight=' + encodeURIComponent(dishName) + '" class="pop-card" style="text-decoration:none;color:inherit">' +
+        '<div class="pop-rank ' + (i < 3 ? 'top' : '') + '">' + (i + 1) + '</div>' +
+        '<img class="pop-img" src="' + (dishImage || getDishImage(dishName)) + '" alt="' + dishName + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=120&h=120&fit=crop\'">' +
+        '<div class="pop-info">' +
+          '<div class="pop-name">' + dishName + '</div>' +
+          '<div class="pop-rest"><i class="fas fa-store"></i> ' + restName + '</div>' +
+          '<div class="pop-stats">' +
+            '<span class="pop-stat reviews"><i class="fas fa-comment"></i> ' + d.review_count + ' recensioni</span>' +
+            '<span class="pop-stat rating"><i class="fas fa-star"></i> ' + d.avg_rating + '</span>' +
+          '</div>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+  } catch(e) {
+    container.innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-exclamation-triangle"></i><h3>Errore di caricamento</h3><p>Riprova più tardi.</p></div>';
+  }
+}
+
+function getDishImage(name) {
+  const n = (name || '').toLowerCase();
+  if (n.includes('orecchiette')) return 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=200&h=200&fit=crop';
+  if (n.includes('branzino')) return 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=200&h=200&fit=crop';
+  if (n.includes('burrata')) return 'https://images.unsplash.com/photo-1631209121750-a9f656d26e80?w=200&h=200&fit=crop';
+  if (n.includes('pizza') || n.includes('margherita')) return 'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=200&h=200&fit=crop';
+  if (n.includes('focaccia')) return 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop';
+  if (n.includes('sushi') || n.includes('maki') || n.includes('temaki')) return 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=200&h=200&fit=crop';
+  if (n.includes('tiramisu') || n.includes('tiramisù')) return 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=200&h=200&fit=crop';
+  if (n.includes('tartare') || n.includes('crudo')) return 'https://images.unsplash.com/photo-1534604973900-c43e1f2cbcbf?w=200&h=200&fit=crop';
+  if (n.includes('wings') || n.includes('chicken')) return 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=200&h=200&fit=crop';
+  if (n.includes('pasta') || n.includes('carbonara')) return 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&h=200&fit=crop';
+  if (n.includes('carne') || n.includes('bistecca')) return 'https://images.unsplash.com/photo-1558030006-450675393462?w=200&h=200&fit=crop';
+  if (n.includes('pesce') || n.includes('orata')) return 'https://images.unsplash.com/photo-1580959375944-abd7e991e971?w=200&h=200&fit=crop';
+  if (n.includes('insalata') || n.includes('verdura') || n.includes('caesar')) return 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200&h=200&fit=crop';
+  if (n.includes('grigliat') || n.includes('mist')) return 'https://images.unsplash.com/photo-1544025162-d76694265947?w=200&h=200&fit=crop';
+  if (n.includes('dolce') || n.includes('torta')) return 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=200&h=200&fit=crop';
+  return 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop';
+}
+
+loadFeed();
+loadPopular();
+</script>
+</body>
+</html>

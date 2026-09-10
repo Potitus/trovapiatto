@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cibo da Asporto a Bari: Guida ai Migliori | trovapiatto</title>
+  <meta name="description" content="Scopri dove ordinare cibo da asporto a Bari. Guida ai 8 migliori ristoranti con consegna a domicilio, prezzi e specialita.">
+  <meta name="keywords" content="cibo asporto Bari, consegna domicilio Bari, take away Bari, cibo da portare via Bari, delivery Bari, ristoranti asporto Bari">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/cibo-asporto-bari/">
+  <meta property="og:title" content="Cibo da Asporto a Bari: Guida ai Migliori">
+  <meta property="og:description" content="Guida completa al cibo da asporto a Bari. Dove ordinare, prezzi e consigli.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1526367790999-0150786686a2?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Asporto">
+  <meta property="article:tag" content="Bari">
+  <meta property="article:tag" content="Delivery">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cibo da Asporto a Bari: Guida ai Migliori">
+  <meta name="twitter:description" content="Guida completa al cibo da asporto a Bari.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1526367790999-0150786686a2?w=1200&h=630&fit=crop">
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/cibo-asporto-bari/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root { --bg-dark:#0f0a15; --bg-card:#1a1225; --bg-card-hover:#221833; --primary:#e73a3a; --primary-light:#ff6b6b; --accent-food:#f59e0b; --text-white:#fff; --text-light:#e0e0e0; --text-muted:#9ca3af; --border:rgba(255,255,255,0.08); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Poppins',sans-serif; background:var(--bg-dark); color:var(--text-white); min-height:100vh; line-height:1.7; }
+    .article-nav { position:sticky; top:0; z-index:100; background:rgba(15,10,21,0.95); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; }
+    .article-nav .logo { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text-white); }
+    .article-nav .logo img { height:32px; }
+    .article-nav .back-link { color:var(--text-muted); text-decoration:none; font-size:0.85rem; display:flex; align-items:center; gap:6px; transition:color 0.3s; }
+    .article-nav .back-link:hover { color:var(--primary); }
+    .article-hero { position:relative; height:50vh; min-height:350px; overflow:hidden; }
+    .article-hero img { width:100%; height:100%; object-fit:cover; }
+    .article-hero .overlay { position:absolute; inset:0; background:linear-gradient(0deg,var(--bg-dark) 0%,rgba(15,10,21,0.4) 50%,rgba(15,10,21,0.2) 100%); }
+    .article-hero .hero-content { position:absolute; bottom:30px; left:0; right:0; padding:0 20px; max-width:800px; margin:0 auto; }
+    .article-hero .tag { display:inline-block; background:var(--primary); color:white; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:600; margin-bottom:12px; }
+    .article-hero h1 { font-size:2rem; font-weight:800; line-height:1.2; margin-bottom:12px; }
+    @media(min-width:768px){ .article-hero h1 { font-size:2.8rem; } }
+    .article-hero .meta { display:flex; align-items:center; gap:16px; font-size:0.85rem; color:var(--text-muted); }
+    .article-hero .meta i { color:var(--primary); }
+    .article-container { max-width:800px; margin:0 auto; padding:30px 20px 60px; }
+    .article-content h2 { font-size:1.5rem; font-weight:700; margin:40px 0 16px; color:var(--text-white); padding-left:14px; border-left:3px solid var(--primary); }
+    .article-content h3 { font-size:1.2rem; font-weight:600; margin:24px 0 10px; color:var(--text-white); }
+    .article-content p { font-size:1rem; color:var(--text-light); margin-bottom:16px; line-height:1.8; }
+    .article-content strong { color:var(--text-white); }
+    .article-content a { color:var(--primary); text-decoration:none; font-weight:600; transition:color 0.3s; }
+    .article-content a:hover { color:var(--primary-light); }
+    .restaurant-card { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:24px; margin:24px 0; transition:all 0.3s; }
+    .restaurant-card:hover { border-color:var(--primary); box-shadow:0 8px 30px rgba(231,58,58,0.1); }
+    .restaurant-card .rc-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:12px; }
+    .restaurant-card .rc-name { font-size:1.15rem; font-weight:700; color:var(--text-white); }
+    .restaurant-card .rc-rating { display:flex; align-items:center; gap:4px; background:rgba(245,158,11,0.15); padding:4px 10px; border-radius:20px; font-size:0.8rem; font-weight:600; color:var(--accent-food); white-space:nowrap; }
+    .restaurant-card .rc-cuisine { font-size:0.8rem; color:var(--text-muted); margin-bottom:12px; }
+    .restaurant-card .rc-dish { background:rgba(255,255,255,0.04); border-radius:12px; padding:14px; margin-bottom:10px; }
+    .restaurant-card .rc-dish-name { font-weight:600; font-size:0.95rem; color:var(--text-white); margin-bottom:4px; }
+    .restaurant-card .rc-dish-desc { font-size:0.85rem; color:var(--text-muted); margin-bottom:6px; }
+    .restaurant-card .rc-dish-price { font-weight:700; color:var(--accent-food); font-size:1rem; }
+    .restaurant-card .rc-link { display:inline-flex; align-items:center; gap:6px; margin-top:12px; color:var(--primary); font-size:0.85rem; font-weight:600; text-decoration:none; transition:gap 0.3s; }
+    .restaurant-card .rc-link:hover { gap:10px; }
+    .map-section { margin:40px 0; }
+    .map-section h2 { font-size:1.5rem; font-weight:700; margin-bottom:16px; padding-left:14px; border-left:3px solid var(--primary); }
+    #article-map { width:100%; height:350px; border-radius:16px; border:1px solid var(--border); }
+    .tips-box { background:linear-gradient(135deg,rgba(231,58,58,0.08),rgba(245,158,11,0.05)); border:1px solid rgba(231,58,58,0.2); border-radius:16px; padding:24px; margin:30px 0; }
+    .tips-box h3 { font-size:1.1rem; font-weight:700; margin-bottom:14px; color:var(--primary-light); }
+    .tips-box ul { list-style:none; padding:0; }
+    .tips-box li { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; font-size:0.9rem; color:var(--text-light); }
+    .tips-box li i { color:var(--accent-food); margin-top:4px; flex-shrink:0; }
+    .cta-box { text-align:center; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:40px 24px; margin:40px 0; }
+    .cta-box h3 { font-size:1.3rem; font-weight:700; margin-bottom:10px; }
+    .cta-box p { color:var(--text-muted); font-size:0.9rem; margin-bottom:20px; }
+    .cta-box .cta-btn { display:inline-flex; align-items:center; gap:8px; background:var(--primary); color:white; padding:12px 28px; border-radius:30px; text-decoration:none; font-weight:600; font-size:0.95rem; transition:all 0.3s; }
+    .cta-box .cta-btn:hover { background:var(--primary-light); transform:translateY(-2px); box-shadow:0 8px 25px rgba(231,58,58,0.3); }
+    .ad-container { margin:30px 0; text-align:center; min-height:90px; }
+    .article-footer { border-top:1px solid var(--border); padding-top:24px; margin-top:40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+    .article-footer .share { display:flex; align-items:center; gap:10px; }
+    .article-footer .share span { font-size:0.85rem; color:var(--text-muted); }
+    .article-footer .share a { width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.06); color:var(--text-light); text-decoration:none; transition:all 0.3s; font-size:0.9rem; }
+    .article-footer .share a:hover { background:var(--primary); color:white; }
+    .site-footer { text-align:center; padding:30px 20px; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.8rem; }
+    .site-footer a { color:var(--primary); text-decoration:none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+  <nav class="article-nav">
+    <a href="/" class="logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+    <a href="/community/blog/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Magazine</a>
+  </nav>
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?w=1400&h=700&fit=crop" alt="Cibo da asporto Bari">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-bag-shopping"></i> Asporto</span>
+      <h1>Cibo da Asporto a Bari: Guida ai Migliori</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 9 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 6 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      </div>
+    </div>
+  </header>
+  <article class="article-container">
+    <div class="article-content">
+      <p>A volte non hai voglia di cucinare, a volte sei di fretta, a volte vuoi solo goderti il cibo migliore di Bari nel comfort di casa tua. Il <strong>cibo da asporto a Bari</strong> e un universo ricco e variegato, dai classici panzerotti fritti ai piatti di pesce fresco, dalle pizze gourmet alle specialita della tradizione pugliese. In questa guida scopriamo i <strong>8 migliori ristoranti</strong> dove ordinare cibo da portare via o far consegnare a domicilio.</p>
+
+      <h2>1. Antico Forno della Stira — Panzerotti Leggendari</h2>
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Antico Forno della Stira</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Panzerotto Fritto alla Mozzarella</div>
+          <div class="rc-dish-desc">Il panzerotto piu famoso di Bari: mozzarella fusa, pomodoro fresco, croccante fuori, filante dentro.</div>
+          <div class="rc-dish-price">&euro;3.50</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Panzerotto con Patate e Salsiccia</div>
+          <div class="rc-dish-desc">Patate lesse, salsiccia fresca di maiale, mozzarella.</div>
+          <div class="rc-dish-price">&euro;4</div>
+        </div>
+        <a href="/menu/antico-forno-della-stira/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>L'Antico Forno della Stira e un'istituzione a Bari Vecchia. I panzerotti qui sono leggendari: pasta croccante, mozzarella filante, pomodoro fresco. A soli 3.50 euro e un'esperienza che non puoi perdere. Il forno a legna conferisce un sapore unico. Preparatevi alla coda: ne vale la pena.</p>
+
+      <h2>2. Pizzeria La Rotonda — Pizza al Taglio</h2>
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Pizzeria La Rotonda</div>
+                       <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Sparano, Bari Centro</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza al Taglio Classica</div>
+          <div class="rc-dish-desc">Pizza croccante con pomodoro, mozzarella e origano — il classico della tradizione barese.</div>
+          <div class="rc-dish-price">&euro;2.50/al pezzo</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza con Patate e Rosmarino</div>
+          <div class="rc-dish-desc">Pizza al taglio con patate a rondelle, rosmarino e olio extravergine.</div>
+          <div class="rc-dish-price">&euro;3/al pezzo</div>
+        </div>
+        <a href="/menu/pizzeria-la-rotonda/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>La Rotonda e il punto di riferimento per la pizza al taglio a Bari. La pasta e croccante, gli ingredienti freschi, i prezzi imbattibili. A 2.50 euro al pezzo puoi creare il tuo pasto perfetto. La pizza con patate e rosmarino e un must.</p>
+
+      <h2>3. Da Nicola — Cibo Tradizionale da Asporto</h2>
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Da Nicola</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Quinto Orazio Flacco, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette al Ragu di Carne</div>
+          <div class="rc-dish-desc">Orecchiette fresche con ragu di carne pugliese — piatto unico sostanzioso.</div>
+          <div class="rc-dish-price">&euro;8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Focaccia con Pomodoro e Cipolla</div>
+          <div class="rc-dish-desc">Focaccia calda del forno con pomodoro, cipolla e olio extravergine.</div>
+          <div class="rc-dish-price">&euro;3</div>
+        </div>
+        <a href="/menu/da-nicola/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>Da Nicola e il ristorante di famiglia perfetto per il cibo da asporto. Le orecchiette al ragu di carne sono un piatto unico sostanzioso, la focaccia e sempre calda e croccante. A 8 euro per un piatto di pasta e un bargain assoluto per qualita superiore.</p>
+
+      <h2>4. Focacceria San Marco — Focaccia e Street Food</h2>
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Focacceria San Marco</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Focaccia Bari Classica</div>
+          <div class="rc-dish-desc">Focaccia soffice e dorata con pomodoro, olive e origano.</div>
+          <div class="rc-dish-price">&euro;2</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza di Patate</div>
+          <div class="rc-dish-desc">Pizza ripiena di patate lesse, cipolla e pepe — tipica della tradizione barese.</div>
+          <div class="rc-dish-price">&euro;3</div>
+        </div>
+        <a href="/menu/focacceria-san-marco/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>La focaccia di Bari e un'arte, e la Focacceria San Marco ne e la maestra. La focaccia classica a 2 euro e un capolavoro di semplicita: soffice, dorata, con il sapore perfetto del pomodoro e dell'olio. La pizza di patate e un'alternativa sostanziosa e deliziosa.</p>
+
+      <h2>5. Ristorante La Barca — Pesce da Asporto</h2>
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ristorante La Barca</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Lungomare Nazario Sauro, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.5</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Frittura di Pesce Mista</div>
+          <div class="rc-dish-desc">Calamari, gamberi, triglie — tutto fresco del giorno, fritto alla perfezione.</div>
+          <div class="rc-dish-price">&euro;15</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Insalata di Mare</div>
+          <div class="rc-dish-desc">Polpo, calamari, gamberi, sedano — condito con olio e limone.</div>
+          <div class="rc-dish-price">&euro;12</div>
+        </div>
+        <a href="/menu/la-barca/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>Se vuoi pesce fresco da asporto, La Barca e il posto giusto. La frittura di pesce mista e tra le migliori della citta, tutto fresco del giorno. L'insalata di mare e un'opzione leggera e gustosa per una cena leggera a casa. Il prezzo e onesto per la qualita offerta.</p>
+
+      <h2>6. Gaeribaldi — Take Away Gourmet</h2>
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ristorante Pizzeria Gaeribaldi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Steakhouse &amp; Pizzeria</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Hamburger Artigianale con Patatine</div>
+          <div class="rc-dish-desc">Hamburger di manzo 200g, lattuga, pomodoro, cheddar, patatine fritte.</div>
+          <div class="rc-dish-price">&euro;12</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Tagliere di Salumi e Formaggi</div>
+          <div class="rc-dish-desc">Selezione di salumi e formaggi pugliesi — perfetto per una cena con amici.</div>
+          <div class="rc-dish-price">&euro;18</div>
+        </div>
+        <a href="/menu/gaeribaldi-grill-house/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>Gaeribaldi non e solo ristorante: e anche il miglior posto per take away gourmet a Bari. L'hamburger artigianale e un mostro di qualita, il tagliere di salumi e formaggi e perfetto per una cena informale. Il rapporto qualita-prezzo e imbattibile.</p>
+
+      <h2>7. Don Pedro — Pizza Fritta da Asporto</h2>
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Don Pedro</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Ristorante Pizzeria</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> Bib Gourmand</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza Fritta "Don Pedro"</div>
+          <div class="rc-dish-desc">Pizza fritta con mozzarella di bufala, pomodorini del piennolo e basilico fresco.</div>
+          <div class="rc-dish-price">&euro;8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Panzerotto Fritto con Bufala</div>
+          <div class="rc-dish-desc">Panzerotto croccante con mozzarella di bufala campana DOP.</div>
+          <div class="rc-dish-price">&euro;6</div>
+        </div>
+        <a href="/menu/don-pedro/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>Don Pedro e il ristorante piu amato di Bari, e la pizza fritta da asporto e un imperdibile. A 8 euro hai un piatto che ha fatto la storia della ristorazione barese. La mozzarella di bufala e freschissima, la pasta e croccante e filante allo stesso tempo.</p>
+
+      <h2>8. Paninoteca da Enzo — Panini e Piadine</h2>
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Paninoteca da Enzo</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Argiro, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.4</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Panino con Porchetta</div>
+          <div class="rc-dish-desc">Panino caldo con porchetta, rucola e salsa ai tartufi.</div>
+          <div class="rc-dish-price">&euro;6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Piadina con Prosciutto e Stracchino</div>
+          <div class="rc-dish-desc">Piadina croccante con prosciutto crudo, stracchino e rucola.</div>
+          <div class="rc-dish-price">&euro;7</div>
+        </div>
+        <a href="/menu/paninoteca-da-enzo/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>Per un pranzo veloce o una cena leggera, la Paninoteca da Enzo e perfetta. Il panino con porchetta e un mostro di sapore, la piadina con prosciutto e stracchino e croccante e gustosa. A 6-7 euro hai un pasto completo e soddisfacente.</p>
+
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Dove Trovare il Miglior Cibo da Asporto</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Consigli per il Cibo da Asporto a Bari</h2>
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-clock"></i> <span><strong>Orari di punta:</strong> Evita le 12:30-13:30 e le 19:30-20:30. I tempi di attesa possono essere lunghi.</span></li>
+          <li><i class="fa-solid fa-phone"></i> <span><strong>Prenota telefonicamente:</strong> Molti locali accettano ordini telefonici. Chiama prima per evitare code.</span></li>
+          <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Fascia di prezzo:</strong> Da 2 euro per una focaccia a 18 euro per un tagliere. Il cibo da asporto a Bari e generalmente economico.</span></li>
+          <li><i class="fa-solid fa-truck"></i> <span><strong>Consegna a domicilio:</strong> Non tutti i locali offrono consegna. Controlla su Just Eat, Deliveroo o Glovo.</span></li>
+          <li><i class="fa-solid fa-temperature-low"></i> <span><strong>Cosa evitare:</strong> La pizza al taglio e meglio mangiarla calda. Se devi aspettare, scegli piatti che si conservano meglio.</span></li>
+          <li><i class="fa-solid fa-map-pin"></i> <span><strong>Miglior zona:</strong> Bari Vecchia ha i locali piu autentici. Il centro storico e il lungomare offrono piu varieta.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <h3>Scopri Tutti i Ristoranti di Bari</h3>
+        <p>Cerca ristoranti, menu e prezzi nella nostra mappa interattiva</p>
+        <a href="/piatti/?q=asporto+bari" class="cta-btn"><i class="fa-solid fa-magnifying-glass"></i> Cerca Ristoranti a Bari</a>
+      </div>
+
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/cibo-asporto-bari/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/cibo-asporto-bari/&text=Cibo+da+Asporto+a+Bari:+Guida+ai+Migliori"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+il+miglior+cibo+da+asporto+a+Bari:+https://www.trovapiatto.it/community/blog/cibo-asporto-bari/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </article>
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const places = [
+      { name:'Antico Forno della Stira', lat:41.1285, lng:16.8705, price:'€3.50', slug:'antico-forno-della-stira', rating:'4.9' },
+      { name:'La Rotonda', lat:41.1291, lng:16.8702, price:'€2.50', slug:'pizzeria-la-rotonda', rating:'4.7' },
+      { name:'Da Nicola', lat:41.1236, lng:16.8686, price:'€8', slug:'da-nicola', rating:'4.6' },
+      { name:'Focacceria San Marco', lat:41.1245, lng:16.8690, price:'€2', slug:'focacceria-san-marco', rating:'4.8' },
+      { name:'La Barca', lat:41.1260, lng:16.8720, price:'€15', slug:'la-barca', rating:'4.5' },
+      { name:'Gaeribaldi', lat:41.124061, lng:16.862950, price:'€12', slug:'gaeribaldi-grill-house', rating:'4.6' },
+      { name:'Don Pedro', lat:41.1220, lng:16.8710, price:'€8', slug:'don-pedro', rating:'Bib Gourmand' },
+      { name:'Paninoteca da Enzo', lat:41.1250, lng:16.8695, price:'€6', slug:'paninoteca-da-enzo', rating:'4.4' }
+    ];
+    const map = L.map('article-map').setView([41.1245, 16.8695], 15);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:19 }).addTo(map);
+    places.forEach(p => {
+      const icon = L.divIcon({ html:`<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${p.name}</div>`, className:'', iconAnchor:[50,10] });
+      L.marker([p.lat, p.lng], {icon}).addTo(map).bindPopup(`<div style="font-family:Poppins,sans-serif;padding:4px;"><strong>${p.name}</strong><br><span style="color:#f59e0b;">⭐ ${p.rating}</span> &middot; <strong>${p.price}</strong><br><a href="/menu/${p.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a></div>`);
+    });
+  </script>
+  <script type="application/ld+json">
+  { "@context":"https://schema.org", "@type":"Article", "headline":"Cibo da Asporto a Bari: Guida ai Migliori", "description":"Scopri dove ordinare cibo da asporto a Bari. Guida ai 8 migliori ristoranti con consegna a domicilio, prezzi e specialita.", "image":"https://images.unsplash.com/photo-1526367790999-0150786686a2?w=1200&h=630&fit=crop", "author":{"@type":"Organization","name":"trovapiatto"}, "publisher":{"@type":"Organization","name":"trovapiatto","logo":{"@type":"ImageObject","url":"https://www.trovapiatto.it/logo/logo_ufficiale.png"}}, "datePublished":"2026-07-09T10:00:00+02:00", "dateModified":"2026-07-09T10:00:00+02:00", "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.trovapiatto.it/community/blog/cibo-asporto-bari/"}, "articleSection":"Food Guide", "keywords":"cibo asporto Bari, consegna domicilio Bari, take away Bari" }
+  </script>
+  <script type="application/ld+json">
+  { "@context":"https://schema.org", "@type":"BreadcrumbList", "itemListElement":[ { "@type":"ListItem", "position":1, "name":"Home", "item":"https://www.trovapiatto.it/" }, { "@type":"ListItem", "position":2, "name":"Magazine", "item":"https://www.trovapiatto.it/community/blog/" }, { "@type":"ListItem", "position":3, "name":"Cibo da Asporto a Bari", "item":"https://www.trovapiatto.it/community/blog/cibo-asporto-bari/" } ] }
+  </script>
+  <script type="application/ld+json">
+  { "@context":"https://schema.org", "@type":"FAQPage", "mainEntity":[ { "@type":"Question", "name":"Dove ordinare cibo da asporto a Bari?", "acceptedAnswer":{ "@type":"Answer", "text":"I migliori posti per cibo da asporto a Bari sono l'Antico Forno della Stira (panzerotti, €3.50), Focacceria San Marco (focaccia, €2), Don Pedro (pizza fritta, €8) e Da Nicola (orecchiette, €8)." } }, { "@type":"Question", "name":"Quali ristoranti fanno consegna a domicilio a Bari?", "acceptedAnswer":{ "@type":"Answer", "text":"Molti ristoranti di Bari offrono consegna a domicilio attraverso piattaforme come Just Eat, Deliveroo e Glovo. Controlla la disponibilita nella tua zona." } }, { "@type":"Question", "name":"Quanto costa il cibo da asporto a Bari?", "acceptedAnswer":{ "@type":"Answer", "text":"Il prezzo medio va da €2 per una focaccia a €18 per un tagliere. Un pasto completo da asporto a Bari costa in media tra €8 e €15." } } ] }
+  </script>
+</body>
+</html>

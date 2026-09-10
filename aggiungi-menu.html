@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aggiungi il Tuo Menu - trovapiatto</title>
+  <meta name="description" content="Aggiungi il menu del tuo ristorante su trovapiatto. Primo mese gratis, poi solo €49 una tantum. Dal secondo anno €9,90/mese.">
+  <meta name="theme-color" content="#e73a3a">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --primary:#e73a3a;--primary-dark:#c92a2a;
+      --dark-bg:#0f0a15;--card-bg:#1a1225;
+      --text-light:#e0e0e0;--text-muted:#999;
+      --border-color:rgba(231,58,58,0.2);
+      --glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);
+      --green:#10b981;--purple:#8b5cf6;--cyan:#06b6d4;--amber:#f59e0b;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(135deg,#0f0a15 0%,#1a0f25 50%,#0f0a15 100%);
+      color:var(--text-light);line-height:1.7;min-height:100vh;
+    }
+
+    /* ===== HEADER ===== */
+    .header{
+      position:sticky;top:0;z-index:100;
+      background:rgba(15,10,21,0.95);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;
+    }
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+    .header-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
+    .header-logo img{height:36px}
+    .header-nav{display:flex;align-items:center;gap:1.5rem}
+    .header-nav a{color:var(--text-light);text-decoration:none;font-weight:500;font-size:0.85rem;transition:all 0.3s}
+    .header-nav a:hover{color:var(--primary)}
+    @media(max-width:768px){
+      .header{padding:0.6rem 1rem}
+      .header-nav a:not(.btn-back){display:none}
+      .btn-back{padding:6px 14px;background:linear-gradient(135deg,var(--primary),#ff6b6b);color:white;border-radius:50px;font-weight:600;font-size:0.75rem}
+    }
+
+    /* ===== HERO ===== */
+    .hero{text-align:center;padding:5rem 1.5rem 4rem;position:relative;overflow:hidden}
+    .hero::before{
+      content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+      width:700px;height:700px;
+      background:radial-gradient(circle,rgba(231,58,58,0.1),transparent 70%);
+      pointer-events:none;
+    }
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 20px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);
+      border-radius:50px;font-size:0.85rem;font-weight:600;color:var(--green);margin-bottom:1.5rem;
+    }
+    .hero h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;margin-bottom:1rem;line-height:1.1}
+    .hero h1 span{
+      background:linear-gradient(135deg,var(--primary),#ff6b6b);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hero p{font-size:1.1rem;color:var(--text-muted);max-width:600px;margin:0 auto 2rem}
+    .hero-cta{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:16px 36px;background:linear-gradient(135deg,var(--primary),#ff6b6b);
+      color:white;border-radius:50px;font-weight:700;font-size:1rem;
+      text-decoration:none;transition:all 0.3s;
+      box-shadow:0 10px 30px rgba(231,58,58,0.4);
+    }
+    .hero-cta:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(231,58,58,0.6);color:white;text-decoration:none}
+
+    /* ===== STEPS ===== */
+    .steps{max-width:1000px;margin:0 auto;padding:0 1.5rem 4rem}
+    .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    @media(max-width:768px){.steps-grid{grid-template-columns:1fr}}
+    .step-card{
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:20px;padding:2rem;text-align:center;
+      backdrop-filter:blur(10px);transition:all 0.3s;position:relative;overflow:hidden;
+    }
+    .step-card:hover{border-color:rgba(231,58,58,0.3);transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.3)}
+    .step-num{
+      position:absolute;top:16px;right:16px;
+      font-size:3rem;font-weight:800;color:rgba(231,58,58,0.08);line-height:1;
+    }
+    .step-icon{
+      width:64px;height:64px;margin:0 auto 1.25rem;
+      background:linear-gradient(135deg,rgba(231,58,58,0.15),rgba(231,58,58,0.05));
+      border:1.5px solid rgba(231,58,58,0.3);border-radius:18px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .step-icon i{font-size:1.5rem;color:var(--primary)}
+    .step-card h3{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.5rem}
+    .step-card p{font-size:0.88rem;color:var(--text-muted);line-height:1.6}
+
+    /* ===== FEATURES ===== */
+    .features{max-width:1000px;margin:0 auto;padding:0 1.5rem 4rem}
+    .features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+    @media(max-width:768px){.features-grid{grid-template-columns:1fr}}
+    .feature-card{
+      display:flex;align-items:flex-start;gap:14px;
+      background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:16px;padding:1.25rem;
+      backdrop-filter:blur(10px);transition:all 0.3s;
+    }
+    .feature-card:hover{border-color:rgba(231,58,58,0.2);background:rgba(255,255,255,0.06)}
+    .feature-icon{
+      width:42px;height:42px;flex-shrink:0;
+      background:linear-gradient(135deg,rgba(231,58,58,0.12),rgba(231,58,58,0.04));
+      border:1px solid rgba(231,58,58,0.2);border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .feature-icon i{font-size:1rem;color:var(--primary)}
+    .feature-card h4{font-size:0.95rem;font-weight:600;color:#fff;margin-bottom:2px}
+    .feature-card p{font-size:0.82rem;color:var(--text-muted);margin:0}
+
+    /* ===== PRICING ===== */
+    .pricing{max-width:700px;margin:0 auto;padding:0 1.5rem 4rem}
+    .pricing-card{
+      background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(16,185,129,0.03));
+      border:2px solid rgba(16,185,129,0.3);border-radius:24px;padding:3rem 2rem;text-align:center;
+      position:relative;overflow:hidden;
+    }
+    .pricing-card::before{
+      content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+      background:radial-gradient(circle,rgba(16,185,129,0.05),transparent 50%);
+      pointer-events:none;
+    }
+    .pricing-badge{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:6px 16px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);
+      border-radius:50px;font-size:0.75rem;font-weight:700;color:var(--green);
+      text-transform:uppercase;letter-spacing:0.5px;margin-bottom:1.25rem;
+    }
+    .pricing-amount{font-size:3.5rem;font-weight:800;color:var(--green);margin-bottom:0.25rem}
+    .pricing-amount small{font-size:1rem;font-weight:500;color:var(--text-muted)}
+    .pricing-period{font-size:0.95rem;color:var(--text-muted);margin-bottom:1.5rem}
+    .pricing-free{
+      display:inline-block;padding:8px 24px;
+      background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);
+      border-radius:50px;font-size:0.85rem;font-weight:600;color:var(--green);margin-bottom:1.5rem;
+    }
+    .pricing-features{list-style:none;text-align:left;margin:1.5rem 0}
+    .pricing-features li{
+      display:flex;align-items:center;gap:10px;padding:10px 0;
+      font-size:0.9rem;color:var(--text-light);
+      border-bottom:1px solid rgba(255,255,255,0.04);
+    }
+    .pricing-features li:last-child{border-bottom:none}
+    .pricing-features li i{color:var(--green);font-size:0.85rem;flex-shrink:0}
+    .pricing-cta{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:16px 40px;background:linear-gradient(135deg,var(--green),#34d399);
+      color:white;border-radius:50px;font-weight:700;font-size:1rem;
+      text-decoration:none;transition:all 0.3s;
+      box-shadow:0 10px 30px rgba(16,185,129,0.4);border:none;cursor:pointer;
+      font-family:'Inter',sans-serif;
+    }
+    .pricing-cta:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(16,185,129,0.6);color:white;text-decoration:none}
+
+    /* ===== CTA BOTTOM ===== */
+    .cta-bottom{text-align:center;padding:4rem 1.5rem;position:relative}
+    .cta-bottom h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;margin-bottom:1rem}
+    .cta-bottom p{color:var(--text-muted);font-size:1rem;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+
+    /* ===== FOOTER ===== */
+    .footer{text-align:center;padding:2.5rem 1.5rem;border-top:1px solid var(--border-color);background:rgba(0,0,0,0.2)}
+    .footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+    .footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;transition:all 0.3s}
+    .footer-links a:hover{color:var(--primary)}
+    .footer p{color:var(--text-muted);font-size:0.8rem}
+
+    .fade-in{opacity:0;transform:translateY(20px);transition:all 0.6s cubic-bezier(0.4,0,0.2,1)}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    <link rel="canonical" href="https://www.trovapiatto.it/aggiungi-menu.html">
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-inner">
+    <a href="/" class="header-logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <div class="header-nav">
+      <a href="/">Home</a>
+      <a href="about.html">Chi Siamo</a>
+      <a href="/" class="btn-back"><i class="fas fa-arrow-left"></i> Home</a>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">
+    <i class="fas fa-gift"></i> Primo Mese Gratis
+  </div>
+  <h1>Aggiungi il Tuo <span>Menu</span></h1>
+  <p>Digitalizza il menu del tuo ristorante e raggiungi migliaia di clienti ogni giorno. Primo mese gratis, poi solo €49.</p>
+  <a href="mailto:info@trovapiatto.it?subject=Aggiungi%20Menu%20Ristorante" class="hero-cta">
+    <i class="fas fa-rocket"></i> Inizia Ora — È Gratis
+  </a>
+</div>
+
+<!-- Steps -->
+<div class="steps">
+  <div class="steps-grid">
+    <div class="step-card fade-in">
+      <div class="step-num">1</div>
+      <div class="step-icon"><i class="fas fa-paper-plane"></i></div>
+      <h3>Contattaci</h3>
+      <p>Inviaci un'email con il menu del tuo ristorante. Ti risponderemo entro 24 ore.</p>
+    </div>
+    <div class="step-card fade-in">
+      <div class="step-num">2</div>
+      <div class="step-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+      <h3>Creiamo il Menu</h3>
+      <p>Il nostro team digitalizza il tuo menu con foto professionali e descrizioni ottimizzate.</p>
+    </div>
+    <div class="step-card fade-in">
+      <div class="step-num">3</div>
+      <div class="step-icon"><i class="fas fa-globe"></i></div>
+      <h3>Pubblicato!</h3>
+      <p>Il tuo menu è online e visibile a migliaia di potenziali clienti nella tua zona.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="features">
+  <div class="features-grid">
+    <div class="feature-card fade-in">
+      <div class="feature-icon"><i class="fas fa-mobile-screen-button"></i></div>
+      <div>
+        <h4>Menu Mobile-Friendly</h4>
+        <p>Menu ottimizzato per smartphone, accessibile con un QR code.</p>
+      </div>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+      <div>
+        <h4>SEO Ottimizzato</h4>
+        <p>Il tuo ristorante apare nei risultati di ricerca Google.</p>
+      </div>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-icon"><i class="fas fa-star"></i></div>
+      <div>
+        <h4>Recensioni Clienti</h4>
+        <p>I clienti possono lasciare recensioni e valutazioni sul tuo menu.</p>
+      </div>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+      <div>
+        <h4>Statistiche</h4>
+        <p>Visualizza quante persone visualizzano il tuo menu ogni giorno.</p>
+      </div>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-icon"><i class="fas fa-pen-fancy"></i></div>
+      <div>
+        <h4>Aggiornamenti Facili</h4>
+        <p>Modifica piatti e prezzi in qualsiasi momento, senza costi extra.</p>
+      </div>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-icon"><i class="fas fa-headset"></i></div>
+      <div>
+        <h4>Supporto Dedicato</h4>
+        <p>Il nostro team è sempre disponibile per assistenza e consulenza.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing -->
+<div class="pricing">
+  <div class="pricing-card fade-in">
+    <div class="pricing-badge"><i class="fas fa-crown"></i> Offerta Lancio</div>
+    <div class="pricing-amount">€0 <small>/primo mese</small></div>
+    <div class="pricing-period">Poi solo €49 una tantum — dal 2° anno €9,90/mese</div>
+    <div class="pricing-free"><i class="fas fa-check-circle"></i> 1 Mese Gratuito di Prova</div>
+    <ul class="pricing-features">
+      <li><i class="fas fa-check"></i> Menu digitale professionale</li>
+      <li><i class="fas fa-check"></i> Foto dei piatti incluse</li>
+      <li><i class="fas fa-check"></i> QR code personalizzato</li>
+      <li><i class="fas fa-check"></i> Página SEO ottimizzata</li>
+      <li><i class="fas fa-check"></i> Sistema recensioni</li>
+      <li><i class="fas fa-check"></i> Statistiche visitatori</li>
+      <li><i class="fas fa-check"></i> Supporto email prioritario</li>
+      <li><i class="fas fa-check"></i> Aggiornamenti illimitati</li>
+    </ul>
+    <a href="mailto:info@trovapiatto.it?subject=Aggiungi%20Menu%20Ristorante" class="pricing-cta">
+      <i class="fas fa-rocket"></i> Richiedi Ora
+    </a>
+  </div>
+</div>
+
+<!-- CTA Bottom -->
+<div class="cta-bottom fade-in">
+  <h2>Hai Domande?</h2>
+  <p>Il nostro team è pronto ad aiutarti. Inviaci un'email e ti risponderemo entro 24 ore.</p>
+  <a href="mailto:info@trovapiatto.it" class="hero-cta" style="font-size:0.9rem;padding:14px 32px;">
+    <i class="fas fa-envelope"></i> Contattaci
+  </a>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms-of-service.html">Termini di Servizio</a>
+    <a href="contact.html">Contatti</a>
+    <a href="about.html">Chi Siamo</a>
+    <a href="aggiungi-menu.html">Aggiungi Menu</a>
+  </div>
+  <p>&copy; 2026 trovapiatto — Tutti i diritti riservati</p>
+</div>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classifica — trovapiatto Community</title>
+<meta name="description" content="Classifica dei migliori critici food di Bari. Scopri chi guadagna più punti e scala la leaderboard.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#8b5cf6">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Classifica — trovapiatto Community">
+<meta property="og:description" content="I migliori critici food di Bari. Classifica live con punti e badge.">
+<meta property="og:image" content="https://www.trovapiatto.it/logo/logo_ufficiale.png">
+<meta property="og:url" content="https://www.trovapiatto.it/community/loyalty/classifica.html">
+<meta property="og:site_name" content="trovapiatto">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.trovapiatto.it/community/loyalty/classifica.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0a15;--bg2:#1a0f25;--card:rgba(255,255,255,0.04);--card-border:rgba(255,255,255,0.06);--text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;--primary:#8b5cf6;--gold:#f59e0b;--green:#10b981;--red:#ef4444;--blue:#3b82f6;--pink:#ec4899}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;padding-bottom:80px}
+a{color:var(--primary);text-decoration:none}
+
+.top-nav{position:sticky;top:0;z-index:100;background:rgba(15,10,21,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.top-nav .logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text)}
+.top-nav .logo img{height:32px}
+.top-nav .nav-links{display:flex;align-items:center;gap:16px}
+.top-nav .nav-links a{color:var(--text2);text-decoration:none;font-size:0.85rem;transition:color 0.3s}
+.top-nav .nav-links a:hover,.top-nav .nav-links a.active{color:var(--primary)}
+
+.breadcrumb{max-width:600px;margin:0 auto;padding:16px 20px 0;display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text2);width:100%}
+.breadcrumb a{color:var(--text2);text-decoration:none;transition:color 0.3s}
+.breadcrumb a:hover{color:var(--primary)}
+.breadcrumb .sep{color:rgba(255,255,255,0.2)}
+.breadcrumb .current{color:var(--text)}
+
+.hero{text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&h=400&fit=crop') center/cover no-repeat;filter:blur(4px) brightness(0.4) saturate(1.2) scale(1.05);z-index:0}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,10,21,0.5) 0%,rgba(15,10,21,0.85) 100%);z-index:1}
+.hero>*{position:relative;z-index:2}
+.hero h1{font-size:1.6rem;font-weight:800;margin-bottom:4px}
+.hero p{color:var(--text2);font-size:0.85rem}
+
+.period-tabs{display:flex;gap:8px;padding:20px 16px;justify-content:center}
+.period-tab{padding:8px 20px;border-radius:20px;border:1px solid var(--card-border);background:transparent;color:var(--text2);font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s;font-family:'Inter',sans-serif}
+.period-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.period-tab:hover:not(.active){border-color:rgba(139,92,246,0.5);color:var(--text)}
+
+.top3{padding:0 16px;display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:24px}
+.top-card{width:100%;max-width:340px;background:var(--card);border-radius:16px;padding:20px;text-align:center;position:relative;border:1px solid var(--card-border);transition:all 0.3s}
+.top-card:hover{transform:translateY(-2px)}
+.top-card.first{background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(245,158,11,0.05));border-color:rgba(245,158,11,0.3);order:-1}
+.top-card.second{order:0}
+.top-card.third{order:1}
+.rank-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800}
+.first .rank-badge{background:var(--gold);color:#000}
+.second .rank-badge{background:var(--text2);color:#000}
+.third .rank-badge{background:#cd7f32;color:#000}
+.crown{position:absolute;top:-8px;right:12px;font-size:1.2rem;color:var(--gold)}
+.top-avatar{width:56px;height:56px;border-radius:50%;margin:8px auto 8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:#fff}
+.first .top-avatar{background:linear-gradient(135deg,var(--gold),#d97706)}
+.second .top-avatar{background:linear-gradient(135deg,var(--text2),#64748b)}
+.third .top-avatar{background:linear-gradient(135deg,#cd7f32,#a0522d)}
+.top-name{font-weight:700;font-size:1rem;margin-bottom:2px}
+.top-stats{display:flex;justify-content:center;gap:16px;font-size:.8rem;color:var(--text2)}
+.top-stats span{display:flex;align-items:center;gap:4px}
+.top-points{font-size:1.3rem;font-weight:800;margin-top:6px}
+.first .top-points{color:var(--gold)}
+.second .top-points{color:var(--text2)}
+.third .top-points{color:#cd7f32}
+
+.list{padding:0 16px;display:flex;flex-direction:column;gap:8px;max-width:500px;margin:0 auto}
+.list-card{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border-radius:12px;border:1px solid var(--card-border);transition:.2s}
+.list-card:hover{border-color:rgba(139,92,246,0.2)}
+.list-card.highlight{border-color:rgba(139,92,246,0.6);box-shadow:0 0 16px rgba(139,92,246,0.2)}
+.list-rank{font-weight:800;font-size:.9rem;color:var(--text3);min-width:24px;text-align:center}
+.list-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:#fff;flex-shrink:0}
+.list-info{flex:1;min-width:0}
+.list-name{font-weight:600;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-meta{font-size:.75rem;color:var(--text2)}
+.list-points{font-weight:800;font-size:.95rem;color:var(--primary);text-align:right}
+
+.site-footer{border-top:1px solid var(--card-border);padding:40px 20px 30px;margin-top:auto}
+.footer-inner{max-width:600px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(min-width:768px){.footer-inner{grid-template-columns:1fr 1fr 1fr 1fr}}
+.footer-col h4{font-size:0.75rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px}
+.footer-col a{display:block;color:var(--text2);text-decoration:none;font-size:0.8rem;padding:3px 0;transition:color 0.3s}
+.footer-col a:hover{color:var(--primary)}
+.footer-social{display:flex;gap:8px;margin-top:12px}
+.footer-social a{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid var(--card-border);display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:0.85rem;transition:all 0.3s}
+.footer-social a:hover{background:var(--primary);border-color:var(--primary);color:white}
+.footer-bottom{max-width:600px;margin:16px auto 0;padding-top:14px;border-top:1px solid var(--card-border);text-align:center;color:var(--text3);font-size:0.7rem}
+
+.nav-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(15,10,21,0.95);backdrop-filter:blur(20px);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:10px 0}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--text3);text-decoration:none;font-size:.65rem;font-weight:500;transition:.2s}
+.nav-item.active{color:var(--primary)}
+.nav-item i{font-size:1.1rem}
+
+.loading{text-align:center;padding:60px 0;color:var(--text3)}
+.empty{text-align:center;padding:60px 16px;color:var(--text3)}
+@media(min-width:600px){.top-card{max-width:400px}}
+</style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="/community/loyalty/" class="logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+  <div class="nav-links">
+    <a href="/community/">Community</a>
+    <a href="/community/loyalty/" >Premi</a>
+    <a href="/community/loyalty/classifica.html" class="active">Classifica</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+  <span class="sep">/</span>
+  <a href="/community/">Community</a>
+  <span class="sep">/</span>
+  <a href="/community/loyalty/">Programma Fedeltà</a>
+  <span class="sep">/</span>
+  <span class="current">Classifica</span>
+</div>
+
+<div class="hero">
+  <h1><i class="fas fa-trophy" style="color:var(--gold)"></i> Classifica</h1>
+  <p>Chi sono i migliori critici food della community?</p>
+</div>
+
+<div class="period-tabs">
+  <button class="period-tab active" data-period="week">Settimana</button>
+  <button class="period-tab" data-period="month">Mese</button>
+  <button class="period-tab" data-period="all">Tutti</button>
+</div>
+
+<div id="leaderboard" style="flex:1">
+  <div class="loading"><i class="fas fa-spinner fa-spin"></i> Caricamento...</div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="/community/">Home</a>
+      <a href="/community/loyalty/">Programma Fedeltà</a>
+      <a href="/community/loyalty/classifica.html">Classifica</a>
+      <a href="/community/loyalty/profilo.html">Profilo</a>
+    </div>
+    <div class="footer-col">
+      <h4>Esplora</h4>
+      <a href="/piatti/">Piatti</a>
+      <a href="/bari/migliori-ristoranti-bari/">Ristoranti</a>
+      <a href="/community/blog/">Magazine</a>
+      <a href="/bari/">Cosa Mangiare a Bari</a>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <a href="/about.html">Chi Siamo</a>
+      <a href="/contatti.html">Contatti</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Seguici</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/trovapiatto" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/trovapiatto" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@trovapiatto" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 trovapiatto &mdash; Tutti i diritti riservati</div>
+</footer>
+
+<nav class="nav-bar">
+  <a class="nav-item" href="/community/"><i class="fas fa-home"></i> Home</a>
+  <a class="nav-item" href="/community/cosamangio.html"><i class="fas fa-utensils"></i> Mangiato</a>
+  <a class="nav-item active" href="/community/loyalty/classifica.html"><i class="fas fa-ranking-star"></i> Classifica</a>
+  <a class="nav-item" href="/community/loyalty/"><i class="fas fa-trophy"></i> Premi</a>
+  <a class="nav-item" href="/community/loyalty/profilo.html"><i class="fas fa-user"></i> Profilo</a>
+</nav>
+
+<script>
+let currentPeriod = 'week';
+const container = document.getElementById('leaderboard');
+const tabs = document.querySelectorAll('.period-tab');
+let currentUser = null;
+try { currentUser = JSON.parse(localStorage.getItem('community_user')); } catch(e) {}
+
+function getInitial(name) { return name ? name.charAt(0).toUpperCase() : '?'; }
+function getAvatarColor(n){const c=['#8b5cf6','#3b82f6','#10b981','#f59e0b','#ef4444','#ec4899','#06b6d4','#a78bfa'];let h=0;for(let i=0;i<(n||'').length;i++)h=n.charCodeAt(i)+((h<<5)-h);return c[Math.abs(h)%c.length]}
+
+function renderTop3(data) {
+    const classes = ['first', 'second', 'third'];
+    return data.map((u, i) => `
+    <div class="top-card ${classes[i] || ''}">
+        <div class="rank-badge">${i + 1}</div>
+        ${i === 0 ? '<i class="fas fa-crown crown"></i>' : ''}
+        <div class="top-avatar" style="background:linear-gradient(135deg,${getAvatarColor(u.username)},${getAvatarColor(u.username)}dd)">${getInitial(u.display_name || u.username)}</div>
+        <div class="top-name">${u.display_name || u.username}</div>
+        <div class="top-stats">
+            <span><i class="fas fa-star"></i> ${u.total_reviews || 0} recensioni</span>
+            <span><i class="fas fa-fire"></i> ${u.streak_days || 0}gg streak</span>
+        </div>
+        <div class="top-points">${u.points} pt</div>
+    </div>`).join('');
+}
+
+function renderList(data) {
+    return data.map((u, i) => `
+    <div class="list-card ${currentUser && currentUser.id == u.id ? 'highlight' : ''}">
+        <div class="list-rank">${i + 1}</div>
+        <div class="list-avatar" style="background:${getAvatarColor(u.username)}">${getInitial(u.display_name || u.username)}</div>
+        <div class="list-info">
+            <div class="list-name">${u.display_name || u.username}</div>
+            <div class="list-meta"><i class="fas fa-star"></i> ${u.total_reviews} recensioni &middot; Livello ${u.level}</div>
+        </div>
+        <div class="list-points">${u.points} pt</div>
+    </div>`).join('');
+}
+
+async function loadLeaderboard(period) {
+    currentPeriod = period;
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.period === period));
+    container.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Caricamento...</div>';
+    try {
+        const res = await fetch(`/app/admin/api.php?action=get-leaderboard&period=${period}&limit=50`);
+        const json = await res.json();
+        if (!json.success || !json.data || !json.data.length) {
+            container.innerHTML = '<div class="empty"><i class="fas fa-inbox" style="font-size:2rem;display:block;margin-bottom:12px"></i>Nessun utente in classifica</div>';
+            return;
+        }
+        let html = '';
+        if (json.data.length >= 3) {
+            html += '<div class="top3">' + renderTop3(json.data.slice(0, 3)) + '</div>';
+            if (json.data.length > 3) html += '<div class="list">' + renderList(json.data.slice(3)) + '</div>';
+        } else {
+            html += '<div class="top3">' + renderTop3(json.data) + '</div>';
+        }
+        container.innerHTML = html;
+    } catch (e) {
+        container.innerHTML = '<div class="empty"><i class="fas fa-exclamation-circle" style="font-size:2rem;display:block;margin-bottom:12px"></i>Errore nel caricamento</div>';
+    }
+}
+
+tabs.forEach(t => t.addEventListener('click', () => loadLeaderboard(t.dataset.period)));
+loadLeaderboard('week');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Classifica trovapiatto Community",
+  "description": "Classifica dei migliori critici food di Bari.",
+  "url": "https://www.trovapiatto.it/community/loyalty/classifica.html"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Community", "item": "https://www.trovapiatto.it/community/" },
+    { "@type": "ListItem", "position": 3, "name": "Programma Fedeltà", "item": "https://www.trovapiatto.it/community/loyalty/" },
+    { "@type": "ListItem", "position": 4, "name": "Classifica", "item": "https://www.trovapiatto.it/community/loyalty/classifica.html" }
+  ]
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Agente - Trovapiatto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --bg:#0f0a15; --bg-card:#1a1125; --bg-hover:#231833; --text:#f1e8ff; --text-dim:#9b8cb8; --accent:#ff3b3b; --accent2:#ff6b35; --success:#34d399; --warning:#fbbf24; --info:#60a5fa; --border:#2d2145; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,sans-serif; min-height:100vh; }
+        .top-bar { background:linear-gradient(135deg,#1a1125,#2d1845); border-bottom:1px solid var(--border); padding:12px 24px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+        .top-bar .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+        .top-bar .logo img { height:32px; border-radius:8px; }
+        .top-bar .logo span { color:var(--text); font-weight:700; }
+        .container { max-width:1100px; margin:0 auto; padding:24px; }
+
+        .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:24px; }
+        .stat-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:20px; text-align:center; }
+        .stat-card .icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:1.3em; }
+        .stat-card .icon.blue { background:rgba(96,165,250,0.15); color:var(--info); }
+        .stat-card .icon.green { background:rgba(52,211,153,0.15); color:var(--success); }
+        .stat-card .icon.orange { background:rgba(255,107,53,0.15); color:var(--accent2); }
+        .stat-card .icon.gold { background:rgba(251,191,36,0.15); color:var(--warning); }
+        .stat-card .value { font-size:1.8em; font-weight:800; margin-bottom:4px; }
+        .stat-card .label { color:var(--text-dim); font-size:0.85em; }
+
+        .tier-badge { display:inline-block; padding:6px 16px; border-radius:20px; font-weight:700; font-size:0.9em; margin:8px 0; }
+        .tier-badge.bronze { background:rgba(205,127,50,0.2); color:#cd7f32; }
+        .tier-badge.silver { background:rgba(192,192,192,0.2); color:#c0c0c0; }
+        .tier-badge.gold { background:rgba(255,215,0,0.2); color:#ffd700; }
+        .tier-badge.platinum { background:rgba(52,211,153,0.2); color:var(--success); }
+
+        .progress-bar { width:100%; height:8px; background:var(--border); border-radius:4px; overflow:hidden; margin:8px 0; }
+        .progress-bar .fill { height:100%; border-radius:4px; transition:width 0.5s; }
+
+        .section-title { font-size:1.2em; font-weight:700; margin:32px 0 16px; display:flex; align-items:center; gap:10px; }
+        .section-title i { color:var(--accent); }
+
+        .table-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:24px; }
+        table { width:100%; border-collapse:collapse; }
+        th,td { padding:12px; text-align:left; border-bottom:1px solid var(--border); font-size:0.9em; }
+        th { color:var(--text-dim); font-size:0.8em; text-transform:uppercase; }
+        .status-badge { padding:4px 10px; border-radius:12px; font-size:0.8em; font-weight:600; }
+        .status-badge.paid { background:rgba(52,211,153,0.15); color:var(--success); }
+        .status-badge.pending { background:rgba(251,191,36,0.15); color:var(--warning); }
+
+        .empty-state { text-align:center; padding:40px; color:var(--text-dim); }
+        .empty-state i { font-size:2em; margin-bottom:12px; opacity:0.3; }
+
+        .period-selector { display:flex; gap:4px; background:var(--bg-card); border-radius:10px; padding:4px; border:1px solid var(--border); margin-bottom:24px; }
+        .period-btn { background:transparent; border:none; color:var(--text-dim); padding:8px 16px; border-radius:8px; cursor:pointer; font-size:0.85em; font-weight:600; }
+        .period-btn.active { background:var(--accent); color:#fff; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="dashboard.html" class="logo">
+            <img src="/logo/logo_ufficiale.png" alt="logo">
+            <span>trovapiatto</span>
+        </a>
+        <a href="dashboard.html" style="color:var(--text-dim); text-decoration:none; font-size:0.9em;"><i class="fas fa-arrow-left"></i> Dashboard</a>
+    </div>
+
+    <div class="container">
+        <h1 style="font-size:1.8em; margin-bottom:4px;">Dashboard Agente</h1>
+        <p style="color:var(--text-dim); margin-bottom:24px;">Gestisci le tue referral e commissioni</p>
+
+        <div class="period-selector">
+            <button class="period-btn" data-days="7" onclick="setPeriod(7)">7g</button>
+            <button class="period-btn active" data-days="30" onclick="setPeriod(30)">30g</button>
+            <button class="period-btn" data-days="90" onclick="setPeriod(90)">90g</button>
+        </div>
+
+        <div id="agentInfo"></div>
+        <div class="stats-grid" id="statsGrid"></div>
+
+        <h2 class="section-title"><i class="fas fa-store"></i> Ristoranti Referral</h2>
+        <div class="table-card" id="referralsTable"></div>
+
+        <h2 class="section-title"><i class="fas fa-coins"></i> Cronologia Commissioni</h2>
+        <div class="table-card" id="commissionsTable"></div>
+    </div>
+
+    <script>
+        const API = '/app/admin/api-crud.php';
+        const token = localStorage.getItem('auth_token');
+        if (!token) window.location.href = 'login.html';
+
+        let currentPeriod = 30;
+        let agentId = null;
+
+        async function apiCall(action, params = {}) {
+            const qs = new URLSearchParams({ action, token, ...params });
+            const res = await fetch(`${API}?${qs}`);
+            return await res.json();
+        }
+
+        function setPeriod(days) {
+            currentPeriod = days;
+            document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.period-btn[data-days="${days}"]`).classList.add('active');
+            loadDashboard();
+        }
+
+        async function loadDashboard() {
+            // Get first agent (or current user's agent)
+            const agentsRes = await apiCall('get-agents');
+            if (!agentsRes.success || !agentsRes.data || agentsRes.data.length === 0) {
+                document.getElementById('agentInfo').innerHTML = '<div class="empty-state"><i class="fas fa-user-tie"></i><p>Nessun agente trovato. Contatta l\'amministratore.</p></div>';
+                return;
+            }
+
+            agentId = agentsRes.data[0].id;
+            const res = await apiCall('get-agent-dashboard', { agent_id: agentId, period: currentPeriod });
+            if (!res.success) return;
+
+            const d = res.data;
+            const agent = d.agent;
+
+            // Agent info
+            document.getElementById('agentInfo').innerHTML = `
+                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:24px; margin-bottom:24px; text-align:center;">
+                    <h2 style="margin-bottom:4px;">${agent.name}</h2>
+                    <p style="color:var(--text-dim); font-size:0.9em;">${agent.email || ''} ${agent.zone ? '| ' + agent.zone : ''}</p>
+                    <div class="tier-badge ${agent.tier}"><i class="fas fa-crown"></i> ${agent.tier.toUpperCase()}</div>
+                </div>
+            `;
+
+            // Stats
+            const nextTier = { bronze: 'silver', silver: 'gold', gold: 'platinum' }[agent.tier];
+            const threshold = d.tier_thresholds[nextTier] || 999;
+            const progress = Math.min((agent.total_referrals / threshold) * 100, 100);
+
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card">
+                    <div class="icon blue"><i class="fas fa-store"></i></div>
+                    <div class="value">${agent.total_referrals}</div>
+                    <div class="label">Ristoranti Referral</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon green"><i class="fas fa-coins"></i></div>
+                    <div class="value">€${parseFloat(agent.total_earnings || 0).toFixed(2)}</div>
+                    <div class="label">Guadagni Totali</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon orange"><i class="fas fa-chart-line"></i></div>
+                    <div class="value">€${parseFloat(d.period_earnings || 0).toFixed(2)}</div>
+                    <div class="label">Ultimi ${currentPeriod} giorni</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon gold"><i class="fas fa-percentage"></i></div>
+                    <div class="value">${agent.commission_rate}%</div>
+                    <div class="label">Tasso Commissione</div>
+                    ${nextTier ? `<div style="margin-top:8px;"><div class="progress-bar"><div class="fill" style="width:${progress}%; background:linear-gradient(90deg,var(--accent),var(--warning));"></div></div><p style="color:var(--text-dim); font-size:0.75em;">${agent.total_referrals}/${threshold} per ${nextTier}</p></div>` : '<p style="color:var(--success); font-size:0.75em; margin-top:8px;">TIER MASSIMO RAGGIUNTO</p>'}
+                </div>
+            `;
+
+            // Referrals table
+            const refEl = document.getElementById('referralsTable');
+            if (!d.referrals || d.referrals.length === 0) {
+                refEl.innerHTML = '<div class="empty-state"><i class="fas fa-store-slash"></i><p>Nessun referral ancora</p></div>';
+            } else {
+                refEl.innerHTML = `<table><thead><tr><th>Data</th><th>Ristorante</th><th>Città</th></tr></thead><tbody>` +
+                    d.referrals.map(r => `<tr><td>${new Date(r.referred_at).toLocaleDateString('it-IT')}</td><td>${r.restaurant_name}</td><td>${r.city || '-'}</td></tr>`).join('') +
+                    `</tbody></table>`;
+            }
+
+            // Load commissions
+            const commRes = await apiCall('get-agent-commissions', { agent_id: agentId });
+            const commEl = document.getElementById('commissionsTable');
+            if (!commRes.success || !commRes.data || commRes.data.length === 0) {
+                commEl.innerHTML = '<div class="empty-state"><i class="fas fa-receipt"></i><p>Nessuna commissione registrata</p></div>';
+            } else {
+                commEl.innerHTML = `<table><thead><tr><th>Data</th><th>Ristorante</th><th>Tipo</th><th>Importo</th><th>Stato</th></tr></thead><tbody>` +
+                    commRes.data.map(c => `<tr><td>${new Date(c.created_at).toLocaleDateString('it-IT')}</td><td>${c.restaurant_name || '-'}</td><td>${c.type}</td><td>€${parseFloat(c.amount).toFixed(2)}</td><td><span class="status-badge ${c.status}">${c.status}</span></td></tr>`).join('') +
+                    `</tbody></table>`;
+            }
+        }
+
+        loadDashboard();
+    </script>
+</body>
+</html>

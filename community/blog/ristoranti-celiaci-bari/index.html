@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ristoranti per Celiaci a Bari: Guida al Senza Glutine | trovapiatto</title>
+  <meta name="description" content="Scopri i migliori ristoranti per celiaci a Bari. Guida completa ai locali con menu senza glutine, cucine dedicate e opzioni sicure.">
+  <meta name="keywords" content="ristoranti celiaci Bari, senza glutine Bari, menu gluten-free Bari, celiachia Bari, ristoranti celiaci Bari">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/ristoranti-celiaci-bari/">
+  <meta property="og:title" content="Ristoranti per Celiaci a Bari: Guida al Senza Glutine">
+  <meta property="og:description" content="Guida completa ai ristoranti per celiaci di Bari. Menu senza glutine, cucine dedicate e opzioni sicure.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Celiachia">
+  <meta property="article:tag" content="Bari">
+  <meta property="article:tag" content="Senza Glutine">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ristoranti per Celiaci a Bari: Guida al Senza Glutine">
+  <meta name="twitter:description" content="Guida completa ai ristoranti per celiaci di Bari con menu senza glutine.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/ristoranti-celiaci-bari/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --bg-card-hover: #221833;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .article-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .article-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .article-nav .logo img { height: 32px; }
+    
+    .article-nav .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+    
+    .article-nav .back-link:hover { color: var(--primary); }
+    
+    .article-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 350px;
+      overflow: hidden;
+    }
+    
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%);
+    }
+    
+    .article-hero .hero-content {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .article-hero .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .article-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    
+    @media (min-width: 768px) {
+      .article-hero h1 { font-size: 2.8rem; }
+    }
+    
+    .article-hero .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-hero .meta i { color: var(--primary); }
+    
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+    
+    .article-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: var(--text-white);
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text-white);
+    }
+    
+    .article-content p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .article-content strong { color: var(--text-white); }
+    
+    .article-content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .article-content a:hover { color: var(--primary-light); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      transition: all 0.3s;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    
+    .restaurant-card .rc-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245,158,11,0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-food);
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-cuisine {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-dish {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .restaurant-card .rc-dish-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    
+    .restaurant-card .rc-dish-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    
+    .restaurant-card .rc-dish-price {
+      font-weight: 700;
+      color: var(--accent-food);
+      font-size: 1rem;
+    }
+    
+    .restaurant-card .rc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    
+    .map-section {
+      margin: 40px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #article-map {
+      width: 100%;
+      height: 350px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .cta-box .cta-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+    }
+    
+    .ad-container {
+      margin: 30px 0;
+      text-align: center;
+      min-height: 90px;
+    }
+    
+    .article-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .article-footer .share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .article-footer .share span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-footer .share a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    
+    .article-footer .share a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="article-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <a href="/community/blog/" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Magazine
+    </a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1400&h=700&fit=crop" alt="Cibo senza glutine">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-wheat-awn-circle-exclamation"></i> Senza Glutine</span>
+      <h1>Ristoranti per Celiaci a Bari: Guida al Senza Glutine</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 9 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 7 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+
+      <p>Avere la <strong>celiachia</strong> non significa rinunciare alla buona cucina pugliese. Anzi, Bari e una citta che ha saputo adattarsi alle esigenze alimentari di tutti, offrendo una rete sempre piu fitta di <strong>ristoranti con menu senza glutine</strong>, pizzerie con impasti dedicati e locali con cucine certificate. In questa guida scopriamo i <strong>migliori ristoranti per celiaci a Bari</strong>, dove puoi mangiare tranquillamente senza preoccupazioni.</p>
+
+      <p>La <strong>celiachia</strong> e un'intolleranza alimentare che colpisce circa l'1% della popolazione italiana. Mangiare fuori casa puo essere un problema, ma a Bari la situazione e in netto miglioramento. Sempre piu ristoranti investono in <strong>menu senza glutine</strong>, formano il personale e addirittura aprono <strong>cucine dedicate</strong> per evitare contaminazioni crociate.</p>
+
+      <h2>1. Senza Graffi — Il Riferimento per Celiaci a Bari</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Senza Graffi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Menu Degustazione Senza Glutine</div>
+          <div class="rc-dish-desc">Antipasto, primo, secondo, dolce — tutto senza glutine, con ingredienti freschi e di qualita</div>
+          <div class="rc-dish-price">&euro;28</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza Senza Glutine</div>
+          <div class="rc-dish-desc">Impasto dedicato, cottura in forno separato, con ingredienti selezionati</div>
+          <div class="rc-dish-price">&euro;12</div>
+        </div>
+        <a href="/menu/senza-graffi/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Senza Graffi</strong> e il primo ristorante interamente senza glutine di Bari. Nato dalla necessita del proprietario, celiaco, di creare un luogo dove tutti potessero mangiare tranquillamente, oggi e diventato un punto di riferimento per la comunita celiaca pugliese. Il locale ha una <strong>cucina dedicata</strong>, strumenti separati e una formazione costante del personale. Il menu e vasto: antipasti, primi, secondi, pizze e dolci, tutti preparati senza glutine.</p>
+
+      <p><strong>Cosa ordinare:</strong> Il menu degustazione e l'esperienza migliore, ma anche la pizza e un'ottima scelta per un pranzo veloce.</p>
+
+      <h2>2. La Piazzetta — Tradizione e Senza Glutine</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">La Piazzetta</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette Senza Glutine con Cime di Rapa</div>
+          <div class="rc-dish-desc">Orecchiette fresche senza glutine con cime di rapa, acciughe e pangrattato</div>
+          <div class="rc-dish-price">&euro;11</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Risotto ai Funghi</div>
+          <div class="rc-dish-desc">Risotto cremoso con funghi porcini, senza glutine</div>
+          <div class="rc-dish-price">&euro;13</div>
+        </div>
+        <a href="/menu/la-piazzetta/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>La Piazzetta e un ristorante di famiglia nel cuore di Bari Vecchia che ha deciso di inserire nel menu una <strong>sezione senza glutine</strong> con piatti della tradizione barese. Le orecchiette sono preparate con farine dedicate e cotte in acqua separata, per garantire l'assenza di contaminazioni. Il locale e piccolo e accogliente, perfetto per un pranzo tranquillo.</p>
+
+      <p><strong>Cosa ordinare:</strong> Le orecchiette senza glutine con cime di rapa sono un must. Anche il risotto ai funghi e un'ottima scelta.</p>
+
+      <h2>3. Pizzeria Senza Glutine — La Pizza per Tutti</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Pizzeria Senza Glutine</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Sparano, Bari</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Margherita Senza Glutine</div>
+          <div class="rc-dish-desc">Impasto dedicato, mozzarella di bufala, pomodoro fresco e basilico</div>
+          <div class="rc-dish-price">&euro;9</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Calzone Ripieno Senza Glutine</div>
+          <div class="rc-dish-desc">Calzone ripieno di prosciutto, mozzarella e funghi</div>
+          <div class="rc-dish-price">&euro;11</div>
+        </div>
+        <a href="/menu/pizzeria-senza-glutine/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Questa pizzeria ha una <strong>doppia cucina</strong>: una per le pizze tradizionali e una dedicata esclusivamente alle pizze senza glutine. L'impasto e preparato con farine di riso e mais, e la cottura avviene in forni separati. La margherita e semplice ma perfetta, con una base croccante e leggera che non ha nulla da invidiare alla versione tradizionale.</p>
+
+      <p><strong>Cosa ordinare:</strong> La margherita classica per testare la qualita dell'impasto, poi la versione con bufala per un tocco di ricercatezza.</p>
+
+      <h2>4. Trattoria da Nonna Rosa — Cucina di Famiglia Senza Glutine</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Trattoria da Nonna Rosa</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Cucina Tradizionale</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.5</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Parmigiana di Melanzane Senza Glutine</div>
+          <div class="rc-dish-desc">Melanzane, pomodoro, mozzarella e basilico, senza glutine</div>
+          <div class="rc-dish-price">&euro;10</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Ragù di Cavallo</div>
+          <div class="rc-dish-desc">Ragù tradizionale barese con carne di cavallo, senza glutine</div>
+          <div class="rc-dish-price">&euro;12</div>
+        </div>
+        <a href="/menu/trattoria-da-nonna-rosa/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Nonna Rosa ha 80 anni e cucina da tutta la vita. Quando sua nipote ha scoperto di essere celiaca, ha deciso di adattare le sue ricette tradizionali per farle mangiare tranquillamente. Oggi la trattoria offre una <strong>sezione senza glutine</strong> con piatti come la parmigiana di melanzane e il ragù di cavallo, preparati con la stessa cura di sempre.</p>
+
+      <p><strong>Cosa ordinare:</strong> La parmigiana e un capolavoro. Il ragù di cavallo e un piatto tipico barese che vale la pena assaggiare.</p>
+
+      <h2>5. Eataly Bari — Supermercato e Ristorante</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Eataly Bari</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Supermercato e Ristorante</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.4</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pasta Fresca Senza Glutine</div>
+          <div class="rc-dish-desc">Pasta fresca senza glutine con ragù di carne</div>
+          <div class="rc-dish-price">&euro;14</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Insalata di Mare</div>
+          <div class="rc-dish-desc">Insalata di mare senza glutine, con pesce fresco del giorno</div>
+          <div class="rc-dish-price">&euro;16</div>
+        </div>
+        <a href="/menu/eataly-bari/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Eataly</strong> non e solo un supermercato: ha anche un ristorante con una sezione dedicata al <strong>senza glutine</strong>. Il vantaggio e che puoi acquistare anche prodotti senza glutine da portare a casa. Il ristorante offre piatti semplici ma ben preparati, con ingredienti di qualita.</p>
+
+      <p><strong>Cosa ordinare:</strong> La pasta fresca senza glutine e un'ottima scelta. L'insalata di mare e perfetta per l'estate.</p>
+
+      <h2>6. Bio C — Ristorante Bio e Senza Glutine</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Bio C</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Cucina Bio</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Bowl Vegano Senza Glutine</div>
+          <div class="rc-dish-desc">Quinoa, avocado, falafel, verdure grigliate e tahina</div>
+          <div class="rc-dish-price">&euro;13</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Piatto del Giorno</div>
+          <div class="rc-dish-desc">Piatto del giorno senza glutine, variabile in base agli ingredienti freschi</div>
+          <div class="rc-dish-price">&euro;15</div>
+        </div>
+        <a href="/menu/bio-c/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Bio C e un ristorante biologico che propone quasi tutti i piatti anche in versione <strong>senza glutine</strong>. Il menu e basato su ingredienti a km zero, e il personale e formato per gestire le allergie alimentari. Il bowl vegano e una scelta gustosa e salutare, perfetto per chi segue una dieta senza glutine e vegetariana.</p>
+
+      <p><strong>Cosa ordinare:</strong> Il bowl vegano e un piatto completo e nutriente. Il piatto del giorno e sempre una sorpresa piacevole.</p>
+
+      <h2>7. Mercato di Via Ferrante Ferranti — Ingredienti Freschi</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Mercato di Via Ferrante Ferranti</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Mercato Rionale</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.3</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Degustazione di Prodotti Locali</div>
+          <div class="rc-dish-desc">Assortimento di prodotti locali senza glutine: frutta secca, formaggi, pane senza glutine</div>
+          <div class="rc-dish-price">&euro;8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Panino Senza Glutine</div>
+          <div class="rc-dish-desc">Panino senza glutine con prosciutto crudo e mozzarella</div>
+          <div class="rc-dish-price">&euro;7</div>
+        </div>
+        <a href="/menu/mercato-ferrante-ferranti/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il mercato di Via Ferrante Ferranti non e un ristorante vero e proprio, ma ha diversi banchi che offrono prodotti <strong>senza glutine</strong>. Pane, pizza, pasta fresca e dolci: tutto preparato con farine dedicate. E un ottimo posto per fare la spesa e per pranzare velocemente con prodotti freschi e genuini.</p>
+
+      <p><strong>Cosa ordinare:</strong> Il panino senza glutine e una scelta veloce e buona. La degustazione di prodotti locali e perfetta per scoprire i sapori pugliesi.</p>
+
+      <h2>8. Gelateria Artigianale — Dolci Senza Glutine</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Gelateria Artigianale da Marco</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Gelateria</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Gelato Senza Glutine</div>
+          <div class="rc-dish-desc">Gelato artigianiale senza glutine, con gusti variabili</div>
+          <div class="rc-dish-price">&euro;4</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Crema di Cannella</div>
+          <div class="rc-dish-desc">Crema di cannella senza glutine, ricetta tradizionale</div>
+          <div class="rc-dish-price">&euro;4.5</div>
+        </div>
+        <a href="/menu/gelateria-da-marco/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>La gelateria di Marco offre una vasta gamma di <strong>gelati senza glutine</strong>. La crema di cannella e un piatto tipico barese, preparato senza glutine con una ricetta tramandata da generazioni. Il gelato e un dolce naturale senza glutine, ma attenzione ai gusti con biscotti o wafers.</p>
+
+      <p><strong>Cosa ordinare:</strong> La crema di cannella e un must a Bari. I gelati al cioccolato puro sono sempre sicuri.</p>
+
+      <!-- AdSense In-Article -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <!-- Mappa Interattiva -->
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Dove Trovarli sulla Mappa</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Consigli per Mangiare Senza Glutine a Bari</h2>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-certificate"></i> <span><strong>Chiedi sempre:</strong> Anche se un ristorante dichiara di avere opzioni senza glutine, chiedi sempre come vengono preparate per evitare contaminazioni crociate.</span></li>
+          <li><i class="fa-solid fa-phone"></i> <span><strong>Prenota per telefono:</strong> Se hai esigenze particolari, chiama prima per segnalare la celiachia e verificare che il locale possa soddisfarti.</span></li>
+          <li><i class="fa-solid fa-mobile-screen"></i> <span><strong>Usa l'app:</strong> L'app "Senza Glutine" di AIC ti mostra i ristoranti certificati nella tua zona.</span></li>
+          <li><i class="fa-solid fa-store"></i> <span><strong>Supermercati:</strong> I supermercati grossi (Conad, Coop, Carrefour) hanno sezioni dedicate senza glutine per la spesa.</span></li>
+          <li><i class="fa-solid fa-bread-slice"></i> <span><strong>Panifici dedicati:</strong> A Bari ci sono panifici che producono solo senza glutine: cerca "panificio senza glutine Bari".</span></li>
+          <li><i class="fa-solid fa-heart"></i> <span><strong>Non rinunciare alla tradizione:</strong> Molti piatti pugliesi possono essere preparati senza glutine, come le orecchiette con farine dedicate.</span></li>
+        </ul>
+      </div>
+
+      <h2>Perche Bari e una Citta Amica dei Celiaci</h2>
+
+      <p>Bari ha fatto passi da gigante nell'ultimo decennio per diventare una citta <strong>friendly per i celiaci</strong>. L'AIC (Associazione Italiana Celiachia) ha certificato decine di locali, e molti altri stanno seguendo l'esempio. La cucina pugliese, basata su pasta fresca, pane e pizza, puo sembrare un ostacolo per i celiaci, ma i ristoranti barese hanno dimostrato che e possibile adattare le ricette tradizionali senza rinunciare al sapore.</p>
+
+      <p>La <strong>rete di ristoranti senza glutine a Bari</strong> e in continua crescita, con nuovi locali che si aggiungono ogni anno. La cosa piu importante e che la qualita non scende: i piatti senza glutine sono preparati con cura, con ingredienti freschi e con la stessa passione della cucina tradizionale.</p>
+
+      <div class="cta-box">
+        <h3>Scopri Altri Ristoranti a Bari</h3>
+        <p>Cerca piatti, ristoranti e menu nella nostra mappa interattiva</p>
+        <a href="/piatti/?q=senza+glutine" class="cta-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Cerca Senza Glutine
+        </a>
+      </div>
+
+      <!-- AdSense Bottom -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/ristoranti-celiaci-bari/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/ristoranti-celiaci-bari/&text=Ristoranti+per+Celiaci+a+Bari:+Guida+al+Senza+Glutine"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+il+miglior+cibo+senza+glutine+a+Bari:+https://www.trovapiatto.it/community/blog/ristoranti-celiaci-bari/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'Senza Graffi', lat: 41.1291, lng: 16.8702, price: '€28', slug: 'senza-graffi', rating: '4.9' },
+      { name: 'La Piazzetta', lat: 41.1285, lng: 16.8705, price: '€11', slug: 'la-piazzetta', rating: '4.6' },
+      { name: 'Pizzeria Senza Glutine', lat: 41.1185, lng: 16.8716, price: '€9', slug: 'pizzeria-senza-glutine', rating: '4.7' },
+      { name: 'Trattoria da Nonna Rosa', lat: 41.1245, lng: 16.8690, price: '€10', slug: 'trattoria-da-nonna-rosa', rating: '4.5' },
+      { name: 'Eataly Bari', lat: 41.124061, lng: 16.862950, price: '€14', slug: 'eataly-bari', rating: '4.4' },
+      { name: 'Bio C', lat: 41.1236, lng: 16.8686, price: '€13', slug: 'bio-c', rating: '4.8' },
+      { name: 'Mercato Via Ferrante', lat: 41.1260, lng: 16.8710, price: '€8', slug: 'mercato-ferrante-ferranti', rating: '4.3' },
+      { name: 'Gelateria da Marco', lat: 41.1250, lng: 16.8720, price: '€4', slug: 'gelateria-da-marco', rating: '4.7' }
+    ];
+
+    const map = L.map('article-map').setView([41.1245, 16.8695], 15);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">⭐ ${r.rating}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Ristoranti per Celiaci a Bari: Guida al Senza Glutine",
+    "description": "Scopri i migliori ristoranti per celiaci a Bari. Guida completa ai locali con menu senza glutine, cucine dedicate e opzioni sicure.",
+    "image": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-07-09T10:00:00+02:00",
+    "dateModified": "2026-07-09T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/ristoranti-celiaci-bari/" },
+    "articleSection": "Food Guide",
+    "keywords": "ristoranti celiaci Bari, senza glutine Bari, menu gluten-free Bari, celiachia Bari, cibo senza glutine"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Magazine", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Ristoranti Celiaci Bari", "item": "https://www.trovapiatto.it/community/blog/ristoranti-celiaci-bari/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quali ristoranti hanno menu senza glutine a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Bari ci sono diversi ristoranti con menu senza glutine, tra cui Senza Graffi, La Piazzetta, Pizzeria Senza Glutine, Trattoria da Nonna Rosa e Bio C. Consulta la nostra guida completa per tutti i dettagli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Si può mangiare gluten-free a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Assolutamente si. Bari ha una rete in crescita di ristoranti, pizzerie e locali con opzioni senza glutine. Molti hanno cucine dedicate e personale formato per evitare contaminazioni crociate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ci sono pizzerie senza glutine a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si, a Bari ci sono diverse pizzerie senza glutine, come la Pizzeria Senza Glutine di Via Sparano e Senza Graffi. Hanno impasti dedicati e forni separati per garantire l'assenza di contaminazioni."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Allow: /app/
+Allow: /app/index.html
+Allow: /logo/
+Allow: /menu/
+Allow: /menu/*/
+Disallow: /admin/
+Disallow: /app/admin/
+Disallow: /test-insert.php
+Disallow: /regen-all-menus.php
+Disallow: /*.json$
+Disallow: /*.sql$
+Disallow: /*.bak$
+Disallow: /*.log$
+
+# Sitemap
+Sitemap: https://www.trovapiatto.it/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1

@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+    <!-- ============================================ -->
+    <!-- HOMEPAGE E PAGINE PRINCIPALI                 -->
+    <!-- ============================================ -->
+    
+    <url>
+        <loc>https://www.trovapiatto.it/</loc>
+        <lastmod>2026-09-10T12:00:00+02:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.trovapiatto.it/?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/"/>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/aggiungi-menu.html</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/aggiungi-menu.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/aggiungi-menu.html"/>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/aggiungi-ristorante.html</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/aggiungi-ristorante.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/aggiungi-ristorante.html"/>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/piatti/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/piatti/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/piatti/"/>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/app/</loc>
+        <lastmod>2026-09-10T12:00:00+02:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/track-order.html</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- ============================================ -->
+    <!-- TUTTI I 41 RISTORANTI - PAGINE MENU          -->
+    <!-- ============================================ -->
+
+    <!-- Ai 2 Ghiottoni - Pesce, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/ai-2-ghiottoni/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/ai-2-ghiottoni/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/ai-2-ghiottoni/"/>
+    </url>
+
+    <!-- Al Pescatore - Pesce, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/al-pescatore/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/al-pescatore/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/al-pescatore/"/>
+    </url>
+
+    <!-- Antica Pizzeria Guglielmi - Pizzeria, Mola di Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/antica-pizzeria-guglielmi/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/antica-pizzeria-guglielmi/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/antica-pizzeria-guglielmi/"/>
+    </url>
+
+    <!-- Biancofiore - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/biancofiore/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/biancofiore/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/biancofiore/"/>
+    </url>
+
+    <!-- Casa Malgarini - Ristorante, Roma -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/casa-malgarini/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/casa-malgarini/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/casa-malgarini/"/>
+    </url>
+
+    <!-- Casa Sgarra - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/casa-sgarra/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/casa-sgarra/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/casa-sgarra/"/>
+    </url>
+
+    <!-- Da Gianni - Ristorante, Pizzeria, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/da-gianni/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/da-gianni/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/da-gianni/"/>
+    </url>
+
+    <!-- Da Vito - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/davito/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/davito/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/davito/"/>
+    </url>
+
+    <!-- El Churrasco - Bisteccheria, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/elchurrasco/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/elchurrasco/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/elchurrasco/"/>
+    </url>
+
+    <!-- Enzo & Ciro 2 - Trattoria, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/enzociro/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/enzociro/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/enzociro/"/>
+    </url>
+
+    <!-- Friccico ner Core - Ristorante, Giovinazzo -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/friccico-ner-core/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/friccico-ner-core/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/friccico-ner-core/"/>
+    </url>
+
+    <!-- Friggitoria La Maddalena - Friggitoria, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/friggitoria-la-maddalena/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/friggitoria-la-maddalena/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/friggitoria-la-maddalena/"/>
+    </url>
+
+    <!-- Gallo Matto - Chicken Bar, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/gallo-matto/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/gallo-matto/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/gallo-matto/"/>
+    </url>
+
+    <!-- Ristorante Pizzeria Gaeribaldi | Grill House - Steakhouse, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/gaeribaldi-grill-house/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/gaeribaldi-grill-house/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/gaeribaldi-grill-house/"/>
+    </url>
+
+    <!-- Hagakure - Fusion e Sushi, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/hagakure-fusion-sushi/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/hagakure-fusion-sushi/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/hagakure-fusion-sushi/"/>
+    </url>
+
+    <!-- Hagakure - Fusion e Sushi Monopoli, Monopoli -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/hagakure-monopoli/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/hagakure-monopoli/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/hagakure-monopoli/"/>
+    </url>
+
+    <!-- Il Sale - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/il-sale/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/il-sale/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/il-sale/"/>
+    </url>
+
+    <!-- L'Incanto - Ristorante, Palese Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/l-incanto/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/l-incanto/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/l-incanto/"/>
+    </url>
+
+    <!-- La Battigia - Pesce, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/la-battigia/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/la-battigia/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/la-battigia/"/>
+    </url>
+
+    <!-- La Beccheria del Borgo Antico - Braceria, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/beccheria-del-borgo-antico/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/beccheria-del-borgo-antico/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/beccheria-del-borgo-antico/"/>
+    </url>
+
+    <!-- La Bella Bari - Ristorante, Pizzeria, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/la-bella-bari/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/la-bella-bari/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/la-bella-bari/"/>
+    </url>
+
+    <!-- La Locanda dell'Elfo - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/la-locanda-dell-elfo/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/la-locanda-dell-elfo/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/la-locanda-dell-elfo/"/>
+    </url>
+
+    <!-- La Rotonda - Trattoria, Pizzeria, Mola di Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/la-rotonda/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/la-rotonda/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/la-rotonda/"/>
+    </url>
+
+    <!-- La Tana del Polpo - Trattoria, Pesce, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/la-tana-del-polpo/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/la-tana-del-polpo/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/la-tana-del-polpo/"/>
+    </url>
+
+    <!-- Le 2 Aquile - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/le2aquile/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/le2aquile/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/le2aquile/"/>
+    </url>
+
+    <!-- Magda - Panificio, Rosticceria, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/madga-bari/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/madga-bari/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/madga-bari/"/>
+    </url>
+
+    <!-- Osteria delle Travi - Tradizionale Pugliese, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/osteria-delle-travi/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/osteria-delle-travi/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/osteria-delle-travi/"/>
+    </url>
+
+    <!-- Panificio Santa Rita - Panificio, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/panificio-santa-rita/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/panificio-santa-rita/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/panificio-santa-rita/"/>
+    </url>
+
+    <!-- Piccinni28 - Pizzeria, Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/piccinni28/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/piccinni28/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/piccinni28/"/>
+    </url>
+
+    <!-- Primo Restaurant - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/primo-restaurant/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/primo-restaurant/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/primo-restaurant/"/>
+    </url>
+
+    <!-- Quintessenza - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/quintessenza/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/quintessenza/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/quintessenza/"/>
+    </url>
+
+    <!-- Radicale Restaurant - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/radicale/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/radicale/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/radicale/"/>
+    </url>
+
+    <!-- RistoPizza Al Cantuccio 2 da Ivan - Pizzeria, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/ristopizza-al-cantuccio-2-da-ivan/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/ristopizza-al-cantuccio-2-da-ivan/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/ristopizza-al-cantuccio-2-da-ivan/"/>
+    </url>
+
+    <!-- Ristorante da Nicola - Ristorante, Torre a Mare -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/ristorante-da-nicola/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/ristorante-da-nicola/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/ristorante-da-nicola/"/>
+    </url>
+
+    <!-- Ristorante del Centro - Pesce, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/ristorante-del-centro/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/ristorante-del-centro/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/ristorante-del-centro/"/>
+    </url>
+
+    <!-- Riva Club - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/riva-club/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/riva-club/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/riva-club/"/>
+    </url>
+
+    <!-- Sapori Solari - Bisteccheria, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/sapori-solari/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/sapori-solari/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/sapori-solari/"/>
+    </url>
+
+    <!-- Soleluna - Paninoteca, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/soleluna/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/soleluna/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/soleluna/"/>
+    </url>
+
+    <!-- Tabula Rasa - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/tabula-rasa/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/tabula-rasa/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/tabula-rasa/"/>
+    </url>
+
+    <!-- Taverna Verde - Ristorante, Bari -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/taverna-verde/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/taverna-verde/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/taverna-verde/"/>
+    </url>
+
+    <!-- Villa Crespi ⭐⭐⭐ - Ristorante Michelin 3 Stelle, Orta San Giulio -->
+    <url>
+        <loc>https://www.trovapiatto.it/menu/villa-crespi/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/menu/villa-crespi/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/menu/villa-crespi/"/>
+    </url>
+
+    <!-- ============================================ -->
+    <!-- PAGINE CONTENUTO SEO                        -->
+    <!-- ============================================ -->
+
+    <url>
+        <loc>https://www.trovapiatto.it/bari/migliori-ristoranti-bari/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.trovapiatto.it/bari/migliori-ristoranti-bari/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.trovapiatto.it/bari/migliori-ristoranti-bari/"/>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/bari/</loc>
+        <lastmod>2026-08-29T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/giovinazzo/</loc>
+        <lastmod>2026-08-29T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/mola-di-bari/</loc>
+        <lastmod>2026-08-29T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/torre-a-mare/</loc>
+        <lastmod>2026-08-29T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/palese/</loc>
+        <lastmod>2026-08-29T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/orta-san-giulio/</loc>
+        <lastmod>2026-08-29T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/roma/</loc>
+        <lastmod>2026-08-29T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/ricette/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ============================================ -->
+    <!-- COMMUNITY / BLOG                            -->
+    <!-- ============================================ -->
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/orecchiette-bari/</loc>
+        <lastmod>2026-07-02T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/panzerotti-luini-bari/</loc>
+        <lastmod>2026-08-10T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/cucina-barese-piatti-imperdibili/</loc>
+        <lastmod>2026-08-08T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/ristoranti-vista-mare-bari/</loc>
+        <lastmod>2026-08-05T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/dolci-pugliesi/</loc>
+        <lastmod>2026-08-03T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/aperitivo-bari/</loc>
+        <lastmod>2026-08-01T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/ristoranti-romani-napolitani-bari/</loc>
+        <lastmod>2026-07-28T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/giovinazzo-gioiello-nascosto/</loc>
+        <lastmod>2026-07-25T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/mercati-bari/</loc>
+        <lastmod>2026-07-22T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/cucina-mare-pugliese/</loc>
+        <lastmod>2026-07-18T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/mangiare-bari-con-bambini/</loc>
+        <lastmod>2026-07-15T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/vini-pugliesi/</loc>
+        <lastmod>2026-07-10T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/street-food-bari/</loc>
+        <lastmod>2026-07-08T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/ristoranti-romantici-bari/</loc>
+        <lastmod>2026-07-05T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/ristoranti-vegetariani-bari/</loc>
+        <lastmod>2026-07-03T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/burrata-puglia/</loc>
+        <lastmod>2026-08-15T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/focaccia-barese/</loc>
+        <lastmod>2026-08-10T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/orecchiette-cime-rapa/</loc>
+        <lastmod>2026-08-05T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/pesce-bari/</loc>
+        <lastmod>2026-07-28T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/tiella-barese/</loc>
+        <lastmod>2026-08-20T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/mercato-bari/</loc>
+        <lastmod>2026-08-01T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/cucina-pugliese-salute/</loc>
+        <lastmod>2026-07-25T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/polpo-griglia/</loc>
+        <lastmod>2026-07-15T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/dolci-puglia/</loc>
+        <lastmod>2026-07-10T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://www.trovapiatto.it/community/blog/cibo-bambini-bari/</loc>
+        <lastmod>2026-07-05T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ============================================ -->
+    <!-- PAGINE INFORMATIVE                          -->
+    <!-- ============================================ -->
+    <url>
+        <loc>https://www.trovapiatto.it/privacy-policy.html</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/terms-of-service.html</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/contact.html</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://www.trovapiatto.it/about.html</loc>
+        <lastmod>2026-08-04T12:00:00+02:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+</urlset>

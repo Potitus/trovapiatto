@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giovinazzo: Il Gioiello Nascosto della Puglia dove Mangiare da Sognare | trovapiatto</title>
+  <meta name="description" content="Scopri Giovinazzo, il gioiello nascosto della Puglia: storia, cosa vedere e dove mangiare nei migliori ristoranti e friggitorie del borgo marinaro vicino a Bari.">
+  <meta name="keywords" content="Giovinazzo, cosa mangiare Giovinazzo, ristoranti Giovinazzo, borgo Puglia, friggitoria Giovinazzo, turismo Puglia, mangiare Bari">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  <meta property="og:title" content="Giovinazzo: Il Gioiello Nascosto della Puglia dove Mangiare da Sognare">
+  <meta property="og:description" content="Scopri Giovinazzo, il gioiello nascosto della Puglia: storia, cosa vedere e dove mangiare nei migliori ristoranti e friggitorie del borgo marinaro.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&h=700&fit=crop">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/giovinazzo-gioiello-nascosto/">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Giovinazzo: Il Gioiello Nascosto della Puglia dove Mangiare da Sognare">
+  <meta name="twitter:description" content="Scopri Giovinazzo, il gioiello nascosto della Puglia: storia, cosa vedere e dove mangiare nei migliori ristoranti e friggitorie del borgo marinaro.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&h=700&fit=crop">
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/giovinazzo-gioiello-nascosto/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root { --bg-dark: #0f0a15; --bg-card: #1a1225; --bg-card-hover: #221833; --primary: #e73a3a; --primary-light: #ff6b6b; --accent-food: #f59e0b; --text-white: #ffffff; --text-light: #e0e0e0; --text-muted: #9ca3af; --border: rgba(255,255,255,0.08); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg-dark); color: var(--text-white); min-height: 100vh; line-height: 1.7; }
+    .article-nav { position: sticky; top: 0; z-index: 100; background: rgba(15,10,21,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .article-nav .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-white); }
+    .article-nav .logo img { height: 32px; }
+    .article-nav .back-link { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
+    .article-nav .back-link:hover { color: var(--primary); }
+    .article-hero { position: relative; height: 50vh; min-height: 350px; overflow: hidden; }
+    .article-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .article-hero .overlay { position: absolute; inset: 0; background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%); }
+    .article-hero .hero-content { position: absolute; bottom: 30px; left: 0; right: 0; padding: 0 20px; max-width: 800px; margin: 0 auto; }
+    .article-hero .tag { display: inline-block; background: var(--primary); color: white; padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 12px; }
+    .article-hero h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+    @media (min-width: 768px) { .article-hero h1 { font-size: 2.8rem; } }
+    .article-hero .meta { display: flex; align-items: center; gap: 16px; font-size: 0.85rem; color: var(--text-muted); }
+    .article-hero .meta i { color: var(--primary); }
+    .article-container { max-width: 800px; margin: 0 auto; padding: 30px 20px 60px; }
+    .article-content h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text-white); padding-left: 14px; border-left: 3px solid var(--primary); }
+    .article-content h3 { font-size: 1.2rem; font-weight: 600; margin: 24px 0 10px; color: var(--text-white); }
+    .article-content p { font-size: 1rem; color: var(--text-light); margin-bottom: 16px; line-height: 1.8; }
+    .article-content strong { color: var(--text-white); }
+    .article-content a { color: var(--primary); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+    .article-content a:hover { color: var(--primary-light); }
+    .article-content ul { margin: 12px 0 20px 20px; }
+    .article-content li { margin-bottom: 8px; color: var(--text-light); }
+    .restaurant-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin: 24px 0; transition: all 0.3s; }
+    .restaurant-card:hover { border-color: var(--primary); box-shadow: 0 8px 30px rgba(231,58,58,0.1); }
+    .restaurant-card .rc-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+    .restaurant-card .rc-name { font-size: 1.15rem; font-weight: 700; color: var(--text-white); }
+    .restaurant-card .rc-rating { display: flex; align-items: center; gap: 4px; background: rgba(245,158,11,0.15); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: var(--accent-food); white-space: nowrap; }
+    .restaurant-card .rc-cuisine { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; }
+    .restaurant-card .rc-dish { background: rgba(255,255,255,0.04); border-radius: 12px; padding: 14px; margin-bottom: 10px; }
+    .restaurant-card .rc-dish-name { font-weight: 600; font-size: 0.95rem; color: var(--text-white); margin-bottom: 4px; }
+    .restaurant-card .rc-dish-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+    .restaurant-card .rc-dish-price { font-weight: 700; color: var(--accent-food); font-size: 1rem; }
+    .restaurant-card .rc-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; color: var(--primary); font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: gap 0.3s; }
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    .map-section { margin: 40px 0; }
+    .map-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; padding-left: 14px; border-left: 3px solid var(--primary); }
+    #article-map { width: 100%; height: 350px; border-radius: 16px; border: 1px solid var(--border); }
+    .tips-box { background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05)); border: 1px solid rgba(231,58,58,0.2); border-radius: 16px; padding: 24px; margin: 30px 0; }
+    .tips-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; color: var(--primary-light); }
+    .tips-box ul { list-style: none; padding: 0; }
+    .tips-box li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 0.9rem; color: var(--text-light); }
+    .tips-box li i { color: var(--accent-food); margin-top: 4px; flex-shrink: 0; }
+    .cta-box { text-align: center; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 40px 24px; margin: 40px 0; }
+    .cta-box h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+    .cta-box p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .cta-box .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: white; padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; }
+    .cta-box .cta-btn:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(231,58,58,0.3); }
+    .ad-container { margin: 30px 0; text-align: center; min-height: 90px; }
+    .faq-section { margin: 40px 0; }
+    .faq-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; padding-left: 14px; border-left: 3px solid var(--primary); }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+    .faq-item h4 { font-size: 1rem; font-weight: 600; color: var(--text-white); margin-bottom: 8px; }
+    .faq-item p { font-size: 0.9rem; color: var(--text-light); margin-bottom: 0; }
+    .gyg-widget { margin: 30px 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; }
+    .gyg-widget h3 { margin-bottom: 12px; font-size: 1.1rem; }
+    .article-footer { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .article-footer .share { display: flex; align-items: center; gap: 10px; }
+    .article-footer .share span { font-size: 0.85rem; color: var(--text-muted); }
+    .article-footer .share a { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.06); color: var(--text-light); text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
+    .article-footer .share a:hover { background: var(--primary); color: white; }
+    .site-footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.8rem; }
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+  <nav class="article-nav">
+    <a href="/" class="logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+    <a href="/community/blog/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Magazine</a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&h=700&fit=crop" alt="Giovinazzo borgo marinaro Puglia">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-fort-awesome"></i> Borghi</span>
+      <h1>Giovinazzo: Il Gioiello Nascosto della Puglia dove Mangiare da Sognare</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 25 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 6 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Giovinazzo, Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+      <p>A pochi chilometri da Bari, lungo la costa adriatica della Puglia, si nasconde un borgo che sembra uscito da una cartolina: <strong>Giovinazzo</strong>. Con le sue stradine bianche, le chiese romaniche e il porto turistico che si affaccia su un mare cristallino, questa cittadina è uno dei tesori meglio custoditi del sud Italia. E per chi ama il cibo, Giovinazzo è una vera e propria rivelazione.</p>
+
+      <p>In questa guida ti portiamo alla scoperta di questo <strong>gioiello nascosto</strong>, raccontandoti la sua storia, cosa vedere e soprattutto <strong>dove mangiare</strong> per vivere un'esperienza culinaria autentica e indimenticabile.</p>
+
+      <h2>La Storia di Giovinazzo: un Borgo Millenario</h2>
+
+      <p>Giovinazzo vanta una storia che risale al periodo messapico, ma è stata soprattutto la dominazione bizantina a plasmare l'aspetto del borgo come lo conosciamo oggi. Il nome stesso deriva dal latino "Juvanum", che probabilmente faceva riferimento alla giovinezza o alla vitalità del luogo. Nel corso dei secoli, il borgo è stato un importante scalo commerciale e portuale, lasciando eredità architettoniche e culturali che ancora oggi affascinano i visitatori.</p>
+
+      <p>Il <strong>centro storico</strong> è un labirinto di vicoli, piazzette e monumenti che raccontano secoli di storia. La Cattedrale di Santa Maria Assunta, risalente all'XI secolo, è un capolavoro di architettura romanica pugliese, con il suo rosone scolpito e l'interno che custodice opere d'arte preziose. Il Castello Ducale, trasformato nel corso dei secoli, domina il borgo con le sue mura maestose.</p>
+
+      <div class="ad-container">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>Cosa Vedere a Giovinazzo</h2>
+
+      <p>Oltre alla bellezza architettonica, Giovinazzo offre panorami mozzafiato e un'atmosfera che invita alla calma e alla contemplazione. Il lungomare, con i suoi caffè e ristoranti, è il luogo perfetto per una passeggiata al tramonto. La Marina, con le barche dei pescatori, regala immagini di una Puglia autentica e lontana dal caos turistico.</p>
+
+      <p>Il mercato del pesce è un'esperienza imperdibile: al mattino presto, i pescatori scaricano le loro catture del giorno, e i locali si riforniscono di pesce freschissimo che poche ore dopo finirà nei piatti dei ristoranti del borgo.</p>
+
+      <h2>Dove Mangiare a Giovinazzo: i Locali Imperdibili</h2>
+
+      <p>Nonostante le sue dimensioni ridotte, Giovinazzo ospita ristoranti e locali di qualità straordinaria. La tradizione culinaria del borgo è strettamente legata al mare e alla terra, con piatti semplici ma ricchi di sapore che raccontano la storia di un territorio.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <span class="rc-name">Friggitoria La Maddalena</span>
+          <span class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+        </div>
+        <div class="rc-cuisine"><i class="fa-solid fa-utensils"></i> Friggitoria &bull; Corso Vittorio Emanuele, Giovinazzo</div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Frittura di Paranza</div>
+          <div class="rc-dish-desc">Misto di piccoli pesci del Adriatico, farina di semola, olio EVO</div>
+          <div class="rc-dish-price">&euro;12.00</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Polpette di Baccalà</div>
+          <div class="rc-dish-desc">Baccalà franto, prezzemolo, aglio, pangrattato croccante</div>
+          <div class="rc-dish-price">&euro;8.00</div>
+        </div>
+        <a href="/menu/friggitoria-la-maddalena/" class="rc-link">Vedi menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>La <strong>Friggitoria La Maddalena</strong> è un'istituzione a Giovinazzo. Situata lungo Corso Vittorio Emanuele, nel cuore del centro storico, questa friggitoria è famosa per la sua frittura di paranza preparata con pesce pescato nelle acque del golfo di Manfredonia e dell'Adriatico meridionale. L'olio è sempre fresco, la pastella leggera e croccante, e il risultato è una frittura che non ti aspetteresti di trovare in un borgo così piccolo.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <span class="rc-name">Friccico ner Core</span>
+          <span class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+        </div>
+        <div class="rc-cuisine"><i class="fa-solid fa-utensils"></i> Trattoria &bull; Via Duomo, Giovinazzo</div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Orecchiette con Cime di Rapa</div>
+          <div class="rc-dish-desc">Orecchiette artigianali, cime di rapa fresche, acciughe, mollica tostata</div>
+          <div class="rc-dish-price">&euro;9.50</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Branzino al Forno</div>
+          <div class="rc-dish-desc">Branzino fresco del giorno, patate, pomodorini, olive, origano</div>
+          <div class="rc-dish-price">&euro;16.00</div>
+        </div>
+        <a href="/menu/friccico-ner-core/" class="rc-link">Vedi menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Friccico ner Core</strong> è il cuore pulsante della gastronomia giovinazzese. Il nome stesso, che in dialetto locale significa "nel cuore", racconta la filosofia del locale: cucina fatta con amore, ingredienti del territorio e ricette della tradizione. Le orecchiette con cime di rapa sono preparate seguendo la ricetta originale, con l'aggiunta di acciughe che dona un tocco di umami irresistibile.</p>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Consigli per Visitare Giovinazzo</h3>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Meglio visitare il borgo in primavera o autunno, quando il clima è mite e i turisti sono pochi</li>
+          <li><i class="fa-solid fa-check"></i> Prenota la cena al tramonto lungo il lungomare per un'esperienza indimenticabile</li>
+          <li><i class="fa-solid fa-check"></i> Non perdere la Cattedrale di Santa Maria Assunta e il suo rosone romanico</li>
+          <li><i class="fa-solid fa-check"></i> Porta scarpe comode: le stradine del centro storico sono in pietra irregolare</li>
+          <li><i class="fa-solid fa-check"></i> Prova il pesce fritto alla friggitoria: è il piatto tipico per eccellenza</li>
+        </ul>
+      </div>
+
+      <h2>La Cucina di Giovinazzo: Sapori del Mare e della Terra</h2>
+
+      <p>La tradizione culinaria di Giovinazzo è un connubio perfetto tra i sapori del mare e quelli della terra pugliese. Il pesce fresco dell'Adriatico si unisce a olio extravergine d'oliva di qualità, pomodori maturi dal sapore intenso, grano duro per pasta fresca e verdure di stagione che arricchiscono i piatti della tradizione.</p>
+
+      <p>I piatti tipici includono la <strong>frittura di paranza</strong>, le <strong>orecchiette con cime di rapa</strong>, il <strong>risotto ai frutti di mare</strong> e il <strong>pesce alla piastra</strong> con insalata di campo. Per chi ama i dolci, i <strong>taralli dolci</strong> con mandorle e le <strong>paste di mandorla</strong> sono una degustazione imperdibile.</p>
+
+      <div class="ad-container">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>Come Raggiungere Giovinazzo</h2>
+
+      <p>Giovinazzo è facilmente raggiungibile da Bari in auto, treno o autobus. In auto, basta prendere la SS16 direzione nord e in circa 20 minuti si arriva nel borgo. Il treno regionale collega Bari Centrale con Giovinazzo in appena 15 minuti, con frequenze regolari durante la giornata. È anche possibile raggiungere il borgo in autobus con le linee Ferrovie del Sud Est.</p>
+
+      <div class="cta-box">
+        <h3>Esplora Giovinazzo</h3>
+        <p>Scopri tutti i ristoranti e i locali di questo gioiello della Puglia</p>
+        <a href="/" class="cta-btn"><i class="fa-solid fa-map-location-dot"></i> Scopri di Più</a>
+      </div>
+
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Mappa di Giovinazzo</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <div class="gyg-widget">
+        <h3><i class="fa-solid fa-umbrella-beach"></i> Cose da Fare a Giovinazzo</h3>
+        <div data-gyg-href="https://www.getyourguide.com/s/?partner_id=MH3AZB7" data-gyg-widget-id="17" style="width:100%;display:inline-block;"></div>
+        <script src="https://widgets.getyourguide.com/iframe.js" defer async></script>
+      </div>
+
+      <div class="faq-section">
+        <h2><i class="fa-solid fa-circle-question"></i> Domande Frequenti</h2>
+        <div class="faq-item">
+          <h4>Cosa mangiare a Giovinazzo?</h4>
+          <p>A Giovinazzo imperdibili sono la frittura di paranza alla Friggitoria La Maddalena, le orecchiette con cime di rapa al Friccico ner Core, il pesce alla piastra e le paste di mandorla. Il pesce è la stella della cucina locale, preparato con ingredienti freschissimi dell'Adriatico.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Ci sono ristoranti a Giovinazzo?</h4>
+          <p>Sì, nonostante le dimensioni ridotte del borgo, Giovinazzo ospita diverse trattorie e ristoranti di qualità. I più apprezzati sono la Friggitoria La Maddalena e il Friccico ner Core, entrambi specializzati in cucina tradizionale pugliese e di pesce.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Quanto dista Giovinazzo da Bari?</h4>
+          <p>Giovinazzo dista circa 20 chilometri da Bari. In auto si raggiunge in 20-25 minuti percorrendo la SS16. Il treno regionale collega le due città in circa 15 minuti, con partenze frequenti dalla stazione di Bari Centrale.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-footer">
+      <div class="share">
+        <span>Condividi:</span>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/giovinazzo-gioiello-nascosto/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/giovinazzo-gioiello-nascosto/&text=Giovinazzo+Il+Gioiello+Nascosto+della+Puglia" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://wa.me/?text=Giovinazzo+Il+Gioiello+Nascosto+della+Puglia%20https://www.trovapiatto.it/community/blog/giovinazzo-gioiello-nascosto/" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://t.me/share/url?url=https://www.trovapiatto.it/community/blog/giovinazzo-gioiello-nascosto/&text=Giovinazzo+Il+Gioiello+Nascosto+della+Puglia" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i></a>
+        <a href="mailto:?subject=Giovinazzo+Il+Gioiello+Nascosto+della+Puglia&body=Leggi+questo+articolo:+https://www.trovapiatto.it/community/blog/giovinazzo-gioiello-nascosto/"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </article>
+
+  <footer class="site-footer">&copy; 2026 trovapiatto</footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('article-map').setView([41.1805, 16.6931], 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    var redIcon = L.divIcon({ className: 'custom-marker', html: '<div style="background:#e73a3a;width:14px;height:14px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3)"></div>', iconSize: [14, 14], iconAnchor: [7, 7] });
+    L.marker([41.1805, 16.6931], {icon: redIcon}).addTo(map).bindPopup('<b>Friggitoria La Maddalena</b><br>Corso Vittorio Emanuele, Giovinazzo');
+    L.marker([41.1810, 16.6925], {icon: redIcon}).addTo(map).bindPopup('<b>Friccico ner Core</b><br>Via Duomo, Giovinazzo');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Giovinazzo: Il Gioiello Nascosto della Puglia dove Mangiare da Sognare",
+    "description": "Scopri Giovinazzo, il gioiello nascosto della Puglia: storia, cosa vedere e dove mangiare nei migliori ristoranti e friggitorie del borgo marinaro.",
+    "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&h=700&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": { "@type": "Organization", "name": "trovapiatto", "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" } },
+    "datePublished": "2026-07-25",
+    "dateModified": "2026-07-25",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/giovinazzo-gioiello-nascosto/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Giovinazzo: Il Gioiello Nascosto della Puglia" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Cosa mangiare a Giovinazzo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A Giovinazzo imperdibili sono la frittura di paranza alla Friggitoria La Maddalena, le orecchiette con cime di rapa al Friccico ner Core, il pesce alla piastra e le paste di mandorla." }
+      },
+      {
+        "@type": "Question",
+        "name": "Ci sono ristoranti a Giovinazzo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sì, nonostante le dimensioni ridotte del borgo, Giovinazzo ospita diverse trattorie e ristoranti di qualità come la Friggitoria La Maddalena e il Friccico ner Core." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto dista Giovinazzo da Bari?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Giovinazzo dista circa 20 chilometri da Bari, raggiungibile in 20-25 minuti in auto o 15 minuti in treno regionale." }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>

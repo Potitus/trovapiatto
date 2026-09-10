@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programma Fedeltà — trovapiatto Community</title>
+<meta name="description" content="Guadagna punti, sblocca badge e salva in classifica lasciando recensioni sui piatti che ami.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#8b5cf6">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Programma Fedeltà — trovapiatto">
+<meta property="og:description" content="Guadagna punti e premi lasciando recensioni sui piatti che ami.">
+<meta property="og:image" content="https://www.trovapiatto.it/logo/logo_ufficiale.png">
+<meta property="og:url" content="https://www.trovapiatto.it/community/loyalty/">
+<meta property="og:site_name" content="trovapiatto">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Programma Fedeltà — trovapiatto">
+<meta name="twitter:description" content="Guadagna punti e premi lasciando recensioni.">
+<meta name="twitter:image" content="https://www.trovapiatto.it/logo/logo_ufficiale.png">
+<link rel="canonical" href="https://www.trovapiatto.it/community/loyalty/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0a15;--bg2:#1a0f25;--card:rgba(255,255,255,0.04);--card-border:rgba(255,255,255,0.06);
+  --text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;
+  --primary:#8b5cf6;--gold:#f59e0b;--silver:#94a3b8;--bronze:#cd7f32;--platinum:#e5e7eb;
+  --green:#10b981;--red:#ef4444;--blue:#3b82f6;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+a{color:var(--primary);text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:16px}
+
+.top-nav{position:sticky;top:0;z-index:100;background:rgba(15,10,21,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.top-nav .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.top-nav .logo img{height:32px}
+.top-nav .nav-links{display:flex;align-items:center;gap:16px}
+.top-nav .nav-links a{color:var(--text2);text-decoration:none;font-size:0.85rem;transition:color 0.3s}
+.top-nav .nav-links a:hover,.top-nav .nav-links a.active{color:var(--primary)}
+
+.breadcrumb{max-width:900px;margin:0 auto;padding:16px 20px 0;display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text2)}
+.breadcrumb a{color:var(--text2);text-decoration:none;transition:color 0.3s}
+.breadcrumb a:hover{color:var(--primary)}
+.breadcrumb .sep{color:rgba(255,255,255,0.2)}
+.breadcrumb .current{color:var(--text)}
+
+.hero{text-align:center;padding:70px 20px 50px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1546554137-f86b9593a222?w=1400&h=500&fit=crop') center/cover no-repeat;filter:blur(4px) brightness(0.45) saturate(1.2) scale(1.05);z-index:0}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,10,21,0.5) 0%,rgba(15,10,21,0.85) 100%);z-index:1}
+.hero>*{position:relative;z-index:2}
+.hero-icon{width:80px;height:80px;background:linear-gradient(135deg,var(--primary),#a78bfa);border-radius:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:2rem;color:white;box-shadow:0 8px 30px rgba(139,92,246,0.4)}
+.hero h1{font-size:1.8rem;font-weight:800;margin-bottom:8px}
+.hero p{color:var(--text2);font-size:0.9rem;max-width:500px;margin:0 auto}
+.hero .hero-stats{display:flex;align-items:center;justify-content:center;gap:24px;margin-top:20px;font-size:0.8rem;color:var(--text2)}
+.hero .hero-stats i{color:var(--gold)}
+
+.auth-gate{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:30px;text-align:center;margin-bottom:24px}
+.auth-gate h2{font-size:1.1rem;margin-bottom:6px}
+.auth-gate p{color:var(--text2);font-size:0.82rem;margin-bottom:20px}
+.auth-form{display:flex;gap:8px;max-width:440px;margin:0 auto}
+.auth-form input{flex:1;padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:white;font-family:'Inter',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.3s}
+.auth-form input::placeholder{color:var(--text3)}
+.auth-form input:focus{border-color:var(--primary)}
+.auth-form button{padding:12px 24px;background:var(--primary);color:white;border:none;border-radius:10px;font-family:'Inter',sans-serif;font-weight:600;font-size:0.85rem;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.auth-form button:hover{background:#7c3aed;transform:translateY(-1px)}
+
+.user-card{background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(167,139,250,0.08));border:1px solid rgba(139,92,246,0.2);border-radius:16px;padding:24px;margin-bottom:24px;display:none}
+.user-card.show{display:block}
+.uc-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.uc-avatar{width:52px;height:52px;background:linear-gradient(135deg,var(--primary),#a78bfa);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:white;font-weight:700;flex-shrink:0}
+.uc-info h2{font-size:1rem;font-weight:700}
+.uc-info .uc-user{color:var(--text2);font-size:0.78rem}
+.uc-level{margin-left:auto;text-align:center}
+.uc-level .level-num{font-size:1.4rem;font-weight:800;color:var(--gold)}
+.uc-level .level-label{font-size:0.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px}
+.uc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.uc-stat{text-align:center;padding:10px 6px;background:rgba(255,255,255,0.04);border-radius:10px}
+.uc-stat .num{font-size:1.1rem;font-weight:700;color:var(--primary)}
+.uc-stat .lbl{font-size:0.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+.uc-progress{margin-top:12px}
+.uc-progress .prog-label{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text2);margin-bottom:4px}
+.prog-bar{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--gold));border-radius:3px;transition:width 0.6s ease}
+
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;margin-top:8px}
+.section-header i{color:var(--primary);font-size:0.9rem}
+.section-header h2{font-size:1rem;font-weight:700}
+.section-header .badge-count{margin-left:auto;background:var(--primary);color:white;padding:2px 8px;border-radius:10px;font-size:0.65rem;font-weight:600}
+
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.how-card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:22px 16px;text-align:center;transition:all 0.3s}
+.how-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 8px 25px rgba(139,92,246,0.1)}
+.how-card .hc-num{font-size:0.65rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.how-card .hc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.2rem}
+.how-card h3{font-size:0.85rem;font-weight:600;margin-bottom:6px}
+.how-card p{font-size:0.72rem;color:var(--text2);line-height:1.5}
+
+.rules-list{margin-bottom:28px}
+.rule-item{display:flex;align-items:center;gap:12px;padding:14px;background:var(--card);border:1px solid var(--card-border);border-radius:12px;margin-bottom:8px;transition:all 0.2s}
+.rule-item:hover{border-color:rgba(139,92,246,0.2)}
+.rule-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0}
+.rule-info{flex:1}
+.rule-info .rule-name{font-size:0.85rem;font-weight:600}
+.rule-info .rule-desc{font-size:0.7rem;color:var(--text2)}
+.rule-points{font-size:0.95rem;font-weight:700;color:var(--green);flex-shrink:0}
+
+.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:28px}
+.badge-card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:18px 12px;text-align:center;transition:all 0.3s;position:relative;overflow:hidden}
+.badge-card.earned{border-color:var(--gold);background:rgba(245,158,11,0.06)}
+.badge-card.locked{opacity:0.45}
+.badge-card .bc-icon{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:1.3rem;transition:transform 0.3s}
+.badge-card:hover .bc-icon{transform:scale(1.1)}
+.badge-card .bc-name{font-size:0.78rem;font-weight:600;margin-bottom:3px}
+.badge-card .bc-desc{font-size:0.62rem;color:var(--text2);line-height:1.3}
+.badge-card .bc-tier{position:absolute;top:8px;right:8px;font-size:0.5rem;padding:2px 6px;border-radius:6px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.tier-bronze{background:rgba(205,127,50,0.2);color:var(--bronze)}
+.tier-silver{background:rgba(148,163,184,0.2);color:var(--silver)}
+.tier-gold{background:rgba(245,158,11,0.2);color:var(--gold)}
+.tier-platinum{background:rgba(229,231,235,0.2);color:var(--platinum)}
+.badge-card .bc-earned{margin-top:8px;font-size:0.62rem;color:var(--green);font-weight:600}
+
+.lb-list{margin-bottom:16px}
+.lb-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--card-border);border-radius:12px;margin-bottom:6px;transition:all 0.2s}
+.lb-item:hover{border-color:rgba(139,92,246,0.2)}
+.lb-rank{font-size:0.95rem;font-weight:800;width:28px;text-align:center;flex-shrink:0}
+.lb-rank.r1{color:var(--gold)}
+.lb-rank.r2{color:var(--silver)}
+.lb-rank.r3{color:var(--bronze)}
+.lb-avatar{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;color:white;font-weight:600;flex-shrink:0}
+.lb-info{flex:1;min-width:0}
+.lb-info .lb-name{font-size:0.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-info .lb-reviews{font-size:0.68rem;color:var(--text2)}
+.lb-points{text-align:right;flex-shrink:0}
+.lb-points .pts{font-size:0.95rem;font-weight:700;color:var(--gold)}
+.lb-points .pts-lbl{font-size:0.55rem;color:var(--text2)}
+.lb-more{text-align:center;padding:14px}
+.lb-more a{color:var(--primary);font-size:0.82rem;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:gap 0.3s}
+.lb-more a:hover{gap:10px}
+
+.site-footer{border-top:1px solid rgba(255,255,255,0.06);padding:40px 20px 30px;margin-top:32px}
+.footer-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:768px){.footer-inner{grid-template-columns:1.5fr 1fr 1fr 1fr}}
+.footer-brand p{color:var(--text2);font-size:0.82rem;line-height:1.6;margin-top:12px}
+.footer-col h4{font-size:0.75rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px}
+.footer-col a{display:block;color:var(--text2);text-decoration:none;font-size:0.82rem;padding:3px 0;transition:color 0.3s}
+.footer-col a:hover{color:var(--primary)}
+.footer-social{display:flex;gap:8px;margin-top:14px}
+.footer-social a{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:0.9rem;transition:all 0.3s}
+.footer-social a:hover{background:var(--primary);border-color:var(--primary);color:white}
+.footer-bottom{max-width:900px;margin:20px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;color:var(--text3);font-size:0.7rem}
+
+.nav-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(15,10,21,0.95);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:center;gap:0;z-index:100;padding:6px 0}
+.nav-bar a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 16px;color:var(--text3);font-size:0.6rem;text-decoration:none;transition:color 0.2s}
+.nav-bar a.active{color:var(--primary)}
+.nav-bar a i{font-size:1rem}
+body{padding-bottom:70px}
+
+@media(max-width:600px){
+  .how-grid{grid-template-columns:1fr}
+  .badges-grid{grid-template-columns:repeat(3,1fr)}
+  .uc-stats{grid-template-columns:repeat(2,1fr)}
+  .auth-form{flex-direction:column}
+  .hero h1{font-size:1.4rem}
+}
+</style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="/" class="logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+  <div class="nav-links">
+    <a href="/piatti/">Piatti</a>
+    <a href="/community/">Community</a>
+    <a href="/community/loyalty/" class="active">Premi</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+  <span class="sep">/</span>
+  <a href="/community/">Community</a>
+  <span class="sep">/</span>
+  <span class="current">Programma Fedeltà</span>
+</div>
+
+<div class="container">
+  <div class="hero">
+    <div class="hero-icon"><i class="fas fa-trophy"></i></div>
+    <h1>Programma Fedeltà</h1>
+    <p>Guadagna punti, sblocca badge e scala la classifica lasciando recensioni sui piatti che ami</p>
+    <div class="hero-stats">
+      <span><i class="fas fa-coins"></i> Punti ogni recensione</span>
+      <span><i class="fas fa-award"></i> Badge esclusivi</span>
+      <span><i class="fas fa-ranking-star"></i> Classifica live</span>
+    </div>
+  </div>
+
+  <!-- Auth Gate -->
+  <div class="auth-gate" id="auth-gate">
+    <h2><i class="fas fa-user-plus" style="color:var(--primary)"></i> Entra nella Community</h2>
+    <p>Scegli un username per iniziare a guadagnare punti</p>
+    <div class="auth-form">
+      <input type="text" id="auth-name" placeholder="Il tuo nome" maxlength="30">
+      <input type="text" id="auth-username" placeholder="Username" maxlength="20">
+      <button onclick="doRegister()"><i class="fas fa-arrow-right"></i> Entra</button>
+    </div>
+  </div>
+
+  <!-- User Card -->
+  <div class="user-card" id="user-card">
+    <div class="uc-top">
+      <div class="uc-avatar" id="uc-avatar">?</div>
+      <div class="uc-info">
+        <h2 id="uc-name">—</h2>
+        <div class="uc-user">@<span id="uc-username">—</span></div>
+      </div>
+      <div class="uc-level">
+        <div class="level-num" id="uc-level">1</div>
+        <div class="level-label">Livello</div>
+      </div>
+    </div>
+    <div class="uc-stats">
+      <div class="uc-stat"><div class="num" id="uc-points">0</div><div class="lbl">Punti</div></div>
+      <div class="uc-stat"><div class="num" id="uc-reviews">0</div><div class="lbl">Recensioni</div></div>
+      <div class="uc-stat"><div class="num" id="uc-positive">0</div><div class="lbl">Positive</div></div>
+      <div class="uc-stat"><div class="num" id="uc-streak">0</div><div class="lbl">Streak</div></div>
+    </div>
+    <div class="uc-progress">
+      <div class="prog-label"><span id="prog-text">0 / 100 punti</span><span id="prog-pct">0%</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <div class="section-header"><i class="fas fa-lightbulb"></i><h2>Come Funziona</h2></div>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="hc-num">Step 1</div>
+      <div class="hc-icon" style="background:rgba(139,92,246,0.12);color:var(--primary)"><i class="fas fa-pen"></i></div>
+      <h3>Lascia Recensioni</h3>
+      <p>Valuta i piatti che hai assaggiato e condividi la tua esperienza con la community</p>
+    </div>
+    <div class="how-card">
+      <div class="hc-num">Step 2</div>
+      <div class="hc-icon" style="background:rgba(245,158,11,0.12);color:var(--gold)"><i class="fas fa-coins"></i></div>
+      <h3>Guadagna Punti</h3>
+      <p>Ogni recensione ti fa guadagnare punti, di più per recensioni positive e dettagliate</p>
+    </div>
+    <div class="how-card">
+      <div class="hc-num">Step 3</div>
+      <div class="hc-icon" style="background:rgba(16,185,129,0.12);color:var(--green)"><i class="fas fa-medal"></i></div>
+      <h3>Sblocca Premi</h3>
+      <p>Raggiungi livelli alti, ottieni badge esclusivi e scala la classifica della community</p>
+    </div>
+  </div>
+
+  <!-- Points Rules -->
+  <div class="section-header"><i class="fas fa-gift"></i><h2>Come Guadagnare Punti</h2></div>
+  <div class="rules-list">
+    <div class="rule-item"><div class="rule-icon" style="background:rgba(139,92,246,0.12);color:var(--primary)"><i class="fas fa-pen"></i></div><div class="rule-info"><div class="rule-name">Recensione lasciata</div><div class="rule-desc">Valuta un ristorante o un piatto</div></div><div class="rule-points">+10</div></div>
+    <div class="rule-item"><div class="rule-icon" style="background:rgba(16,185,129,0.12);color:var(--green)"><i class="fas fa-heart"></i></div><div class="rule-info"><div class="rule-name">Recensione positiva</div><div class="rule-desc">Rating 4 stelle o più</div></div><div class="rule-points">+10</div></div>
+    <div class="rule-item"><div class="rule-icon" style="background:rgba(245,158,11,0.12);color:var(--gold)"><i class="fas fa-star"></i></div><div class="rule-info"><div class="rule-name">Recensione eccellente</div><div class="rule-desc">Rating 4.5 o 5 stelle</div></div><div class="rule-points">+5</div></div>
+    <div class="rule-item"><div class="rule-icon" style="background:rgba(239,68,68,0.12);color:var(--red)"><i class="fas fa-fire"></i></div><div class="rule-info"><div class="rule-name">Prima recensione</div><div class="rule-desc">Benvenuto nella community!</div></div><div class="rule-points">+50</div></div>
+    <div class="rule-item"><div class="rule-icon" style="background:rgba(59,130,246,0.12);color:var(--blue)"><i class="fas fa-calendar-check"></i></div><div class="rule-info"><div class="rule-name">Streak giornaliero</div><div class="rule-desc">Recensisci ogni giorno per bonus</div></div><div class="rule-points">Bonus</div></div>
+    <div class="rule-item"><div class="rule-icon" style="background:rgba(139,92,246,0.12);color:var(--primary)"><i class="fas fa-user-plus"></i></div><div class="rule-info"><div class="rule-name">Iscrizione</div><div class="rule-desc">Crea il tuo profilo community</div></div><div class="rule-points">+50</div></div>
+  </div>
+
+  <!-- Badges -->
+  <div class="section-header"><i class="fas fa-award"></i><h2>Badge</h2><span class="badge-count" id="badge-count">0/0</span></div>
+  <div class="badges-grid" id="badges-grid"></div>
+
+  <!-- Leaderboard -->
+  <div class="section-header"><i class="fas fa-ranking-star"></i><h2>Classifica</h2></div>
+  <div class="lb-list" id="lb-list"></div>
+  <div class="lb-more"><a href="/community/loyalty/classifica.html">Vedi classifica completa <i class="fas fa-arrow-right"></i></a></div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)">
+        <img src="/logo/logo_ufficiale.png" alt="trovapiatto" style="height:28px">
+      </a>
+      <p>La guida definitiva ai piatti tipici e ristoranti migliori di Bari e Puglia. Scopri, cerca e prenota.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/trovapiatto" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/trovapiatto" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@trovapiatto" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Esplora</h4>
+      <a href="/piatti/">Tutti i Piatti</a>
+      <a href="/bari/migliori-ristoranti-bari/">Ristoranti</a>
+      <a href="/community/blog/">Magazine</a>
+      <a href="/bari/">Cosa Mangiare a Bari</a>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="/community/">Home Community</a>
+      <a href="/community/loyalty/">Programma Fedeltà</a>
+      <a href="/community/loyalty/classifica.html">Classifica</a>
+      <a href="/community/loyalty/profilo.html">Il tuo Profilo</a>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <a href="/about.html">Chi Siamo</a>
+      <a href="/contatti.html">Contatti</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/termini.html">Termini e Condizioni</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 trovapiatto &mdash; Tutti i diritti riservati
+  </div>
+</footer>
+
+<nav class="nav-bar">
+  <a href="/community/"><i class="fas fa-home"></i> Home</a>
+  <a href="/community/cosamangio.html"><i class="fas fa-utensils"></i> Mangiato</a>
+  <a href="/community/loyalty/classifica.html"><i class="fas fa-ranking-star"></i> Classifica</a>
+  <a href="/community/loyalty/" class="active"><i class="fas fa-trophy"></i> Premi</a>
+  <a href="/community/loyalty/profilo.html"><i class="fas fa-user"></i> Profilo</a>
+</nav>
+
+<script>
+const API = '/app/admin/api.php';
+let currentUser = null;
+
+function init() {
+  const saved = localStorage.getItem('community_user');
+  if (saved) {
+    currentUser = JSON.parse(saved);
+    showUserCard();
+  }
+}
+
+function doRegister() {
+  const name = document.getElementById('auth-name').value.trim();
+  const username = document.getElementById('auth-username').value.trim().toLowerCase().replace(/[^a-z0-9_]/g, '');
+  if (!username || username.length < 2) { alert('Username minimo 2 caratteri'); return; }
+
+  fetch(API + '?action=register-user', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({username, display_name: name || username})
+  }).then(r => r.json()).then(d => {
+    if (d.success) {
+      currentUser = d.user;
+      localStorage.setItem('community_user', JSON.stringify(d.user));
+      showUserCard();
+      if (d.welcome_bonus) showToast('Benvenuto! +' + d.welcome_bonus + ' punti bonus');
+    }
+  });
+}
+
+function showUserCard() {
+  document.getElementById('auth-gate').style.display = 'none';
+  const card = document.getElementById('user-card');
+  card.classList.add('show');
+
+  fetch(API + '?action=get-user-profile&username=' + currentUser.username).then(r => r.json()).then(d => {
+    if (!d.success) return;
+    const u = d.user;
+    currentUser = u;
+    localStorage.setItem('community_user', JSON.stringify(u));
+
+    document.getElementById('uc-avatar').textContent = u.display_name.charAt(0).toUpperCase();
+    document.getElementById('uc-name').textContent = u.display_name;
+    document.getElementById('uc-username').textContent = u.username;
+    document.getElementById('uc-level').textContent = u.level;
+    document.getElementById('uc-points').textContent = u.points.toLocaleString('it-IT');
+    document.getElementById('uc-reviews').textContent = u.total_reviews;
+    document.getElementById('uc-positive').textContent = u.positive_reviews;
+    document.getElementById('uc-streak').textContent = u.streak_days;
+
+    const nextLvl = u.level * 100;
+    const pct = Math.min(100, d.progress.progress_pct);
+    document.getElementById('prog-text').textContent = (u.points % 100) + ' / 100 punti';
+    document.getElementById('prog-pct').textContent = pct + '%';
+    document.getElementById('prog-fill').style.width = pct + '%';
+
+    loadBadges(u.id);
+    loadLeaderboard();
+  });
+}
+
+function loadBadges(userId) {
+  fetch(API + '?action=get-user-badges&user_id=' + userId).then(r => r.json()).then(d => {
+    if (!d.success) return;
+    const grid = document.getElementById('badges-grid');
+    const earned = d.data.filter(b => b.earned == 1).length;
+    document.getElementById('badge-count').textContent = earned + '/' + d.data.length;
+
+    grid.innerHTML = d.data.map(b => {
+      const tierClass = 'tier-' + b.tier;
+      return `<div class="badge-card ${b.earned == 1 ? 'earned' : 'locked'}">
+        <span class="bc-tier ${tierClass}">${b.tier}</span>
+        <div class="bc-icon" style="background:${b.earned == 1 ? b.color : 'rgba(255,255,255,0.06)'}20;color:${b.earned == 1 ? b.color : 'var(--text3)'}"><i class="fas ${b.icon}"></i></div>
+        <div class="bc-name">${b.name}</div>
+        <div class="bc-desc">${b.description}</div>
+        ${b.earned == 1 ? '<div class="bc-earned"><i class="fas fa-check"></i> Ottenuto</div>' : ''}
+      </div>`;
+    }).join('');
+  });
+}
+
+function loadLeaderboard() {
+  fetch(API + '?action=get-leaderboard&period=week&limit=5').then(r => r.json()).then(d => {
+    if (!d.success) return;
+    const list = document.getElementById('lb-list');
+    const colors = ['#8b5cf6','#3b82f6','#10b981','#f59e0b','#ef4444','#ec4899','#06b6d4'];
+
+    list.innerHTML = d.data.map((u, i) => {
+      const rc = i === 0 ? 'r1' : i === 1 ? 'r2' : i === 2 ? 'r3' : '';
+      const bg = colors[i % colors.length];
+      return `<div class="lb-item">
+        <div class="lb-rank ${rc}">${i + 1}</div>
+        <div class="lb-avatar" style="background:${bg}">${u.display_name.charAt(0).toUpperCase()}</div>
+        <div class="lb-info">
+          <div class="lb-name">${u.display_name}</div>
+          <div class="lb-reviews">${u.total_reviews} recensioni</div>
+        </div>
+        <div class="lb-points"><div class="pts">${u.points}</div><div class="pts-lbl">punti</div></div>
+      </div>`;
+    }).join('') || '<div style="text-align:center;color:var(--text3);padding:20px;font-size:0.8rem;">Nessun utente ancora</div>';
+  });
+}
+
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#10b981;color:white;padding:12px 24px;border-radius:12px;font-size:0.85rem;font-weight:600;z-index:999;box-shadow:0 4px 20px rgba(16,185,129,0.4);animation:fadeIn 0.3s';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+
+init();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Programma Fedeltà trovapiatto",
+  "description": "Guadagna punti, sblocca badge e salva in classifica lasciando recensioni sui piatti che ami.",
+  "url": "https://www.trovapiatto.it/community/loyalty/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "trovapiatto",
+    "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Community", "item": "https://www.trovapiatto.it/community/" },
+    { "@type": "ListItem", "position": 3, "name": "Programma Fedeltà", "item": "https://www.trovapiatto.it/community/loyalty/" }
+  ]
+}
+</script>
+
+</body>
+</html>

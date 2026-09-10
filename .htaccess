@@ -1,0 +1,98 @@
+# Enable GZIP compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/eot
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+</IfModule>
+
+# Cache control
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 1 hours"
+  ExpiresByType text/css "access plus 1 years"
+  ExpiresByType text/javascript "access plus 1 years"
+  ExpiresByType application/javascript "access plus 1 years"
+  ExpiresByType image/jpeg "access plus 1 years"
+  ExpiresByType image/gif "access plus 1 years"
+  ExpiresByType image/png "access plus 1 years"
+  ExpiresByType image/webp "access plus 1 years"
+  ExpiresByType image/svg+xml "access plus 1 years"
+  ExpiresByType font/ttf "access plus 1 years"
+  ExpiresByType font/otf "access plus 1 years"
+  ExpiresByType font/eot "access plus 1 years"
+  ExpiresByType font/woff "access plus 1 years"
+  ExpiresByType font/woff2 "access plus 1 years"
+  ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# Enable browser caching
+<IfModule mod_headers.c>
+  <FilesMatch "\.(jpg|jpeg|png|gif|svg|webp|eot|woff|woff2|ttf|otf|css|js|json|xml)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>
+
+# Disabilita directory listing ovunque
+Options -Indexes
+
+# Enable mod_rewrite
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # HTTPS redirect
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  
+  # Remove trailing slash
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [L,R=301]
+  
+  # Serve ristorante.html for /ristorante/<slug>/
+  RewriteCond %{REQUEST_URI} ^/ristorante/[^/]+/?$
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^ristorante/([^/]+)/?$ /ristorante.html [L,QSA]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-UA-Compatible "IE=edge"
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(self), microphone=(), camera=()"
+</IfModule>
+
+# Prevent access to sensitive files
+<FilesMatch "\.(env|json|lock|yml|yaml|sql|log|bak|old)$">
+  Order Allow,Deny
+  Deny from all
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>
+
+# Protect sensitive files (config, env, logs) - API pubbliche restano accessibili
+<FilesMatch "^(config\.php|\.env|.*\.sql|.*\.log|.*\.bak)$">
+  Order Allow,Deny
+  Deny from all
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>

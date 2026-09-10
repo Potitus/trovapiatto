@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiella Barese: Il Piatto che Unisce Terra e Mare | trovapiatto</title>
+  <meta name="description" content="Scopri la tiella barese, il piatto che unisce riso, patate e cozze. Guida completa alla tradizione, le varianti e dove mangiarla a Bari.">
+  <meta name="keywords" content="tiella barese, tiella Bari, tiella riso patate cozze, cucina pugliese, piatti tipici Bari">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/tiella-barese/">
+  <meta property="og:title" content="Tiella Barese: Il Piatto che Unisce Terra e Mare">
+  <meta property="og:description" content="La tiella barese: riso, patate e cozze in un connubio perfetto. Guida completa alla tradizione.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1574484284002-952d92456975?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-08-20T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-08-20T10:00:00+02:00">
+  <meta property="article:section" content="Tradizione">
+  <meta property="article:tag" content="Tiella">
+  <meta property="article:tag" content="Bari">
+  <meta property="article:tag" content="Cucina Pugliese">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tiella Barese: Il Piatto che Unisce Terra e Mare">
+  <meta name="twitter:description" content="La tiella barese: riso, patate e cozze in un connubio perfetto.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1574484284002-952d92456975?w=1200&h=630&fit=crop">
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/tiella-barese/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root{--bg-dark:#0f0a15;--bg-card:#1a1225;--primary:#e73a3a;--primary-light:#ff6b6b;--accent-food:#f59e0b;--text-white:#fff;--text-light:#e0e0e0;--text-muted:#9ca3af;--border:rgba(255,255,255,0.08)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;background:var(--bg-dark);color:var(--text-white);min-height:100vh;line-height:1.7}
+    .article-nav{position:sticky;top:0;z-index:100;background:rgba(15,10,21,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+    .article-nav .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text-white)}
+    .article-nav .logo img{height:32px}
+    .article-nav .back-link{color:var(--text-muted);text-decoration:none;font-size:0.85rem;display:flex;align-items:center;gap:6px;transition:color 0.3s}
+    .article-nav .back-link:hover{color:var(--primary)}
+    .article-hero{position:relative;height:50vh;min-height:350px;overflow:hidden}
+    .article-hero img{width:100%;height:100%;object-fit:cover}
+    .article-hero .overlay{position:absolute;inset:0;background:linear-gradient(0deg,var(--bg-dark) 0%,rgba(15,10,21,0.4) 50%,rgba(15,10,21,0.2) 100%)}
+    .article-hero .hero-content{position:absolute;bottom:30px;left:0;right:0;padding:0 20px;max-width:800px;margin:0 auto}
+    .article-hero .tag{display:inline-block;background:var(--primary);color:white;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:12px}
+    .article-hero h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:12px}
+    @media(min-width:768px){.article-hero h1{font-size:2.8rem}}
+    .article-hero .meta{display:flex;align-items:center;gap:16px;font-size:0.85rem;color:var(--text-muted)}
+    .article-hero .meta i{color:var(--primary)}
+    .article-container{max-width:800px;margin:0 auto;padding:30px 20px 60px}
+    .article-content h2{font-size:1.5rem;font-weight:700;margin:40px 0 16px;color:var(--text-white);padding-left:14px;border-left:3px solid var(--primary)}
+    .article-content h3{font-size:1.2rem;font-weight:600;margin:24px 0 10px;color:var(--text-white)}
+    .article-content p{font-size:1rem;color:var(--text-light);margin-bottom:16px;line-height:1.8}
+    .article-content strong{color:var(--text-white)}
+    .article-content a{color:var(--primary);text-decoration:none;font-weight:600;transition:color 0.3s}
+    .article-content a:hover{color:var(--primary-light)}
+    .restaurant-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;margin:24px 0;transition:all 0.3s}
+    .restaurant-card:hover{border-color:var(--primary);box-shadow:0 8px 30px rgba(231,58,58,0.1)}
+    .restaurant-card .rc-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+    .restaurant-card .rc-name{font-size:1.15rem;font-weight:700;color:var(--text-white)}
+    .restaurant-card .rc-rating{display:flex;align-items:center;gap:4px;background:rgba(245,158,11,0.15);padding:4px 10px;border-radius:20px;font-size:0.8rem;font-weight:600;color:var(--accent-food);white-space:nowrap}
+    .restaurant-card .rc-cuisine{font-size:0.8rem;color:var(--text-muted);margin-bottom:12px}
+    .restaurant-card .rc-dish{background:rgba(255,255,255,0.04);border-radius:12px;padding:14px;margin-bottom:10px}
+    .restaurant-card .rc-dish-name{font-weight:600;font-size:0.95rem;color:var(--text-white);margin-bottom:4px}
+    .restaurant-card .rc-dish-desc{font-size:0.85rem;color:var(--text-muted);margin-bottom:6px}
+    .restaurant-card .rc-dish-price{font-weight:700;color:var(--accent-food);font-size:1rem}
+    .restaurant-card .rc-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;color:var(--primary);font-size:0.85rem;font-weight:600;text-decoration:none;transition:gap 0.3s}
+    .restaurant-card .rc-link:hover{gap:10px}
+    .map-section{margin:40px 0}
+    .map-section h2{font-size:1.5rem;font-weight:700;margin-bottom:16px;padding-left:14px;border-left:3px solid var(--primary)}
+    #article-map{width:100%;height:350px;border-radius:16px;border:1px solid var(--border)}
+    .tips-box{background:linear-gradient(135deg,rgba(231,58,58,0.08),rgba(245,158,11,0.05));border:1px solid rgba(231,58,58,0.2);border-radius:16px;padding:24px;margin:30px 0}
+    .tips-box h3{font-size:1.1rem;font-weight:700;margin-bottom:14px;color:var(--primary-light)}
+    .tips-box ul{list-style:none;padding:0}
+    .tips-box li{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:0.9rem;color:var(--text-light)}
+    .tips-box li i{color:var(--accent-food);margin-top:4px;flex-shrink:0}
+    .cta-box{text-align:center;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:40px 24px;margin:40px 0}
+    .cta-box h3{font-size:1.3rem;font-weight:700;margin-bottom:10px}
+    .cta-box p{color:var(--text-muted);font-size:0.9rem;margin-bottom:20px}
+    .cta-box .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:white;padding:12px 28px;border-radius:30px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:all 0.3s}
+    .cta-box .cta-btn:hover{background:var(--primary-light);transform:translateY(-2px);box-shadow:0 8px 25px rgba(231,58,58,0.3)}
+    .ad-container{margin:30px 0;text-align:center;min-height:90px}
+    .article-footer{border-top:1px solid var(--border);padding-top:24px;margin-top:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    .article-footer .share{display:flex;align-items:center;gap:10px}
+    .article-footer .share span{font-size:0.85rem;color:var(--text-muted)}
+    .article-footer .share a{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);color:var(--text-light);text-decoration:none;transition:all 0.3s;font-size:0.9rem}
+    .article-footer .share a:hover{background:var(--primary);color:white}
+    .site-footer{text-align:center;padding:30px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.8rem}
+    .site-footer a{color:var(--primary);text-decoration:none}
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+  <nav class="article-nav">
+    <a href="/" class="logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+    <a href="/community/blog/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Magazine</a>
+  </nav>
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=1400&h=700&fit=crop" alt="Tiella Barese">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-landmark"></i> Tradizione</span>
+      <h1>Tiella Barese: Il Piatto che Unisce Terra e Mare</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 20 Agosto 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 8 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      </div>
+    </div>
+  </header>
+  <article class="article-container">
+    <div class="article-content">
+      <p>La <strong>tiella barese</strong> e uno dei piatti piu straordinari della tradizione pugliese, un connubio perfetto tra ingredienti semplici e sapori profondi. Si tratta di un preparato a strati con <strong>riso, patate e cozze</strong>, cotto lentamente fino a diventare una crosta dorata e croccante. La tiella rappresenta l'essenza stessa della cucina pugliese: trasformare ingredienti umili in un piatto di rara complessita.</p>
+      <p>Il nome "tiella" deriva dallo spagnolo <strong>"tiella"</strong>, che indica una padella bassa e larga, solitamente di rame, usata per la cottura. Questa connessione con la Spagna non e casuale: la Puglia fu sotto il dominio spagnolo per secoli, e la cucina locale assorbi molte influenze iberiche, dalla frittura di pesce alla stessa tiella.</p>
+
+      <h2>Le Origini: Dal Dominio Spagnolo alla Tavola Pugliese</h2>
+      <p>Le origini della tiella barese risalgono al <strong>XVI secolo</strong>, durante il dominio spagnolo sul Regno di Napoli. I cuochi spagnoli portarono con se la tradizione di cucinare riso con pesce in padelle di rame, tecnica che i pugliesi adattarono con gli ingredienti disponibili: le cozze del mare Adriatico, le patate dell'entroterra e il riso che arrivava dai traffici commerciali.</p>
+      <p>La versione piu antica della tiella prevedeva solo riso e cozze, senza patate. Le patate furono aggiunte solo nel <strong>XVIII secolo</strong>, quando il tubero si diffuse gradualmente nella dieta mediterranea. L'aggiunta delle patate trasformo completamente il piatto, creando quella stratificazione che lo rende unico: il riso si cuoce nel sugo delle cozze, le patate formano una barriera croccante in basso, e il tutto si fonde in un sapore indimenticabile.</p>
+      <p>Nella tradizione barese, la tiella era preparata nelle <strong>feste di famiglia</strong> e nelle occasioni speciali. Le donne della famiglia si riunivano nella cucina per preparare la tiella il giorno prima della festa, lasciandola marinare tutta la notte prima della cottura. Questo rituale era considerato un momento di aggregazione familiare, un modo per tramandare segreti culinari di generazione in generazione.</p>
+
+      <h2>La Struttura a Tre Strati: Un'Architettura di Sapori</h2>
+      <p>La tiella barese e costruita su tre strati fondamentali, ognuno con un ruolo preciso nella creazione del sapore finale. Lo <strong>strato inferiore</strong> e composto da patate tagliate a fette sottili, che durante la cottura assorbono il sugo delle cozze e formano una crosta dorata e croccante. Le patate devono essere di varietà polpose, come le <strong>spunta</strong> o le <strong>agria</strong>, che mantengono la consistenza durante la cottura.</p>
+      <p>Lo <strong>strato intermedio</strong> e il cuore del piatto: riso e cozze. Il riso, solitamente una varieta a grana medio come il <strong>arborio</strong> o il <strong>carnaroli</strong>, si cuoce nel sugo rilasciato dalle cozze, assorbendone tutti i sapori del mare. Le cozze devono essere freschissime, preferably del <strong>Mar Adriatico</strong>, dove il gusto e piu intenso e deciso. Alcuni cuochi aggiungono vino bianco, aglio e prezzemolo per insaporire ulteriormente il riso.</p>
+      <p>Lo <strong>strato superiore</strong> e la crosta finale, composta da una miscela di pangrattato, parmigiano grattugiato e olio extravergine d'oliva. Questo strato croccante e fondamentale: protegge il piatto durante la cottura e crea quel contrasto di consistenze che rende la tiella cosi apprezzata. La cottura avviene in forno a <strong>180-200 gradi</strong> per circa 40-50 minuti, fino a quando la superficie non diventa dorata e croccante.</p>
+
+      <h2>La Tradizione del Rame: La Padella della Nonna</h2>
+      <p>La <strong>tiella di rame</strong> e il simbolo di questa tradizione. Queste padelle, chiamate anche "tielle" o "pignatte", erano un tempo un inventario fondamentale di ogni cucina pugliese. Il rame, grazie alla sua eccellente conduttivita termica, garantisce una cottura uniforme e cremosa del riso, creando quella caratteristica crosta in fondo che e l'anima del piatto.</p>
+      <p>Le tielle di rame originali erano spesso <strong>personalizzate con incisioni</strong> che riportavano il nome della famiglia o la data di acquisizione. Alcune di queste tielle sono state tramandate di generazione in generazione, diventando veri e propri cimeli familiari. Oggi le tielle di rame sono ancora prodotte artigianalmente in alcune botteghe di Bari, ma il loro prezzo e piu elevato rispetto alle versioni moderne in alluminio.</p>
+      <p>La padella di rame richiede una <strong>cura particolare</strong>: dopo ogni utilizzo va lavata con acqua calda e sapone neutro, poi asciugata immediatamente per evitare che il rame si ossidi. Alcuni cuochi vecchia scuola continuano a "condire" le tielle con olio d'oliva prima di ogni utilizzo, creando una patina protettiva che migliora con il tempo.</p>
+
+      <h2>Varianti e Interpretazioni in Puglia</h2>
+      <p>Sebbene la versione classica preveda riso, patate e cozze, in Puglia esistono numerose varianti della tiella. A <strong>Monopoli</strong>, ad esempio, si prepara una tiella con <strong>acciughe al posto delle cozze</strong>, creando un sapore piu intenso e deciso. A <strong>Polignano a Mare</strong>, dove le cozze sono considerate le migliori della regione, la tiella viene preparata con una proporzione maggiore di cozze rispetto al riso.</p>
+      <p>In alcune zone dell'entroterra, dove il pesce fresco e meno disponibile, si prepara una <strong>tiella vegetariana</strong> con fagioli bianchi, pomodori e basilico. Questa variante, chiamata anche "tiella di terra", e particolarmente diffusa nelle zone agricole dove il pesce era storicamente un alimento pregiato.</p>
+      <p>La variante piu innovativa e la <strong>tiella gourmet</strong>, proposta da alcuni ristoranti di Bari. In questa versione, il riso viene sostituito con <strong>riso venere nero</strong>, le cozze con <strong>astici</strong> o <strong>polpi</strong>, e la crosta viene arricchita con erbe aromatiche fresche. Questa interpretazione moderna ha conquistato molti amanti della buona cucina, mantenendo fedele lo spirito del piatto originale.</p>
+
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>La Tiella Oggi: Dai Ristoranti alle Feste</h2>
+      <p>Oggi la tiella barese e presente sia nei <strong>ristoranti piu raffinati</strong> che nelle trattorie di quartiere. Nei ristoranti gourmet, la tiella viene spesso reinterpretata con ingredienti di qualita superiore e tecniche di cottura innovative. I cuochi moderni utilizzano forni a convezione che permettono una cottura piu uniforme, e alcune versioni includono <strong>foie gras</strong> o <strong>tartufo nero</strong> per creare un piatto di lusso.</p>
+      <p>Nelle trattorie di quartiere, invece, la tiella viene preparata seguendo fedelmente la ricetta tradizionale, con ingredienti semplici ma di qualita. La differenza sta nella <strong>cottura lenta e paziente</strong>, che permette al riso di cuocere perfettamente e alle patate di diventare croccanti senza bruciarsi.</p>
+      <p>Nei <strong>festival e nelle feste paesane</strong>, la tiella viene preparata in enormi tielle di rame e servita ai commensali direttamente dalla padella. Questo modo di servire il piatto e considerato il piu autentico, poiche permette di apprezzare tutte le consistenze e i sapori della tiella appena sfornata.</p>
+
+      <h2>Variazioni Stagionali: Quando Mangiarla</h2>
+      <p>La tiella barese ha le sue <strong>stagioni preferite</strong>. Durante l'inverno, quando le cozze sono piu grasse e saporite, la tiella raggiunge il suo apice di sapore. Le cozze invernali hanno un contenuto di grassi piu elevato, che rende il riso piu cremoso e il sapore piu intenso.</p>
+      <p>In primavera, quando iniziano a comparire le <strong>fave fresche</strong> e i <strong>peperoni</strong>, alcuni cuochi aggiungono questi ingredienti alla tiella, creando una variante piu leggera e profumata. L'estate e il periodo meno adatto per la tiella, poiche le cozze tendono ad essere piu magre e il caldo rende il piatto pesante.</p>
+      <p>L'autunno, con l'arrivo delle <strong>melanzane</strong> e dei <strong>zucchini</strong>, e il momento perfetto per preparare una tiella con verdure grigliate. Questa variante, chiamata "tiella di giardino", e particolarmente apprezzata per la sua leggerezza e per i sapori terrosi che bilanciano la marinatura del pesce.</p>
+
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Dove Mangiare la Tiella a Bari</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Dove Mangiare la Migliore Tiella a Bari</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div><div class="rc-name">Osteria delle Travi</div><div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Cucina Tradizionale</div></div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish"><div class="rc-dish-name">Tiella Barese Tradizionale</div><div class="rc-dish-desc">Riso, patate e cozze del Mar Adriatico, cotte in tiella di rame secondo la ricetta della nonna</div><div class="rc-dish-price">&euro;14</div></div>
+        <a href="/menu/osteria-delle-travi/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>L'Osteria delle Travi e considerata uno dei punti piu autentici per assaggiare la tiella barese. Il chef segue la ricetta tradizionale senza compromessi, utilizzando esclusivamente cozze fresche del giorno e riso di qualita superiore. La tiella esce dal forno con una crosta perfetta e il riso internamente e cremoso e saporito.</p>
+      <p><strong>Cosa ordinare:</strong> La tiella tradizionale e imperdibile. Provala con un bicchiere di <strong>Verdeca</strong>, il bianco pugliese che esalta i sapori del mare.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div><div class="rc-name">La Tana del Polpo</div><div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Cucina di Mare</div></div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish"><div class="rc-dish-name">Tiella con Polpo e Patate</div><div class="rc-dish-desc">Una variante unica con polpo tenero, patate croccanti e pomodorini freschi</div><div class="rc-dish-price">&euro;16</div></div>
+        <a href="/menu/la-tana-del-polpo/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>La Tana del Polpo propone una reinterpretazione creativa della tiella, sostituendo le cozze con il polpo cotto lentamente. Il risultato e un piatto dal sapore intenso e deciso, perfetto per chi ama i sapori del mare piu pronunciati.</p>
+      <p><strong>Cosa ordinare:</strong> La tiella con polpo e un must. La versione classica con cozze e altrettanto eccellente.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div><div class="rc-name">Casa Sgarra</div><div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Osteria di Quartiere</div></div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish"><div class="rc-dish-name">Tiella della Casa</div><div class="rc-dish-desc">La ricetta di famiglia, preparata con ingredienti del territorio e cottura lenta</div><div class="rc-dish-price">&euro;12</div></div>
+        <a href="/menu/casa-sgarra/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>Casa Sgarra e un'osteria di quartiere dove la tiella viene preparata seguendo la ricetta di famiglia. Il segreto sta nella semplicita: ingredienti freschi, cottura paziente e amore per la tradizione. Il prezzo e imbattibile per la qualita offerta.</p>
+      <p><strong>Cosa ordinare:</strong> La tiella della casa e un'classico. Provala con un pane di altamura appena sfornato.</p>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-clock"></i> <span><strong>Ordina in anticipo:</strong> La tiella richiede 40-50 minuti di cottura. Molti ristoranti chiedono di prenotarla almeno 2 ore prima.</span></li>
+          <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Abbinamento perfetto:</strong> Un bianco fresco come il Verdeca o un rosato leggero esaltano i sapori della tiella.</span></li>
+          <li><i class="fa-solid fa-temperature-half"></i> <span><strong>Temperatura ideale:</strong> La tiella va mangiata caldissima, appena uscita dal forno. Il riso si raffredda rapidamente e perde cremosita.</span></li>
+          <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Prezzo medio:</strong> Da €12 a €16. La versione tradizionale e piu economica di quella gourmet.</span></li>
+          <li><i class="fa-solid fa-calendar-check"></i> <span><strong>Miglior periodo:</strong> Da ottobre a marzo, quando le cozze sono piu grasse e saporite.</span></li>
+          <li><i class="fa-solid fa-hand-point-up"></i> <span><strong>Consiglio:</strong> Assaggia prima la crosta croccante, poi il riso cremoso, infine le cozze. Cosi apprezzi tutte le consistenze.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <h3>Scopri Altri Piatti Tipici di Bari</h3>
+        <p>Cerca piatti, ristoranti e menu nella nostra mappa interattiva</p>
+        <a href="/piatti/?q=tiella" class="cta-btn"><i class="fa-solid fa-magnifying-glass"></i> Cerca Tiella a Bari</a>
+      </div>
+
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/tiella-barese/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/tiella-barese/&text=Tiella+Barese:+Il+Piatto+che+Unisce+Terra+e+Mare"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+la+tiella+barese:+https://www.trovapiatto.it/community/blog/tiella-barese/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name:'Osteria delle Travi', lat:41.1291, lng:16.8702, price:'€14', slug:'osteria-delle-travi', rating:'4.8' },
+      { name:'La Tana del Polpo', lat:41.1245, lng:16.8690, price:'€16', slug:'la-tana-del-polpo', rating:'4.7' },
+      { name:'Casa Sgarra', lat:41.1236, lng:16.8686, price:'€12', slug:'casa-sgarra', rating:'4.6' }
+    ];
+    const map = L.map('article-map').setView([41.1245,16.8695],15);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap &copy; CARTO',maxZoom:19}).addTo(map);
+    restaurants.forEach(r=>{
+      const icon=L.divIcon({html:`<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,className:'',iconAnchor:[50,10]});
+      L.marker([r.lat,r.lng],{icon}).addTo(map).bindPopup(`<div style="font-family:Poppins,sans-serif;padding:4px;"><strong>${r.name}</strong><br><span style="color:#f59e0b;">⭐ ${r.rating}</span> &middot; <strong>${r.price}</strong><br><a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a></div>`);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Tiella Barese: Il Piatto che Unisce Terra e Mare","description":"La tiella barese: riso, patate e cozze in un connubio perfetto. Guida completa alla tradizione, le varianti e dove mangiarla a Bari.","image":"https://images.unsplash.com/photo-1574484284002-952d92456975?w=1200&h=630&fit=crop","author":{"@type":"Organization","name":"trovapiatto"},"publisher":{"@type":"Organization","name":"trovapiatto","logo":{"@type":"ImageObject","url":"https://www.trovapiatto.it/logo/logo_ufficiale.png"}},"datePublished":"2026-08-20T10:00:00+02:00","dateModified":"2026-08-20T10:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.trovapiatto.it/community/blog/tiella-barese/"},"articleSection":"Tradizione","keywords":"tiella barese, tiella Bari, tiella riso patate cozze, cucina pugliese, piatti tipici Bari"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.trovapiatto.it/"},{"@type":"ListItem","position":2,"name":"Magazine","item":"https://www.trovapiatto.it/community/blog/"},{"@type":"ListItem","position":3,"name":"Tiella Barese","item":"https://www.trovapiatto.it/community/blog/tiella-barese/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Che cos'e la tiella barese?","acceptedAnswer":{"@type":"Answer","text":"La tiella barese e un piatto tradizionale pugliese preparato con tre strati: patate in fondo, riso e cozze al centro, e una crosta di pangrattato e parmigiano in cima. Viene cotta in una padella di rame chiamata tiella."}},{"@type":"Question","name":"Da dove viene la tiella barese?","acceptedAnswer":{"@type":"Answer","text":"La tiella barese deriva dalla tradizione spagnola del dominio sul Regno di Napoli (XVI secolo). I cuochi spagnoli portarono la tecnica di cucinare riso con pesce in padelle di rame, che i pugliesi adattarono con le cozze del Mar Adriatico."}},{"@type":"Question","name":"Quanto costa una tiella a Bari?","acceptedAnswer":{"@type":"Answer","text":"Il prezzo della tiella a Bari va da €12 (trattorie di quartiere) a €16 (ristoranti gourmet). La tiella tradizionale con cozze e piu economica di quelle con polpo o astice."}},{"@type":"Question","name":"Quale e il miglior periodo per mangiare la tiella?","acceptedAnswer":{"@type":"Answer","text":"Il miglior periodo e da ottobre a marzo, quando le cozze sono piu grasse e saporite. In estate le cozze tendono ad essere piu magre e il piatto risulta piu pesante."}}]}
+  </script>
+</body>
+</html>

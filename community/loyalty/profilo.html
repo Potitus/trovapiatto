@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profilo — trovapiatto Community</title>
+<meta name="description" content="Il tuo profilo community. Badge, punti, cronologia recensioni e livello.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#8b5cf6">
+<link rel="canonical" href="https://www.trovapiatto.it/community/loyalty/profilo.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0a15;--bg2:#1a0f25;--card:rgba(255,255,255,0.04);--card-border:rgba(255,255,255,0.06);
+  --text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;
+  --primary:#8b5cf6;--gold:#f59e0b;--silver:#94a3b8;--bronze:#cd7f32;--platinum:#e5e7eb;
+  --green:#10b981;--red:#ef4444;--blue:#3b82f6;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px}
+a{color:var(--primary);text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:16px}
+
+.top-nav{position:sticky;top:0;z-index:100;background:rgba(15,10,21,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.top-nav .logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text)}
+.top-nav .logo img{height:32px}
+.top-nav .nav-links{display:flex;align-items:center;gap:16px}
+.top-nav .nav-links a{color:var(--text2);text-decoration:none;font-size:0.85rem;transition:color 0.3s}
+.top-nav .nav-links a:hover,.top-nav .nav-links a.active{color:var(--primary)}
+
+.breadcrumb{max-width:900px;margin:0 auto;padding:16px 20px 0;display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text2)}
+.breadcrumb a{color:var(--text2);text-decoration:none;transition:color 0.3s}
+.breadcrumb a:hover{color:var(--primary)}
+.breadcrumb .sep{color:rgba(255,255,255,0.2)}
+.breadcrumb .current{color:var(--text)}
+
+.loading{text-align:center;padding:60px 20px;color:var(--text3)}
+.loading i{font-size:2rem;color:var(--primary);margin-bottom:12px;animation:spin 1s linear infinite;display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.hero-profile{text-align:center;padding:50px 20px 30px;position:relative;overflow:hidden}
+.hero-profile::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1543353071-087092ec169a?w=1400&h=400&fit=crop') center/cover no-repeat;filter:blur(4px) brightness(0.4) saturate(1.1) scale(1.05);z-index:0}
+.hero-profile::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,10,21,0.5) 0%,rgba(15,10,21,0.85) 100%);z-index:1}
+.hero-profile>*{position:relative;z-index:2}
+
+.profile-card{background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(167,139,250,0.08));border:1px solid rgba(139,92,246,0.2);border-radius:16px;padding:24px 20px;margin-bottom:20px}
+.pc-top{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.pc-avatar{width:60px;height:60px;background:linear-gradient(135deg,var(--primary),#a78bfa);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:white;font-weight:700;flex-shrink:0}
+.pc-info h1{font-size:1.15rem;font-weight:700}
+.pc-info .pc-user{color:var(--text2);font-size:0.8rem}
+.pc-level{margin-left:auto;text-align:center}
+.pc-level .level-num{font-size:1.6rem;font-weight:800;color:var(--gold)}
+.pc-level .level-label{font-size:0.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px}
+.pc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.pc-stat{text-align:center;padding:10px 6px;background:rgba(255,255,255,0.04);border-radius:10px}
+.pc-stat .num{font-size:1.15rem;font-weight:700;color:var(--primary)}
+.pc-stat .lbl{font-size:0.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+.pc-progress{margin-top:12px}
+.pc-progress .prog-label{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text2);margin-bottom:4px}
+.prog-bar{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--gold));border-radius:3px;transition:width 0.6s ease}
+
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;margin-top:8px}
+.section-header i{color:var(--primary);font-size:0.9rem}
+.section-header h2{font-size:1rem;font-weight:700}
+.section-header .badge-count{margin-left:auto;background:var(--primary);color:white;padding:2px 8px;border-radius:10px;font-size:0.65rem;font-weight:600}
+
+.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:24px}
+.badge-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:16px 10px;text-align:center;transition:all 0.3s;position:relative;overflow:hidden}
+.badge-card.earned{border-color:var(--gold);background:rgba(245,158,11,0.06)}
+.badge-card:hover{transform:translateY(-2px)}
+.badge-card .bc-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:1.2rem;transition:transform 0.3s}
+.badge-card:hover .bc-icon{transform:scale(1.1)}
+.badge-card .bc-name{font-size:0.75rem;font-weight:600;margin-bottom:2px}
+.badge-card .bc-desc{font-size:0.62rem;color:var(--text2);line-height:1.3}
+.badge-card .bc-tier{position:absolute;top:6px;right:6px;font-size:0.5rem;padding:2px 6px;border-radius:6px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.tier-bronze{background:rgba(205,127,50,0.2);color:var(--bronze)}
+.tier-silver{background:rgba(148,163,184,0.2);color:var(--silver)}
+.tier-gold{background:rgba(245,158,11,0.2);color:var(--gold)}
+.tier-platinum{background:rgba(229,231,235,0.2);color:var(--platinum)}
+
+.history-list{margin-bottom:24px}
+.history-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--card-border);border-radius:12px;margin-bottom:6px;transition:all 0.2s}
+.history-item:hover{border-color:rgba(139,92,246,0.2)}
+.history-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0}
+.history-info{flex:1;min-width:0}
+.history-info .h-reason{font-size:0.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.history-info .h-date{font-size:0.65rem;color:var(--text3)}
+.history-points{font-size:0.9rem;font-weight:700;flex-shrink:0}
+.history-points.pos{color:var(--green)}
+.history-points.neg{color:var(--red)}
+
+.empty{text-align:center;padding:24px;color:var(--text3);font-size:0.8rem}
+.empty i{font-size:1.5rem;display:block;margin-bottom:8px;color:var(--text3)}
+
+.site-footer{border-top:1px solid var(--card-border);padding:40px 20px 30px;margin-top:32px}
+.footer-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(min-width:768px){.footer-inner{grid-template-columns:1fr 1fr 1fr 1fr}}
+.footer-col h4{font-size:0.75rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px}
+.footer-col a{display:block;color:var(--text2);text-decoration:none;font-size:0.8rem;padding:3px 0;transition:color 0.3s}
+.footer-col a:hover{color:var(--primary)}
+.footer-social{display:flex;gap:8px;margin-top:12px}
+.footer-social a{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid var(--card-border);display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:0.85rem;transition:all 0.3s}
+.footer-social a:hover{background:var(--primary);border-color:var(--primary);color:white}
+.footer-bottom{max-width:900px;margin:16px auto 0;padding-top:14px;border-top:1px solid var(--card-border);text-align:center;color:var(--text3);font-size:0.7rem}
+
+.nav-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(15,10,21,0.95);backdrop-filter:blur(12px);border-top:1px solid var(--card-border);display:flex;justify-content:center;gap:0;z-index:100;padding:6px 0}
+.nav-bar a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 16px;color:var(--text3);font-size:0.6rem;text-decoration:none;transition:color 0.2s}
+.nav-bar a.active{color:var(--primary)}
+.nav-bar a i{font-size:1rem}
+
+@media(max-width:600px){
+  .pc-stats{grid-template-columns:repeat(2,1fr)}
+  .badges-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="/community/loyalty/" class="logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+  <div class="nav-links">
+    <a href="/community/">Community</a>
+    <a href="/community/loyalty/">Premi</a>
+    <a href="/community/loyalty/profilo.html" class="active">Profilo</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+  <span class="sep">/</span>
+  <a href="/community/">Community</a>
+  <span class="sep">/</span>
+  <a href="/community/loyalty/">Programma Fedeltà</a>
+  <span class="sep">/</span>
+  <span class="current">Profilo</span>
+</div>
+
+<div class="container" id="main">
+  <div class="loading" id="loading"><i class="fas fa-spinner"></i>Caricamento profilo...</div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="/community/">Home</a>
+      <a href="/community/loyalty/">Programma Fedeltà</a>
+      <a href="/community/loyalty/classifica.html">Classifica</a>
+      <a href="/community/loyalty/profilo.html">Profilo</a>
+    </div>
+    <div class="footer-col">
+      <h4>Esplora</h4>
+      <a href="/piatti/">Piatti</a>
+      <a href="/bari/migliori-ristoranti-bari/">Ristoranti</a>
+      <a href="/community/blog/">Magazine</a>
+      <a href="/bari/">Cosa Mangiare a Bari</a>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <a href="/about.html">Chi Siamo</a>
+      <a href="/contatti.html">Contatti</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Seguici</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/trovapiatto" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/trovapiatto" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@trovapiatto" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 trovapiatto &mdash; Tutti i diritti riservati</div>
+</footer>
+
+<nav class="nav-bar">
+  <a href="/community/"><i class="fas fa-home"></i> Home</a>
+  <a href="/community/cosamangio.html"><i class="fas fa-utensils"></i> Mangiato</a>
+  <a href="/community/loyalty/classifica.html"><i class="fas fa-ranking-star"></i> Classifica</a>
+  <a href="/community/loyalty/"><i class="fas fa-trophy"></i> Premi</a>
+  <a href="/community/loyalty/profilo.html" class="active"><i class="fas fa-user"></i> Profilo</a>
+</nav>
+
+<script>
+const API = '/app/admin/api.php';
+let currentUser = null;
+
+function init() {
+  const saved = localStorage.getItem('community_user');
+  if (!saved) { window.location.href = '/community/loyalty/'; return; }
+  currentUser = JSON.parse(saved);
+  fetchProfile();
+}
+
+function fetchProfile() {
+  fetch(API + '?action=get-user-profile&username=' + encodeURIComponent(currentUser.username))
+    .then(r => r.json()).then(d => {
+      if (!d.success) { window.location.href = '/community/loyalty/'; return; }
+      render(d);
+    }).catch(() => {
+      document.getElementById('loading').innerHTML = '<i class="fas fa-exclamation-circle" style="color:var(--red)"></i>Errore di connessione';
+    });
+}
+
+function render(d) {
+  const u = d.user;
+  const logs = d.points_log || [];
+  const badges = d.badges || [];
+  const p = d.progress || {};
+  const earnedBadges = badges.filter(b => b.earned == 1).length;
+  const avatarColor = getAvatarColor(u.username);
+
+  let html = `
+  <div class="hero-profile">
+    <div class="profile-card">
+      <div class="pc-top">
+        <div class="pc-avatar" style="background:${avatarColor}">${u.display_name.charAt(0).toUpperCase()}</div>
+        <div class="pc-info">
+          <h1>${esc(u.display_name)}</h1>
+          <div class="pc-user">@${esc(u.username)}</div>
+        </div>
+        <div class="pc-level">
+          <div class="level-num">${u.level}</div>
+          <div class="level-label">Livello</div>
+        </div>
+      </div>
+      <div class="pc-stats">
+        <div class="pc-stat"><div class="num">${u.points.toLocaleString('it-IT')}</div><div class="lbl">Punti</div></div>
+        <div class="pc-stat"><div class="num">${u.total_reviews}</div><div class="lbl">Recensioni</div></div>
+        <div class="pc-stat"><div class="num">${u.positive_reviews}</div><div class="lbl">Positive</div></div>
+        <div class="pc-stat"><div class="num">${u.streak_days}</div><div class="lbl">Streak</div></div>
+      </div>
+      <div class="pc-progress">
+        <div class="prog-label"><span>${u.points % (p.next_level_points||100)} / ${p.next_level_points||100} punti</span><span>${p.progress_pct||0}%</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:${p.progress_pct||0}%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header"><i class="fas fa-award"></i><h2>Badge</h2><span class="badge-count">${earnedBadges}/${badges.length}</span></div>`;
+
+  if (badges.length) {
+    html += '<div class="badges-grid">';
+    badges.forEach(b => {
+      const tc = 'tier-' + b.tier;
+      const iconBg = b.earned == 1 ? b.color : 'rgba(255,255,255,0.06)';
+      const iconColor = b.earned == 1 ? b.color : 'var(--text3)';
+      html += `<div class="badge-card ${b.earned == 1 ? 'earned' : ''}">
+        <span class="bc-tier ${tc}">${b.tier}</span>
+        <div class="bc-icon" style="background:${iconBg}20;color:${iconColor}"><i class="fas ${b.icon}"></i></div>
+        <div class="bc-name">${esc(b.name)}</div>
+        <div class="bc-desc">${esc(b.description)}</div>
+      </div>`;
+    });
+    html += '</div>';
+  } else {
+    html += '<div class="empty"><i class="fas fa-award"></i>Nessun badge disponibile</div>';
+  }
+
+  html += '<div class="section-header"><i class="fas fa-clock-rotate-left"></i><h2>Cronologia Punti</h2></div>';
+
+  if (logs.length) {
+    html += '<div class="history-list">';
+    logs.forEach(l => {
+      const pts = parseInt(l.points);
+      const isPos = pts >= 0;
+      const iconData = getReasonIcon(l.reason);
+      const date = new Date(l.created_at).toLocaleDateString('it-IT', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+      html += `<div class="history-item">
+        <div class="history-icon" style="background:${iconData.bg}"><i class="fas ${iconData.icon}" style="color:${iconData.color}"></i></div>
+        <div class="history-info">
+          <div class="h-reason">${esc(l.reason)}</div>
+          <div class="h-date">${date}</div>
+        </div>
+        <div class="history-points ${isPos ? 'pos' : 'neg'}">${isPos ? '+' : ''}${pts}</div>
+      </div>`;
+    });
+    html += '</div>';
+  } else {
+    html += '<div class="empty"><i class="fas fa-clock"></i>Nessuna attività ancora</div>';
+  }
+
+  document.getElementById('main').innerHTML = html;
+}
+
+function getReasonIcon(reason) {
+  const r = reason.toLowerCase();
+  if (r.includes('prima') || r.includes('benvenuto') || r.includes('iscrizione')) return { icon: 'fa-fire', bg: 'rgba(239,68,68,0.12)', color: 'var(--red)' };
+  if (r.includes('recensione')) return { icon: 'fa-pen', bg: 'rgba(139,92,246,0.12)', color: 'var(--primary)' };
+  if (r.includes('positiv') || r.includes('eccellente')) return { icon: 'fa-star', bg: 'rgba(245,158,11,0.12)', color: 'var(--gold)' };
+  if (r.includes('badge')) return { icon: 'fa-award', bg: 'rgba(16,185,129,0.12)', color: 'var(--green)' };
+  if (r.includes('streak') || r.includes('giornalier')) return { icon: 'fa-calendar-check', bg: 'rgba(59,130,246,0.12)', color: 'var(--blue)' };
+  if (r.includes('bonus')) return { icon: 'fa-gift', bg: 'rgba(139,92,246,0.12)', color: 'var(--primary)' };
+  return { icon: 'fa-coins', bg: 'rgba(245,158,11,0.12)', color: 'var(--gold)' };
+}
+
+function getAvatarColor(name) {
+  const colors = ['#8b5cf6','#3b82f6','#10b981','#f59e0b','#ef4444','#ec4899','#06b6d4','#a78bfa'];
+  let hash = 0;
+  for (let i = 0; i < (name||'').length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  return colors[Math.abs(hash) % colors.length];
+}
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+init();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Community", "item": "https://www.trovapiatto.it/community/" },
+    { "@type": "ListItem", "position": 3, "name": "Programma Fedeltà", "item": "https://www.trovapiatto.it/community/loyalty/" },
+    { "@type": "ListItem", "position": 4, "name": "Profilo", "item": "https://www.trovapiatto.it/community/loyalty/profilo.html" }
+  ]
+}
+</script>
+
+</body>
+</html>

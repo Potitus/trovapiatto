@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Migliori Pizzeria a Bari: Dove Mangiare Pizza nel 2026 | trovapiatto</title>
+  <meta name="description" content="Scopri le migliori pizzerie di Bari: pizza napoletana, pizza a taglio, calzoni e versioni gourmet. Guida completa con prezzi, valutazioni e consigli.">
+  <meta name="keywords" content="pizzeria Bari, pizza Bari, migliore pizza Bari, pizza a taglio Bari, pizzeria tradizionale Bari, pizza napoletana Bari, calzone Bari, forno a legna">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/migliori-pizzeria-bari/">
+  <meta property="og:title" content="I Migliori Pizzeria a Bari: Dove Mangiare Pizza">
+  <meta property="og:description" content="Tutte le migliori pizzerie di Bari con prezzi, valutazioni e consigli. Dalla pizza napoletana alla pizza a taglio, dai calzoni alle versioni gourmet.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-09T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Pizza">
+  <meta property="article:tag" content="Bari">
+  <meta property="article:tag" content="Pizzeria">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="I Migliori Pizzeria a Bari: Dove Mangiare Pizza">
+  <meta name="twitter:description" content="Tutte le migliori pizzerie di Bari con prezzi, valutazioni e consigli per ogni gusto.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&h=630&fit=crop">
+  
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/migliori-pizzeria-bari/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f0a15;
+      --bg-card: #1a1225;
+      --bg-card-hover: #221833;
+      --primary: #e73a3a;
+      --primary-light: #ff6b6b;
+      --accent-food: #f59e0b;
+      --text-white: #ffffff;
+      --text-light: #e0e0e0;
+      --text-muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    
+    .article-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .article-nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    
+    .article-nav .logo img { height: 32px; }
+    
+    .article-nav .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+    
+    .article-nav .back-link:hover { color: var(--primary); }
+    
+    .article-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 350px;
+      overflow: hidden;
+    }
+    
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .article-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(15,10,21,0.4) 50%, rgba(15,10,21,0.2) 100%);
+    }
+    
+    .article-hero .hero-content {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .article-hero .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .article-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    
+    @media (min-width: 768px) {
+      .article-hero h1 { font-size: 2.8rem; }
+    }
+    
+    .article-hero .meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-hero .meta i { color: var(--primary); }
+    
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+    
+    .article-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: var(--text-white);
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text-white);
+    }
+    
+    .article-content p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    
+    .article-content strong { color: var(--text-white); }
+    
+    .article-content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    .article-content a:hover { color: var(--primary-light); }
+    
+    .restaurant-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      transition: all 0.3s;
+    }
+    
+    .restaurant-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(231,58,58,0.1);
+    }
+    
+    .restaurant-card .rc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    
+    .restaurant-card .rc-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245,158,11,0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-food);
+      white-space: nowrap;
+    }
+    
+    .restaurant-card .rc-cuisine {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .restaurant-card .rc-dish {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .restaurant-card .rc-dish-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    
+    .restaurant-card .rc-dish-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    
+    .restaurant-card .rc-dish-price {
+      font-weight: 700;
+      color: var(--accent-food);
+      font-size: 1rem;
+    }
+    
+    .restaurant-card .rc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    
+    .restaurant-card .rc-link:hover { gap: 10px; }
+    
+    .map-section {
+      margin: 40px 0;
+    }
+    
+    .map-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    #article-map {
+      width: 100%;
+      height: 350px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tips-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(231,58,58,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    
+    .tips-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--primary-light);
+    }
+    
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tips-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .tips-box li i {
+      color: var(--accent-food);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    
+    .cta-box {
+      text-align: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 24px;
+      margin: 40px 0;
+    }
+    
+    .cta-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    
+    .cta-box .cta-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(231,58,58,0.3);
+    }
+    
+    .ad-container {
+      margin: 30px 0;
+      text-align: center;
+      min-height: 90px;
+    }
+    
+    .article-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .article-footer .share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .article-footer .share span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .article-footer .share a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    
+    .article-footer .share a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .site-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+
+  <nav class="article-nav">
+    <a href="/" class="logo">
+      <img src="/logo/logo_ufficiale.png" alt="trovapiatto">
+    </a>
+    <a href="/community/blog/" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Magazine
+    </a>
+  </nav>
+
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1400&h=700&fit=crop" alt="Pizza Bari">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-pizza-slice"></i> Pizza</span>
+      <h1>I Migliori Pizzeria a Bari: Dove Mangiare Pizza</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 9 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 8 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-container">
+    <div class="article-content">
+
+      <p><strong>Bari</strong> e una citta che ama la pizza. Dalla classica napoletana cotta nel forno a legna alla pizza a taglio croccante, dai calzoni ripieni alle versioni piu gourmet, la scena pizzaiola barese e tra le piu ricche e interessanti del Sud Italia. I pizzaioli baresi hanno saputo unire la tradizione napoletana con la creativita locale, creando pizze che raccontano la storia e l'identita di un popolo.</p>
+
+      <p>In questa guida completa ti portiamo alla scoperta delle <strong>10 migliori pizzerie di Bari</strong>, con descrizioni dettagliate, prezzi reali e consigli pratici per ogni gusto e budget. Preparati a sentire il profumo del forno a legna: stai per viaggiare attraverso i sapori piu autentici della pizza pugliese.</p>
+
+      <h2>Pizzerie Tradizionali — La Classica Napoletana</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Pizzeria da Michele</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari — Pizza Napoletana</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Margherita</div>
+          <div class="rc-dish-desc">Pomodoro San Marzano, mozzarella di bufala, basilico e olio EVO</div>
+          <div class="rc-dish-price">&euro;7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Marinara</div>
+          <div class="rc-dish-desc">Pomodoro, aglio, origano e olio extravergine</div>
+          <div class="rc-dish-price">&euro;5</div>
+        </div>
+        <a href="/menu/pizzeria-da-michele/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Da Michele</strong> e un'istituzione. La pizza napoletana qui e perfetta: impasto soffice, cottura nel forno a legna, ingredienti di qualita. La Margherita e un capolavoro di semplicita, la Marinara e un classico immortale. Le file sono lunghe, ma ne vale assolutamente la pena. E' il punto di riferimento per chiunque cerchi la vera pizza napoletana a Bari.</p>
+
+      <p><strong>Prezzo medio:</strong> 10-15 euro a testa. Le file possono essere lunghe, ma il cibo merita la pazienza.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Pizzeria Starita</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari — Pizza Napoletana</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza Margherita con Bufala</div>
+          <div class="rc-dish-desc">Pomodoro, mozzarella di bufala campana DOP e basilico fresco</div>
+          <div class="rc-dish-price">&euro;8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Calzone Ripieno</div>
+          <div class="rc-dish-desc">Pizza ripiena di ricotta, mozzarella e pomodoro, cotta al forno</div>
+          <div class="rc-dish-price">&euro;9</div>
+        </div>
+        <a href="/menu/pizzeria-starita/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Starita</strong> e un'altra istituzione di Bari. La pizza e sempre perfetta, la mozzarella di bufala e di altissima qualita. Il calzone ripieno e un piatto unico sostanzioso e saporito. Il locale e grande e accogliente, perfetto per famiglie e gruppi di amici. Prezzo medio: 12-18 euro a testa.</p>
+
+      <h2>Pizza a Taglio — Fette di Sapori</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Ai Monizzati</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari — Pizza a Taglio</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza a Taglio Margherita</div>
+          <div class="rc-dish-desc">Fetta di pizza con pomodoro, mozzarella e basilico</div>
+          <div class="rc-dish-price">&euro;3</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza a Taglio con Acciughe</div>
+          <div class="rc-dish-desc">Fetta di pizza con acciughe, pomodorino e origano</div>
+          <div class="rc-dish-price">&euro;4</div>
+        </div>
+        <a href="/menu/ai-monizzati/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>La <strong>pizza a taglio</strong> a Bari e diversa da quella del Nord: e piu spessa, con un impasto soffice e una crosta dorata. Le fette sono tagliate grandi e condite con ingredienti freschi. A Bari la pizza a taglio si trova in ogni angolo, dai forni alle pizzerie. E' perfetta per un pranzo veloce o una merenda.</p>
+
+      <p><strong>Dove mangiarla:</strong> Ai Monizzati ha una varieta di fette fresche e saporite, da 3 a 4 euro cadauna.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Forno Fiore</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari — Focacceria e Pizza</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza Bianca</div>
+          <div class="rc-dish-desc">Pizza senza pomodoro con olio EVO e sale grosso</div>
+          <div class="rc-dish-price">&euro;2</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza con Patate</div>
+          <div class="rc-dish-desc">Pizza con patate lesse, rosmarino e olio EVO</div>
+          <div class="rc-dish-price">&euro;3</div>
+        </div>
+        <a href="/menu/forno-fiore/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Forno Fiore</strong> non è solo focacceria: la pizza bianca e la pizza con patate sono eccellenti. La pizza bianca e semplice e perfetta, la pizza con patate e una delizia dolce-salata. A soli 2-3 euro e un pasto completo e saporito, perfetto per chi ha poco tempo o vuole qualcosa di leggero.</p>
+
+      <!-- AdSense In-Article -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>Calzoni — Pizza Ripiena di Sapori</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Pizzeria Gaeribaldi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Steakhouse e Pizzeria</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Calzone Classico</div>
+          <div class="rc-dish-desc">Pizza ripiena di ricotta, mozzarella e pomodoro, cotta al forno</div>
+          <div class="rc-dish-price">&euro;8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Calzone con Prosciutto</div>
+          <div class="rc-dish-desc">Pizza ripiena di prosciutto, mozzarella e funghi</div>
+          <div class="rc-dish-price">&euro;9</div>
+        </div>
+        <a href="/menu/gaeribaldi-grill-house/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p>Il <strong>calzone</strong> pugliese non è il calzone chiuso del Nord. È una pizza ripiena di ricotta, mozzarella e pomodoro, chiusa e cotta al forno fino a diventare dorata e soffice. A Bari lo trovi in ogni pizzeria, ma quello di Gaeribaldi è tra i migliori. Un piatto sostanzioso che fa da pasto unico.</p>
+
+      <p><strong>Prezzo medio:</strong> 8-10 euro per un calzone completo. Un pasto sostanzioso a prezzi accessibili.</p>
+
+      <h2>Versioni Gourmet — Pizza d'Autore</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Radicale Restaurant</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari — Cucina Moderna</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 5.0</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza Gourmet con Stracotto</div>
+          <div class="rc-dish-desc">Impasto sourdough, stracotto di manzo, burrata e rucola</div>
+          <div class="rc-dish-price">&euro;16</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza con Tartufo Nero</div>
+          <div class="rc-dish-desc">Impasto con nero di seppia, crema di tartufo, burrata</div>
+          <div class="rc-dish-price">&euro;18</div>
+        </div>
+        <a href="/menu/radicale/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Radicale Restaurant</strong> è il ristorante gourmet per eccellenza a Bari. Il rating di 5.0 stelle parla da solo. Le pizze gourmet qui sono capolavori di creativita e qualita: impasti sourdough, ingredienti pregiati e presentazione perfetta. Il prezzo è piu alto della media, ma l'esperienza gastronomica è unica.</p>
+
+      <p><strong>Prezzo medio:</strong> 20-30 euro a testa. Per una cena speciale o un'occasione particolare.</p>
+
+      <h2>Pizzerie di Quartiere — L'Autenticità</h2>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Osteria delle Travi</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via delle Travi, Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza della Nonna</div>
+          <div class="rc-dish-desc">Pizza con pomodoro fresco, mozzarella, basilico e olio EVO</div>
+          <div class="rc-dish-price">&euro;8</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza con Verdure Grigliate</div>
+          <div class="rc-dish-desc">Pizza con zucchine, melanzane, peperoni e mozzarella</div>
+          <div class="rc-dish-price">&euro;9</div>
+        </div>
+        <a href="/menu/osteria-delle-travi/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Osteria delle Travi</strong> è famosa per le orecchiette, ma anche le pizze sono eccellenti. La pizza della nonna è semplice e perfetta, con ingredienti freschi e saporiti. La pizza con verdure grigliate è un'ottima alternativa per chi vuole qualcosa di leggero e sano. Il prezzo è molto accessibile.</p>
+
+      <p><strong>Prezzo medio:</strong> 12-18 euro a testa. Un pasto completo con antipasto e pizza.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div>
+            <div class="rc-name">Trattoria della Nonna</div>
+            <div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Bari Vecchia</div>
+          </div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.6</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Pizza Fritta</div>
+          <div class="rc-dish-desc">Pizza fritta ripiena di mozzarella e pomodoro</div>
+          <div class="rc-dish-price">&euro;5</div>
+        </div>
+        <div class="rc-dish">
+          <div class="rc-dish-name">Calzone Fritto</div>
+          <div class="rc-dish-desc">Calzone fritto con ricotta, mozzarella e pomodoro</div>
+          <div class="rc-dish-price">&euro;6</div>
+        </div>
+        <a href="/menu/trattoria-della-nonna/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <p><strong>Trattoria della Nonna</strong> è il posto perfetto per la pizza fritta. La pizza fritta ripiena di mozzarella e pomodoro è croccante e saporita, il calzone fritto è una delizia. Il locale è piccolo e familiare, con un'atmosfera accogliente e prezzi molto accessibili. Perfetto per un pranzo veloce o una cena informale.</p>
+
+      <p><strong>Prezzo medio:</strong> 8-12 euro a testa. Un pasto completo e saporito a prezzi accessibili.</p>
+
+      <!-- Mappa Interattiva -->
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Tutte le Pizzerie sulla Mappa</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Consigli per Scegliere la Pizzeria Giusta a Bari</h2>
+
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-clock"></i> <span><strong>Orari:</strong> Le pizzerie a Bari aprono tardi. La cena inizia dalle 20:30. Non arrivare prima.</span></li>
+          <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Budget:</strong> A Bari puoi mangiare una pizza perfetta da 5 a 18 euro, a seconda del tipo e del locale.</span></li>
+          <li><i class="fa-solid fa-map-pin"></i> <span><strong>Zona:</strong> Via Ferrante Ferranti è il cuore delle pizzerie barese. Passeggia e scegli quella che ti piace di piu.</span></li>
+          <li><i class="fa-solid fa-fire"></i> <span><strong>Forno a legna:</strong> Cerca sempre le pizzerie con forno a legna. La differenza è enorme.</span></li>
+          <li><i class="fa-solid fa-pepper-hot"></i> <span><strong>Peperoncino:</strong> Aggiungi sempre un po' di peperoncino fresco. I baresi lo mettono sempre.</span></li>
+          <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Vino:</strong> Un bicchiere di vino rosso fresco o una birra fredda sono perfetti con la pizza.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <h3>Scopri Altre Pizzerie a Bari</h3>
+        <p>Cerca pizzerie, menu e prezzi nella nostra mappa interattiva</p>
+        <a href="/piatti/?q=pizza" class="cta-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Cerca Pizzerie
+        </a>
+      </div>
+
+      <!-- AdSense Bottom -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/migliori-pizzeria-bari/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/migliori-pizzeria-bari/&text=I+Migliori+Pizzeria+a+Bari:+Dove+Mangiare+Pizza"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+le+migliori+pizzerie+di+Bari:+https://www.trovapiatto.it/community/blog/migliori-pizzeria-bari/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name: 'Pizzeria da Michele', lat: 41.1291, lng: 16.8702, price: '€7', slug: 'pizzeria-da-michele', rating: '4.9' },
+      { name: 'Pizzeria Starita', lat: 41.1291, lng: 16.8702, price: '€8', slug: 'pizzeria-starita', rating: '4.7' },
+      { name: 'Ai Monizzati', lat: 41.1291, lng: 16.8702, price: '€3', slug: 'ai-monizzati', rating: '4.7' },
+      { name: 'Forno Fiore', lat: 41.1291, lng: 16.8702, price: '€2', slug: 'forno-fiore', rating: '4.8' },
+      { name: 'Pizzeria Gaeribaldi', lat: 41.124061, lng: 16.862950, price: '€8', slug: 'gaeribaldi-grill-house', rating: '4.6' },
+      { name: 'Radicale Restaurant', lat: 41.1245, lng: 16.8690, price: '€16', slug: 'radicale', rating: '5.0' },
+      { name: 'Osteria delle Travi', lat: 41.1285, lng: 16.8705, price: '€8', slug: 'osteria-delle-travi', rating: '4.8' },
+      { name: 'Trattoria della Nonna', lat: 41.1280, lng: 16.8700, price: '€5', slug: 'trattoria-della-nonna', rating: '4.6' }
+    ];
+
+    const map = L.map('article-map').setView([41.1245, 16.8695], 14);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    restaurants.forEach(r => {
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+
+      L.marker([r.lat, r.lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${r.name}</strong><br>
+            <span style="color:#f59e0b;">⭐ ${r.rating}</span> &middot; <strong>${r.price}</strong><br>
+            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "I Migliori Pizzeria a Bari: Dove Mangiare Pizza nel 2026",
+    "description": "Scopri le migliori pizzerie di Bari: pizza napoletana, pizza a taglio, calzoni e versioni gourmet con prezzi e consigli.",
+    "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&h=630&fit=crop",
+    "author": { "@type": "Organization", "name": "trovapiatto" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "trovapiatto",
+      "logo": { "@type": "ImageObject", "url": "https://www.trovapiatto.it/logo/logo_ufficiale.png" }
+    },
+    "datePublished": "2026-07-09T10:00:00+02:00",
+    "dateModified": "2026-07-09T10:00:00+02:00",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.trovapiatto.it/community/blog/migliori-pizzeria-bari/" },
+    "articleSection": "Food Guide",
+    "keywords": "pizzeria Bari, pizza Bari, migliore pizza Bari, pizza a taglio Bari, pizzeria tradizionale Bari"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.trovapiatto.it/" },
+      { "@type": "ListItem", "position": 2, "name": "Magazine", "item": "https://www.trovapiatto.it/community/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Migliori Pizzeria Bari", "item": "https://www.trovapiatto.it/community/blog/migliori-pizzeria-bari/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è la migliore pizzeria a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La migliore pizzeria a Bari è Pizzeria da Michele (4.9 stelle, €7), seguita da Starita (4.7 stelle, €8) e Forno Fiore (4.8 stelle, €2). Consulta la nostra guida completa per tutti i dettagli."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa una pizza a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Una pizza a Bari costa in media da €5 a €18, a seconda del tipo e del locale. La pizza a taglio costa da €2 a €4, la pizza tradizionale da €5 a €9, le versioni gourmet da €14 a €18."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ci sono pizzeria a taglio a Bari?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si, a Bari ci sono molte pizzerie a taglio. Ai Monizzati (4.7 stelle, €3-4) e Forno Fiore (4.8 stelle, €2-3) sono tra le migliori. La pizza a taglio è perfetta per un pranzo veloce o una merenda."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dolci Pugliesi: Dalla Cartellata al Pasticciotto Leccese | trovapiatto</title>
+  <meta name="description" content="Scopri i dolci pugliesi: pasticciotto leccese, cartellata, cupeta, serrano di mandorla, mostaccioli e torta caprese. Guida completa con ricette e pasticcerie consigliate.">
+  <meta name="keywords" content="dolci pugliesi, pasticciotto leccese, cartellata, cupeta, serrano di mandorla, mostaccioli, torta caprese, dolci Puglia">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#e73a3a">
+  <meta name="author" content="trovapiatto">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.trovapiatto.it/community/blog/dolci-puglia/">
+  <meta property="og:title" content="Dolci Pugliesi: Dalla Cartellata al Pasticciotto Leccese">
+  <meta property="og:description" content="Guida completa ai dolci pugliesi: pasticciotto, cartellata, cupeta e molto altro.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1200&h=630&fit=crop">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+  <meta property="article:published_time" content="2026-07-10T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-07-10T10:00:00+02:00">
+  <meta property="article:section" content="Food Guide">
+  <meta property="article:tag" content="Dolci">
+  <meta property="article:tag" content="Bari">
+  <meta property="article:tag" content="Cucina Pugliese">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dolci Pugliesi: Dalla Cartellata al Pasticciotto Leccese">
+  <meta name="twitter:description" content="Guida completa ai dolci pugliesi con pasticcerie consigliate.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1200&h=630&fit=crop">
+  <link rel="canonical" href="https://www.trovapiatto.it/community/blog/dolci-puglia/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root{--bg-dark:#0f0a15;--bg-card:#1a1225;--primary:#e73a3a;--primary-light:#ff6b6b;--accent-food:#f59e0b;--text-white:#fff;--text-light:#e0e0e0;--text-muted:#9ca3af;--border:rgba(255,255,255,0.08)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;background:var(--bg-dark);color:var(--text-white);min-height:100vh;line-height:1.7}
+    .article-nav{position:sticky;top:0;z-index:100;background:rgba(15,10,21,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+    .article-nav .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text-white)}
+    .article-nav .logo img{height:32px}
+    .article-nav .back-link{color:var(--text-muted);text-decoration:none;font-size:0.85rem;display:flex;align-items:center;gap:6px;transition:color 0.3s}
+    .article-nav .back-link:hover{color:var(--primary)}
+    .article-hero{position:relative;height:50vh;min-height:350px;overflow:hidden}
+    .article-hero img{width:100%;height:100%;object-fit:cover}
+    .article-hero .overlay{position:absolute;inset:0;background:linear-gradient(0deg,var(--bg-dark) 0%,rgba(15,10,21,0.4) 50%,rgba(15,10,21,0.2) 100%)}
+    .article-hero .hero-content{position:absolute;bottom:30px;left:0;right:0;padding:0 20px;max-width:800px;margin:0 auto}
+    .article-hero .tag{display:inline-block;background:var(--primary);color:white;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:12px}
+    .article-hero h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:12px}
+    @media(min-width:768px){.article-hero h1{font-size:2.8rem}}
+    .article-hero .meta{display:flex;align-items:center;gap:16px;font-size:0.85rem;color:var(--text-muted)}
+    .article-hero .meta i{color:var(--primary)}
+    .article-container{max-width:800px;margin:0 auto;padding:30px 20px 60px}
+    .article-content h2{font-size:1.5rem;font-weight:700;margin:40px 0 16px;color:var(--text-white);padding-left:14px;border-left:3px solid var(--primary)}
+    .article-content h3{font-size:1.2rem;font-weight:600;margin:24px 0 10px;color:var(--text-white)}
+    .article-content p{font-size:1rem;color:var(--text-light);margin-bottom:16px;line-height:1.8}
+    .article-content strong{color:var(--text-white)}
+    .article-content a{color:var(--primary);text-decoration:none;font-weight:600;transition:color 0.3s}
+    .article-content a:hover{color:var(--primary-light)}
+    .restaurant-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;margin:24px 0;transition:all 0.3s}
+    .restaurant-card:hover{border-color:var(--primary);box-shadow:0 8px 30px rgba(231,58,58,0.1)}
+    .restaurant-card .rc-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+    .restaurant-card .rc-name{font-size:1.15rem;font-weight:700;color:var(--text-white)}
+    .restaurant-card .rc-rating{display:flex;align-items:center;gap:4px;background:rgba(245,158,11,0.15);padding:4px 10px;border-radius:20px;font-size:0.8rem;font-weight:600;color:var(--accent-food);white-space:nowrap}
+    .restaurant-card .rc-cuisine{font-size:0.8rem;color:var(--text-muted);margin-bottom:12px}
+    .restaurant-card .rc-dish{background:rgba(255,255,255,0.04);border-radius:12px;padding:14px;margin-bottom:10px}
+    .restaurant-card .rc-dish-name{font-weight:600;font-size:0.95rem;color:var(--text-white);margin-bottom:4px}
+    .restaurant-card .rc-dish-desc{font-size:0.85rem;color:var(--text-muted);margin-bottom:6px}
+    .restaurant-card .rc-dish-price{font-weight:700;color:var(--accent-food);font-size:1rem}
+    .restaurant-card .rc-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;color:var(--primary);font-size:0.85rem;font-weight:600;text-decoration:none;transition:gap 0.3s}
+    .restaurant-card .rc-link:hover{gap:10px}
+    .map-section{margin:40px 0}
+    .map-section h2{font-size:1.5rem;font-weight:700;margin-bottom:16px;padding-left:14px;border-left:3px solid var(--primary)}
+    #article-map{width:100%;height:350px;border-radius:16px;border:1px solid var(--border)}
+    .tips-box{background:linear-gradient(135deg,rgba(231,58,58,0.08),rgba(245,158,11,0.05));border:1px solid rgba(231,58,58,0.2);border-radius:16px;padding:24px;margin:30px 0}
+    .tips-box h3{font-size:1.1rem;font-weight:700;margin-bottom:14px;color:var(--primary-light)}
+    .tips-box ul{list-style:none;padding:0}
+    .tips-box li{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:0.9rem;color:var(--text-light)}
+    .tips-box li i{color:var(--accent-food);margin-top:4px;flex-shrink:0}
+    .cta-box{text-align:center;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:40px 24px;margin:40px 0}
+    .cta-box h3{font-size:1.3rem;font-weight:700;margin-bottom:10px}
+    .cta-box p{color:var(--text-muted);font-size:0.9rem;margin-bottom:20px}
+    .cta-box .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:white;padding:12px 28px;border-radius:30px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:all 0.3s}
+    .cta-box .cta-btn:hover{background:var(--primary-light);transform:translateY(-2px);box-shadow:0 8px 25px rgba(231,58,58,0.3)}
+    .ad-container{margin:30px 0;text-align:center;min-height:90px}
+    .article-footer{border-top:1px solid var(--border);padding-top:24px;margin-top:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    .article-footer .share{display:flex;align-items:center;gap:10px}
+    .article-footer .share span{font-size:0.85rem;color:var(--text-muted)}
+    .article-footer .share a{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);color:var(--text-light);text-decoration:none;transition:all 0.3s;font-size:0.9rem}
+    .article-footer .share a:hover{background:var(--primary);color:white}
+    .site-footer{text-align:center;padding:30px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.8rem}
+    .site-footer a{color:var(--primary);text-decoration:none}
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+</head>
+<body>
+  <nav class="article-nav">
+    <a href="/" class="logo"><img src="/logo/logo_ufficiale.png" alt="trovapiatto"></a>
+    <a href="/community/blog/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Magazine</a>
+  </nav>
+  <header class="article-hero">
+    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1400&h=700&fit=crop" alt="Dolci Pugliesi">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <span class="tag"><i class="fa-solid fa-cake-candles"></i> Dolci</span>
+      <h1>Dolci Pugliesi: Dalla Cartellata al Pasticciotto Leccese</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar"></i> 10 Luglio 2026</span>
+        <span><i class="fa-regular fa-clock"></i> 8 min di lettura</span>
+        <span><i class="fa-solid fa-map-marker-alt"></i> Puglia</span>
+      </div>
+    </div>
+  </header>
+  <article class="article-container">
+    <div class="article-content">
+      <p>I <strong>dolci pugliesi</strong> sono un universo di sapori, profumi e tradizioni che si tramandano di generazione in generazione. Dalla pasticceria del Salento ai forni del Gargano, la Puglia e terra di dolci artigianali, fatti con ingredienti semplici ma di qualita superiore: mandorle, miele, ricotta, marmellata di fichi e vino cotto.</p>
+      <p>In questa guida ti portiamo alla scoperta dei <strong>dolci piu celebri della Puglia</strong>, dal pasticciotto leccese alla cartellata, dalla cupeta al serrano di mandorla. Scopri dove trovarli, come prepararli a casa e qual e il momento perfetto per gustarli.</p>
+
+      <h2>Il Pasticciotto Leccese: Il Dolce del Salento</h2>
+      <p>Il <strong>pasticciotto leccese</strong> e forse il dolce pugliese piu famoso al mondo. Un guscio di pasta frolla croccante e burrosa, ripieno di crema pasticcera calda e filante, cotto al forno fino a doratura perfetta. La sua origine risale al 1745, quando un pasticciere di Gallipoli decise di riempire gli avanzi di pasta frolla con crema di latte e zucchero.</p>
+      <p>Il pasticciotto si mangia <strong>caldo, appena uscito dal forno</strong>. La crema deve essere filante ma non liquida, la pasta frolla deve essere croccante ma non secca. A Lecce lo si trova in ogni pasticceria, ma i piu celebri sono quelli del centro storico, dove la tradizione non e mai stata tradita.</p>
+      <p>Il prezzo va da <strong>2,50 a 4 euro</strong> a pezzo, e ne bastano due per una colazione completa o un dolce dopo pranzo.</p>
+
+      <h2>La Cartellata: Il Dolce delle Feste</h2>
+      <p>La <strong>cartellata</strong> e un dolce fritto tipico del periodo natalizio, ma oggi si trova tutto l'anno. Strisce sottili di pasta fritta, ripiene di miele, mosto cotto o vino dolce, e decorate con scaglie di cioccolato o granella di pistacchio. Il nome deriva dalla forma a "cartella" che assumono le strisce di pasta dopo la frittura.</p>
+      <p>La cartellata e un piatto che richiede pazienza: la pasta deve essere stesa molto sottile, le strisce devono essere tagliate con precisione e la frittura deve avvenire a temperatura perfetta. Il miele che le ricopre deve essere di qualita, preferibilmente millefiori pugliese o di castagno.</p>
+      <p>E un dolce perfetto per le <strong>feste natalizie</strong>, ma si trova anche nelle pasticcerie durante l'anno. Il prezzo va da 3 a 6 euro a pezzo.</p>
+
+      <h2>La Cupeta: La Dolcezza dello Zucchero</h2>
+      <p>La <strong>cupeta</strong> e un dolce semplice ma irresistibile: mandorle tostate avvolte in uno sciroppo di zucchero cotto fino a consistenza caramellata. La tradizione vuole che venga preparata durante le festivita, soprattutto a Natale e durante le feste patronali. Il sapore e una esplosione di dolcezza e croccantezza.</p>
+      <p>Esistono diverse varianti: con mandorle intere, con arachidi, con semi di sesamo o con nocciole. La versione piu classica e quella con mandorle di Toritto, famose in tutta Italia per la loro qualita e sapore intenso.</p>
+      <p>La cupeta si trova nelle <strong>confetterie artigianali</strong> e nei mercatini natalizi. Il prezzo va da 4 a 8 euro al pezzo, a seconda della dimensione e degli ingredienti.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div><div class="rc-name">Quintessenza</div><div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Sparano da Bari, Bari</div></div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.8</div>
+        </div>
+        <div class="rc-dish"><div class="rc-dish-name">Pasticciotto Leccese</div><div class="rc-dish-desc">Pasticciotto tradizionale con crema pasticcera calda, pasta frolla artigianale</div><div class="rc-dish-price">&euro;3,50</div></div>
+        <a href="/menu/quintessenza/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>Quintessenza e una pasticceria di riferimento a Bari per i dolci pugliesi. Il pasticciotto a 3,50 euro e un capolavoro: la pasta frolla e croccante e burrosa, la crema e filante e profumata alla vaniglia naturale. La tradizione leccese e rispettata alla lettera.</p>
+      <p><strong>Cosa ordinare:</strong> Il pasticciotto classico e imperdibile. La cartellata con miele e marmellata di fichi e un'ottima alternativa.</p>
+
+      <div class="restaurant-card">
+        <div class="rc-header">
+          <div><div class="rc-name">Friggitoria La Maddalena</div><div class="rc-cuisine"><i class="fa-solid fa-location-dot"></i> Via Ferrante Ferranti, Bari</div></div>
+          <div class="rc-rating"><i class="fa-solid fa-star"></i> 4.7</div>
+        </div>
+        <div class="rc-dish"><div class="rc-dish-name">Cartellata con Miele</div><div class="rc-dish-desc">Strisce di pasta fritte con miele millefiori e scaglie di cioccolato</div><div class="rc-dish-price">&euro;4,00</div></div>
+        <a href="/menu/friggitoria-la-maddalena/" class="rc-link">Vedi il menu completo <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <p>La Maddalena non e solo friggitoria di fritti salati: la cartellata e una delle loro specialita. Le strisce di pasta sono croccanti e leggere, il miele e di qualita e le scaglie di cioccolato aggiungono un tocco di modernita alla tradizione.</p>
+      <p><strong>Cosa ordinare:</strong> La cartellata con miele e un must. La versione con marmellata di fichi e un'ottima alternativa per chi ama i sapori più complessi.</p>
+
+      <!-- AdSense In-Article -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>Gli Altri Dolci Pugliesi Imperdibili</h2>
+
+      <h3>Il Serrano di Mandorla</h3>
+      <p>Il <strong>serrano di mandorla</strong> e un dolce secco a forma di tonda, fatto con mandorle macinate, zucchero e albumi d'uovo. Ha una consistenza compatta ma non dura, e un sapore di mandorle puro e intenso. E un dolce che si conserva a lungo, perfetto da portare come regalo.</p>
+      <p>Il serrano si trova nelle pasticcerie di tutta la Puglia, ma i piu celebri sono quelli di <strong>Andria e Corato</strong>, dove la tradizione della mandorla e antica di secoli. Il prezzo va da 2 a 4 euro a pezzo.</p>
+
+      <h3>I Mostaccioli</h3>
+      <p>I <strong>mostaccioli</strong> sono biscotti al cioccolato con mandorle, tipici del periodo natalizio. Sono duri e croccanti, con un sapore intenso di cacao e una texture che richiede di essere inzuppato nel vino o nel caffè. La tradizione vuole che vengano preparati a mano nelle famiglie, con ricette segrete che si tramandano da generazioni.</p>
+      <p>Il prezzo va da 3 a 6 euro al pezzo, e si trovano nelle pasticcerie e nei mercatini natalizi.</p>
+
+      <h3>La Torta Caprese</h3>
+      <p>La <strong>torta caprese</strong> non e strettamente pugliese, ma e un dolce che ha conquistato tutta la regione. Torta al cioccolato fondente con mandorle, senza farina, con una consistenza umida e un sapore intensamente cioccolatoso. E un dolce che si puo trovare in ogni pasticceria della Puglia, spesso in varianti con pistacchio o nocciole.</p>
+      <p>Il prezzo va da 4 a 8 euro a fetta, a seconda della dimensione e della qualita degli ingredienti.</p>
+
+      <h3>Il Gelato Artigianale</h3>
+      <p>Il <strong>gelato artigianale</strong> e un'altra eccellenza della Puglia. Le gelaterie di Bari, Lecce e Brindisi producono gelati con ingredienti locali: mandorle di Toritto, fichi di Ceglie, pistacchio di Bronte e limoni del Salento. I gusti piu tipici sono il mandorla, il fiore di latte, il pistacchio e il limone.</p>
+      <p>Un cono di gelato artigianale costa da 2,50 a 5 euro, e ne bastano due palline per una degustazione perfetta.</p>
+
+      <h2>Quando Mangiare i Dolci Pugliesi</h2>
+      <p>I dolci pugliesi si gustano meglio in determinati momenti dell'anno. Il <strong>pasticciotto</strong> si mangia tutto l'anno, soprattutto a colazione o come merenda. La <strong>cartellata</strong> e tipica del periodo natalizio, ma oggi si trova anche in estate. La <strong>cupeta</strong> e un dolce natalizio per eccellenza, mentre il <strong>serrano</strong> e perfetto come regalo in ogni stagione.</p>
+      <p>Le <strong>feste patronali</strong> sono il momento perfetto per assaggiare i dolci tradizionali: durante la Fiera di San Nicola a Bari, la Notte della Taranta a Melpa e le feste del patrono di ogni paese, le bancarelle offrono una varieta enorme di dolci tipici.</p>
+
+      <h2>Dove Trovare i Migliori Dolci Pugliesi</h2>
+      <div class="map-section">
+        <h2><i class="fa-solid fa-map-location-dot"></i> Le Migliori Pasticcerie</h2>
+        <div id="article-map"></div>
+      </div>
+
+      <h2>Consigli per Assaggiare i Dolci Pugliesi</h2>
+      <div class="tips-box">
+        <h3><i class="fa-solid fa-lightbulb"></i> Tips da Esperto</h3>
+        <ul>
+          <li><i class="fa-solid fa-fire"></i> <span><strong>Mangia il pasticciotto caldo:</strong> Il pasticciotto si gusta caldo, appena uscito dal forno. Chiedi sempre se ne hanno appena sfornato.</span></li>
+          <li><i class="fa-solid fa-cookie"></i> <span><strong>Prova la cartellata fresca:</strong> La cartellata deve essere croccante e leggera, non appesantita dal miele. Chiedi sempre se e fresca.</span></li>
+          <li><i class="fa-solid fa-nut"></i> <span><strong>Cerca le mandorle locali:</strong> I dolci pugliesi usano mandorle di qualita. Quelle di Toritto sono le migliori.</span></li>
+          <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Budget consigliato:</strong> Con 10-15 euro puoi assaggiare una selezione completa di dolci pugliesi.</span></li>
+          <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Abbinamento perfetto:</strong> Un caffè amaro o un bicchiere di passito accompagnano perfettamente i dolci pugliesi.</span></li>
+          <li><i class="fa-solid fa-gift"></i> <span><strong>Porta a casa:</strong> Il serrano e la cupeta sono perfetti da portare come regalo. Si conservano a lungo.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <h3>Scopri Altri Dolci della Puglia</h3>
+        <p>Cerca pasticcerie, dolci e menu nella nostra mappa interattiva</p>
+        <a href="/piatti/?q=dolci" class="cta-btn"><i class="fa-solid fa-magnifying-glass"></i> Cerca Dolci in Puglia</a>
+      </div>
+
+      <!-- AdSense Bottom -->
+      <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <div class="article-footer">
+        <div class="share">
+          <span>Condividi:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.trovapiatto.it/community/blog/dolci-puglia/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://twitter.com/intent/tweet?url=https://www.trovapiatto.it/community/blog/dolci-puglia/&text=Dolci+Pugliesi:+Dalla+Cartellata+al+Pasticciotto+Leccese"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/?text=Scopri+i+dolci+pugliesi:+https://www.trovapiatto.it/community/blog/dolci-puglia/"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="site-footer">
+    &copy; 2026 trovapiatto &mdash; <a href="/">Home</a> &middot; <a href="/piatti/">Piatti</a> &middot; <a href="/community/">Community</a> &middot; <a href="/about.html">Chi Siamo</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const restaurants = [
+      { name:'Quintessenza', lat:41.1245, lng:16.8690, price:'€3,50', slug:'quintessenza', rating:'4.8' },
+      { name:'La Maddalena', lat:41.1291, lng:16.8702, price:'€4,00', slug:'friggitoria-la-maddalena', rating:'4.7' }
+    ];
+    const map = L.map('article-map').setView([41.1245,16.8695],15);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap &copy; CARTO',maxZoom:19}).addTo(map);
+    restaurants.forEach(r=>{
+      const icon=L.divIcon({html:`<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,className:'',iconAnchor:[50,10]});
+      L.marker([r.lat,r.lng],{icon}).addTo(map).bindPopup(`<div style="font-family:Poppins,sans-serif;padding:4px;"><strong>${r.name}</strong><br><span style="color:#f59e0b;">⭐ ${r.rating}</span> &middot; <strong>${r.price}</strong><br><a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a></div>`);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Dolci Pugliesi: Dalla Cartellata al Pasticciotto Leccese","description":"Guida completa ai dolci pugliesi: pasticciotto leccese, cartellata, cupeta, serrano di mandorla e molto altro.","image":"https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1200&h=630&fit=crop","author":{"@type":"Organization","name":"trovapiatto"},"publisher":{"@type":"Organization","name":"trovapiatto","logo":{"@type":"ImageObject","url":"https://www.trovapiatto.it/logo/logo_ufficiale.png"}},"datePublished":"2026-07-10T10:00:00+02:00","dateModified":"2026-07-10T10:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.trovapiatto.it/community/blog/dolci-puglia/"},"articleSection":"Food Guide","keywords":"dolci pugliesi, pasticciotto leccese, cartellata, cupeta, serrano di mandorla, mostaccioli, torta caprese"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.trovapiatto.it/"},{"@type":"ListItem","position":2,"name":"Magazine","item":"https://www.trovapiatto.it/community/blog/"},{"@type":"ListItem","position":3,"name":"Dolci Pugliesi","item":"https://www.trovapiatto.it/community/blog/dolci-puglia/"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qual e il dolce piu tipico della Puglia?","acceptedAnswer":{"@type":"Answer","text":"Il pasticciotto leccese e il dolce piu tipico della Puglia. Un guscio di pasta frolla ripieno di crema pasticcera calda, originario di Gallipoli e diffuso in tutta la regione."}},{"@type":"Question","name":"Dove mangiare i dolci pugliesi a Bari?","acceptedAnswer":{"@type":"Answer","text":"Quintessenza (Via Sparano da Bari) e la pasticceria di riferimento per il pasticciotto. La Friggitoria La Maddalena eccelle nella cartellata con miele."}},{"@type":"Question","name":"Quanto costa un pasticciotto leccese?","acceptedAnswer":{"@type":"Answer","text":"Il pasticciotto leccese costa da 2,50 a 4 euro a pezzo, a seconda della pasticceria e della zona. Ne bastano due per una colazione completa."}}]}
+  </script>
+</body>
+</html>

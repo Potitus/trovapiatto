@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Categoria - trovapiatto</title>
+  <meta name="description" id="page-desc" content="Scopri i piatti tipici di Bari e Puglia su trovapiatto. Orecchiette, focaccia, branzino, burrata e oltre 8000 piatti dai migliori ristoranti.">
+  <meta name="keywords" content="piatti tipici Bari, piatti tipici Puglia, cosa mangiare a Bari, orecchiette cime di rapa, branzino al forno, burrata pugliese, focaccia barese, pizza Bari, pesce fresco Bari, cucina pugliese tradizionale, piatti senza glutine Bari, piatti vegani Bari, sushi Bari, carne alla brace Bari, street food Bari, frutta di mare Bari">
+  <meta name="theme-color" content="#e73a3a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="trovapiatto">
+  <meta property="og:locale" content="it_IT">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.php?size=180x180">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #e73a3a;
+      --dark-bg: #0f0a15;
+      --card-bg: #1a1225;
+      --text-light: #b0b0b0;
+      --text-muted: #707070;
+      --border-color: rgba(231,58,58,0.15);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f0a15 0%, #1a0f25 100%);
+      color: #fff;
+      min-height: 100vh;
+      scrollbar-width: thin;
+      scrollbar-color: transparent transparent;
+      overflow-x: hidden;
+    }
+
+    html { scrollbar-width: none; }
+    html::-webkit-scrollbar { display: none; }
+    body::-webkit-scrollbar { width: 6px; }
+    body::-webkit-scrollbar-track { background: transparent; }
+    body::-webkit-scrollbar-thumb { background: rgba(231,58,58,0.3); border-radius: 3px; }
+
+    @media (max-width: 768px) {
+      html, body { scrollbar-width: none; }
+      html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+    }
+
+    /* Header */
+    .cat-header {
+      position: relative;
+      padding: 6rem 2rem 3rem;
+      text-align: center;
+      overflow: hidden;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cat-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: blur(4px) brightness(0.55);
+      transform: scale(1.05);
+      z-index: 0;
+    }
+
+    .cat-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,10,21,0.05) 0%, #0f0a15 100%);
+      z-index: 1;
+    }
+
+    .cat-header > * { position: relative; z-index: 2; }
+
+    .cat-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: white;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      animation: fadeInDown 0.6s ease-out;
+    }
+
+    .cat-header h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+
+    .cat-header p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 600px;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    .cat-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+
+    .cat-stat {
+      text-align: center;
+    }
+
+    .cat-stat .num {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+
+    .cat-stat .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Nav */
+    .cat-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(15,10,21,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cat-nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+
+    .cat-nav a:hover { color: var(--primary); }
+
+    .cat-nav .logo-text {
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #e73a3a, #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Content */
+    .cat-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      overflow: hidden;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title i {
+      color: var(--primary);
+    }
+
+    /* Dishes Grid */
+    .dishes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 4rem;
+    }
+
+    .dish-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .dish-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .dish-img {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.1);
+    }
+
+    .dish-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dish-info { flex: 1; min-width: 0; }
+
+    .dish-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dish-restaurant {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dish-price {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    /* Restaurant Cards */
+    .restaurants-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .rest-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rest-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .rest-banner {
+      height: 120px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rest-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .rest-banner-placeholder {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: white;
+    }
+
+    .rest-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(15,10,21,0.85);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .rest-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rest-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .rest-address {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .rest-dishes-count {
+      font-size: 0.78rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .rest-cta {
+      margin-top: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .rest-btn {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .rest-btn-primary {
+      background: linear-gradient(135deg, var(--primary), #ff6b6b);
+      color: white;
+    }
+
+    .rest-btn-primary:hover {
+      box-shadow: 0 4px 15px rgba(231,58,58,0.4);
+    }
+
+    .rest-btn-secondary {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text-light);
+    }
+
+    .rest-btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--primary);
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-muted);
+    }
+
+    .loading i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: block;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-muted);
+    }
+
+    .empty-state i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      opacity: 0.5;
+    }
+
+    /* Quick Tags */
+    .quick-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .quick-tag {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .quick-tag:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(231,58,58,0.1);
+    }
+
+    .quick-tag.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+      padding: 14px;
+      background: rgba(30,20,50,0.8);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+    }
+    .filter-group {
+      flex: 1;
+      min-width: 120px;
+    }
+    .filter-group label {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .filter-group label i {
+      margin-right: 3px;
+      font-size: 0.65rem;
+    }
+    .filter-group select {
+      width: 100%;
+      padding: 8px 10px;
+      background: rgba(15,10,21,0.9);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      appearance: auto;
+    }
+    .filter-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .cat-nav { padding: 0.6rem 1rem; }
+      .cat-nav img { height: 26px; }
+      .cat-nav a:last-child { font-size: 0.78rem; padding: 6px 12px; background:rgba(231,58,58,0.1); border-radius:8px; border:1px solid rgba(231,58,58,0.2); }
+      .cat-header { padding: 4.5rem 1rem 1.5rem; min-height: auto; }
+      .cat-icon { width: 56px; height: 56px; border-radius: 16px; font-size: 22px; margin-bottom: 0.8rem; }
+      .cat-header h1 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+      .cat-header p { font-size: 0.85rem; line-height: 1.4; }
+      .cat-content { padding: 1rem 0.8rem 5rem; }
+      .section-title { font-size: 1rem; margin-bottom: 1rem; gap: 8px; }
+      .section-title i { font-size: 0.9rem; }
+
+      /* Sub nav mobile */
+      .sub-nav { 
+        gap: 6px; padding: 0.8rem 0; margin-bottom: 0.8rem;
+        overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      }
+      .sub-nav::-webkit-scrollbar { display: none; }
+      .sub-nav a { 
+        padding: 6px 12px; font-size: 0.72rem; white-space: nowrap;
+        flex-shrink: 0; border-radius: 8px;
+      }
+
+      /* Quick tags mobile */
+      .quick-tags { 
+        gap: 6px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      }
+      .quick-tags::-webkit-scrollbar { display: none; }
+      .quick-tag { 
+        padding: 6px 14px; font-size: 0.75rem; white-space: nowrap; 
+        flex-shrink: 0; border-radius: 20px;
+      }
+
+      /* Stats mobile */
+      .cat-stats { gap: 1.5rem; margin-top: 1rem; }
+      .cat-stat .num { font-size: 1.2rem; }
+      .cat-stat .label { font-size: 0.6rem; letter-spacing: 0.5px; }
+
+      /* Dishes grid mobile */
+      .dishes-grid { grid-template-columns: 1fr; gap: 8px; margin-bottom: 2.5rem; }
+      .dish-card { 
+        padding: 10px; gap: 10px; border-radius: 12px;
+        background: rgba(255,255,255,0.05);
+      }
+      .dish-img { width: 44px; height: 44px; border-radius: 10px; }
+      .dish-name { font-size: 0.85rem; }
+      .dish-restaurant { font-size: 0.7rem; }
+      .dish-price { font-size: 0.8rem; }
+
+      /* Restaurants grid mobile */
+      .restaurants-grid { grid-template-columns: 1fr; gap: 12px; }
+      .rest-card { border-radius: 14px; }
+      .rest-banner { height: 90px; }
+      .rest-badge { font-size: 0.65rem; padding: 3px 10px; }
+      .rest-body { padding: 12px; }
+      .rest-name { font-size: 0.95rem; margin-bottom: 4px; }
+      .rest-address { font-size: 0.75rem; margin-bottom: 4px; }
+      .rest-dishes-count { font-size: 0.72rem; margin-bottom: 10px; }
+      .rest-cta { gap: 6px; }
+      .rest-btn { padding: 9px; font-size: 0.78rem; border-radius: 8px; }
+
+      /* FAB mobile */
+      .fab-container { bottom: 14px; right: 12px; gap: 8px; }
+      .fab { width: 42px; height: 42px; border-radius: 12px; font-size: 0.9rem; }
+      .fab-tooltip { display: none; }
+    }
+
+    @media (max-width: 380px) {
+      .cat-header { padding: 4rem 0.8rem 1.2rem; }
+      .cat-header h1 { font-size: 1.3rem; }
+      .cat-header p { font-size: 0.78rem; }
+      .cat-content { padding: 0.8rem 0.6rem 5rem; }
+      .sub-nav a { padding: 5px 10px; font-size: 0.68rem; }
+      .quick-tag { padding: 5px 10px; font-size: 0.7rem; }
+      .dish-card { padding: 8px; gap: 8px; }
+      .dish-img { width: 40px; height: 40px; border-radius: 8px; }
+      .rest-banner { height: 80px; }
+      .fab { width: 38px; height: 38px; font-size: 0.85rem; }
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+    /* Floating Nav Buttons */
+    .fab-container {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .fab {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      transition: all 0.3s;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .fab:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .fab-home { background: linear-gradient(135deg, #e73a3a, #ff6b6b); }
+    .fab-map { background: linear-gradient(135deg, #06b6d4, #22d3ee); }
+    .fab-top { background: linear-gradient(135deg, #6b7280, #9ca3af); }
+    .fab-tooltip {
+      position: absolute;
+      right: 58px;
+      background: rgba(15,10,21,0.95);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .fab:hover .fab-tooltip { opacity: 1; }
+
+    /* Sub Nav Bar */
+    .sub-nav {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .sub-nav a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .sub-nav a:hover {
+      background: rgba(231,58,58,0.1);
+      border-color: rgba(231,58,58,0.3);
+      color: var(--primary);
+    }
+    .sub-nav a.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .fab-container { bottom: 16px; right: 12px; gap: 8px; }
+      .fab { width: 42px; height: 42px; border-radius: 12px; font-size: 0.9rem; }
+      .fab-tooltip { display: none; }
+      .sub-nav { gap: 6px; padding: 0.8rem 0; }
+      .sub-nav a { padding: 6px 12px; font-size: 0.72rem; }
+    }
+  </style>
+    <!-- Google Analytics (Consent Mode v2: default negato) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted' });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-SMZZK9P4W4');
+    </script>
+    <link rel="canonical" href="https://www.trovapiatto.it/piatti/">
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="cat-nav">
+    <a href="/"><img src="https://www.trovapiatto.it/logo/logo_ufficiale.png" alt="trovapiatto" style="height:32px; filter:drop-shadow(0 2px 8px rgba(231,58,58,0.3));"></a>
+    <a href="/app/"><i class="fa-solid fa-map-location-dot"></i> Mappa</a>
+  </nav>
+
+  <!-- Header -->
+  <header class="cat-header" id="cat-header">
+    <div class="cat-icon" id="cat-icon" style="background:linear-gradient(135deg, #e73a3a, #ff6b6b);">
+      <i class="fas fa-utensils" id="cat-icon-i"></i>
+    </div>
+    <h1 id="cat-title">Caricamento...</h1>
+    <p id="cat-desc">Ricerca piatti e ristoranti in corso</p>
+    <div class="cat-stats">
+      <div class="cat-stat">
+        <div class="num" id="stat-dishes">-</div>
+        <div class="label">Piatti</div>
+      </div>
+      <div class="cat-stat">
+        <div class="num" id="stat-restaurants">-</div>
+        <div class="label">Ristoranti</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <div class="cat-content">
+
+    <!-- Sub Nav -->
+    <div class="sub-nav">
+      <a href="/"><i class="fas fa-home"></i> Home</a>
+      <a href="/app/"><i class="fas fa-map-location-dot"></i> Mappa</a>
+      <a href="/menu/"><i class="fas fa-utensils"></i> Piatti Popolari</a>
+      <a href="javascript:void(0)" onclick="document.getElementById('quick-tags').scrollIntoView({behavior:'smooth',block:'start'})"><i class="fas fa-layer-group"></i> Categorie</a>
+      <a href="javascript:void(0)" onclick="document.getElementById('restaurants-grid').scrollIntoView({behavior:'smooth',block:'start'})"><i class="fas fa-store"></i> Ristoranti</a>
+    </div>
+
+    <!-- Quick Tags -->
+    <div class="quick-tags" id="quick-tags"></div>
+
+    <!-- Filters -->
+    <div class="filter-bar" id="filter-bar" style="display:none;">
+      <div class="filter-group">
+        <label><i class="fas fa-utensils"></i> Cucina</label>
+        <select id="filter-cuisine" onchange="applyFilters()">
+          <option value="">Tutte</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label><i class="fas fa-location-dot"></i> Distanza</label>
+        <select id="filter-distance" onchange="applyFilters()">
+          <option value="0.3">300m</option>
+          <option value="0.5">500m</option>
+          <option value="1">1 km</option>
+          <option value="2">2 km</option>
+          <option value="5">5 km</option>
+          <option value="9999">Tutti</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label><i class="fas fa-euro-sign"></i> Prezzo</label>
+        <select id="filter-price" onchange="applyFilters()">
+          <option value="">Tutti</option>
+          <option value="0-10">€0 – €10</option>
+          <option value="10-20">€10 – €20</option>
+          <option value="20-30">€20 – €30</option>
+          <option value="30-999">Oltre €30</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label><i class="fas fa-sort"></i> Ordina per</label>
+        <select id="filter-sort" onchange="applyFilters()">
+          <option value="distance">Distanza</option>
+          <option value="price-asc">Prezzo ↑</option>
+          <option value="price-desc">Prezzo ↓</option>
+          <option value="name">Nome A-Z</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Dishes -->
+    <div style="margin-top:2.5rem;">
+      <div class="section-title"><i class="fas fa-plate-wheat"></i> Piatti Trovati</div>
+      <div class="dishes-grid" id="dishes-grid">
+        <div class="loading"><i class="fas fa-spinner"></i> Ricerca piatti in corso...</div>
+      </div>
+    </div>
+
+    <!-- Restaurants -->
+    <div style="margin-top:3rem;">
+      <div class="section-title"><i class="fas fa-store"></i> Ristoranti che Servono questo Piatto</div>
+      <div class="restaurants-grid" id="restaurants-grid">
+        <div class="loading"><i class="fas fa-spinner"></i> Ricerca ristoranti in corso...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Floating Nav Buttons -->
+  <div class="fab-container">
+    <a href="/" class="fab fab-home" title="Home"><i class="fas fa-home"></i><span class="fab-tooltip">Home</span></a>
+    <a href="/app/" class="fab fab-map" title="Mappa Ristoranti"><i class="fas fa-map-location-dot"></i><span class="fab-tooltip">Mappa</span></a>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fab fab-top" title="Torna su"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Su</span></button>
+  </div>
+
+  <script>
+    // Category config
+    const CATEGORIES = {
+      'branzino': { icon: 'fas fa-fish', color: '#06b6d4', bg: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=800&fit=crop', label: 'Branzino', desc: 'Il branzino, re del Mediterraneo, in tutte le sue preparazioni' },
+      'sushi': { icon: 'fas fa-bowl-food', color: '#f97316', bg: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800&fit=crop', label: 'Sushi', desc: 'La tradizione giapponese nei migliori ristoranti di Bari' },
+      'pizza': { icon: 'fas fa-pizza-slice', color: '#f59e0b', bg: 'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=800&fit=crop', label: 'Pizza', desc: 'Pizza Napoletana, Focaccia e specialità dal forno' },
+      'burrata': { icon: 'fas fa-cheese', color: '#8b5cf6', bg: 'https://images.unsplash.com/photo-1631209121750-a9f656d26e80?w=800&fit=crop', label: 'Burrata', desc: 'La regina della tavola pugliese, cremosa e deliziosa' },
+      'orecchiette': { icon: 'fas fa-utensils', color: '#e73a3a', bg: 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=800&fit=crop', label: 'Orecchiette', desc: 'Il simbolo della cucina pugliese con cime di rapa' },
+      'frutta di mare': { icon: 'fas fa-shrimp', color: '#06b6d4', bg: 'https://images.unsplash.com/photo-1534604973900-c43e1f2cbcbf?w=800&fit=crop', label: 'Frutta di Mare', desc: 'Gamberetti, cozze, vongole e tutto il meglio dal mare' },
+      'carne': { icon: 'fas fa-drumstick-bite', color: '#dc2626', bg: 'https://images.unsplash.com/photo-1558030006-450675393462?w=800&fit=crop', label: 'Carne', desc: 'Specialità di carne dalla tradizione italiana e non solo' },
+      'pesce': { icon: 'fas fa-fish', color: '#06b6d4', bg: 'https://images.unsplash.com/photo-1580959375944-abd7e991e971?w=800&fit=crop', label: 'Pesce', desc: 'Tutte le specialità di pesce fresco del territorio' },
+      'antipasti': { icon: 'fas fa-bread-slice', color: '#f59e0b', bg: 'https://images.unsplash.com/photo-1541014741259-de529411b96a?w=800&fit=crop', label: 'Antipasti', desc: 'Croccanti, affettati, formaggi e specialità per iniziare' },
+      'primi': { icon: 'fas fa-bowl-food', color: '#e73a3a', bg: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=800&fit=crop', label: 'Primi Piatti', desc: 'Pasta fresca, riso, gnocchi e tutti i primi piatti italiani' },
+      'secondi': { icon: 'fas fa-drumstick-bite', color: '#dc2626', bg: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&fit=crop', label: 'Secondi Piatti', desc: 'Carne, pesce e tutte le portate principali' },
+      'dolci': { icon: 'fas fa-cake-candles', color: '#8b5cf6', bg: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&fit=crop', label: 'Dolci', desc: 'Tiramisù, pasticci e dolci italiani per chiudere in dolcezza' },
+      'vegano': { icon: 'fas fa-leaf', color: '#10b981', bg: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&fit=crop', label: 'Vegano', desc: 'Piatti vegetariani e vegani per ogni esigenza' },
+      'senza glutine': { icon: 'fas fa-wheat-awn-circle-exclamation', color: '#f59e0b', bg: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&fit=crop', label: 'Senza Glutine', desc: 'Opzioni gluten-free per un pasto sereno e gustoso' },
+      'focaccia': { icon: 'fas fa-bread-slice', color: '#f59e0b', bg: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&fit=crop', label: 'Focaccia', desc: 'La focaccia più famosa d\'Italia, croccante e gustosa' },
+      'tiramisu': { icon: 'fas fa-cake-candles', color: '#8b5cf6', bg: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&fit=crop', label: 'Tiramisù', desc: 'Il dolce italiano più amato nel mondo' },
+      'tartare': { icon: 'fas fa-fish', color: '#06b6d4', bg: 'https://images.unsplash.com/photo-1534604973900-c43e1f2cbcbf?w=800&fit=crop', label: 'Tartare di Pesce', desc: 'Freschezza e sapore dal mare' },
+      'pasta alla norma': { icon: 'fas fa-utensils', color: '#e73a3a', bg: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=800&fit=crop', label: 'Pasta alla Norma', desc: 'Melanzane, pomodoro e ricotta salata' },
+      'etnico': { icon: 'fas fa-globe', color: '#06b6d4', bg: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&fit=crop', label: 'Etnico', desc: 'Cucina internazionale e tradizioni di tutto il mondo' },
+      'stellati': { icon: 'fas fa-star', color: '#f59e0b', bg: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&fit=crop', label: 'Ristoranti Stellati', desc: 'I ristoranti con stelle Michelin più vicini a te' },
+    };
+
+    const ALL_TAGS = ['pizza', 'branzino', 'burrata', 'sushi', 'frutta di mare', 'orecchiette', 'focaccia', 'carne', 'pesce', 'vegano', 'senza glutine', 'dolci', 'etnico', 'stellati'];
+
+    let _allDishes = [];
+    let _allRestaurants = [];
+    let _userLat = null, _userLng = null;
+
+    function getDistance(lat1, lng1, lat2, lng2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLng = (lng2 - lng1) * Math.PI / 180;
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng/2) * Math.sin(dLng/2);
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    function applyFilters() {
+      const cuisineFilter = document.getElementById('filter-cuisine').value;
+      const distFilter = parseFloat(document.getElementById('filter-distance').value) || 9999;
+      const priceFilter = document.getElementById('filter-price').value;
+      const sortBy = document.getElementById('filter-sort').value;
+
+      let dishes = [..._allDishes];
+      let restaurants = [..._allRestaurants];
+
+      if (cuisineFilter) {
+        restaurants = restaurants.filter(r => r.cuisine && r.cuisine.toLowerCase() === cuisineFilter.toLowerCase());
+        const rIds = new Set(restaurants.map(r => r.id));
+        dishes = dishes.filter(d => rIds.has(d.restaurant_id));
+      }
+
+      if (priceFilter) {
+        const [min, max] = priceFilter.split('-').map(Number);
+        dishes = dishes.filter(d => d._price >= min && d._price < max);
+        const rIds = new Set(dishes.map(d => d.restaurant_id));
+        restaurants = restaurants.filter(r => rIds.has(r.id));
+      }
+
+      if (_userLat && _userLng) {
+        restaurants = restaurants.filter(r => r._dist <= distFilter);
+        const rIds = new Set(restaurants.map(r => r.id));
+        dishes = dishes.filter(d => rIds.has(d.restaurant_id));
+      }
+
+      if (sortBy === 'price-asc') dishes.sort((a, b) => a._price - b._price);
+      else if (sortBy === 'price-desc') dishes.sort((a, b) => b._price - a._price);
+      else if (sortBy === 'name') dishes.sort((a, b) => a.name.localeCompare(b.name));
+      else dishes.sort((a, b) => a._dist - b._dist);
+
+      document.getElementById('stat-dishes').textContent = dishes.length;
+      document.getElementById('stat-restaurants').textContent = restaurants.length;
+      renderDishes(dishes, restaurants);
+      renderRestaurants(restaurants);
+    }
+
+    function getQueryParam(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+
+    function getCatFromURL() {
+      let q = getQueryParam('q') || getQueryParam('cat') || '';
+      q = q.toLowerCase().trim();
+      if (CATEGORIES[q]) return q;
+      // Try partial match
+      for (const key of ALL_TAGS) {
+        if (q.includes(key) || key.includes(q)) return key;
+      }
+      return q || 'branzino';
+    }
+
+    function renderTags(current) {
+      const container = document.getElementById('quick-tags');
+      container.innerHTML = ALL_TAGS.map(tag => {
+        const cat = CATEGORIES[tag];
+        const isActive = tag === current;
+        return `<a href="?q=${encodeURIComponent(tag)}" class="quick-tag ${isActive ? 'active' : ''}"><i class="${cat.icon}" style="margin-right:4px;"></i>${cat.label}</a>`;
+      }).join('');
+    }
+
+    function getDishImage(name) {
+      const n = name.toLowerCase();
+      if (n.includes('orecchiette')) return 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=200&h=200&fit=crop';
+      if (n.includes('branzino')) return 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=200&h=200&fit=crop';
+      if (n.includes('burrata')) return 'https://images.unsplash.com/photo-1631209121750-a9f656d26e80?w=200&h=200&fit=crop';
+      if (n.includes('pizza')) return 'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=200&h=200&fit=crop';
+      if (n.includes('focaccia')) return 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop';
+      if (n.includes('sushi') || n.includes('maki') || n.includes('temaki') || n.includes('sashimi')) return 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=200&h=200&fit=crop';
+      if (n.includes('tiramisu') || n.includes('tiramisù')) return 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=200&h=200&fit=crop';
+      if (n.includes('tartare') || n.includes('crudo')) return 'https://images.unsplash.com/photo-1534604973900-c43e1f2cbcbf?w=200&h=200&fit=crop';
+      if (n.includes('norma')) return 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&h=200&fit=crop';
+      if (n.includes('grigliat') || n.includes('mist')) return 'https://images.unsplash.com/photo-1544025162-d76694265947?w=200&h=200&fit=crop';
+      if (n.includes('calamar') || n.includes('polpo') || n.includes('cozza') || n.includes('vongol')) return 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=200&h=200&fit=crop';
+      if (n.includes('insalata') || n.includes('verdura')) return 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200&h=200&fit=crop';
+      return 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop';
+    }
+
+    async function loadData() {
+      const catKey = getCatFromURL();
+      const cat = CATEGORIES[catKey] || { icon: 'fas fa-utensils', color: '#e73a3a', bg: '', label: catKey, desc: 'Scopri piatti e ristoranti per questa categoria' };
+
+      // Update header
+      document.getElementById('cat-icon').style.background = `linear-gradient(135deg, ${cat.color}, ${cat.color}cc)`;
+      document.getElementById('cat-icon-i').className = cat.icon;
+      document.getElementById('cat-title').textContent = cat.label;
+      document.getElementById('cat-desc').textContent = cat.desc;
+      if (cat.bg) {
+        const style = document.createElement('style');
+        style.textContent = `.cat-header::before { background-image: url('${cat.bg}') !important; }`;
+        document.head.appendChild(style);
+      }
+
+      document.getElementById('page-title').textContent = `${cat.label} - Ristoranti a Bari | trovapiatto`;
+      document.getElementById('page-desc').content = `Scopri i ristoranti che servono ${cat.label} a Bari e Puglia su trovapiatto`;
+      document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${cat.label} - trovapiatto`);
+      document.querySelector('meta[property="og:description"]')?.setAttribute('content', cat.desc);
+
+      renderTags(catKey);
+
+      try {
+        try {
+          const pos = await new Promise((resolve, reject) => {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000 });
+            } else { reject(); }
+          });
+          _userLat = pos.coords.latitude;
+          _userLng = pos.coords.longitude;
+        } catch(e) {}
+
+        const apiUrl = catKey === 'stellati'
+          ? `/app/admin/api.php?action=get-starred-restaurants`
+          : `/app/admin/api.php?action=search-dishes&q=${encodeURIComponent(catKey)}`;
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+        let dishes = data.data || [];
+
+        dishes = dishes.map(d => {
+          const lat = parseFloat(d.latitude);
+          const lng = parseFloat(d.longitude);
+          const dist = (_userLat && _userLng && lat && lng) ? getDistance(_userLat, _userLng, lat, lng) : 9999;
+          const priceNum = d.price ? parseFloat(d.price.replace(/[^0-9,\.]/g, '').replace(',', '.')) || 9999 : 9999;
+          return { ...d, _dist: dist, _price: priceNum };
+        });
+
+        dishes.sort((a, b) => {
+          if (a._dist !== b._dist) return a._dist - b._dist;
+          return a._price - b._price;
+        });
+
+        _allDishes = dishes;
+
+        // Group by restaurant
+        const restMap = {};
+        dishes.forEach(d => {
+          const rid = d.restaurant_id;
+          if (!restMap[rid]) {
+            restMap[rid] = {
+              id: rid,
+              name: d.restaurant_name,
+              slug: d.restaurant_slug,
+              logo_url: d.logo_url,
+              city: d.city,
+              cuisine: d.cuisine,
+              dishes: [],
+              rating: d.restaurant_rating || 0,
+              avg_rating: d.avg_user_rating || 0,
+              review_count: d.review_count || 0
+            };
+          }
+          restMap[rid].dishes.push(d);
+        });
+
+        _allRestaurants = Object.values(restMap).map(r => {
+          const lat = parseFloat(r.dishes[0]?.latitude);
+          const lng = parseFloat(r.dishes[0]?.longitude);
+          r._dist = (_userLat && _userLng && lat && lng) ? getDistance(_userLat, _userLng, lat, lng) : 9999;
+          return r;
+        }).sort((a, b) => a._dist - b._dist);
+
+        const cuisines = [...new Set(_allRestaurants.map(r => r.cuisine).filter(Boolean))].sort();
+        const cuisineSel = document.getElementById('filter-cuisine');
+        cuisines.forEach(c => {
+          const opt = document.createElement('option');
+          opt.value = c;
+          opt.textContent = c;
+          cuisineSel.appendChild(opt);
+        });
+
+        document.getElementById('filter-bar').style.display = 'flex';
+
+        applyFilters();
+
+      } catch (err) {
+        console.error('Error:', err);
+        document.getElementById('dishes-grid').innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><div>Errore nel caricamento</div></div>`;
+      }
+
+      if (catKey === 'stellati') {
+        const restSection = document.getElementById('restaurants-grid')?.closest('div[style*="margin-top"]');
+        if (restSection) restSection.style.display = 'none';
+      }
+    }
+
+    function renderDishes(dishes, restaurants) {
+      const dishesGrid = document.getElementById('dishes-grid');
+      if (dishes.length === 0) {
+        dishesGrid.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><div>Nessun piatto trovato</div><div style="font-size:0.85rem; margin-top:8px;">Prova con filtri diversi</div></div>`;
+        return;
+      }
+      const restColors = ['#f59e0b', '#e73a3a', '#06b6d4', '#8b5cf6', '#10b981', '#f97316'];
+      let html = '';
+      restaurants.forEach((r, ri) => {
+        const color = restColors[ri % restColors.length];
+        const restDishes = dishes.filter(d => d.restaurant_id === r.id);
+        if (restDishes.length === 0) return;
+        const seen = new Set();
+        const uniqueDishes = restDishes.filter(d => {
+          const key = d.name.toLowerCase().trim();
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+        html += `<div style="grid-column:1/-1; margin-bottom:1.5rem;">
+          <div style="display:flex; align-items:center; gap:12px; padding:16px 20px; background:linear-gradient(135deg, ${color}15, ${color}08); border:1px solid ${color}30; border-radius:16px; cursor:pointer; transition:all 0.3s;" onclick="window.location.href='https://www.trovapiatto.it/menu/${r.slug}/'" onmouseover="this.style.borderColor='${color}60'" onmouseout="this.style.borderColor='${color}30'">
+            <div style="width:48px;height:48px;border-radius:12px;overflow:hidden;border:2px solid ${color};flex-shrink:0;display:flex;align-items:center;justify-content:center;background:${color}22;">
+              ${r.logo_url ? `<img src="${r.logo_url}" alt="${r.name}" style="width:100%;height:100%;object-fit:cover;">` : `<i class="fas fa-utensils" style="color:${color};font-size:1.2rem;"></i>`}
+            </div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:1.1rem;color:#fff;">${r.name}</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">${r.city || ''} · ${uniqueDishes.length} piatti</div>
+            </div>
+            <div style="color:${color};font-size:0.85rem;font-weight:600;"><i class="fas fa-book-open"></i> Menu</div>
+          </div>
+        </div>`;
+        uniqueDishes.forEach(d => {
+          const distLabel = d._dist < 9999 ? (d._dist < 1 ? `${Math.round(d._dist * 1000)} m` : `${d._dist.toFixed(1)} km`) : '';
+          html += `<a href="https://www.trovapiatto.it/menu/${d.restaurant_slug}/?highlight=${encodeURIComponent(d.name)}" class="dish-card">
+            <div class="dish-img"><img src="${getDishImage(d.name)}" alt="${d.name}"></div>
+            <div class="dish-info">
+              <div class="dish-name">${d.name}</div>
+              <div class="dish-restaurant"><i class="fas fa-store" style="margin-right:4px;"></i>${d.restaurant_name}</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0; white-space:nowrap;">
+              ${d.price ? `<div class="dish-price">${d.price}</div>` : ''}
+              ${distLabel ? `<div style="font-size:0.68rem; color:#10b981; font-weight:600; margin-top:2px;"><i class="fas fa-location-arrow" style="font-size:0.6rem;"></i> ${distLabel}</div>` : ''}
+            </div>
+          </a>`;
+        });
+      });
+      dishesGrid.innerHTML = html;
+    }
+
+    function renderRestaurants(restaurants) {
+      const restGrid = document.getElementById('restaurants-grid');
+      if (restaurants.length === 0 && _allRestaurants.length > 0) {
+        restGrid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-location-crosshairs" style="color:var(--primary);"></i><div style="font-size:1rem; font-weight:600; margin-bottom:6px;">Nessun ristorante nei filtri selezionati</div><div style="font-size:0.85rem;">Prova ad ampliare la distanza o cambiare i filtri.</div><a href="/app/" style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; padding:10px 20px; background:linear-gradient(135deg, var(--primary), #ff6b6b); color:white; border-radius:10px; text-decoration:none; font-weight:600; font-size:0.85rem;"><i class="fas fa-map-location-dot"></i> Apri Mappa</a></div>`;
+        return;
+      }
+      if (restaurants.length === 0) { restGrid.innerHTML = ''; return; }
+      restGrid.innerHTML = restaurants.map((r, i) => {
+        const colors = ['#06b6d4', '#f59e0b', '#e73a3a', '#8b5cf6', '#10b981', '#f97316'];
+        const color = colors[i % colors.length];
+        const dishNames = r.dishes.slice(0, 3).map(d => d.name).join(', ');
+        const restDistLabel = r._dist < 9999 ? (r._dist < 1 ? `${Math.round(r._dist * 1000)} m` : `${r._dist.toFixed(1)} km`) : '';
+        return `
+          <div class="rest-card" onclick="window.location.href='https://www.trovapiatto.it/menu/${r.slug}/'" style="cursor:pointer;">
+            <div class="rest-banner" style="background:linear-gradient(135deg, ${color}22, ${color}08);">
+              ${r.logo_url ? `<img src="${r.logo_url}" alt="${r.name}">` : `<div class="rest-banner-placeholder" style="background:linear-gradient(135deg, ${color}, ${color}cc);"><i class="fas fa-utensils"></i></div>`}
+              <div class="rest-badge"><i class="fas fa-utensils" style="color:${color};"></i> ${r.dishes.length} piatti</div>
+              ${restDistLabel ? `<div style="position:absolute;top:10px;right:10px;background:rgba(16,185,129,0.9);color:white;padding:3px 10px;border-radius:20px;font-size:0.65rem;font-weight:700;display:flex;align-items:center;gap:4px;"><i class="fas fa-location-arrow" style="font-size:0.6rem;"></i>${restDistLabel}</div>` : ''}
+            </div>
+            <div class="rest-body">
+              <div class="rest-name">${r.name}</div>
+              ${r.city ? `<div class="rest-address"><i class="fas fa-location-dot" style="color:${color}; margin-top:2px;"></i> ${r.city}</div>` : ''}
+              <div class="rest-dishes-count"><i class="fas fa-plate-wheat"></i> Piatti: ${dishNames}${r.dishes.length > 3 ? '...' : ''}</div>
+              <div class="rest-cta">
+                <a href="https://www.trovapiatto.it/menu/${r.slug}/" class="rest-btn rest-btn-primary" style="text-decoration:none;color:white;" onclick="event.stopPropagation()"><i class="fas fa-book-open"></i> Menu</a>
+                <button class="rest-btn rest-btn-secondary" style="color:var(--text-light);" onclick="event.stopPropagation(); openResModal('${r.id}', '${r.name.replace(/'/g,"\\'")}')"><i class="fas fa-calendar-check"></i> Prenota</button>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=${r.dishes[0]?.latitude || ''},${r.dishes[0]?.longitude || ''}" target="_blank" rel="noopener" class="rest-btn rest-btn-secondary" style="text-decoration:none;color:var(--text-light);" onclick="event.stopPropagation()"><i class="fas fa-diamond-turn-right"></i></a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    loadData();
+
+    let resRestaurantId = null;
+
+    function openResModal(rid, name) {
+      resRestaurantId = rid;
+      document.getElementById('resModalTitle').textContent = 'Prenota a ' + name;
+      const dateInput = document.getElementById('resDateP');
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+      if (!dateInput.value) dateInput.value = today;
+      document.getElementById('resModal').style.display = 'flex';
+      loadResSlots();
+    }
+
+    function closeResModal() {
+      document.getElementById('resModal').style.display = 'none';
+      resRestaurantId = null;
+    }
+
+    async function loadResSlots() {
+      const date = document.getElementById('resDateP').value;
+      const sel = document.getElementById('resTimeP');
+      if (!date || !resRestaurantId) return;
+      sel.innerHTML = '<option value="">Caricamento...</option>';
+      try {
+        const res = await fetch(`/app/admin/api-crud.php?action=get-available-slots&restaurant_id=${resRestaurantId}&date=${date}`);
+        const data = await res.json();
+        if (data.success && data.slots && data.slots.length > 0) {
+          sel.innerHTML = '<option value="">Scegli orario...</option>';
+          data.slots.forEach(s => { sel.innerHTML += `<option value="${s}">${s}</option>`; });
+        } else {
+          sel.innerHTML = '<option value="">Nessun orario disponibile</option>';
+        }
+      } catch (e) {
+        sel.innerHTML = '<option value="">Errore</option>';
+      }
+    }
+
+    async function submitResModal() {
+      const btn = document.getElementById('resModalBtn');
+      const msg = document.getElementById('resModalMsg');
+      const data = {
+        restaurant_id: resRestaurantId,
+        customer_name: document.getElementById('resNameP').value.trim(),
+        customer_phone: document.getElementById('resPhoneP').value.trim(),
+        customer_email: document.getElementById('resEmailP').value.trim(),
+        res_date: document.getElementById('resDateP').value,
+        res_time: document.getElementById('resTimeP').value,
+        guests: parseInt(document.getElementById('resGuestsP').value),
+        notes: document.getElementById('resNotesP').value.trim()
+      };
+      if (!data.customer_name || !data.customer_phone || !data.res_date || !data.res_time) {
+        msg.style.display = 'block';
+        msg.innerHTML = '<i class="fas fa-exclamation-circle" style="color:#fbbf24;"></i> Compila i campi obbligatori';
+        return;
+      }
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio...';
+      try {
+        const res = await fetch('/app/admin/api-crud.php?action=create-reservation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        if (result.success) {
+          msg.style.display = 'block';
+          msg.innerHTML = '<i class="fas fa-check-circle" style="color:#34d399;"></i> Prenotazione confermata!';
+          btn.innerHTML = '<i class="fas fa-check"></i> Prenotato!';
+          btn.style.background = '#34d399';
+          document.getElementById('resNameP').value = '';
+          document.getElementById('resPhoneP').value = '';
+          document.getElementById('resEmailP').value = '';
+          document.getElementById('resNotesP').value = '';
+        } else {
+          msg.style.display = 'block';
+          msg.innerHTML = '<i class="fas fa-exclamation-circle" style="color:#e73a3a;"></i> ' + (result.error || 'Errore');
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-calendar-check"></i> Prenota';
+        }
+      } catch (e) {
+        msg.style.display = 'block';
+        msg.innerHTML = '<i class="fas fa-exclamation-circle" style="color:#e73a3a;"></i> Errore di connessione';
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-calendar-check"></i> Prenota';
+      }
+    }
+  </script>
+
+  <!-- Modal Prenotazione -->
+  <div id="resModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1000;align-items:center;justify-content:center;padding:16px;">
+    <div style="background:#1a1225;border:1px solid rgba(231,58,58,0.2);border-radius:16px;padding:24px;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <h3 id="resModalTitle" style="font-size:1.1em;font-weight:700;"><i class="fas fa-calendar-check" style="color:var(--primary);margin-right:6px;"></i> Prenota</h3>
+        <button onclick="closeResModal()" style="background:none;border:none;color:#707070;font-size:1.2em;cursor:pointer;"><i class="fas fa-times"></i></button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div>
+          <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:3px;">Nome *</label>
+          <input type="text" id="resNameP" placeholder="Mario Rossi" style="width:100%;background:#0f0a15;color:#fff;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:9px 10px;font-size:0.85rem;">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:3px;">Telefono *</label>
+          <input type="tel" id="resPhoneP" placeholder="+39 333 1234567" style="width:100%;background:#0f0a15;color:#fff;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:9px 10px;font-size:0.85rem;">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:3px;">Email</label>
+          <input type="email" id="resEmailP" placeholder="email@esempio.it" style="width:100%;background:#0f0a15;color:#fff;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:9px 10px;font-size:0.85rem;">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:3px;">Ospiti *</label>
+          <input type="number" id="resGuestsP" min="1" max="20" value="2" style="width:100%;background:#0f0a15;color:#fff;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:9px 10px;font-size:0.85rem;">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:3px;">Data *</label>
+          <input type="date" id="resDateP" onchange="loadResSlots()" style="width:100%;background:#0f0a15;color:#fff;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:9px 10px;font-size:0.85rem;">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:3px;">Ora *</label>
+          <select id="resTimeP" style="width:100%;background:#0f0a15;color:#fff;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:9px 10px;font-size:0.85rem;">
+            <option value="">Seleziona data prima</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <label style="display:block;font-size:0.75rem;color:var(--text-muted);margin-bottom:3px;">Note</label>
+        <textarea id="resNotesP" rows="2" placeholder="Allergie, richieste..." style="width:100%;background:#0f0a15;color:#fff;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:9px 10px;font-size:0.85rem;resize:vertical;"></textarea>
+      </div>
+      <button id="resModalBtn" onclick="submitResModal()" style="margin-top:14px;width:100%;padding:12px;background:var(--primary);color:white;border:none;border-radius:10px;font-weight:700;font-size:0.9rem;cursor:pointer;">
+        <i class="fas fa-calendar-check" style="margin-right:4px;"></i> Prenota
+      </button>
+      <div id="resModalMsg" style="margin-top:10px;display:none;text-align:center;font-size:0.85rem;"></div>
+    </div>
+  </div>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2178518671031218" crossorigin="anonymous"></script>
+  <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-2178518671031218" data-ad-slot="1228492275"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+</body>
+</html>

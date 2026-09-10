@@ -1,0 +1,780 @@
+<?php require_once 'auth-check.php'; ?>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Menu - trovapiatto.it</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #537b83;
+            --secondary: #3d5a62;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
+            min-height: 100vh !important;
+            font-family: 'Roboto', sans-serif !important;
+            padding: 20px 0 !important;
+            color: #333 !important;
+        }
+        
+        * {
+            font-family: 'Roboto', sans-serif !important;
+        }
+
+        .form-control, .form-select {
+            border-radius: 5px;
+            color: #333 !important;
+            background-color: #ffffff !important;
+            border-color: #ccc !important;
+        }
+
+        .form-control:focus {
+            border-color: #537b83 !important;
+            box-shadow: 0 0 0 0.2rem rgba(83, 123, 131, 0.25) !important;
+            color: #333 !important;
+            background-color: #ffffff !important;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .item-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .item-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-sm {
+            font-size: 0.9em;
+            padding: 8px 12px;
+        }
+
+        .price-badge {
+            background: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .form-control, .form-select {
+            border-radius: 5px;
+            color: #333 !important;
+            background-color: #ffffff !important;
+            border-color: #ccc !important;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 0.2rem rgba(83, 123, 131, 0.25) !important;
+            color: #333 !important;
+            background-color: #ffffff !important;
+        }
+
+        .tag-badge {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 2px;
+            font-size: 0.85em;
+        }
+
+        .tag-badge.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .allergen-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .allergen-item {
+            background: #fff3cd;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .allergen-item button {
+            background: none;
+            border: none;
+            color: #856404;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .modal {
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            border-radius: 10px;
+        }
+
+        .alert {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .stats-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stats-box h6 {
+            color: #666;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .stats-box .number {
+            font-size: 2em;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .tab-content {
+            background: white;
+            border-radius: 0 0 8px 8px;
+            padding: 20px;
+        }
+
+        .nav-tabs .nav-link.active {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .nav-tabs .nav-link {
+            color: var(--primary);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="container-lg">
+        <h1><i class="fas fa-utensils"></i> Gestione Menu Digitale</h1>
+        <p>Modifica piatti, prezzi, descrizioni e allergeni</p>
+    </div>
+</div>
+
+<div class="container-lg">
+
+    <!-- Alert -->
+    <div id="successAlert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+        <i class="fas fa-check-circle"></i> <span id="successMsg"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <div id="errorAlert" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+        <i class="fas fa-exclamation-circle"></i> <span id="errorMsg"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <!-- Statistiche -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="stats-box">
+                <h6>Categorie</h6>
+                <div class="number" id="totalCategories">0</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stats-box">
+                <h6>Piatti Totali</h6>
+                <div class="number" id="totalItems">0</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stats-box">
+                <h6>Disponibili</h6>
+                <div class="number" id="availableItems">0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs per Categoria -->
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-list"></i> Seleziona Categoria
+        </div>
+        <ul class="nav nav-tabs card-header-tabs" id="categoryTabs" role="tablist">
+            <!-- Generato dinamicamente -->
+        </ul>
+        <div class="tab-content" id="categoryContent">
+            <!-- Generato dinamicamente -->
+        </div>
+    </div>
+
+    <!-- Aggiungi Nuovo Piatto -->
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-plus-circle"></i> Aggiungi Nuovo Piatto
+        </div>
+        <div class="card-body">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">
+                <i class="fas fa-plus"></i> Aggiungi Piatto
+            </button>
+        </div>
+    </div>
+
+    <!-- Azioni Globali -->
+    <div class="card mb-5">
+        <div class="card-header">
+            <i class="fas fa-cog"></i> Azioni Globali
+        </div>
+        <div class="card-body">
+            <button class="btn btn-secondary me-2" onclick="exportMenu()">
+                <i class="fas fa-download"></i> Esporta Menu
+            </button>
+            <button class="btn btn-secondary me-2" onclick="resetMenu()">
+                <i class="fas fa-undo"></i> Ripristina Default
+            </button>
+            <button class="btn btn-danger" onclick="clearAllItems()">
+                <i class="fas fa-trash"></i> Elimina Tutto
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal Aggiungi/Modifica Piatto -->
+<div class="modal fade" id="addItemModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Aggiungi Nuovo Piatto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="itemForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Categoria *</label>
+                            <select class="form-select" id="itemCategory" required>
+                                <!-- Generato dinamicamente -->
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Titolo Piatto *</label>
+                            <input type="text" class="form-control" id="itemTitle" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Prezzo *</label>
+                            <input type="number" class="form-control" id="itemPrice" step="0.01" required>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="form-label">URL Immagine</label>
+                            <input type="url" class="form-control" id="itemImage">
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <label class="form-label">Descrizione</label>
+                        <textarea class="form-control" id="itemDescription" rows="3"></textarea>
+                    </div>
+
+                    <div class="mt-3">
+                        <label class="form-label">Tag/Caratteristiche</label>
+                        <div id="tagsContainer" class="mt-2">
+                            <!-- Generato dinamicamente -->
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <label class="form-label">Allergeni</label>
+                        <select class="form-select" id="itemAllergen">
+                            <option value="">Seleziona allergene</option>
+                            <!-- Generato dinamicamente -->
+                        </select>
+                        <div id="allergensList" class="allergen-list mt-2"></div>
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="itemAvailable" checked>
+                            <label class="form-check-label" for="itemAvailable">
+                                Disponibile
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" onclick="saveItem()">
+                    <i class="fas fa-save"></i> Salva
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Modifica Piatto -->
+<div class="modal fade" id="editItemModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modifica Piatto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editItemForm">
+                    <!-- Uguale all'addItemModal -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" onclick="updateItem()">
+                    <i class="fas fa-save"></i> Aggiorna
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./core/menu-loader.js?v=2"></script>
+
+<script>
+
+    let currentEditingItemId = null;
+    let currentSelectedTags = [];
+    let currentSelectedAllergens = [];
+
+    // Carica il manager menu
+    async function initMenuManager() {
+        // Aspetta che il manager sia pronto
+        let attempts = 0;
+        while (!menuItemsManager && attempts < 10) {
+            await new Promise(r => setTimeout(r, 100));
+            attempts++;
+        }
+
+        if (!menuItemsManager) {
+            showError('Errore nel caricamento del menu manager');
+            return;
+        }
+
+        // Aspetta che i dati siano caricati dall'API
+        await menuItemsManager.ready();
+
+        if (!menuItemsManager.data) {
+            showError('Errore nel caricamento dei dati menu');
+            return;
+        }
+
+        loadCategoryTabs();
+        loadCategorySelect();
+        loadAllergenSelect();
+        updateStats();
+    }
+
+    function loadCategoryTabs() {
+        const container = document.getElementById('categoryTabs');
+        const contentDiv = document.getElementById('categoryContent');
+        
+        container.innerHTML = '';
+        contentDiv.innerHTML = '';
+
+        menuItemsManager.data.categories.forEach((category, index) => {
+            const tabId = `tab-${category.id}`;
+            
+            // Tab link
+            const tab = document.createElement('li');
+            tab.className = 'nav-item';
+            tab.innerHTML = `
+                <a class="nav-link ${index === 0 ? 'active' : ''}" 
+                   id="${tabId}-link" 
+                   data-bs-toggle="tab" 
+                   href="#${tabId}" 
+                   role="tab">
+                   ${category.name}
+                   <span class="badge bg-secondary ms-2">${category.items.length}</span>
+                </a>
+            `;
+            container.appendChild(tab);
+
+            // Tab content
+            const content = document.createElement('div');
+            content.className = `tab-pane fade ${index === 0 ? 'show active' : ''}`;
+            content.id = tabId;
+            content.innerHTML = renderCategoryItems(category);
+            contentDiv.appendChild(content);
+        });
+    }
+
+    function renderCategoryItems(category) {
+        if (category.items.length === 0) {
+            return `<div class="text-center text-muted py-5">
+                <p>Nessun piatto in questa categoria</p>
+                <button class="btn btn-sm btn-primary" onclick="openAddItemModal('${category.id}')">
+                    <i class="fas fa-plus"></i> Aggiungi piatto
+                </button>
+            </div>`;
+        }
+
+        let html = `<div class="row">`;
+        category.items.forEach(item => {
+            html += `
+                <div class="col-md-6 col-lg-4">
+                    <div class="item-card">
+                        ${item.image ? `<img src="${item.image}" alt="${item.title}" class="item-image">` : ''}
+                        <h5>${item.title}</h5>
+                        <p class="text-muted small">${item.description || 'Nessuna descrizione'}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price-badge">€ ${item.price.toFixed(2)}</span>
+                            <span class="badge ${item.available ? 'bg-success' : 'bg-danger'}">
+                                ${item.available ? 'Disponibile' : 'Non disponibile'}
+                            </span>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn btn-sm btn-primary" onclick="editItem(${item.id})">
+                                <i class="fas fa-edit"></i> Modifica
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteItem(${item.id})">
+                                <i class="fas fa-trash"></i> Elimina
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        html += `</div>`;
+        return html;
+    }
+
+    function loadCategorySelect() {
+        const select = document.getElementById('itemCategory');
+        select.innerHTML = '';
+        
+        menuItemsManager.data.categories.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat.id;
+            option.textContent = cat.name;
+            select.appendChild(option);
+        });
+    }
+
+    function loadAllergenSelect() {
+        const select = document.getElementById('itemAllergen');
+        
+        menuItemsManager.data.allergens.forEach(allergen => {
+            const option = document.createElement('option');
+            option.value = allergen;
+            option.textContent = allergen;
+            select.appendChild(option);
+        });
+
+        select.addEventListener('change', function() {
+            if (this.value) {
+                addAllergen(this.value);
+                this.value = '';
+            }
+        });
+    }
+
+    function loadTagsCheckboxes() {
+        const container = document.getElementById('tagsContainer');
+        container.innerHTML = '';
+
+        Object.keys(menuItemsManager.data.tags).forEach(tagKey => {
+            const tag = menuItemsManager.data.tags[tagKey];
+            const isChecked = currentSelectedTags.includes(tagKey);
+            
+            const checkbox = document.createElement('div');
+            checkbox.className = 'form-check form-check-inline';
+            checkbox.innerHTML = `
+                <input class="form-check-input" type="checkbox" value="${tagKey}" 
+                       id="tag_${tagKey}" ${isChecked ? 'checked' : ''}
+                       onchange="toggleTag('${tagKey}')">
+                <label class="form-check-label" for="tag_${tagKey}">
+                    ${tag.label}
+                </label>
+            `;
+            container.appendChild(checkbox);
+        });
+    }
+
+    function toggleTag(tagKey) {
+        const checkbox = document.getElementById(`tag_${tagKey}`);
+        if (checkbox.checked) {
+            if (!currentSelectedTags.includes(tagKey)) {
+                currentSelectedTags.push(tagKey);
+            }
+        } else {
+            currentSelectedTags = currentSelectedTags.filter(t => t !== tagKey);
+        }
+    }
+
+    function addAllergen(allergen) {
+        if (!currentSelectedAllergens.includes(allergen)) {
+            currentSelectedAllergens.push(allergen);
+            renderAllergensList();
+        }
+    }
+
+    function removeAllergen(allergen) {
+        currentSelectedAllergens = currentSelectedAllergens.filter(a => a !== allergen);
+        renderAllergensList();
+    }
+
+    function renderAllergensList() {
+        const container = document.getElementById('allergensList');
+        container.innerHTML = '';
+
+        currentSelectedAllergens.forEach(allergen => {
+            const item = document.createElement('div');
+            item.className = 'allergen-item';
+            item.innerHTML = `
+                ${allergen}
+                <button type="button" onclick="removeAllergen('${allergen}')">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            container.appendChild(item);
+        });
+    }
+
+    function openAddItemModal(categoryId = null) {
+        currentEditingItemId = null;
+        currentSelectedTags = [];
+        currentSelectedAllergens = [];
+
+        document.getElementById('modalTitle').textContent = 'Aggiungi Nuovo Piatto';
+        document.getElementById('itemForm').reset();
+
+        if (categoryId) {
+            document.getElementById('itemCategory').value = categoryId;
+        }
+
+        loadTagsCheckboxes();
+        renderAllergensList();
+
+        const modal = new bootstrap.Modal(document.getElementById('addItemModal'));
+        modal.show();
+    }
+
+    function editItem(itemId) {
+        const item = menuItemsManager.getItem(itemId);
+        if (!item) {
+            showError('Piatto non trovato');
+            return;
+        }
+
+        currentEditingItemId = itemId;
+        currentSelectedTags = [...item.tags];
+        currentSelectedAllergens = [...item.allergens];
+
+        document.getElementById('itemCategory').value = item.category;
+        document.getElementById('itemTitle').value = item.title;
+        document.getElementById('itemPrice').value = item.price;
+        document.getElementById('itemImage').value = item.image || '';
+        document.getElementById('itemDescription').value = item.description || '';
+        document.getElementById('itemAvailable').checked = item.available;
+
+        loadTagsCheckboxes();
+        renderAllergensList();
+
+        const modal = new bootstrap.Modal(document.getElementById('addItemModal'));
+        modal.show();
+    }
+
+    function saveItem() {
+        const categoryId = document.getElementById('itemCategory').value;
+        const title = document.getElementById('itemTitle').value;
+        const price = parseFloat(document.getElementById('itemPrice').value);
+        const image = document.getElementById('itemImage').value;
+        const description = document.getElementById('itemDescription').value;
+        const available = document.getElementById('itemAvailable').checked;
+
+        if (!title || isNaN(price)) {
+            showError('Compila i campi obbligatori');
+            return;
+        }
+
+        const item = {
+            title,
+            price,
+            image,
+            description,
+            available,
+            tags: currentSelectedTags,
+            allergens: currentSelectedAllergens,
+            category: document.querySelector(`#itemCategory option[value="${categoryId}"]`).textContent
+        };
+
+        if (currentEditingItemId) {
+            if (menuItemsManager.updateItem(currentEditingItemId, item)) {
+                showSuccess('Piatto aggiornato');
+                updateAllUI();
+            } else {
+                showError('Errore nell\'aggiornamento');
+            }
+        } else {
+            if (menuItemsManager.addItem(categoryId, item)) {
+                showSuccess('Piatto aggiunto');
+                updateAllUI();
+            } else {
+                showError('Errore nell\'aggiunta');
+            }
+        }
+
+        bootstrap.Modal.getInstance(document.getElementById('addItemModal')).hide();
+    }
+
+    function deleteItem(itemId) {
+        if (confirm('Sei sicuro di voler eliminare questo piatto?')) {
+            if (menuItemsManager.deleteItem(itemId)) {
+                showSuccess('Piatto eliminato');
+                updateAllUI();
+            } else {
+                showError('Errore nell\'eliminazione');
+            }
+        }
+    }
+
+    function updateStats() {
+        document.getElementById('totalCategories').textContent = menuItemsManager.data.categories.length;
+        
+        let totalItems = 0;
+        let availableItems = 0;
+        
+        menuItemsManager.data.categories.forEach(cat => {
+            totalItems += cat.items.length;
+            availableItems += cat.items.filter(i => i.available).length;
+        });
+
+        document.getElementById('totalItems').textContent = totalItems;
+        document.getElementById('availableItems').textContent = availableItems;
+    }
+
+    function updateAllUI() {
+        loadCategoryTabs();
+        updateStats();
+    }
+
+    function exportMenu() {
+        const json = menuItemsManager.export();
+        const element = document.createElement('a');
+        element.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(json));
+        element.setAttribute('download', 'menu-items.json');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+        showSuccess('Menu esportato');
+    }
+
+    function resetMenu() {
+        if (confirm('Sei sicuro di voler ripristinare il menu di default? Perderai tutte le modifiche.')) {
+            localStorage.removeItem('menuItems');
+            window.location.reload();
+        }
+    }
+
+    function clearAllItems() {
+        if (confirm('Sei VERAMENTE sicuro? Eliminerai TUTTI i piatti del menu!')) {
+            if (confirm('Ultima conferma: questa azione è irreversibile!')) {
+                menuItemsManager.data.categories.forEach(cat => {
+                    cat.items = [];
+                });
+                menuItemsManager.save();
+                updateAllUI();
+                showSuccess('Tutti i piatti sono stati eliminati');
+            }
+        }
+    }
+
+    function showSuccess(msg) {
+        const alert = document.getElementById('successAlert');
+        document.getElementById('successMsg').textContent = msg;
+        alert.classList.remove('d-none');
+        setTimeout(() => {
+            alert.classList.add('d-none');
+        }, 3000);
+    }
+
+    function showError(msg) {
+        const alert = document.getElementById('errorAlert');
+        document.getElementById('errorMsg').textContent = msg;
+        alert.classList.remove('d-none');
+        setTimeout(() => {
+            alert.classList.add('d-none');
+        }, 3000);
+    }
+
+    // Inizializza
+    window.addEventListener('load', initMenuManager);
+
+</script>
+
+</body>
+</html>
