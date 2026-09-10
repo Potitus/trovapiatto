@@ -1349,6 +1349,28 @@
         @media (prefers-reduced-motion: reduce) {
             .rest-item, .skel .sk-logo, .skel .sk-line { animation: none !important; }
         }
+
+        /* Cities chip-scroll compatto */
+        .cities-scroll {
+            display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 8px;
+            scroll-snap-type: x mandatory; scrollbar-width: none;
+        }
+        .cities-scroll::-webkit-scrollbar { display: none; }
+        .city-chip {
+            display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+            padding: 8px 14px 8px 8px; border-radius: 50px; text-decoration: none;
+            background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #fff; scroll-snap-align: start; transition: var(--transition);
+        }
+        .city-chip:hover { border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+        .city-chip .cc-dot {
+            width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.6rem; font-weight: 800; color: white;
+        }
+        .city-chip .cc-name { font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+        .city-chip .cc-count { font-size: 0.65rem; color: var(--text-muted); white-space: nowrap; }
     </style>
 </head>
 <body>
@@ -1488,24 +1510,16 @@
         <div id="community-feed" style="display:flex; flex-direction:column; gap:8px;">
             <div style="text-align:center; padding:1rem; color:var(--text-muted); font-size:0.78rem;"><i class="fas fa-spinner fa-spin"></i> Caricamento...</div>
         </div>
-        <div style="margin-top:1rem; display:flex; gap:8px;">
-            <a href="https://www.trovapiatto.it/community/" style="flex:1; text-align:center; padding:10px; background:linear-gradient(135deg, #8b5cf6, #ec4899); color:white; border-radius:10px; text-decoration:none; font-size:0.78rem; font-weight:600;"><i class="fas fa-home"></i> Recensioni</a>
-            <a href="https://www.trovapiatto.it/bari/migliori-ristoranti-bari/" style="flex:1; text-align:center; padding:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:var(--text-light); border-radius:10px; text-decoration:none; font-size:0.78rem; font-weight:600;"><i class="fas fa-ranking-star"></i> Classifica</a>
-        </div>
+        <a href="https://www.trovapiatto.it/community/" style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:1rem; padding:12px; background:linear-gradient(135deg, #8b5cf6, #ec4899); color:white; border-radius:12px; text-decoration:none; font-size:0.82rem; font-weight:700;"><i class="fas fa-users"></i> Esplora Community e Classifiche <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></a>
     </div>
 
     <!-- Cities Section -->
-    <div id="cities-section" style="padding:0 1rem 1rem; display:none;">
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
-            <div style="width:36px; height:36px; background:linear-gradient(135deg, #3b82f6, #06b6d4); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                <i class="fas fa-city" style="color:white; font-size:0.85rem;"></i>
-            </div>
-            <div>
-                <h3 style="font-size:0.9rem; font-weight:700; color:#fff; margin:0;">Esplora per Città</h3>
-                <p style="font-size:0.65rem; color:var(--text-muted); margin:0;">Menu digitali in tutta Italia</p>
-            </div>
+    <div id="cities-section" style="margin-bottom:1.5rem; display:none;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px; padding:0 2px;">
+            <i class="fas fa-city" style="color:#3b82f6; font-size:0.8rem;"></i>
+            <h3 style="font-size:0.82rem; font-weight:700; color:#fff; margin:0;">Esplora per Città</h3>
         </div>
-        <div id="cities-grid" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:8px;"></div>
+        <div id="cities-grid" class="cities-scroll"></div>
     </div>
 
     <!-- Footer -->
@@ -1941,13 +1955,10 @@
                 const grid = document.getElementById('cities-grid');
                 section.style.display = '';
                 grid.innerHTML = data.data.slice(0, 10).map(c => `
-                    <a href="/${c.slug}/" style="display:flex; align-items:center; gap:10px; padding:12px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; text-decoration:none; color:#fff; transition:all 0.2s;">
-                        <div style="width:32px; height:32px; background:linear-gradient(135deg, #3b82f6, #06b6d4); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:800; color:white; flex-shrink:0;">${c.name.substring(0,2).toUpperCase()}</div>
-                        <div style="flex:1; min-width:0;">
-                            <div style="font-size:0.82rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${c.name}</div>
-                            <div style="font-size:0.65rem; color:var(--text-muted);">${c.restaurant_count} ristoranti</div>
-                        </div>
-                        <i class="fas fa-chevron-right" style="font-size:0.6rem; color:var(--text-muted);"></i>
+                    <a href="/${c.slug}/" class="city-chip" title="Menu a ${c.name}">
+                        <span class="cc-dot">${c.name.substring(0,2).toUpperCase()}</span>
+                        <span class="cc-name">${c.name}</span>
+                        <span class="cc-count">${c.restaurant_count}</span>
                     </a>
                 `).join('');
             })
