@@ -1,4 +1,4 @@
-const CACHE_NAME = 'trovapiatto-v4';
+const CACHE_NAME = 'trovapiatto-v5';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

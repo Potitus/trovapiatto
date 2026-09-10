@@ -1813,6 +1813,26 @@
             maxZoom: 20
         });
         
+        // Fallback OSM standard se il provider primario fallisce (es. "api key required")
+        const osmFallback = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            maxZoom: 19
+        });
+        let tileFailed = 0;
+        [voyagerLayer, darkLayer, satelliteLayer].forEach(function(lyr) {
+            lyr.on('tileerror', function() {
+                tileFailed++;
+                if (tileFailed === 3 && map && !map.hasLayer(osmFallback)) {
+                    try {
+                        if (map.hasLayer(voyagerLayer)) map.removeLayer(voyagerLayer);
+                        if (map.hasLayer(darkLayer)) map.removeLayer(darkLayer);
+                        if (map.hasLayer(satelliteLayer)) map.removeLayer(satelliteLayer);
+                        osmFallback.addTo(map);
+                    } catch (e) {}
+                }
+            });
+        });
+
         // Avvia con Voyager (default)
         voyagerLayer.addTo(map);
         
