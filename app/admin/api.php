@@ -870,11 +870,11 @@ function getMenu($db) {
     
     // JOIN con tabella categories per ottenere il nome della categoria dal category_id
     $stmt = $db->prepare("
-        SELECT d.* , COALESCE(c.name, 'Vari') as category 
+        SELECT d.* , COALESCE(c.name, d.category, 'Vari') as category 
         FROM dishes d 
         LEFT JOIN categories c ON d.category_id = c.id 
         WHERE d.restaurant_id = ? 
-        ORDER BY COALESCE(c.name, 'Vari'), d.name
+        ORDER BY COALESCE(c.name, d.category, 'Vari'), d.name
     ");
     $stmt->execute([$restaurant['id']]);
     $dishes = $stmt->fetchAll();
@@ -920,31 +920,31 @@ function getItems($db) {
         if ($restaurant) {
             // JOIN con tabella categories per ottenere il nome della categoria dal category_id
             $stmt = $db->prepare("
-                SELECT d.*, COALESCE(c.name, 'Vari') as category 
+                SELECT d.*, COALESCE(c.name, d.category, 'Vari') as category 
                 FROM dishes d 
                 LEFT JOIN categories c ON d.category_id = c.id 
                 WHERE d.restaurant_id = ? 
-                ORDER BY COALESCE(c.name, 'Vari'), d.name
+                ORDER BY COALESCE(c.name, d.category, 'Vari'), d.name
             ");
             $stmt->execute([$restaurant['id']]);
         } else {
             // JOIN con tabella categories per ottenere il nome della categoria dal category_id
             $stmt = $db->prepare("
-                SELECT d.*, COALESCE(c.name, 'Vari') as category 
+                SELECT d.*, COALESCE(c.name, d.category, 'Vari') as category 
                 FROM dishes d 
                 LEFT JOIN categories c ON d.category_id = c.id 
                 WHERE d.restaurant_id = ? 
-                ORDER BY COALESCE(c.name, 'Vari'), d.name
+                ORDER BY COALESCE(c.name, d.category, 'Vari'), d.name
             ");
             $stmt->execute([$rid]);
         }
     } else {
         // JOIN con tabella categories per ottenere il nome della categoria dal category_id
         $stmt = $db->prepare("
-            SELECT d.*, COALESCE(c.name, 'Vari') as category 
+            SELECT d.*, COALESCE(c.name, d.category, 'Vari') as category 
             FROM dishes d 
             LEFT JOIN categories c ON d.category_id = c.id 
-            ORDER BY COALESCE(c.name, 'Vari'), d.name
+            ORDER BY COALESCE(c.name, d.category, 'Vari'), d.name
         ");
         $stmt->execute([]);
     }
