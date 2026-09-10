@@ -76,8 +76,8 @@ function verifyCrudToken() {
 function extractAllergensFromText($text) {
     $allergens = [];
     $keywords = [
-        'glutine' => ['grano', 'pasta', 'pane', 'orzo'],
-        'lattosio' => ['latte', 'formaggio', 'burro', 'panna'],
+        'glutine' => ['grano', 'pasta', 'pane', 'orzo', 'pizza', 'focaccia', 'farina'],
+        'lattosio' => ['latte', 'formaggio', 'burro', 'panna', 'mozzarella', 'burrata'],
         'uova' => ['uova', 'uovo'],
         'pesce' => ['pesce', 'salmone', 'branzino'],
         'crostacei' => ['gambero', 'camarone', 'aragosta'],

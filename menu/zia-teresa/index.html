@@ -2325,7 +2325,9 @@ function applyAllergenFilter() {
         return;
     }
     const filtered = allDishes.filter(dish => {
-        const dishAllergens = dish.allergens ? (typeof dish.allergens === 'string' ? JSON.parse(dish.allergens) : dish.allergens) : [];
+        let dishAllergens = [];
+        try { dishAllergens = dish.allergens ? (typeof dish.allergens === 'string' ? JSON.parse(dish.allergens) : dish.allergens) : []; } catch (e) { dishAllergens = []; }
+        if (!Array.isArray(dishAllergens)) dishAllergens = [];
         const normalizedDishAllergens = dishAllergens.map(normalizeAllergenKey);
         return !activeAllergenFilters.some(a => normalizedDishAllergens.includes(a));
     });
