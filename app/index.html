@@ -32,6 +32,11 @@
     <meta name="geo.region" content="IT-BA">
     <meta name="geo.placename" content="Bari">
     <meta name="theme-color" content="#e73a3a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="trovapiatto">
+    <link rel="apple-touch-icon" href="/logo/apple-touch-icon.png">
     <meta property="og:title" content="Mappa Ristoranti Bari - trovapiatto">
     <meta property="og:description" content="Scopri 8000+ piatti dai ristoranti di Bari sulla mappa interattiva.">
     <meta property="og:image" content="https://www.trovapiatto.it/logo/logo_ufficiale.png">
@@ -1293,6 +1298,56 @@
             .community-section { padding: 1rem !important; margin-top: 1rem !important; }
             .community-section > div:last-child { flex-direction: column; }
         }
+
+        /* ==================== WEB-APP UPGRADE ==================== */
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+        }
+        .app-header { transition: box-shadow 0.3s ease, background 0.3s ease; }
+        .app-header.scrolled { box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); background: rgba(15, 10, 21, 0.98); }
+        .skel {
+            border-radius: 12px; margin-bottom: 8px; padding: 12px;
+            display: flex; gap: 10px; align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .skel .sk-logo {
+            width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.04) 75%);
+            background-size: 200% 100%; animation: skshimmer 1.4s infinite;
+        }
+        .skel .sk-lines { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+        .skel .sk-line {
+            height: 10px; border-radius: 6px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.04) 75%);
+            background-size: 200% 100%; animation: skshimmer 1.4s infinite;
+        }
+        @keyframes skshimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .rest-item { animation: restIn 0.35s ease backwards; }
+        .rest-item:active { transform: scale(0.99); }
+        @keyframes restIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        .tab-bar { display: none; }
+        @media (max-width: 768px) {
+            .tab-bar {
+                display: flex; position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom));
+                z-index: 950; background: rgba(20, 12, 28, 0.92); backdrop-filter: blur(18px);
+                border: 1px solid rgba(231, 58, 58, 0.25); border-radius: 22px;
+                padding: 8px 6px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            }
+            .tab-bar button {
+                flex: 1; background: none; border: none; cursor: pointer; font-family: inherit;
+                display: flex; flex-direction: column; align-items: center; gap: 3px;
+                color: var(--text-muted); font-size: 0.62rem; font-weight: 600;
+                padding: 8px 4px; border-radius: 14px; transition: var(--transition);
+            }
+            .tab-bar button i { font-size: 1.15rem; }
+            .tab-bar button.active { color: var(--primary); background: rgba(231, 58, 58, 0.12); }
+            body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .rest-item, .skel .sk-logo, .skel .sk-line { animation: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -1334,6 +1389,7 @@
         </div>
         <div class="search-box">
             <i class="fas fa-utensils" style="color:#e73a3a;font-size:1.1rem;"></i>
+            <label class="sr-only" for="global-search">Cerca un piatto o un ristorante</label>
             <input type="text" id="global-search" placeholder="Pizza, Branzino, Burrata, Orecchiette..." oninput="searchDishesSmart(this.value)" autocomplete="off" style="padding:16px 20px 16px 50px;font-size:1rem;font-weight:500;border-radius:16px;border:1.5px solid rgba(231,58,58,0.15);background:rgba(255,255,255,0.06);transition:all 0.3s;" onfocus="this.style.borderColor='rgba(231,58,58,0.4)';this.style.boxShadow='0 0 20px rgba(231,58,58,0.15)'" onblur="this.style.borderColor='rgba(231,58,58,0.15)';this.style.boxShadow='none'">
             <div class="search-dropdown" id="searchResults">
                 <div class="sr-close-btn"><button onclick="closeSearchModal()">Chiudi</button></div>
@@ -1409,7 +1465,7 @@
                 <h3><i class="fas fa-utensils"></i> Ristoranti</h3>
                 <div class="panel-search"><i class="fas fa-search"></i><input type="text" id="panel-search-input" placeholder="Filtra per nome..." oninput="filterPanelList(this.value)" autocomplete="off"></div>
             </div>
-            <div class="restaurants-list" id="restaurants-list"><div class="loading-state"><i class="fas fa-spinner fa-spin"></i> Caricamento ristoranti...</div></div>
+            <div class="restaurants-list" id="restaurants-list" role="status" aria-label="Caricamento ristoranti"><div class="skel" aria-hidden="true"><div class="sk-logo"></div><div class="sk-lines"><div class="sk-line" style="width:60%;"></div><div class="sk-line" style="width:85%;"></div></div></div><div class="skel" aria-hidden="true"><div class="sk-logo"></div><div class="sk-lines"><div class="sk-line" style="width:60%;"></div><div class="sk-line" style="width:85%;"></div></div></div><div class="skel" aria-hidden="true"><div class="sk-logo"></div><div class="sk-lines"><div class="sk-line" style="width:60%;"></div><div class="sk-line" style="width:85%;"></div></div></div><div class="skel" aria-hidden="true"><div class="sk-logo"></div><div class="sk-lines"><div class="sk-line" style="width:60%;"></div><div class="sk-line" style="width:85%;"></div></div></div></div>
         </div>
     </div>
 
@@ -1494,7 +1550,14 @@
 </div>
 
 <!-- Modal -->
-<div id="restaurantModal" class="modal">
+<nav class="tab-bar" aria-label="Navigazione app">
+        <button id="tab-home" onclick="tabGo('home')" aria-label="Home"><i class="fas fa-house"></i>Home</button>
+        <button id="tab-search" onclick="tabGo('search')" aria-label="Cerca"><i class="fas fa-magnifying-glass"></i>Cerca</button>
+        <button id="tab-map" onclick="tabGo('map')" aria-label="Mappa"><i class="fas fa-map-location-dot"></i>Mappa</button>
+        <button id="tab-favs" onclick="tabGo('favs')" aria-label="Preferiti"><i class="fas fa-heart"></i>Salvati</button>
+    </nav>
+
+<div id="restaurantModal" class="modal" role="dialog" aria-modal="true" aria-label="Dettagli ristorante">
     <div class="modal-content">
         <span class="modal-close" onclick="closeRestaurantModal()">&times;</span>
         <div class="modal-header">
@@ -2969,6 +3032,48 @@
         }
     })();
 
+// === APP UPGRADE: header shadow + tab-bar ===
+    (function() {
+      var header = document.querySelector('.app-header');
+      window.addEventListener('scroll', function() {
+        if (header) header.classList.toggle('scrolled', window.scrollY > 10);
+      }, { passive: true });
+    })();
+    var favsTabOn = false;
+    function tabSetActive(id) {
+      document.querySelectorAll('.tab-bar button').forEach(function(b) { b.classList.remove('active'); });
+      var el = document.getElementById(id);
+      if (el) el.classList.add('active');
+    }
+    function tabGo(where) {
+      favsTabOn = (where === 'favs') ? !favsTabOn : false;
+      if (where === 'home') { tabSetActive('tab-home'); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      if (where === 'search') {
+        tabSetActive('tab-search');
+        var s = document.getElementById('global-search');
+        if (s) { s.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(function() { s.focus({ preventScroll: true }); }, 450); }
+        return;
+      }
+      if (where === 'map') {
+        tabSetActive('tab-map');
+        var m = document.getElementById('map');
+        if (m) m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      if (where === 'favs') {
+        tabSetActive('tab-favs');
+        try {
+          var favs = JSON.parse(localStorage.getItem('tp_favorites') || '[]');
+          var list = (typeof restaurants !== 'undefined' ? restaurants : []).filter(function(r) { return favs.indexOf(r.id) !== -1; });
+          displayList(list.length ? list : []);
+          var panel = document.getElementById('restaurants-list');
+          if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          if (!list.length) showNotification('Nessun preferito: tocca il cuore sulle schede');
+        } catch (e) {}
+        if (!favsTabOn) { try { displayList(typeof restaurants !== 'undefined' ? restaurants : []); } catch (e) {} }
+        return;
+      }
+    }
 // === PWA Service Worker ===
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(function(){});
