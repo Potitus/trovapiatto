@@ -1317,6 +1317,24 @@
         @keyframes skshimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
         .rest-item { animation: restIn 0.35s ease backwards; }
         .restaurants-list.settled .rest-item { animation: none; }
+        /* Vicini XL: sezione in evidenza */
+        #nearby-section {
+            padding: 1.5rem;
+            border-width: 2px;
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.12);
+        }
+        #nearby-section h3 { font-size: 1.1rem; }
+        #nearby-section .s-card { min-width: 220px; padding: 16px; border-radius: 16px; }
+        #nearby-section .s-card .sc-logo { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 10px; }
+        #nearby-section .s-card .sc-name { font-size: 0.9rem; }
+        #nearby-section .s-card .sc-info { font-size: 0.75rem; }
+        #nearby-section .s-card .sc-rating { font-size: 0.8rem; }
+        #nearby-section .s-card .sc-dist { font-size: 0.75rem; }
+        #nearby-section .suggested-scroll { gap: 14px; padding-bottom: 8px; }
+        @media (max-width: 480px) {
+            #nearby-section .s-card { min-width: 180px; }
+            #nearby-section .s-card .sc-logo { width: 48px; height: 48px; }
+        }
         .rest-item:active { transform: scale(0.99); }
         @keyframes restIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
         .tab-bar { display: none; }
@@ -2772,10 +2790,10 @@
                 return dA - dB;
             });
         }
-        scroll.innerHTML = sorted.slice(0, 6).map((r, i) => `
+        scroll.innerHTML = sorted.slice(0, 8).map((r, i) => `
             <div class="s-card" onclick="selectRestaurant('${r.id}')">
                 ${i === 0 ? '<div class="sc-badge"><i class="fas fa-location-arrow"></i> PIÙ VICINO</div>' : ''}
-                <div class="sc-logo">${getLogoHtml(r.logo_url, 44)}</div>
+                <div class="sc-logo">${getLogoHtml(r.logo_url, 56)}</div>
                 <div class="sc-name">${r.name}</div>
                 <div class="sc-info">${r.cuisine || 'Ristorante'}</div>
                 ${userPosition && r.distance !== undefined ? `<div class="sc-dist"><i class="fas fa-location-arrow"></i> ${formatDistance(r.distance)}</div>` : ''}
