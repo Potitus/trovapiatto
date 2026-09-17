@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, interactive-widget=resizes-content">
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
@@ -26,8 +26,8 @@
       gtag('config', 'G-SMZZK9P4W4');
     </script>
     
-    <title>Mappa Ristoranti Bari - Trova Piatti e Menu Digitali | trovapiatto</title>
-    <meta name="description" content="Scopri tutti i ristoranti di Bari su trovapiatto. Mappa interattiva con 8000+ piatti, ricerca per zona, tipo di cucina e prezzo. Trova i piatti migliori vicino a te.">
+    <title>Trova il tuo Piatto a Bari - Ristoranti e Menu | trovapiatto</title>
+    <meta name="description" content="Cosa vuoi mangiare oggi? Cerca tra 8000+ piatti dei ristoranti di Bari su trovapiatto e scopri dove mangiarlo: prezzi, mappa, distanza e recensioni.">
     <meta name="keywords" content="ristoranti Bari, mappa ristoranti, menu digitale Bari, pizzeria Bari, trovapiatto, piatti Bari, cucina pugliese">
     <meta name="geo.region" content="IT-BA">
     <meta name="geo.placename" content="Bari">
@@ -37,8 +37,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="trovapiatto">
     <link rel="apple-touch-icon" href="/logo/apple-touch-icon.png">
-    <meta property="og:title" content="Mappa Ristoranti Bari - trovapiatto">
-    <meta property="og:description" content="Scopri 8000+ piatti dai ristoranti di Bari sulla mappa interattiva.">
+    <meta property="og:title" content="Trova il tuo Piatto a Bari - trovapiatto">
+    <meta property="og:description" content="Cerca tra 8000+ piatti e scopri in quali ristoranti di Bari mangiarlo: prezzi, mappa e recensioni.">
     <meta property="og:image" content="https://www.trovapiatto.it/logo/logo_ufficiale.png">
     <meta property="og:url" content="https://www.trovapiatto.it/app/">
     <link rel="canonical" href="https://www.trovapiatto.it/app/">
@@ -263,7 +263,22 @@
         }
         .search-box {
             position: relative;
+            z-index: auto;
         }
+        /* Quando i risultati sono aperti la barra resta sopra l'overlay: sempre visibile e scrivibile */
+        .search-box.open {
+            position: relative;
+            z-index: 10001;
+        }
+        .search-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            backdrop-filter: blur(4px);
+        }
+        .search-overlay.show { display: block; }
         .search-box input {
             width: 100%;
             padding: 14px 20px 14px 48px;
@@ -301,10 +316,16 @@
             border-radius: 14px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             max-height: 420px;
+            max-height: min(420px, 65svh);
+            height: auto;
             overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-gutter: stable;
             display: none;
         }
         .search-dropdown.show { display: block; }
+        /* Il pulsante Chiudi serve solo su mobile: mai su desktop */
+        .sr-close-btn { display: none; }
         .sr-header {
             padding: 12px 16px;
             background: rgba(255,255,255,0.03);
@@ -1179,7 +1200,7 @@
             .sr-best-name { font-size: 0.85rem; }
             .sr-item-logo { width: 28px; height: 28px; }
             
-            .search-dropdown { max-height: 300px; }
+            .search-dropdown { max-height: 380px; max-height: min(60svh, 430px); }
             
             .leaflet-control-zoom a { width: 30px !important; height: 30px !important; line-height: 30px !important; font-size: 14px !important; }
 
@@ -1200,21 +1221,24 @@
             /* Fix: notification position */
             .notification { top: 70px !important; right: 10px !important; padding: 10px 14px !important; font-size: 0.75rem !important; }
 
-            /* Fix: search modal mobile */
-            .search-dropdown { 
-                max-height: 70vh !important; 
-                position: fixed !important; 
-                left: 8px !important; 
-                right: 8px !important; 
-                bottom: 8px !important;
-                top: auto !important;
-                z-index: 10000 !important;
-                border-radius: 20px !important;
+            /* Fix: risultati ancorati sotto la barra (niente foglio fisso: la barra resta visibile mentre scrivi) */
+            .search-dropdown {
+                max-height: 55vh !important;
+                max-height: min(60svh, 430px) !important;
+                position: absolute !important;
+                left: 0 !important;
+                right: 0 !important;
+                top: calc(100% + 8px) !important;
+                bottom: auto !important;
+                z-index: 10002 !important;
+                border-radius: 16px !important;
                 border: 1px solid rgba(255,255,255,0.15) !important;
-                box-shadow: 0 -10px 40px rgba(0,0,0,0.8) !important;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.8) !important;
                 backdrop-filter: blur(20px) !important;
                 background: rgba(20,20,25,0.98) !important;
                 overflow-y: auto !important;
+                overscroll-behavior: contain !important;
+                scrollbar-gutter: stable !important;
             }
             .search-overlay {
                 display: none;
@@ -1319,21 +1343,26 @@
         .restaurants-list.settled .rest-item { animation: none; }
         /* Vicini XL: sezione in evidenza */
         #nearby-section {
-            padding: 1.5rem;
+            padding: 1.75rem;
             border-width: 2px;
             box-shadow: 0 12px 40px rgba(16, 185, 129, 0.12);
         }
-        #nearby-section h3 { font-size: 1.1rem; }
-        #nearby-section .s-card { min-width: 220px; padding: 16px; border-radius: 16px; }
-        #nearby-section .s-card .sc-logo { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 10px; }
-        #nearby-section .s-card .sc-name { font-size: 0.9rem; }
-        #nearby-section .s-card .sc-info { font-size: 0.75rem; }
-        #nearby-section .s-card .sc-rating { font-size: 0.8rem; }
-        #nearby-section .s-card .sc-dist { font-size: 0.75rem; }
-        #nearby-section .suggested-scroll { gap: 14px; padding-bottom: 8px; }
+        #nearby-section h3 { font-size: 1.2rem; }
+        #nearby-section .s-card { min-width: 260px; padding: 20px; border-radius: 18px; }
+        #nearby-section .s-card .sc-logo { width: 72px; height: 72px; border-radius: 16px; margin-bottom: 12px; }
+        #nearby-section .s-card .sc-name { font-size: 1rem; }
+        #nearby-section .s-card .sc-info { font-size: 0.8rem; }
+        #nearby-section .s-card .sc-rating { font-size: 0.85rem; }
+        #nearby-section .s-card .sc-dist { font-size: 0.8rem; }
+        #nearby-section .suggested-scroll { gap: 16px; padding-bottom: 8px; }
+        #nearby-section .sc-goto {
+            display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 10px; font-size: 0.78rem; font-weight: 700; color: #4ade80;
+        }
+        #nearby-section .s-card:hover .sc-goto { text-decoration: underline; }
         @media (max-width: 480px) {
-            #nearby-section .s-card { min-width: 180px; }
-            #nearby-section .s-card .sc-logo { width: 48px; height: 48px; }
+            #nearby-section .s-card { min-width: 220px; padding: 16px; }
+            #nearby-section .s-card .sc-logo { width: 56px; height: 56px; }
         }
         .rest-item:active { transform: scale(0.99); }
         @keyframes restIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -1367,19 +1396,236 @@
         .cities-scroll::-webkit-scrollbar { display: none; }
         .city-chip {
             display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
-            padding: 8px 14px 8px 8px; border-radius: 50px; text-decoration: none;
+            padding: 8px 14px; border-radius: 50px; text-decoration: none;
             background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);
             color: #fff; scroll-snap-align: start; transition: var(--transition);
         }
         .city-chip:hover { border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
-        .city-chip .cc-dot {
-            width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-            background: linear-gradient(135deg, #3b82f6, #06b6d4);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.6rem; font-weight: 800; color: white;
-        }
         .city-chip .cc-name { font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
         .city-chip .cc-count { font-size: 0.65rem; color: var(--text-muted); white-space: nowrap; }
+
+        /* ==================== REDESIGN 2026: HERO ==================== */
+        .hero-redesign {
+            text-align: center; padding: 3rem 1.5rem 2.5rem; margin-bottom: 1.5rem;
+            background:
+                radial-gradient(600px 300px at 15% 0%, rgba(231,58,58,0.16), transparent 60%),
+                radial-gradient(500px 280px at 85% 20%, rgba(245,158,11,0.12), transparent 60%),
+                radial-gradient(400px 300px at 50% 110%, rgba(139,92,246,0.10), transparent 60%),
+                linear-gradient(135deg, rgba(26,18,37,0.9), rgba(15,10,21,0.95));
+            border: 1px solid rgba(255,255,255,0.09); border-radius: 24px;
+            position: relative; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+        }
+        .hero-redesign::before {
+            content: ''; position: absolute; left: 3%; top: 10%; width: 150px; aspect-ratio: 606 / 155;
+            background: url('/logo/logo_ufficiale.png') center/contain no-repeat;
+            opacity: 0.30; filter: drop-shadow(0 8px 20px rgba(231,58,58,0.35));
+            animation: heroFloat 7s ease-in-out infinite; pointer-events: none;
+        }
+        .hero-redesign::after {
+            content: ''; position: absolute; right: 3%; bottom: 8%; width: 110px; aspect-ratio: 606 / 155;
+            background: url('/logo/logo_ufficiale.png') center/contain no-repeat;
+            opacity: 0.22; filter: drop-shadow(0 8px 20px rgba(231,58,58,0.35));
+            animation: heroFloat 9s ease-in-out infinite reverse; pointer-events: none;
+        }
+        @keyframes heroFloat { 0%,100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-14px) rotate(6deg); } }
+        @media (max-width: 600px) {
+            .hero-redesign::before { width: 84px; left: 2%; top: 6%; opacity: 0.22; }
+            .hero-redesign::after { width: 66px; right: 2%; bottom: 4%; opacity: 0.18; }
+        }
+        .hero-redesign h1 {
+            font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 800; line-height: 1.1;
+            margin: 0.9rem 0 0.6rem; letter-spacing: -0.5px; position: relative; z-index: 1;
+        }
+        .hero-redesign h1 span {
+            background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-redesign p { font-size: 1rem; color: var(--text-light); max-width: 560px; margin: 0 auto 1.2rem; position: relative; z-index: 1; }
+        .hero-pill {
+            display: inline-flex; align-items: center; gap: 6px; position: relative; z-index: 1;
+            background: rgba(231,58,58,0.12); border: 1px solid rgba(231,58,58,0.35); color: #ff9a9a;
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px;
+            padding: 6px 16px; border-radius: 30px;
+        }
+        .hero-pill .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+        .hero-stats { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+        .hero-stat {
+            display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 30px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem; font-weight: 600;
+        }
+        .hero-stat i { color: var(--accent-food); }
+        .hero-stat b { color: #fff; }
+
+        /* ==================== REDESIGN 2026: SEARCH CARD ==================== */
+        .search-card-v2 {
+            margin-bottom: 1.5rem; border-radius: 22px; padding: 1.4rem 1.2rem; position: relative;
+            background: linear-gradient(135deg, rgba(231,58,58,0.10), rgba(139,92,246,0.06));
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+        .search-card-v2::before {
+            content: ''; position: absolute; top: -1px; left: 24px; right: 24px; height: 3px;
+            background: linear-gradient(90deg, transparent, #e73a3a, #f59e0b, transparent);
+            border-radius: 2px; pointer-events: none;
+        }
+        .search-tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; align-items: center; }
+        .tool-pill {
+            display: inline-flex; align-items: center; gap: 7px; cursor: pointer; user-select: none;
+            font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600;
+            padding: 8px 15px; border-radius: 30px; transition: var(--transition);
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: var(--text-light);
+        }
+        .tool-pill:hover { border-color: var(--primary); color: #fff; transform: translateY(-1px); }
+        .tool-pill.on { background: rgba(16,185,129,0.15); border-color: #10b981; color: #4ade80; }
+        .tool-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #555; }
+        .tool-pill.on .dot { background: #4ade80; animation: pulse 2s infinite; }
+        .tool-pill .cnt { background: var(--primary); color: #fff; font-size: 0.68rem; min-width: 20px; height: 20px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; padding: 0 6px; font-weight: 700; }
+
+        /* ==================== REDESIGN 2026: RESTAURANT CARDS ==================== */
+        .rest-item {
+            background: linear-gradient(135deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;
+            padding: 14px; margin-bottom: 10px; position: relative;
+            display: flex; gap: 12px; cursor: pointer; transition: var(--transition);
+            animation: cardIn 0.4s ease backwards;
+        }
+        .rest-item:nth-child(2) { animation-delay: 0.03s; } .rest-item:nth-child(3) { animation-delay: 0.06s; }
+        .rest-item:nth-child(4) { animation-delay: 0.09s; } .rest-item:nth-child(5) { animation-delay: 0.12s; }
+        .rest-item:nth-child(n+6) { animation-delay: 0.15s; }
+        @keyframes cardIn { from { opacity: 0; transform: translateY(14px) scale(0.99); } to { opacity: 1; transform: none; } }
+        .rest-item:hover { border-color: rgba(231,58,58,0.5); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); background: rgba(231,58,58,0.06); }
+        .rest-logo { width: 60px; height: 60px; border-radius: 16px; border: 2px solid rgba(231,58,58,0.4); box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
+        .rest-name { font-size: 0.95rem; }
+        .open-badge {
+            display: inline-flex; align-items: center; gap: 5px; font-size: 0.66rem; font-weight: 700;
+            padding: 3px 10px; border-radius: 20px; margin-top: 6px; width: fit-content;
+        }
+        .open-badge.open { background: rgba(16,185,129,0.14); border: 1px solid rgba(16,185,129,0.4); color: #4ade80; }
+        .open-badge.closed { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: var(--text-muted); }
+        .open-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+        .open-badge.open .dot { animation: pulse 2s infinite; }
+        .open-filter-note {
+            display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: #4ade80;
+            background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25);
+            border-radius: 12px; padding: 8px 12px; margin-bottom: 8px;
+        }
+        .open-filter-note button { margin-left: auto; background: none; border: none; color: #4ade80; cursor: pointer; font-size: 0.75rem; font-weight: 700; }
+
+        /* ==================== REDESIGN 2026: WISHLIST DRAWER ==================== */
+        .wish-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(4px); z-index: 10002; }
+        .wish-overlay.show { display: block; }
+        .wish-drawer {
+            position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 94vw); z-index: 10003;
+            background: #150e20; border-left: 1px solid rgba(231,58,58,0.25);
+            box-shadow: -20px 0 60px rgba(0,0,0,0.6); display: flex; flex-direction: column;
+            transform: translateX(105%); transition: transform 0.35s cubic-bezier(0.32, 0.72, 0.35, 1);
+        }
+        .wish-drawer.show { transform: none; }
+        .wish-head { padding: 18px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 10px; }
+        .wish-head h3 { font-size: 1.05rem; font-weight: 800; flex: 1; }
+        .wish-head h3 i { color: var(--primary); margin-right: 6px; }
+        .wish-close { background: rgba(255,255,255,0.06); border: none; color: #fff; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 1rem; }
+        .wish-close:hover { background: var(--primary); }
+        .wish-body { flex: 1; overflow-y: auto; padding: 14px; }
+        .wish-group-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin: 12px 4px 8px; }
+        .wish-row {
+            display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); margin-bottom: 8px;
+        }
+        .wish-row .wr-info { flex: 1; min-width: 0; }
+        .wish-row .wr-name { font-weight: 700; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .wish-row .wr-sub { font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .wish-row .wr-go { color: var(--primary); font-size: 0.78rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+        .wish-row .wr-del { background: none; border: none; color: #666; cursor: pointer; font-size: 0.9rem; padding: 6px; }
+        .wish-row .wr-del:hover { color: var(--primary); }
+        .wish-empty { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.85rem; }
+        .wish-empty i { font-size: 2.2rem; color: var(--primary); display: block; margin-bottom: 12px; opacity: 0.7; }
+        .wish-foot { padding: 14px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .wish-clear { width: 100%; background: none; border: 1px dashed rgba(255,255,255,0.2); color: var(--text-muted); border-radius: 10px; padding: 10px; cursor: pointer; font-size: 0.8rem; font-family: inherit; }
+        .wish-clear:hover { border-color: var(--primary); color: var(--primary); }
+        @media (max-width: 600px) {
+            .wish-drawer { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-height: 82vh; border-left: none; border-top: 1px solid rgba(231,58,58,0.25); border-radius: 22px 22px 0 0; transform: translateY(105%); }
+            .wish-drawer.show { transform: none; }
+        }
+
+        /* ==================== REDESIGN 2026: COMPARE ==================== */
+        .compare-card {
+            margin: 12px 16px 4px; border-radius: 14px; overflow: hidden;
+            background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(245,158,11,0.04));
+            border: 1px solid rgba(245,158,11,0.35);
+        }
+        .compare-head { padding: 12px 14px; display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 700; }
+        .compare-head i { color: var(--accent-food); }
+        .compare-row { border-top: 1px solid rgba(245,158,11,0.18); }
+        .compare-toggle {
+            width: 100%; background: none; border: none; cursor: pointer; text-align: left;
+            padding: 10px 14px; display: flex; align-items: center; gap: 8px; color: #fff;
+            font-family: inherit; font-size: 0.82rem; font-weight: 600;
+        }
+        .compare-toggle .c-price { margin-left: auto; color: var(--accent-food); font-weight: 800; white-space: nowrap; }
+        .compare-toggle .c-chev { color: var(--text-muted); font-size: 0.7rem; transition: transform 0.25s; }
+        .compare-row.open .compare-toggle .c-chev { transform: rotate(180deg); }
+        .compare-detail { display: none; padding: 0 14px 12px; }
+        .compare-row.open .compare-detail { display: block; }
+        .compare-opt {
+            display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); margin-top: 6px;
+            cursor: pointer; transition: var(--transition);
+        }
+        .compare-opt:hover { border-color: var(--accent-food); }
+        .compare-opt.best { border-color: rgba(74,222,128,0.5); background: rgba(74,222,128,0.06); }
+        .compare-opt .co-info { flex: 1; min-width: 0; }
+        .compare-opt .co-name { font-size: 0.8rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .compare-opt .co-sub { font-size: 0.68rem; color: var(--text-muted); }
+        .compare-opt .co-price { font-weight: 800; color: var(--accent-food); font-size: 0.85rem; white-space: nowrap; }
+        .best-tag { font-size: 0.6rem; font-weight: 800; background: #10b981; color: #fff; padding: 2px 8px; border-radius: 12px; text-transform: uppercase; }
+
+        /* wishlist + open dots nei risultati ricerca */
+        .sr-wish {            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted);
+            width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 0.8rem;
+            display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; transition: var(--transition);
+        }
+        .sr-wish:hover { border-color: var(--primary); color: var(--primary); transform: scale(1.1); }
+        .sr-wish.saved { border-color: var(--primary); color: var(--primary); background: rgba(231,58,58,0.12); }
+        .sr-open-dot { display: inline-flex; align-items: center; gap: 4px; font-size: 0.66rem; font-weight: 700; }
+        .sr-open-dot.open { color: #4ade80; } .sr-open-dot.closed { color: var(--text-muted); }
+        /* sort + espansore + tastiera nei risultati */
+        .sr-sortbar {
+            display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+            padding: 10px 16px; border-bottom: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.02);
+        }
+        .sr-sort-label { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; }
+        .sr-sort-pill {
+            font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 600; cursor: pointer;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-light); border-radius: 20px; padding: 5px 12px; transition: var(--transition);
+            display: inline-flex; align-items: center; gap: 5px;
+        }
+        .sr-sort-pill:hover { border-color: var(--accent-search); color: #fff; }
+        .sr-sort-pill.on { background: rgba(6,182,212,0.15); border-color: var(--accent-search); color: #22d3ee; }
+        .sr-more {
+            width: calc(100% - 32px); margin: 12px 16px 16px; padding: 11px; cursor: pointer;
+            font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700;
+            background: rgba(6,182,212,0.08); border: 1px dashed rgba(6,182,212,0.4);
+            color: #22d3ee; border-radius: 12px; transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .sr-more:hover { background: rgba(6,182,212,0.15); }
+        .sr-item.kb-active { background: rgba(6, 182, 212, 0.14); outline: 1px solid var(--accent-search); }
+        .wish-badge {
+            position: absolute; top: -6px; right: -8px; background: var(--primary); color: #fff;
+            font-size: 0.62rem; font-weight: 800; min-width: 20px; height: 20px; border-radius: 12px;
+            display: none; align-items: center; justify-content: center; padding: 0 5px;
+            border: 2px solid #140c1c;
+        }
+        .wish-badge.show { display: inline-flex; }
+        #tab-favs { position: relative; }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-redesign::before, .hero-redesign::after, .rest-item { animation: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -1406,64 +1652,94 @@
 <div class="container">
 
     <!-- Hero -->
-    <div class="hero-section" style="text-align:center; padding:1.5rem 1rem; margin-bottom:1.5rem; background:linear-gradient(135deg, rgba(231,58,58,0.06), rgba(231,58,58,0.02)); border:1px solid rgba(231,58,58,0.15); border-radius:20px; position:relative; overflow:hidden;">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#e73a3a,transparent);opacity:0.6;"></div>
-        <h1 style="font-size:1.4rem;font-weight:800;margin-bottom:0.5rem;"><i class="fas fa-map-location-dot" style="color:#e73a3a;"></i> Mappa <span style="background:linear-gradient(135deg,#e73a3a,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Ristoranti Bari</span></h1>
-        <p style="font-size:0.82rem;color:var(--text-muted);max-width:500px;margin:0 auto;">Scopri 8000+ piatti dai migliori ristoranti di Bari e Puglia. Cerca per piatto, distanza o valutazione.</p>
+    <div class="hero-section hero-redesign">
+        <div class="hero-pill"><span class="live-dot"></span> 8000+ piatti a Bari</div>
+        <h1>Trova il tuo <span>Piatto</span></h1>
+        <p>Scrivi cosa vuoi mangiare e scopri in quali ristoranti trovarlo, con prezzi, distanza e recensioni.</p>
+        <div class="hero-stats">
+            <span class="hero-stat"><i class="fas fa-store"></i> <b id="hero-stat-rest">70+</b> ristoranti</span>
+            <span class="hero-stat"><i class="fas fa-plate-wheat"></i> <b>8000+</b> piatti</span>
+            <span class="hero-stat"><i class="fas fa-star"></i> <b>recensioni</b> verificate</span>
+        </div>
     </div>
 
     <!-- Dish Search -->
-    <div class="search-section" style="margin-bottom:1.5rem; background:linear-gradient(135deg, rgba(231,58,58,0.08), rgba(231,58,58,0.03)); border:1.5px solid rgba(231,58,58,0.25); border-radius:20px; padding:1.2rem 1rem; box-shadow:0 8px 32px rgba(231,58,58,0.1); position:relative; overflow:hidden;">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#e73a3a,transparent);opacity:0.6;"></div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-            <div style="width:28px;height:28px;background:linear-gradient(135deg,#e73a3a,#c92a2a);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(231,58,58,0.3);"><i class="fas fa-search" style="color:white;font-size:0.7rem;"></i></div>
-            <span style="font-size:0.78rem;font-weight:700;color:#e73a3a;text-transform:uppercase;letter-spacing:0.8px;">Cerca un Piatto</span>
+    <div class="search-section search-card-v2" style="margin-bottom:1.5rem; background:linear-gradient(135deg, rgba(231,58,58,0.12), rgba(245,158,11,0.05)); border:2px solid rgba(231,58,58,0.35); border-radius:20px; padding:1.4rem 1.2rem; box-shadow:0 12px 40px rgba(231,58,58,0.15); position:relative;">
+        <div style="position:absolute;top:-2px;left:18px;right:18px;height:3px;background:linear-gradient(90deg,transparent,#e73a3a,#f59e0b,transparent);opacity:0.7;border-radius:2px;pointer-events:none;"></div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+            <div style="width:44px;height:44px;background:linear-gradient(135deg,#e73a3a,#f59e0b);border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(231,58,58,0.4);flex-shrink:0;"><i class="fas fa-utensils" style="color:white;font-size:1rem;"></i></div>
+            <div>
+                <div style="font-size:1.15rem;font-weight:800;color:#fff;line-height:1.2;">Cosa vuoi mangiare?</div>
+                <div style="font-size:0.8rem;color:var(--text-light);">Scrivi un piatto, ti mostriamo dove mangiarlo</div>
+            </div>
         </div>
-        <div class="search-box">
-            <i class="fas fa-utensils" style="color:#e73a3a;font-size:1.1rem;"></i>
-            <label class="sr-only" for="global-search">Cerca un piatto o un ristorante</label>
-            <input type="text" id="global-search" placeholder="Pizza, Branzino, Burrata, Orecchiette..." oninput="searchDishesSmart(this.value)" autocomplete="off" style="padding:16px 20px 16px 50px;font-size:1rem;font-weight:500;border-radius:16px;border:1.5px solid rgba(231,58,58,0.15);background:rgba(255,255,255,0.06);transition:all 0.3s;" onfocus="this.style.borderColor='rgba(231,58,58,0.4)';this.style.boxShadow='0 0 20px rgba(231,58,58,0.15)'" onblur="this.style.borderColor='rgba(231,58,58,0.15)';this.style.boxShadow='none'">
-            <div class="search-dropdown" id="searchResults">
+        <div class="search-box" style="margin-top:12px;">
+            <i class="fas fa-magnifying-glass" style="color:#e73a3a;font-size:1.1rem;"></i>
+            <label class="sr-only" for="global-search">Cerca un piatto: scrivi cosa vuoi mangiare</label>
+            <input type="text" id="global-search" placeholder="Es. Orecchiette, Pizza, Burrata, Sushi..." aria-describedby="search-hint" aria-expanded="false" aria-controls="searchResults" role="combobox" oninput="searchDishesSmart(this.value)" onkeydown="searchKeyNav(event)" autocomplete="off" style="padding:18px 20px 18px 50px;font-size:1.05rem;font-weight:600;border-radius:16px;border:2px solid rgba(231,58,58,0.25);background:rgba(255,255,255,0.07);transition:all 0.3s;" onfocus="this.style.borderColor='rgba(231,58,58,0.5)';this.style.boxShadow='0 0 24px rgba(231,58,58,0.2)'" onblur="this.style.borderColor='rgba(231,58,58,0.25)';this.style.boxShadow='none'">
+            <div class="search-dropdown" id="searchResults" role="region" aria-label="Risultati ricerca piatti">
                 <div class="sr-close-btn"><button onclick="closeSearchModal()">Chiudi</button></div>
             </div>
         </div>
+        <div id="search-hint" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px;">
+            <span style="font-size:0.72rem;color:var(--text-muted);font-weight:600;">Prova:</span>
+            <button type="button" onclick="dishChipSearch('Orecchiette')" style="background:rgba(231,58,58,0.12);border:1px solid rgba(231,58,58,0.35);color:#ff9a9a;font-size:0.78rem;font-weight:600;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;">Orecchiette</button>
+            <button type="button" onclick="dishChipSearch('Pizza')" style="background:rgba(231,58,58,0.12);border:1px solid rgba(231,58,58,0.35);color:#ff9a9a;font-size:0.78rem;font-weight:600;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;">Pizza</button>
+            <button type="button" onclick="dishChipSearch('Burrata')" style="background:rgba(231,58,58,0.12);border:1px solid rgba(231,58,58,0.35);color:#ff9a9a;font-size:0.78rem;font-weight:600;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;">Burrata</button>
+            <button type="button" onclick="dishChipSearch('Sushi')" style="background:rgba(231,58,58,0.12);border:1px solid rgba(231,58,58,0.35);color:#ff9a9a;font-size:0.78rem;font-weight:600;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;">Sushi</button>
+        </div>
+        <div class="search-tools">
+            <button type="button" id="open-now-toggle" class="tool-pill" onclick="toggleOpenNow()" title="Mostra solo i locali probabilmente aperti (orario indicativo)">
+                <span class="dot"></span><i class="fas fa-clock"></i> Aperti ora*
+            </button>
+            <button type="button" class="tool-pill" onclick="openWishlist()" title="I piatti e i locali che vuoi provare">
+                <i class="fas fa-bookmark" style="color:var(--primary);"></i> Da provare <span class="cnt" id="wish-count" style="display:none;">0</span>
+            </button>
+            <button type="button" class="tool-pill" onclick="openDishCamera()" title="Fotografa un piatto e scopri dove mangiarlo">
+                <i class="fas fa-camera" style="color:var(--accent-search);"></i> Fotocamera
+            </button>
+            <input type="file" id="dish-camera-input" accept="image/*" capture="environment" style="display:none;" onchange="onDishPhoto(this)">
+        </div>
+        <div style="font-size:0.66rem;color:var(--text-muted);margin-top:8px;">*Orario reale dove configurato dal locale, altrimenti stima da fasce tipiche.</div>
     </div>
     <div class="search-overlay" id="searchOverlay" onclick="closeSearchModal()"></div>
 
     <!-- Banner Piatti del Giorno -->
     <div style="position:relative; margin-bottom:1.5rem;">
-        <div style="background:linear-gradient(135deg, rgba(245,158,11,0.12), rgba(249,115,22,0.06)); border:1px solid rgba(245,158,11,0.25); border-radius:20px; padding:1.2rem; transition:all 0.3s; box-shadow:0 8px 32px rgba(245,158,11,0.08); position:relative;">
-            <div style="position:absolute;top:0;left:20px;right:20px;height:2px;background:linear-gradient(90deg,transparent,#f59e0b,transparent);opacity:0.5;border-radius:1px;"></div>
-            <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
-                <div style="background:linear-gradient(135deg, #f59e0b, #f97316); width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(245,158,11,0.3);"><i class="fas fa-fire" style="color:white; font-size:13px;"></i></div>
-                <span style="background:linear-gradient(135deg, #f59e0b, #fbbf24); color:white; font-size:0.68rem; padding:4px 12px; border-radius:20px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px;">Piatti del Giorno</span>
-                <span style="font-size:0.62rem; color:var(--text-muted); margin-left:auto;">tocca per cercare</span>
+        <div style="background:linear-gradient(135deg, rgba(245,158,11,0.14), rgba(249,115,22,0.05)); border:2px solid rgba(245,158,11,0.35); border-radius:20px; padding:1.4rem 1.2rem; transition:all 0.3s; box-shadow:0 12px 40px rgba(245,158,11,0.12); position:relative;">
+            <div style="position:absolute;top:0;left:20px;right:20px;height:3px;background:linear-gradient(90deg,transparent,#f59e0b,#f97316,transparent);opacity:0.7;border-radius:2px;"></div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+                <div style="background:linear-gradient(135deg, #f59e0b, #f97316); width:44px; height:44px; border-radius:14px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(245,158,11,0.4); flex-shrink:0;"><i class="fas fa-star" style="color:white; font-size:1rem;"></i></div>
+                <div>
+                    <h2 style="font-size:1.15rem; font-weight:800; color:#fff; margin:0; line-height:1.2;">Piatti del Giorno</h2>
+                    <p style="font-size:0.8rem; color:var(--text-light); margin:2px 0 0;">I più scelti oggi — tocca un piatto per vedere dove mangiarlo</p>
+                </div>
             </div>
-            <div class="banner-dishes-grid">
+            <div class="banner-dishes-grid" style="margin-top:14px;">
                 <!-- Piatto 1: Primo -->
-                <div id="banner-clickable-1" onclick="searchDishFromBanner(document.querySelector('#banner-dish-search-1').value)" class="banner-dish-card" style="border-left:4px solid var(--accent-food);" onmouseover="this.style.borderColor='var(--accent-food)'" onmouseout="this.style.borderColor='transparent'">
-                    <div style="width:68px; height:68px; border-radius:14px; overflow:hidden; flex-shrink:0; border:2px solid var(--accent-food); box-shadow:0 4px 15px rgba(245,158,11,0.3);">
-                        <img id="banner-dish-img-1" src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=200&h=200&fit=crop" alt="Primo" width="200" height="200" loading="lazy" decoding="async" onerror="this.src='/logo/placeholder-ristorante.svg'" style="width:100%; height:100%; object-fit:cover;">
+                <div id="banner-clickable-1" role="button" tabindex="0" aria-label="Tocca per vedere dove mangiare questo piatto" onclick="searchDishFromBanner(document.querySelector('#banner-dish-search-1').value)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();searchDishFromBanner(document.querySelector('#banner-dish-search-1').value);}" class="banner-dish-card" style="border-left:4px solid var(--accent-food);" onmouseover="this.style.borderColor='var(--accent-food)'" onmouseout="this.style.borderColor='transparent'">
+                    <div style="width:84px; height:84px; border-radius:16px; overflow:hidden; flex-shrink:0; border:2px solid var(--accent-food); box-shadow:0 4px 15px rgba(245,158,11,0.3);">
+                        <img id="banner-dish-img-1" src="/images/dishes/orecchiette-con-le-cime-di-rapa.webp" alt="Orecchiette con cime di rapa" width="200" height="200" loading="lazy" decoding="async" onerror="this.src='/logo/placeholder-ristorante.svg'" style="width:100%; height:100%; object-fit:cover;">
                     </div>
                     <div style="flex:1; min-width:0;">
-                        <div style="font-size:0.65rem; color:var(--accent-food); font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:3px;"><i class="fas fa-utensils" style="margin-right:3px;"></i>Primo</div>
-                        <div id="banner-dish-name-1" style="font-weight:700; font-size:0.95rem; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:2px;">Orecchiette</div>
-                        <div id="banner-dish-desc-1" style="font-size:0.75rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Cime di rapa</div>
+                        <div style="font-size:0.68rem; color:var(--accent-food); font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:3px;"><i class="fas fa-utensils" style="margin-right:4px;"></i>Primo</div>
+                        <div id="banner-dish-name-1" style="font-weight:800; font-size:1.05rem; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:2px;">Orecchiette</div>
+                        <div id="banner-dish-desc-1" style="font-size:0.8rem; color:var(--text-light); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:8px;">Cime di rapa</div>
+                        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);color:#fbbf24;font-size:0.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">Dove mangiarlo <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i></span>
                     </div>
-                    <i class="fas fa-search" style="color:var(--accent-food); font-size:0.7rem; opacity:0.6; align-self:center;"></i>
                     <input type="hidden" id="banner-dish-search-1" value="orecchiette">
                 </div>
                 <!-- Piatto 2: Secondo -->
-                <div id="banner-clickable-2" onclick="searchDishFromBanner(document.querySelector('#banner-dish-search-2').value)" class="banner-dish-card" style="border-left:4px solid #f97316;" onmouseover="this.style.borderColor='#f97316'" onmouseout="this.style.borderColor='transparent'">
-                    <div style="width:68px; height:68px; border-radius:14px; overflow:hidden; flex-shrink:0; border:2px solid #f97316; box-shadow:0 4px 15px rgba(249,115,22,0.3);">
-                        <img id="banner-dish-img-2" src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=200&h=200&fit=crop" alt="Secondo" width="200" height="200" loading="lazy" decoding="async" onerror="this.src='/logo/placeholder-ristorante.svg'" style="width:100%; height:100%; object-fit:cover;">
+                <div id="banner-clickable-2" role="button" tabindex="0" aria-label="Tocca per vedere dove mangiare questo piatto" onclick="searchDishFromBanner(document.querySelector('#banner-dish-search-2').value)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();searchDishFromBanner(document.querySelector('#banner-dish-search-2').value);}" class="banner-dish-card" style="border-left:4px solid #f97316;" onmouseover="this.style.borderColor='#f97316'" onmouseout="this.style.borderColor='transparent'">
+                    <div style="width:84px; height:84px; border-radius:16px; overflow:hidden; flex-shrink:0; border:2px solid #f97316; box-shadow:0 4px 15px rgba(249,115,22,0.3);">
+                        <img id="banner-dish-img-2" src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=200&h=200&fit=crop" alt="Secondo del giorno" width="200" height="200" loading="lazy" decoding="async" onerror="this.src='/logo/placeholder-ristorante.svg'" style="width:100%; height:100%; object-fit:cover;">
                     </div>
                     <div style="flex:1; min-width:0;">
-                        <div style="font-size:0.65rem; color:#f97316; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:3px;"><i class="fas fa-drumstick-bite" style="margin-right:3px;"></i>Secondo</div>
-                        <div id="banner-dish-name-2" style="font-weight:700; font-size:0.95rem; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:2px;">Branzino al Forno</div>
-                        <div id="banner-dish-desc-2" style="font-size:0.75rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Pesce fresco</div>
+                        <div style="font-size:0.68rem; color:#f97316; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:3px;"><i class="fas fa-drumstick-bite" style="margin-right:4px;"></i>Secondo</div>
+                        <div id="banner-dish-name-2" style="font-weight:800; font-size:1.05rem; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:2px;">Branzino al Forno</div>
+                        <div id="banner-dish-desc-2" style="font-size:0.8rem; color:var(--text-light); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:8px;">Pesce fresco</div>
+                        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.4);color:#fb923c;font-size:0.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">Dove mangiarlo <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i></span>
                     </div>
-                    <i class="fas fa-search" style="color:#f97316; font-size:0.7rem; opacity:0.6; align-self:center;"></i>
                     <input type="hidden" id="banner-dish-search-2" value="branzino">
                 </div>
             </div>
@@ -1501,26 +1777,7 @@
         </div>
     </div>
 
-    <!-- Community Section -->
-    <div class="community-section" style="margin-top:1.5rem; padding:1.2rem; background:linear-gradient(135deg, rgba(139,92,246,0.08), rgba(236,72,153,0.04)); border:1px solid rgba(139,92,246,0.2); border-radius:18px; position:relative; overflow:hidden;">
-        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#8b5cf6,transparent);opacity:0.5;"></div>
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
-            <div style="display:flex; align-items:center; gap:10px;">
-                <div style="width:34px; height:34px; background:linear-gradient(135deg, #8b5cf6, #ec4899); border-radius:10px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(139,92,246,0.3);">
-                    <i class="fas fa-users" style="color:white; font-size:0.8rem;"></i>
-                </div>
-                <div>
-                    <h3 style="font-size:0.9rem; font-weight:700; color:#fff; margin:0;">Community</h3>
-                    <p style="font-size:0.65rem; color:var(--text-muted); margin:0;">Cosa mangiano gli altri</p>
-                </div>
-            </div>
-            <a href="https://www.trovapiatto.it/community/cosamangio.html" style="font-size:0.7rem; color:#8b5cf6; font-weight:600; text-decoration:none; display:flex; align-items:center; gap:4px;">Vedi tutto <i class="fas fa-chevron-right" style="font-size:0.55rem;"></i></a>
-        </div>
-        <div id="community-feed" style="display:flex; flex-direction:column; gap:8px;">
-            <div style="text-align:center; padding:1rem; color:var(--text-muted); font-size:0.78rem;"><i class="fas fa-spinner fa-spin"></i> Caricamento...</div>
-        </div>
-        <a href="https://www.trovapiatto.it/community/" style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:1rem; padding:12px; background:linear-gradient(135deg, #8b5cf6, #ec4899); color:white; border-radius:12px; text-decoration:none; font-size:0.82rem; font-weight:700;"><i class="fas fa-users"></i> Esplora Community e Classifiche <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></a>
-    </div>
+    
 
     <!-- Cities Section -->
     <div id="cities-section" style="margin-bottom:1.5rem; display:none;">
@@ -1536,24 +1793,7 @@
         <a href="https://www.trovapiatto.it/" title="trovapiatto - home" aria-label="trovapiatto - home" style="display:inline-block; margin-bottom:1.5rem;">
             <img src="https://www.trovapiatto.it/logo/logo_ufficiale.png" alt="trovapiatto" width="710" height="187" loading="lazy" decoding="async" style="height:36px; width:auto;">
         </a>
-        <!-- Stats -->
-        <div class="stats-grid" style="margin-bottom: 1.5rem;">
-            <div class="stat-card" style="background:linear-gradient(135deg, rgba(231,58,58,0.08), rgba(231,58,58,0.03)); border:1px solid rgba(231,58,58,0.15);">
-                <i class="fas fa-utensils" style="color:#e73a3a;"></i>
-                <div class="stat-number" id="stat-restaurants">0</div>
-                <div class="stat-label">Ristoranti</div>
-            </div>
-            <div class="stat-card" style="background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.03)); border:1px solid rgba(245,158,11,0.15);">
-                <i class="fas fa-plate-wheat" style="color:#f59e0b;"></i>
-                <div class="stat-number" id="stat-dishes">0</div>
-                <div class="stat-label">Piatti</div>
-            </div>
-            <div class="stat-card" style="background:linear-gradient(135deg, rgba(6,182,212,0.08), rgba(6,182,212,0.03)); border:1px solid rgba(6,182,212,0.15);">
-                <i class="fas fa-city" style="color:#06b6d4;"></i>
-                <div class="stat-number" id="stat-cities">0</div>
-                <div class="stat-label">Città</div>
-            </div>
-        </div>
+        
         
         <!-- CTA -->
         <div style="margin-bottom: 1.5rem;">
@@ -1576,12 +1816,50 @@
     </div>
 </div>
 
+<!-- Fotocamera piatti: scatta -> conferma -> trova dove mangiarlo -->
+<div class="wish-overlay" id="photo-overlay" onclick="closeDishCamera()"></div>
+<aside class="wish-drawer" id="photo-drawer" aria-label="Cerca piatto con fotocamera">
+    <div class="wish-head">
+        <h3><i class="fas fa-camera"></i> Che piatto è?</h3>
+        <button class="wish-close" onclick="closeDishCamera()" aria-label="Chiudi">✕</button>
+    </div>
+    <div class="wish-body">
+        <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);margin-bottom:12px;background:#000;">
+            <img id="photo-preview" alt="Foto del piatto" style="width:100%;max-height:240px;object-fit:cover;display:block;">
+        </div>
+        <div style="font-size:0.8rem;color:var(--text-light);margin-bottom:8px;">Conferma il piatto nella foto, poi ti mostriamo <b>chi lo serve, prezzo e dove</b>.</div>
+        <input type="text" id="photo-dish-input" placeholder="Scrivi il piatto... (es. orecchiette)" autocomplete="off"
+            style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-family:inherit;font-size:0.85rem;margin-bottom:10px;"
+            oninput="renderDishChips(this.value)">
+        <div id="photo-dish-chips" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+        <div style="font-size:0.66rem;color:var(--text-muted);margin-top:10px;"><i class="fas fa-lock"></i> La foto resta sul tuo telefono, non viene caricata da nessuna parte.</div>
+    </div>
+    <div class="wish-foot">
+        <button class="sr-detail-btn-primary" id="photo-confirm-btn" onclick="confirmDishPhoto()" style="margin:0;">
+            <i class="fas fa-magnifying-glass"></i> Trova dove mangiarlo
+        </button>
+    </div>
+</aside>
+
+<!-- Wishlist "Da provare" -->
+<div class="wish-overlay" id="wish-overlay" onclick="closeWishlist()"></div>
+<aside class="wish-drawer" id="wish-drawer" aria-label="Lista Da provare">
+    <div class="wish-head">
+        <h3><i class="fas fa-bookmark"></i> Da provare</h3>
+        <button class="wish-close" onclick="closeWishlist()" aria-label="Chiudi">✕</button>
+    </div>
+    <div class="wish-body" id="wish-body"></div>
+    <div class="wish-foot">
+        <button class="wish-clear" onclick="TPWishlist.clearAll();renderWishlist();updateWishBadge();displayList(restaurants);">Svuota lista</button>
+    </div>
+</aside>
+
 <!-- Modal -->
 <nav class="tab-bar" aria-label="Navigazione app">
         <button id="tab-home" onclick="tabGo('home')" aria-label="Home"><i class="fas fa-house"></i>Home</button>
         <button id="tab-search" onclick="tabGo('search')" aria-label="Cerca"><i class="fas fa-magnifying-glass"></i>Cerca</button>
         <button id="tab-map" onclick="tabGo('map')" aria-label="Mappa"><i class="fas fa-map-location-dot"></i>Mappa</button>
-        <button id="tab-favs" onclick="tabGo('favs')" aria-label="Preferiti"><i class="fas fa-heart"></i>Salvati</button>
+        <button id="tab-favs" onclick="tabGo('favs')" aria-label="Da provare"><i class="fas fa-heart"></i>Salvati<span class="wish-badge" id="wish-badge">0</span></button>
     </nav>
 
 <div id="restaurantModal" class="modal" role="dialog" aria-modal="true" aria-label="Dettagli ristorante">
@@ -1678,6 +1956,8 @@
 </style>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/app/assets/js/meal-intent.js"></script>
+<script src="/app/assets/js/app-upgrade.js"></script>
 <script>
     let map, restaurants = [], markers = [], currentRestaurant = null;
     let refreshInterval = null;
@@ -1690,8 +1970,10 @@
     const LOGO_FALLBACK_INLINE = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" rx="40" fill="%231a1225"/><rect x="8" y="8" width="184" height="184" rx="34" fill="none" stroke="%23e73a3a" stroke-width="2" opacity="0.3"/><text x="100" y="110" font-family="Inter,sans-serif" font-size="40" text-anchor="middle" fill="%23e73a3a">🍽</text><text x="100" y="150" font-family="Inter,sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">TROVAPIATTO</text></svg>');
 
     function getLogoHtml(logoUrl, size = 44) {
-        const src = logoUrl && logoUrl.trim() ? logoUrl : LOGO_FALLBACK;
-        return `<img src="${src}" alt="" loading="lazy" decoding="async" style="width:${size}px;height:${size}px;object-fit:cover;border-radius:10px;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">`;
+        const raw = logoUrl && String(logoUrl).trim() ? String(logoUrl).trim() : LOGO_FALLBACK;
+        const src = (typeof escAttr === 'function') ? escAttr(raw) : raw;
+        const s = Math.max(16, Math.min(256, parseInt(size, 10) || 44));
+        return `<img src="${src}" alt="" loading="lazy" decoding="async" style="width:${s}px;height:${s}px;object-fit:cover;border-radius:10px;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">`;
     }
 
     // ===== CITY DETECTION (Reverse Geocoding) =====
@@ -1718,18 +2000,18 @@
 
         // Update hero title
         const heroSpan = document.querySelector('.hero-section h1 span');
-        if (heroSpan) heroSpan.textContent = `Ristoranti ${city}`;
+        if (heroSpan) heroSpan.textContent = `Piatto a ${city}`;
 
         // Update hero subtitle
         const heroP = document.querySelector('.hero-section p');
         if (heroP) heroP.textContent = `Scopri i piatti migliori dai ristoranti di ${city}. Cerca per piatto, distanza o valutazione.`;
 
         // Update page title
-        document.title = `Mappa Ristoranti ${city} - Trova Piatti e Menu Digitali | trovapiatto`;
+        document.title = `Trova il tuo Piatto a ${city} - Ristoranti e Menu | trovapiatto`;
 
         // Update meta tags
         const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.setAttribute('content', `Scopri tutti i ristoranti di ${city} su trovapiatto. Mappa interattiva con piatti, ricerca per zona, tipo di cucina e prezzo.`);
+        if (metaDesc) metaDesc.setAttribute('content', `Cosa vuoi mangiare a ${city}? Cerca tra i piatti dei ristoranti su trovapiatto e scopri dove mangiarlo: prezzi, mappa e recensioni.`);
 
         const metaGeoRegion = document.querySelector('meta[name="geo.region"]');
         if (metaGeoRegion) metaGeoRegion.remove();
@@ -1738,10 +2020,10 @@
         if (metaGeoPlacename) metaGeoPlacename.setAttribute('content', city);
 
         const ogTitle = document.querySelector('meta[property="og:title"]');
-        if (ogTitle) ogTitle.setAttribute('content', `Mappa Ristoranti ${city} - trovapiatto`);
+        if (ogTitle) ogTitle.setAttribute('content', `Trova il tuo Piatto a ${city} - trovapiatto`);
 
         const ogDesc = document.querySelector('meta[property="og:description"]');
-        if (ogDesc) ogDesc.setAttribute('content', `Scopri i piatti migliori dai ristoranti di ${city} sulla mappa interattiva.`);
+        if (ogDesc) ogDesc.setAttribute('content', `Cerca tra i piatti dei ristoranti di ${city} e scopri dove mangiarlo: prezzi, mappa e recensioni.`);
 
         // Update nearby section
         const nearbyH3 = document.querySelector('#nearby-section h3');
@@ -1968,7 +2250,6 @@
                 section.style.display = '';
                 grid.innerHTML = data.data.slice(0, 10).map(c => `
                     <a href="/${c.slug}/" class="city-chip" title="Menu a ${c.name}">
-                        <span class="cc-dot">${c.name.substring(0,2).toUpperCase()}</span>
                         <span class="cc-name">${c.name}</span>
                         <span class="cc-count">${c.restaurant_count}</span>
                     </a>
@@ -2177,15 +2458,31 @@
     }
 
     function displayList(list) {
+        list = Array.isArray(list) ? list : [];
+        let openNote = '';
+        if (window.tpOpenNowOnly && window.TPOpen) {
+            const before = list.length;
+            list = list.filter(r => { try { return window.TPOpen.getOpenState(new Date(), r.cuisine, r.available_hours).open; } catch (e) { return true; } });
+            openNote = `<div class="open-filter-note"><i class="fas fa-clock"></i> Solo aperti ora* (${list.length}/${before}) <button onclick="toggleOpenNow()">Mostra tutti</button></div>`;
+        }
         const html = list.map(r => {
             const logoSrc = r.logo_url && r.logo_url.trim() ? r.logo_url : LOGO_FALLBACK;
-            const logoContent = `<img src="${logoSrc}" alt="${r.name}" width="48" height="48" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">`;
+            const logoContent = `<img src="${logoSrc}" alt="${r.name}" width="60" height="60" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">`;
             const dist = r.distance !== undefined && r.distance !== Infinity
                 ? `<span style="color:#4ade80;font-size:0.7rem;"><i class="fas fa-location-arrow"></i> ${formatDistance(r.distance)}</span>` : '';
             const fav = isFavorite(r.id);
+            let openBadge = '';
+            try {
+                if (window.TPOpen) {
+                    const st = window.TPOpen.getOpenState(new Date(), r.cuisine, r.available_hours);
+                    const star = st.indicative ? '*' : '';
+                    const title = st.indicative ? 'Orario indicativo, non garantito' : 'Orari del locale';
+                    openBadge = `<span class="open-badge ${st.open ? 'open' : 'closed'}" title="${title}"><span class="dot"></span>${st.open ? 'Aperto ora' + star : escHtml(st.label) + star}</span>`;
+                }
+            } catch (e) {}
             return `
             <div class="rest-item" onclick="selectRestaurant('${r.id}')">
-                <button class="fav-btn ${fav ? 'active' : ''}" onclick="event.stopPropagation();toggleFavorite('${r.id}')" title="Preferito">
+                <button class="fav-btn ${fav ? 'active' : ''}" onclick="event.stopPropagation();toggleFavorite('${r.id}');updateWishBadge();" title="Salva nei preferiti">
                     <i class="fas fa-heart" style="color:${fav ? '#e73a3a' : '#555'}"></i>
                 </button>
                 <div class="rest-logo">${logoContent}</div>
@@ -2194,10 +2491,11 @@
                     <div class="rest-details"><i class="fas fa-map-marker-alt"></i> ${r.city || 'N/A'} ${dist}</div>
                     <div class="rest-rating"><i class="fas fa-star"></i> ${r.rating || 'N/A'} | <i class="fas fa-plate-wheat"></i> ${r.dishes_count || r.category_count || 0} piatti</div>
                     <div class="rest-tags"><span class="rest-tag"><i class="fas fa-utensils"></i> ${r.cuisine || 'Ristorante'}</span></div>
+                    ${openBadge}
                 </div>
             </div>`;
         }).join('');
-        document.getElementById('restaurants-list').innerHTML = html || '<div class="loading-state">Nessun ristorante trovato</div>';
+        document.getElementById('restaurants-list').innerHTML = openNote + (html || '<div class="loading-state">Nessun ristorante trovato</div>');
         var _rl = document.getElementById('restaurants-list'); if (_rl) _rl.classList.add('settled');
     }
 
@@ -2487,6 +2785,7 @@
         animateValue(restEl, statsRestaurants.length);
         animateValue(dishesEl, statsRestaurants.reduce((s, r) => s + (r.dishes_count || 0), 0));
         animateValue(citiesEl, new Set(restaurants.map(r => r.city).filter(Boolean)).size || 1);
+        try { const h = document.getElementById('hero-stat-rest'); if (h) h.textContent = (statsRestaurants.length || restaurants.length) + '+'; } catch (e) {}
     }
     function animateValue(el, target) {
         const duration = 1200, start = performance.now();
@@ -2589,28 +2888,327 @@
 
     // ===== DISH SEARCH (API) =====
     let searchDebounce = null;
+    let searchSeq = 0;
     let lastSearchResults = [];
+    let lastSearchQuery = '';
+    let lastSearchMealHtml = '';
+    let lastSearchCompareHtml = '';
+    let searchExpanded = false;
+    let searchSortMode = 'smart'; // smart | price | distance
+
+    function escHtml(s) {
+        return String(s ?? '').replace(/[&<>"']/g, function(m) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+        });
+    }
+    function escAttr(s) {
+        return escHtml(s).replace(/`/g, '&#96;');
+    }
+    function setSearchOpen(open) {
+        document.getElementById('searchResults')?.classList.toggle('show', open);
+        document.getElementById('searchOverlay')?.classList.toggle('show', open);
+        document.getElementById('global-search')?.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.querySelector('.search-section .search-box')?.classList.toggle('open', open);
+    }
+
+    // ===== UPGRADE 2026: Confronta prezzi / Da provare / Aperti ora =====
+    // Store risultati per contenitore: la ricerca principale e il modale
+    // "piatto del giorno" condividono renderer e pannello dettaglio.
+    let lastBannerResults = [];
+    let lastBannerQuery = '';
+    function storeFor(containerId) { return containerId === 'banner-search-results' ? lastBannerResults : lastSearchResults; }
+    function closeAllSearchUI() { try { closeSearchModal(); } catch (e) {} try { closeBannerSearchModal(); } catch (e) {} }
+    function dishResultIndex(r, containerId) {
+        try { return storeFor(containerId).indexOf(r); } catch (e) { return -1; }
+    }
+    function openDotHtml(r) {
+        try {
+            if (!window.TPOpen) return '';
+            const st = window.TPOpen.getOpenState(new Date(), r.cuisine, r.available_hours);
+            const star = st.indicative ? '*' : '';
+            const title = st.indicative ? 'Orario indicativo, non garantito' : 'Orari del locale';
+            return `<span class="sr-open-dot ${st.open ? 'open' : 'closed'}" title="${title}"><i class="fas fa-circle" style="font-size:0.45rem;"></i> ${st.open ? 'Aperto' + star : 'Chiuso' + star}</span>`;
+        } catch (e) { return ''; }
+    }
+    function wishBtnHtml(r, containerId) {
+        const c = containerId || 'searchResults';
+        const idx = dishResultIndex(r, c);
+        let saved = false;
+        try { saved = window.TPWishlist ? window.TPWishlist.isDishSaved(r) : false; } catch (e) {}
+        return `<button class="sr-wish ${saved ? 'saved' : ''}" title="Salva in Da provare" onclick="event.stopPropagation();toggleDishWish(${idx}, this, '${c}')"><i class="${saved ? 'fas' : 'far'} fa-bookmark"></i></button>`;
+    }
+    function toggleDishWish(idx, btn, containerId) {
+        const d = storeFor(containerId)[idx];
+        if (!d || !window.TPWishlist) return;
+        const saved = window.TPWishlist.toggleDish(d);
+        if (btn) {
+            btn.classList.toggle('saved', saved);
+            const ic = btn.querySelector('i');
+            if (ic) ic.className = (saved ? 'fas' : 'far') + ' fa-bookmark';
+        }
+        updateWishBadge();
+        showNotification(saved ? 'Salvato in "Da provare"' : 'Rimosso da "Da provare"');
+    }
+    function buildCompareHtml(groups, menuUrl, priceText) {
+        if (!groups || !groups.length) return '';
+        const eur = (n) => (n === null || n === undefined) ? '—' : '€' + Number(n).toFixed(2);
+        const rows = groups.slice(0, 3).map((g, gi) => {
+            const opts = g.items.slice(0, 6).map((it, ii) => {
+                const idx = (it._idx !== undefined) ? it._idx : dishResultIndex(it);
+                return `<div class="compare-opt ${ii === 0 && it._price !== null ? 'best' : ''}" onclick="event.stopPropagation();window.location.href='${menuUrl(it.restaurant_slug, it.name)}'">
+                    ${getLogoHtml(it.logo_url, 32)}
+                    <div class="co-info"><div class="co-name">${escHtml(it.restaurant_name)}</div><div class="co-sub">${it._distance !== undefined && it._distance !== Infinity ? escHtml(formatDistance(it._distance)) + ' · ' : ''}${escHtml(it.restaurant_rating || 'N/A')} ★</div></div>
+                    ${ii === 0 && it._price !== null ? '<span class="best-tag">Top prezzo</span>' : ''}
+                    <span class="co-price">${it._price !== null ? eur(it._price) : '—'}</span>
+                </div>`;
+            }).join('');
+            return `<div class="compare-row">
+                <button class="compare-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <i class="fas fa-scale-balanced" style="color:var(--accent-food);"></i>
+                    <span>${escHtml(g.name)} · ${g.count} locali</span>
+                    <span class="c-price">${g.min !== null ? 'da ' + eur(g.min) : 'prezzi n.d.'}</span>
+                    <i class="fas fa-chevron-down c-chev"></i>
+                </button>
+                <div class="compare-detail">${opts}</div>
+            </div>`;
+        }).join('');
+        return `<div class="compare-card"><div class="compare-head"><i class="fas fa-scale-balanced"></i> Confronta prezzi <span style="font-weight:400;color:var(--text-muted);font-size:0.72rem;">stesso piatto, più locali</span></div>${rows}</div>`;
+    }
+    function toggleOpenNow() {
+        window.tpOpenNowOnly = !window.tpOpenNowOnly;
+        const btn = document.getElementById('open-now-toggle');
+        if (btn) btn.classList.toggle('on', window.tpOpenNowOnly);
+        try { displayList(typeof restaurants !== 'undefined' ? restaurants : []); } catch (e) {}
+        showNotification(window.tpOpenNowOnly ? 'Solo locali aperti ora' : 'Filtro Aperti ora disattivato');
+    }
+
+    // ===== FOTOCAMERA PIATTI (ricerca assistita) =====
+    const DISH_CANDIDATES = ['Orecchiette con cime di rapa','Orecchiette di grano arso','Burrata','Focaccia barese','Pizza','Branzino al forno','Polpo alla griglia','Polpo arrosto','Tiella barese','Panzerotti','Spaghetti alle vongole','Spaghetti all\u2019assassina','Spaghetto alla chitarra','Tubettone con frutti di mare','Risotto ai frutti di mare','Agnolotti','Mezzaluna di burrata','Tagliata di manzo','Entrecote','Braciola di cavallo','Zampina','Cotoletta di pollo','Frittura mista di mare','Frittura di calamari','Grigliata mista di pesce','Insalata di mare','Crudo di mare','Carpaccio di pesce','Tartare di tonno','Zuppa di pesce','Orata alla griglia','Spigola al forno','Pesce spada','Gamberoni','Scampi','Cozze gratinate','Impepata di cozze','Gamberi alla catalana','Polpette di pesce','Coda di rospo','Lasagna','Pizza ortolana','Tiramisù','Pasticciotto','Cheesecake','Sporcamuss','Caffè leccese'];
+    let photoDishSelected = '';
+    function openDishCamera() {
+        const inp = document.getElementById('dish-camera-input');
+        if (inp) { inp.value = ''; inp.click(); }
+    }
+    function onDishPhoto(input) {
+        const f = input && input.files && input.files[0];
+        if (!f) return;
+        try {
+            const rd = new FileReader();
+            rd.onload = function () {
+                document.getElementById('photo-preview').src = rd.result;
+                photoDishSelected = '';
+                document.getElementById('photo-dish-input').value = '';
+                renderDishChips('');
+                document.getElementById('photo-overlay')?.classList.add('show');
+                document.getElementById('photo-drawer')?.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            };
+            rd.readAsDataURL(f);
+        } catch (e) { showNotification('Impossibile leggere la foto'); }
+    }
+    function closeDishCamera() {
+        document.getElementById('photo-overlay')?.classList.remove('show');
+        document.getElementById('photo-drawer')?.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    function renderDishChips(filter) {
+        const box = document.getElementById('photo-dish-chips');
+        if (!box) return;
+        const q = String(filter || '').toLowerCase().trim();
+        const list = DISH_CANDIDATES.filter(d => !q || d.toLowerCase().includes(q)).slice(0, 12);
+        box.innerHTML = list.map(d => `<button type="button" class="tool-pill ${photoDishSelected === d ? 'on' : ''}" onclick="selectDishChip('${d.replace(/'/g, "\\'")}')">${escHtml(d)}</button>`).join('') ||
+            '<div style="font-size:0.78rem;color:var(--text-muted);">Nessun suggerimento: scrivi il nome e premi Trova.</div>';
+    }
+    function selectDishChip(name) {
+        photoDishSelected = name;
+        document.getElementById('photo-dish-input').value = name;
+        renderDishChips(document.getElementById('photo-dish-input').value);
+    }
+    function confirmDishPhoto() {
+        const typed = (document.getElementById('photo-dish-input').value || '').trim();
+        const q = typed || photoDishSelected;
+        if (!q) { showNotification('Scrivi o seleziona il piatto nella foto'); return; }
+        closeDishCamera();
+        const input = document.getElementById('global-search');
+        if (input) input.value = q;
+        searchDishesSmart(q);
+        setTimeout(() => { document.querySelector('.search-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    }
+
+    // ===== WISHLIST DRAWER ("Da provare") =====
+    function updateWishBadge() {
+        let n = 0;
+        try { n = window.TPWishlist ? window.TPWishlist.count() : 0; } catch (e) {}
+        const b1 = document.getElementById('wish-count');
+        if (b1) { b1.textContent = n; b1.style.display = n ? 'inline-flex' : 'none'; }
+        const b2 = document.getElementById('wish-badge');
+        if (b2) { b2.textContent = n > 99 ? '99+' : n; b2.classList.toggle('show', n > 0); }
+    }
+    function openWishlist() {
+        renderWishlist();
+        document.getElementById('wish-overlay')?.classList.add('show');
+        document.getElementById('wish-drawer')?.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeWishlist() {
+        document.getElementById('wish-overlay')?.classList.remove('show');
+        document.getElementById('wish-drawer')?.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    function renderWishlist() {
+        const body = document.getElementById('wish-body');
+        if (!body) return;
+        let dishes = [];
+        let restIds = [];
+        try { dishes = window.TPWishlist.getDishes(); restIds = window.TPWishlist.getRestIds(); } catch (e) {}
+        const rests = restIds.map(id => {
+            try { return (restaurants || []).find(r => r.id === id) || { id, name: 'Ristorante salvato', slug: '' }; }
+            catch (e) { return { id, name: 'Ristorante salvato', slug: '' }; }
+        });
+        if (!dishes.length && !rests.length) {
+            body.innerHTML = `<div class="wish-empty"><i class="fas fa-bookmark"></i><b>Niente da provare... ancora.</b><br>Tocca il segnalibro sui piatti o il cuore sui ristoranti per salvarli qui.</div>`;
+            return;
+        }
+        const eur = (p) => (p !== null && p !== undefined && p !== '' && isFinite(Number(p))) ? '€' + Number(p).toFixed(2) : '';
+        let html = '';
+        if (dishes.length) {
+            html += `<div class="wish-group-title"><i class="fas fa-utensils"></i> Piatti (${dishes.length})</div>` + dishes.map(d => `
+                <div class="wish-row">
+                    <div class="wr-info"><div class="wr-name">${escHtml(d.name)} ${d.price ? `<span style="color:var(--accent-food);font-weight:800;">${escHtml(eur(d.price))}</span>` : ''}</div>
+                    <div class="wr-sub">${escHtml(d.restaurant_name || '')}</div></div>
+                    ${d.restaurant_slug ? `<a class="wr-go" href="https://www.trovapiatto.it/menu/${escAttr(d.restaurant_slug)}/">Menu →</a>` : ''}
+                    <button class="wr-del" onclick="TPWishlist.removeDish('${String(d.key).replace(/'/g, "\\'")}');renderWishlist();updateWishBadge();" title="Rimuovi"><i class="fas fa-trash"></i></button>
+                </div>`).join('');
+        }
+        if (rests.length) {
+            html += `<div class="wish-group-title"><i class="fas fa-store"></i> Ristoranti (${rests.length})</div>` + rests.map(r => `
+                <div class="wish-row">
+                    <div class="wr-info"><div class="wr-name">${escHtml(r.name)}</div>
+                    <div class="wr-sub">${escHtml(r.city || '')} ${r.rating ? '· ' + escHtml(r.rating) + ' ★' : ''}</div></div>
+                    ${r.slug ? `<a class="wr-go" href="https://www.trovapiatto.it/menu/${escAttr(r.slug)}/">Menu →</a>` : ''}
+                    <button class="wr-del" onclick="TPWishlist.removeRest('${String(r.id).replace(/'/g, "\\'")}');renderWishlist();updateWishBadge();displayList(restaurants);" title="Rimuovi"><i class="fas fa-trash"></i></button>
+                </div>`).join('');
+        }
+        body.innerHTML = html;
+    }
+
+    // Helpers condivisi per il rendering risultati (dropdown + banner)
+    const srMenuUrl = (slug, dishName) => escAttr('https://www.trovapiatto.it/menu/' + encodeURIComponent(slug || '') + '/?highlight=' + encodeURIComponent(dishName || ''));
+    const srPriceText = (p) => (p !== null && p !== undefined && p !== '' && isFinite(Number(p))) ? '— €' + Number(p).toFixed(2) : '';
+    const srRatingOf = (r) => { const v = parseFloat(r && r.restaurant_rating); return isFinite(v) ? v : -1; };
+    const srPriceVal = (r) => {
+        try { if (window.TPCompare) { const v = window.TPCompare.parsePrice(r.price); return v === null ? Infinity : v; } } catch (e) {}
+        const n = Number(r.price);
+        return isFinite(n) ? n : Infinity;
+    };
+
+    // Rendering lista risultati ricerca (riuso per sort / espansore senza rifetch)
+    function setSearchSort(mode) { searchSortMode = mode; renderSearchResults(); }
+    function toggleSearchExpanded() { searchExpanded = !searchExpanded; renderSearchResults(); }
+    function searchKeyNav(e) {
+        const dd = document.getElementById('searchResults');
+        if (!dd || !dd.classList.contains('show')) return;
+        const items = Array.from(dd.querySelectorAll('.sr-item'));
+        if (!items.length) return;
+        let i = items.findIndex(el => el.classList.contains('kb-active'));
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            i = e.key === 'ArrowDown' ? (i + 1) % items.length : (i - 1 + items.length) % items.length;
+            items.forEach(el => el.classList.remove('kb-active'));
+            items[i].classList.add('kb-active');
+            try { items[i].scrollIntoView({ block: 'nearest' }); } catch (err) {}
+        } else if (e.key === 'Enter' && i >= 0) { e.preventDefault(); items[i].click(); }
+    }
+    function renderSearchResults() {
+        const dropdown = document.getElementById('searchResults');
+        const results = lastSearchResults;
+        if (!dropdown || !results.length) return;
+        const ordered = [...results];
+        if (searchSortMode === 'price') ordered.sort((a, b) => srPriceVal(a) - srPriceVal(b));
+        else if (searchSortMode === 'distance') ordered.sort((a, b) => ((a._distance ?? Infinity) - (b._distance ?? Infinity)));
+        const menuUrl = srMenuUrl, priceText = srPriceText, ratingOf = srRatingOf;
+
+        const best = ordered[0];
+        const seenRestaurants = new Set([best.restaurant_id]);
+        const restDedup = ordered.filter(r => { if (seenRestaurants.has(r.restaurant_id)) return false; seenRestaurants.add(r.restaurant_id); return true; });
+        const bestIdx = lastSearchResults.indexOf(best);
+
+        const bestRatingText = ratingOf(best) >= 0 ? ratingOf(best).toFixed(1) : 'N/A';
+        const badgeLabel = `<i class="fas fa-crown"></i> TOP ★ ${escHtml(bestRatingText)}`;
+        const pill = (mode, icon, label) => `<button onclick="event.stopPropagation();setSearchSort('${mode}')" class="sr-sort-pill ${searchSortMode === mode ? 'on' : ''}"><i class="${icon}"></i> ${label}</button>`;
+
+        let html = lastSearchMealHtml + lastSearchCompareHtml + `
+            <div class="sr-header"><span><i class="fas fa-utensils" style="color:var(--primary);"></i> Ristoranti per &ldquo;${escHtml(lastSearchQuery)}&rdquo;</span><span><i class="fas fa-star" style="color:#ffc107;"></i> ${results.length} risultati</span></div>
+            <div class="sr-sortbar"><span class="sr-sort-label">Ordina:</span> ${pill('smart', 'fas fa-wand-magic-sparkles', 'Consigliati')}${pill('price', 'fas fa-euro-sign', 'Prezzo')}${pill('distance', 'fas fa-location-arrow', 'Distanza')}</div>
+            <div class="sr-best" onclick="showDishDetail(${bestIdx})">
+                <div class="sr-best-header">
+                    <div class="sr-best-logo">${getLogoHtml(best.logo_url, 44)}</div>
+                    <div>
+                        <div class="sr-best-name">${escHtml(best.restaurant_name)}</div>
+                        <div class="sr-best-meta">
+                            <span><i class="fas fa-star" style="color:#ffc107;"></i> ${escHtml(best.restaurant_rating || 'N/A')}</span>
+                            ${userPosition && best._distance !== Infinity ? `<span><i class="fas fa-location-arrow" style="color:#4ade80;"></i> ${escHtml(formatDistance(best._distance))}</span>` : `<span><i class="fas fa-comments"></i> ${parseInt(best.review_count || 0, 10)} rec.</span>`}
+                            ${best.cuisine ? `<span>${escHtml(best.cuisine)}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="best-badge">${badgeLabel}</div>
+                </div>
+                <div class="sr-best-dish">
+                    <span>${escHtml(best.name)} ${escHtml(priceText(best.price))} ${openDotHtml(best)}</span>
+                    ${wishBtnHtml(best)}
+                </div>
+            </div>`;
+
+        if (restDedup.length > 0) {
+            const shown = searchExpanded ? restDedup : restDedup.slice(0, 8);
+            html += '<div class="sr-header"><span><i class="fas fa-store"></i> Altri ristoranti</span></div>';
+            html += shown.map(r => {
+                const idx = lastSearchResults.indexOf(r);
+                const distText = userPosition && r._distance !== undefined && r._distance !== Infinity
+                    ? `<span style="font-size:0.65rem;color:#4ade80;"><i class="fas fa-location-arrow"></i> ${escHtml(formatDistance(r._distance))}</span>`
+                    : `<span style="font-size:0.65rem;color:var(--text-muted);">${parseInt(r.review_count || 0, 10)} rec.</span>`;
+                return `
+                <div class="sr-item" onclick="showDishDetail(${idx})">
+                    <div class="sr-item-logo">${getLogoHtml(r.logo_url, 32)}</div>
+                    <div class="sr-item-info"><div class="sr-item-name">${escHtml(r.restaurant_name)} ${openDotHtml(r)}</div><div class="sr-item-dish">${escHtml(r.name)} ${escHtml(priceText(r.price))}</div></div>
+                    ${wishBtnHtml(r)}
+                    <div class="sr-item-rating"><div class="stars"><i class="fas fa-star"></i> ${escHtml(r.restaurant_rating || 'N/A')}</div>${distText}</div>
+                </div>`;
+            }).join('');
+            if (restDedup.length > 8) {
+                html += `<button class="sr-more" onclick="toggleSearchExpanded()">${searchExpanded ? '<i class="fas fa-chevron-up"></i> Mostra meno' : `<i class="fas fa-chevron-down"></i> Mostra altri ${restDedup.length - 8} ristoranti`}</button>`;
+            }
+        }
+        dropdown.innerHTML = '<div class="sr-close-btn"><button onclick="closeSearchModal()">Chiudi</button></div>' + html;
+    }
 
     function searchDishesSmart(query) {
         const dropdown = document.getElementById('searchResults');
-        const overlay = document.getElementById('searchOverlay');
+        query = String(query || '').trim();
         clearTimeout(searchDebounce);
-        if (!query || query.length < 2) { dropdown.classList.remove('show'); overlay.classList.remove('show'); return; }
+        if (query.length < 2) { setSearchOpen(false); return; }
+        const mySeq = ++searchSeq;
         dropdown.innerHTML = '<div class="sr-close-btn"><button onclick="closeSearchModal()">Chiudi</button></div><div class="loading-state"><i class="fas fa-spinner fa-spin"></i> Ricerca...</div>';
-        dropdown.classList.add('show');
-        overlay.classList.add('show');
+        setSearchOpen(true);
         searchDebounce = setTimeout(() => {
-            fetch(`https://www.trovapiatto.it/app/admin/api.php?action=search-dishes&q=${encodeURIComponent(query)}`)
-                .then(r => r.json())
+            const qAtSend = query;
+            fetch(`https://www.trovapiatto.it/app/admin/api.php?action=search-dishes&q=${encodeURIComponent(qAtSend)}`)
+                .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
                 .then(data => {
+                    if (mySeq !== searchSeq) return; // risposta vecchia: l'utente ha gia' digitato altro
                     let results = data.data || [];
                     lastSearchResults = results;
+                    // Intento "pasto + citta" (es. "pranzo Bari"): guida ai piatti consigliati
+                    const mealGuide = (typeof getPiattiConsigliatiBari === 'function') ? getPiattiConsigliatiBari(qAtSend) : null;
+                    const mealHtml = mealGuide ? renderMealGuideHtml(mealGuide) : '';
                     if (!results.length) {
-                        dropdown.innerHTML = '<div class="sr-close-btn"><button onclick="closeSearchModal()">Chiudi</button></div><div class="loading-state"><i class="fas fa-search" style="font-size:1.5em;margin-bottom:8px;display:block;color:#333;"></i>Nessun piatto trovato per "' + query + '"</div>';
+                        dropdown.innerHTML = '<div class="sr-close-btn"><button onclick="closeSearchModal()">Chiudi</button></div>' + (mealHtml ||
+                            '<div class="loading-state"><i class="fas fa-search" style="font-size:1.5em;margin-bottom:8px;display:block;color:#333;"></i>Nessun piatto trovato per &ldquo;' + escHtml(qAtSend) + '&rdquo;</div>');
                         return;
                     }
 
-                    // Se l'utente ha una posizione, ordina per distanza (più vicino prima)
+                    // Distanza per la visualizzazione (se posizione nota)
+                    const ratingOf = (r) => { const v = parseFloat(r && r.restaurant_rating); return isFinite(v) ? v : -1; };
                     if (userPosition) {
                         results.forEach(r => {
                             if (r.latitude && r.longitude) {
@@ -2619,68 +3217,74 @@
                                 r._distance = Infinity;
                             }
                         });
-                        results.sort((a, b) => a._distance - b._distance);
-                        // Aggiorna lastSearchResults con l'ordine aggiornato
-                        lastSearchResults = results;
                     }
+                    // Ordina per stelline: rating, poi n. recensioni, poi distanza
+                    results.sort((a, b) =>
+                        (ratingOf(b) - ratingOf(a)) ||
+                        ((parseInt(b.review_count, 10) || 0) - (parseInt(a.review_count, 10) || 0)) ||
+                        ((a._distance ?? Infinity) - (b._distance ?? Infinity))
+                    );
+                    // Aggiorna lastSearchResults con l'ordine aggiornato
+                    lastSearchResults = results;
 
-                    const best = results[0];
-                    const seenRestaurants = new Set([best.restaurant_id]);
-                    const restDedup = results.filter(r => { if (seenRestaurants.has(r.restaurant_id)) return false; seenRestaurants.add(r.restaurant_id); return true; });
+                    // Confronta prezzi: stesso piatto in più locali
+                    let compareHtml = '';
+                    try {
+                        if (window.TPCompare) {
+                            results.forEach((r, i) => { r._idx = i; });
+                            compareHtml = buildCompareHtml(window.TPCompare.groupDishesByPrice(results), srMenuUrl, srPriceText);
+                        }
+                    } catch (e) {}
 
-                    // Badge in base alla posizione
-                    const badgeLabel = userPosition && best._distance !== Infinity
-                        ? `<i class="fas fa-location-arrow"></i> PIÙ VICINO`
-                        : `<i class="fas fa-crown"></i> TOP`;
-                    const badgeSubtitle = userPosition && best._distance !== Infinity
-                        ? `${formatDistance(best._distance)} da te`
-                        : `${best.review_count || 0} recensioni`;
-
-                    let html = `
-                        <div class="sr-header"><span><i class="fas fa-utensils" style="color:var(--primary);"></i> Ristoranti per "${data.query}"</span><span>${results.length} risultati</span></div>
-                        <div class="sr-best" onclick="window.location.href='https://www.trovapiatto.it/menu/${best.restaurant_slug}/?highlight=${encodeURIComponent(best.name)}'">
-                            <div class="sr-best-header">
-                                <div class="sr-best-logo">${getLogoHtml(best.logo_url, 44)}</div>
-                                <div>
-                                    <div class="sr-best-name">${best.restaurant_name}</div>
-                                    <div class="sr-best-meta">
-                                        <span><i class="fas fa-star" style="color:#ffc107;"></i> ${best.restaurant_rating || 'N/A'}</span>
-                                        ${userPosition && best._distance !== Infinity ? `<span><i class="fas fa-location-arrow" style="color:#4ade80;"></i> ${formatDistance(best._distance)}</span>` : `<span><i class="fas fa-comments"></i> ${best.review_count || 0} rec.</span>`}
-                                        ${best.cuisine ? `<span>${best.cuisine}</span>` : ''}
-                                    </div>
-                                </div>
-                                <div class="best-badge">${badgeLabel}</div>
-                            </div>
-                            <div class="sr-best-dish">
-                                <span>${best.name} ${best.price ? '— €' + parseFloat(best.price).toFixed(2) : ''}</span>
-                            </div>
-                        </div>`;
-
-                    if (restDedup.length > 0) {
-                        html += '<div class="sr-header"><span><i class="fas fa-store"></i> Altri ristoranti</span></div>';
-                        html += restDedup.slice(0, 8).map(r => {
-                            const distText = userPosition && r._distance !== undefined && r._distance !== Infinity
-                                ? `<span style="font-size:0.65rem;color:#4ade80;"><i class="fas fa-location-arrow"></i> ${formatDistance(r._distance)}</span>`
-                                : `<span style="font-size:0.65rem;color:var(--text-muted);">${r.review_count || 0} rec.</span>`;
-                            return `
-                            <div class="sr-item" onclick="window.location.href='https://www.trovapiatto.it/menu/${r.restaurant_slug}/?highlight=${encodeURIComponent(r.name)}'">
-                                <div class="sr-item-logo">${getLogoHtml(r.logo_url, 32)}</div>
-                                <div class="sr-item-info"><div class="sr-item-name">${r.restaurant_name}</div><div class="sr-item-dish">${r.name} ${r.price ? '— €' + parseFloat(r.price).toFixed(2) : ''}</div></div>
-                                <div class="sr-item-rating"><div class="stars"><i class="fas fa-star"></i> ${r.restaurant_rating || 'N/A'}</div>${distText}</div>
-                            </div>`;
-                        }).join('');
-                    }
-                    dropdown.innerHTML = '<div class="sr-close-btn"><button onclick="closeSearchModal()">Chiudi</button></div>' + html;
+                    // Stato per render/sort/espansore senza rifetch
+                    lastSearchQuery = qAtSend;
+                    lastSearchMealHtml = mealHtml;
+                    lastSearchCompareHtml = compareHtml;
+                    searchExpanded = false;
+                    searchSortMode = 'smart';
+                    renderSearchResults();
                 })
-                .catch(() => { dropdown.innerHTML = '<div class="loading-state">Errore durante la ricerca</div>'; });
+                .catch(() => {
+                    if (mySeq !== searchSeq) return;
+                    dropdown.innerHTML = '<div class="sr-close-btn"><button onclick="closeSearchModal()">Chiudi</button></div><div class="loading-state">Errore durante la ricerca. Riprova.</div>';
+                });
         }, 300);
     }
 
-    // ===== DISH DETAIL PANEL =====
-    function showDishDetail(resultIndex) {
-        const dish = lastSearchResults[resultIndex];
+    // "Stesso piatto altrove": altri locali con lo stesso piatto, per prezzo crescente
+    function sameDishElsewhereHtml(containerId, resultIndex) {
+        try {
+            const store = storeFor(containerId);
+            const dish = store[resultIndex];
+            if (!dish || !window.TPCompare) return '';
+            const norm = window.TPCompare.normalizeDishName;
+            const key = norm(dish.name);
+            const others = store
+                .map((r, i) => ({ r, i }))
+                .filter(o => o.i !== resultIndex && norm(o.r.name) === key && o.r.restaurant_id !== dish.restaurant_id)
+                .map(o => ({ i: o.i, r: o.r, _price: window.TPCompare.parsePrice(o.r.price) }))
+                .sort((a, b) => ((a._price === null ? Infinity : a._price) - (b._price === null ? Infinity : b._price)))
+                .slice(0, 3);
+            if (!others.length) return '';
+            const eur = (n) => (n === null ? '—' : '€' + Number(n).toFixed(2));
+            return `<div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.25);border-radius:10px;padding:10px 12px;">
+                <div style="font-size:0.72rem;font-weight:700;color:var(--accent-food);margin-bottom:6px;"><i class="fas fa-scale-balanced"></i> STESSO PIATTO ALTROVE</div>` +
+                others.map(o => {
+                    return `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid rgba(245,158,11,0.12);font-size:0.78rem;cursor:pointer;" onclick="showDishDetail(${o.i}, '${containerId}')">
+                        <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escHtml(o.r.restaurant_name)}</span>
+                        <span style="font-weight:800;color:var(--accent-food);">${eur(o._price)}</span>
+                        <i class="fas fa-chevron-right" style="font-size:0.6rem;color:var(--text-muted);"></i>
+                    </div>`;
+                }).join('') + `</div>`;
+        } catch (e) { return ''; }
+    }
+
+    // ===== DISH DETAIL PANEL (condiviso: ricerca + piatto del giorno) =====
+    function showDishDetail(resultIndex, containerId) {
+        const c = containerId || 'searchResults';
+        const dish = storeFor(c)[resultIndex];
         if (!dish) return;
-        const dropdown = document.getElementById('searchResults');
+        const dropdown = document.getElementById(c);
 
         // Calcola distanza se disponibile
         let distHtml = '';
@@ -2693,7 +3297,7 @@
 
         dropdown.innerHTML = `
             <div class="sr-detail-panel">
-                <button class="sr-detail-back" onclick="searchDishesSmart(document.getElementById('global-search').value)">
+                <button class="sr-detail-back" onclick="${c === 'banner-search-results' ? 'refreshBannerResults()' : 'searchDishesSmart(document.getElementById(\'global-search\').value)'}">
                     <i class="fas fa-arrow-left"></i> Torna ai risultati
                 </button>
 
@@ -2721,11 +3325,15 @@
                 </div>
 
                 <div class="sr-detail-actions">
-                    <button class="sr-detail-btn-primary" onclick="navigateToDish(${resultIndex})">
+                    <button class="sr-detail-btn-primary" onclick="navigateToDish(${resultIndex}, '${c}')">
                         <i class="fas fa-fire-burner"></i> Inizia a prepararlo per me
                     </button>
+                    <button class="sr-detail-btn-secondary" onclick="toggleDishWish(${resultIndex}, null, '${c}')">
+                        <i class="far fa-bookmark"></i> Salva in Da provare
+                    </button>
+                    ${sameDishElsewhereHtml(c, resultIndex)}
                     <div class="sr-detail-btn-row">
-                        <button class="sr-detail-btn-secondary" onclick="selectRestaurant('${dish.restaurant_id}')">
+                        <button class="sr-detail-btn-secondary" onclick="closeAllSearchUI();selectRestaurant('${dish.restaurant_id}')">
                             <i class="fas fa-store"></i> Vedi Ristorante
                         </button>
                         <button class="sr-detail-btn-secondary" onclick="openDishMenu('${dish.restaurant_slug}')">
@@ -2736,8 +3344,8 @@
             </div>`;
     }
 
-    function navigateToDish(resultIndex) {
-        const dish = lastSearchResults[resultIndex];
+    function navigateToDish(resultIndex, containerId) {
+        const dish = storeFor(containerId)[resultIndex];
         if (!dish) return;
 
         // Centra mappa sul ristorante
@@ -2790,16 +3398,49 @@
                 return dA - dB;
             });
         }
-        scroll.innerHTML = sorted.slice(0, 8).map((r, i) => `
-            <div class="s-card" onclick="selectRestaurant('${r.id}')">
+        scroll.innerHTML = sorted.slice(0, 10).map((r, i) => `
+            <div class="s-card" onclick="focusRestaurantOnMap('${r.id}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'){focusRestaurantOnMap('${r.id}')}" title="Vedi ${r.name} sulla mappa">
                 ${i === 0 ? '<div class="sc-badge"><i class="fas fa-location-arrow"></i> PIÙ VICINO</div>' : ''}
-                <div class="sc-logo">${getLogoHtml(r.logo_url, 56)}</div>
+                <div class="sc-logo">${getLogoHtml(r.logo_url, 72)}</div>
                 <div class="sc-name">${r.name}</div>
                 <div class="sc-info">${r.cuisine || 'Ristorante'}</div>
                 ${userPosition && r.distance !== undefined ? `<div class="sc-dist"><i class="fas fa-location-arrow"></i> ${formatDistance(r.distance)}</div>` : ''}
                 <div class="sc-rating"><i class="fas fa-star"></i> ${r.rating || 'N/A'}/5</div>
+                <div class="sc-goto"><i class="fas fa-map-location-dot"></i> Vedi sulla mappa</div>
             </div>
         `).join('');
+    }
+
+    // ===== NEARBY -> FOCUS SU MAPPA =====
+    function focusRestaurantOnMap(id) {
+        const r = (typeof restaurants !== 'undefined' ? restaurants : []).find(x => x.id === id);
+        if (!r || !r.latitude || !r.longitude) { showNotification('Posizione non disponibile'); return; }
+        const lat = parseFloat(r.latitude);
+        const lng = parseFloat(r.longitude);
+        if (!isFinite(lat) || !isFinite(lng)) { showNotification('Posizione non disponibile'); return; }
+        const frame = document.querySelector('.map-frame');
+        if (frame) frame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+            if (typeof map === 'undefined' || !map) return;
+            map.flyTo([lat, lng], 18, { duration: 1.4 });
+            setTimeout(() => {
+                const marker = (typeof markers !== 'undefined' ? markers : []).find(m => {
+                    try {
+                        const ll = m.getLatLng();
+                        return Math.abs(ll.lat - lat) < 0.0005 && Math.abs(ll.lng - lng) < 0.0005;
+                    } catch (e) { return false; }
+                });
+                if (marker) {
+                    marker.openPopup();
+                    const el = marker.getElement();
+                    if (el) {
+                        el.style.transition = 'transform 0.3s ease';
+                        el.style.transform = 'scale(1.35)';
+                        setTimeout(() => { el.style.transform = 'scale(1)'; }, 700);
+                    }
+                }
+            }, 1000);
+        }, 350);
     }
 
     // ===== REVIEWS =====
@@ -2896,19 +3537,19 @@
 
     // ===== BANNER PIATTI DEL GIORNO =====
     const DAILY_DISHES = [
-        { primo: { name: 'Orecchiette alle Cime di Rapa', search: 'orecchiette', image: 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=100&h=100&fit=crop', desc: 'Il primo simbolo della Puglia' }, secondo: { name: 'Branzino al Forno', search: 'branzino', image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=100&h=100&fit=crop', desc: 'Pesce fresco al forno' } },
+        { primo: { name: 'Orecchiette alle Cime di Rapa', search: 'orecchiette', image: '/images/dishes/orecchiette-con-le-cime-di-rapa.webp', desc: 'Il primo simbolo della Puglia' }, secondo: { name: 'Branzino al Forno', search: 'branzino', image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=100&h=100&fit=crop', desc: 'Pesce fresco al forno' } },
         { primo: { name: 'Spaghetti alle Vongole', search: 'spaghetti vongole', image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=100&h=100&fit=crop', desc: 'Pasta con vongole veraci' }, secondo: { name: 'Gamberoni alla Griglia', search: 'gamberoni', image: 'https://images.unsplash.com/photo-1565557623814-695d41c38d8f?w=100&h=100&fit=crop', desc: 'Gamberoni freschi grigliati' } },
         { primo: { name: 'Risotto ai Funghi', search: 'risotto funghi', image: 'https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=100&h=100&fit=crop', desc: 'Risotto cremoso porcini' }, secondo: { name: 'Frittura di Pesce', search: 'frittura', image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=100&h=100&fit=crop', desc: 'Paranzelli e calamari fritti' } },
         { primo: { name: 'Lasagna al Forno', search: 'lasagna', image: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=100&h=100&fit=crop', desc: 'Strati di pasta e ragù' }, secondo: { name: 'Bistecca alla Griglia', search: 'bistecca', image: 'https://images.unsplash.com/photo-1558030006-450675393462?w=100&h=100&fit=crop', desc: 'Carne grigliata' } },
-        { primo: { name: 'Pizza Margherita', search: 'pizza margherita', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=100&h=100&fit=crop', desc: 'La classica napoletana' }, secondo: { name: 'Pollo Arrosto', search: 'pollo arrosto', image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=100&h=100&fit=crop', desc: 'Pollo arrosto con patate' } },
-        { primo: { name: 'Focaccia Barese', search: 'focaccia', image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=100&h=100&fit=crop', desc: 'Street food barese' }, secondo: { name: 'Orata al Forno', search: 'orata', image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=100&h=100&fit=crop', desc: 'Orata fresca al forno' } },
+        { primo: { name: 'Pizza Margherita', search: 'pizza margherita', image: '/images/dishes/pizza-margherita.jpg', desc: 'La classica napoletana' }, secondo: { name: 'Pollo Arrosto', search: 'pollo arrosto', image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=100&h=100&fit=crop', desc: 'Pollo arrosto con patate' } },
+        { primo: { name: 'Focaccia Barese', search: 'focaccia', image: '/images/dishes/focaccia-barese.jpg', desc: 'Street food barese' }, secondo: { name: 'Orata al Forno', search: 'orata', image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=100&h=100&fit=crop', desc: 'Orata fresca al forno' } },
         { primo: { name: 'Tagliatelle al Ragù', search: 'tagliatelle', image: 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=100&h=100&fit=crop', desc: 'Pasta fresca con ragù' }, secondo: { name: 'Cotoletta alla Milanese', search: 'cotoletta', image: 'https://images.unsplash.com/photo-1558030006-450675393462?w=100&h=100&fit=crop', desc: 'Cotoletta impanata e fritta' } },
         { primo: { name: 'Pasta al Pomodoro', search: 'pasta al pomodoro', image: 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=100&h=100&fit=crop', desc: 'Semplice e buona' }, secondo: { name: 'Carpaccio di Manzo', search: 'carpaccio manzo', image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=100&h=100&fit=crop', desc: 'Fettine crude con rucola' } },
         { primo: { name: 'Cacio e Pepe', search: 'cacio e pepe', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=100&h=100&fit=crop', desc: 'Classico romano' }, secondo: { name: 'Salmone alla Griglia', search: 'salmone', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=100&h=100&fit=crop', desc: 'Salmone fresco grigliato' } },
         { primo: { name: 'Gnocchi al Pesto', search: 'gnocchi', image: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=100&h=100&fit=crop', desc: 'Gnocchi con pesto genovese' }, secondo: { name: 'Tonno alla Griglia', search: 'tonno', image: 'https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=100&h=100&fit=crop', desc: 'Tonno fresco grigliato' } },
         { primo: { name: 'Pasta e Fagioli', search: 'pasta fagioli', image: 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=100&h=100&fit=crop', desc: 'Zuppa tradizionale' }, secondo: { name: 'Cozze Gratinate', search: 'cozze gratinate', image: 'https://images.unsplash.com/photo-1565557623814-695d41c38d8f?w=100&h=100&fit=crop', desc: 'Cozze al forno' } },
-        { primo: { name: 'Spaghetti alla Carbonara', search: 'carbonara', image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=100&h=100&fit=crop', desc: 'Classico romano' }, secondo: { name: 'Aragosta', search: 'aragosta', image: 'https://images.unsplash.com/photo-1565557623814-695d41c38d8f?w=100&h=100&fit=crop', desc: 'Aragosta fresca' } },
-        { primo: { name: 'Burrata', search: 'burrata', image: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?w=100&h=100&fit=crop', desc: 'Crema pugliese' }, secondo: { name: 'Pesce Spada', search: 'pesce spada', image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=100&h=100&fit=crop', desc: 'Pesce spada alla griglia' } },
+        { primo: { name: 'Spaghetti alla Carbonara', search: 'carbonara', image: 'https://images.unsplash.com/photo-1755594461640-b800c6bafdfa?w=100&h=100&fit=crop', desc: 'Classico romano' }, secondo: { name: 'Aragosta', search: 'aragosta', image: 'https://images.unsplash.com/photo-1565557623814-695d41c38d8f?w=100&h=100&fit=crop', desc: 'Aragosta fresca' } },
+        { primo: { name: 'Burrata', search: 'burrata', image: 'https://images.unsplash.com/photo-1753791320863-bda47c67cd00?w=100&h=100&fit=crop', desc: 'Crema pugliese' }, secondo: { name: 'Pesce Spada', search: 'pesce spada', image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=100&h=100&fit=crop', desc: 'Pesce spada alla griglia' } },
         { primo: { name: 'Panzerotto', search: 'panzerotto', image: 'https://images.unsplash.com/photo-1536964549204-cce9eab227bd?w=100&h=100&fit=crop', desc: 'Pizza fritta barese' }, secondo: { name: 'Involtini di Pesce Spada', search: 'involtini pesce spada', image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=100&h=100&fit=crop', desc: 'Involtini ripieni' } }
     ];
 
@@ -2932,53 +3573,82 @@
         document.getElementById('banner-dish-search-2').value = dishes.secondo.search;
     }
 
+    function dishChipSearch(dishName) {
+        const input = document.getElementById('global-search');
+        if (input) {
+            input.value = dishName;
+            input.focus({ preventScroll: true });
+        }
+        searchDishesSmart(dishName);
+    }
+    // ===== PIATTO DEL GIORNO: stesso renderer del dropdown =====
+    let bannerExpanded = false;
+    function bannerSkeletonHtml() {
+        const skel = '<div class="skel" aria-hidden="true"><div class="sk-logo"></div><div class="sk-lines"><div class="sk-line" style="width:60%;"></div><div class="sk-line" style="width:85%;"></div></div></div>';
+        return '<div class="sr-close-btn"><button onclick="closeBannerSearchModal()">Chiudi</button></div><div style="padding:12px 16px;">' + skel + skel + skel + '</div>';
+    }
+    function bannerRowHtml(r, idx) {
+        const distText = userPosition && r._distance !== undefined && r._distance !== Infinity
+            ? `<span style="font-size:0.65rem;color:#4ade80;"><i class="fas fa-location-arrow"></i> ${escHtml(formatDistance(r._distance))}</span>`
+            : `<span style="font-size:0.65rem;color:var(--text-muted);">${parseInt(r.review_count || 0, 10)} rec.</span>`;
+        return `
+        <div class="sr-item" onclick="showDishDetail(${idx}, 'banner-search-results')">
+            <div class="sr-item-logo">${getLogoHtml(r.logo_url, 32)}</div>
+            <div class="sr-item-info"><div class="sr-item-name">${escHtml(r.restaurant_name)} ${openDotHtml(r)}</div><div class="sr-item-dish">${escHtml(r.name)} ${escHtml(srPriceText(r.price))}</div></div>
+            ${wishBtnHtml(r, 'banner-search-results')}
+            <div class="sr-item-rating"><div class="stars"><i class="fas fa-star"></i> ${escHtml(r.restaurant_rating || 'N/A')}</div>${distText}</div>
+        </div>`;
+    }
+    function renderBannerResults() {
+        const dropdown = document.getElementById('banner-search-results');
+        if (!dropdown) return;
+        const results = lastBannerResults;
+        const head = '<div class="sr-close-btn"><button onclick="closeBannerSearchModal()">Chiudi</button></div>';
+        if (!results.length) {
+            dropdown.innerHTML = head + '<div style="padding:28px 20px;text-align:center;color:var(--text-muted);"><i class="fas fa-search" style="font-size:1.6rem;display:block;margin-bottom:10px;color:#555;"></i>Nessun ristorante trovato per <strong style="color:#fff;">' + escHtml(lastBannerQuery) + '</strong></div>';
+            return;
+        }
+        const shown = bannerExpanded ? results : results.slice(0, 5);
+        let html = head + `<div class="sr-header"><span><i class="fas fa-utensils" style="color:var(--accent-food);"></i> Ristoranti che servono <strong style="color:#fff;">${escHtml(lastBannerQuery)}</strong></span><span>${results.length} locali</span></div>`;
+        html += shown.map((r, i) => bannerRowHtml(r, results.indexOf(r))).join('');
+        if (results.length > 5) {
+            html += `<button class="sr-more" onclick="toggleBannerExpanded()">${bannerExpanded ? '<i class="fas fa-chevron-up"></i> Mostra meno' : `<i class="fas fa-chevron-down"></i> Mostra altri ${results.length - 5} locali`}</button>`;
+        }
+        html += `<div onclick="window.location.href='https://www.trovapiatto.it/piatti/?q=${encodeURIComponent(lastBannerQuery)}'" style="padding:12px;text-align:center;cursor:pointer;color:var(--accent-food);font-size:0.8rem;font-weight:600;" onmouseover="this.style.background='rgba(245,158,11,0.08)'" onmouseout="this.style.background='transparent'">
+            <i class="fas fa-book-open"></i> Vedi tutti i ristoranti per "${escHtml(lastBannerQuery)}"
+        </div>`;
+        dropdown.innerHTML = html;
+    }
+    function toggleBannerExpanded() { bannerExpanded = !bannerExpanded; renderBannerResults(); }
+    function refreshBannerResults() { renderBannerResults(); }
     function searchDishFromBanner(dishName) {
         const dropdown = document.getElementById('banner-search-results');
         const overlay = document.getElementById('searchOverlay');
+        lastBannerQuery = dishName;
+        lastBannerResults = [];
+        bannerExpanded = false;
         dropdown.style.display = 'block';
         overlay.classList.add('show');
-        dropdown.innerHTML = '<div class="sr-close-btn"><button onclick="closeBannerSearchModal()">Chiudi</button></div><div style="padding:20px;text-align:center;color:var(--text-muted);"><i class="fas fa-spinner fa-spin"></i> Cerco ristoranti...</div>';
+        dropdown.innerHTML = bannerSkeletonHtml();
 
         fetch(`https://www.trovapiatto.it/app/admin/api.php?action=search-dishes&q=${encodeURIComponent(dishName)}`)
-            .then(r => r.json())
+            .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
             .then(data => {
-                const results = (data.data || []).slice(0, 5);
-                if (!results.length) {
-                    dropdown.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">Nessun ristorante trovato per questo piatto</div>';
-                    return;
+                let results = data.data || [];
+                if (userPosition) {
+                    results.forEach(r => {
+                        if (r.latitude && r.longitude) {
+                            r._distance = calculateDistance(userPosition.lat, userPosition.lng, parseFloat(r.latitude), parseFloat(r.longitude));
+                        } else { r._distance = Infinity; }
+                    });
+                    results.sort((a, b) => ((a._distance ?? Infinity) - (b._distance ?? Infinity)));
                 }
-
-                let html = `<div class="sr-close-btn"><button onclick="closeBannerSearchModal()">Chiudi</button></div><div style="padding:12px 16px;border-bottom:1px solid var(--glass-border);font-size:0.8rem;color:var(--text-muted);display:flex;justify-content:space-between;align-items:center;">
-                    <span><i class="fas fa-utensils" style="color:var(--accent-food);"></i> Ristoranti che servono <strong style="color:#fff;">${dishName}</strong></span>
-                </div>`;
-
-                results.forEach(r => {
-                    const logoSrc = r.logo_url && r.logo_url.trim() ? r.logo_url : LOGO_FALLBACK;
-                    html += `
-                        <div onclick="window.location.href='https://www.trovapiatto.it/menu/${r.restaurant_slug}/?highlight=${encodeURIComponent(r.name)}'" style="padding:12px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,0.04);transition:all 0.2s;" onmouseover="this.style.background='rgba(245,158,11,0.08)'" onmouseout="this.style.background='transparent'">
-                            <div style="width:44px;height:44px;border-radius:10px;overflow:hidden;border:2px solid var(--accent-food);flex-shrink:0;">
-                                <img src="${logoSrc}" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='${LOGO_FALLBACK_INLINE}'">
-                            </div>
-                            <div style="flex:1;">
-                                <div style="font-weight:600;font-size:0.9rem;color:#fff;">${r.restaurant_name}</div>
-                                <div style="font-size:0.75rem;color:var(--text-muted);">${r.cuisine || 'Ristorante'} · ${r.name} ${r.price ? '€' + parseFloat(r.price).toFixed(2) : ''}</div>
-                            </div>
-                            <div style="text-align:right;">
-                                <div style="color:#ffc107;font-weight:600;font-size:0.8rem;"><i class="fas fa-star"></i> ${r.restaurant_rating || 'N/A'}</div>
-                                <div style="font-size:0.65rem;color:var(--text-muted);">${r.review_count || 0} rec.</div>
-                            </div>
-                            <div style="color:var(--accent-food);"><i class="fas fa-chevron-right"></i></div>
-                        </div>`;
-                });
-
-                html += `<div onclick="window.location.href='https://www.trovapiatto.it/piatti/?q=${encodeURIComponent(dishName)}'" style="padding:12px;text-align:center;cursor:pointer;color:var(--accent-food);font-size:0.8rem;font-weight:600;transition:all 0.2s;" onmouseover="this.style.background='rgba(245,158,11,0.08)'" onmouseout="this.style.background='transparent'">
-                    <i class="fas fa-book-open"></i> Vedi tutti i ristoranti per "${dishName}"
-                </div>`;
-
-                dropdown.innerHTML = html;
+                lastBannerResults = results;
+                renderBannerResults();
             })
             .catch(() => {
-                dropdown.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">Errore durante la ricerca</div>';
+                dropdown.innerHTML = '<div class="sr-close-btn"><button onclick="closeBannerSearchModal()">Chiudi</button></div>' +
+                    '<div style="padding:28px 20px;text-align:center;color:var(--text-muted);"><i class="fas fa-triangle-exclamation" style="font-size:1.6rem;display:block;margin-bottom:10px;color:#e73a3a;"></i>Errore durante la ricerca.<br><button onclick="searchDishFromBanner(lastBannerQuery)" style="margin-top:14px;background:linear-gradient(135deg,#e73a3a,#ff6b6b);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-weight:700;cursor:pointer;font-family:inherit;">Riprova</button></div>';
             });
     }
 
@@ -3025,18 +3695,47 @@
 
     // ===== CLOSE SEARCH =====
     function closeSearchModal() {
-        document.getElementById('searchResults')?.classList.remove('show');
-        document.getElementById('searchOverlay')?.classList.remove('show');
+        searchSeq++; // invalida eventuali risposte in volo
+        if (typeof setSearchOpen === 'function') setSearchOpen(false);
+        else {
+            document.getElementById('searchResults')?.classList.remove('show');
+            document.getElementById('searchOverlay')?.classList.remove('show');
+        }
     }
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.search-box') && !e.target.closest('.search-overlay')) closeSearchModal();
     });
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') { closeSearchModal(); closeBannerSearchModal(); closeRestaurantModal(); }
+        if (e.key === 'Escape') { closeSearchModal(); closeBannerSearchModal(); closeRestaurantModal(); try { closeDishCamera(); } catch (err) {} try { closeWishlist(); } catch (err2) {} }
     });
 
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', initMap);
+    // La barra resta in vista quando si apre la tastiera
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.getElementById('global-search');
+        if (input) {
+            input.addEventListener('focus', function() {
+                setTimeout(function() {
+                    const box = document.querySelector('.search-section');
+                    if (box) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300); // attende l'apertura della tastiera
+            });
+        }
+    });
+    // Deep-link: /app/?piatto=Orecchiette -> compila la ricerca e mostra i ristoranti
+    document.addEventListener('DOMContentLoaded', function() {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const dish = (params.get('piatto') || params.get('q') || '').trim();
+            if (!dish) return;
+            const input = document.getElementById('global-search');
+            if (input) input.value = dish;
+            searchDishesSmart(dish);
+            const anchor = document.querySelector('.search-section');
+            if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (e) { /* parametro assente o non valido: ignora */ }
+    });
     window.addEventListener('beforeunload', stopAutoRefresh);
 
     // ===== CATEGORY GRID removed =====
@@ -3107,15 +3806,8 @@
       }
       if (where === 'favs') {
         tabSetActive('tab-favs');
-        try {
-          var favs = JSON.parse(localStorage.getItem('tp_favorites') || '[]');
-          var list = (typeof restaurants !== 'undefined' ? restaurants : []).filter(function(r) { return favs.indexOf(r.id) !== -1; });
-          displayList(list.length ? list : []);
-          var panel = document.getElementById('restaurants-list');
-          if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          if (!list.length) showNotification('Nessun preferito: tocca il cuore sulle schede');
-        } catch (e) {}
-        if (!favsTabOn) { try { displayList(typeof restaurants !== 'undefined' ? restaurants : []); } catch (e) {} }
+        favsTabOn = false;
+        openWishlist();
         return;
       }
     }
@@ -3148,6 +3840,14 @@ function installPWA() {
     if (btn) btn.style.display = 'none';
   });
 }
+
+// === UPGRADE 2026: init badge + drawer shortcuts ===
+document.addEventListener('DOMContentLoaded', function() {
+  try { updateWishBadge(); } catch (e) {}
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { try { closeWishlist(); } catch (err) {} }
+  });
+});
 </script>
 </body>
 </html>

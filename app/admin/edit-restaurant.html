@@ -274,11 +274,11 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label"><i class="fas fa-clock"></i> Orari di Disponibilità Prenotazioni</label>
+                        <label class="form-label"><i class="fas fa-clock"></i> Orari di apertura</label>
                         <div id="hoursEditor" style="background:#1a1125;border:1px solid #2d2145;border-radius:10px;padding:16px;">
                             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;" id="hoursGrid"></div>
                         </div>
-                        <small class="text-muted">Configura gli orari in cui il ristorante accetta prenotazioni</small>
+                        <small class="text-muted">Fasce "HH:MM-HH:MM". Usati per le prenotazioni e per il badge "Aperti ora" nell'app. Giorni senza fasce = chiuso.</small>
                     </div>
 
                     <div class="d-grid gap-2">
@@ -507,10 +507,68 @@
                 document.getElementById('restaurantLatitude').value = restaurant.latitude || '';
                 document.getElementById('restaurantLongitude').value = restaurant.longitude || '';
                 document.getElementById('restaurantLogo').value = restaurant.logo_url || '';
+                renderHoursGrid(restaurant.available_hours);
             } catch (error) {
                 console.error('Errore:', error);
                 showError('Errore nel caricamento del ristorante');
             }
+        }
+
+        const HOURS_DAYS = [
+            { key: 'mon', label: 'Lunedì' }, { key: 'tue', label: 'Martedì' },
+            { key: 'wed', label: 'Mercoledì' }, { key: 'thu', label: 'Giovedì' },
+            { key: 'fri', label: 'Venerdì' }, { key: 'sat', label: 'Sabato' },
+            { key: 'sun', label: 'Domenica' }
+        ];
+        const HOURS_RE = /^([01]\d|2[0-3]):[0-5]\d-([01]\d|2[0-3]):[0-5]\d$/;
+
+        function parseStoredHours(v) {
+            if (!v) return {};
+            try { return typeof v === 'string' ? (JSON.parse(v) || {}) : v; }
+            catch (e) { return {}; }
+        }
+
+        /**
+         * Disegna la griglia orari (pranzo/cena per giorno + flag chiuso)
+         */
+        function renderHoursGrid(stored) {
+            const grid = document.getElementById('hoursGrid');
+            if (!grid) return;
+            const hours = parseStoredHours(stored);
+            grid.innerHTML = HOURS_DAYS.map(d => {
+                const day = hours[d.key] || {};
+                const closed = !day.lunch && !day.dinner;
+                return `<div data-day="${d.key}" style="background:#120b1e;border:1px solid #2d2145;border-radius:8px;padding:10px;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                        <strong style="flex:1;font-size:0.85em;">${d.label}</strong>
+                        <label style="font-size:0.75em;color:#999;display:flex;align-items:center;gap:4px;cursor:pointer;">
+                            <input type="checkbox" data-closed ${closed ? 'checked' : ''}> Chiuso
+                        </label>
+                    </div>
+                    <label style="font-size:0.72em;color:#999;">Pranzo</label>
+                    <input type="text" class="form-control form-control-sm" data-meal="lunch" placeholder="12:00-14:30" value="${(day.lunch || '').replace(/"/g, '&quot;')}" style="margin-bottom:6px;background:#0f0a15;border-color:#2d2145;color:#fff;">
+                    <label style="font-size:0.72em;color:#999;">Cena</label>
+                    <input type="text" class="form-control form-control-sm" data-meal="dinner" placeholder="19:00-23:00" value="${(day.dinner || '').replace(/"/g, '&quot;')}" style="background:#0f0a15;border-color:#2d2145;color:#fff;">
+                </div>`;
+            }).join('');
+        }
+
+        /**
+         * Raccoglie gli orari dal form: {mon:{lunch,dinner},...} (giorni chiusi omessi)
+         */
+        function collectHours() {
+            const out = {};
+            document.querySelectorAll('#hoursGrid [data-day]').forEach(card => {
+                const day = card.getAttribute('data-day');
+                if (card.querySelector('[data-closed]').checked) return;
+                const row = {};
+                ['lunch', 'dinner'].forEach(meal => {
+                    const v = (card.querySelector(`[data-meal="${meal}"]`).value || '').trim();
+                    if (v && HOURS_RE.test(v)) row[meal] = v;
+                });
+                if (row.lunch || row.dinner) out[day] = row;
+            });
+            return Object.keys(out).length ? out : null;
         }
 
         /**

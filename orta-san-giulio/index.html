@@ -8,14 +8,18 @@
   <meta name="keywords" content="cosa mangiare Orta San Giulio, piatti tipici Orta San Giulio, funghi porcini, torta nocciole, Villa Crespi, ristoranti Orta San Giulio, Piemonte, Lago d'Orta">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta name="theme-color" content="#e73a3a">
-  <!-- Geo Meta Tags (Local SEO) -->\n  <meta name="geo.region" content="IT-NO">\n  <meta name="geo.placename" content="Orta San Giulio">\n  <meta name="geo.position" content="45.7978;8.4053">\n  <meta name="ICBM" content="45.7978, 8.4053">
+  <!-- Geo Meta Tags (Local SEO) -->
+  <meta name="geo.region" content="IT-NO">
+  <meta name="geo.placename" content="Orta San Giulio">
+  <meta name="geo.position" content="45.7978;8.4053">
+  <meta name="ICBM" content="45.7978, 8.4053">
   <meta name="author" content="trovapiatto">
   
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://www.trovapiatto.it/orta-san-giulio/">
   <meta property="og:title" content="Cosa Mangiare a Orta San Giulio: La Guida Completa ai Piatti Tipici">
   <meta property="og:description" content="Guida completa ai piatti tipici di Orta San Giulio. Specialità da provare, con ristoranti e prezzi.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=630&fit=crop">
+  <meta property="og:image" content="https://www.trovapiatto.it/images/cities/orta-san-giulio.jpg">
   <meta property="og:site_name" content="trovapiatto">
   <meta property="og:locale" content="it_IT">
   <meta property="article:published_time" content="2026-08-29T10:00:00+02:00">
@@ -24,7 +28,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cosa Mangiare a Orta San Giulio: La Guida Completa ai Piatti Tipici">
   <meta name="twitter:description" content="Piatti tipici di Orta San Giulio da provare assolutamente. Ristoranti, prezzi e consigli.">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=630&fit=crop">
+  <meta name="twitter:image" content="https://www.trovapiatto.it/images/cities/orta-san-giulio.jpg">
   
   <link rel="canonical" href="https://www.trovapiatto.it/orta-san-giulio/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -110,7 +114,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('HERO_IMAGE') center/cover no-repeat;
+      background: url('/images/cities/orta-san-giulio.jpg') center/cover no-repeat;
       filter: blur(4px) brightness(0.55) scale(1.05);
       z-index: 0;
     }
@@ -658,6 +662,92 @@
     }
     
     .site-footer a:hover { color: var(--primary); }
+  
+    /* Tour gastronomico */
+    .tour-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.10), rgba(245,158,11,0.06));
+      border: 2px solid rgba(231,58,58,0.30);
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tour-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 24px; right: 24px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--accent-food), transparent);
+      border-radius: 2px;
+    }
+    .tour-box h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tour-box h2 i { color: var(--primary); }
+    .tour-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .tour-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .tour-step {
+      display: block;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .tour-step:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      text-decoration: none;
+    }
+    .tour-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent-food);
+      margin-bottom: 8px;
+    }
+    .tour-dish {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    .tour-why {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .tour-step .tour-go {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
   </style>
     <!-- Google Analytics (Consent Mode v2: default negato) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
@@ -756,6 +846,39 @@
         <a href="#gnocchi-al-ragu"><span class="num">6.</span> Gnocchi al Ragù</a>
         <a href="#curiosita"><span class="num">-</span> Curiosità Gastronomiche</a>
         <a href="#consigli"><span class="num">-</span> Consigli per Visitare</a>
+      </div>
+    </div>
+
+      
+    <!-- Tour gastronomico Orta San Giulio -->
+    <div class="tour-box">
+      <h2><i class="fa-solid fa-route"></i> Tour Gastronomico di Orta San Giulio</h2>
+      <p class="tour-sub">Quattro tappe in un giorno: dalla colazione alla cena, i piatti da non perdere. <!-- TOUR-OK --></p>
+      <div class="tour-steps">
+      <a href="#torta-di-nocciole" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-mug-saucer"></i> Mattina</span>
+        <div class="tour-dish">Torta di Nocciole</div>
+        <div class="tour-why">Colazione piemontese vista lago.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#risotto-ai-funghi-porcini" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-sun"></i> Pranzo</span>
+        <div class="tour-dish">Risotto ai Funghi Porcini</div>
+        <div class="tour-why">Cremoso con i porcini dei boschi.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#vitello-tonnato" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-cheese"></i> Pomeriggio</span>
+        <div class="tour-dish">Vitello Tonnato</div>
+        <div class="tour-why">Fresco e delicato per il pomeriggio.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#bollito-misto" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-moon"></i> Sera</span>
+        <div class="tour-dish">Bollito Misto</div>
+        <div class="tour-why">La gran tradizione piemontese.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
       </div>
     </div>
 

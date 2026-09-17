@@ -106,6 +106,37 @@ function getInput() {
     return $input ?: [];
 }
 
+// Colonna disponibile? (cache per richiesta; api-crud non esegue le migration di api.php)
+function crudHasColumn($db, $table, $col) {
+    static $cache = [];
+    $k = $table . '.' . $col;
+    if (!array_key_exists($k, $cache)) {
+        try {
+            $st = $db->query("SHOW COLUMNS FROM `" . str_replace('`', '', $table) . "` LIKE '" . str_replace("'", '', $col) . "'");
+            $cache[$k] = $st->rowCount() > 0;
+        } catch (Exception $e) { $cache[$k] = false; }
+    }
+    return $cache[$k];
+}
+
+// Normalizza orari ristorante: {mon:{lunch:"12:00-14:30",dinner:"19:00-23:00"},...} o null
+function crudCleanHours($h) {
+    if (!is_array($h)) return null;
+    $days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+    $timeRe = '/^([01]\d|2[0-3]):[0-5]\d-([01]\d|2[0-3]):[0-5]\d$/';
+    $out = [];
+    foreach ($days as $d) {
+        if (empty($h[$d]) || !is_array($h[$d])) continue;
+        $row = [];
+        foreach (['lunch', 'dinner'] as $meal) {
+            $v = isset($h[$d][$meal]) ? trim((string)$h[$d][$meal]) : '';
+            if ($v !== '' && preg_match($timeRe, $v)) $row[$meal] = $v;
+        }
+        if (!empty($row)) $out[$d] = $row;
+    }
+    return !empty($out) ? $out : null;
+}
+
 // === CRUD FUNCTIONS ===
 function crudCreateRestaurant($db) {
     $data = getInput();
@@ -125,6 +156,10 @@ function crudCreateRestaurant($db) {
     $id = uniqid('rest_');
     $stmt = $db->prepare("INSERT INTO restaurants (id, name, slug, description, address, phone, email, logo_url, latitude, longitude, city, cuisine, website, rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([$id, $data['name'], $slug, $data['description'] ?? null, $data['address'] ?? null, $data['phone'] ?? null, $data['email'] ?? null, $data['logo_url'] ?? null, $data['latitude'] ?? null, $data['longitude'] ?? null, $data['city'] ?? null, $data['cuisine'] ?? null, $data['website'] ?? null, $data['rating'] ?? null]);
+    if (crudHasColumn($db, 'restaurants', 'available_hours')) {
+        $hours = crudCleanHours($data['available_hours'] ?? null);
+        $db->prepare("UPDATE restaurants SET available_hours = ? WHERE id = ?")->execute([$hours ? json_encode($hours, JSON_UNESCAPED_UNICODE) : null, $id]);
+    }
     echo json_encode(['success' => true, 'id' => $id, 'slug' => $slug], JSON_UNESCAPED_UNICODE);
 }
 
@@ -137,6 +172,10 @@ function crudUpdateRestaurant($db) {
     }
     $stmt = $db->prepare("UPDATE restaurants SET name = ?, description = ?, address = ?, phone = ?, email = ?, logo_url = ?, latitude = ?, longitude = ?, city = ?, cuisine = ?, website = ?, michelin_stars = ? WHERE id = ?");
     $result = $stmt->execute([$data['name'] ?? null, $data['description'] ?? null, $data['address'] ?? null, $data['phone'] ?? null, $data['email'] ?? null, $data['logo_url'] ?? null, $data['latitude'] ?? null, $data['longitude'] ?? null, $data['city'] ?? null, $data['cuisine'] ?? null, $data['website'] ?? null, $data['michelin_stars'] ?? 0, $data['id']]);
+    if ($result && array_key_exists('available_hours', $data) && crudHasColumn($db, 'restaurants', 'available_hours')) {
+        $hours = crudCleanHours($data['available_hours']);
+        $db->prepare("UPDATE restaurants SET available_hours = ? WHERE id = ?")->execute([$hours ? json_encode($hours, JSON_UNESCAPED_UNICODE) : null, $data['id']]);
+    }
     echo json_encode(['success' => $result], JSON_UNESCAPED_UNICODE);
 }
 

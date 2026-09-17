@@ -13,7 +13,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.php?size=32x32">
@@ -32,7 +32,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
       background: linear-gradient(135deg, #0f0a15 0%, #1a0f25 100%);
       color: #fff;
       min-height: 100vh;
@@ -108,7 +108,7 @@
     }
 
     .cat-header p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: var(--text-light);
       max-width: 600px;
       animation: fadeInUp 0.6s ease-out 0.2s both;
@@ -183,7 +183,7 @@
     }
 
     .section-title {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       font-weight: 700;
       margin-bottom: 2rem;
       display: flex;
@@ -245,7 +245,7 @@
 
     .dish-name {
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       color: #fff;
       margin-bottom: 3px;
       white-space: nowrap;
@@ -254,7 +254,7 @@
     }
 
     .dish-restaurant {
-      font-size: 0.78rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
       white-space: nowrap;
       overflow: hidden;
@@ -262,8 +262,8 @@
     }
 
     .dish-price {
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-weight: 800;
+      font-size: 1.05rem;
       color: var(--primary);
       white-space: nowrap;
     }
@@ -344,13 +344,13 @@
 
     .rest-name {
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: #fff;
       margin-bottom: 6px;
     }
 
     .rest-address {
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
       margin-bottom: 6px;
       display: flex;
@@ -359,7 +359,7 @@
     }
 
     .rest-dishes-count {
-      font-size: 0.78rem;
+      font-size: 0.85rem;
       color: var(--primary);
       font-weight: 600;
       margin-bottom: 12px;
@@ -433,6 +433,41 @@
       opacity: 0.5;
     }
 
+    /* Barra di ricerca libera */
+    .search-live {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 560px;
+      margin: 0 auto 1rem;
+      background: rgba(255,255,255,0.06);
+      border: 2px solid rgba(231,58,58,0.3);
+      border-radius: 60px;
+      padding: 0 20px;
+      backdrop-filter: blur(10px);
+    }
+    .search-live:focus-within {
+      border-color: rgba(231,58,58,0.6);
+      box-shadow: 0 0 24px rgba(231,58,58,0.2);
+    }
+    .search-live i { color: var(--primary); font-size: 1.1rem; }
+    .search-live input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-size: 1rem;
+      padding: 16px 0;
+      min-width: 0;
+    }
+    .search-live input::placeholder { color: #888; }
+    .search-clear {
+      background: none; border: none; cursor: pointer;
+      color: #999; font-size: 1rem; display: none;
+    }
+
     /* Quick Tags */
     .quick-tags {
       display: flex;
@@ -452,6 +487,9 @@
       cursor: pointer;
       transition: all 0.3s;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .quick-tag:hover {
@@ -500,7 +538,7 @@
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: 8px;
       font-size: 0.78rem;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
       cursor: pointer;
       appearance: auto;
     }
@@ -527,7 +565,7 @@
       .cat-header { padding: 4.5rem 1rem 1.5rem; min-height: auto; }
       .cat-icon { width: 56px; height: 56px; border-radius: 16px; font-size: 22px; margin-bottom: 0.8rem; }
       .cat-header h1 { font-size: 1.5rem; margin-bottom: 0.4rem; }
-      .cat-header p { font-size: 0.85rem; line-height: 1.4; }
+      .cat-header p { font-size: 0.95rem; line-height: 1.5; }
       .cat-content { padding: 1rem 0.8rem 5rem; }
       .section-title { font-size: 1rem; margin-bottom: 1rem; gap: 8px; }
       .section-title i { font-size: 0.9rem; }
@@ -567,9 +605,9 @@
         background: rgba(255,255,255,0.05);
       }
       .dish-img { width: 44px; height: 44px; border-radius: 10px; }
-      .dish-name { font-size: 0.85rem; }
-      .dish-restaurant { font-size: 0.7rem; }
-      .dish-price { font-size: 0.8rem; }
+      .dish-name { font-size: 0.95rem; }
+      .dish-restaurant { font-size: 0.8rem; }
+      .dish-price { font-size: 0.92rem; }
 
       /* Restaurants grid mobile */
       .restaurants-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -631,7 +669,7 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.4);
       transition: all 0.3s;
       text-decoration: none;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
     }
     .fab:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
     .fab-home { background: linear-gradient(135deg, #e73a3a, #ff6b6b); }
@@ -761,6 +799,14 @@
     <!-- Quick Tags -->
     <div class="quick-tags" id="quick-tags"></div>
 
+    <!-- Ricerca libera -->
+    <div class="search-live">
+      <i class="fas fa-magnifying-glass"></i>
+      <input type="text" id="live-search" placeholder="Cerca un piatto... (es. orecchiette, polpo)" autocomplete="off">
+      <button class="search-clear" id="search-clear" onclick="clearLiveSearch()" aria-label="Cancella ricerca"><i class="fas fa-xmark"></i></button>
+    </div>
+    <p id="results-count" style="text-align:center;font-size:0.8rem;color:var(--text-muted);margin:0 0 1rem;"></p>
+
     <!-- Filters -->
     <div class="filter-bar" id="filter-bar" style="display:none;">
       <div class="filter-group">
@@ -801,6 +847,9 @@
       </div>
     </div>
 
+    <!-- Guida pasto (es. "pranzo Bari"): piatti consigliati -->
+    <div id="meal-guide"></div>
+
     <!-- Dishes -->
     <div style="margin-top:2.5rem;">
       <div class="section-title"><i class="fas fa-plate-wheat"></i> Piatti Trovati</div>
@@ -826,13 +875,15 @@
     <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fab fab-top" title="Torna su"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Su</span></button>
   </div>
 
+  <script src="/app/assets/js/meal-intent.js"></script>
+  <script src="/app/assets/js/dish-placeholders.js"></script>
   <script>
     // Category config
     const CATEGORIES = {
       'branzino': { icon: 'fas fa-fish', color: '#06b6d4', bg: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=800&fit=crop', label: 'Branzino', desc: 'Il branzino, re del Mediterraneo, in tutte le sue preparazioni' },
       'sushi': { icon: 'fas fa-bowl-food', color: '#f97316', bg: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800&fit=crop', label: 'Sushi', desc: 'La tradizione giapponese nei migliori ristoranti di Bari' },
       'pizza': { icon: 'fas fa-pizza-slice', color: '#f59e0b', bg: 'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=800&fit=crop', label: 'Pizza', desc: 'Pizza Napoletana, Focaccia e specialità dal forno' },
-      'burrata': { icon: 'fas fa-cheese', color: '#8b5cf6', bg: 'https://images.unsplash.com/photo-1631209121750-a9f656d26e80?w=800&fit=crop', label: 'Burrata', desc: 'La regina della tavola pugliese, cremosa e deliziosa' },
+      'burrata': { icon: 'fas fa-cheese', color: '#8b5cf6', bg: 'https://images.unsplash.com/photo-1753791320863-bda47c67cd00?w=800&fit=crop', label: 'Burrata', desc: 'La regina della tavola pugliese, cremosa e deliziosa' },
       'orecchiette': { icon: 'fas fa-utensils', color: '#e73a3a', bg: 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=800&fit=crop', label: 'Orecchiette', desc: 'Il simbolo della cucina pugliese con cime di rapa' },
       'frutta di mare': { icon: 'fas fa-shrimp', color: '#06b6d4', bg: 'https://images.unsplash.com/photo-1534604973900-c43e1f2cbcbf?w=800&fit=crop', label: 'Frutta di Mare', desc: 'Gamberetti, cozze, vongole e tutto il meglio dal mare' },
       'carne': { icon: 'fas fa-drumstick-bite', color: '#dc2626', bg: 'https://images.unsplash.com/photo-1558030006-450675393462?w=800&fit=crop', label: 'Carne', desc: 'Specialità di carne dalla tradizione italiana e non solo' },
@@ -843,7 +894,7 @@
       'dolci': { icon: 'fas fa-cake-candles', color: '#8b5cf6', bg: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&fit=crop', label: 'Dolci', desc: 'Tiramisù, pasticci e dolci italiani per chiudere in dolcezza' },
       'vegano': { icon: 'fas fa-leaf', color: '#10b981', bg: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&fit=crop', label: 'Vegano', desc: 'Piatti vegetariani e vegani per ogni esigenza' },
       'senza glutine': { icon: 'fas fa-wheat-awn-circle-exclamation', color: '#f59e0b', bg: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&fit=crop', label: 'Senza Glutine', desc: 'Opzioni gluten-free per un pasto sereno e gustoso' },
-      'focaccia': { icon: 'fas fa-bread-slice', color: '#f59e0b', bg: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&fit=crop', label: 'Focaccia', desc: 'La focaccia più famosa d\'Italia, croccante e gustosa' },
+      'focaccia': { icon: 'fas fa-bread-slice', color: '#f59e0b', bg: '/images/dishes/focaccia-barese.jpg', label: 'Focaccia', desc: 'La focaccia più famosa d\'Italia, croccante e gustosa' },
       'tiramisu': { icon: 'fas fa-cake-candles', color: '#8b5cf6', bg: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&fit=crop', label: 'Tiramisù', desc: 'Il dolce italiano più amato nel mondo' },
       'tartare': { icon: 'fas fa-fish', color: '#06b6d4', bg: 'https://images.unsplash.com/photo-1534604973900-c43e1f2cbcbf?w=800&fit=crop', label: 'Tartare di Pesce', desc: 'Freschezza e sapore dal mare' },
       'pasta alla norma': { icon: 'fas fa-utensils', color: '#e73a3a', bg: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=800&fit=crop', label: 'Pasta alla Norma', desc: 'Melanzane, pomodoro e ricotta salata' },
@@ -870,9 +921,20 @@
       const distFilter = parseFloat(document.getElementById('filter-distance').value) || 9999;
       const priceFilter = document.getElementById('filter-price').value;
       const sortBy = document.getElementById('filter-sort').value;
+      const liveQuery = (document.getElementById('live-search').value || '').toLowerCase().trim();
 
       let dishes = [..._allDishes];
       let restaurants = [..._allRestaurants];
+
+      if (liveQuery) {
+        dishes = dishes.filter(d =>
+          (d.name || '').toLowerCase().includes(liveQuery) ||
+          (d.description || '').toLowerCase().includes(liveQuery) ||
+          (d.restaurant_name || '').toLowerCase().includes(liveQuery)
+        );
+        const rIds = new Set(dishes.map(d => d.restaurant_id));
+        restaurants = restaurants.filter(r => rIds.has(r.id));
+      }
 
       if (cuisineFilter) {
         restaurants = restaurants.filter(r => r.cuisine && r.cuisine.toLowerCase() === cuisineFilter.toLowerCase());
@@ -900,8 +962,30 @@
 
       document.getElementById('stat-dishes').textContent = dishes.length;
       document.getElementById('stat-restaurants').textContent = restaurants.length;
+      const cnt = document.getElementById('results-count');
+      if (cnt) {
+        cnt.innerHTML = liveQuery
+          ? 'Risultati per &ldquo;' + liveQuery.replace(/[&<>"]/g, '') + '&rdquo;: <strong style="color:#fff;">' + dishes.length + ' piatti</strong> in ' + restaurants.length + ' ristoranti'
+          : '<strong style="color:#fff;">' + dishes.length + ' piatti</strong> · ' + restaurants.length + ' ristoranti';
+      }
       renderDishes(dishes, restaurants);
       renderRestaurants(restaurants);
+    }
+
+    function clearLiveSearch() {
+      const inp = document.getElementById('live-search');
+      inp.value = '';
+      document.getElementById('search-clear').style.display = 'none';
+      applyFilters();
+      inp.focus();
+    }
+
+    function resetAllFiltersUI() {
+      document.getElementById('filter-cuisine').value = '';
+      document.getElementById('filter-distance').value = '9999';
+      document.getElementById('filter-price').value = '';
+      document.getElementById('filter-sort').value = 'distance';
+      applyFilters();
     }
 
     function getQueryParam(name) {
@@ -928,13 +1012,39 @@
       }).join('');
     }
 
-    function getDishImage(name) {
-      const n = name.toLowerCase();
-      if (n.includes('orecchiette')) return 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=200&h=200&fit=crop';
+    // Unificata: usa la libreria condivisa normalizzata + fuzzy se disponibile,
+    // con fallback legacy per compatibilità.
+    function getDishImage(name, category) {
+      try {
+        if (typeof getDishPlaceholder === 'function') {
+          var shared = getDishPlaceholder(name, category);
+          if (shared) return shared;
+        }
+      } catch (e) {}
+      return getDishImageLegacy(name);
+    }
+
+    function getDishImageLegacy(name) {
+      const n = (name || '').toLowerCase();
+      // Foto reali dei piatti (stesse della homepage)
+      if (n.includes('spaghetti ai ricci')) return '/images/dishes/spaghetti-ai-ricci.jpg';
+      if (n.includes('panna cotta')) return '/images/dishes/panna-cotta.jpg';
+      if (n.includes('amuse')) return '/images/dishes/amuse-bouche.jpg';
+      if (n.includes('margherita')) return '/images/dishes/pizza-margherita.jpg';
+      if (n.includes('ricciola')) return '/images/dishes/sashimi-di-ricciola.jpg';
+      if (n.includes('orecchiette')) return '/images/dishes/orecchiette-con-le-cime-di-rapa.webp';
+      if (n.includes('focaccia')) return '/images/dishes/focaccia-barese.jpg';
+      if (n.includes('burrata')) return 'https://images.unsplash.com/photo-1753791320863-bda47c67cd00?w=200&h=200&fit=crop';
       if (n.includes('branzino')) return 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=200&h=200&fit=crop';
-      if (n.includes('burrata')) return 'https://images.unsplash.com/photo-1631209121750-a9f656d26e80?w=200&h=200&fit=crop';
+      // Panini reali (da Intrapan)
+      if (n.includes('salsiccia') || n.includes('luganega') || n.includes('friarielli')) return '/images/dishes/panino-salsiccia.jpg';
+      if (n.includes('boscaiolo')) return '/images/dishes/panino-boscaiolo.jpg';
+      if (n.includes('cotoletta')) return '/images/dishes/panino-cotoletta.jpg';
+      if (n.includes('wurstel') || n.includes('würstel')) return '/images/dishes/wurstel.jpg';
+      if (n.includes('prosciutto crudo') || n.includes('crudo')) return '/images/dishes/prosciutto-crudo.jpg';
+      if (n.includes('prosciutto cotto') || n.includes('cotto')) return '/images/dishes/prosciutto-cotto.jpg';
+      if (n.includes('veggy') || n.includes('vegetariano') || (n.includes('panino') && n.includes('verdur'))) return '/images/dishes/veggy.jpg';
       if (n.includes('pizza')) return 'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=200&h=200&fit=crop';
-      if (n.includes('focaccia')) return 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop';
       if (n.includes('sushi') || n.includes('maki') || n.includes('temaki') || n.includes('sashimi')) return 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=200&h=200&fit=crop';
       if (n.includes('tiramisu') || n.includes('tiramisù')) return 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=200&h=200&fit=crop';
       if (n.includes('tartare') || n.includes('crudo')) return 'https://images.unsplash.com/photo-1534604973900-c43e1f2cbcbf?w=200&h=200&fit=crop';
@@ -946,8 +1056,14 @@
     }
 
     async function loadData() {
-      const catKey = getCatFromURL();
-      const cat = CATEGORIES[catKey] || { icon: 'fas fa-utensils', color: '#e73a3a', bg: '', label: catKey, desc: 'Scopri piatti e ristoranti per questa categoria' };
+      // Intento "pasto + citta" (es. ?q=pranzo Bari): guida ai piatti consigliati
+      const rawQuery = (getQueryParam('q') || getQueryParam('cat') || '').trim();
+      const mealGuide = (typeof getPiattiConsigliatiBari === 'function') ? getPiattiConsigliatiBari(rawQuery) : null;
+
+      const catKey = mealGuide ? null : getCatFromURL();
+      const cat = mealGuide
+        ? { icon: mealGuide.icon, color: mealGuide.color, bg: '', label: mealGuide.title, desc: mealGuide.subtitle }
+        : (CATEGORIES[catKey] || { icon: 'fas fa-utensils', color: '#e73a3a', bg: '', label: catKey, desc: 'Scopri piatti e ristoranti per questa categoria' });
 
       // Update header
       document.getElementById('cat-icon').style.background = `linear-gradient(135deg, ${cat.color}, ${cat.color}cc)`;
@@ -965,7 +1081,13 @@
       document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${cat.label} - trovapiatto`);
       document.querySelector('meta[property="og:description"]')?.setAttribute('content', cat.desc);
 
-      renderTags(catKey);
+      renderTags(mealGuide ? '' : catKey);
+
+      // Banner guida pasto con piatti consigliati
+      try {
+        const mgEl = document.getElementById('meal-guide');
+        if (mgEl) mgEl.innerHTML = mealGuide ? renderMealGuideHtml(mealGuide) : '';
+      } catch (e) {}
 
       try {
         try {
@@ -981,9 +1103,26 @@
         const apiUrl = catKey === 'stellati'
           ? `/app/admin/api.php?action=get-starred-restaurants`
           : `/app/admin/api.php?action=search-dishes&q=${encodeURIComponent(catKey)}`;
-        const res = await fetch(apiUrl);
-        const data = await res.json();
-        let dishes = data.data || [];
+        let dishes = [];
+        if (mealGuide) {
+          // Un giro API per ogni piatto consigliato, poi unione + dedup:
+          // cosi ogni piatto del pasto e rappresentato nei risultati.
+          const lists = await Promise.all(
+            mealGuide.dishQueries.slice(0, 6).map(term =>
+              fetch(`/app/admin/api.php?action=search-dishes&q=${encodeURIComponent(term)}`)
+                .then(r => r.json()).then(d => d.data || []).catch(() => [])
+            )
+          );
+          const seen = new Set();
+          lists.flat().forEach(d => {
+            const k = (d.restaurant_id || '') + '::' + String(d.name || '').toLowerCase().trim();
+            if (!seen.has(k)) { seen.add(k); dishes.push(d); }
+          });
+        } else {
+          const res = await fetch(apiUrl);
+          const data = await res.json();
+          dishes = data.data || [];
+        }
 
         dishes = dishes.map(d => {
           const lat = parseFloat(d.latitude);
@@ -1039,6 +1178,14 @@
 
         document.getElementById('filter-bar').style.display = 'flex';
 
+        // Ricerca live: filtra a ogni tasto
+        const liveInput = document.getElementById('live-search');
+        const clearBtn = document.getElementById('search-clear');
+        liveInput.addEventListener('input', () => {
+          clearBtn.style.display = liveInput.value ? 'block' : 'none';
+          applyFilters();
+        });
+
         applyFilters();
 
       } catch (err) {
@@ -1055,13 +1202,21 @@
     function renderDishes(dishes, restaurants) {
       const dishesGrid = document.getElementById('dishes-grid');
       if (dishes.length === 0) {
-        dishesGrid.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><div>Nessun piatto trovato</div><div style="font-size:0.85rem; margin-top:8px;">Prova con filtri diversi</div></div>`;
+        dishesGrid.innerHTML = `<div class="empty-state">
+          <i class="fas fa-magnifying-glass"></i>
+          <div style="font-weight:600;font-size:1rem;color:#fff;">Nessun piatto trovato</div>
+          <div style="font-size:0.85rem;margin:6px 0 18px;">Prova un'altra parola o togli qualche filtro.</div>
+          <button onclick="clearLiveSearch(); resetAllFiltersUI();" style="background:linear-gradient(135deg,var(--primary),#ff6b6b);color:#fff;border:none;border-radius:30px;padding:12px 26px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;">Azzera ricerca e filtri</button>
+        </div>`;
         return;
       }
       const restColors = ['#f59e0b', '#e73a3a', '#06b6d4', '#8b5cf6', '#10b981', '#f97316'];
+      const priceLabel = p => {
+        const n = parseFloat(String(p || '').replace(/[^0-9.,]/g, '').replace(',', '.'));
+        return isFinite(n) ? '€ ' + n.toFixed(2) : '';
+      };
       let html = '';
-      restaurants.forEach((r, ri) => {
-        const color = restColors[ri % restColors.length];
+      restaurants.forEach((r) => {
         const restDishes = dishes.filter(d => d.restaurant_id === r.id);
         if (restDishes.length === 0) return;
         const seen = new Set();
@@ -1071,20 +1226,23 @@
           seen.add(key);
           return true;
         });
-        html += `<div style="grid-column:1/-1; margin-bottom:1.5rem;">
-          <div style="display:flex; align-items:center; gap:12px; padding:16px 20px; background:linear-gradient(135deg, ${color}15, ${color}08); border:1px solid ${color}30; border-radius:16px; cursor:pointer; transition:all 0.3s;" onclick="window.location.href='https://www.trovapiatto.it/menu/${r.slug}/'" onmouseover="this.style.borderColor='${color}60'" onmouseout="this.style.borderColor='${color}30'">
-            <div style="width:48px;height:48px;border-radius:12px;overflow:hidden;border:2px solid ${color};flex-shrink:0;display:flex;align-items:center;justify-content:center;background:${color}22;">
-              ${r.logo_url ? `<img src="${r.logo_url}" alt="${r.name}" style="width:100%;height:100%;object-fit:cover;">` : `<i class="fas fa-utensils" style="color:${color};font-size:1.2rem;"></i>`}
+        const color = restColors[Math.abs(r.id.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % restColors.length];
+        // Divisore ristorante ben visibile
+        html += `<div style="grid-column:1/-1; margin:2.5rem 0 1rem;">
+          <div style="display:flex; align-items:center; gap:14px; padding:18px 20px; background:linear-gradient(135deg, ${color}1f, ${color}0a); border:1px solid ${color}45; border-top:3px solid ${color}; border-radius:16px; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,0.25);" onclick="window.location.href='https://www.trovapiatto.it/menu/${r.slug}/'">
+            <div style="width:54px;height:54px;border-radius:14px;overflow:hidden;border:2px solid ${color};flex-shrink:0;display:flex;align-items:center;justify-content:center;background:${color}26;">
+              ${r.logo_url ? `<img src="${r.logo_url}" alt="${r.name}" style="width:100%;height:100%;object-fit:cover;">` : `<i class="fas fa-utensils" style="color:${color};font-size:1.3rem;"></i>`}
             </div>
-            <div style="flex:1;">
-              <div style="font-weight:700;font-size:1.1rem;color:#fff;">${r.name}</div>
-              <div style="font-size:0.8rem;color:var(--text-muted);">${r.city || ''} · ${uniqueDishes.length} piatti</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-weight:800;font-size:1.15rem;color:#fff;">${r.name}</div>
+              <div style="font-size:0.82rem;color:var(--text-light);">${r.city || ''}${r.cuisine ? ' · ' + r.cuisine : ''} · ${uniqueDishes.length} ${uniqueDishes.length === 1 ? 'piatto' : 'piatti'}</div>
             </div>
-            <div style="color:${color};font-size:0.85rem;font-weight:600;"><i class="fas fa-book-open"></i> Menu</div>
+            <div style="flex-shrink:0;color:${color};font-size:0.85rem;font-weight:700;"><i class="fas fa-book-open"></i> Menu</div>
           </div>
         </div>`;
         uniqueDishes.forEach(d => {
           const distLabel = d._dist < 9999 ? (d._dist < 1 ? `${Math.round(d._dist * 1000)} m` : `${d._dist.toFixed(1)} km`) : '';
+          const price = priceLabel(d.price);
           html += `<a href="https://www.trovapiatto.it/menu/${d.restaurant_slug}/?highlight=${encodeURIComponent(d.name)}" class="dish-card">
             <div class="dish-img"><img src="${getDishImage(d.name)}" alt="${d.name}"></div>
             <div class="dish-info">
@@ -1092,7 +1250,7 @@
               <div class="dish-restaurant"><i class="fas fa-store" style="margin-right:4px;"></i>${d.restaurant_name}</div>
             </div>
             <div style="text-align:right; flex-shrink:0; white-space:nowrap;">
-              ${d.price ? `<div class="dish-price">${d.price}</div>` : ''}
+              ${price ? `<div class="dish-price">${price}</div>` : ''}
               ${distLabel ? `<div style="font-size:0.68rem; color:#10b981; font-weight:600; margin-top:2px;"><i class="fas fa-location-arrow" style="font-size:0.6rem;"></i> ${distLabel}</div>` : ''}
             </div>
           </a>`;

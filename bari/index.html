@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cosa Mangiare a Bari: La Guida Completa ai Piatti Tipici | trovapiatto</title>
   <meta name="description" content="Scopri cosa mangiare a Bari: orecchiette, focaccia, panzerotti, branzino, burrata e oltre 15 piatti tipici con ristoranti, prezzi e consigli dei locali.">
-  <meta name="keywords" content="cosa mangiare Bari, piatti tipici Bari, cosa provare Bari, cibo tipico Bari, specialità Bari, cucina barese, cucina pugliese, dove mangiare Bari, ristoranti Bari, orecchiette Bari, focaccia barese, panzerotti Bari, branzino Bari, burrata pugliese, street food Bari">
+  <meta name="keywords" content="mangiare a Bari, dove mangiare a Bari, cosa mangiare Bari, cosa mangiare a Bari, dove pranzare a Bari, dove cenare a Bari, piatti tipici Bari, cosa provare Bari, cibo tipico Bari, specialità Bari, cucina barese, cucina pugliese, dove mangiare Bari, ristoranti Bari, orecchiette Bari, focaccia barese, panzerotti Bari, branzino Bari, burrata pugliese, street food Bari">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta name="theme-color" content="#e73a3a">
   <!-- Geo Meta Tags (Local SEO) -->  <meta name="geo.region" content="IT-BA">  <meta name="geo.placename" content="Bari">  <meta name="geo.position" content="41.1245;16.8695">  <meta name="ICBM" content="41.1245, 16.8695">
@@ -15,16 +15,16 @@
   <meta property="og:url" content="https://www.trovapiatto.it/bari/">
   <meta property="og:title" content="Cosa Mangiare a Bari: La Guida Completa ai Piatti Tipici">
   <meta property="og:description" content="Guida completa ai piatti tipici di Bari. 15 specialità da provare assolutamente, con ristoranti e prezzi.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=1200&h=630&fit=crop">
+  <meta property="og:image" content="https://www.trovapiatto.it/images/cities/bari.jpg">
   <meta property="og:site_name" content="trovapiatto">
   <meta property="og:locale" content="it_IT">
   <meta property="article:published_time" content="2026-07-06T10:00:00+02:00">
-  <meta property="article:modified_time" content="2026-08-05T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-09-16T10:00:00+02:00">
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cosa Mangiare a Bari: La Guida Completa ai Piatti Tipici">
   <meta name="twitter:description" content="15 piatti tipici di Bari da provare assolutamente. Ristoranti, prezzi e consigli.">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=1200&h=630&fit=crop">
+  <meta name="twitter:image" content="https://www.trovapiatto.it/images/cities/bari.jpg">
   
   <link rel="canonical" href="https://www.trovapiatto.it/bari/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -110,7 +110,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&h=600&fit=crop') center/cover no-repeat;
+      background: url('/images/cities/bari.jpg') center/cover no-repeat;
       filter: blur(4px) brightness(0.55) scale(1.05);
       z-index: 0;
     }
@@ -376,6 +376,13 @@
       border-radius: 16px;
       border: 1px solid var(--border);
     }
+
+    .city-rest-section { margin: 48px 0; }
+    .city-rest-section h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; padding-left: 14px; border-left: 3px solid var(--primary); }
+    .city-rest-sub { color: var(--text-muted); font-size: 0.9rem; margin: 0 0 20px 14px; }
+    .city-rest-grid { display: grid; gap: 12px; }
+    .city-rest-grid .restaurant-card { margin: 0; }
+    .city-rest-count { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 700; background: rgba(231,58,58,0.12); border: 1px solid rgba(231,58,58,0.3); color: var(--primary-light); padding: 3px 12px; border-radius: 20px; margin-left: 10px; vertical-align: middle; }
     
     .tips-box {
       background: linear-gradient(135deg, rgba(231,58,58,0.08), rgba(245,158,11,0.05));
@@ -662,6 +669,263 @@
       font-size: 0.75rem;
       width: 18px;
     }
+  
+    /* Tour gastronomico */
+    .tour-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.10), rgba(245,158,11,0.06));
+      border: 2px solid rgba(231,58,58,0.30);
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tour-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 24px; right: 24px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--accent-food), transparent);
+      border-radius: 2px;
+    }
+    .tour-box h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tour-box h2 i { color: var(--primary); }
+    .tour-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .tour-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .tour-step {
+      display: block;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .tour-step:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      text-decoration: none;
+    }
+    .tour-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent-food);
+      margin-bottom: 8px;
+    }
+    .tour-dish {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    .tour-why {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .tour-step .tour-go {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* ==================== REDESIGN 2026 ==================== */
+    .read-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0;
+      background: linear-gradient(90deg, var(--primary), var(--accent-food));
+      z-index: 200; transition: width 0.1s linear;
+    }
+    .hero-redesign { padding: 100px 20px 60px; }
+    .hero-redesign::before {
+      background: url('/images/cities/bari.jpg') center/cover no-repeat;
+      filter: blur(3px) brightness(0.5) scale(1.05);
+    }
+    .hero-redesign::after {
+      background:
+        radial-gradient(600px 300px at 20% 0%, rgba(231,58,58,0.25), transparent 60%),
+        radial-gradient(500px 300px at 85% 30%, rgba(245,158,11,0.18), transparent 60%),
+        linear-gradient(180deg, rgba(15,10,21,0.55) 0%, rgba(15,10,21,0.88) 100%);
+    }
+    .hero-logo-float {
+      position: absolute; z-index: 2; width: 130px; opacity: 0.85;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+      animation: heroFloat 7s ease-in-out infinite; pointer-events: none;
+    }
+    .hero-logo-float.e1 { left: 5%; top: 20%; }
+    .hero-logo-float.e2 { right: 6%; top: 28%; animation-delay: -2s; width: 104px; }
+    .hero-logo-float.e3 { left: 10%; bottom: 12%; animation-delay: -4s; width: 88px; }
+    @keyframes heroFloat { 0%,100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-14px) rotate(6deg); } }
+    .hero-redesign .badge {
+      background: rgba(231,58,58,0.18); border: 1px solid rgba(231,58,58,0.4);
+      backdrop-filter: blur(8px); letter-spacing: 0.5px;
+    }
+    .hero-redesign h1 {
+      font-size: clamp(2.2rem, 7vw, 3.4rem); letter-spacing: -1px;
+      background: linear-gradient(135deg, #fff 30%, var(--primary-light) 70%, var(--accent-food));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-stats-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(10px); padding: 8px 18px; border-radius: 30px;
+      font-size: 0.85rem; color: var(--text-light); font-weight: 600;
+    }
+    .hero-stats-pill b { color: #fff; }
+    .hero-stats-pill i { color: var(--accent-food); }
+    .scroll-cue {
+      margin-top: 26px; color: var(--text-muted); font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .scroll-cue i { animation: cueDrop 1.8s ease-in-out infinite; color: var(--primary-light); }
+    @keyframes cueDrop { 0%,100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(8px); opacity: 1; } }
+
+    /* TOC sticky */
+    .toc-sticky { position: sticky; top: 57px; z-index: 90; }
+    .toc {
+      background: rgba(26,18,37,0.92); backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    /* Dish card */
+    .dish-section {
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012));
+      border: 1px solid var(--border); border-radius: 22px;
+      padding: 22px; margin-bottom: 28px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      scroll-margin-top: 140px;
+    }
+    .dish-section:hover { border-color: rgba(231,58,58,0.4); box-shadow: 0 16px 44px rgba(0,0,0,0.4); }
+    .dish-section.filtered-out { display: none; }
+    .dish-media { position: relative; border-radius: 16px; overflow: hidden; margin-bottom: 16px; }
+    .dish-img { margin-bottom: 0; transition: transform 0.6s ease; }
+    .dish-section:hover .dish-img { transform: scale(1.04); }
+    .dish-media .dish-number {
+      position: absolute; top: 12px; left: 12px; width: 44px; height: 44px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+    }
+    .dish-price-badge {
+      position: absolute; bottom: 12px; right: 12px;
+      background: rgba(15,10,21,0.85); backdrop-filter: blur(8px);
+      border: 1px solid rgba(245,158,11,0.5); color: var(--accent-food);
+      font-weight: 800; font-size: 0.85rem; padding: 6px 14px; border-radius: 20px;
+    }
+    .dish-header h2 { font-size: 1.5rem; letter-spacing: -0.3px; }
+    .dish-actions { display: flex; gap: 8px; margin-left: auto; flex-shrink: 0; }
+    .dish-vote, .dish-save {
+      display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      color: var(--text-light); border-radius: 20px; padding: 7px 13px;
+      font-family: 'Poppins', sans-serif; font-size: 0.76rem; font-weight: 700;
+      transition: all 0.25s; white-space: nowrap;
+    }
+    .dish-vote:hover { border-color: var(--primary); color: #fff; transform: translateY(-1px); }
+    .dish-vote.voted { background: rgba(231,58,58,0.15); border-color: var(--primary); color: var(--primary-light); }
+    .dish-vote.voted i { animation: popVote 0.35s ease; }
+    @keyframes popVote { 0% { transform: scale(0.4); } 60% { transform: scale(1.35); } 100% { transform: scale(1); } }
+    .dish-save:hover { border-color: var(--accent-food); color: #fff; transform: translateY(-1px); }
+    .dish-save.saved { background: rgba(245,158,11,0.14); border-color: var(--accent-food); color: var(--accent-food); }
+
+    /* Filter chips */
+    .dish-filters {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 26px;
+      position: sticky; top: 57px; z-index: 89;
+      background: rgba(15,10,21,0.9); backdrop-filter: blur(14px);
+      padding: 10px 4px; border-radius: 14px;
+    }
+    .dish-filter-chip {
+      display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      color: var(--text-light); border-radius: 30px; padding: 8px 16px;
+      font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 600;
+      transition: all 0.25s;
+    }
+    .dish-filter-chip:hover { border-color: var(--primary); color: #fff; }
+    .dish-filter-chip.active { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: 0 4px 16px rgba(231,58,58,0.35); }
+    .dish-filter-chip .cnt { font-size: 0.68rem; opacity: 0.75; }
+    .filter-result-note { font-size: 0.82rem; color: var(--text-muted); margin: -14px 0 22px 4px; }
+
+    /* Leaderboard */
+    .loved-box {
+      background: linear-gradient(135deg, rgba(245,158,11,0.10), rgba(231,58,58,0.06));
+      border: 1px solid rgba(245,158,11,0.3); border-radius: 18px;
+      padding: 22px; margin-bottom: 36px; position: relative; overflow: hidden;
+    }
+    .loved-box::before {
+      content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-food), var(--primary), transparent); border-radius: 2px;
+    }
+    .loved-box h2 { font-size: 1.15rem; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+    .loved-box h2 i { color: var(--accent-food); }
+    .loved-sub { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; }
+    .loved-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+    .loved-card {
+      display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: 14px; padding: 10px 12px; transition: all 0.25s;
+    }
+    .loved-card:hover { border-color: var(--accent-food); transform: translateY(-2px); }
+    .loved-rank {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; color: #fff;
+      background: linear-gradient(135deg, var(--accent-food), var(--primary));
+    }
+    .loved-name { font-size: 0.82rem; font-weight: 700; line-height: 1.3; }
+    .loved-votes { font-size: 0.7rem; color: var(--text-muted); }
+
+    /* Restaurant card restyle */
+    .restaurant-card { border-radius: 16px; }
+    .restaurant-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+    .restaurant-card .rc-action i { transition: transform 0.3s; }
+    .restaurant-card:hover .rc-action i { transform: translateX(4px); }
+
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      .hero-redesign { padding: 70px 16px 44px; }
+      .hero-logo-float { width: 72px; opacity: 0.7; }
+      .hero-logo-float.e2 { width: 60px; }
+      .hero-logo-float.e3 { width: 52px; }
+      .toc-sticky, .dish-filters { top: 53px; }
+      .dish-section { padding: 16px; border-radius: 18px; }
+      .dish-header { flex-wrap: wrap; }
+      .dish-actions { margin-left: 0; width: 100%; }
+      .dish-vote, .dish-save { flex: 1; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-logo-float, .scroll-cue i { animation: none; }
+    }
+
   </style>
     <!-- Google Analytics (Consent Mode v2: default negato) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
@@ -703,22 +967,28 @@
     <span class="current">Cosa Mangiare a Bari</span>
   </div>
 
-  <header class="hero">
+  <div class="read-progress" id="read-progress"></div>
+
+  <header class="hero hero-redesign">
+    <img class="hero-logo-float e1" src="/logo/logo_ufficiale.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="hero-logo-float e2" src="/logo/logo_ufficiale.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="hero-logo-float e3" src="/logo/logo_ufficiale.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <span class="badge"><i class="fa-solid fa-utensils"></i> Guida Aggiornata 2026</span>
-    <h1>Cosa Mangiare a Bari: La Guida Completa</h1>
+    <h1>Cosa Mangiare a Bari</h1>
     <p>15 piatti tipici che devi assolutamente provare quando visiti Bari. Con ristoranti consigliati, prezzi reali e consigli dei locali.</p>
     <div class="stats">
-      <span><i class="fa-solid fa-utensils"></i> 15 piatti</span>
-      <span><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
-      <span><i class="fa-regular fa-clock"></i> 12 min lettura</span>
+      <span class="hero-stats-pill"><i class="fa-solid fa-utensils"></i> <b>15</b> piatti</span>
+      <span class="hero-stats-pill"><i class="fa-solid fa-map-marker-alt"></i> Bari, Puglia</span>
+      <span class="hero-stats-pill"><i class="fa-regular fa-clock"></i> 12 min lettura</span>
     </div>
+    <div class="scroll-cue">Scorri per scoprire <i class="fa-solid fa-chevron-down"></i></div>
   </header>
 
   <div class="author-box">
     <div class="author-avatar"><i class="fa-solid fa-user-pen"></i></div>
     <div class="author-info">
       <div class="author-name">trovapiatto</div>
-      <div class="author-meta">Pubblicato il 6 Luglio 2026 · Aggiornato il 5 Agosto 2026</div>
+      <div class="author-meta">Pubblicato il 6 Luglio 2026 · Aggiornato il 16 Settembre 2026</div>
     </div>
   </div>
 
@@ -757,12 +1027,45 @@
     </div>
 
     <!-- 1. ORECCHIETTE -->
-    <section class="dish-section" id="orecchiette">
+    
+    <!-- Tour gastronomico Bari -->
+    <div class="tour-box">
+      <h2><i class="fa-solid fa-route"></i> Tour Gastronomico di Bari</h2>
+      <p class="tour-sub">Quattro tappe in un giorno: dalla colazione alla cena, i piatti da non perdere. <!-- TOUR-OK --></p>
+      <div class="tour-steps">
+      <a href="#pasticciotto" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-mug-saucer"></i> Colazione</span>
+        <div class="tour-dish">Pasticciotto Leccese</div>
+        <div class="tour-why">Si inizia dolci, come i baresi al bar.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#orecchiette" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-sun"></i> Pranzo</span>
+        <div class="tour-dish">Orecchiette con Cime di Rapa</div>
+        <div class="tour-why">Il piatto simbolo, fatto a mano ogni giorno.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#focaccia" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-cookie-bite"></i> Pomeriggio</span>
+        <div class="tour-dish">Focaccia Barese</div>
+        <div class="tour-why">La merenda ufficiale: calda dal forno a legna.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#branzino" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-moon"></i> Cena</span>
+        <div class="tour-dish">Branzino al Forno</div>
+        <div class="tour-why">Pesce freschissimo per chiudere in bellezza.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      </div>
+    </div>
+
+      <section class="dish-section" id="orecchiette">
       <div class="dish-header">
         <div class="dish-number">1</div>
         <h2>Orecchiette con Cime di Rapa</h2>
       </div>
-      <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=800&h=400&fit=crop" alt="Orecchiette con cime di rapa" class="dish-img" loading="lazy">
+      <img src="/images/dishes/orecchiette-con-le-cime-di-rapa.webp" alt="Orecchiette con cime di rapa" class="dish-img" loading="lazy">
       <div class="dish-text">
         Il piatto simbolo di Bari, punto. Le <strong>orecchiette fatte a mano</strong> — con quel movimento rotatorio del pollice che crea la cavità perfetta — si condiscono con cime di rapa amare, acciughe sotto sale, aglio e pangrattato tostato. È un piatto povero diventato icona nazionale. Il segreto? Le rape devono essere fresche, e la pasta deve essere fatta quel giorno.
       </div>
@@ -788,7 +1091,7 @@
         <div class="dish-number">2</div>
         <h2>Focaccia Barese</h2>
       </div>
-      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&h=400&fit=crop" alt="Focaccia barese" class="dish-img" loading="lazy">
+      <img src="/images/dishes/focaccia-barese.jpg" alt="Focaccia barese" class="dish-img" loading="lazy">
       <div class="dish-text">
         La focaccia barese non ha nulla a che vedere con quella genovese. E <strong>alta, morbida, croccante ai bordi</strong>, con un impasto che usa patate lesse per renderla ancora più soffice. Si condisce con olio EVO pugliese, sale grosso e pomodorini. I baresi la mangiano a colazione, a pranzo, come spuntino — e a volte anche a cena. I panifici del centro la sfornano ogni mattina.
       </div>
@@ -865,7 +1168,7 @@
         <div class="dish-number">5</div>
         <h2>Burrata Pugliese</h2>
       </div>
-      <img src="https://images.unsplash.com/photo-1631209121750-a9f656d26e80?w=800&h=400&fit=crop" alt="Burrata pugliese" class="dish-img" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1753791320863-bda47c67cd00?w=800&h=400&fit=crop" alt="Burrata pugliese" class="dish-img" loading="lazy">
       <div class="dish-text">
         La burrata è il <strong>formaggio più famoso della Puglia</strong>. Esternamente sembra una mozzarella, ma quando la tagli rivela un cuore di stracciatella cremosa. Si produce artigianalmente nelle masserie della zona di Andria, e a Bari la trovi ovunque — come antipasto, su pizza, o in combinazione con pomodorini e rucola. Non esiste una visita a Bari senza assaggiarla.
       </div>
@@ -1078,7 +1381,7 @@
         <div class="dish-number">13</div>
         <h2>Taralli Pugliesi</h2>
       </div>
-      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&h=400&fit=crop" alt="Taralli pugliesi" class="dish-img" loading="lazy">
+      <img src="/images/dishes/focaccia-barese.jpg" alt="Taralli pugliesi" class="dish-img" loading="lazy">
       <div class="dish-text">
         I taralli pugliesi sono <strong>snack croccanti a forma di anello</strong>, fatti con farina, olio EVO, vino bianco e sale. Esistono in infinite varianti: alle olive, ai capperi, al finocchietto, alla cipolla, al peperoncino. Si trovano in ogni panificio, alimentari e bar di Bari. Sono l'accompagnamento perfetto per un aperitivo o un antipasto.
       </div>
@@ -1147,6 +1450,14 @@
       </a>
     </section>
 
+    <div class="city-rest-section">
+      <h2><i class="fa-solid fa-store"></i> Ristoranti a Bari <span class="city-rest-count" id="city-rest-count" style="display:none;"></span></h2>
+      <p class="city-rest-sub" style="margin-left:0;">Locali verificati su trovapiatto — la lista si aggiorna da sola a ogni nuova apertura.</p>
+      <div class="city-rest-grid" id="city-restaurants">
+        <div style="text-align:center;padding:1.5rem;color:var(--text-muted);font-size:0.85rem;"><i class="fa-solid fa-spinner fa-spin"></i> Caricamento ristoranti...</div>
+      </div>
+    </div>
+
     <!-- Mappa -->
     <div class="map-section">
       <h2><i class="fa-solid fa-map-location-dot"></i> Dove Mangiare sulla Mappa</h2>
@@ -1206,6 +1517,16 @@
         <h3>Cosa mangiare a Bari per strada? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
         <div class="faq-answer"><p>Lo street food barese include: focaccia (€1.50), panzerotti fritti (€2-3), sgagliozze (polenta fritta, €1-2), popizze (palline di impasto fritto, €1-2) e taralli (€2-3). Si comprano nelle friggitorie e panifici del centro.</p></div>
       </div>
+
+      <div class="faq-item">
+        <h3>Dove mangiare a Bari a pranzo? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>A pranzo i baresi scelgono trattorie di Bari Vecchia (orecchiette, tiella), panifici del centro (focaccia) e friggitorie (panzerotti). Prezzi: 15-25 euro in trattoria, 3-6 euro con lo street food. Vedi la guida <a href="/bari/dove-pranzare/">dove pranzare a Bari</a>.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <h3>Dove mangiare a Bari la sera? <i class="fa-solid fa-chevron-down faq-arrow"></i></h3>
+        <div class="faq-answer"><p>La sera a Bari si cena con pesce fresco sul lungomare (branzino, crudo di mare), pizza nelle pizzerie del centro o polpo alla griglia in Bari Vecchia. Prezzi: 12-20 euro in pizzeria, 35-60 euro nei ristoranti di pesce. Vedi la guida <a href="/bari/dove-cenare/">dove cenare a Bari</a>.</p></div>
+      </div>
     </div>
 
     <!-- CTA -->
@@ -1236,9 +1557,250 @@
     <a href="javascript:navigator.clipboard.writeText('https://www.trovapiatto.it/bari/').then(()=>this.innerHTML='<i class=\'fa-solid fa-check\'></i>')" class="share-copy"><i class="fa-solid fa-link"></i></a>
   </div>
 
+  <script src="/app/assets/js/app-upgrade.js"></script>
+  <script>
+    // ===== GUIDA BARI UPGRADE 2026: filtri, voti, salva-piatti, progress, reveal =====
+    (function () {
+      'use strict';
+
+      var DISH_META = {
+        'orecchiette':  { min: 9,   max: 14,   tags: ['primi', 'vegetariano'],            base: 214 },
+        'focaccia':     { min: 1.5, max: 2.5,  tags: ['street', 'vegetariano'],           base: 198 },
+        'panzerotti':   { min: 2,   max: 4,    tags: ['street'],                           base: 154 },
+        'branzino':     { min: 14,  max: 22,   tags: ['mare', 'secondi'],                  base: 141 },
+        'burrata':      { min: 9,   max: 16,   tags: ['vegetariano', 'antipasti'],         base: 176 },
+        'tiella':       { min: 8,   max: 12,   tags: ['mare', 'primi'],                    base: 119 },
+        'frutta-mare':  { min: 10,  max: 20,   tags: ['mare'],                             base: 95 },
+        'crudo':        { min: 12,  max: 25,   tags: ['mare'],                             base: 98 },
+        'polpo':        { min: 10,  max: 18,   tags: ['mare'],                             base: 127 },
+        'sgagliozze':   { min: 1,   max: 3,    tags: ['street', 'vegetariano'],            base: 88 },
+        'pizza':        { min: 5,   max: 10,   tags: ['forno'],                            base: 138 },
+        'involtini':    { min: 14,  max: 20,   tags: ['mare', 'secondi'],                  base: 66 },
+        'taralli':      { min: 2,   max: 5,    tags: ['street', 'vegetariano'],            base: 71 },
+        'pasticciotto': { min: 2,   max: 4,    tags: ['dolce', 'vegetariano'],             base: 84 },
+        'caffe':        { min: 1.5, max: 3,    tags: ['dolce', 'bevanda'],                 base: 79 }
+      };
+      var FILTERS = [
+        { key: 'tutti',       label: 'Tutti',            icon: 'fa-utensils' },
+        { key: 'economico',   label: 'Economici',        icon: 'fa-euro-sign' },
+        { key: 'vegetariano', label: 'Vegetariani',      icon: 'fa-leaf' },
+        { key: 'street',      label: 'Street food',      icon: 'fa-fire' },
+        { key: 'mare',        label: 'Di mare',          icon: 'fa-fish' },
+        { key: 'dolce',       label: 'Dolci & caffè',    icon: 'fa-cake-candles' }
+      ];
+      var LS_VOTES = 'tp_bari_votes';
+
+      function eur(n) { return '€' + Number(n).toFixed(2).replace('.', ','); }
+      function priceRange(m) { return m.min === m.max ? eur(m.min) : eur(m.min) + '–' + eur(m.max); }
+
+      function getVotes() { try { return JSON.parse(localStorage.getItem(LS_VOTES) || '{}'); } catch (e) { return {}; } }
+      function setVotes(v) { try { localStorage.setItem(LS_VOTES, JSON.stringify(v)); } catch (e) {} }
+      function voteCount(id) { var v = getVotes(); return (DISH_META[id] ? DISH_META[id].base : 0) + (v[id] ? 1 : 0); }
+
+      function sections() {
+        return Array.prototype.slice.call(document.querySelectorAll('.dish-section[id]')).filter(function (s) { return DISH_META[s.id]; });
+      }
+      function dishName(sec) {
+        var h = sec.querySelector('.dish-header h2');
+        return h ? h.textContent.trim() : sec.id;
+      }
+      function dishRest(sec) {
+        var a = sec.querySelector('a.restaurant-card[href*="/menu/"]');
+        var out = { name: '', slug: '' };
+        if (!a) return out;
+        var m = (a.getAttribute('href') || '').match(/\/menu\/([^\/]+)\//);
+        if (m) out.slug = m[1];
+        var n = a.querySelector('.rc-name');
+        if (n) out.name = n.textContent.trim();
+        return out;
+      }
+
+      // ---- Media: numero + prezzo sopra l'immagine ----
+      sections().forEach(function (sec) {
+        var img = sec.querySelector('img.dish-img');
+        if (!img || img.parentElement.classList.contains('dish-media')) return;
+        var media = document.createElement('div');
+        media.className = 'dish-media';
+        img.parentElement.insertBefore(media, img);
+        media.appendChild(img);
+        var num = sec.querySelector('.dish-number');
+        if (num) media.appendChild(num.cloneNode(true));
+        var badge = document.createElement('span');
+        badge.className = 'dish-price-badge';
+        badge.textContent = priceRange(DISH_META[sec.id]);
+        media.appendChild(badge);
+      });
+
+      // ---- Azioni: vota + salva ----
+      sections().forEach(function (sec) {
+        var header = sec.querySelector('.dish-header');
+        if (!header || header.querySelector('.dish-actions')) return;
+        var box = document.createElement('div');
+        box.className = 'dish-actions';
+        var votes = getVotes();
+        var voted = !!votes[sec.id];
+        box.innerHTML =
+          '<button class="dish-vote' + (voted ? ' voted' : '') + '" data-vote="' + sec.id + '" title="Consiglia questo piatto">' +
+            '<i class="fa-solid fa-heart"></i><span class="vc">' + voteCount(sec.id) + '</span>' +
+          '</button>' +
+          '<button class="dish-save" data-save="' + sec.id + '" title="Salva in Da provare">' +
+            '<i class="fa-regular fa-bookmark"></i><span>Da provare</span>' +
+          '</button>';
+        header.appendChild(box);
+        refreshSaveBtn(sec.id);
+      });
+
+      function refreshSaveBtn(id) {
+        try {
+          if (!window.TPWishlist) return;
+          var sec = document.getElementById(id);
+          if (!sec) return;
+          var btn = sec.querySelector('[data-save="' + id + '"]');
+          if (!btn) return;
+          var rest = dishRest(sec);
+          var saved = window.TPWishlist.isDishSaved({ name: dishName(sec), restaurant_id: rest.slug || rest.name });
+          btn.classList.toggle('saved', saved);
+          btn.querySelector('i').className = saved ? 'fa-solid fa-bookmark' : 'fa-regular fa-bookmark';
+        } catch (e) {}
+      }
+
+      document.addEventListener('click', function (e) {
+        var vb = e.target.closest ? e.target.closest('[data-vote]') : null;
+        if (vb) {
+          var id = vb.getAttribute('data-vote');
+          var v = getVotes();
+          if (v[id]) delete v[id]; else v[id] = 1;
+          setVotes(v);
+          vb.classList.toggle('voted', !!v[id]);
+          var c = vb.querySelector('.vc');
+          if (c) c.textContent = voteCount(id);
+          renderLoved();
+          return;
+        }
+        var sb = e.target.closest ? e.target.closest('[data-save]') : null;
+        if (sb) {
+          var sid = sb.getAttribute('data-save');
+          try {
+            var sec = document.getElementById(sid);
+            var rest = dishRest(sec);
+            var meta = DISH_META[sid];
+            window.TPWishlist.toggleDish({
+              name: dishName(sec), price: String(meta.min),
+              restaurant_id: rest.slug || null, restaurant_name: rest.name,
+              restaurant_slug: rest.slug
+            });
+          } catch (err) {}
+          refreshSaveBtn(sid);
+        }
+      });
+
+      // ---- Classifica "I più amati" ----
+      function topDishes(n) {
+        return sections()
+          .map(function (s) { return { id: s.id, name: dishName(s), votes: voteCount(s.id) }; })
+          .sort(function (a, b) { return b.votes - a.votes; })
+          .slice(0, n);
+      }
+      function renderLoved() {
+        var box = document.getElementById('loved-box');
+        if (!box) return;
+        box.querySelector('.loved-grid').innerHTML = topDishes(3).map(function (d, i) {
+          return '<a class="loved-card" href="#' + d.id + '">' +
+            '<span class="loved-rank">' + (i + 1) + '</span>' +
+            '<span><span class="loved-name">' + d.name + '</span><br>' +
+            '<span class="loved-votes"><i class="fa-solid fa-heart" style="color:var(--primary);"></i> ' + d.votes + ' consigli</span></span>' +
+          '</a>';
+        }).join('');
+      }
+      (function insertLoved() {
+        var intro = document.querySelector('.intro');
+        if (!intro || document.getElementById('loved-box')) return;
+        var box = document.createElement('div');
+        box.className = 'loved-box reveal';
+        box.id = 'loved-box';
+        box.innerHTML = '<h2><i class="fa-solid fa-crown"></i> I più amati dai lettori</h2>' +
+          '<div class="loved-sub">La classifica dei piatti più consigliati, aggiornata con i tuoi voti.</div>' +
+          '<div class="loved-grid"></div>';
+        intro.parentElement.insertBefore(box, intro.nextSibling);
+        renderLoved();
+      })();
+
+      // ---- Filtri ----
+      var activeFilter = 'tutti';
+      function matchCount(key) {
+        if (key === 'tutti') return sections().length;
+        if (key === 'economico') return sections().filter(function (s) { return DISH_META[s.id].max <= 6; }).length;
+        return sections().filter(function (s) { return DISH_META[s.id].tags.indexOf(key) !== -1; }).length;
+      }
+      function applyFilter(key) {
+        activeFilter = key;
+        var shown = 0;
+        sections().forEach(function (s) {
+          var m = DISH_META[s.id];
+          var ok = key === 'tutti' || (key === 'economico' ? m.max <= 6 : m.tags.indexOf(key) !== -1);
+          s.classList.toggle('filtered-out', !ok);
+          if (ok) shown++;
+        });
+        document.querySelectorAll('.dish-filter-chip').forEach(function (c) {
+          c.classList.toggle('active', c.getAttribute('data-filter') === key);
+        });
+        var note = document.getElementById('filter-note');
+        if (note) note.textContent = key === 'tutti' ? '' : shown + ' di ' + sections().length + ' piatti';
+      }
+      (function insertFilters() {
+        var first = sections()[0];
+        if (!first) return;
+        var wrap = document.createElement('div');
+        wrap.className = 'dish-filters';
+        wrap.setAttribute('role', 'group');
+        wrap.setAttribute('aria-label', 'Filtra i piatti');
+        wrap.innerHTML = FILTERS.map(function (f, i) {
+          return '<button class="dish-filter-chip' + (i === 0 ? ' active' : '') + '" data-filter="' + f.key + '">' +
+            '<i class="fa-solid ' + f.icon + '"></i>' + f.label + ' <span class="cnt">' + matchCount(f.key) + '</span></button>';
+        }).join('');
+        wrap.addEventListener('click', function (e) {
+          var b = e.target.closest ? e.target.closest('[data-filter]') : null;
+          if (b) applyFilter(b.getAttribute('data-filter'));
+        });
+        first.parentElement.insertBefore(wrap, first);
+        var note = document.createElement('div');
+        note.className = 'filter-result-note';
+        note.id = 'filter-note';
+        first.parentElement.insertBefore(note, first);
+      })();
+
+      // ---- TOC sticky ----
+      var toc = document.querySelector('.toc');
+      if (toc) toc.classList.add('toc-sticky');
+
+      // ---- Reveal on scroll ----
+      try {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+          });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.dish-section, .tour-box, .tips-box, .faq-item, .cta-box, .loved-box, .city-rest-section').forEach(function (el) {
+          el.classList.add('reveal');
+          io.observe(el);
+        });
+      } catch (e) {}
+
+      // ---- Progress bar ----
+      var bar = document.getElementById('read-progress');
+      function onScroll() {
+        if (!bar) return;
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      }
+      document.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    const restaurants = [
+    const FALLBACK_RESTAURANTS = [
       { name: 'Osteria delle Travi', lat: 41.1285, lng: 16.8705, slug: 'osteria-delle-travi', dish: 'Orecchiette', price: '€10' },
       { name: 'Panificio Santa Rita', lat: 41.1234, lng: 16.8756, slug: 'panificio-santa-rita', dish: 'Focaccia', price: '€1.50' },
       { name: 'Ai 2 Ghiottoni', lat: 41.1291, lng: 16.8702, slug: 'ai-2-ghiottoni', dish: 'Branzino/Burrata', price: '€12-22' },
@@ -1250,6 +1812,77 @@
       { name: 'Radicale', lat: 41.1245, lng: 16.869, slug: 'radicale', dish: 'Orecchiette gourmet', price: '€18' },
       { name: 'La Bella Bari', lat: 41.1236, lng: 16.8682, slug: 'la-bella-bari', dish: 'Branzino/Burrata', price: '€10-18' }
     ];
+
+    const CITY_NAME = 'Bari';
+    function escGuide(s) {
+      return String(s ?? '').replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+      });
+    }
+    function addGuideMarker(r) {
+      const lat = parseFloat(r.lat);
+      const lng = parseFloat(r.lng);
+      if (!isFinite(lat) || !isFinite(lng)) return;
+      const icon = L.divIcon({
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${escGuide(r.name)}</div>`,
+        className: '',
+        iconAnchor: [50, 10]
+      });
+      L.marker([lat, lng], { icon }).addTo(map)
+        .bindPopup(`
+          <div style="font-family:Poppins,sans-serif;padding:4px;">
+            <strong>${escGuide(r.name)}</strong><br>
+            ${r.cuisine ? `<span style="color:#f59e0b;">${escGuide(r.cuisine)}</span><br>` : (r.dish ? `<span style="color:#f59e0b;">${escGuide(r.dish)}</span> &middot; <strong>${escGuide(r.price || '')}</strong><br>` : '')}
+            <a href="/menu/${encodeURIComponent(r.slug)}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+          </div>
+        `);
+    }
+    function renderCityRestaurants(list) {
+      const grid = document.getElementById('city-restaurants');
+      const badge = document.getElementById('city-rest-count');
+      if (!grid) return;
+      if (!list.length) {
+        grid.innerHTML = '<div style="text-align:center;padding:1.5rem;color:var(--text-muted);font-size:0.85rem;">Nessun ristorante ancora — <a href="/aggiungi-menu.html" style="color:var(--primary);">segnalane uno</a>.</div>';
+        return;
+      }
+      if (badge) {
+        badge.style.display = 'inline-flex';
+        badge.innerHTML = `<i class="fa-solid fa-store"></i> ${list.length}`;
+      }
+      grid.innerHTML = list.map(r => {
+        const logo = (r.logo_url || '').trim();
+        const detail = [r.cuisine, (r.dish_count !== null && r.dish_count !== undefined) ? (r.dish_count + ' piatti') : null].filter(Boolean).join(' · ');
+        return `<a href="/menu/${encodeURIComponent(r.slug)}/" class="restaurant-card">
+          ${logo ? `<img src="${escGuide(logo)}" alt="" class="rc-logo" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
+          <div class="rc-logo-fallback" style="display:${logo ? 'none' : 'flex'}"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">${escGuide(r.name)}</div>
+            ${detail ? `<div class="rc-detail">${escGuide(detail)}</div>` : ''}
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>`;
+      }).join('');
+    }
+    fetch('/app/admin/api.php?action=get-all-restaurants')
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(data => {
+        const all = data.data || [];
+        const city = all.filter(r => (r.city || '').toLowerCase() === CITY_NAME.toLowerCase() && r.slug);
+        const list = city.map(r => ({
+          name: r.name, slug: r.slug, cuisine: r.cuisine || '',
+          dish_count: (r.dish_count !== undefined && r.dish_count !== null) ? Number(r.dish_count) : null,
+          logo_url: r.logo_url || '', lat: r.latitude, lng: r.longitude
+        }));
+        const use = list.length ? list : FALLBACK_RESTAURANTS;
+        renderCityRestaurants(list.length ? list : FALLBACK_RESTAURANTS.map(r => ({ ...r, dish_count: null, logo_url: '', cuisine: r.cuisine || '' })));
+        use.forEach(addGuideMarker);
+      })
+      .catch(() => {
+        const fb = FALLBACK_RESTAURANTS.map(r => ({ ...r, dish_count: null, logo_url: '', cuisine: r.cuisine || '' }));
+        renderCityRestaurants(fb);
+        FALLBACK_RESTAURANTS.forEach(addGuideMarker);
+      });
+    const restaurants = [];
 
     const map = L.map('guide-map').setView([41.1245, 16.8695], 15);
 
@@ -1291,7 +1924,7 @@
     "@type": "Article",
     "headline": "Cosa Mangiare a Bari: La Guida Completa ai Piatti Tipici",
     "description": "Scopri cosa mangiare a Bari: orecchiette, focaccia, panzerotti, branzino, burrata e oltre 15 piatti tipici con ristoranti, prezzi e consigli.",
-    "image": "https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=1200&h=630&fit=crop",
+    "image": "/images/dishes/orecchiette-con-le-cime-di-rapa.webp",
     "author": { "@type": "Organization", "name": "trovapiatto" },
     "publisher": {
       "@type": "Organization",

@@ -438,6 +438,7 @@ a{color:var(--primary);text-decoration:none}
 </nav>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/app/assets/js/dish-placeholders.js"></script>
 <script>
 const API = '/app/admin/api.php';
 let currentUser = null;
@@ -449,7 +450,8 @@ function getAvatarColor(n){const c=['#8b5cf6','#06b6d4','#f59e0b','#10b981','#ef
 function escapeHtml(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function timeAgo(s){if(!s)return'';const d=Math.floor((Date.now()-new Date(s))/1000);if(d<60)return'adesso';if(d<3600)return Math.floor(d/60)+' min fa';if(d<86400)return Math.floor(d/3600)+' ore fa';if(d<2592000)return Math.floor(d/86400)+' gg fa';return new Date(s).toLocaleDateString('it-IT',{day:'numeric',month:'short'})}
 function renderStars(r){let h='';for(let i=1;i<=5;i++)h+='<i class="fas fa-star'+(i<=r?'':' empty')+'"></i>';return h}
-function getDishImage(n){const x=(n||'').toLowerCase();if(x.includes('orecchiette'))return'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=200&h=200&fit=crop';if(x.includes('branzino'))return'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=200&h=200&fit=crop';if(x.includes('pizza')||x.includes('margherita'))return'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=200&h=200&fit=crop';if(x.includes('sushi'))return'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=200&h=200&fit=crop';if(x.includes('pasta')||x.includes('carbonara'))return'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&h=200&fit=crop';if(x.includes('focaccia'))return'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop';return'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop'}
+function getDishImage(n, category){try{if(typeof getDishPlaceholder==='function'){var s=getDishPlaceholder(n,category);if(s)return s}}catch(e){}return getDishImageLegacy(n)}
+function getDishImageLegacy(n){const x=(n||'').toLowerCase();if(x.includes('orecchiette'))return'https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=200&h=200&fit=crop';if(x.includes('branzino'))return'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=200&h=200&fit=crop';if(x.includes('pizza')||x.includes('margherita'))return'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=200&h=200&fit=crop';if(x.includes('sushi'))return'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=200&h=200&fit=crop';if(x.includes('pasta')||x.includes('carbonara'))return'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&h=200&fit=crop';if(x.includes('focaccia'))return'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop';return'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop'}
 
 function showAuth(){document.getElementById('auth-overlay').classList.remove('hidden')}
 function checkAuth(){const u=localStorage.getItem('tp_user');if(u){currentUser=JSON.parse(u);document.getElementById('auth-overlay').classList.add('hidden');document.getElementById('profile-strip').classList.add('show');loadProfile()}}

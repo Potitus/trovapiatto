@@ -63,7 +63,8 @@
 
     <style>
         * { box-sizing: border-box; }
-        body { font-family: "roboto", sans-serif !important; }
+        body { font-family: "roboto", sans-serif !important; background-color: #ffffff !important; }
+        #page { background-color: #ffffff; }
         h1, h2, h3, h4, h5, h6 { font-family: "source sans pro", sans-serif !important; }
         
         /* Language Switcher */
@@ -398,6 +399,11 @@
             color: #EF3D26;
             margin: 6px 0;
         }
+
+        /* Testi piatti più grandi e leggibili */
+        .dish-card h2 { font-size: 1.9em !important; line-height: 1.35 !important; letter-spacing: 0.2px; }
+        .dish-description { font-size: 1.05rem !important; line-height: 1.7 !important; }
+        .dish-price { font-size: 1.45em !important; }
         .dish-description {
             font-size: 1.3em;
             color: #666;
@@ -448,6 +454,11 @@
             color: #fff; box-shadow: 0 2px 8px rgba(211,47,47,0.4);
         }
         .allergen-pill i { font-size: 0.9em; }
+        /* Variante chiara per il pannello dal basso */
+        .allergen-pills-light .allergen-pill { background: #f5f5f5; border-color: #ddd; color: #666; }
+        .allergen-pills-light .allergen-pill i { color: #999; }
+        .allergen-pills-light .allergen-pill.active { background: #e73a3a; border-color: #e73a3a; color: #fff; box-shadow: 0 2px 8px rgba(231,58,58,0.35); }
+        .allergen-pills-light .allergen-pill.active i { color: #fff; }
         .allergen-active-count {
             background: #d32f2f; color: #fff; font-size: 0.65em;
             padding: 1px 6px; border-radius: 10px; font-weight: 700;
@@ -493,6 +504,33 @@
             background: rgba(231,76,60,0.1); color: #e74c3c;
             display: flex; align-items: center; justify-content: center;
             font-size: 0.7em; font-weight: 700;
+        }
+
+        /* Bolle preferiti fisse sul lato destro */
+        #fav-bubbles {
+            position: fixed; right: 10px; top: 50%; transform: translateY(-50%);
+            z-index: 900; display: none; flex-direction: column; gap: 10px; align-items: center;
+            max-height: 60vh; overflow-y: auto; padding: 4px; scrollbar-width: none;
+        }
+        #fav-bubbles::-webkit-scrollbar { display: none; }
+        #fav-bubbles .fav-bubble {
+            position: relative; width: 48px; height: 48px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1.15rem; color: #fff;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+            border: 2px solid rgba(255,255,255,0.85);
+            transition: transform 0.2s ease; cursor: pointer; flex-shrink: 0;
+        }
+        #fav-bubbles .fav-bubble:hover { transform: scale(1.12); }
+        #fav-bubbles .fav-bubble .fav-x {
+            position: absolute; top: -5px; right: -5px; width: 19px; height: 19px; border-radius: 50%;
+            background: #333; color: #fff; font-size: 12px; line-height: 1;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.6); cursor: pointer; padding: 0;
+        }
+        @media (max-width: 480px) {
+            #fav-bubbles { right: 6px; gap: 8px; }
+            #fav-bubbles .fav-bubble { width: 42px; height: 42px; font-size: 1rem; }
         }
         
         /* ===== OPTIMIZATION: Enhanced Animations & Transitions ===== */
@@ -722,21 +760,45 @@
                 transform: translateY(-4px) scale(1.01);
             }
         }
+        /* Header logo omogeneo: box fisso + badge bianco + monogramma di fallback */
         #logo-container {
-            min-height: 60px;
+            min-height: 96px;
+            height: 96px;
             opacity: 1 !important;
             visibility: visible !important;
             display: flex !important;
             align-items: center;
             justify-content: center;
+            margin-bottom: 10px;
         }
-        #logo-container img {
-            max-height: 80px;
-            max-width: 100%;
+        #logo-container .logo-badge {
+            background: #fff;
+            border-radius: 18px;
+            padding: 10px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 240px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+        }
+        #logo-container .logo-badge img {
+            max-height: 64px;
+            max-width: 200px;
             object-fit: contain;
             display: block;
-            visibility: visible !important;
-            opacity: 1 !important;
+        }
+        #logo-container .logo-mono {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #e73a3a, #ff6b6b);
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(231,58,58,0.35);
         }
 
         /* Header alignment fixes: keep title centered and pin icon groups left/right */
@@ -992,12 +1054,12 @@
                 </div>
             </div>
         </div>
-        <div class="header-icon-4-group"><a href="javascript:void(0);" class="cart-icon header-icon header-icon-4" onclick="openOrderMenu();"><i class="far fa-list-alt" style="font-size: 18px;"></i><span class="badge bg-danger lmcart-totalitems">0</span><span class="icon-label" style="margin-left: -4px;" id="lang-ordine">Ordine</span></a></div>
+        <div class="header-icon-4-group"><a href="/app/" class="header-icon header-icon-4" title="Torna alla mappa" aria-label="Torna alla mappa di trovapiatto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span class="icon-label" style="margin-left: -4px;">Home</span></a></div>
     </div>
     
     <!-- Menu Carrello -->
     <div id="menu-cart" class="shopping-cart rounded-m pb-3" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; max-height: 90vh; overflow-y: auto; background: white; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 20px rgba(0,0,0,0.15); display: flex; flex-direction: column;">
-        <div class="menu-title mt-n1" style="padding: 20px; border-bottom: 1px solid #eee;"><h1 id="lang-il-tuo" style="margin: 0 0 5px 0; color: #537b83; font-size: 1.5em;">Il tuo Ordine</h1><p class="color-highlight" id="lang-hai-selezionato" style="margin: 0; color: #999; font-size: 0.9em;">Hai selezionato i seguenti prodotti</p><a href="javascript:void(0);" class="close-menu" onclick="closeOrderMenu();" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #999;">?</a></div>
+        <div class="menu-title mt-n1" style="padding: 20px; border-bottom: 1px solid #eee;"><h1 id="lang-il-tuo" style="margin: 0 0 5px 0; color: #537b83; font-size: 1.5em;">Il tuo Ordine</h1><p class="color-highlight" id="lang-hai-selezionato" style="margin: 0; color: #999; font-size: 0.9em;">Hai selezionato i seguenti prodotti</p><a href="javascript:void(0);" class="close-menu" onclick="closeOrderMenu();" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #999;"><i class="fas fa-times"></i></a></div>
         <div id="cart-items-list" style="padding: 15px; min-height: 50px;"></div>
         <div class="divider mt-3 mb-2"></div>
         <div style="padding: 15px; background: #f5f5f5;">
@@ -1022,17 +1084,17 @@
         <a href="javascript:void(0);" onclick="openOrderMenu();"><i class="far fa-list-alt"></i><span id="lang-ordine">Ordine</span></a>
         <a href="javascript:void(0);" onclick="toggleCategoriesPanel();"><i class="fas fa-bars"></i><span id="lang-menu">Menu</span></a>
         <a id="footer-offerte" href="javascript:void(0);" onclick="closeOffersModal(); localStorage.removeItem('offersModalClosed'); showOffersModal();" style="display:none;"><i class="fas fa-gift"></i><span id="lang-offerte">Offerte</span></a>
-        <a href="javascript:void(0);" onclick="toggleAllergenFilter()"><i class="fas fa-exclamation-triangle"></i><span id="lang-allergeni">Allergeni</span></a>
+        <a href="javascript:void(0);" onclick="toggleAllergenPanel()"><i class="fas fa-exclamation-triangle"></i><span id="lang-allergeni">Allergeni</span><span id="allergen-active-badge" class="allergen-active-count" style="display:none;"></span></a>
         <a href="javascript:void(0);" onclick="showMenuReviews()"><i class="fas fa-users"></i><span>Community</span></a>
         
     </div>
     
         <!-- Page Content -->
         <div class="page-content header-clear">
-            <div class="page-header card m-0 mb-3 shadow-l bg-highlight" data-card-height="200" style="background: linear-gradient(135deg, #1a1a2e, #0f0f1a); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;" id="page-header-main">
+            <div class="page-header card m-0 mb-3 shadow-l bg-highlight" data-card-height="200" style="background: linear-gradient(135deg, #e73a3a, #c92a2a); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;" id="page-header-main">
                 <div id="star-particles" style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden;"></div>
             <div style="position: relative; z-index: 2; text-align: center;">
-                <div id="logo-container" style="height: 0; display: none;"></div>
+                <div id="logo-container"></div>
                 <div id="michelin-badge" style="display:none; margin-bottom: 8px;">
                     <span style="display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg, #f59e0b, #f97316); color:#1a1a2e; padding:6px 16px; border-radius:20px; font-size:0.8rem; font-weight:800; letter-spacing:1px; text-transform:uppercase; box-shadow:0 4px 15px rgba(245,158,11,0.4);">
                         <span id="michelin-stars-display"></span> Michelin
@@ -1043,14 +1105,15 @@
             </div>
         </div>
 
-        <!-- Allergen Filter Bar -->
-        <div id="allergen-filter-bar" class="allergen-filter-bar">
-            <div class="allergen-filter-title">
-                <h3><i class="fas fa-exclamation-triangle" style="color:#f39c12;"></i> <span id="lang-filtra-allergeni">Filtra per allergeni</span><span id="allergen-active-badge" class="allergen-active-count" style="display:none;"></span></h3>
-                <small id="lang-escludi">escludi i piatti con:</small>
+        <!-- Gallery fotografica piatti -->
+        <div id="dish-gallery-wrap" style="display:none;padding:0 0 6px 0;margin-bottom:6px;">
+            <div style="display:flex;align-items:center;gap:8px;padding:0 18px;margin-bottom:10px;">
+                <span style="font-weight:700;font-size:0.95em;">I piatti consigliati</span>
             </div>
-            <div id="allergen-pills-container" class="allergen-pills"></div>
+            <div id="dish-gallery" style="display:flex;gap:10px;overflow-x:auto;padding:0 15px 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;"></div>
         </div>
+
+        <!-- Allergen Filter Bar -->
 
         <!-- Favorite Dishes Section -->
         <div id="fav-dishes-section" class="fav-dishes-section">
@@ -1058,6 +1121,9 @@
             <div id="fav-dishes-list"></div>
         </div>
 
+        <div id="back-to-menu-bar" style="display:none; position:sticky; top:60px; z-index:50; margin:0 15px 12px;">
+            <button onclick="resetMenuView()" style="display:inline-flex;align-items:center;gap:8px;background:#e73a3a;color:#fff;border:none;border-radius:30px;padding:10px 20px;font-weight:700;font-size:0.85rem;cursor:pointer;box-shadow:0 4px 14px rgba(231,58,58,0.3);"><i class="fas fa-arrow-left"></i> Torna al menu completo</button>
+        </div>
         <div id="menu-items-container" class="menu-items-dynamic" style="padding: 0 15px;">
             <div class="text-center p-4"><div class="spinner-border color-highlight" role="status"></div><p class="color-gray2-dark font-13 mt-3">Caricamento menu...</p></div>
         </div>
@@ -1069,6 +1135,18 @@
                 <button onclick="toggleCategoriesPanel()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #999;">&times;</button>
             </div>
             <div id="categories-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;"></div>
+        </div>
+
+        <!-- Allergeni Panel (tab dal basso, come Menu e Ordine) -->
+        <div id="allergen-panel" style="display:none; position:fixed; bottom:60px; left:0; right:0; background:#fff; max-height:60vh; overflow-y:auto; z-index:999; box-shadow:0 -5px 20px rgba(0,0,0,0.15); border-radius:20px 20px 0 0; padding:20px;">
+            <div style="text-align:center; margin-bottom:14px; position:relative;">
+                <h2 style="color:#537b83; margin:0; font-size:1.2em;"><i class="fas fa-exclamation-triangle" style="color:#f39c12;"></i> Filtra per allergeni</h2>
+                <p style="color:#999; font-size:0.8em; margin:4px 0 0;">Tocca per escludere i piatti che li contengono</p>
+                <button onclick="toggleAllergenPanel()" aria-label="Chiudi allergeni" style="position:absolute; top:0; right:0; background:none; border:none; font-size:24px; cursor:pointer; color:#999;">&times;</button>
+            </div>
+            <div id="allergen-panel-pills" class="allergen-pills allergen-pills-light"></div>
+            <div id="allergen-result-line" style="margin-top:12px;font-size:0.8rem;color:#777;text-align:center;"></div>
+            <button onclick="clearAllergenFilters()" style="width:100%; margin-top:14px; background:#f5f5f5; border:1px solid #ddd; color:#537b83; border-radius:10px; padding:10px; font-weight:600; cursor:pointer; font-size:0.85rem;">Azzera filtri</button>
         </div>
 
         <!-- Search Panel -->
@@ -1106,18 +1184,13 @@
             </div>
         </div>
 
-        <!-- GetYourGuide: Esplora la Puglia -->
-        <style>[data-gyg-widget] * { color: #fff !important; } [data-gyg-widget] a { color: #60a5fa !important; }</style>
-        <div style="margin: 15px; padding: 20px; background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(16,185,129,0.04)); border: 1px solid rgba(59,130,246,0.15); border-radius: 16px;">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-                <i class="fas fa-bus" style="color: #3b82f6; font-size: 1.1rem;"></i>
-                <h3 style="margin: 0; color: #fff; font-size: 1em; font-weight: 700;">Esplora la Puglia</h3>
-            </div>
-            <p style="margin: 0 0 14px; color: rgba(255,255,255,0.6); font-size: 0.8em;">Scopri tour ed esperienze nei dintorni di Bari</p>
-            <div data-gyg-widget="auto" data-gyg-partner-id="MH3AZB7" data-gyg-cmp="Trovapiatto"></div>
-        </div>
+        <div id="tp-bariaround"></div>
+<script src="/menu/common/widgets.js" defer></script>
 
-        <p class="footer-copyright text-center color-gray2-dark">Il tuo Menu Digitale su <a href="https://www.trovapiatto.it" class="color-gray2-dark font-weight-bold" target="_blank">trovapiatto.it</a></p>
+        <!-- Trust row: azioni rapide + stato apertura (fondo pagina) -->
+        <div id="trust-row" style="display:none;gap:10px;padding:0 15px;margin:24px 0;"></div>
+
+        <p class="footer-copyright text-center color-gray2-dark">Il tuo Menu Digitale su <a href="https://www.trovapiatto.it/aggiungi-menu.html" class="color-gray2-dark font-weight-bold" target="_blank">trovapiatto.it</a></p>
     </div>
 </div>
 
@@ -1458,8 +1531,8 @@ function loadCategoriesPanel() {
         const faIcon = CATEGORY_FA_ICON[cat.toLowerCase()] || 'fa-utensils';
         const iconColor = CATEGORY_COLORS[cat.toLowerCase()] || '#EF3D26';
         const button = document.createElement('button');
-        button.style.cssText = 'padding: 16px; background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 14px; cursor: pointer; text-align: center; font-weight: 600; color: #2d2d2d; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 8px;';
-        button.innerHTML = '<div style="width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, ' + iconColor + ', ' + iconColor + 'dd); display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px ' + iconColor + '30;"><i class="fas ' + faIcon + '" style="color: white; font-size: 17px;"></i></div><div style="font-size: 0.9em;">' + cat + '</div><div style="font-size: 0.75em; color: #999; font-weight: 500;">' + count + ' piatti</div>';
+        button.style.cssText = 'padding: 22px 16px; background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; cursor: pointer; text-align: center; font-weight: 600; color: #2d2d2d; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 10px;';
+        button.innerHTML = '<div style="width: 76px; height: 76px; border-radius: 20px; background: linear-gradient(135deg, ' + iconColor + ', ' + iconColor + 'dd); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px ' + iconColor + '40;"><i class="fas ' + faIcon + '" style="color: white; font-size: 32px;"></i></div><div style="font-size: 1em;">' + cat + '</div><div style="font-size: 0.8em; color: #999; font-weight: 500;">' + count + ' piatti</div>';
         button.onmouseover = function() { this.style.transform = 'translateY(-3px)'; this.style.boxShadow = '0 6px 20px rgba(0,0,0,0.1)'; };
         button.onmouseout = function() { this.style.transform = 'none'; this.style.boxShadow = 'none'; };
         button.onclick = function() {
@@ -1646,6 +1719,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
 });
 
+
+// Logo header omogeneo: badge bianco con logo, o monogramma con iniziale se manca/rotto
+function renderHeaderLogo(logoUrl, name) {
+    const box = document.getElementById('logo-container');
+    if (!box) return;
+    box.innerHTML = '';
+    const initial = (String(name || 'T').trim().charAt(0) || 'T').toUpperCase();
+    if (logoUrl) {
+        const badge = document.createElement('div');
+        badge.className = 'logo-badge';
+        const img = document.createElement('img');
+        img.src = logoUrl;
+        img.alt = String(name || 'Ristorante') + ' - logo';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.onerror = function() { renderHeaderMono(box, initial, name); };
+        badge.appendChild(img);
+        box.appendChild(badge);
+    } else {
+        renderHeaderMono(box, initial, name);
+    }
+}
+function renderHeaderMono(box, initial, name) {
+    if (!box) return;
+    box.innerHTML = '';
+    const m = document.createElement('div');
+    m.className = 'logo-mono';
+    m.setAttribute('role', 'img');
+    m.setAttribute('aria-label', String(name || 'Ristorante') + ' - logo');
+    m.textContent = initial;
+    box.appendChild(m);
+}
+
 async function loadRestaurantData() {
     try {
         const response = await fetch(API_URL + '?action=get-restaurant&id=' + RESTAURANT_SLUG);
@@ -1659,14 +1765,6 @@ async function loadRestaurantData() {
             document.getElementById('header-title').textContent = result.data.name;
             document.getElementById('footer-name').textContent = result.data.name;
             document.title = result.data.name + ' | Menu Digitale';
-
-            // Breadcrumb
-            const bc = document.createElement('nav');
-            bc.setAttribute('aria-label', 'Breadcrumb');
-            bc.style.cssText = 'padding:8px 16px;font-size:0.8rem;color:#888;';
-            bc.innerHTML = '<a href="/" style="color:#e73a3a;text-decoration:none;">Home</a> &rsaquo; <a href="/ristorante/' + (result.data.slug || '') + '/" style="color:#e73a3a;text-decoration:none;">' + result.data.name + '</a> &rsaquo; Menu';
-            const headerEl = document.querySelector('.header') || document.querySelector('[class*="header"]');
-            if (headerEl && headerEl.parentNode) headerEl.parentNode.insertBefore(bc, headerEl.nextSibling);
 
             // Schema.org Menu
             const menuSchema = {
@@ -1717,36 +1815,17 @@ async function loadRestaurantData() {
                     }
                 }
             }
-            if (result.data.logo || result.data.logo_url) {
+            renderHeaderLogo(result.data.logo || result.data.logo_url, result.data.name);
+            (function() {
                 const logoUrl = result.data.logo || result.data.logo_url;
-                const logoContainer = document.getElementById('logo-container');
                 const headerBlur = document.getElementById('header-blur-bg');
-                if (logoContainer) {
-                    const logoImg = document.createElement('img');
-                    logoImg.src = logoUrl;
-                    logoImg.style.maxHeight = '80px';
-                    logoImg.style.maxWidth = '100%';
-                    logoImg.style.objectFit = 'contain';
-                    logoContainer.appendChild(logoImg);
-                    if (headerBlur) {
-                        headerBlur.style.backgroundImage = `url('${logoUrl}')`;
-                        headerBlur.style.backgroundPosition = 'center';
-                        headerBlur.style.backgroundSize = 'cover';
-            } else {
-                // Logo di Enzociro se non presente nel database
-                const logoContainer = document.getElementById('logo-container');
-                if (logoContainer) {
-                    const logoImg = document.createElement('img');
-                    logoImg.src = 'https://www.trovapiatto.it/img/enzociro-logo.png';
-                    logoImg.style.maxHeight = '80px';
-                    logoImg.style.maxWidth = '100%';
-                    logoImg.style.objectFit = 'contain';
-                    logoContainer.appendChild(logoImg);
+                if (logoUrl && headerBlur) {
+                    headerBlur.style.backgroundImage = `url('${logoUrl}')`;
+                    headerBlur.style.backgroundPosition = 'center';
+                    headerBlur.style.backgroundSize = 'cover';
+                    headerBlur.style.backgroundRepeat = 'no-repeat';
                 }
-                        headerBlur.style.backgroundRepeat = 'no-repeat';
-                    }
-                }
-            }
+            })();
             if (result.data.description) document.getElementById('restaurant-desc').textContent = result.data.description;
             if (result.data.phone) {
                 const phoneLink = document.getElementById('phone-link');
@@ -1763,6 +1842,7 @@ async function loadRestaurantData() {
                 if (mapLink) mapLink.href = 'https://www.google.com/maps/search/' + encodeURIComponent(result.data.address);
             }
             loadContactList(result.data);
+            renderTrustRow(result.data);
         }
     } catch(e) { console.error('Errore:',e); }
 }
@@ -1844,20 +1924,24 @@ async function loadDishes() {
         if (result.success && result.data) {
             allDishes = applyDishPlaceholders(result.data);
             displayDishes(allDishes);
+            renderDishGallery();
             loadCategoryList(allDishes);
             highlightDishFromURL();
             renderFavoriteDishes();
             if (activeAllergenFilters.length > 0) {
-                const bar = document.getElementById('allergen-filter-bar');
-                bar.classList.add('visible');
-                bar.dataset.initialized = '1';
                 renderAllergenPills();
                 applyAllergenFilter();
             }
         } else {
-            document.getElementById('menu-items-container').innerHTML = '<div class="text-center p-4"><p>Errore nel caricamento dei piatti</p></div>';
+            document.getElementById('menu-items-container').innerHTML = tpMenuStateBox(
+                currentLanguage === 'en' ? 'Loading error' : 'Errore di caricamento',
+                currentLanguage === 'en' ? 'Could not load the dishes. Check your connection and try again.' : 'Non è stato possibile caricare i piatti. Controlla la connessione e riprova.',
+                'fa-wifi');
         }
-    } catch(e) { console.error('Errore:', e); document.getElementById('menu-items-container').innerHTML = '<div class="text-center p-4"><p>Errore di connessione</p></div>'; }
+    } catch(e) { console.error('Errore:', e); document.getElementById('menu-items-container').innerHTML = tpMenuStateBox(
+            currentLanguage === 'en' ? 'Connection error' : 'Errore di connessione',
+            currentLanguage === 'en' ? 'Check your connection and try again.' : 'Controlla la connessione e riprova.',
+            'fa-wifi'); }
 }
 
 function highlightDishFromURL() {
@@ -1897,11 +1981,21 @@ function highlightDishFromURL() {
 
 function displayDishes(dishes) {
     if (!dishes || dishes.length === 0) {
-        document.getElementById('menu-items-container').innerHTML = '<div class="text-center p-4"><p>' + (currentLanguage === 'en' ? 'No dishes available' : 'Nessun piatto disponibile') + '</p></div>';
+        document.getElementById('menu-items-container').innerHTML = tpMenuStateBox(
+            currentLanguage === 'en' ? 'Menu coming soon' : 'Menu in arrivo',
+            currentLanguage === 'en' ? 'The restaurant menu is being updated. Meanwhile, explore nearby restaurants.' : 'Il menu di questo ristorante è in aggiornamento. Intanto esplora i ristoranti vicini.',
+            'fa-utensils');
         return;
     }
+    const seenDish = new Set();
+    const deduped = dishes.filter(dish => {
+        const key = ((dish.category || '') + '||' + (dish.name || '')).toLowerCase().trim();
+        if (seenDish.has(key)) return false;
+        seenDish.add(key);
+        return true;
+    });
     const grouped = {};
-    dishes.forEach(dish => {
+    deduped.forEach(dish => {
         const cat = (dish.category && dish.category.trim()) ? dish.category.trim() : 'Vari';
         if (!grouped[cat]) grouped[cat] = [];
         grouped[cat].push(dish);
@@ -1944,7 +2038,7 @@ function displayDishes(dishes) {
         const translatedCategory = CATEGORY_TRANSLATIONS[currentLanguage] && CATEGORY_TRANSLATIONS[currentLanguage][category] ? CATEGORY_TRANSLATIONS[currentLanguage][category] : category;
         const capitalizedCategory = capitalizeFirstLetter(translatedCategory);
         const dishCount = items.length;
-        html += '<div class="menu-category-section"><div class="category-title-wrapper" onclick="toggleCategory(this)"><div class="category-icon-wrapper" style="background: linear-gradient(135deg, ' + iconColor + ', ' + iconColor + 'dd); box-shadow: 0 4px 12px ' + iconColor + '40;"><i class="fas ' + faIcon + '"></i></div><h2>' + capitalizedCategory + '<span class="cat-count">' + dishCount + ' ' + (currentLanguage === 'en' ? 'dishes' : 'piatti') + '</span></h2><i class="category-toggle-icon fas fa-chevron-up collapsed"></i></div><div data-itemsContainer class="collapsed">';
+        html += '<div class="menu-category-section"><div class="category-title-wrapper" onclick="toggleCategory(this)"><div class="category-icon-wrapper" style="background: linear-gradient(135deg, ' + iconColor + ', ' + iconColor + 'dd); box-shadow: 0 4px 12px ' + iconColor + '40;"><i class="fas ' + faIcon + '"></i></div><h2>' + capitalizedCategory + '<span class="cat-count">' + dishCount + '</span></h2><i class="category-toggle-icon fas fa-chevron-up collapsed"></i></div><div data-itemsContainer class="collapsed">';
         items.forEach(dish => {
             const name = dishName(dish);
             const desc = dishDescription(dish);
@@ -1963,6 +2057,10 @@ function displayDishes(dishes) {
         html += '</div></div>';
     });
     document.getElementById('menu-items-container').innerHTML = html;
+    if (typeof activeAllergenFilters !== 'undefined' && activeAllergenFilters.length) {
+        if (typeof requestAnimationFrame === 'function') requestAnimationFrame(function() { applyAllergenVisibility(); });
+        else applyAllergenVisibility();
+    }
 }
 
 function toggleCategory(element) {
@@ -2162,14 +2260,14 @@ function updateCartDisplay() {
         
         html += '<div style="padding: 15px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; gap: 10px;">';
         html += '<div style="flex: 1;">';
-        html += '<div style="font-weight: 600; color: #537b83; margin-bottom: 4px;">' + item.name + '</div>';
-        html += '<div style="color: #999; font-size: 0.9em;">è' + item.price.toFixed(2) + ' x ' + item.quantity + ' = <strong style="color: #EF3D26;">è' + itemTotal.toFixed(2) + '</strong></div>';
+        html += '<div style="font-weight: 600; color: #537b83; margin-bottom: 4px;">' + String(item.name ?? '').replace(/[&<>"\']/g, function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]}) + '</div>';
+        html += '<div style="color: #999; font-size: 0.9em;">€' + item.price.toFixed(2) + ' x ' + item.quantity + ' = <strong style="color: #EF3D26;">€' + itemTotal.toFixed(2) + '</strong></div>';
         html += '</div>';
         html += '<div style="display: flex; gap: 5px; align-items: center;">';
         html += '<button onclick="updateCartQuantity(\'' + item.id + '\', ' + (item.quantity - 1) + ');" style="width: 32px; height: 32px; padding: 0; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 16px; font-weight: bold; color: #537b83;">-</button>';
         html += '<span style="width: 30px; text-align: center; font-weight: 600;">' + item.quantity + '</span>';
         html += '<button onclick="updateCartQuantity(\'' + item.id + '\', ' + (item.quantity + 1) + ');" style="width: 32px; height: 32px; padding: 0; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 16px; font-weight: bold; color: #537b83;">+</button>';
-        html += '<button onclick="removeFromCart(\'' + item.id + '\');" style="width: 32px; height: 32px; padding: 0; border: 1px solid #ddd; border-radius: 6px; background: #ffebee; color: #c62828; cursor: pointer; font-size: 16px; border: 1px solid #ffcdd2;">?</button>';
+        html += '<button onclick="removeFromCart(\'' + item.id + '\');" style="width: 32px; height: 32px; padding: 0; border: 1px solid #ddd; border-radius: 6px; background: #ffebee; color: #c62828; cursor: pointer; font-size: 16px; border: 1px solid #ffcdd2;"><i class="fas fa-trash" style="font-size:14px;"></i></button>';
         html += '</div></div>';
     });
     
@@ -2181,6 +2279,149 @@ function updateCartDisplay() {
     if (itemCountEl) {
         itemCountEl.textContent = cart.items.length + ' articolo' + (cart.items.length !== 1 ? 'i' : '');
     }
+}
+
+
+// ===== TRUST ROW + APERTO ORA + GALLERY =====
+function tpEsc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+    });
+}
+function getOpenState(hours) {
+    try {
+        var h = (typeof hours === 'string') ? JSON.parse(hours) : hours;
+        if (!h || typeof h !== 'object') return null;
+        var days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+        var ranges = h[days[new Date().getDay()]] || [];
+        var cur = new Date().getHours() * 60 + new Date().getMinutes();
+        for (var i = 0; i < ranges.length; i++) {
+            var a = String(ranges[i][0]).split(':'), b = String(ranges[i][1]).split(':');
+            if (cur >= (+a[0]) * 60 + (+a[1]) && cur < (+b[0]) * 60 + (+b[1])) return { open: true };
+        }
+        return { open: false };
+    } catch (e) { return null; }
+}
+// Formato orari DB (colonna opening_hours, JSON): {"mon":[["11:30","15:00"],["19:00","23:30"]],"tue":[["11:30","15:00"],["19:00","23:30"]],"wed":[],"thu":[["11:30","15:00"],["19:00","23:30"]],"fri":[["11:30","15:00"],["19:00","23:30"]],"sat":[["11:30","15:00"],["19:00","23:30"]],"sun":[["12:00","15:00"],["19:00","23:00"]]}
+function renderTrustRow(d) {
+    var row = document.getElementById('trust-row');
+    if (!row || !d) return;
+    var btns = [];
+    if (d.phone) {
+        var p = String(d.phone).replace(/[^0-9+]/g, '');
+        btns.push({ href: 'tel:' + p, icon: 'fas fa-phone', label: 'Chiama', bg: '#10b981' });
+        btns.push({ href: 'https://wa.me/' + String(d.phone).replace(/[^0-9]/g, ''), icon: 'fab fa-whatsapp', label: 'WhatsApp', bg: '#25D366', ext: true });
+    }
+    var mapsUrl = (d.latitude && d.longitude)
+        ? 'https://www.google.com/maps/dir/?api=1&destination=' + d.latitude + ',' + d.longitude
+        : (d.address ? 'https://www.google.com/maps/search/' + encodeURIComponent(d.address) : null);
+    if (mapsUrl) btns.push({ href: mapsUrl, icon: 'fas fa-diamond-turn-right', label: 'Indicazioni', bg: '#3b82f6', ext: true });
+    if (!btns.length) return;
+    var st = getOpenState(d.opening_hours || d.hours);
+    var badge = '';
+    if (st) {
+        badge = st.open
+            ? '<span style="display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.4);color:#4ade80;font-size:0.75rem;font-weight:700;padding:8px 14px;border-radius:30px;white-space:nowrap;"><span style="width:8px;height:8px;border-radius:50%;background:#4ade80;"></span>Aperto ora</span>'
+            : '<span style="display:inline-flex;align-items:center;gap:6px;background:rgba(231,58,58,0.10);border:1px solid rgba(231,58,58,0.35);color:#ff8a8a;font-size:0.75rem;font-weight:700;padding:8px 14px;border-radius:30px;white-space:nowrap;"><span style="width:8px;height:8px;border-radius:50%;background:#e73a3a;"></span>Chiuso ora</span>';
+    }
+    row.innerHTML = btns.map(function(b) {
+        return '<a href="' + tpEsc(b.href) + '"' + (b.ext ? ' target="_blank" rel="noopener"' : '') + ' style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:' + b.bg + ';color:#fff;font-weight:700;font-size:0.85rem;padding:12px 8px;border-radius:12px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.25);"><i class="' + b.icon + '"></i>' + b.label + '</a>';
+    }).join('') + badge;
+    row.style.display = 'flex';
+}
+function renderDishGallery() {
+    var wrap = document.getElementById('dish-gallery-wrap');
+    var strip = document.getElementById('dish-gallery');
+    if (!wrap || !strip) return;
+    var pics = ((typeof allDishes !== 'undefined' && allDishes) ? allDishes : []).filter(function(d) { return d && d.image_url; }).slice(0, 12);
+    if (!pics.length) { wrap.style.display = 'none'; return; }
+    strip.innerHTML = pics.map(function(d) {
+        var n = tpEsc(d.name || '');
+        var id = tpAttr(d.id || '');
+        return '<div data-dish-id="' + id + '" data-dish="' + n + '" style="flex:0 0 auto;width:104px;scroll-snap-align:start;cursor:pointer;">' +
+            '<img src="' + tpEsc(d.image_url) + '" alt="' + n + '" loading="lazy" decoding="async" style="width:104px;height:104px;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,0.12);" onerror="this.parentNode.style.display=\'none\'">' +
+            '<div style="font-size:0.68rem;font-weight:600;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + n + '</div></div>';
+    }).join('');
+    strip.querySelectorAll('[data-dish]').forEach(function(el) {
+        el.addEventListener('click', function() {
+            focusDish(el.getAttribute('data-dish-id'), el.getAttribute('data-dish'));
+        });
+    });
+    wrap.style.display = 'block';
+}
+
+function tpAttr(s) {
+    return String(s == null ? '' : s).replace(/[<>&"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+    });
+}
+
+// Focus sul piatto selezionato: mostra menu completo, apre la categoria ed evidenzia il piatto (senza filtrare via tutto il resto)
+function focusDish(dishId, dishName) {
+    if (typeof allDishes === 'undefined' || !allDishes) return;
+    // Ripristina il menu completo per non perdere le altre categorie
+    displayDishes(allDishes);
+    var needleId = String(dishId || '');
+    var needleName = String(dishName || '').trim().toLowerCase();
+    var targetEl = null;
+    document.querySelectorAll('#menu-items-container .dish-card').forEach(function(card) {
+        var matches = false;
+        var idBtn = card.querySelector('button[data-dish-id]');
+        if (needleId && idBtn && idBtn.getAttribute('data-dish-id') === needleId) matches = true;
+        if (!matches && needleName) {
+            var h = card.querySelector('h2');
+            if (h && h.textContent.trim().toLowerCase() === needleName) matches = true;
+        }
+        if (matches) targetEl = card;
+    });
+    if (targetEl) {
+        // Apre la categoria (rimuove 'collapsed') e gira la chevron
+        var section = targetEl.closest('.menu-category-section');
+        if (section) {
+            var wrap = section.querySelector('[data-itemsContainer]');
+            if (wrap) wrap.classList.remove('collapsed');
+            var icon = section.querySelector('.category-toggle-icon');
+            if (icon) icon.classList.remove('collapsed');
+        }
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetEl.style.boxShadow = '0 0 0 3px #e73a3a';
+        setTimeout(function() { targetEl.style.boxShadow = ''; }, 1800);
+        // Mostra bottone "torna al menu"
+        showBackToMenu();
+    }
+}
+
+function showBackToMenu() {
+    var bar = document.getElementById('back-to-menu-bar');
+    if (!bar) return;
+    bar.style.display = 'flex';
+}
+
+// Torna alla vista Menu completa (senza filtri né evidenziazioni)
+function resetMenuView() {
+    if (typeof allDishes !== 'undefined' && allDishes) displayDishes(allDishes);
+    var inp = document.getElementById('search-input');
+    if (inp) inp.value = '';
+    var active = document.getElementById('allergen-filter-bar');
+    // rimuovi eventuale filtro allergeni attivo se presente (la barra inline è stata rimossa, ma a scanso)
+    if (window.activeAllergenFilters) { window.activeAllergenFilters = []; try { localStorage.setItem('tp_allergen_filters', '[]'); } catch (e) {} }
+    var bar = document.getElementById('back-to-menu-bar');
+    if (bar) bar.style.display = 'none';
+    var box = document.getElementById('menu-items-container');
+    if (box) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+
+// Box di stato visibile per menu vuoto o errore (niente pagina vuota)
+function tpMenuStateBox(title, text, icon) {
+    return '<div style="text-align:center;padding:48px 24px;background:#fff;border:1px solid #eee;border-radius:16px;margin:10px 0;">' +
+        '<i class="fas ' + icon + '" style="font-size:2rem;color:#e73a3a;margin-bottom:12px;"></i>' +
+        '<div style="font-weight:700;font-size:1.05rem;color:#333;margin-bottom:6px;">' + title + '</div>' +
+        '<div style="font-size:0.85rem;color:#999;margin-bottom:18px;">' + text + '</div>' +
+        '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">' +
+        '<button onclick="location.reload()" style="background:#e73a3a;color:#fff;border:none;border-radius:10px;padding:10px 22px;font-weight:700;cursor:pointer;">Riprova</button>' +
+        '<a href="/app/" style="background:#f5f5f5;color:#333;border-radius:10px;padding:10px 22px;font-weight:700;text-decoration:none;">Apri Mappa</a>' +
+        '</div></div>';
 }
 
 // Apri/Chiudi menu ordine
@@ -2316,25 +2557,37 @@ const ALLERGEN_FILTER_DATA = [
 
 let activeAllergenFilters = JSON.parse(localStorage.getItem('tp_allergen_filters') || '[]');
 
-function toggleAllergenFilter() {
-    const bar = document.getElementById('allergen-filter-bar');
-    bar.classList.toggle('visible');
-    if (bar.classList.contains('visible')) { bar.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
-    if (bar.classList.contains('visible') && !bar.dataset.initialized) {
-        renderAllergenPills();
-        bar.dataset.initialized = '1';
-    }
+function toggleAllergenPanel() {
+    const p = document.getElementById('allergen-panel');
+    if (!p) return;
+    const open = p.style.display === 'none' || p.style.display === '';
+    // chiudi gli altri pannelli dal basso
+    ['menu-cart', 'categories-panel', 'search-panel'].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el && id !== 'allergen-panel') el.style.display = 'none';
+    });
+    p.style.display = open ? 'block' : 'none';
+    if (open) renderAllergenPills();
+}
+function toggleAllergenFilter() { toggleAllergenPanel(); }
+function clearAllergenFilters() {
+    activeAllergenFilters = [];
+    try { localStorage.setItem('tp_allergen_filters', JSON.stringify([])); } catch (e) {}
+    renderAllergenPills();
+    applyAllergenFilter();
 }
 
 function renderAllergenPills() {
-    const container = document.getElementById('allergen-pills-container');
+    const container = document.getElementById('allergen-panel-pills') || document.getElementById('allergen-pills-container');
     const lang = currentLanguage || 'it';
     container.innerHTML = ALLERGEN_FILTER_DATA.map(([key, itName, icon, color, enName]) => {
         const name = lang === 'en' ? enName : itName;
         const isActive = activeAllergenFilters.includes(key);
-        return '<div class="allergen-pill' + (isActive ? ' active' : '') + '" data-allergen="' + key + '" onclick="toggleAllergenFilterPill(\'' + key + '\')"><i class="fas ' + icon + '"></i> ' + name + '</div>';
+        const label = lang === 'en' ? ('Exclude dishes with ' + name) : ('Escludi piatti con ' + name);
+        return '<div class="allergen-pill' + (isActive ? ' active' : '') + '" data-allergen="' + key + '" role="checkbox" aria-checked="' + (isActive ? 'true' : 'false') + '" title="' + name + '" onclick="toggleAllergenFilterPill(\'' + key + '\')"><i class="fas ' + icon + '"></i> ' + name + (isActive ? ' <i class="fas fa-times" style="font-size:0.65em;"></i>' : '') + '<span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">' + label + '</span></div>';
     }).join('');
     updateAllergenBadge();
+    updateAllergenResultLine();
 }
 
 function toggleAllergenFilterPill(allergen) {
@@ -2350,6 +2603,7 @@ function toggleAllergenFilterPill(allergen) {
 
 function updateAllergenBadge() {
     const badge = document.getElementById('allergen-active-badge');
+    if (!badge) return;
     if (activeAllergenFilters.length > 0) {
         badge.style.display = 'inline';
         badge.textContent = activeAllergenFilters.length;
@@ -2358,12 +2612,47 @@ function updateAllergenBadge() {
     }
 }
 
+function dishAllergenList(dish) {
+    var dal = [];
+    try { dal = dish.allergens ? (typeof dish.allergens === 'string' ? JSON.parse(dish.allergens) : dish.allergens) : []; } catch (e) { dal = []; }
+    if (!Array.isArray(dal)) dal = [];
+    return dal.map(function(a) { try { return normalizeAllergenKey(a); } catch (e) { return String(a).toLowerCase(); } });
+}
+// Veloce: nasconde/mostra le card esistenti senza ricostruire il DOM (niente lag)
+function applyAllergenVisibility() {
+    var cards = document.querySelectorAll('#menu-items-container .dish-card');
+    if (!cards.length || !allDishes || !allDishes.length) return false;
+    var byId = {};
+    allDishes.forEach(function(d) { byId[String(d.id)] = d; });
+    var active = activeAllergenFilters.map(function(a) { try { return normalizeAllergenKey(a); } catch (e) { return String(a).toLowerCase(); } });
+    var shown = 0;
+    cards.forEach(function(card) {
+        var btn = card.querySelector('button[data-dish-id]');
+        var dish = btn ? byId[String(btn.getAttribute('data-dish-id'))] : null;
+        var hide = false;
+        if (dish && active.length) {
+            var dal = dishAllergenList(dish);
+            hide = active.some(function(a) { return dal.indexOf(a) !== -1; });
+        }
+        card.style.display = hide ? 'none' : '';
+        if (!hide) shown++;
+    });
+    document.querySelectorAll('#menu-items-container .menu-category-section').forEach(function(sec) {
+        var all = sec.querySelectorAll('.dish-card');
+        var vis = sec.querySelectorAll('.dish-card:not([style*="display: none"])');
+        sec.style.display = (all.length && !vis.length) ? 'none' : '';
+    });
+    updateAllergenResultLine(allDishes.length, shown);
+    return true;
+}
 function applyAllergenFilter() {
     if (!allDishes || allDishes.length === 0) return;
     if (activeAllergenFilters.length === 0) {
-        displayDishes(allDishes);
+        if (!applyAllergenVisibility()) displayDishes(allDishes);
+        else updateAllergenResultLine(allDishes.length, allDishes.length);
         return;
     }
+    updateAllergenResultLine(allDishes.length, -1);
     const filtered = allDishes.filter(dish => {
         let dishAllergens = [];
         try { dishAllergens = dish.allergens ? (typeof dish.allergens === 'string' ? JSON.parse(dish.allergens) : dish.allergens) : []; } catch (e) { dishAllergens = []; }
@@ -2372,6 +2661,22 @@ function applyAllergenFilter() {
         return !activeAllergenFilters.some(a => normalizedDishAllergens.includes(a));
     });
     displayDishes(filtered);
+    updateAllergenResultLine(allDishes.length, filtered.length);
+}
+
+function updateAllergenResultLine(total, shown) {
+    const el = document.getElementById('allergen-result-line');
+    if (!el) return;
+    if (!activeAllergenFilters.length) {
+        el.innerHTML = 'Nessun filtro attivo: vedi tutto il menu.';
+        return;
+    }
+    const names = activeAllergenFilters.map(a => {
+        const f = (typeof ALLERGEN_FILTER_DATA !== 'undefined' ? ALLERGEN_FILTER_DATA : []).find(x => x[0] === a);
+        return f ? f[(typeof currentLanguage !== 'undefined' && currentLanguage === 'en') ? 4 : 1] : a;
+    }).join(', ');
+    const count = (typeof shown === 'number' && shown >= 0) ? (' &middot; <strong style="color:#333;">' + shown + ' piatti visibili</strong>') : '';
+    el.innerHTML = 'Esclusi piatti con: <strong style="color:#c62828;">' + names + '</strong>' + count;
 }
 
 // ==================== PIATTI PREFERITI ====================
@@ -2409,19 +2714,57 @@ function updateDishFavButtons() {
     });
 }
 
+var FAV_BUBBLE_COLORS = ['#e73a3a', '#f59e0b', '#06b6d4', '#8b5cf6', '#10b981', '#ec4899', '#3b82f6', '#f97316'];
+function favBubbleColor(name) {
+    let h = 0;
+    const s = String(name || '?');
+    for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+    return FAV_BUBBLE_COLORS[Math.abs(h) % FAV_BUBBLE_COLORS.length];
+}
 function renderFavoriteDishes() {
-    const section = document.getElementById('fav-dishes-section');
-    const list = document.getElementById('fav-dishes-list');
     const favs = getFavoriteDishes();
-    if (favs.length === 0) {
-        section.classList.remove('visible');
+    let dock = document.getElementById('fav-bubbles');
+    if (!dock) {
+        dock = document.createElement('div');
+        dock.id = 'fav-bubbles';
+        dock.setAttribute('aria-label', 'Piatti preferiti');
+        document.body.appendChild(dock);
+    }
+    const section = document.getElementById('fav-dishes-section');
+    if (section) section.classList.remove('visible');
+    if (!favs.length) {
+        dock.style.display = 'none';
+        dock.innerHTML = '';
         return;
     }
-    section.classList.add('visible');
-    list.innerHTML = favs.map(f => {
-        const url = f.slug ? '/menu/' + f.slug + '/?highlight=' + encodeURIComponent(f.name) : '#';
-        return '<a href="' + url + '" class="fav-dish-chip"><i class="fas fa-utensils" style="color:#EF3D26;font-size:0.8em;"></i> ' + f.name + '<span class="fav-remove" onclick="event.preventDefault();event.stopPropagation();toggleDishFavorite(\'' + f.id + '\', \'' + f.name.replace(/'/g, "\\'") + '\', \'' + (f.slug || '') + '\')">&times;</span></a>';
-    }).join('');
+    dock.style.display = 'flex';
+    dock.innerHTML = '';
+    favs.forEach(f => {
+        const b = document.createElement('div');
+        b.className = 'fav-bubble';
+        b.setAttribute('role', 'button');
+        b.setAttribute('tabindex', '0');
+        b.setAttribute('title', f.name || 'Piatto preferito');
+        b.style.background = favBubbleColor(f.name);
+        b.textContent = (String(f.name || '?').trim().charAt(0) || '?').toUpperCase();
+        const x = document.createElement('button');
+        x.className = 'fav-x';
+        x.setAttribute('aria-label', 'Rimuovi dai preferiti');
+        x.textContent = '\u00d7';
+        x.addEventListener('click', e => {
+            e.stopPropagation();
+            toggleDishFavorite(f.id, f.name, f.slug);
+        });
+        b.appendChild(x);
+        const go = () => {
+            if (f.slug) window.location.href = '/menu/' + f.slug + '/?highlight=' + encodeURIComponent(f.name);
+        };
+        b.addEventListener('click', go);
+        b.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+        });
+        dock.appendChild(b);
+    });
 }
 
 // Carica immagine offerta personalizzata

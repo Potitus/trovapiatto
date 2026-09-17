@@ -9,11 +9,19 @@ tp_cors_headers('GET, POST', 'Content-Type');
 
 try {
     $db = tp_db_connect();
+
+    // Colonna orari opzionale (introdotta con la migrazione available_hours)
+    $hasHours = false;
+    try {
+        $chk = $db->query("SHOW COLUMNS FROM restaurants LIKE 'available_hours'");
+        $hasHours = $chk->rowCount() > 0;
+    } catch (Exception $e) { $hasHours = false; }
+    $hoursField = $hasHours ? ", r.available_hours" : "";
     
     // Unica query con conteggi aggregati (evita N+1: prima erano 2 query per ristorante)
     $query = "SELECT
         r.id, r.name, r.slug, r.description, r.address, r.phone, r.email, r.logo_url,
-        r.latitude, r.longitude, r.city, r.cuisine, r.website, r.rating,
+        r.latitude, r.longitude, r.city, r.cuisine, r.website, r.rating$hoursField,
         (SELECT COUNT(*) FROM dishes d WHERE d.restaurant_id = r.id) as dishes_count,
         (SELECT COUNT(DISTINCT d.category_id) FROM dishes d WHERE d.restaurant_id = r.id) as category_count
     FROM restaurants r

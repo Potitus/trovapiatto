@@ -536,6 +536,16 @@ function ensureRestaurantColumns($db) {
     } catch(Exception $e) {
         error_log("⚠️ Errore nel controllo/aggiunta colonna michelin_stars: " . $e->getMessage());
     }
+
+    try {
+        $result = $db->query("SHOW COLUMNS FROM restaurants LIKE 'available_hours'");
+        if ($result->rowCount() == 0) {
+            $db->exec("ALTER TABLE restaurants ADD COLUMN available_hours TEXT DEFAULT NULL");
+            error_log("✅ Colonna 'available_hours' aggiunta a 'restaurants'");
+        }
+    } catch(Exception $e) {
+        error_log("⚠️ Errore nel controllo/aggiunta colonna available_hours: " . $e->getMessage());
+    }
 }
 
 function ensureAllergensColumn($db) {
@@ -703,6 +713,7 @@ function getAllRestaurants($db) {
         if (in_array('city', $columns)) $select_fields[] = 'r.city';
         if (in_array('cuisine', $columns)) $select_fields[] = 'r.cuisine';
         if (in_array('website', $columns)) $select_fields[] = 'r.website';
+        if (in_array('available_hours', $columns)) $select_fields[] = 'r.available_hours';
         if (in_array('rating', $columns)) $select_fields[] = 'COALESCE(r.rating, 0) as rating';
         if (in_array('michelin_stars', $columns)) $select_fields[] = 'COALESCE(r.michelin_stars, 0) as michelin_stars';
         
@@ -810,6 +821,15 @@ function updateRestaurant($db) {
     
     $stmt = $db->prepare("UPDATE restaurants SET name = ?, description = ?, address = ?, phone = ?, email = ?, logo_url = ?, latitude = ?, longitude = ?, city = ?, cuisine = ?, website = ?, michelin_stars = ? WHERE id = ?");
     $result = $stmt->execute([$data['name'] ?? null, $data['description'] ?? null, $data['address'] ?? null, $data['phone'] ?? null, $data['email'] ?? null, $data['logo_url'] ?? null, $data['latitude'] ?? null, $data['longitude'] ?? null, $data['city'] ?? null, $data['cuisine'] ?? null, $data['website'] ?? null, $data['michelin_stars'] ?? 0, $data['id']]);
+    if ($result && array_key_exists('available_hours', $data)) {
+        try {
+            $hoursJson = null;
+            if (is_array($data['available_hours']) && !empty($data['available_hours'])) {
+                $hoursJson = json_encode($data['available_hours'], JSON_UNESCAPED_UNICODE);
+            }
+            $db->prepare("UPDATE restaurants SET available_hours = ? WHERE id = ?")->execute([$hoursJson, $data['id']]);
+        } catch (Exception $e) { /* colonna assente: ignora */ }
+    }
     
     echo json_encode(['success' => $result], JSON_UNESCAPED_UNICODE);
 }
@@ -2481,15 +2501,78 @@ function searchDishes($db) {
         echo json_encode(['error' => 'Query troppo corta (minimo 2 caratteri)']);
         return;
     }
-    
+
+    // --- Intento "pasto + citta" (es. "pranzo Bari"): nessun piatto si chiama
+    // "pranzo", quindi puliamo la query da pasto/citta/parole riempitive.
+    // Se non resta nulla, ripieghiamo sui piatti tipici di quel pasto a Bari
+    // (stessa guida curata di app/assets/js/meal-intent.js).
+    $mealFallbacks = [
+        'pranzo'    => ['orecchiette', 'tiella', 'focaccia', 'panzerotto', 'burrata', 'branzino'],
+        'cena'      => ['branzino', 'pizza', 'crudo', 'polpo', 'burrata', 'frutta di mare'],
+        'colazione' => ['pasticciotto', 'caffe', 'cornetto', 'focaccia'],
+        'merenda'   => ['focaccia', 'panzerotto', 'sgagliozze', 'pasticciotto'],
+        'aperitivo' => ['taralli', 'burrata', 'focaccia', 'crudo'],
+        'brunch'    => ['focaccia', 'burrata', 'pasticciotto', 'caffe'],
+    ];
+    $mealWords = [
+        'pranzo' => 'pranzo', 'pranzi' => 'pranzo', 'pranzare' => 'pranzo',
+        'cena' => 'cena', 'cene' => 'cena', 'cenare' => 'cena', 'stasera' => 'cena', 'apericena' => 'cena',
+        'colazione' => 'colazione', 'colazioni' => 'colazione', 'breakfast' => 'colazione',
+        'merenda' => 'merenda', 'merende' => 'merenda', 'spuntino' => 'merenda', 'spuntini' => 'merenda',
+        'aperitivo' => 'aperitivo', 'aperitivi' => 'aperitivo', 'spritz' => 'aperitivo',
+        'brunch' => 'brunch',
+    ];
+    $stopwords = ['bari', 'dove', 'mangiare', 'mangio', 'mangi', 'cosa', 'quale', 'quali',
+        'ristorante', 'ristoranti', 'buon', 'buono', 'buona', 'miglior', 'migliore', 'migliori',
+        'vicino', 'centro', 'oggi', 'sera', 'mezzogiorno', 'pomeriggio',
+        'a', 'di', 'da', 'in', 'con', 'per', 'il', 'lo', 'la', 'i', 'gli', 'le',
+        'un', 'una', 'uno', 'del', 'della', 'dei', 'delle', 'al', 'allo', 'alla', 'sul', 'sulla'];
+
+    $norm = function ($s) {
+        $s = mb_strtolower($s, 'UTF-8');
+        $s = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $s);
+        return $s;
+    };
+    $normQ = ' ' . preg_replace('/[^a-z0-9 ]/', ' ', $norm($q)) . ' ';
+
+    $detectedMeal = null;
+    foreach ($mealWords as $w => $meal) {
+        if (strpos($normQ, ' ' . $w . ' ') !== false) { $detectedMeal = $meal; break; }
+    }
+    $wantsBari = strpos($normQ, ' bari ') !== false;
+
     // Dividi la query in parole singole per ricerca multipla
     $words = array_filter(explode(' ', $q), function($w) { return strlen($w) >= 2; });
-    
+
     if (empty($words)) {
         $words = [$q];
     }
-    
-    // Costruisci WHERE con AND per ogni parola
+
+    // Rimuovi pasto/citta/stopwords: "pranzo a Bari" -> [] ; "pranzo orecchiette" -> [orecchiette]
+    $cleanWords = [];
+    foreach ($words as $w) {
+        $nw = trim(preg_replace('/[^a-z0-9]/', '', $norm($w)));
+        if ($nw === '' || isset($mealWords[$nw]) || in_array($nw, $stopwords, true)) continue;
+        $cleanWords[] = $w;
+    }
+    $words = array_values($cleanWords);
+
+    $useOr = false;
+    if (empty($words)) {
+        if ($detectedMeal && isset($mealFallbacks[$detectedMeal])) {
+            // Fallback: piatti tipici del pasto (match ANY, non ALL)
+            $words = $mealFallbacks[$detectedMeal];
+            $useOr = true;
+        } else {
+            echo json_encode([
+                'success' => true, 'query' => $q, 'total' => 0, 'data' => [],
+                'hint' => 'Prova con il nome di un piatto (es. orecchiette) o con un pasto (es. pranzo Bari)'
+            ], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+    }
+
+    // Costruisci WHERE: AND per ogni parola (ricerca piatto) oppure OR (fallback pasto)
     $whereParts = [];
     $params = [];
     foreach ($words as $word) {
@@ -2499,14 +2582,25 @@ function searchDishes($db) {
         $params[] = $searchTerm;
         $params[] = $searchTerm;
     }
-    $whereClause = implode(' AND ', $whereParts);
-    
+    $whereClause = implode($useOr ? ' OR ' : ' AND ', $whereParts);
+
+    // Se l'utente ha nominato Bari, i ristoranti di Bari salgono in cima (senza escludere gli altri)
+    $bariBoost = $wantsBari ? "(r.city LIKE '%Bari%') DESC, " : '';
+
     // Cerca piatti che matchano tutte le parole
+    static $hasHoursCol = null;
+    if ($hasHoursCol === null) {
+        try {
+            $cstmt = $db->query("SHOW COLUMNS FROM restaurants LIKE 'available_hours'");
+            $hasHoursCol = $cstmt->rowCount() > 0;
+        } catch (Exception $e) { $hasHoursCol = false; }
+    }
+    $hoursField = $hasHoursCol ? ",\n            r.available_hours" : "";
     $stmt = $db->prepare("
         SELECT 
             d.id, d.name, d.description, d.price, d.category,
             r.id as restaurant_id, r.name as restaurant_name, r.slug as restaurant_slug,
-            r.logo_url, r.city, r.cuisine, r.latitude, r.longitude,
+            r.logo_url, r.city, r.cuisine, r.latitude, r.longitude$hoursField,
             COALESCE(r.rating, 0) as restaurant_rating,
             (SELECT COUNT(*) FROM reviews WHERE restaurant_id = r.id) as review_count,
             (SELECT COALESCE(AVG(rating), 0) FROM reviews WHERE restaurant_id = r.id) as avg_user_rating
@@ -2514,6 +2608,7 @@ function searchDishes($db) {
         JOIN restaurants r ON d.restaurant_id = r.id
         WHERE $whereClause
         ORDER BY 
+            $bariBoost
             (COALESCE(r.rating, 0) * 0.4 + 
              (SELECT COALESCE(AVG(rating), 0) FROM reviews WHERE restaurant_id = r.id) * 0.4 +
              LEAST((SELECT COUNT(*) FROM reviews WHERE restaurant_id = r.id) / 10, 1) * 0.2
@@ -2523,13 +2618,16 @@ function searchDishes($db) {
     ");
     $stmt->execute($params);
     $results = $stmt->fetchAll();
-    
-    echo json_encode([
-        'success' => true, 
+
+    $out = [
+        'success' => true,
         'query' => $q,
         'total' => count($results),
-        'data' => $results
-    ], JSON_UNESCAPED_UNICODE);
+        'data' => $results,
+    ];
+    if ($detectedMeal) $out['meal'] = $detectedMeal;
+    if ($wantsBari) $out['city'] = 'Bari';
+    echo json_encode($out, JSON_UNESCAPED_UNICODE);
 }
 
 /**
@@ -3041,7 +3139,7 @@ function getWhatPeopleAte($db) {
     $stmt = $db->query("SELECT dish_id, COUNT(*) as review_count, ROUND(AVG(rating),1) as avg_rating, MAX(created_at) as last_reviewed FROM reviews WHERE dish_id IS NOT NULL AND dish_id != '' GROUP BY dish_id ORDER BY review_count DESC LIMIT $limit");
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($rows as &$r) {
-        $d = $db->prepare("SELECT name, price, image_url FROM dishes WHERE id = ?");
+        $d = $db->prepare("SELECT d.name, d.price, d.image_url, COALESCE(c.name, d.category) AS category FROM dishes d LEFT JOIN categories c ON d.category_id = c.id WHERE d.id = ?");
         $d->execute([$r['dish_id']]);
         $r['dish'] = $d->fetch(PDO::FETCH_ASSOC) ?: null;
         $rest = $db->prepare("SELECT rest.name, rest.slug, rest.logo_url FROM dishes d JOIN restaurants rest ON d.restaurant_id = rest.id WHERE d.id = ?");

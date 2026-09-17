@@ -8,23 +8,27 @@
   <meta name="keywords" content="cosa mangiare Giovinazzo, piatti tipici Giovinazzo, cucina pugliese, pesce fresco Giovinazzo, ristoranti Giovinazzo, polpo Giovinazzo, focaccia Puglia, fave e cicoria, pizza cipolla, melanzane parmigiana, storia Giovinazzo, tradizioni gastronomiche">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta name="theme-color" content="#e73a3a">
-  <!-- Geo Meta Tags (Local SEO) -->\n  <meta name="geo.region" content="IT-BA">\n  <meta name="geo.placename" content="Giovinazzo">\n  <meta name="geo.position" content="41.1808;16.6715">\n  <meta name="ICBM" content="41.1808, 16.6715">
+  <!-- Geo Meta Tags (Local SEO) -->
+  <meta name="geo.region" content="IT-BA">
+  <meta name="geo.placename" content="Giovinazzo">
+  <meta name="geo.position" content="41.1808;16.6715">
+  <meta name="ICBM" content="41.1808, 16.6715">
   <meta name="author" content="trovapiatto">
   
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://www.trovapiatto.it/giovinazzo/">
   <meta property="og:title" content="Cosa Mangiare a Giovinazzo: La Guida Completa ai Piatti Tipici">
   <meta property="og:description" content="Guida completa ai piatti tipici di Giovinazzo. Specialità da provare, con ristoranti e prezzi.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&h=630&fit=crop">
+  <meta property="og:image" content="https://www.trovapiatto.it/images/cities/giovinazzo.jpg">
   <meta property="og:site_name" content="trovapiatto">
   <meta property="og:locale" content="it_IT">
   <meta property="article:published_time" content="2026-08-29T10:00:00+02:00">
-  <meta property="article:modified_time" content="2026-08-29T10:00:00+02:00">
+  <meta property="article:modified_time" content="2026-09-11T10:00:00+02:00">
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cosa Mangiare a Giovinazzo: La Guida Completa ai Piatti Tipici">
   <meta name="twitter:description" content="Piatti tipici di Giovinazzo da provare assolutamente. Ristoranti, prezzi e consigli.">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&h=630&fit=crop">
+  <meta name="twitter:image" content="https://www.trovapiatto.it/images/cities/giovinazzo.jpg">
   
   <link rel="canonical" href="https://www.trovapiatto.it/giovinazzo/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -110,7 +114,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('HERO_IMAGE') center/cover no-repeat;
+      background: url('/images/cities/giovinazzo.jpg') center/cover no-repeat;
       filter: blur(4px) brightness(0.55) scale(1.05);
       z-index: 0;
     }
@@ -383,6 +387,48 @@
       font-size: 1.1rem;
     }
     
+    .city-rest-section {
+      margin: 48px 0;
+    }
+
+    .city-rest-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      padding-left: 14px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .city-rest-sub {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin: 0 0 20px 14px;
+    }
+
+    .city-rest-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .city-rest-grid .restaurant-card {
+      margin: 0;
+    }
+
+    .city-rest-count {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(231,58,58,0.12);
+      border: 1px solid rgba(231,58,58,0.3);
+      color: var(--primary-light);
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
     .map-section {
       margin: 48px 0;
     }
@@ -658,6 +704,92 @@
     }
     
     .site-footer a:hover { color: var(--primary); }
+  
+    /* Tour gastronomico */
+    .tour-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.10), rgba(245,158,11,0.06));
+      border: 2px solid rgba(231,58,58,0.30);
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tour-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 24px; right: 24px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--accent-food), transparent);
+      border-radius: 2px;
+    }
+    .tour-box h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tour-box h2 i { color: var(--primary); }
+    .tour-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .tour-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .tour-step {
+      display: block;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .tour-step:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      text-decoration: none;
+    }
+    .tour-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent-food);
+      margin-bottom: 8px;
+    }
+    .tour-dish {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    .tour-why {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .tour-step .tour-go {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
   </style>
     <!-- Google Analytics (Consent Mode v2: default negato) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
@@ -721,7 +853,7 @@
   <div class="container">
 
     <div class="intro">
-      Giovinazzo è un gioiello nascosto della costa pugliese, a pochi minuti da Bari. Questa piccola città marinara, arroccata intorno al suo castello normanno e al lungomare, ha una tradizione culinaria che ruota attorno al <strong>mare</strong> e alla <strong>cucina povera pugliese</strong>. I pescatori portano freschezza ogni mattina, e i locali la trasformano in piatti semplici ma incredibilmente saporiti. Da qui non puoi andare via senza aver assaggiato il polpo alla pignattara, le cozze cotte in coccio, o una frittura di pesce servita sul molo con il sole che tramonta sull'Adriatico. In questa guida ti portiamo alla scoperta dei <strong>6 piatti tipici</strong> che ogni visitatore (e ogni giovinazzese doc) deve provare almeno una volta, oltre alla storia e alle tradizioni culinarie che rendono unica questa cittadina.
+      Giovinazzo, borgo marinaro a pochi minuti da Bari, unisce <strong>mare</strong> e <strong>cucina povera pugliese</strong>: polpo alla pignattara, cozze in coccio e frittura sul molo al tramonto. Ecco i <strong>6 piatti tipici</strong> da provare almeno una volta.
     </div>
 
     <div class="social-share inline-share">
@@ -732,7 +864,40 @@
     </div>
 
     <div class="intro">
-      <strong>Giovinazzo in breve:</strong> Questa piccola città marinara si trova a soli 25 km a nord di Bari, sulla costa pugliese che guarda l'Adriatico. Fondata in epoca normanna, ha conservato il suo centro storico medievale intatto, con il castello che domina il borgo e le case bianche che scendono verso il porto. La popolazione è di circa 20.000 abitanti, ma d'estate raddoppia grazie ai turisti che scoprono i suoi piatti e le sue spiagge. Il mercato del pesce è attivo ogni mattina, e i ristoranti del borgo lavorano esclusivamente con pesce fresco del giorno. Giovinazzo è una tappa imperdibile per chi visita la Puglia — una città che si gusta prima con gli occhi e poi con il palato.
+      <strong>Giovinazzo in breve:</strong> borgo marinaro a 25 km da Bari, centro medievale e mercato del pesce attivo ogni mattina. I ristoranti lavorano solo pesce fresco del giorno.
+    </div>
+
+      
+    <!-- Tour gastronomico Giovinazzo -->
+    <div class="tour-box">
+      <h2><i class="fa-solid fa-route"></i> Tour Gastronomico di Giovinazzo</h2>
+      <p class="tour-sub">Quattro tappe in un giorno: dalla colazione alla cena, i piatti da non perdere. <!-- TOUR-OK --></p>
+      <div class="tour-steps">
+      <a href="#focaccia-pugliese" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-mug-saucer"></i> Mattina</span>
+        <div class="tour-dish">Focaccia Pugliese</div>
+        <div class="tour-why">Appena sfornata dai panifici del borgo.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#polpo-alla-pignattara" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-sun"></i> Pranzo</span>
+        <div class="tour-dish">Polpo alla Pignattara</div>
+        <div class="tour-why">Cotto lento nel coccio, tenerissimo.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#cozze-alla-parente" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-shrimp"></i> Pomeriggio</span>
+        <div class="tour-dish">Cozze alla Parente</div>
+        <div class="tour-why">Le cozze del porto, un rito locale.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#pizza-con-la-cipolla" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-moon"></i> Sera</span>
+        <div class="tour-dish">Pizza con la Cipolla</div>
+        <div class="tour-why">Dolce e croccante, perfetta la sera.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      </div>
     </div>
 
       <section class="dish-section" id="storia">
@@ -741,19 +906,13 @@
           <h2>Storia e Tradizioni di Giovinazzo</h2>
         </div>
         <div class="dish-text">
-          <strong>Le origini di Giovinazzo</strong> risalgono all'epoca normanna, quando fu costruito il castello che ancora oggi domina il borgo dal punto più alto della collina. Fondata probabilmente sulle rovine di un insediamento romano, la città ha attraversato i secoli sotto dominazioni longobarda, bizantina e sveva, accumulando un patrimonio culinario che riflette tutti questi influssi. Il centro storico, con i suoi vicoli stretti e le case in pietra che scendono verso il mare, è un labirinto di profumi e sapori che si rivelano a ogni angolo. Le prime notizie documentate di Giovinazzo risalgono al XI secolo, quando il borgo era un importante snodo commerciale tra Bari e Barletta.
+          <strong>Le origini di Giovinazzo</strong> risalgono all'epoca normanna: castello, vicoli e case in pietra verso il mare. Snodo commerciale tra Bari e Barletta già nell'XI secolo, accumula influssi longobardi, bizantini e svevi anche in cucina.
         </div>
         <div class="dish-text">
-          La <strong>tradizione dei pescatori</strong> è il cuore pulsante di Giovinazzo. Per generazioni, le famiglie del borgo antico hanno vissuto di pesca, e questa dipendenza dal mare ha plasmato la cucina locale in modo indelebile. La mattina presto, quando le barche tornano al porto, si accende il mercato del pesce: triglie, saraghi, mormore, polpi e cozze vengono venduti direttamente ai ristoranti e alle famiglie. La cucina giovinazzese è figlia di questa freschezza impossibile da replicare altrove — i piatti sono semplici proprio perché il pesce non ha bisogno di maschere. Il porto di Giovinazzo, seppur piccolo, è uno dei più attivi della costa barese, e la flotta di pesca artigianale è ancora oggi al centro dell'economia locale.
+          La <strong>tradizione dei pescatori</strong> è il cuore di Giovinazzo: ogni mattina il mercato del porto vende triglie, saraghi, polpi e cozze direttamente a ristoranti e famiglie. Piatti semplici, perché il pesce fresco non ha bisogno di maschere.
         </div>
         <div class="dish-text">
-          Una particolarità che contraddistingue Giovinazzo è la tradizione della <strong>"cucina dei poveri"</strong>: piatti nati dalla necessità di non sprecare nulla, che oggi sono diventate prelibatezze riconosciute. Il polpo alla pignattara, ad esempio, nasce dalla pratica di cuocere il pesce più abbondante e meno pregiato in pentole di coccio con gli ingredienti disponibili — pomodori, olive, capperi — trasformando un ingrediente umile in un piatto sublime. Anche le sgagliozze, la polenta fritta tipica della zona, raccontano una storia di povertà e ingegno culinario. Il pane cunzato, preparato con pane raffermo, olio, pomodoro e acciughe, è un altro esempio di come la necessità si sia trasformata in gusto.
-        </div>
-        <div class="dish-text">
-          Le <strong>feste popolari</strong> di Giovinazzo sono strettamente legate al cibo. Durante la festa del patrono San Nicola, le strade si riempiono di bancarelle che offrono frittelle di pesce, taralli e dolci tradizionali. D'estate, le feste dei pescatori sul lungomare diventano occasioni per gustare frutta di mare freschissima accompagnata da un bicchiere di vino locale. È in queste occasioni che si comprende appieno il legame indissoluble tra Giovinazzo, il mare e il cibo. La processione di San Nicola, il 6 dicembre, è preceduta da un banchetto comunitario dove si preparano piatti di pesce per tutti gli abitanti del borgo — una tradizione che risale al Medioevo e che ancora oggi raduna centinaia di persone attorno alle tavole imbandite nelle piazze del centro storico.
-        </div>
-        <div class="dish-text">
-          Il <strong>castello normanno</strong>, risalente al XII secolo, è il simbolo architettonico di Giovinazzo. Al suo interno si trova una piccola collezione di ceramiche pugliesi del XVIII secolo, tra cui alcune che raffigurano scene di cucina e di pesca. Le cantine sotterranee del castello, un tempo usate come magazzini per il sale e le spezie, oggi ospitano occasionali eventi enogastronomici dove si assaggiano i vini della Murgia accompagnati da prodotti tipici locali. È un angolo poco visitato ma straordinario per capire il legame tra Giovinazzo e il cibo attraverso i secoli.
+          Da qui nasce la <strong>"cucina dei poveri"</strong>: polpo alla pignattara, sgagliozze e pane cunzato trasformano ingredienti umili in prelibatezze. Le <strong>feste popolari</strong>, da San Nicola alle sagre dei pescatori, celebrano questo legame con banchetti e frutta di mare sul lungomare.
         </div>
       </section>
 
@@ -778,13 +937,10 @@
         </div>
         <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=400&fit=crop" alt="Polpo alla Pignattara" class="dish-img" loading="lazy">
         <div class="dish-text">
-          Il piatto più iconico di Giovinazzo: <strong>polpo cotto lentamente</strong> in una pignatta di coccio con pomodoro, olive, capperi e peperoncino. La cottura lenta rende il polpo tenero come burro. I pescatori lo preparano secondo ricette tramandate da generazioni.
+          Il piatto più iconico di Giovinazzo: <strong>polpo cotto lentamente</strong> in pignatta di coccio con pomodoro, olive nere, capperi e peperoncino. Almeno tre ore a fuoco basso per una tenerezza unica.
         </div>
         <div class="dish-text">
-          Il segreto è la qualità del polpo — deve essere freschissimo, catturato quel giorno stesso — e la cottura lenta a fuoco basso per almeno tre ore. La pignatta di coccio distribuisce il calore in modo uniforme, creando quella texture speciale che non si ottiene con le pentole moderne. I capperi devono essere di Pane di Procida, le olive nere del Tapasano, e il pomodoro San Marzano del Vulture.
-        </div>
-        <div class="dish-text">
-          Quando apri la pignatta, il profumo che esce racconta il mare, la terra e la tradizione in un unico sospiro. È un piatto che va mangiato con lo scaglione di pane raffermo, per non sprecare nemmeno una goccia di quel sugo incredibile. I ristoranti di Giovinazzo lo servono come secondo piatto, ma i più esperti lo ordinano come primo, con pane abbrustolito. Il prezzo varia da €14 a €20, a seconda della dimensione del polpo e del ristorante.
+          Polpo freschissimo del giorno, scarpetta obbligatoria con pane raffermo. Prezzo €14-20 a seconda del ristorante.
         </div>
         <div class="dish-info">
           <span class="tag"><i class="fa-solid fa-euro-sign"></i> €14-20</span>
@@ -807,15 +963,12 @@
           <div class="dish-number">2</div>
           <h2>Focaccia Pugliese</h2>
         </div>
-        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&h=400&fit=crop" alt="Focaccia Pugliese" class="dish-img" loading="lazy">
+        <img src="/images/dishes/focaccia-barese.jpg" alt="Focaccia Pugliese" class="dish-img" loading="lazy">
         <div class="dish-text">
-          La <strong>focaccia pugliese</strong> di Giovinazzo ha una personalità tutta sua: alta, soffice, con olio EVO generoso e sale grosso. Si trova in ogni forno del paese, sfornata più volte al giorno. Da provare con un bicchiere di vino locale.
+          La <strong>focaccia di Giovinazzo</strong>: alta e soffice, con olio EVO e sale grosso, sfornata più volte al giorno nei forni del borgo — i più antichi ancora a legna.
         </div>
         <div class="dish-text">
-          A differenza della focaccia barese, quella di Giovinazzo è leggermente più bassa e croccante ai bordi, con una crosticina dorata che scrocca sotto i denti. L'impasto usa farina locale, acqua di sorgente, lievito madre e un filo d'olio EVO del Premio. Si condisce semplicemente con sale grosso e pomodorini schiacciati, ma la versione più amata è quella "bianca", con solo olio e sale — perché qui il sapore della farina fermentata è il vero protagonista.
-        </div>
-        <div class="dish-text">
-          I panifici del centro la sfornano già prima dell'alba, e la mattina presto i giovinazzesi la comprano per la colazione, spezzata a metà e farcita con un pezzo di mozzarella fresca o con le cime di rapa. A €1.50-2.50, è lo street food più democratico di Giovinazzo — non c'è turista o locale che non ne mangi almeno una volta al giorno. I forni più antichi del borgo usano ancora le antiche fornaci a legna, che danno alla focaccia quel sapore affumicato impossibile da replicare.
+          Classica con pomodorini o "bianca" solo olio e sale. A €1.50-2.50, lo street food quotidiano di tutti.
         </div>
         <div class="dish-info">
           <span class="tag"><i class="fa-solid fa-euro-sign"></i> €1.50-3</span>
@@ -840,16 +993,10 @@
         </div>
         <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=800&h=400&fit=crop" alt="Cozze alla Parente" class="dish-img" loading="lazy">
         <div class="dish-text">
-          Le <strong>cozze</strong> cotte in brodo di pesce con patate, una specialità della costa garganica adottata anche a Giovinazzo. Semplice, fresco, genuino — come deve essere il cibo di mare pugliese.
+          Le <strong>cozze</strong> pulite a mano ogni mattina, cotte in casseruola di ferro con patate, aglio e prezzemolo. Il brodo dorato che si forma è il vero tesoro: si beve direttamente dalla casseruola.
         </div>
         <div class="dish-text">
-          Le cozze vengono pulite a mano ogni mattina dai pescatori del porto, e cotte in una casseruola di ferro con patate a rondelle, aglio, prezzemolo e un filo d'olio. Il brodo che si forma durante la cottura è il vero tesoro: acqua di mare, amido delle patate e sapore delle cozze si fondono in un liquido dorato e profumato che i giovinazzesi bevono con un cucchiaio di rame direttamente dalla casseruola.
-        </div>
-        <div class="dish-text">
-          È un piatto che non ha bisogno di ingredienti costosi: la freschezza delle cozze fa tutto il lavoro. Le patate devono essere quelle gialle del Gargano, che si sfaldano e addensano il brodo in modo naturale. A €10-14, è un piatto che soddisfa e scalda l'anima, perfetto per le serate fredde d'inverno o per un pranzo leggero d'estate.
-        </div>
-        <div class="dish-text">
-          I ristoranti sul porto lo servono direttamente nella casseruola di cottura, con un cucchiaio di legno per bere il brodo. L'abbinamento ideale è un bianco fresco, come il Verdeca o il Bombino Bianco della Murgia. A Giovinazzo, le cozze sono un ingrediente fondamentale — le si trova nei primi piatti, nei secondi, nelle zuppe, e persino nei dolci in alcune tradizioni antiche che oggi sono quasi scomparse.
+          A €10-14, servite sul porto con Verdeca o Bombino Bianco. Semplice e genuino, come il cibo di mare pugliese deve essere.
         </div>
         <div class="dish-info">
           <span class="tag"><i class="fa-solid fa-euro-sign"></i> €10-14</span>
@@ -874,16 +1021,10 @@
         </div>
         <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&h=400&fit=crop" alt="Fave e cicoria" class="dish-img" loading="lazy">
         <div class="dish-text">
-          Le <strong>fave e cicoria</strong> sono il piatto della memoria: quello che le nonne preparavano il lunedì, quando il frigorifero era vuoto e la dispensa conteneva solo fave secche e cicoria selvatica.
+          Le <strong>fave e cicoria</strong> sono il piatto della memoria: crema vellutata di fave bianche del Gargano con cicoria selvatica lessata, olio EVO e aglio. I pescatori lo mangiano sul "pane cunzato".
         </div>
         <div class="dish-text">
-          Le fave si cuociono lentamente in acqua con foglie di alloro fino a diventare una crema densa e vellutata, mentre la cicoria viene lessata e condita con olio EVO e aglio. A Giovinazzo, i pescatori lo mangiano come condimento per la scaglia di pane raffermo — il cosiddetto "pane cunzato" — creando un piatto che è un monumento alla cucina povera pugliese.
-        </div>
-        <div class="dish-text">
-          Il segreto è nella qualità delle fave secche, che devono essere quelle bianche del Gargano, e nella cicoria selvatica raccolta nei campi attorno al borgo, che ha un sapore leggermente amaro che bilancia la dolcezza delle fave. Un piatto che racconta la povertà e l'ingegno della cucina pugliese, dove niente andava sprecato e tutto veniva trasformato in qualcosa di buono.
-        </div>
-        <div class="dish-text">
-          A €7-10, è uno dei piatti più economici ma anche più autentici che puoi trovare a Giovinazzo. I ristoranti del centro lo servono come antipasto o come primo piatto, spesso accompagnato da una fetta di pane casereccio con pomodoro e origano. La versione più raffinata prevede l'aggiunta di olive e capperi, che danno una nota piccante alla crema di fave. È un piatto che racconta la storia di un territorio, di una comunità, di una cultura culinaria fatta di ingegno e rispetto per gli ingredienti.
+          A €7-10, il monumento alla cucina povera pugliese: niente sprechi, tutto sapore.
         </div>
         <div class="dish-info">
           <span class="tag"><i class="fa-solid fa-euro-sign"></i> €7-10</span>
@@ -907,16 +1048,10 @@
         </div>
         <img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=800&h=400&fit=crop" alt="Pizza con la cipolla" class="dish-img" loading="lazy">
         <div class="dish-text">
-          La <strong>pizza con la cipolla</strong> di Giovinazzo è un pezzo di storia locale: un disco di pasta croccante condito con cipolle rosse caramellate, olive nere del Tapasano e un filo generoso di olio EVO.
+          La <strong>pizza con la cipolla</strong>: pasta sottile e croccante dal forno a legna, cipolle rosse locali caramellate, olive nere e acciughe. Tradizione del borgo dal XIX secolo.
         </div>
         <div class="dish-text">
-          A differenza della pizza napoletana, quella giovinazzese ha un impasto più sottile e croccante, cotto nei forni a legna dei vecchi panifici del centro. La versione tradizionale prevede le cipolle cotte lentamente con un pizzico di zucchero per esaltarne la dolcezza, unite a rosmarino e acciughe sotto sale. È un piatto semplice ma incredibilmente saporito, che si trova nelle pizzerie del borgo antico e che i giovinazzesi ordinano come aperitivo accompagnato da un bicchiere di vino locale.
-        </div>
-        <div class="dish-text">
-          La cipolla rossa di Giovinazzo è un prodotto locale particolarmente pregiato: cresce nei campi attorno al borgo e ha un sapore dolce e delicato che la rende perfetta per la cottura lenta. A €5-8, è un piatto economico e soddisfacente, perfetto per una cena leggera o come accompagnamento a un aperitivo sul lungomare. Le pizzerie del centro, come quelle della via principale del borgo antico, la preparano con ingredienti sempre freschi e un forno a legna che dà alla pasta quella caratteristica sapore affumicato.
-        </div>
-        <div class="dish-text">
-          La tradizione della pizza con la cipolla a Giovinazzo risale almeno al XIX secolo, quando le pizzerie del borgo iniziarono a condire le pizze con gli ingredienti più disponibili: cipolle, olive, acciughe. Oggi, questa pizza è un simbolo dell'identità culinaria di Giovinazzo — un piatto che non trovi altrove con lo stesso sapore e la stessa tradizione. Ordinarla è come assaggiare un pezzo di storia locale, un'esperienza che va oltre il semplice gusto.
+          A €5-8, perfetta per cena leggera o aperitivo sul lungomare.
         </div>
         <div class="dish-info">
           <span class="tag"><i class="fa-solid fa-euro-sign"></i> €5-8</span>
@@ -940,16 +1075,10 @@
         </div>
         <img src="https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=800&h=400&fit=crop" alt="Melanzane alla parmigiana" class="dish-img" loading="lazy">
         <div class="dish-text">
-          La <strong>parmigiana di melanzane</strong> a Giovinazzo si prepara come una volta: fette di melanzane fritte, stratificate con ragù di pomodoro, mozzarella filante, parmigiano grattugiato e basilio fresco.
+          La <strong>parmigiana</strong> come una volta: melanzane dell'orto fritte, ragù di San Marzano, mozzarella filante e basilico, al forno lentissimo.
         </div>
         <div class="dish-text">
-          Il segreto sta nella qualità degli ingredienti: le melanzane sono quelle dell'orto, i pomodori sono i San Marzano coltivati nella piana barese, e la mozzarella viene dal caseificio sotto casa. La cottura al forno lentissima fa fondere tutti i sapori in una armonia perfetta. A Giovinazzo la si trova come contorno nei ristoranti di pesce, ma anche come piatto unico nelle trattorie del centro. È un piatto che sa di casa, di terra, di mediterraneo.
-        </div>
-        <div class="dish-text">
-          La versione di Giovinazzo prevede le melanzane a fette spesse, passate in farina e uova prima della frittura, che creano una crosta croccante che protegge la polpa morbida. Il ragù è semplice — pomodoro, aglio, basilico, un filo d'olio — perché qui è la melanzana la star del piatto. A €8-12, è un piatto che soddisfa sia i vegetariani che gli amanti della carne, e che si abbina perfettamente con un rosso leggero come il Primitivo giovinazzese.
-        </div>
-        <div class="dish-text">
-          I ristoranti del borgo la servono calda, con la mozzarella ancora filante, accompagnata da una insalata mista. La parmigiana di Giovinazzo è un piatto che racconta la terra pugliese come il polpo alla pignattara racconta il mare — sono i due volti della stessa medaglia, la cucina di un borgo che ha saputo valorizzare sia la terra che il mare in modo straordinario. Nei mesi estivi, quando le melanzane sono al loro apice, la parmigiana diventa un piatto quasi quotidiano nelle tavole giovinazzesi.
+          A €8-12, il volto di terra della cucina giovinazzese — come il polpo racconta il mare. Ottima d'estate, con un Primitivo leggero.
         </div>
         <div class="dish-info">
           <span class="tag"><i class="fa-solid fa-euro-sign"></i> €8-12</span>
@@ -980,16 +1109,16 @@
           <h2>Piatti di Stagione a Giovinazzo</h2>
         </div>
         <div class="dish-text">
-          <strong>Primavera:</strong> È la stagione delle fave fresche e dei favetti, che a Giovinazzo vengono lessati e conditi con olio, limone e peperoncino. Anche le cime di rapa sono al loro meglio — meno amare, più tenere — perfette per le orecchiette. La cicoria selvatica, raccolta nei campi attorno al borgo, è un ingrediente fondamentale per fave e cicoria primaverili. I ristoranti del centro preparano anche insalate con fave fresche, pecorino e menta selvatica — un antipasto leggero e profumato che anticipa i sapori dell'estate. Le alici fresche, abbondanti in primavera, vengono preparate "maritate" — una accanto all'altra con aglio e prezzemolo — o sotto sale per accompagnare i pasti dell'intero anno.
+          <strong>Primavera:</strong> fave fresche, cime di rapa dolci e alici "maritate" con aglio e prezzemolo.
         </div>
         <div class="dish-text">
-          <strong>Estate:</strong> Il pesce azzurro domina la tavola: saraghi, mormore, triglie e pesce spada alla griglia. Le cozze ragusane raggiungono la maturazione perfetta, e i ristoranti sul lungomare servono insalate di mare e fritture miste che raccontano il sapore dell'Adriatico. I pomodorini del Gargano, dolcissimi, sono perfetti in insalata o conditi con origano e olio. L'estate è anche la stagione delle feste dei pescatori, dove il polpo alla griglia e le cozze al vino bianco vengono serviti direttamente sul banchetto di legno, con il mare a due passi. Le serate estive sul lungomare sono perfette per una frittura di pesce accompagnata da una birra fredda o un bicchiere di birra artigianale locale.
+          <strong>Estate:</strong> pesce azzurro alla griglia, cozze mature e fritture sul lungomare durante le feste dei pescatori.
         </div>
         <div class="dish-text">
-          <strong>Autunno:</strong> I funghi porcini raccolti nei boschi della Murgia arrivano nei piatti come condimento per paste e risotti. Le castagne della Valle dei Nasini sono alla base di dolci tradizionali come il castagnaccio e la torta di castagne. Il polpo alla pignattara raggiunge la sua versione più autentica, perché il polpo in questa stagione è più grasso e saporito. È anche il momento giusto per provare le zuppe di pesce con i crustacei più prezi, come i mormore e i granseole, che in autunno raggiungono la taglia perfetta per essere cucinati interi. Le olive新零售, raccolte direttamente dagli alberi, vengono portate ai frantoi per produrre l'olio nuovo — un evento che a Giovinazzo è celebrato con feste e sagre del frantoio.
+          <strong>Autunno:</strong> porcini della Murgia, castagne e olio nuovo dai frantoi; il polpo è al suo meglio.
         </div>
         <div class="dish-text">
-          <strong>Inverno:</strong> Le fave secche diventano il re della tavola: fave e cicoria, fave con la scaglia di pane, zuppe di fave con cozze e patate. I cavoli, le cime di rapa e le politane accompagnano paste come orecchiette e troccoli. La cipolla rossa di Giovinazzo, dolce e saporita, è alla base di pizze e focacce tipiche dell'inverno locale. L'inverno è anche la stagione dei bolliti misti — carne di vacca bruna del Gargano, pezzi di pecora, cotenne e cotechini — che a Giovinazzo vengono preparati per le feste di Natale e Capodanno. Le fave secche, lessate e servite con olio e cipolla rossa, sono il piatto più tipico dell'inverno giovinazzese — un piatto che sa di casa e di tradizione.
+          <strong>Inverno:</strong> fave secche, cime di rapa e cipolla rossa locale; tempo di zuppe e bolliti delle feste.
         </div>
       </section>
 
@@ -1000,41 +1129,46 @@
           <h2>Curiosità Gastronomiche di Giovinazzo</h2>
         </div>
         <div class="dish-text">
-          <strong>Il caffè leccese arriva anche qui:</strong> Anche se il caffè leccese è originario del Salento, a Giovinazzo è diventato una tradizione locale. Espresso caldo versato su ghiaccio e latte di mandorla, è la bevanda estiva per eccellenza. I bar del centro lo preparano con latte di mandorla fatto in casa, e i giovinazzesi lo bevono tutto l'anno — anche d'inverno, in versione "calda" con latte di mandorla tiepido. La versione più amata è quella con una spruzzata di cannella sopra, che esalta il sapore del caffè e della mandorla. A €1.50-3, è il refreshment perfetto dopo una passeggiata nel borgo antico. Il bar più antico di Giovinazzo, situato in piazza principale, lo prepara secondo una ricetta segreta che risale al 1950 — il segreto è nella proporzione perfetta tra caffè e mandorla.
+          <strong>Caffè leccese anche qui:</strong> espresso su ghiaccio e latte di mandorla, €1.50-3. La versione con cannella è la più amata.
         </div>
         <div class="dish-text">
-          <strong>Le feste dei pescatori in estate:</strong> Durante i mesi estivi, Giovinazzo ospita le traditionali "feste dei pescatori" sul lungomare. Bancarelle improvvisate offrono polpo alla griglia, cozze al vino bianco, frittura di pesce e vino sfuso servito nelle classiche coppe di vetro. L'atmosfera è quella dei villaggi di pescatori di un tempo, con musica dal vivo e bambini che corrono tra le bancarelle. È l'occasione migliore per assaggiare il pesce più fresco a prezzi popolari. La festa più grande si tiene a luglio, con la sagra del polpo che richiude migliaia di visitatori da tutta la Puglia. Il polpo viene cucinato in decine di modi diversi: alla griglia, in pignatta, in insalata, fritto — è un festival del polpo come non ne esiste altri in Italia. Le serate estive sul lungomare sono perfette per una frittura di pesce accompagnata da una birra fredda o un bicchiere di vino locale.
+          <strong>Feste dei pescatori d'estate:</strong> polpo alla griglia, cozze al vino bianco e frittura sul lungomare. A luglio la sagra del polpo richiama migliaia di visitatori.
         </div>
         <div class="dish-text">
-          <strong>Il castello normanno e la tradizione del vino:</strong> Il castello di Giovinazzo, risalente al XII secolo, domina il borgo dal punto più alto. Ma è nella cantina sotterranea del castello che si nasconde una tradizione vinicola poco nota: qui i monaci benedettini producevano un vino rosso intenso che ancora oggi alcuni produttori locali cercano di riscoprire. Il Primitivo e il Negroamaro sono i vitigni principali della zona, e nei ristoranti del centro li trovi accompagnati ai piatti di pesce — un abbinamento inusuale ma straordinario che funziona grazie alla nota di spezie e frutti di bosco che bilancia il sapore del mare. Il vino di Giovinazzo ha una storia che risale ai Romani, che coltivavano viti sui pendii della collina. Oggi, alcune cantine della zona producono ancora vini secondo metodi tradizionali, con uve raccolte a mano e fermentate in botti di rovere.
+          <strong>Vino sotto il castello:</strong> nelle cantine del castello normanno i benedettini facevano vino rosso. Oggi Primitivo e Negroamaro accompagnano (benissimo) anche il pesce.
         </div>
         <div class="dish-text">
-          <strong>Il mercato del pesce delle 5 di mattina:</strong> Se vuoi vivere un'esperienza autentica, alzati presto e vai al porto di Giovinazzo alle 5 di mattina, quando i pescatori scaricano le reti. Il mercato del pesce è un spettacolo di colori, voci e odori: le triglie ancora che guizzano, i polpi che si muonono pigramente, le cozze che brillano nere nell'alba. I ristoranti del borgo comprano qui il pesce per la giornata, e se sei fortunato il pescatore ti venderà direttamente un chilo di saraghi per pochi euro. È un'esperienza che nessun tour operator ti propone, ma che racconta meglio di qualsiasi guida il legame tra Giovinazzo e il mare. Il mercato è aperto ogni mattina tranne la domenica, e la situazione migliore si ha tra le 5:30 e le 7:00, quando le barche tornano dal mare.
+          <strong>Mercato delle 5 di mattina:</strong> al porto, quando scaricano le reti. Aperto ogni mattina tranne domenica, meglio tra 5:30 e 7:00.
         </div>
         <div class="dish-text">
-          <strong>La tradizione del pane cunzato:</strong> A Giovinazzo, il pane cunzato è molto più di un panino: è un rito. Ogni mattina, prima di andare al lavoro o al porto, i giovinazzesi si fermano al bar o al panificio per preparare il loro pane cunzato: una fetta di pane casereccio condita con olio EVO, pomodoro schiacciato, origano e acciughe sotto sale. A volte si aggiunge mozzarella fresca o peperoncino. È lo street food più antico di Giovinazzo, e non esiste bar che non lo offra. Il segreto è nella qualità del pane — deve essere quello del forno a legna, con la crosta croccante e la mollica morbida e alveolata. A €2-3, è la colazione perfetta per iniziare la giornata in modo autentico e saporito.
+          <strong>Pane cunzato:</strong> il rito del mattino — pane di forno a legna, olio, pomodoro, origano e acciughe. €2-3 in ogni bar.
         </div>
       </section>
 
     <div class="tips-box">
       <h3><i class="fa-solid fa-lightbulb"></i> Consigli per Mangiare Bene a Giovinazzo</h3>
       <ul>
-        <li><i class="fa-solid fa-clock"></i> <span><strong>Vai a pranzo presto:</strong> I giovinazzesi pranzano alle 12:30-13:00. Se vai alle 13:30, i piatti migliori del pesce fresco sono già finiti. La cucina qui lavora con quello che arriva la mattina al mercato.</span></li>
-        <li><i class="fa-solid fa-map-marker-alt"></i> <span><strong>Il borgo antico è il cuore:</strong> I migliori ristoranti tradizionali sono nei vicoli del centro storico. Passeggia e segui il profumo del polpo alla pignattara — i vicoli di Giovinazzo sono un labirinto di profumi che ti guidano verso i piatti migliori.</span></li>
-        <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Prezzi reali:</strong> Un pranzo completo (primo + secondo + acqua) costa €18-30 nei ristoranti normali, €30-45 nei raffinati con vista mare. I menù a prezzo fisso d'estate offrono ottimi rapporti qualità-prezzo.</span></li>
-        <li><i class="fa-solid fa-hand-point-up"></i> <span><strong>Chiedi il pesce del giorno:</strong> I ristoranti di Giovinazzo lavorano con il pesce che arriva la mattina. Chiedi sempre cosa c'è di fresco oggi — i camerieri saranno felici di consigliarti il piatto migliore.</span></li>
-        <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Il vino giusto:</strong> Un Primitivo o un Negroamaro accompagnano perfettamente i piatti di pesce. Prova anche il Verdeca, un bianco fresco e minerale della Murgia, perfetto con il polpo e le cozze.</span></li>
-        <li><i class="fa-solid fa-fish"></i> <span><strong>Il mercato del pesce:</strong> Al porto peschereccio di Giovinazzo puoi comprare il pesce appena pescato e fartelo cucinare nei ristoranti vicini. È un'esperienza autentica che non trovi altrove.</span></li>
-        <li><i class="fa-solid fa-sun"></i> <span><strong>Estate al lungomare:</strong> D'estate i ristoranti sul mare offrono menu a prezzo fisso con pesce grigliato, fritto e antipasti. Ottimo rapporto qualità-prezzo con vista sull'Adriatico. Le feste dei pescatori sono imperdibili.</span></li>
-        <li><i class="fa-solid fa-camera"></i> <span><strong>Foto consigliata:</strong> Scatta una foto al polpo alla pignattara dal balcone di Friccico ner Core con il mare sullo sfondo — l'immagine perfetta per Instagram. Il borgo antico è pieno di angoli fotografici.</span></li>
-        <li><i class="fa-solid fa-shoe-prints"></i> <span><strong>Passeggiata consigliata:</strong> Dopo pranzo, fai una passeggiata lungo il lungomare fino al porto. Il borgo antico è piccolo ma pieno di sorprese — vicoli, chiese, balconi fioriti e panorami mozzafiato sul mare.</span></li>
+        <li><i class="fa-solid fa-clock"></i> <span><strong>Pranzo presto:</strong> alle 13:30 il pesce fresco è spesso finito. I locali pranzano alle 12:30.</span></li>
+        <li><i class="fa-solid fa-map-marker-alt"></i> <span><strong>Borgo antico:</strong> i ristoranti migliori sono nei vicoli — segui il profumo della pignattara.</span></li>
+        <li><i class="fa-solid fa-euro-sign"></i> <span><strong>Prezzi:</strong> pranzo completo €18-30, €30-45 con vista mare. D'estate i menù fissi convengono.</span></li>
+        <li><i class="fa-solid fa-hand-point-up"></i> <span><strong>Pesce del giorno:</strong> chiedi sempre cosa è arrivato la mattina.</span></li>
+        <li><i class="fa-solid fa-wine-glass"></i> <span><strong>Vino:</strong> Verdeca col polpo, Primitivo o Negroamaro per il resto.</span></li>
+        <li><i class="fa-solid fa-fish"></i> <span><strong>Mercato al porto:</strong> compri il pesce e te lo cucinano nei ristoranti vicini.</span></li>
       </ul>
+    </div>
+
+    <div class="city-rest-section">
+      <h2><i class="fa-solid fa-store"></i> Ristoranti a Giovinazzo <span class="city-rest-count" id="city-rest-count" style="display:none;"></span></h2>
+      <p class="city-rest-sub" style="margin-left:0;">Locali verificati su trovapiatto — la lista si aggiorna da sola a ogni nuova apertura.</p>
+      <div class="city-rest-grid" id="city-restaurants">
+        <div style="text-align:center;padding:1.5rem;color:var(--text-muted);font-size:0.85rem;"><i class="fa-solid fa-spinner fa-spin"></i> Caricamento ristoranti...</div>
+      </div>
     </div>
 
     <div class="map-section">
       <h2><i class="fa-solid fa-map-location-dot"></i> Dove Mangiare a Giovinazzo</h2>
       <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.8;">
-        Giovinazzo non è una grande città, e i suoi ristoranti si concentrano in un'area ristretta: il <strong>borgo antico</strong> e il <strong>lungomare</strong>. Nel centro storico, i vicoli stretti nascondono trattorie dove i piatti vengono preparati secondo ricette antiche, con ingredienti comprati ogni mattina al mercato del pesce. Sul lungomare, i ristoranti offrono tavole con vista mare, perfette per una cena estiva. Il ristorante di riferimento è <strong>Friccico ner Core</strong>, famoso per il polpo alla pignattara e per l'atmosfera autentica del borgo antico. Per la focaccia, i panifici del centro sfornano la migliore della zona. Per le fave e cicoria, le trattorie del centro storico sono le più autentiche — chiedi sempre ai locali, che sapranno indicarti il posto giusto.
+        I ristoranti si concentrano tra <strong>borgo antico</strong> e <strong>lungomare</strong>: trattorie con ricette antiche nel centro, tavole vista mare per le sere d'estate. Vedi i locali verificati qui sopra e sulla mappa.
       </p>
       <div id="guide-map"></div>
     </div>
@@ -1173,9 +1307,16 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    const restaurants = [
-      { name: 'Friccico ner Core', lat: 41.1808, lng: 16.6715, slug: 'friccico-ner-core', dish: 'Polpo', price: '€14-20' },
+    const CITY_NAME = 'Giovinazzo';
+    const FALLBACK_RESTAURANTS = [
+      { name: 'Friccico ner Core', lat: 41.1808, lng: 16.6715, slug: 'friccico-ner-core', cuisine: 'Cucina di mare', dish_count: null, logo_url: '' },
     ];
+
+    function escGuide(s) {
+      return String(s ?? '').replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+      });
+    }
 
     const map = L.map('guide-map').setView([41.1808, 16.6715], 14);
 
@@ -1184,22 +1325,72 @@
       maxZoom: 19
     }).addTo(map);
 
-    restaurants.forEach(r => {
+    function addMarker(r) {
+      const lat = parseFloat(r.lat);
+      const lng = parseFloat(r.lng);
+      if (!isFinite(lat) || !isFinite(lng)) return;
       const icon = L.divIcon({
-        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${r.name}</div>`,
+        html: `<div style="background:#e73a3a;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);">${escGuide(r.name)}</div>`,
         className: '',
         iconAnchor: [50, 10]
       });
 
-      L.marker([r.lat, r.lng], { icon }).addTo(map)
+      L.marker([lat, lng], { icon }).addTo(map)
         .bindPopup(`
           <div style="font-family:Poppins,sans-serif;padding:4px;">
-            <strong>${r.name}</strong><br>
-            <span style="color:#f59e0b;">${r.dish}</span> &middot; <strong>${r.price}</strong><br>
-            <a href="/menu/${r.slug}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
+            <strong>${escGuide(r.name)}</strong><br>
+            ${r.cuisine ? `<span style="color:#f59e0b;">${escGuide(r.cuisine)}</span><br>` : ''}
+            <a href="/menu/${encodeURIComponent(r.slug)}/" style="color:#e73a3a;font-weight:600;text-decoration:none;">Vedi Menu →</a>
           </div>
         `);
-    });
+    }
+
+    function renderCityRestaurants(list) {
+      const grid = document.getElementById('city-restaurants');
+      const badge = document.getElementById('city-rest-count');
+      if (!grid) return;
+      if (!list.length) {
+        grid.innerHTML = '<div style="text-align:center;padding:1.5rem;color:var(--text-muted);font-size:0.85rem;">Nessun ristorante ancora — <a href="/aggiungi-menu.html" style="color:var(--primary);">segnalane uno</a>.</div>';
+        return;
+      }
+      if (badge) {
+        badge.style.display = 'inline-flex';
+        badge.innerHTML = `<i class="fa-solid fa-store"></i> ${list.length}`;
+      }
+      grid.innerHTML = list.map(r => {
+        const logo = (r.logo_url || '').trim();
+        const detail = [r.cuisine, (r.dish_count !== null && r.dish_count !== undefined) ? (r.dish_count + ' piatti') : null].filter(Boolean).join(' · ');
+        return `<a href="/menu/${encodeURIComponent(r.slug)}/" class="restaurant-card">
+          ${logo ? `<img src="${escGuide(logo)}" alt="" class="rc-logo" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
+          <div class="rc-logo-fallback" style="display:${logo ? 'none' : 'flex'}"><i class="fa-solid fa-utensils"></i></div>
+          <div class="rc-info">
+            <div class="rc-name">${escGuide(r.name)}</div>
+            ${detail ? `<div class="rc-detail">${escGuide(detail)}</div>` : ''}
+          </div>
+          <span class="rc-action">Vedi Menu <i class="fa-solid fa-arrow-right"></i></span>
+        </a>`;
+      }).join('');
+    }
+
+    // Ristoranti della città dal DB: ogni nuovo inserimento appare da solo
+    fetch('/app/admin/api.php?action=get-all-restaurants')
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(data => {
+        const all = data.data || [];
+        const city = all.filter(r => (r.city || '').toLowerCase() === CITY_NAME.toLowerCase() && r.slug);
+        const list = (city.length ? city : []).map(r => ({
+          name: r.name, slug: r.slug, cuisine: r.cuisine || '',
+          dish_count: (r.dish_count !== undefined && r.dish_count !== null) ? Number(r.dish_count) : null,
+          logo_url: r.logo_url || '', lat: r.latitude, lng: r.longitude
+        }));
+        const use = list.length ? list : FALLBACK_RESTAURANTS;
+        renderCityRestaurants(list.length ? list : FALLBACK_RESTAURANTS.map(r => ({ ...r, dish_count: null, logo_url: '', cuisine: r.cuisine || '' })));
+        use.forEach(addMarker);
+      })
+      .catch(() => {
+        renderCityRestaurants(FALLBACK_RESTAURANTS.map(r => ({ ...r, dish_count: null, logo_url: '', cuisine: r.cuisine || '' })));
+        FALLBACK_RESTAURANTS.forEach(addMarker);
+      });
 
     document.querySelectorAll('.faq-item h3').forEach(h3 => {
       h3.addEventListener('click', () => {

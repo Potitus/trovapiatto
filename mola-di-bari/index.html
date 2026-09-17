@@ -8,14 +8,18 @@
   <meta name="keywords" content="cosa mangiare Mola di Bari, piatti tipici Mola di Bari, pesce fresco Mola, ristoranti Mola di Bari, branzino Mola, polpo Mola di Bari, focaccia Mola, pesce Mola di Bari, Trani, Puglia">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta name="theme-color" content="#e73a3a">
-  <!-- Geo Meta Tags (Local SEO) -->\n  <meta name="geo.region" content="IT-BA">\n  <meta name="geo.placename" content="Mola di Bari">\n  <meta name="geo.position" content="41.0583;17.0786">\n  <meta name="ICBM" content="41.0583, 17.0786">
+  <!-- Geo Meta Tags (Local SEO) -->
+  <meta name="geo.region" content="IT-BA">
+  <meta name="geo.placename" content="Mola di Bari">
+  <meta name="geo.position" content="41.0583;17.0786">
+  <meta name="ICBM" content="41.0583, 17.0786">
   <meta name="author" content="trovapiatto">
   
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://www.trovapiatto.it/mola-di-bari/">
   <meta property="og:title" content="Cosa Mangiare a Mola di Bari: La Guida Completa ai Piatti Tipici">
   <meta property="og:description" content="Guida completa ai piatti tipici di Mola di Bari. Specialità da provare, con ristoranti e prezzi.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1544124499-58912cbddaad?w=1200&h=630&fit=crop">
+  <meta property="og:image" content="https://www.trovapiatto.it/images/cities/mola-di-bari.jpg">
   <meta property="og:site_name" content="trovapiatto">
   <meta property="og:locale" content="it_IT">
   <meta property="article:published_time" content="2026-08-29T10:00:00+02:00">
@@ -24,7 +28,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cosa Mangiare a Mola di Bari: La Guida Completa ai Piatti Tipici">
   <meta name="twitter:description" content="Piatti tipici di Mola di Bari da provare assolutamente. Ristoranti, prezzi e consigli.">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1544124499-58912cbddaad?w=1200&h=630&fit=crop">
+  <meta name="twitter:image" content="https://www.trovapiatto.it/images/cities/mola-di-bari.jpg">
   
   <link rel="canonical" href="https://www.trovapiatto.it/mola-di-bari/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -110,7 +114,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('HERO_IMAGE') center/cover no-repeat;
+      background: url('/images/cities/mola-di-bari.jpg') center/cover no-repeat;
       filter: blur(4px) brightness(0.55) scale(1.05);
       z-index: 0;
     }
@@ -658,6 +662,92 @@
     }
     
     .site-footer a:hover { color: var(--primary); }
+  
+    /* Tour gastronomico */
+    .tour-box {
+      background: linear-gradient(135deg, rgba(231,58,58,0.10), rgba(245,158,11,0.06));
+      border: 2px solid rgba(231,58,58,0.30);
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tour-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 24px; right: 24px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--accent-food), transparent);
+      border-radius: 2px;
+    }
+    .tour-box h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tour-box h2 i { color: var(--primary); }
+    .tour-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .tour-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .tour-step {
+      display: block;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .tour-step:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      text-decoration: none;
+    }
+    .tour-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent-food);
+      margin-bottom: 8px;
+    }
+    .tour-dish {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    .tour-why {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .tour-step .tour-go {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
   </style>
     <!-- Google Analytics (Consent Mode v2: default negato) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMZZK9P4W4"></script>
@@ -743,6 +833,39 @@
         <a href="#fave-e-cicoria"><span class="num">6.</span> Fave e Cicoria</a>
         <a href="#stagione"><span class="num">-</span> Piatti di Stagione</a>
         <a href="#curiosita"><span class="num">-</span> Curiosità Gastronomiche</a>
+      </div>
+    </div>
+
+      
+    <!-- Tour gastronomico Mola di Bari -->
+    <div class="tour-box">
+      <h2><i class="fa-solid fa-route"></i> Tour Gastronomico di Mola di Bari</h2>
+      <p class="tour-sub">Quattro tappe in un giorno: dalla colazione alla cena, i piatti da non perdere. <!-- TOUR-OK --></p>
+      <div class="tour-steps">
+      <a href="#pizza-al-taglio-molese" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-mug-saucer"></i> Mattina</span>
+        <div class="tour-dish">Pizza al Taglio Molese</div>
+        <div class="tour-why">Sottile e croccante, colazione dei molesi.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#branzino-al-forno" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-sun"></i> Pranzo</span>
+        <div class="tour-dish">Branzino al Forno</div>
+        <div class="tour-why">Il re del mare, con patate e rosmarino.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#polpo-alla-griglia" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-shrimp"></i> Pomeriggio</span>
+        <div class="tour-dish">Polpo alla Griglia</div>
+        <div class="tour-why">Affumicato sulla griglia del porto.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#zuppa-di-pesce" class="tour-step">
+        <span class="tour-time"><i class="fa-solid fa-moon"></i> Sera</span>
+        <div class="tour-dish">Zuppa di Pesce</div>
+        <div class="tour-why">Tutto l’Adriatico in una ciotola.</div>
+        <span class="tour-go">Vai al piatto <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
       </div>
     </div>
 
